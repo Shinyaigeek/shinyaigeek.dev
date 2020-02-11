@@ -24,10 +24,11 @@
   @for $i from 1 through 25 {
     &--stars:nth-child(#{$i}) {
       animation-delay: #{$i * 100}ms;
-      animation-duration: random(250) + 375ms;
-      left: random(100) + vw;
+      animation-duration: #{$i * $i * $i * 3 + 375}ms;
+      left: #{$i * $i * 3 * $i * $i % 100}vw;
     }
   }
+
 
   @keyframes rain {
     from {

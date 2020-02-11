@@ -1,5 +1,5 @@
 {
-  "name": "shinyaigeek-blog",
+  "name": "shinyaigeek",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Shinyaigeek/ShinyaigeekBlog.git"
+    "url": "git+https://github.com/Shinyaigeek/Shinyaigeek.git"
   },
   "keywords": [],
   "author": "",
