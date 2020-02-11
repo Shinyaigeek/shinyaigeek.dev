@@ -1,0 +1,25 @@
+@import "./_core/variable";
+
+.welcome {
+  height: calc(100vh - 72px);
+  width: 100vw;
+//   background-color: $theme_background;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+
+  .banana {
+    height: 200px;
+    margin: 20px 20px;
+    object-fit: contain;
+  }
+}
+
+.icon {
+  z-index: 1000;
+  width: 30vh;
+  height: 30vh;
+}

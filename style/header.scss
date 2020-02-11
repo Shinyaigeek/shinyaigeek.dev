@@ -1,0 +1,203 @@
+@import "./_core/variable";
+
+@import "~antd/dist/antd.css";
+
+:root {
+  --theme-header: #1a161a;
+  --theme-background: #fcfcfc;
+  --theme-color: #1e1e1e;
+  --headings-color: #f2aaf2;
+  --twitter-background: #fff;
+  --twitter-toggle: #e6ecf0;
+  --twitter-cancel: #e6ecf0;
+  --item-background: #fff;
+  --item-border: #f6e6ff;
+  --image-gray: grayscale(0%);
+
+  @media (prefers-color-scheme: dark) {
+    --theme-background: #3c3c3b;
+    --theme-color: #e4e4e4;
+    --headings-color: #d2f0da;
+    --twitter-background: #15202b;
+    --twitter-toggle: #1c2938;
+    --twitter-cancel: #243447;
+    --item-background: #7b7a79;
+    --item-border: #a2a2a1;
+    --image-gray: grayscale(15%);
+  }
+}
+
+body {
+  background: var(--theme-background) !important;
+  color: var(--theme-color) !important;
+}
+
+.header {
+  height: 72px;
+  width: 100vw;
+  font-size: 30px;
+  color: $theme_text;
+  background: $theme_header;
+  box-shadow: 1px 1px 1px #544854;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 6px 0px;
+  z-index: 1000000;
+  display: flex;
+
+  &--title {
+    position: relative;
+    left: 10px;
+
+    &__toHome {
+      text-decoration: none;
+      color: $theme_text;
+    }
+
+    &__icon {
+      width: 36px;
+      object-fit: contain;
+    }
+  }
+
+  .header--contents {
+    width: auto;
+    position: absolute;
+    right: 15px;
+    display: none;
+
+    &__anchorBlock {
+      width: auto;
+      margin: 0 20px;
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        position: absolute;
+        left: 0;
+        bottom: 2px;
+        content: " ";
+        width: 100%;
+        height: 2px;
+        background: $theme_text;
+        transform: scale(0, 1);
+        transform-origin: center top;
+        transition: transform 0.3s;
+      }
+
+      &:hover::after {
+        transform: scale(1.1, 1);
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $theme_text;
+    }
+  }
+
+  .header--contentsHamburger {
+    display: block;
+
+    .hamburger--menu__trigger,
+    .hamburger--menu__trigger .hamburger--menu__trigger__part {
+      display: inline-block;
+      transition: all 0.4s;
+      box-sizing: border-box;
+      z-index: 8;
+    }
+
+    .hamburger--menu__trigger {
+      position: absolute;
+      top: 15px;
+      right: 30px;
+      width: 28px;
+      height: 32px;
+
+      &__active {
+        position: absolute;
+        top: 15px;
+        right: 30px;
+        width: 28px;
+        height: 32px;
+      }
+    }
+
+    .hamburger--menu__trigger {
+      &__part {
+        position: absolute;
+        right: 0;
+        width: 100%;
+        height: 4px;
+        background-color: $theme_text;
+        border-radius: 4px;
+
+        &:nth-of-type(1) {
+          top: 0;
+        }
+        &:nth-of-type(2) {
+          top: 15px;
+        }
+        &:nth-of-type(3) {
+          bottom: 0;
+        }
+      }
+    }
+
+    .hamburger--menu__trigger__active {
+      .hamburger--menu__trigger__part {
+        position: absolute;
+        right: 0;
+        width: 100%;
+        height: 4px;
+        background-color: $theme_text;
+        border-radius: 4px;
+
+        &:nth-of-type(1) {
+          -webkit-transform: translateY(13px) rotate(-45deg);
+          transform: translateY(13px) rotate(-45deg);
+        }
+
+        &:nth-of-type(2) {
+          opacity: 0;
+        }
+
+        &:nth-of-type(3) {
+          -webkit-transform: translateY(-15px) rotate(45deg);
+          transform: translateY(-15px) rotate(45deg);
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .header--contents {
+      display: flex;
+    }
+
+    .header--contentsHamburger {
+      display: none;
+    }
+  }
+}
+
+.hamburgerMenu--content {
+  position: absolute;
+  top: 72px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  color: $theme_text;
+  background: $menu_background;
+
+  .header--contents__anchorBlock {
+    font-size: 42px;
+    margin: 15px auto 15px 30px;
+    a {
+      text-decoration: none;
+      color: $theme_text;
+    }
+  }
+}

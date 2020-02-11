@@ -1,0 +1,49 @@
+$animationMinLength: 250;
+$animationMaxLength: 700;
+
+.welcome--animation {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  transform-style: preserve-3d;
+  transform: perspective(5000px);
+  overflow: visible;
+  width: 270px;
+  height: 270px;
+}
+
+.earth {
+  animation: 5s infinite forwards normal earthX ease-in-out 1.25s;
+}
+
+.earthY {
+  animation: 5s infinite forwards normal earthY ease-in-out;
+}
+
+@keyframes earthY {
+  0%,
+  100% {
+    transform: translatY(0px);
+  }
+
+  50% {
+    transform: translateY(-120px);
+  }
+}
+
+@keyframes earthX {
+  0%,
+  100% {
+    transform: translateX(-180px);
+    z-index: 5;
+  }
+
+  25% {
+    z-index: 2;
+  }
+
+  50% {
+    transform: translateX(180px);
+    z-index: 2;
+  }
+}

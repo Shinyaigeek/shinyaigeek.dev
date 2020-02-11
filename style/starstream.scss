@@ -1,0 +1,40 @@
+@import "./_core/variable";
+
+.starStream {
+  $rain_drop_height: 20vh;
+  background-color: $theme_background;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 72px);
+  z-index:-888;
+  overflow: hidden;
+
+  &--stars {
+    animation: rain 500ms linear infinite;
+    background-color: rgba(#ffffff, 0.25);
+    position: absolute;
+    left: 0;
+    top: -$rain_drop_height;
+    width: 1px;
+    height: $rain_drop_height;
+    transform-origin: center center;
+  }
+  @for $i from 1 through 25 {
+    &--stars:nth-child(#{$i}) {
+      animation-delay: #{$i * 100}ms;
+      animation-duration: random(250) + 375ms;
+      left: random(100) + vw;
+    }
+  }
+
+  @keyframes rain {
+    from {
+      transform: rotate(-5deg) translateY(-$rain_drop_height);
+    }
+    to {
+      transform: rotate(-5deg) translateY(100vh + $rain_drop_height);
+    }
+  }
+}

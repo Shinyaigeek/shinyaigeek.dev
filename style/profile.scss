@@ -1,0 +1,111 @@
+@import "./_core/variable.scss";
+
+.profile {
+  width: 80vw;
+  margin: 102px auto;
+  font-family: "sans-serif";
+
+  img {
+    width: 200px;
+    object-fit: contain;
+    display: block;
+    margin: 18px auto;
+  }
+
+  .name {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .social {
+    width: 200px;
+    margin: 12px auto;
+
+    .twitter {
+      font-size: 22px;
+
+      a {
+        text-decoration: none;
+        color: $theme_background;
+      }
+    }
+
+    .github {
+      font-size: 22px;
+      margin-top: 8px;
+
+      a {
+        text-decoration: none;
+        color: $theme_background;
+      }
+    }
+
+    .linkedin {
+      font-size: 22px;
+      margin-top: 8px;
+
+      a {
+        text-decoration: none;
+        color: $theme_background;
+      }
+    }
+  }
+
+  ul {
+    word-break: break-word;
+    li {
+      list-style: none;
+      margin-top: 8px;
+
+      &::before {
+        position: relative;
+        top: -2px;
+        left: -18px;
+
+        display: inline-block;
+
+        width: 6px;
+        height: 6px;
+
+        content: "";
+
+        border-radius: 100%;
+        background: $headings_color;
+      }
+    }
+
+    li:nth-child(even) {
+      &::before {
+        position: relative;
+        top: -2px;
+        left: -18px;
+
+        display: inline-block;
+
+        width: 6px;
+        height: 6px;
+
+        content: "";
+
+        border-radius: 100%;
+        background: $headings_color_reverse;
+      }
+    }
+  }
+
+  .history {
+    &--study,
+    &--job {
+      .title {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .description {
+    .title {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+  }
+}

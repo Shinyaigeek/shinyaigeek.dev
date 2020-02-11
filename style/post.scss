@@ -1,0 +1,352 @@
+
+
+.post--content {
+  font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","-apple-system",BlinkMacSystemFont,sans-serif;
+  width: 75%;
+  margin: 12px auto;
+  overflow: hidden;
+
+  table tr td {
+    border: 1px solid black;
+  }
+
+  img {
+    width: 250px;
+    display: block;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+
+  h2 {
+    color: var(--theme-color) !important;
+    &:before {
+      content: "";
+      background-color: var(--headings-color);
+      border-radius: 4px;
+      width: 12px;
+      height: 30px;
+      display: inline-block;
+      margin-right: 12px;
+      position: relative;
+      top: 6px;
+    }
+  }
+
+  h1{
+    margin-top:42px
+  }
+}
+
+.share {
+  &--Twitter {
+    &__icon {
+      img {
+        margin: 0;
+      }
+    }
+  }
+
+  &--Facebook {
+    &__icon {
+      img {
+        margin: 0;
+      }
+    }
+  }
+
+  &--Linkedin {
+    &__icon {
+      img {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.link-box {
+  border: 1px solid #e1e1e1;
+  padding: 10px;
+  display: flex;
+  margin: 30px;
+}
+
+.link-box:hover {
+  background-color: #f3f3f3;
+  -webkit-transition: background-color 0.35s;
+  transition: background-color 0.35s;
+}
+
+.img-box {
+  width: 25%;
+  float: left;
+}
+
+.img-box div {
+  min-height: 170px;
+  background-size: cover;
+  background-position: center center;
+}
+
+.text-box {
+  width: 75%;
+  float: left;
+  padding-left: 20px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.text-box .title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #428bca;
+  padding: 0;
+  margin: 0;
+}
+
+.text-box .description {
+  font-size: 15px;
+  color: #333;
+  padding: 0;
+}
+
+@media only screen and (max-width: 479px) {
+  .img-box div {
+    min-height: 80px;
+  }
+
+  .text-box {
+    margin-left: 10px;
+    line-height: 1.5;
+  }
+
+  .text-box .title {
+    font-size: 13px;
+    margin: 0;
+  }
+
+  .text-box .description {
+    font-size: 11px;
+    margin-top: 5px;
+  }
+}
+
+/*
+  
+  github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+  
+  */
+
+code {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/*
+   * Visual Studio 2015 dark style
+   * Author: Nicolas LLOBERA <nllobera@gmail.com>
+   */
+
+code {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #1e1e1e;
+  color: #dcdcdc;
+}
+
+.hljs-keyword,
+.hljs-literal,
+.hljs-symbol,
+.hljs-name {
+  color: #569cd6;
+}
+
+.hljs-link {
+  color: #569cd6;
+  text-decoration: underline;
+}
+
+.hljs-built_in,
+.hljs-type {
+  color: #4ec9b0;
+}
+
+.hljs-number,
+.hljs-class {
+  color: #b8d7a3;
+}
+
+.hljs-string,
+.hljs-meta-string {
+  color: #d69d85;
+}
+
+.hljs-regexp,
+.hljs-template-tag {
+  color: #9a5334;
+}
+
+.hljs-subst,
+.hljs-function,
+.hljs-title,
+.hljs-params,
+.hljs-formula {
+  color: #dcdcdc;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #57a64a;
+  font-style: italic;
+}
+
+.hljs-doctag {
+  color: #608b4e;
+}
+
+.hljs-meta,
+.hljs-meta-keyword,
+.hljs-tag {
+  color: #9b9b9b;
+}
+
+.hljs-variable,
+.hljs-template-variable {
+  color: #bd63c5;
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-builtin-name {
+  color: #9cdcfe;
+}
+
+.hljs-section {
+  color: gold;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/*.hljs-code {
+    font-family:'Monospace';
+  }*/
+
+.hljs-bullet,
+.hljs-selector-tag,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #d7ba7d;
+}
+
+.hljs-addition {
+  background-color: #144212;
+  display: inline-block;
+  width: 100%;
+}
+
+.hljs-deletion {
+  background-color: #600;
+  display: inline-block;
+  width: 100%;
+}
+
+.text__red {
+  color: #FF5954
+}

@@ -1,0 +1,10 @@
+@import "./_core/variable.scss";
+
+.footer {
+  text-align: center;
+  margin-top: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: var(--theme-text);
+  background-color: var(--theme-header);
+}

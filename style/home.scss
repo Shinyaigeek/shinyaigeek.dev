@@ -1,0 +1,41 @@
+.home--items {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ",
+    Meiryo, "ＭＳ Ｐゴシック", "-apple-system", BlinkMacSystemFont, sans-serif;
+  color: var(--theme-color) !important;
+  margin: 0 auto;
+  width: 300px;
+
+  .sorters {
+    margin: 0 18px;
+    padding-top: 18px;
+    display: flex;
+    .order {
+      margin: 0 auto;
+    }
+    a {
+      display: block;
+      margin: 0 auto;
+      .tag {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .blog--contents {
+    width: 300px;
+    margin: 0 auto;
+  }
+}
+
+.item--card {
+  background: var(--item-background) !important;
+  border: 1px solid var(--item-border) !important;
+
+  &__img{
+    filter:var(--image-gray);
+  }
+
+  &__description{
+    color:var(--theme-color);
+  }
+}
