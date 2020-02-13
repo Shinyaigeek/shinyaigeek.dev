@@ -72,15 +72,14 @@ const Index: NextPage<Props> = props => {
 Index.getInitialProps = async req => {
   const page = Number(req.query.page) || 1;
   const tag = req.query.tag as string;
-  const itemNum = require.context("../items", true, /\.md$/).keys().length;
+  const items = require.context("../items", true, /\.md$/).keys();
   let totalNum = 0;
   let canPushNum = 0;
   const itemInfos: header[] = [];
-  for (let i = itemNum; i > 0; i--) {
-    console.log(i)
-    const header = await import("../items/" + i + ".md").then(item => {
+  for (let i of items) {
+    const header = await import("../items/" + i.replace(/.\//,"")).then(item => {
       return item.attributes as header;
-    });
+    })
     if (!tag || header.tag.includes(tag)) {
       if (
         itemInfos.length <= 9 &&
