@@ -2,9 +2,9 @@
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
-    "jsx": "preserve",
     "strict": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "lib": [
       "dom",
       "dom.iterable",
@@ -12,11 +12,11 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": false,
     "noEmit": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "jsx": "preserve"
   },
   "exclude": [
     "node_modules"
@@ -24,6 +24,6 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "pages/_document.js"
+    "**/*.tsx"
   ]
 }

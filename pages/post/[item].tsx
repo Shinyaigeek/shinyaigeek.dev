@@ -4,6 +4,7 @@ import Head from "next/head";
 import PostContent from "../../views/Post";
 import { Anchor, Result, Button } from "antd";
 import marked from "marked";
+import fs from "fs"
 // import highlight from "highlight.js"
 
 const { Link } = Anchor;
@@ -15,6 +16,7 @@ export type header = {
   tag: string[];
   description: string;
   date: string;
+  slug: string
 };
 
 export type PageInfo = {
@@ -82,8 +84,9 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
 };
 
 Item.getInitialProps = async (req: NextPageContext) => {
+  console.log(req)
   try {
-    const item = await import("../../items/" + req.query.item + ".md");
+    const item = await import("../../items/" + req.query.target);
     const header = item.attributes as header;
     const content = marked(item.body.replace(/\?\?.+\?\?/g,(target:string) => {
       return target.replace("??","<span class='text__red'>").replace("??","</span>")
@@ -109,7 +112,8 @@ Item.getInitialProps = async (req: NextPageContext) => {
       path: "not found",
       tag: [],
       description: "not found",
-      date: "not found"
+      date: "not found",
+      slug: "404"
     };
     return {
       header: header,

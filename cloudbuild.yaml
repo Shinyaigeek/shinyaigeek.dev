@@ -1,0 +1,21 @@
+ steps:
+ # build the container image
+ - name: 'gcr.io/shinyaigeek/blog'
+   args: ['build', '-t', 'gcr.io/shinyaigeek/blog:$COMMIT_SHA', '.']
+ # push the container image to Container Registry
+ - name: 'gcr.io/shinyaigeek/blog'
+   args: ['push', 'gcr.io/shinyaigeek/blog:$COMMIT_SHA']
+ # Deploy container image to Cloud Run
+ - name: 'gcr.io/shinyaigeek/blog'
+   args:
+   - 'run'
+   - 'deploy'
+   - 'blog'
+   - '--image'
+   - 'gcr.io/shinyaigeek/blog:$COMMIT_SHA'
+   - '--region'
+   - '[REGION]'
+   - '--platform'
+   - 'managed'
+ images:
+ - 'gcr.io/shinyaigeek/blog:$COMMIT_SHA'

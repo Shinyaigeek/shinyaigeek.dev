@@ -10,8 +10,9 @@ import DecorationTag from "../components/DecorationTag";
 const { Meta } = Card;
 
 export default function Item(props: header) {
+  console.log(props)
   return (
-    <Link href={"/post" + props.path}>
+    <Link href={"/post/" + props.slug}>
       <Card
         className="item--card"
         bordered={true}
