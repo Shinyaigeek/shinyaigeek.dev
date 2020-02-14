@@ -84,7 +84,6 @@ const Item: NextPage<Props & PageInfo, PageInfo> = props => {
 };
 
 Item.getInitialProps = async (req: NextPageContext) => {
-  console.log(req)
   try {
     const item = await import("../../items/" + req.query.target);
     const header = item.attributes as header;
