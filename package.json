@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev:server": "nodemon dist/express.js --watch dist --watch express.js",
-    "build:server": "webpack --config webpack.config.server.js --mode=production",
+    "build:server": "webpack --config webpack.config.server.js --mode=development",
     "dev:client": "webpack-dev-server --config webpack.config.client.js --mode=development",
-    "build:client": "webpack --config webpack.config.client.js --mode=production"
+    "build:client": "webpack --config webpack.config.client.js --mode=development"
   },
   "repository": {
     "type": "git",
