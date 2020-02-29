@@ -1,5 +1,3 @@
-// eventually I dont use this
-
 const common = require("./webpack.config.common");
 const path = require("path");
 

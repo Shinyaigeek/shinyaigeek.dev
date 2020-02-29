@@ -23,15 +23,16 @@ const SiteHead = (props: HeadProps) => (
 );
 
 interface HelmetProps {
-  children: React.ReactChild;
+  children: () => JSX.Element;
   title: string;
+  props?: any;
 }
 
 const helmet = (props: HelmetProps) => {
   return () => (
     <React.Fragment>
       <SiteHead title={props.title} />
-      {props.children}
+      <props.children {...props.props} />
     </React.Fragment>
   );
 };
