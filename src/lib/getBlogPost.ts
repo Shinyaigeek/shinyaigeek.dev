@@ -2,6 +2,8 @@ import * as contentful from "contentful";
 
 import fetch from "node-fetch";
 
+require("dotenv").config();
+
 export interface Entry {
   fields: {
     title: string;
@@ -15,9 +17,7 @@ export interface Entry {
 }
 
 export const getBlogPost = async (target: string) => {
-    const CONTENTFUL_ACCESS_TOKEN = "0MseOCl7HZlBMCXj1fRxau2oKopn7AcXMr-8onesj2U";
-    const CONTENTFUL_SPACE_ID = "6ib5avrqb1b0";
-//   const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
+  const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
   if (!CONTENTFUL_ACCESS_TOKEN || !CONTENTFUL_SPACE_ID) {
     throw new Error("Please check env variable");
   }
