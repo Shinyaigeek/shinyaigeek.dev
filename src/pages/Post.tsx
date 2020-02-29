@@ -1,12 +1,17 @@
-import React from 'react'
-import { Layout } from '../components/Layout'
+import React from "react";
+import { Layout } from "../components/Layout";
+import { Entry } from "../lib/getBlogPost";
 
-function Post() {
-    return (
-        <div>
-            Post
-        </div>
-    )
+function Post(props: Entry) {
+  return (
+    <div>
+      {props.fields.title}
+      {props.fields.description}
+      {props.fields.publishedAt}
+      {props.fields.content}
+
+    </div>
+  );
 }
 
-export default Layout(Post())
+export default Layout(Post);

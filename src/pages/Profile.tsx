@@ -5,4 +5,4 @@ function Profile() {
   return <div>Profile</div>;
 }
 
-export default Layout(Profile());
+export default Layout(Profile);

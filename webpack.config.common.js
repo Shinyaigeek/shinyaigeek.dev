@@ -1,4 +1,7 @@
 const path = require("path");
+const webpack = require("webpack");
+
+require("dotenv").config();
 
 module.exports = {
   output: {
@@ -28,5 +31,14 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
-  }
+  },
+
+  plugins: [
+    new webpack.DefinePlugin({
+      CONTENTFUL_SPACE_ID: JSON.stringify(process.env.CONTENTFUL_SPACE_ID),
+      CONTENTFUL_ACCESS_TOKEN: JSON.stringify(
+        process.env.CONTENTFUL_ACCESS_TOKEN
+      )
+    })
+  ]
 };
