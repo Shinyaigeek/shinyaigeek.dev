@@ -8,7 +8,7 @@
     "build:server": "webpack --config webpack.config.server.js --mode=development",
     "dev:client": "webpack-dev-server --config webpack.config.client.js --mode=development",
     "build:client": "webpack --config webpack.config.client.js --mode=development",
-    "build:style:layout": "sass src/styles/layout.scss"
+    "build:style:layout": "node-sass src/styles/layout.scss public/layout.css --output-style compressed"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "dotenv": "^8.2.0",
     "fs": "^0.0.1-security",
     "node-fetch": "^2.6.0",
+    "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
     "sass": "^1.26.2",
     "sass-loader": "^8.0.2",

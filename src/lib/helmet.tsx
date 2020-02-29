@@ -14,7 +14,7 @@ const SiteHead = (props: HeadProps) => (
     <script src="//assets.adobedtm.com/43692acb8f62beca52063bd53825dcc138f4617b/satelliteLib-4d5ebdc6f6d59ce846b1c9447eb4087d3c37d7a0.js" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" type="text/css" href="/public/layout.css" />
     <meta
       name="google-site-verification"
       content="5JK6z-d1Ve8G93LniItyCkXLQ8rkObyLbJZtRzET6Ak"
