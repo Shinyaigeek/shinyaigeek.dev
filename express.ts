@@ -13,7 +13,7 @@ import { getBlogPosts, getHomeSlug } from "./src/lib/getBlogPosts";
 
 const app = express();
 
-app.use(express.static("/public"))
+app.use(express.static("public"))
 
 app.get("/", (req, res) => {
   const slug = getHomeSlug(req.url);

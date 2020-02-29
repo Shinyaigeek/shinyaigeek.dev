@@ -1,5 +1,5 @@
 import React from "react";
 
 export function Footer() {
-  return <div>This is footer</div>;
+  return <div className="footer">Copyright. 2019 Shinyaigeek</div>;
 }
