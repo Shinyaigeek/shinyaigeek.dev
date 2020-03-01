@@ -16,7 +16,7 @@ const SiteHead = (props: HeadProps) => (
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" type="text/css" href="/layout.css" />
-    <link rel="stylesheet" type="text/css" href={props.style + ".css"} />
+    <link rel="stylesheet" type="text/css" href={"/" + props.style + ".css"} />
     <meta
       name="google-site-verification"
       content="5JK6z-d1Ve8G93LniItyCkXLQ8rkObyLbJZtRzET6Ak"
