@@ -1,2 +1,8 @@
 @import "./_components//header";
 @import "./_components/footer";
+
+.inner {
+  position: relative;
+  top: 72px;
+  overflow: hidden;
+}
