@@ -18,7 +18,7 @@ export function Header() {
         <a href="/">
           <div>
             <img
-              src="/static/icon_transparent_header.png"
+              src="/icon_transparent_header.png"
               alt="icon"
               className="header--title__icon"
             />

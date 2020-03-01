@@ -13,7 +13,8 @@ import { getBlogPosts, getHomeSlug } from "./src/lib/getBlogPosts";
 
 const app = express();
 
-app.use(express.static("public"))
+app.use(express.static("public"));
+app.use(express.static("static"));
 
 app.get("/", (req, res) => {
   const slug = getHomeSlug(req.url);
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
           helmet({
             title: "home",
             children: Home,
+            style: "home",
             props: {
               items: [
                 {
@@ -49,6 +51,7 @@ app.get("/", (req, res) => {
           helmet({
             title: "Home",
             children: Home,
+            style: "home",
             props: {
               items: item
             }
@@ -69,6 +72,7 @@ app.get("/post/:id", (req, res) => {
           helmet({
             title: "post",
             children: Post,
+            style: "post",
             props: {
               fields: {
                 title: "Not Found",
@@ -89,6 +93,7 @@ app.get("/post/:id", (req, res) => {
         React.createElement(
           helmet({
             title: "post",
+            style: "post",
             children: Post,
             props: item
           })
@@ -104,6 +109,7 @@ app.get("/profile", (req, res) => {
     React.createElement(
       helmet({
         title: "profile",
+        style: "profile",
         children: Profile
       })
     )
