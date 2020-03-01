@@ -2,6 +2,8 @@ import express from "express";
 import React from "react";
 import { renderToString } from "react-dom/server";
 
+import marked from "marked";
+
 import Home from "./src/pages/Home";
 import Post from "./src/pages/Post";
 import Profile from "./src/pages/Profile";
@@ -89,13 +91,24 @@ app.get("/post/:id", (req, res) => {
       );
       res.send(renderedHtml);
     } else {
+      const html = marked(item.fields.content);
+      const pro = {
+        fields: {
+          title: item.fields.title,
+          description: item.fields.description,
+          tags: item.fields.tags,
+          publishedAt: item.fields.publishedAt,
+          hasEn: item.fields.hasEn,
+          content: html
+        }
+      };
       const renderedHtml = renderToString(
         React.createElement(
           helmet({
             title: "post",
             style: "post",
             children: Post,
-            props: item
+            props: pro
           })
         )
       );

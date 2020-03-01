@@ -1,0 +1,30 @@
+.thatsMe {
+  width: 100%;
+  max-width: 300px;
+  margin: 18px auto;
+  text-align: center;
+  font-size: 18px;
+
+  &--icon {
+    padding-bottom: 8px;
+  }
+  a {
+    display: block;
+    width: 100%;
+  }
+  img {
+    object-fit: contain;
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.mySnsBox {
+  display: flex;
+  margin: 2px auto;
+
+  .sns {
+    margin: 0 auto;
+  }
+}

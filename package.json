@@ -10,7 +10,8 @@
     "build:client": "webpack --config webpack.config.client.js --mode=development",
     "build:style:layout": "node-sass src/styles/layout.scss public/layout.css --output-style compressed",
     "build:style:home": "node-sass src/styles/home.scss public/home.css --output-style compressed",
-    "build:style": "yarn run build:style:layout && yarn run build:style:home"
+    "build:style:post": "node-sass src/styles/post.scss public/post.css --output-style compressed",
+    "build:style": "yarn run build:style:layout && yarn run build:style:home && yarn run build:style:post"
   },
   "repository": {
     "type": "git",
@@ -24,15 +25,20 @@
   },
   "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
   "dependencies": {
+    "@types/antd": "^1.0.0",
     "@types/express": "^4.17.2",
+    "@types/marked": "^0.7.2",
     "@types/node-fetch": "^2.5.5",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
+    "antd": "^4.0.0",
     "babel-loader": "^8.0.6",
     "contentful": "^7.14.0",
     "css-loader": "^3.4.2",
     "dotenv": "^8.2.0",
     "fs": "^0.0.1-security",
+    "html-react-parser": "^0.10.1",
+    "marked": "^0.8.0",
     "node-fetch": "^2.6.0",
     "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
