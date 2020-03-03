@@ -8,14 +8,14 @@
   border: 1px solid #aaa;
   border-radius: 6px;
   transition: opacity 2s ease;
-  z-index: 100000;
 }
 
 .modal--mailform {
   opacity: 0;
-
+  z-index: -1000000;
   &__active {
     opacity: 1;
+    z-index: 100000;
   }
 }
 
@@ -31,6 +31,7 @@
 
     &__title {
       width: 200px;
+      padding:8px 12px;
     }
   }
 
