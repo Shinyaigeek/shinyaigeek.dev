@@ -36,6 +36,7 @@ const helmet = (props: HelmetProps) => {
     <React.Fragment>
       <SiteHead {...props} />
       <props.children {...props.props} />
+      <script src="/main.js" />
     </React.Fragment>
   );
 };

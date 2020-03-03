@@ -1,6 +1,6 @@
 import React from "react";
 
-// import { Drawer } from "antd";
+import { Drawer } from "./Drawer";
 
 // import MailForm from "./MailForm";
 
@@ -44,70 +44,24 @@ export function Header() {
         </div>
         <div
           className="header--contents__anchorBlock"
-          onClick={() => {
-            // props.setShowContactModal();
-          }}
+          id="header--contents__contact"
         >
           コンタクト
         </div>
       </div>
       <div className="header--contentsHamburger">
         <div
+          id="hamburger--menu"
           className={
             true
               ? "hamburger--menu__trigger"
               : "hamburger--menu__trigger__active"
           }
-          onClick={() => {
-            // props.setShowHamburgerMenu();
-          }}
         >
           <span className="hamburger--menu__trigger__part" />
           <span className="hamburger--menu__trigger__part" />
           <span className="hamburger--menu__trigger__part" />
         </div>
-        {/* <Drawer
-          visible={props.showHamburgerMenu}
-          onClose={() => props.setShowHamburgerMenu()}
-          width="100%"
-          zIndex={2000}
-          closable={true}
-        >
-          <div className="hamburgerMenu--content">
-            <div
-              className="header--contents__anchorBlock"
-              onClick={() => props.setShowHamburgerMenu()}
-            >
-              <a href="/">
-                <a>ブログ</a>
-              </a>
-            </div>
-            <div
-              className="header--contents__anchorBlock"
-              onClick={() => props.setShowHamburgerMenu()}
-            >
-              <a href="/profile">
-                <a>プロフィール</a>
-              </a>
-            </div>
-            <div
-              className="header--contents__anchorBlock"
-              onClick={() => props.setShowHamburgerMenu()}
-            >
-              <a href="/">
-                <a>作品集</a>
-              </a>
-            </div>
-            <div
-              className="header--contents__anchorBlock"
-              onClick={() => {
-                props.setShowContactModal();
-              }}
-            >
-              コンタクト
-            </div>
-          </div>
-        </Drawer> */}
       </div>
       {/* <MailForm {...props} /> */}
     </div>

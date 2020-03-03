@@ -11,7 +11,6 @@ export function MetaInfo(props: {
     publishedAt: string;
   };
 }) {
-  console.log(props)
   return (
     <div>
       <h1>{props.fields.title}</h1>
