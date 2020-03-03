@@ -5,6 +5,7 @@ module.exports = {
   ...common,
   target: "node",
   entry: {
-    express: "./express.ts"
-  },
+    express: "./express.ts",
+    main: "./src/front/main.ts"
+  }
 };

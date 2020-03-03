@@ -17,6 +17,7 @@ const app = express();
 
 app.use(express.static("public"));
 app.use(express.static("static"));
+app.use(express.static("dist"));
 
 app.get("/", (req, res) => {
   const slug = getHomeSlug(req.url);
