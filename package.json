@@ -10,8 +10,9 @@
     "build:client": "webpack --config webpack.config.client.js --mode=development",
     "build:style:layout": "node-sass -r src/styles/layout.scss public/layout.css --output-style compressed",
     "build:style:home": "node-sass -r src/styles/home.scss public/home.css --output-style compressed",
+    "build:style:profile": "node-sass -r src/styles/profile.scss public/profile.css --output-style compressed",
     "build:style:post": "node-sass -r src/styles/post.scss public/post.css --output-style compressed",
-    "build:style": "yarn run build:style:layout && yarn run build:style:home && yarn run build:style:post"
+    "build:style": "yarn run build:style:layout && yarn run build:style:home && yarn run build:style:post && yarn run build:style:profile"
   },
   "repository": {
     "type": "git",

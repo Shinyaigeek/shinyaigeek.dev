@@ -15,14 +15,10 @@ export function Layout(Component: (props?: any) => JSX.Element) {
             className="header--contents__anchorBlock"
             // onClick={() => props.setShowHamburgerMenu()}
           >
-            <a href="/">
-              <a>ブログ</a>
-            </a>
+            <a href="/">ブログ</a>
           </div>
           <div className="header--contents__anchorBlock">
-            <a href="/profile">
-              <a>プロフィール</a>
-            </a>
+            <a href="/profile">プロフィール</a>
           </div>
           <div
             className="header--contents__anchorBlock"

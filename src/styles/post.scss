@@ -1,4 +1,9 @@
 @import "./_components/thatsme";
+@import "./_components/anchor";
+
+html {
+  scroll-behavior: smooth;
+}
 
 .post--content {
   font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ",
@@ -20,6 +25,8 @@
 
   h2 {
     color: var(--theme-color) !important;
+    margin: -108px;
+    padding: 108px;
     &:before {
       content: "";
       background-color: var(--headings-color);
@@ -31,6 +38,13 @@
       position: relative;
       top: 6px;
     }
+
+    // &:after {
+    //   content: "";
+    //   display: block;
+    //   height: 50px;
+    //   margin: -50px 0 0;
+    // }
   }
 
   h1 {
