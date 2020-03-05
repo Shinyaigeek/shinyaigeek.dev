@@ -93,6 +93,10 @@ const mount = () => {
     .addEventListener("click", e => handleMailForm());
 
   document
+    .getElementById("thatsme--contact")!
+    .addEventListener("click", e => handleMailForm());
+
+  document
     .getElementById("layer")!
     .addEventListener("click", e => handleMailForm());
 };

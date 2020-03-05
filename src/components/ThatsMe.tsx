@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Button } from "antd";
 import {
   LinkedinOutlined,
   TwitterOutlined,
   GithubOutlined
 } from "@ant-design/icons";
+import { Button } from "./Button";
 
 interface Props {
   setShowContactModal: Function;
@@ -16,27 +16,14 @@ export default function ThatsMe(props: Props) {
     <div className="thatsMe">
       <a href="/profile">
         <a>
-          <img
-            src="/icon_thatsme.png"
-            className="thatsMe--icon"
-            alt="icon"
-          />
+          <img src="/icon_thatsme.png" className="thatsMe--icon" alt="icon" />
         </a>
       </a>
       しにゃい/Shinyaigeek
       <br />
       エモいをハックしたい
       <br />
-      <Button
-        type="primary"
-        shape="round"
-        icon="mail"
-        size="large"
-        style={{ margin: "12px auto", display: "block" }}
-        onClick={() => props.setShowContactModal()}
-      >
-        Contact Me
-      </Button>
+      <Button id="thatsme--contact">Contact Me</Button>
       <div className="mySnsBox">
         <div className="sns">
           <a id="twitter" href="https://twitter.com/Shinyaigeek">
