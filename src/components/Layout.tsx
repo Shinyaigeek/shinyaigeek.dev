@@ -4,6 +4,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Drawer } from "./Drawer";
 import { MailForm } from "./MailForm";
+import { FootTag, TAGS } from "./FootTag";
 
 export function Layout(Component: (props?: any) => JSX.Element) {
   return (props?: any) => (
@@ -43,6 +44,7 @@ export function Layout(Component: (props?: any) => JSX.Element) {
       <div className="inner">
         <Component {...props} />
       </div>
+      <FootTag tags={TAGS} />
       <Footer />
     </div>
   );
