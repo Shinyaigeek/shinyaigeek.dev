@@ -12,7 +12,7 @@ function Post(props: Entry) {
     <div className="post--content">
       <MetaInfo {...props} />
       {parse(props.fields.content)}
-      <ThatsMe setShowContactModal={() => null} />
+      <ThatsMe />
     </div>
   );
 }

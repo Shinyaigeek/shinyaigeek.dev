@@ -7,11 +7,7 @@ import {
 } from "@ant-design/icons";
 import { Button } from "./Button";
 
-interface Props {
-  setShowContactModal: Function;
-}
-
-export default function ThatsMe(props: Props) {
+export default function ThatsMe() {
   return (
     <div className="thatsMe">
       <a href="/profile">

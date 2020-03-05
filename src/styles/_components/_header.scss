@@ -45,6 +45,11 @@ body {
   z-index: 1000000;
   display: flex;
 
+  a {
+    text-decoration: none;
+    color: $theme_text;
+  }
+
   &--title {
     position: relative;
     left: 10px;
@@ -88,11 +93,6 @@ body {
       &:hover::after {
         transform: scale(1.1, 1);
       }
-    }
-
-    a {
-      text-decoration: none;
-      color: $theme_text;
     }
   }
 
