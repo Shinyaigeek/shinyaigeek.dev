@@ -79,6 +79,15 @@ const mailSubmit = async () => {
     });
 };
 
+const handleAnchor = () => {
+  if (document.getElementById("post--anchors")?.className === "post--anchors") {
+    document.getElementById("post--anchors")!.className =
+      "post--anchors__active";
+  } else {
+    document.getElementById("post--anchors")!.className = "post--anchors";
+  }
+};
+
 const mount = () => {
   document
     .getElementById("hamburger--menu")!
@@ -99,6 +108,10 @@ const mount = () => {
   document
     .getElementById("layer")!
     .addEventListener("click", e => handleMailForm());
+
+  document
+    .getElementById("post--anchor__title")
+    ?.addEventListener("click", e => handleAnchor());
 };
 
 mount();

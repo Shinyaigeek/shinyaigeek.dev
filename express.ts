@@ -87,7 +87,8 @@ app.get("/post/:id", (req, res) => {
                 tags: [],
                 content: "Item is not found",
                 hasEn: false
-              }
+              },
+              anchors: []
             }
           })
         )
@@ -95,6 +96,19 @@ app.get("/post/:id", (req, res) => {
       res.send(renderedHtml);
     } else {
       const html = marked(item.fields.content);
+      const anchorsWithH2: string[] | null = html.match(
+        /<h2 id=".+?">.+?<\/h2>/g
+      );
+      let anchors;
+      if (anchorsWithH2) {
+        anchors = anchorsWithH2.map(anc => {
+          return anc.replace(/<h2 id=".+?">/, "").replace("</h2>", "");
+        });
+      }
+      const body = html.replace(/<h2 id=".+?">/g, (target: string) => {
+        const id = target.replace('<h2 id="', "").replace('">', "");
+        return `<h2 id="${encodeURI(id)}">`;
+      });
       const pro = {
         fields: {
           title: item.fields.title,
@@ -102,8 +116,9 @@ app.get("/post/:id", (req, res) => {
           tags: item.fields.tags,
           publishedAt: item.fields.publishedAt,
           hasEn: item.fields.hasEn,
-          content: html
-        }
+          content: body
+        },
+        anchors: anchors
       };
       const renderedHtml = renderToString(
         React.createElement(
