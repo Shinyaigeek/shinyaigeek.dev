@@ -3,8 +3,13 @@ import { Layout } from "../components/Layout";
 import { Entry } from "../lib/getBlogPost";
 import { Top } from "../components/Top";
 import { Item } from "../components/Item";
+import { Page } from "../components/Page";
 
-const Home = (props: { items: Entry[] }) => {
+const Home = (props: {
+  items: Entry[];
+  prev: number | false;
+  next: number | false;
+}) => {
   return (
     <div>
       <Top />
@@ -15,6 +20,7 @@ const Home = (props: { items: Entry[] }) => {
           </div>
         );
       })}
+      <Page {...props} />
     </div>
   );
 };

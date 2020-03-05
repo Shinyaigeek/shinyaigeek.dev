@@ -20,13 +20,18 @@ export const getBlogPosts = (query: HomeSlug) => {
   if (query.page) {
     url += `&skip=${(query.page - 1) * 10}`;
   }
+  const page = query.page ?? 1;
 
   return fetch(url)
     .then(item => {
       return item
         .json()
         .then(entries => {
-          return entries.items as Entry[];
+          return {
+            items: entries.items as Entry[],
+            prev: entries.skip !== 0 && page - 1,
+            next: entries.skip + entries.limit < entries.total && page + 1
+          };
         })
         .catch(err => {
           console.log(err);

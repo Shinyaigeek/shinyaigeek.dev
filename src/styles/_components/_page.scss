@@ -1,0 +1,22 @@
+.pagination {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--theme-color);
+  text-decoration: none;
+  position: absolute;
+  bottom: 0;
+
+  &--wrapper {
+      position: relative;
+      height: 64px;
+      width: 100vw;
+  }
+}
+
+#prev {
+  left: 15vw;
+}
+
+#next {
+  right: 15vw;
+}

@@ -8,9 +8,9 @@
     "build:server": "webpack --config webpack.config.server.js --mode=development",
     "dev:client": "webpack-dev-server --config webpack.config.client.js --mode=development",
     "build:client": "webpack --config webpack.config.client.js --mode=development",
-    "build:style:layout": "node-sass -r -w src/styles/layout.scss public/layout.css --output-style compressed",
-    "build:style:home": "node-sass -r -w src/styles/home.scss public/home.css --output-style compressed",
-    "build:style:post": "node-sass -r -w src/styles/post.scss public/post.css --output-style compressed",
+    "build:style:layout": "node-sass -r src/styles/layout.scss public/layout.css --output-style compressed",
+    "build:style:home": "node-sass -r src/styles/home.scss public/home.css --output-style compressed",
+    "build:style:post": "node-sass -r src/styles/post.scss public/post.css --output-style compressed",
     "build:style": "yarn run build:style:layout && yarn run build:style:home && yarn run build:style:post"
   },
   "repository": {
