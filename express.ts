@@ -21,8 +21,8 @@ app.use(express.static("dist"));
 
 app.get("/", (req, res) => {
   const slug = getHomeSlug(req.url);
-  getBlogPosts(slug).then(item => {
-    if (!item || item.length === 0) {
+  getBlogPosts(slug).then(items => {
+    if (!items || items.items.length === 0) {
       const renderedHtml = renderToString(
         React.createElement(
           helmet({
@@ -56,7 +56,9 @@ app.get("/", (req, res) => {
             children: Home,
             style: "home",
             props: {
-              items: item
+              items: items.items,
+              prev: items.prev,
+              next: items.next
             }
           })
         )
