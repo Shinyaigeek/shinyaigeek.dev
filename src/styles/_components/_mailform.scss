@@ -1,13 +1,14 @@
 #modal--mailform {
   position: fixed;
   width: 300px;
-  height: 400px;
+  min-height: 400px;
   top: calc(50vh - 200px);
   left: calc(50vw - 150px);
   background: white;
   border: 1px solid #aaa;
   border-radius: 6px;
   transition: opacity 2s ease;
+  height: min-content;
 }
 
 .modal--mailform {
@@ -31,7 +32,7 @@
 
     &__title {
       width: 200px;
-      padding:8px 12px;
+      padding: 8px 12px;
     }
   }
 
@@ -50,13 +51,13 @@
       position: absolute;
 
       &:nth-of-type(1) {
-        -webkit-transform: translateY(15px) rotate(-45deg);
+        -webkit-transform: translateY(15.5px) rotate(-45deg);
         transform: translateY(13px) rotate(-45deg);
         top: 0;
       }
 
       &:nth-of-type(2) {
-        -webkit-transform: translateY(-15px) rotate(45deg);
+        -webkit-transform: translateY(-15.5px) rotate(45deg);
         transform: translateY(-15px) rotate(45deg);
         bottom: 0;
       }
@@ -64,30 +65,73 @@
   }
 
   &--name {
-    width: 100%;
+    width: 80%;
     margin: 5px auto 10px auto;
     &__form {
       width: 75%;
+      height: 24px;
+      line-height: 1.5;
+      font-variant: tabular-nums;
+      box-sizing: border-box;
+      padding: 3px 6px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
     }
   }
 
   &--subject {
-    width: 100%;
+    width: 80%;
     margin: 5px auto 10px auto;
     &__form {
       width: 75%;
+      height: 24px;
+      line-height: 1.5;
+      font-variant: tabular-nums;
+      box-sizing: border-box;
+      padding: 3px 6px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
     }
   }
 
   &--mailaddress {
-    width: 100%;
+    width: 80%;
     margin: 5px auto 10px auto;
     &__form {
-      width: 75%;
-      margin-left: 42px;
+      width: 80%;
+      margin-left: 36px;
       margin-top: 3px;
+      height: 24px;
+      line-height: 1.5;
+      font-variant: tabular-nums;
+      box-sizing: border-box;
+      padding: 3px 6px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
     }
   }
+
+  &--footer {
+    height: 42px;
+    border-top: 1px solid #aaa;
+    display: flex;
+    margin: 12px auto;
+  }
+}
+
+#mailform--textarea {
+  width: 80%;
+  margin-left: 36px;
+  margin-top: 3px;
+  height: 120px;
+  line-height: 1.5;
+  font-variant: tabular-nums;
+  box-sizing: border-box;
+  padding: 3px 6px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 18px;
 }
 
 #layer {
