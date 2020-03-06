@@ -1,0 +1,155 @@
+#modal--mailform {
+  position: fixed;
+  width: 300px;
+  min-height: 400px;
+  top: calc(50vh - 200px);
+  left: calc(50vw - 150px);
+  background: white;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  transition: opacity 2s ease;
+  height: min-content;
+}
+
+.modal--mailform {
+  opacity: 0;
+  z-index: -1000000;
+  &__active {
+    opacity: 1;
+    z-index: 100000;
+  }
+}
+
+.mailform {
+  &--header {
+    color: black;
+    border-bottom: 1px solid #aaa;
+    font-size: 20px;
+    vertical-align: middle;
+    display: flex;
+    height: 42px;
+    margin: 0 auto;
+
+    &__title {
+      width: 200px;
+      padding: 8px 12px;
+    }
+  }
+
+  &--close {
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    right: 0;
+
+    &__part {
+      width: 100%;
+      height: 4px;
+      background-color: black;
+      border-radius: 4px;
+      display: inline-block;
+      position: absolute;
+
+      &:nth-of-type(1) {
+        -webkit-transform: translateY(15.5px) rotate(-45deg);
+        transform: translateY(13px) rotate(-45deg);
+        top: 0;
+      }
+
+      &:nth-of-type(2) {
+        -webkit-transform: translateY(-15.5px) rotate(45deg);
+        transform: translateY(-15px) rotate(45deg);
+        bottom: 0;
+      }
+    }
+  }
+
+  &--name {
+    width: 80%;
+    margin: 5px auto 10px auto;
+    &__form {
+      width: 75%;
+      height: 24px;
+      line-height: 1.5;
+      font-variant: tabular-nums;
+      box-sizing: border-box;
+      padding: 3px 6px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+    }
+  }
+
+  &--subject {
+    width: 80%;
+    margin: 5px auto 10px auto;
+    &__form {
+      width: 75%;
+      height: 24px;
+      line-height: 1.5;
+      font-variant: tabular-nums;
+      box-sizing: border-box;
+      padding: 3px 6px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+    }
+  }
+
+  &--mailaddress {
+    width: 80%;
+    margin: 5px auto 10px auto;
+    &__form {
+      width: 80%;
+      margin-left: 36px;
+      margin-top: 3px;
+      height: 24px;
+      line-height: 1.5;
+      font-variant: tabular-nums;
+      box-sizing: border-box;
+      padding: 3px 6px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+    }
+  }
+
+  &--footer {
+    height: 42px;
+    border-top: 1px solid #aaa;
+    display: flex;
+    margin: 12px auto;
+  }
+}
+
+#mailform--textarea {
+  width: 80%;
+  margin-left: 36px;
+  margin-top: 3px;
+  height: 120px;
+  line-height: 1.5;
+  font-variant: tabular-nums;
+  box-sizing: border-box;
+  padding: 3px 6px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 18px;
+}
+
+#layer {
+  z-index: 99999;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+}
+
+.layer {
+  display: none;
+
+  &--active {
+    display: block;
+  }
+}

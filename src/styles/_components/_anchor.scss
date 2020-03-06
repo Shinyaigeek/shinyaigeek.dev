@@ -1,0 +1,39 @@
+@import "../core";
+
+.post--anchor {
+  position: fixed;
+  top: 84px;
+  left: 20vw;
+  width: 180px;
+
+  &__title {
+    background: $theme_text;
+    color: $theme_background;
+  }
+}
+
+.post--anchors {
+  max-height: 0;
+  overflow: hidden;
+
+  &__active {
+    max-height: 120px;
+    overflow: scroll;
+    border: #aaa 1px solid;
+    border-radius: 3px;
+    padding: 3px 4px;
+  }
+}
+
+#post--anchors {
+  transition: all 1s ease 0.1s;
+  background: $theme_text;
+  height: min-content;
+
+  a {
+    display: block;
+    color: $theme_background;
+    margin: 4px 0 4px 4px;
+    text-decoration: none;
+  }
+}
