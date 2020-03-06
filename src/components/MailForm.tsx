@@ -9,7 +9,7 @@ export const MailForm = () => {
       <div id="modal--mailform" className="modal--mailform">
         <div className="mailform--header">
           <div className="mailform--header__title">Contact Me</div>
-          <div className="mailform--close">
+          <div className="mailform--close" id="mailform--close">
             <span className="mailform--close__part"></span>
             <span className="mailform--close__part"></span>
           </div>
@@ -40,7 +40,7 @@ export const MailForm = () => {
             type="email"
             placeholder="Your Email Address"
             name="yourAddress"
-            className="mailform--mailaddress_form"
+            className="mailform--mailaddress__form"
             id="mailform--mailaddress_form"
           />
         </div>

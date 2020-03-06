@@ -106,6 +106,10 @@ const mount = () => {
     .addEventListener("click", e => handleMailForm());
 
   document
+    .getElementById("mailform--close")!
+    .addEventListener("click", e => handleMailForm());
+
+  document
     .getElementById("layer")!
     .addEventListener("click", e => handleMailForm());
 
