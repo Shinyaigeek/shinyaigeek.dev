@@ -1,6 +1,7 @@
 import { WarningOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
 import React from "react";
+import { Button } from "./Button";
 
 export const MailForm = () => {
   return (
@@ -45,6 +46,10 @@ export const MailForm = () => {
           />
         </div>
         <textarea placeholder="Content" id="mailform--textarea" />
+        <div className="mailform--footer">
+          <Button id="mailform--cancel">キャンセル</Button>
+          <Button id="mailform--ok">送信</Button>
+        </div>
       </div>
     </React.Fragment>
   );

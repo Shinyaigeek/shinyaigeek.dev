@@ -1,13 +1,14 @@
 #modal--mailform {
   position: fixed;
   width: 300px;
-  height: 400px;
+  min-height: 400px;
   top: calc(50vh - 200px);
   left: calc(50vw - 150px);
   background: white;
   border: 1px solid #aaa;
   border-radius: 6px;
   transition: opacity 2s ease;
+  height: min-content;
 }
 
 .modal--mailform {
@@ -109,6 +110,28 @@
       border-radius: 4px;
     }
   }
+
+  &--footer {
+    height: 42px;
+    border-top: 1px solid #aaa;
+    display: flex;
+    margin: 12px auto;
+  }
+}
+
+#mailform--textarea {
+  width: 80%;
+  margin-left: 36px;
+  margin-top: 3px;
+  height: 120px;
+  line-height: 1.5;
+  font-variant: tabular-nums;
+  box-sizing: border-box;
+  padding: 3px 6px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 18px;
 }
 
 #layer {

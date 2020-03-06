@@ -101,9 +101,11 @@ const mount = () => {
     .getElementById("header--modal__contact")!
     .addEventListener("click", e => handleMailForm());
 
-  document
-    .getElementById("thatsme--contact")!
-    .addEventListener("click", e => handleMailForm());
+  if (document.getElementById("thatsme--contact")) {
+    document!
+      .getElementById("thatsme--contact")!
+      .addEventListener("click", e => handleMailForm());
+  }
 
   document
     .getElementById("mailform--close")!
@@ -116,6 +118,14 @@ const mount = () => {
   document
     .getElementById("post--anchor__title")
     ?.addEventListener("click", e => handleAnchor());
+
+  document
+    .getElementById("mailform--cancel")!
+    .addEventListener("click", e => handleMailForm());
+
+  document
+    .getElementById("mailform--ok")!
+    .addEventListener("click", e => mailSubmit());
 };
 
 mount();

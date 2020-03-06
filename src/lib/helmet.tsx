@@ -12,15 +12,9 @@ const SiteHead = (props: HeadProps) => (
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <script src="//assets.adobedtm.com/43692acb8f62beca52063bd53825dcc138f4617b/satelliteLib-4d5ebdc6f6d59ce846b1c9447eb4087d3c37d7a0.js" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" type="text/css" href="/layout.css" />
     <link rel="stylesheet" type="text/css" href={"/" + props.style + ".css"} />
-    <meta
-      name="google-site-verification"
-      content="5JK6z-d1Ve8G93LniItyCkXLQ8rkObyLbJZtRzET6Ak"
-    />
   </head>
 );
 

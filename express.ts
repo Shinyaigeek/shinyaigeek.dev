@@ -13,6 +13,8 @@ import helmet from "./src/lib/helmet";
 import { getBlogPost, getBlogSlug, Entry } from "./src/lib/getBlogPost";
 import { getBlogPosts, getHomeSlug } from "./src/lib/getBlogPosts";
 
+const TITLE = "しにゃいの学習帳"
+
 const app = express();
 
 app.use(express.static("public"));
@@ -26,7 +28,7 @@ app.get("/", (req, res) => {
       const renderedHtml = renderToString(
         React.createElement(
           helmet({
-            title: "home",
+            title: TITLE,
             children: Home,
             style: "home",
             props: {
@@ -52,7 +54,7 @@ app.get("/", (req, res) => {
       const renderedHtml = renderToString(
         React.createElement(
           helmet({
-            title: "Home",
+            title: TITLE,
             children: Home,
             style: "home",
             props: {
@@ -75,7 +77,7 @@ app.get("/post/:id", (req, res) => {
       const renderedHtml = renderToString(
         React.createElement(
           helmet({
-            title: "post",
+            title: `Not Found | ${TITLE}`,
             children: Post,
             style: "post",
             props: {
@@ -123,7 +125,7 @@ app.get("/post/:id", (req, res) => {
       const renderedHtml = renderToString(
         React.createElement(
           helmet({
-            title: "post",
+            title: `${pro.fields.title} | ${TITLE}`,
             style: "post",
             children: Post,
             props: pro
@@ -139,7 +141,7 @@ app.get("/profile", (req, res) => {
   const renderedHtml = renderToString(
     React.createElement(
       helmet({
-        title: "profile",
+        title: `Profile | ${TITLE}`,
         style: "profile",
         children: Profile
       })
