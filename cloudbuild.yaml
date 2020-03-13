@@ -8,14 +8,14 @@ steps:
   #   entrypoint: yarn
   #   args: ["build"]
 
-  - name: "gcr.io/cloud-builders/docker:node-13.8.0"
+  - name: "gcr.io/cloud-builders/docker"
     dir: .
     args: ["build", "-t", "gcr.io/shinyaigeek/blog:latest", "."]
 
-  - name: "gcr.io/cloud-builders/docker:node-13.8.0"
+  - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/shinyaigeek/blog"]
 
-  - name: "gcr.io/cloud-builders/gcloud:node-13.8.0"
+  - name: "gcr.io/cloud-builders/gcloud"
     id: "deploy-cloud-run"
     args:
       [
