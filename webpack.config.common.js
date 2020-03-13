@@ -9,7 +9,7 @@ module.exports = {
     filename: "[name].js"
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"]
+    extensions: [".ts", ".tsx", ".js", ".jsx", "node_modules"]
   },
   devServer: {
     contentBase: path.join(__dirname, "dist"),
