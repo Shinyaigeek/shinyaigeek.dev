@@ -9,7 +9,6 @@ steps:
   #   args: ["build"]
 
   - name: "gcr.io/cloud-builders/docker"
-    dir: .
     args: ["build", "-t", "gcr.io/shinyaigeek/blog:latest", "."]
 
   - name: "gcr.io/cloud-builders/docker"
