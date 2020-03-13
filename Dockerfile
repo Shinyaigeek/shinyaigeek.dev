@@ -13,9 +13,9 @@ COPY src ./src/
 COPY static ./static/
 
 # Install production dependencies.
-RUN yarn install
+RUN yarn install && yarn run build
 
-RUN yarn run build
+# RUN yarn run build
 
 # Copy local code to the container image.
 COPY . .
