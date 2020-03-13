@@ -1,18 +1,18 @@
 steps:
-  - name: "gcr.io/cloud-builders/yarn:node-13.8"
+  - name: "gcr.io/cloud-builders/yarn:node-13.8.0"
     args: ["install --frozen-lock-file"]
 
   - name: "gcr.io/cloud-builders/yarn"
     args: ["build"]
 
-  - name: "gcr.io/cloud-builders/docker:node-13.8"
+  - name: "gcr.io/cloud-builders/docker:node-13.8.0"
     dir: .
     args: ["build", "-t", "gcr.io/shinyaigeek/blog:latest", "."]
 
-  - name: "gcr.io/cloud-builders/docker:node-13.8"
+  - name: "gcr.io/cloud-builders/docker:node-13.8.0"
     args: ["push", "gcr.io/shinyaigeek/blog"]
 
-  - name: "gcr.io/cloud-builders/gcloud:node-13.8"
+  - name: "gcr.io/cloud-builders/gcloud:node-13.8.0"
     id: "deploy-cloud-run"
     args:
       [
