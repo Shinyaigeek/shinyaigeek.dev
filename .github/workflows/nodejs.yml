@@ -1,63 +1,63 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+# name: Node.js CI
 
-on:
-  push:
-    branches:
-      - master
+# on:
+#   push:
+#     branches:
+#       - master
 
-jobs:
-  server-build:
-    name: Build Server Code
+# jobs:
+#   server-build:
+#     name: Build Server Code
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: "13.8"
+#     strategy:
+#       matrix:
+#         node-version: "13.8"
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: [actions/setup-node@v1, actions/cache@v1]
-        env:
-          CI: true
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Use Node.js ${{ matrix.node-version }}
+#         uses: [actions/setup-node@v1, actions/cache@v1]
+#         env:
+#           CI: true
+#           cache-name: cache-node-modules
+#         with:
+#           path: ~/.npm
+#           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+#           restore-keys: |
+#             ${{ runner.os }}-build-${{ env.cache-name }}-
+#             ${{ runner.os }}-build-
+#             ${{ runner.os }}-
 
 
-          node-version: ${{ matrix.node-version }}
-      - run: yarn install --frozen-lockfile
-      - run: yarn run build --if-present
+#           node-version: ${{ matrix.node-version }}
+#       - run: yarn install --frozen-lockfile
+#       - run: yarn run build --if-present
 
-  deploy:
-    name: Deploy to Google Cloud Platform
+#   deploy:
+#     name: Deploy to Google Cloud Platform
 
-    needs: server-build
+#     needs: server-build
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
 
-    args: ['build', '-t', 'gcr.io/shinyaigeek/blog:latest', '.']
-    - name: 'gcr.io/cloud-builders/docker'
-      args: ['push', 'gcr.io/shinyaigeek/blog:latest']
-    - name: 'gcr.io/cloud-builders/gcloud'
-      args:
-      - 'run'
-      - 'deploy'
-      - 'blog'
-      - '--image'
-      - 'gcr.io/shinyaigeek/blog:latest'
-      - '--region'
-      - '[REGION]'
-      - '--platform'
-      - 'managed'
-    images:
-    - 'gcr.io/shinyaigeek/blog:latest'
+#     args: ['build', '-t', 'gcr.io/shinyaigeek/blog:$COMMIT_SHA', '.']
+#     - name: 'gcr.io/cloud-builders/docker'
+#       args: ['push', 'gcr.io/shinyaigeek/blog:$COMMIT_SHA']
+#     - name: 'gcr.io/cloud-builders/gcloud'
+#       args:
+#       - 'run'
+#       - 'deploy'
+#       - 'blog'
+#       - '--image'
+#       - 'gcr.io/shinyaigeek/blog:$COMMIT_SHA'
+#       - '--region'
+#       - 'asia-northeast1'
+#       - '--platform'
+#       - 'managed'
+#     images:
+#     - 'gcr.io/shinyaigeek/blog:$COMMIT_SHA'
