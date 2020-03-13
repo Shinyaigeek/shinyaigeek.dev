@@ -8,7 +8,7 @@ WORKDIR /Users/hayashihitoshi/Shinyaigeek
 # Copy application dependency manifests to the container image.
 # A wildcard is used to ensure both package.json AND package-lock.json are copied.
 # Copying this separately prevents re-running npm install on every code change.
-COPY package.json yarn.lock webpack.config.common.js webpack.config.server.js ./
+COPY package.json src express.ts static yarn.lock webpack.config.common.js webpack.config.server.js ./
 
 # Install production dependencies.
 RUN yarn install --frozen-lock-file
