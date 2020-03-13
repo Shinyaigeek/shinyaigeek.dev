@@ -1,15 +1,18 @@
 steps:
-  - name: "gcr.io/cloud-builders/yarn"
-    args: ["install"]
+  - name: "gcr.io/cloud-builders/yarn:node-13.8"
+    args: ["install --frozen-lock-file"]
 
-  - name: "gcr.io/cloud-builders/docker"
+  - name: "gcr.io/cloud-builders/yarn"
+    args: ["build"]
+
+  - name: "gcr.io/cloud-builders/docker:node-13.8"
     dir: .
     args: ["build", "-t", "gcr.io/shinyaigeek/blog:latest", "."]
 
-  - name: "gcr.io/cloud-builders/docker"
+  - name: "gcr.io/cloud-builders/docker:node-13.8"
     args: ["push", "gcr.io/shinyaigeek/blog"]
 
-  - name: "gcr.io/cloud-builders/gcloud"
+  - name: "gcr.io/cloud-builders/gcloud:node-13.8"
     id: "deploy-cloud-run"
     args:
       [
@@ -25,9 +28,8 @@ steps:
         "managed",
         "--allow-unauthenticated",
       ]
-
   # substitutions:
   #   _REGION: us-central1
-  #   _SERVICE_NAME: node-image 
-  #   _IMAGE_NAME: node-image 
+  #   _SERVICE_NAME: node-image
+  #   _IMAGE_NAME: node-image
   #   _TAG: latest
