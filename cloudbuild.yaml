@@ -1,12 +1,12 @@
 steps:
 
-  - name: node:13.8.0
-    entrypoint: yarn
-    args: ["install", "--frozen-lock-file"]
+  # - name: node:13.8.0
+  #   entrypoint: yarn
+  #   args: ["install", "--frozen-lock-file"]
 
-  - name: node:13.8.0
-    entrypoint: yarn
-    args: ["build"]
+  # - name: node:13.8.0
+  #   entrypoint: yarn
+  #   args: ["build"]
 
   - name: "gcr.io/cloud-builders/docker:node-13.8.0"
     dir: .

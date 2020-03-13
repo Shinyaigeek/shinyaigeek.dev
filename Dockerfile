@@ -1,6 +1,6 @@
 # Use the official Node.js 10 image.
 # https://hub.docker.com/_/node
-FROM node:10
+FROM node:13.8.0
 
 # Create and change to the app directory.
 WORKDIR /Users/hayashihitoshi/Shinyaigeek
@@ -11,10 +11,12 @@ WORKDIR /Users/hayashihitoshi/Shinyaigeek
 COPY package.json package*.json ./
 
 # Install production dependencies.
-RUN npm install --only=production
+RUN yarn install --frozen-lock-file
+
+RUN yarn run build
 
 # Copy local code to the container image.
 COPY . .
 
 # Run the web service on container startup.
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
