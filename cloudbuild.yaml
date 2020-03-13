@@ -1,21 +1,33 @@
- steps:
- # build the container image
- - name: 'gcr.io/shinyaigeek/blog'
-   args: ['build', '-t', 'gcr.io/shinyaigeek/blog:$COMMIT_SHA', '.']
- # push the container image to Container Registry
- - name: 'gcr.io/shinyaigeek/blog'
-   args: ['push', 'gcr.io/shinyaigeek/blog:$COMMIT_SHA']
- # Deploy container image to Cloud Run
- - name: 'gcr.io/shinyaigeek/blog'
-   args:
-   - 'run'
-   - 'deploy'
-   - 'blog'
-   - '--image'
-   - 'gcr.io/shinyaigeek/blog:$COMMIT_SHA'
-   - '--region'
-   - '[REGION]'
-   - '--platform'
-   - 'managed'
- images:
- - 'gcr.io/shinyaigeek/blog:$COMMIT_SHA'
+stops:
+  - name: "gcr.io/cloud-builders/yarn"
+    args: ["install"]
+
+  - name: "gcr.io/cloud-builders/docker"
+    dir: .
+    args: ["build", "-t", "gcr.io/shinyaigeek/blog:latest", "."]
+
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/shinyaigeek/blog"]
+
+  - name: "gcr.io/cloud-builders/gcloud"
+    id: "deploy-cloud-run"
+    args:
+      [
+        "beta",
+        "run",
+        "deploy",
+        "blog",
+        "--image",
+        "gcr.io/shinyaigeek/blog",
+        "--region",
+        "asia-northeast1",
+        --platform',
+        "managed",
+        "--allow-unauthenticated",
+      ]
+
+  # substitutions:
+  #   _REGION: us-central1
+  #   _SERVICE_NAME: node-image 
+  #   _IMAGE_NAME: node-image 
+  #   _TAG: latest
