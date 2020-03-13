@@ -109,3 +109,5 @@ typings/
 
 dist
 public
+
+.vscode
