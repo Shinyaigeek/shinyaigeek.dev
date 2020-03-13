@@ -1,9 +1,4 @@
 steps:
-  # - name: "gcr.io/cloud-builders/npm:node-13.8.0"
-  #   args: ["ci"]
-
-  # - name: "gcr.io/cloud-builders/npm"
-  #   args: ["build"]
 
   - name: node:13.8.0
     entrypoint: yarn
