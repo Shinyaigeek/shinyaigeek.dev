@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Tag } from "antd";
+// import { Tag } from "antd";
 
 interface Props {
   tags: string[];
@@ -16,7 +16,7 @@ export function DecorationTag(props: Props) {
       }}
     >
       {props.tags.map((tag, index) => {
-        return <Tag key={`decorationTag__${index}`}>{tag}</Tag>;
+        return <div key={`decorationTag__${index}`}>{tag}</div>;
       })}
     </div>
   );
