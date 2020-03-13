@@ -13,7 +13,7 @@ COPY src ./src/
 COPY static ./static/
 
 # Install production dependencies.
-RUN yarn install --frozen-lock-file
+RUN yarn install
 
 RUN yarn run build
 
