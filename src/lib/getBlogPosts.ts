@@ -13,7 +13,7 @@ export const getBlogPosts = (query: HomeSlug) => {
     throw new Error("Please check env variable");
   }
   console.log(query);
-  let url = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=blog&limit=10&order=-sys.createdAt`;
+  let url = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=blog&limit=10&order=-sys.createdAt&select=fields.description,fields.publishedAt,fields.title,fields.tags,fields.slug`;
   if (query.tag) {
     url += `&fields.tags[all]=${query.tag}`;
   }

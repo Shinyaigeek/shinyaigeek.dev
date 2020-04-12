@@ -7,7 +7,7 @@ import { getOmmit } from "../lib/getOmmit";
 
 export interface MetaData {
   title: string;
-  content: string;
+  description: string;
   publishedAt: string;
   tags: string[];
   slug: string;
@@ -22,7 +22,7 @@ export function Item(props: MetaData) {
       <Divider />
       <div className="date">{props.publishedAt}</div>
       <div className="tags"></div>
-      <div>{getOmmit(props.content)}</div>
+      <div>{getOmmit(props.description)}</div>
       <div className="read--more">
         <a className="item--home__anchor read--more__anchor" href={`/post/${props.slug}`}>
           <Button id="more-button">MORE</Button>
