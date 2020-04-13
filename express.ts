@@ -13,6 +13,8 @@ import helmet from "./src/lib/helmet";
 import { getBlogPost, getBlogSlug, Entry } from "./src/lib/getBlogPost";
 import { getBlogPosts, getHomeSlug } from "./src/lib/getBlogPosts";
 
+// import bodyParser from "body-parser"
+
 const TITLE = "しにゃいの学習帳"
 
 const app = express();
@@ -20,8 +22,11 @@ const app = express();
 app.use(express.static("public"));
 app.use(express.static("static"));
 app.use(express.static("dist"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
 
 app.get("/", (req, res) => {
+  console.log('simple')
   const slug = getHomeSlug(req.url);
   getBlogPosts(slug).then(items => {
     if (!items || items.items.length === 0) {
@@ -69,6 +74,13 @@ app.get("/", (req, res) => {
     }
   });
 });
+
+app.get("/json", (req, res) => {
+  const slug = getHomeSlug(req.url);
+  getBlogPosts(slug).then(items => {
+    res.send(JSON.stringify(items))
+  })
+})
 
 app.get("/post/:id", (req, res) => {
   const slug = getBlogSlug(req.url);
@@ -138,6 +150,7 @@ app.get("/post/:id", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
+  console.log('profile')
   const renderedHtml = renderToString(
     React.createElement(
       helmet({
@@ -148,6 +161,63 @@ app.get("/profile", (req, res) => {
     )
   );
   res.send(renderedHtml);
+});
+
+app.put("/withItems", (req, res) => {
+  console.log('access cache')
+  try {
+    const { rawItems } = req.body
+    console.log(rawItems)
+    const items = JSON.parse(rawItems)
+    if (!items || items.items.length === 0) {
+      const renderedHtml = renderToString(
+        React.createElement(
+          helmet({
+            title: TITLE,
+            children: Home,
+            style: "home",
+            props: {
+              items: [
+                {
+                  fields: {
+                    title: "Not Found",
+                    description: "item is not found",
+                    slug: "none",
+                    publishedAt: "0000/00/00",
+                    tags: [],
+                    content: "Item is not found",
+                    hasEn: false
+                  }
+                }
+              ]
+            }
+          })
+        )
+      );
+      res.send(renderedHtml);
+    } else {
+      const renderedHtml = renderToString(
+        React.createElement(
+          helmet({
+            title: TITLE,
+            children: Home,
+            style: "home",
+            props: {
+              items: items.items,
+              prev: items.prev,
+              next: items.next
+            }
+          })
+        )
+      );
+      res.send(renderedHtml);
+    }
+
+  } catch (_) {
+    console.log(_)
+    res.send("oops")
+  }
+
 });
 
 app.listen(8080);
