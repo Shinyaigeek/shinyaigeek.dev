@@ -12,6 +12,7 @@ import helmet from "./src/lib/helmet";
 
 import { getBlogPost, getBlogSlug, Entry } from "./src/lib/getBlogPost";
 import { getBlogPosts, getHomeSlug } from "./src/lib/getBlogPosts";
+import { getSiteMap } from "./src/lib/getSitemap";
 
 // import bodyParser from "body-parser"
 
@@ -218,6 +219,18 @@ app.put("/withItems", (req, res) => {
     res.send("oops")
   }
 
+});
+
+app.get("/getSitemap", (req, res) => {
+  try {
+    getSiteMap().then(xml => {
+      res.send(xml)
+    }).catch(e => {
+      throw new Error
+    })
+  } catch (e) {
+    res.send("oops")
+  }
 });
 
 app.listen(8080);
