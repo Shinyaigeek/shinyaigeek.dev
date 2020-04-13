@@ -150,6 +150,7 @@ app.get("/post/:id", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
+  console.log('profile')
   const renderedHtml = renderToString(
     React.createElement(
       helmet({
@@ -166,6 +167,7 @@ app.put("/withItems", (req, res) => {
   console.log('access cache')
   try {
     const { rawItems } = req.body
+    console.log(rawItems)
     const items = JSON.parse(rawItems)
     if (!items || items.items.length === 0) {
       const renderedHtml = renderToString(
