@@ -27,11 +27,11 @@ interface HelmetProps {
 
 const helmet = (props: HelmetProps) => {
   return () => (
-    <React.Fragment>
+    <html lang="ja">
       <SiteHead {...props} />
       <props.children {...props.props} />
       <script src="/main.js" />
-    </React.Fragment>
+    </html>
   );
 };
 
