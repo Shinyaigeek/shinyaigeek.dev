@@ -14,7 +14,7 @@ import { getBlogPost, getBlogSlug, Entry } from "./src/lib/getBlogPost";
 import { getBlogPosts, getHomeSlug } from "./src/lib/getBlogPosts";
 import { getSiteMap } from "./src/lib/getSitemap";
 
-// import bodyParser from "body-parser"
+import hljs from "highlight.js"
 
 const TITLE = "しにゃいの学習帳"
 
@@ -113,6 +113,12 @@ app.get("/post/:id", (req, res) => {
       );
       res.send(renderedHtml);
     } else {
+      marked.setOptions({
+        langPrefix: "",
+        highlight: (code, lang) => {
+          return hljs.highlightAuto(code, [lang]).value
+        }
+      })
       const html = marked(item.fields.content);
       const anchorsWithH2: string[] | null = html.match(
         /<h2 id=".+?">.+?<\/h2>/g
