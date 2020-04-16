@@ -37,6 +37,7 @@ app.get("/", (req, res) => {
             title: TITLE,
             children: Home,
             style: "home",
+            slug: "https://shinyaigeek.dev",
             props: {
               items: [
                 {
@@ -63,6 +64,7 @@ app.get("/", (req, res) => {
             title: TITLE,
             children: Home,
             style: "home",
+            slug: "https://shinyaigeek.dev",
             props: {
               items: items.items,
               prev: items.prev,
@@ -93,6 +95,7 @@ app.get("/post/:id", (req, res) => {
             title: `Not Found | ${TITLE}`,
             children: Post,
             style: "post",
+            slug: "https://shinyaigeek.dev",
             props: {
               fields: {
                 title: "Not Found",
@@ -131,7 +134,8 @@ app.get("/post/:id", (req, res) => {
           tags: item.fields.tags,
           publishedAt: item.fields.publishedAt,
           hasEn: item.fields.hasEn,
-          content: body
+          content: body,
+          slug: item.fields.slug
         },
         anchors: anchors
       };
@@ -140,6 +144,7 @@ app.get("/post/:id", (req, res) => {
           helmet({
             title: `${pro.fields.title} | ${TITLE}`,
             style: "post",
+            slug: `https://shinyaigeek.dev/${pro.fields.slug}`,
             children: Post,
             props: pro
           })
@@ -157,7 +162,8 @@ app.get("/profile", (req, res) => {
       helmet({
         title: `Profile | ${TITLE}`,
         style: "profile",
-        children: Profile
+        children: Profile,
+        slug: "https://shinyaigeek.dev/profile"
       })
     )
   );
@@ -177,6 +183,7 @@ app.put("/withItems", (req, res) => {
             title: TITLE,
             children: Home,
             style: "home",
+            slug: "https://shinyaigeek.dev/",
             props: {
               items: [
                 {
@@ -202,6 +209,7 @@ app.put("/withItems", (req, res) => {
           helmet({
             title: TITLE,
             children: Home,
+            slug: "https://shinyaigeek.dev/",
             style: "home",
             props: {
               items: items.items,
