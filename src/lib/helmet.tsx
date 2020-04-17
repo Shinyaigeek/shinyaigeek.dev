@@ -17,8 +17,14 @@ const SiteHead = (props: HeadProps) => (
     <meta property="og:title" content={props.title} />
     <meta property="og:site_name" content="しにゃいの学習帳" />
     <meta property="og:locale" content="ja_JP" />
-    <meta name="description" content="見習いWeb developer兼大学生のブログ. 主にweb開発の知見について喋ります" />
-    <meta property="og:description" content="見習いWeb developer兼大学生のブログ. 主にweb開発の知見について喋ります" />
+    <meta
+      name="description"
+      content="見習いWeb developer兼大学生のブログ. 主にweb開発の知見について喋ります"
+    />
+    <meta
+      property="og:description"
+      content="見習いWeb developer兼大学生のブログ. 主にweb開発の知見について喋ります"
+    />
     <meta property="og:url" content={props.slug} />
     <meta name="twitter:site" content="@shinyaigeek" />
     <meta property="og:type" content="website" />
@@ -29,6 +35,8 @@ const SiteHead = (props: HeadProps) => (
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="/layout.css" />
     <link rel="stylesheet" type="text/css" href={"/" + props.style + ".css"} />
+
+    {props.style === "post" && <script src="/night-owl.css" />}
   </head>
 );
 
@@ -37,7 +45,7 @@ interface HelmetProps {
   title: string;
   style: string;
   props?: any;
-  slug:string;
+  slug: string;
 }
 
 const helmet = (props: HelmetProps) => {
@@ -46,6 +54,13 @@ const helmet = (props: HelmetProps) => {
       <SiteHead {...props} />
       <props.children {...props.props} />
       <script src="/main.js" />
+      {props.style === "post" && <script src="/highlight.pack.js" />}
+      {props.style === "post" && (
+        <script>{`
+  if(hljs) {
+    hljs.initHighlighting();
+  }`}</script>
+      )}
     </html>
   );
 };
