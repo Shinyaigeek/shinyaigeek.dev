@@ -31,11 +31,11 @@ export const getSiteMap = async () => {
     </url>
     ${items.map((con: { fields: { slug: string } }) => {
         return `
-        < url >
+        <url>
         <loc>https://shinyaigeek.dev/post/${con.fields.slug}</loc>
     <priority>0.8 < /priority>
-        < changefreq > weekly < /changefreq>
-        < /url>
+        <changefreq> weekly </changefreq>
+        </url>
             `;
     }).join('')}
       
