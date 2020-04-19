@@ -14,7 +14,7 @@ export function Anchor(props: Props) {
         目次
       </div>
       <div id="post--anchors" className="post--anchors">
-        {props.anchors.map((anchor, index) => {
+        {props.anchors && props.anchors.map((anchor, index) => {
           return (
             <a
               key={index}
