@@ -52,15 +52,11 @@ const helmet = (props: HelmetProps) => {
   return () => (
     <html lang="ja">
       <SiteHead {...props} />
+      
       <props.children {...props.props} />
+      <div id="props-data" data-json={JSON.stringify(props.props)} />
       <script src="/main.js" />
-      {props.style === "post" && <script src="/highlight.pack.js" />}
-      {props.style === "post" && (
-        <script>{`
-  if(hljs) {
-    hljs.initHighlighting();
-  }`}</script>
-      )}
+      <script src="/post.js" />
     </html>
   );
 };
