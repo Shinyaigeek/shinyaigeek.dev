@@ -1,10 +1,10 @@
 import React from "react";
 
-import {
-  LinkedinOutlined,
-  TwitterOutlined,
-  GithubOutlined
-} from "@ant-design/icons";
+// import {
+//   LinkedinOutlined,
+//   TwitterOutlined,
+//   GithubOutlined
+// } from "@ant-design/icons";
 import { Button } from "./Button";
 
 export default function ThatsMe() {
@@ -23,7 +23,7 @@ export default function ThatsMe() {
       <div className="mySnsBox">
         <div className="sns">
           <a id="twitter" href="https://twitter.com/Shinyaigeek">
-            <TwitterOutlined />
+            {/* <TwitterOutlined /> */}
             {/* <Icon
               type="twitter"
               style={{ color: "#38A1F3", fontSize: "42px", margin: "8px auto" }}
@@ -32,7 +32,7 @@ export default function ThatsMe() {
         </div>
         <div className="sns">
           <a id="github" href="https://github.com/Shinyaigeek">
-            <GithubOutlined />
+            {/* <GithubOutlined /> */}
             {/* <Icon
               type="github"
               style={{ color: "#000", fontSize: "42px", margin: "8px auto" }}
@@ -46,7 +46,7 @@ export default function ThatsMe() {
               style={{ color: "#0077B5", fontSize: "42px", margin: "8px auto" }}
               theme="filled"
             /> */}
-            <LinkedinOutlined />
+            {/* <LinkedinOutlined /> */}
           </a>
         </div>
       </div>

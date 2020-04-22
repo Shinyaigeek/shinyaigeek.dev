@@ -1,6 +1,6 @@
 import React from "react";
 
-import { DownCircleOutlined } from "@ant-design/icons";
+// import { DownCircleOutlined } from "@ant-design/icons";
 
 interface Props {
   anchors: string[];
@@ -10,7 +10,7 @@ export function Anchor(props: Props) {
   return (
     <div className="post--anchor">
       <div className="post--anchor__title" id="post--anchor__title">
-        <DownCircleOutlined />
+        {/* <DownCircleOutlined /> */}
         目次
       </div>
       <div id="post--anchors" className="post--anchors">

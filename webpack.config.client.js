@@ -5,5 +5,7 @@ module.exports = {
   ...common,
   entry: {
     post: "./src/front/post.tsx",
-  },
+    home: "./src/front/home.tsx",
+    profile: "./src/front/profile.tsx"
+  }
 };

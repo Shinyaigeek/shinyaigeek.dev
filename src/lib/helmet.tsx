@@ -52,11 +52,13 @@ const helmet = (props: HelmetProps) => {
   return () => (
     <html lang="ja">
       <SiteHead {...props} />
-      
-      <props.children {...props.props} />
-      <div id="props-data" data-json={JSON.stringify(props.props)} />
-      <script src="/main.js" />
-      <script src="/post.js" />
+      <body>
+        <div id="_app">
+          <props.children {...props.props} />
+        </div>
+        <div id="props-data" data-json={JSON.stringify(props.props)} />
+      </body>
+      <script src={`/${props.style}.js`} />
     </html>
   );
 };

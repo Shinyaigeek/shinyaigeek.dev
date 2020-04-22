@@ -7,7 +7,7 @@
     "dev:server": "nodemon dist/express.js --watch dist --watch express.js",
     "build:server": "webpack --config webpack.config.server.js --mode=development",
     "dev:client": "webpack-dev-server --config webpack.config.client.js --mode=development",
-    "build:client": "webpack --config webpack.config.client.js --mode=development",
+    "build:client": "webpack --config webpack.config.client.js --mode=production",
     "build:style:layout": "node-sass -r src/styles/layout.scss public/layout.css --output-style compressed",
     "build:style:home": "node-sass -r src/styles/home.scss public/home.css --output-style compressed",
     "build:style:profile": "node-sass -r src/styles/profile.scss public/profile.css --output-style compressed",
@@ -28,7 +28,6 @@
   },
   "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
   "dependencies": {
-    "@ant-design/icons": "^4.0.2",
     "@babel/core": "^7.8.7",
     "@types/express": "^4.17.2",
     "@types/highlight.js": "^9.12.3",
