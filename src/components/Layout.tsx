@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Header } from "./Header";
 import { Footer } from "./Footer";
@@ -7,6 +7,8 @@ import { MailForm } from "./MailForm";
 import { FootTag, TAGS } from "./FootTag";
 
 export function Layout(Component: (props?: any) => JSX.Element) {
+  // const [openDrawer, setOpenDrawer] = useState(false);
+  // const [openContactModal, setOpenContactModal] = useState(false);
   return (props?: any) => (
     <div>
       <Header />
@@ -16,31 +18,16 @@ export function Layout(Component: (props?: any) => JSX.Element) {
             className="header--contents__anchorBlock"
             // onClick={() => props.setShowHamburgerMenu()}
           >
-            <a href="/">ブログ</a>
+            <a href="/">Blog</a>
           </div>
           <div className="header--contents__anchorBlock">
-            <a href="/profile">プロフィール</a>
+            <a href="/profile">Profile</a>
           </div>
-          <div
-            className="header--contents__anchorBlock"
-            // onClick={() => props.setShowHamburgerMenu()}
-          >
-            <a href="/">
-              <a>作品集</a>
-            </a>
-          </div>
-          <div
-            className="header--contents__anchorBlock"
-            id="header--modal__contact"
-            onClick={() => {
-              // props.setShowContactModal();
-            }}
-          >
-            コンタクト
+          <div className="header--contents__anchorBlock">
+            <a href="">Contact</a>
           </div>
         </div>
       </Drawer>
-      <MailForm />
       <div className="inner">
         <Component {...props} />
       </div>

@@ -28,38 +28,17 @@ export function Header() {
       </div>
       <div className="header--contents">
         <div className="header--contents__anchorBlock">
-          <a href="/">ブログ</a>
+          <a href="/">Blog</a>
         </div>
         <div className="header--contents__anchorBlock">
-          <a href="/profile">プロフィール</a>
-        </div>
-        <div className="header--contents__anchorBlock">
-          <a href="/">
-            <a>作品集</a>
-          </a>
+          <a href="/profile">Profile</a>
         </div>
         <div
           className="header--contents__anchorBlock"
-          id="header--contents__contact"
-        >
-          コンタクト
+          id="header--contents__contact">
+          Contact
         </div>
       </div>
-      <div className="header--contentsHamburger">
-        <div
-          id="hamburger--menu"
-          className={
-            true
-              ? "hamburger--menu__trigger"
-              : "hamburger--menu__trigger__active"
-          }
-        >
-          <span className="hamburger--menu__trigger__part" />
-          <span className="hamburger--menu__trigger__part" />
-          <span className="hamburger--menu__trigger__part" />
-        </div>
-      </div>
-      {/* <MailForm {...props} /> */}
     </div>
   );
 }
