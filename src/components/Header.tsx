@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Drawer } from "./Drawer";
-
 // import MailForm from "./MailForm";
 
 interface Props {
@@ -37,20 +35,6 @@ export function Header() {
           <a href="mailto:me@shinyaigeek.dev">Contact</a>
         </div>
       </div>
-      <div className="header--contentsHamburger">
-        <div
-          id="hamburger--menu"
-          className={
-            true
-              ? "hamburger--menu__trigger"
-              : "hamburger--menu__trigger__active"
-          }>
-          <span className="hamburger--menu__trigger__part" />
-          <span className="hamburger--menu__trigger__part" />
-          <span className="hamburger--menu__trigger__part" />
-        </div>
-      </div>
-      {/* <MailForm {...props} /> */}
     </div>
   );
 }
