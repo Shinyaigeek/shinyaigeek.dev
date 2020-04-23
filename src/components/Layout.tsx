@@ -16,31 +16,16 @@ export function Layout(Component: (props?: any) => JSX.Element) {
             className="header--contents__anchorBlock"
             // onClick={() => props.setShowHamburgerMenu()}
           >
-            <a href="/">ブログ</a>
+            <a href="/">Blog</a>
           </div>
           <div className="header--contents__anchorBlock">
-            <a href="/profile">プロフィール</a>
+            <a href="/profile">Profile</a>
           </div>
-          <div
-            className="header--contents__anchorBlock"
-            // onClick={() => props.setShowHamburgerMenu()}
-          >
-            <a href="/">
-              <a>作品集</a>
-            </a>
-          </div>
-          <div
-            className="header--contents__anchorBlock"
-            id="header--modal__contact"
-            onClick={() => {
-              // props.setShowContactModal();
-            }}
-          >
-            コンタクト
+          <div className="header--contents__anchorBlock">
+            <a href="mailto:me@shinyaigeek.dev">Contact</a>
           </div>
         </div>
       </Drawer>
-      <MailForm />
       <div className="inner">
         <Component {...props} />
       </div>

@@ -28,21 +28,13 @@ export function Header() {
       </div>
       <div className="header--contents">
         <div className="header--contents__anchorBlock">
-          <a href="/">ブログ</a>
+          <a href="/">Blog</a>
         </div>
         <div className="header--contents__anchorBlock">
-          <a href="/profile">プロフィール</a>
+          <a href="/profile">Profile</a>
         </div>
         <div className="header--contents__anchorBlock">
-          <a href="/">
-            <a>作品集</a>
-          </a>
-        </div>
-        <div
-          className="header--contents__anchorBlock"
-          id="header--contents__contact"
-        >
-          コンタクト
+          <a href="mailto:me@shinyaigeek.dev">Contact</a>
         </div>
       </div>
       <div className="header--contentsHamburger">
@@ -52,8 +44,7 @@ export function Header() {
             true
               ? "hamburger--menu__trigger"
               : "hamburger--menu__trigger__active"
-          }
-        >
+          }>
           <span className="hamburger--menu__trigger__part" />
           <span className="hamburger--menu__trigger__part" />
           <span className="hamburger--menu__trigger__part" />
