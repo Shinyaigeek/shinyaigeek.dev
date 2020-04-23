@@ -72,6 +72,7 @@ interface TopHtmlI {
 export const getTopOfHTML = (props: TopHtmlI) => {
   return new Promise<string>((resolve, reject) => {
     resolve(`
+    <html>
     <head>
     <title>${props.title}</title>
     <meta charSet="utf8" />
@@ -112,7 +113,7 @@ export const getTopOfHTML = (props: TopHtmlI) => {
 export const getMiddleOfHTML = (props: { json: string }) => {
   return new Promise<string>((resolve, reject) => {
     resolve(`
-    <div id="props-data" data-json=${props.json} />
+    <script id="props-data" type="text/plain" data-json='${props.json}'></script>
     `);
   });
 };
@@ -121,7 +122,7 @@ export const getLastOfHTML = (props: { js: string }) => {
   return new Promise<string>((resolve, reject) => {
     resolve(`
     </body>
-        <script src="/${props.js}.js" />
+        <script src="/${props.js}.js" /></script>
       </html>
     `);
   });

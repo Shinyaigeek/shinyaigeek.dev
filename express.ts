@@ -8,13 +8,15 @@ import Home from "./src/pages/Home";
 import Post from "./src/pages/Post";
 import Profile from "./src/pages/Profile";
 
-import helmet from "./src/lib/helmet";
+import helmet, { getTopOfHTML, getMiddleOfHTML, getLastOfHTML } from "./src/lib/helmet";
 
 import { getBlogPost, getBlogSlug, Entry } from "./src/lib/getBlogPost";
 import { getBlogPosts, getHomeSlug } from "./src/lib/getBlogPosts";
 import { getSiteMap } from "./src/lib/getSitemap";
 
 import hljs from "highlight.js"
+
+import { Readable } from "stream"
 
 const TITLE = "しにゃいの学習帳"
 
@@ -58,24 +60,73 @@ app.get("/", (req, res) => {
       );
       res.send(renderedHtml);
     } else {
-      const renderedHtml = renderToString(
-        React.createElement(
-          helmet({
-            title: TITLE,
-            children: Home,
-            style: "home",
-            slug: "https://shinyaigeek.dev",
-            props: {
-              items: items.items,
-              prev: items.prev,
-              next: items.next
+      // const renderedHtml = renderToString(
+      //   React.createElement(
+      //     helmet({
+      //       title: TITLE,
+      //       children: Home,
+      //       style: "home",
+      //       slug: "https://shinyaigeek.dev",
+      //       props: {
+      //         items: items.items,
+      //         prev: items.prev,
+      //         next: items.next
+      //       }
+      //     })
+      //   )
+      // );
+      // res.send(renderedHtml);
+
+      const renderedTopHTML = () => getTopOfHTML({
+        title: TITLE,
+        style: "home",
+        slug: "https://shinyaigeek.dev",
+        body: renderToString(React.createElement(Home, {
+          items: items.items,
+          prev: items.prev,
+          next: items.next
+        }))
+      })
+
+      const renderedMiddleHTML = () => getMiddleOfHTML({
+        json: JSON.stringify({
+          items: items.items,
+          prev: items.prev,
+          next: items.next
+        })
+      })
+
+      const renderedLastHTML = () => getLastOfHTML({
+        js: "home"
+      })
+
+      const pageChunked = [
+        renderedTopHTML,
+        renderedMiddleHTML,
+        renderedLastHTML
+      ]
+
+      const pageStream = new Readable({
+        async read(size) {
+          if (!pageChunked.length) {
+            pageStream.push(null);
+            res.end();
+          } else {
+            const chunkToRender = pageChunked.shift();
+            if (chunkToRender) {
+              const renderedChunk = await chunkToRender();
+              pageStream.push(renderedChunk);
+
             }
-          })
-        )
-      );
-      res.send(renderedHtml);
-    }
-  });
+          }
+        }
+      });
+
+      pageStream.pipe(res);
+
+
+    };
+  })
 });
 
 app.get("/json", (req, res) => {
@@ -157,6 +208,44 @@ app.get("/post/:id", (req, res) => {
         )
       );
       res.send(renderedHtml);
+      // const renderedTopHTML = () => getTopOfHTML({
+      //   title: `${pro.fields.title} | ${TITLE}`,
+      //   style: "post",
+      //   slug: `https://shinyaigeek.dev/${pro.fields.slug}`,
+      //   body: renderToString(React.createElement(Post, pro))
+      // })
+
+      // const renderedMiddleHTML = () => getMiddleOfHTML({
+      //   json: JSON.stringify(pro)
+      // })
+
+      // const renderedLastHTML = () => getLastOfHTML({
+      //   js: "post"
+      // })
+
+      // const pageChunked = [
+      //   renderedTopHTML,
+      //   renderedMiddleHTML,
+      //   renderedLastHTML
+      // ]
+
+      // const pageStream = new Readable({
+      //   async read(size) {
+      //     if (!pageChunked.length) {
+      //       pageStream.push(null);
+      //       res.end();
+      //     } else {
+      //       const chunkToRender = pageChunked.shift();
+      //       if (chunkToRender) {
+      //         const renderedChunk = await chunkToRender();
+      //         pageStream.push(renderedChunk);
+
+      //       }
+      //     }
+      //   }
+      // });
+
+      // pageStream.pipe(res);
     }
   });
 });
@@ -210,22 +299,69 @@ app.put("/withItems", (req, res) => {
       );
       res.send(renderedHtml);
     } else {
-      const renderedHtml = renderToString(
-        React.createElement(
-          helmet({
-            title: TITLE,
-            children: Home,
-            slug: "https://shinyaigeek.dev/",
-            style: "home",
-            props: {
-              items: items.items,
-              prev: items.prev,
-              next: items.next
+      // const renderedHtml = renderToString(
+      //   React.createElement(
+      //     helmet({
+      //       title: TITLE,
+      //       children: Home,
+      //       slug: "https://shinyaigeek.dev/",
+      //       style: "home",
+      //       props: {
+      //         items: items.items,
+      //         prev: items.prev,
+      //         next: items.next
+      //       }
+      //     })
+      //   )
+      // );
+      // res.send(renderedHtml);
+
+      const renderedTopHTML = () => getTopOfHTML({
+        title: TITLE,
+        style: "home",
+        slug: "https://shinyaigeek.dev",
+        body: renderToString(React.createElement(Home, {
+          items: items.items,
+          prev: items.prev,
+          next: items.next
+        }))
+      })
+
+      const renderedMiddleHTML = () => getMiddleOfHTML({
+        json: JSON.stringify({
+          items: items.items,
+          prev: items.prev,
+          next: items.next
+        })
+      })
+
+      const renderedLastHTML = () => getLastOfHTML({
+        js: "home"
+      })
+
+      const pageChunked = [
+        renderedTopHTML,
+        renderedMiddleHTML,
+        renderedLastHTML
+      ]
+
+      const pageStream = new Readable({
+        async read(size) {
+          if (!pageChunked.length) {
+            pageStream.push(null);
+            res.end();
+          } else {
+            const chunkToRender = pageChunked.shift();
+            if (chunkToRender) {
+              const renderedChunk = await chunkToRender();
+              pageStream.push(renderedChunk);
+
             }
-          })
-        )
-      );
-      res.send(renderedHtml);
+          }
+        }
+      });
+
+      pageStream.pipe(res);
     }
 
   } catch (_) {
@@ -247,4 +383,4 @@ app.get("/getSitemap", (req, res) => {
   }
 });
 
-app.listen(8080);
+app.listen(8080)
