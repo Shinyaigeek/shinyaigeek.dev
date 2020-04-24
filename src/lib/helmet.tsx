@@ -53,7 +53,6 @@ const helmet = (props: HelmetProps) => {
     <html lang="ja">
       <SiteHead {...props} />
       <props.children {...props.props} />
-      )}
     </html>
   );
 };
