@@ -15,6 +15,7 @@ import { getBlogPosts, getHomeSlug } from "./src/lib/getBlogPosts";
 import { getSiteMap } from "./src/lib/getSitemap";
 
 import hljs from "highlight.js"
+import { getRss } from "./src/lib/getRss";
 
 const TITLE = "しにゃいの学習帳"
 
@@ -238,6 +239,18 @@ app.put("/withItems", (req, res) => {
 app.get("/getSitemap", (req, res) => {
   try {
     getSiteMap().then(xml => {
+      res.send(xml)
+    }).catch(e => {
+      throw new Error
+    })
+  } catch (e) {
+    res.send("oops")
+  }
+});
+
+app.get("/getRss", (req, res) => {
+  try {
+    getRss().then(xml => {
       res.send(xml)
     }).catch(e => {
       throw new Error

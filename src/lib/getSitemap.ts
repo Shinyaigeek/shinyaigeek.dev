@@ -33,7 +33,7 @@ export const getSiteMap = async () => {
         return `
         <url>
         <loc>https://shinyaigeek.dev/post/${con.fields.slug}</loc>
-    <priority>0.8 < /priority>
+    <priority>0.8 </priority>
         <changefreq> weekly </changefreq>
         </url>
             `;
