@@ -8,23 +8,23 @@ interface Props {
 
 export function Anchor(props: Props) {
   return (
-    <div className="post--anchor">
-      <div className="post--anchor__title" id="post--anchor__title">
-        <DownCircleOutlined />
+    <details className="post--anchor">
+      <summary className="post--anchor__title" id="post--anchor__title">
         目次
-      </div>
-      <div id="post--anchors" className="post--anchors">
-        {props.anchors && props.anchors.map((anchor, index) => {
-          return (
-            <a
-              key={index}
-              href={`#${encodeURI(anchor.toLowerCase()).replace(/%20/g, "-")}`}
-            >
-              {anchor}
-            </a>
-          );
-        })}
-      </div>
-    </div>
+      </summary>
+        {props.anchors &&
+          props.anchors.map((anchor, index) => {
+            return (
+              <a
+                key={index}
+                href={`#${encodeURI(anchor.toLowerCase()).replace(
+                  /%20/g,
+                  "-"
+                )}`}>
+                {anchor}
+              </a>
+            );
+          })}
+    </details>
   );
 }
