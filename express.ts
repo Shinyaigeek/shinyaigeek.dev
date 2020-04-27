@@ -30,9 +30,11 @@ app.use(express.urlencoded({ extended: true }))
 app.get("/", (req, res) => {
   console.log("--------------------------")
   console.log("=========== access root ==============")
+  console.warn("I think this shouldn't be accessed in production")
   const slug = getHomeSlug(req.url);
   getBlogPosts(slug).then(items => {
     if (!items || items.items.length === 0) {
+      console.log("some error happens")
       const renderedHtml = renderToString(
         React.createElement(
           helmet({
@@ -230,6 +232,90 @@ app.put("/withItems", (req, res) => {
               prev: items.prev,
               next: items.next
             }
+          })
+        )
+      );
+      res.send(renderedHtml);
+    }
+
+  } catch (_) {
+    console.log(_)
+    res.send("oops")
+  }
+
+});
+
+app.put("/renderWithItem", (req, res) => {
+  console.log("--------------------------")
+  console.log("=========== access post to render with Data Json ==============")
+  try {
+    const { rawItem } = req.body
+    const item = JSON.parse(rawItem).items[0]
+    if (!item) {
+      const renderedHtml = renderToString(
+        React.createElement(
+          helmet({
+            title: `Not Found | ${TITLE}`,
+            children: Post,
+            style: "post",
+            slug: "https://shinyaigeek.dev",
+            props: {
+              fields: {
+                title: "Not Found",
+                description: "item is not found",
+                slug: "none",
+                publishedAt: "0000/00/00",
+                tags: [],
+                content: "Item is not found",
+                hasEn: false
+              },
+              anchors: []
+            }
+          })
+        )
+      );
+      res.send(renderedHtml);
+    } else {
+      marked.setOptions({
+        langPrefix: "",
+        highlight: (code, lang) => {
+          return hljs.highlightAuto(code, [lang]).value
+        }
+      })
+      const html = marked(item.fields.content);
+      const anchorsWithH2: string[] | null = html.match(
+        /<h2 id=".+?">.+?<\/h2>/g
+      );
+      let anchors;
+      if (anchorsWithH2) {
+        anchors = anchorsWithH2.map(anc => {
+          return anc.replace(/<h2 id=".+?">/, "").replace("</h2>", "");
+        });
+      }
+      const body = html.replace(/<h2 id=".+?">/g, (target: string) => {
+        const id = target.replace('<h2 id="', "").replace('">', "");
+        return `<h2 id="${encodeURI(id)}">`;
+      });
+      const pro = {
+        fields: {
+          title: item.fields.title,
+          description: item.fields.description,
+          tags: item.fields.tags,
+          publishedAt: item.fields.publishedAt,
+          hasEn: item.fields.hasEn,
+          content: body,
+          slug: item.fields.slug
+        },
+        anchors: anchors
+      };
+      const renderedHtml = renderToString(
+        React.createElement(
+          helmet({
+            title: `${pro.fields.title} | ${TITLE}`,
+            style: "post",
+            slug: `https://shinyaigeek.dev/${pro.fields.slug}`,
+            children: Post,
+            props: pro
           })
         )
       );
