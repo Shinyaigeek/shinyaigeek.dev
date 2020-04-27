@@ -28,7 +28,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 app.get("/", (req, res) => {
-  console.log('simple')
+  console.log("--------------------------")
   const slug = getHomeSlug(req.url);
   getBlogPosts(slug).then(items => {
     if (!items || items.items.length === 0) {
@@ -80,6 +80,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/json", (req, res) => {
+  console.log("--------------------------")
   const slug = getHomeSlug(req.url);
   getBlogPosts(slug).then(items => {
     res.send(JSON.stringify(items))
@@ -87,6 +88,7 @@ app.get("/json", (req, res) => {
 })
 
 app.get("/post/:id", (req, res) => {
+  console.log("--------------------------")
   const slug = getBlogSlug(req.url);
   getBlogPost(slug).then(item => {
     if (!item) {
@@ -163,7 +165,7 @@ app.get("/post/:id", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  console.log('profile')
+  console.log("--------------------------")
   const renderedHtml = renderToString(
     React.createElement(
       helmet({
@@ -178,7 +180,7 @@ app.get("/profile", (req, res) => {
 });
 
 app.put("/withItems", (req, res) => {
-  console.log('access cache')
+  console.log("--------------------------")
   try {
     const { rawItems } = req.body
     console.log(rawItems)
@@ -237,6 +239,7 @@ app.put("/withItems", (req, res) => {
 });
 
 app.get("/getSitemap", (req, res) => {
+  console.log("--------------------------")
   try {
     getSiteMap().then(xml => {
       res.send(xml)
@@ -249,6 +252,7 @@ app.get("/getSitemap", (req, res) => {
 });
 
 app.get("/getRss", (req, res) => {
+  console.log("--------------------------")
   try {
     getRss().then(xml => {
       res.send(xml)
