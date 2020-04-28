@@ -1,10 +1,7 @@
 $animationMinLength: 250;
 $animationMaxLength: 700;
 
-.welcome--animation {
-  position: absolute;
-  bottom: 25px;
-  right: 25px;
+.myicon {
   transform-style: preserve-3d;
   transform: perspective(5000px);
   overflow: visible;
@@ -13,21 +10,21 @@ $animationMaxLength: 700;
 }
 
 .earth {
-  animation: 5s infinite forwards normal earthX ease-in-out 1.25s;
+  animation: 5s infinite forwards normal earthX ease-in-out;
 }
 
 .earthY {
-  animation: 5s infinite forwards normal earthY ease-in-out;
+  animation: 5s infinite forwards normal earthY ease-in-out -1.25s;
 }
 
 @keyframes earthY {
   0%,
   100% {
-    transform: translatY(0px);
+    transform: translateY(0px);
   }
 
   50% {
-    transform: translateY(-120px);
+      transform: translateY(-120px);
   }
 }
 

@@ -1,13 +1,19 @@
 import React from "react";
 import { Layout } from "../components/Layout";
-import ThatsMe from "../components/ThatsMe";
 import { Divider } from "../components/Divider";
+import { MyIcon } from "../components/MyIcon";
 
 const Profile = () => {
   return (
     <div className="profile">
       <div>
-        <ThatsMe />
+        <MyIcon
+          styles={{
+            height: "300px",
+            width: "300px",
+            margin: "0 auto",
+          }}
+        />
 
         <Divider />
 

@@ -1,9 +1,10 @@
 @import "./_components/thatsme";
+@import "./_components/myicon";
 @import "./core";
 
 .profile {
   width: 80vw;
-  margin: 102px auto;
+  margin: 0px auto 102px auto;
   font-family: "sans-serif";
 
   img {
