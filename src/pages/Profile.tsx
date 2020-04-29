@@ -2,6 +2,7 @@ import React from "react";
 import { Layout } from "../components/Layout";
 import { Divider } from "../components/Divider";
 import { MyIcon } from "../components/MyIcon";
+import { BaseProfile } from "../components/BaseProfile";
 
 const Profile = () => {
   return (
@@ -14,6 +15,8 @@ const Profile = () => {
             margin: "0 auto",
           }}
         />
+
+        <BaseProfile />
 
         <Divider />
 

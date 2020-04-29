@@ -3,7 +3,7 @@ import React from "react";
 import {
   LinkedinOutlined,
   TwitterOutlined,
-  GithubOutlined
+  GithubOutlined,
 } from "@ant-design/icons";
 import { Button } from "./Button";
 
