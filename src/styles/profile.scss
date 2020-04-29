@@ -1,7 +1,12 @@
 @import "./_components/thatsme";
 @import "./_components/myicon";
 @import "./_components/baseprofile";
+@import "./_components/gitHubCalendar";
 @import "./core";
+
+.ghCalender {
+  padding: 16px 0;
+}
 
 .profile {
   width: 80vw;
@@ -54,44 +59,46 @@
     }
   }
 
-  ul {
-    word-break: break-word;
-    li {
-      list-style: none;
-      margin-top: 8px;
+  .element {
+    ul {
+      word-break: break-word;
+      li {
+        list-style: none;
+        margin-top: 8px;
 
-      &::before {
-        position: relative;
-        top: -2px;
-        left: -18px;
+        &::before {
+          position: relative;
+          top: -2px;
+          left: -18px;
 
-        display: inline-block;
+          display: inline-block;
 
-        width: 6px;
-        height: 6px;
+          width: 6px;
+          height: 6px;
 
-        content: "";
+          content: "";
 
-        border-radius: 100%;
-        background: $headings_color;
+          border-radius: 100%;
+          background: $headings_color;
+        }
       }
-    }
 
-    li:nth-child(even) {
-      &::before {
-        position: relative;
-        top: -2px;
-        left: -18px;
+      li:nth-child(even) {
+        &::before {
+          position: relative;
+          top: -2px;
+          left: -18px;
 
-        display: inline-block;
+          display: inline-block;
 
-        width: 6px;
-        height: 6px;
+          width: 6px;
+          height: 6px;
 
-        content: "";
+          content: "";
 
-        border-radius: 100%;
-        background: $headings_color_reverse;
+          border-radius: 100%;
+          background: $headings_color_reverse;
+        }
       }
     }
   }

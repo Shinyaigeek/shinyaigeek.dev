@@ -448,6 +448,11 @@ add-dom-event-listener@^1.1.0:
   dependencies:
     object-assign "4.x"
 
+add-subtract-date@^1.0.5:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/add-subtract-date/-/add-subtract-date-1.0.14.tgz#c2c2e707fa93c77ba3f70a010a6085eb13063d6f"
+  integrity sha512-e070xJdKBEEdAgCJJm1nBSdGv4Y6C2LXP9PYHBUJPV/3eUkZ46bnnkzejmXmTFYyIsiouLPt26yGgsHZL7WDvg==
+
 ajv-errors@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ajv-errors/-/ajv-errors-1.0.1.tgz#f35986aceb91afadec4102fbd85014950cefa64d"
@@ -1488,6 +1493,11 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+days@^1.0.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/days/-/days-1.1.1.tgz#b039d1e5ad5335ca689401855546f02d4cfcb362"
+  integrity sha512-vzeIwVsEIyA35GH4+mPd4hjVDNI87wYANyZFs0BHjBr5kIBH5zEl7LfD6Wr4SFZca4D3CU9IH1w4DuZLlXzKRw==
+
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -1755,6 +1765,14 @@ elliptic@^6.0.0:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
+
+elly@^1.0.0:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/elly/-/elly-1.1.10.tgz#15f3e43c81327ea927802a09508e60c712b81c9b"
+  integrity sha512-CXlhCGIzVjX1SLPttmq2fo7wsOlfPMsxqf8rIbpFSkNWC+U8Nuldo6rG6oeFiBY9+8e7YcizwDnyK72APWH+dQ==
+  dependencies:
+    iterate-object "^1.3.2"
+    sliced "^1.0.1"
 
 emailjs-com@^2.4.1:
   version "2.4.1"
@@ -2098,6 +2116,11 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
+fillo@^1.0.0:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/fillo/-/fillo-1.0.12.tgz#27a0f2793fcbb08dbd6ddb6568deb53896511aea"
+  integrity sha512-WjV09RN7NEp1EazSNKJVZCVHeWYj4MNyb4HX1BAyrW4j0OW2UPJukP4SUkJt9Nj7gWgyD6avK0mH5bjwOZFViw==
+
 finalhandler@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/finalhandler/-/finalhandler-1.1.2.tgz#b7e7d000ffd11938d0fdb053506f6ebabe9f587d"
@@ -2194,6 +2217,16 @@ form-data@~2.3.2:
     asynckit "^0.4.0"
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
+
+formatoid@^1.0.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/formatoid/-/formatoid-1.2.3.tgz#f9c1628fecbdfb56e422e5000cd2e81c1710589f"
+  integrity sha512-CkI0aK01nKhHoFZByDKw/yrNPy+g56DNIEmlq0Q67grdR/LLV8Orc9gsTGVP7XufM3bZg8iuD5UsVfkOdJo2yg==
+  dependencies:
+    days "^1.0.1"
+    fillo "^1.0.0"
+    months "^1.0.0"
+    parse-it "^1.0.0"
 
 forwarded@~0.1.2:
   version "0.1.2"
@@ -2332,6 +2365,28 @@ getpass@^0.1.1:
   integrity sha1-Xv+OPmhNVprkyysSgmBOi6YhSfo=
   dependencies:
     assert-plus "^1.0.0"
+
+github-calendar-legend@^1.0.0:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/github-calendar-legend/-/github-calendar-legend-1.0.10.tgz#bbfad7332f155ad482abb61d4c6122b0cd13e986"
+  integrity sha512-dDfX2Hvl98mSNbM9jRsZoZ0STb/AJcaf8ofRGXpH2oHtiQ73IlL8LFzOUzp49xSTFf0XYBs4DCXEhgbh+Fir2A==
+
+github-calendar-parser@^1.1.3:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/github-calendar-parser/-/github-calendar-parser-1.1.10.tgz#25285db5dd8e15a1f23e2fd71c3f809d240ccb21"
+  integrity sha512-muDJpHio2ATZ9WXqTjyrFitLxFlJyZTy/c0EtiNhOwPzUBW4zr3mnX1qoiZM8DkgbLAyZY5CoEno3GEXPDSMPQ==
+  dependencies:
+    github-calendar-legend "^1.0.0"
+
+github-calendar@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/github-calendar/-/github-calendar-2.1.1.tgz#bf8f0fc98717997f81bc275042f053a3361cfa45"
+  integrity sha512-8etOmeBPx2aVSox1xfaVv3RS4zDgSDX0UxjEzGkPT3jF1yS9NLR6Hod3WO+SW/VxEwKmZAmZTe0zrwaqij5Bng==
+  dependencies:
+    add-subtract-date "^1.0.5"
+    elly "^1.0.0"
+    formatoid "^1.0.3"
+    github-calendar-parser "^1.1.3"
 
 glob-parent@^3.1.0:
   version "3.1.0"
@@ -3120,6 +3175,11 @@ isstream@~0.1.2:
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
 
+iterate-object@^1.3.2:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/iterate-object/-/iterate-object-1.3.3.tgz#c58e60f7f0caefa2d382027a484b215988a7a296"
+  integrity sha512-DximWbkke36cnrSfNJv6bgcB2QOMV9PRD2FiowwzCoMsh8RupFLdbNIzWe+cVDWT+NIMNJgGlB1dGxP6kpzGtA==
+
 js-base64@^2.1.8:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.5.2.tgz#313b6274dda718f714d00b3330bbae6e38e90209"
@@ -3564,6 +3624,11 @@ mixin-deep@^1.2.0:
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
+
+months@^1.0.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/months/-/months-1.2.0.tgz#beef54873960334abe0b03f6b38db8adb44a13ac"
+  integrity sha512-zFM7hUpziSYGk2DNObYGWgHdRRxAOgjl8CC1Rbl50p/q0rGDsREfk0nbxxmSIquVi/lEAuUY8nwbwkZ8biNCOQ==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -4012,6 +4077,13 @@ parse-asn1@^5.0.0:
     evp_bytestokey "^1.0.0"
     pbkdf2 "^3.0.3"
     safe-buffer "^5.1.1"
+
+parse-it@^1.0.0:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/parse-it/-/parse-it-1.0.9.tgz#09c9f52734de2cba309d0e083de305c912f294f3"
+  integrity sha512-8KW9XwW5+DFsvkkSXLZw7AGormnQ+/unnqmTPq7uoiAJNaeLo0T78zT/Ootc0HrdEgVvxM4+mOCRLKJOVtkogQ==
+  dependencies:
+    regex-escape "^3.4.0"
 
 parse-json@^2.2.0:
   version "2.2.0"
@@ -4509,6 +4581,11 @@ regenerator-runtime@^0.11.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
+regex-escape@^3.4.0:
+  version "3.4.9"
+  resolved "https://registry.yarnpkg.com/regex-escape/-/regex-escape-3.4.9.tgz#407b413562e2373d56994ff213e693658ea4f8f7"
+  integrity sha512-Cv9rjwyQwVhn3L097ysanWsEElurmxDj6Cc4Ut23z7e6hzRbrNvF3Le7yAciMfuzyb0sZwSr0ZHunMNCIoy2/g==
+
 regex-not@^1.0.0, regex-not@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/regex-not/-/regex-not-1.0.2.tgz#1f4ece27e00b0b65e0247a6810e6a85d83a5752c"
@@ -4902,6 +4979,11 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
+
+sliced@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/sliced/-/sliced-1.0.1.tgz#0b3a662b5d04c3177b1926bea82b03f837a2ef41"
+  integrity sha1-CzpmK10Ewxd7GSa+qCsD+Dei70E=
 
 snapdragon-node@^2.0.1:
   version "2.1.1"

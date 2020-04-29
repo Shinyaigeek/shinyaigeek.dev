@@ -7,13 +7,13 @@
     "dev:server": "nodemon dist/express.js --watch dist --watch express.js",
     "build:server": "webpack --config webpack.config.server.js --mode=development",
     "dev:client": "webpack-dev-server --config webpack.config.client.js --mode=development",
-    "build:client": "webpack --config webpack.config.client.js --mode=development",
+    "build:client": "webpack --config webpack.config.client.js --mode=production",
     "build:style:layout": "node-sass -r src/styles/layout.scss public/layout.css --output-style compressed",
     "build:style:home": "node-sass -r src/styles/home.scss public/home.css --output-style compressed",
     "build:style:profile": "node-sass -r src/styles/profile.scss public/profile.css --output-style compressed",
     "build:style:post": "node-sass -r src/styles/post.scss public/post.css --output-style compressed",
     "build:style": "yarn run build:style:layout && yarn run build:style:home && yarn run build:style:post && yarn run build:style:profile",
-    "build": "webpack --config webpack.config.server.js --mode=production && yarn run build:style",
+    "build": "webpack --config webpack.config.server.js --mode=production && yarn run build:style && yarn run build:client",
     "start": "node dist/express.js"
   },
   "repository": {
@@ -43,6 +43,7 @@
     "dotenv": "^8.2.0",
     "emailjs-com": "^2.4.1",
     "fs": "^0.0.1-security",
+    "github-calendar": "^2.1.1",
     "highlight.js": "^9.18.1",
     "html-react-parser": "^0.10.1",
     "marked": "^0.8.0",

@@ -3,6 +3,7 @@ import { Layout } from "../components/Layout";
 import { Divider } from "../components/Divider";
 import { MyIcon } from "../components/MyIcon";
 import { BaseProfile } from "../components/BaseProfile";
+import { GitHubCalender } from "../components/GitHubCalender";
 
 const Profile = () => {
   return (
@@ -20,7 +21,11 @@ const Profile = () => {
 
         <Divider />
 
-        <div className="history--study">
+        <GitHubCalender />
+
+        <Divider />
+
+        <div className="history--study element">
           <span className="title">学歴</span>
           <ul>
             <li>2018年:西大和学園高等学校卒業</li>
@@ -32,7 +37,7 @@ const Profile = () => {
 
         <Divider />
 
-        <div className="history--job">
+        <div className="history--job element">
           <span className="title">実務経験歴</span>
           <ul>
             <li>東京総合研究所 webエンジニア</li>
