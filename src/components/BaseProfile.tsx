@@ -1,30 +1,31 @@
 import * as React from "react";
 
-import {
-  LinkedinOutlined,
-  TwitterOutlined,
-  GithubOutlined,
-} from "@ant-design/icons";
+import { Twitter, Linkedin, Github } from "@zeit-ui/react-icons";
 
 export const BaseProfile = () => {
   return (
     <div className="baseprofile">
       <div className="name">Shinobu Hayashi a.k.a Shinyaigeek(しにゃい)</div>
-      <div className="job">Web Developer</div>
+      <div className="job glitch" data-text="Web Developer">
+        Web Developer
+      </div>
+      <div className="word">
+        I Love and Development Web Technology and that's ecosystem!!
+      </div>
       <div className="mySnsBox">
         <div className="sns">
           <a id="twitter" href="https://twitter.com/Shinyaigeek">
-            <TwitterOutlined />
+            <Twitter size={54} />
           </a>
         </div>
         <div className="sns">
           <a id="github" href="https://github.com/Shinyaigeek">
-            <GithubOutlined />
+            <Github size={54} />
           </a>
         </div>
         <div className="sns">
           <a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/">
-            <LinkedinOutlined />
+            <Linkedin size={54} />
           </a>
         </div>
       </div>

@@ -1,25 +1,105 @@
+@import "../core";
+
 .mySnsBox {
-    display: flex;
-    margin: 2px auto;
-  
-    .sns {
-      margin: 0 auto;
-  
-      a {
-        font-size: 42px;
-        margin: 8px auto;
-      }
-  
-      #twitter {
-        color: #38a1f3;
-      }
-  
-      #github {
-        color: #000;
-      }
-  
-      #linkedin {
-        color: #0077b5;
+  display: flex;
+  margin: 2px auto;
+  max-width: 500px;
+
+  .sns {
+    margin: 0 auto;
+
+    a {
+      font-size: 42px;
+      margin: 8px auto;
+    }
+
+    #twitter {
+      color: #38a1f3;
+      &:hover {
+        animation: neon3 0.5s;
       }
     }
+
+    #github {
+      color: #000;
+    }
+
+    #linkedin {
+      color: #0077b5;
+    }
   }
+}
+
+@-webkit-keyframes neon3 {
+  from {
+    // text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FFDD1B, 0 0 70px #FFDD1B, 0 0 80px #FFDD1B, 0 0 100px #FFDD1B, 0 0 150px #FFDD1B;
+  }
+  to {
+    // text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FFDD1B, 0 0 35px #FFDD1B, 0 0 40px #FFDD1B, 0 0 50px #FFDD1B, 0 0 75px #FFDD1B;
+    color: #78B8FF;
+    opacity: 0.8;
+    font-size: 54px;
+  }
+}
+
+.job {
+  font-size: 32px;
+  text-align: center;
+}
+
+.word {
+  font-size: 24px;
+}
+
+.glitch {
+  position: relative;
+  width: max-content;
+  margin: 0 auto;
+}
+
+@keyframes noise-anim {
+  $steps: 20;
+  @for $i from 0 through $steps {
+    #{percentage($i*(1/$steps))} {
+      clip: rect(random(100) + px, 9999px, random(100) + px, 0);
+    }
+  }
+}
+
+.glitch:after {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  text-shadow: -1px 0 red;
+  top: 0;
+  color: white;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: 2s infinite linear alternate-reverse noise-anim;
+  white-space: nowrap;
+}
+
+@keyframes noise-anim-2 {
+  $steps: 20;
+  @for $i from 0 through $steps {
+    #{percentage($i*(1/$steps))} {
+      clip: rect(random(100) + px, 9999px, random(100) + px, 0);
+    }
+  }
+}
+.glitch:before {
+  content: attr(data-text);
+  position: absolute;
+  left: -2px;
+  text-shadow: 1px 0 blue;
+  top: 0;
+  color: white;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: 3s infinite linear alternate-reverse noise-anim-2;
+  white-space: nowrap;
+}
+
+.word {
+  padding: 12px 0;
+}
