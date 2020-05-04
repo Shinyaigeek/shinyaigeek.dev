@@ -1,7 +1,5 @@
 import React from "react";
 
-import { DownCircleOutlined } from "@ant-design/icons";
-
 interface Props {
   anchors: string[];
 }

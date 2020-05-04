@@ -36,9 +36,11 @@ const SiteHead = (props: HeadProps) => (
     <link rel="stylesheet" type="text/css" href="/layout.css" />
     <link rel="stylesheet" type="text/css" href={"/" + props.style + ".css"} />
 
-    <link rel="alternate" type="application/rss+xml" title="しにゃいの学習帳" href="https://shinyaigeek.dev/getRss"></link>
-
-    {props.style === "post" && <script src="/night-owl.css" />}
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="しにゃいの学習帳"
+      href="https://shinyaigeek.dev/getRss"></link>
   </head>
 );
 
@@ -54,7 +56,10 @@ const helmet = (props: HelmetProps) => {
   return () => (
     <html lang="ja">
       <SiteHead {...props} />
-      <props.children {...props.props} />
+      <div id="_app">
+        <props.children {...props.props} />
+      </div>
+      {props.style === "profile" && <script src="/profile.js" />}
     </html>
   );
 };
