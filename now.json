@@ -27,11 +27,11 @@
     "routes": [
         {
             "src": "/*.js",
-            "dest": "dist/"
+            "dest": "dist/$1"
         },
         {
-            "src": "/home.css",
-            "dest": "dist/home.css"
+            "src": "/*.css",
+            "dest": "dist/$1"
         },
         {
             "src": "/*.png",
