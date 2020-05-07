@@ -1,6 +1,13 @@
 {
     "builds": [
         {
+            "src": "package.json",
+            "use": "@now/static-build",
+            "config": {
+                "distDir": ["dist", "public"]
+            }
+        },
+        {
             "src": "/dist/*.js",
             "use": "@now/static"
         },
