@@ -16,7 +16,7 @@
         },
         {
             "src": "/.*",
-            "dest": "dist/express.js"
+            "dest": "express.ts"
         }
     ]
 }
