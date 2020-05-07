@@ -21,7 +21,6 @@ const TITLE = "しにゃいの学習帳"
 
 const app = express();
 
-app.use(express.static("public"));
 app.use(express.static("static"));
 app.use(express.static("dist"));
 app.use(express.json());
