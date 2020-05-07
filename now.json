@@ -35,7 +35,7 @@
         },
         {
             "src": "/*.png",
-            "dest": "static/"
+            "dest": "static/$1"
         },
         {
             "src": "/.*",
