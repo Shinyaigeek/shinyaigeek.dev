@@ -18,5 +18,9 @@
             "src": "/.*",
             "dest": "express.ts"
         }
-    ]
+    ],
+    "env": {
+        "CONTENTFUL_SPACE_ID": "@contentful-space-id-production-4lm2",
+        "CONTENTFUL_ACCESS_TOKEN": "@contentful-access-token-production-ra4w"
+    }
 }
