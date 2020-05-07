@@ -1,0 +1,16 @@
+{
+    "routes": [
+        {
+            "src": "/*.js",
+            "dest": "dist/"
+        },
+        {
+            "src": "/*.png",
+            "dest": "static/"
+        },
+        {
+            "src": "/.*",
+            "dest": "dist/express.js"
+        }
+    ]
+}
