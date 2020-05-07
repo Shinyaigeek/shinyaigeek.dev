@@ -1,21 +1,21 @@
 {
     "builds": [
-      {
-        "src": "/express.ts",
-        "use": "@now/node-server"
-      },
-      {
-          "src": "/dist/*.js",
-          "use": "@now/static"
-      },
-      {
-          "src": "/public/*.css",
-          "use": "@now/static"
-      },
-      {
-          "src": "/static/*.png",
-          "use": "@now/static"
-      }
+        {
+            "src": "/dist/*.js",
+            "use": "@now/static"
+        },
+        {
+            "src": "/public/*.css",
+            "use": "@now/static"
+        },
+        {
+            "src": "/static/*.png",
+            "use": "@now/static"
+        },
+        {
+            "src": "/express.ts",
+            "use": "@now/node-server"
+        }
     ],
     "routes": [
         {
