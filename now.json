@@ -1,4 +1,10 @@
 {
+    "builds": [
+      {
+        "src": "./dist/express.js",
+        "use": "@now/node-server"
+      }
+    ],
     "routes": [
         {
             "src": "/*.js",
