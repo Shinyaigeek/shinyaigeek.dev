@@ -27,15 +27,15 @@
     "routes": [
         {
             "src": "/*.js",
-            "dest": "dist/$1"
+            "dest": "dist/$1.js"
         },
         {
             "src": "/*.css",
-            "dest": "dist/$1"
+            "dest": "dist/$1.css"
         },
         {
             "src": "/*.png",
-            "dest": "static/$1"
+            "dest": "static/$1.png"
         },
         {
             "src": "/.*",
