@@ -21,4 +21,4 @@ jobs:
       with:
         node-version: "12.x"
     - run: npm ci
-    - run: yarn run perf --target=${{ GITHUB_REF }}
+    - run: yarn run perf --target=${GITHUB_REF##*/}
