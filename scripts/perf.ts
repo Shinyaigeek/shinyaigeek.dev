@@ -9,13 +9,20 @@ import chromeLauncher from "chrome-launcher";
 import request from "request";
 import util from "util";
 
+const ci = !!process.env.GITHUB_ACTION;
+
+// https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
+const options = ci
+  ? { args: ["--no-sandbox", "--disable-setuid-sandbox"] }
+  : {};
+
 const main = async () => {
     // const flags = flagParser();
     const branch = context?.payload?.pull_request?.head.ref || "test"
     const preview = `https://shinyaigeek-git-${branch}.shinyaigeek.now.sh`;
 
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch(options);
     const page = await browser.newPage();
     const navigationPromise = page.waitForNavigation({
         waitUntil: "networkidle2"
