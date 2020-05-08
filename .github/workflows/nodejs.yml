@@ -16,6 +16,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: sudo apt update
+    - name: Install utilities
+      run:
+        sudo apt install -y automake build-essential git libgbm1 pkg-config
+        python python-pip unzip
     - name: Use Node.js "12.x"
       uses: actions/setup-node@v1
       with:
