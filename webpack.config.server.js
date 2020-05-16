@@ -5,7 +5,7 @@ module.exports = {
   ...common,
   target: "node",
   entry: {
-    express: "./express.ts",
+    server: "./server.ts",
     main: "./src/front/main.ts"
   }
 };

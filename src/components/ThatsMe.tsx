@@ -12,7 +12,7 @@ export default function ThatsMe() {
     <div className="thatsMe">
       <a href="/profile">
         <a>
-          <img src="/icon_thatsme.png" className="thatsMe--icon" alt="icon" />
+          <img src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon_thatsme.png" className="thatsMe--icon" alt="icon" />
         </a>
       </a>
       しにゃい/Shinyaigeek

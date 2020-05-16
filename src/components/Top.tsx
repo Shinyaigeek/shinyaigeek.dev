@@ -7,7 +7,7 @@ import { StarStream } from "./StarStream";
 export function Top() {
   return (
     <div className="welcome">
-      <img className="banana" src="/banana.png" alt="banana" />
+      <img className="banana" src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/banana.png" alt="banana" />
       <ScrollDown />
       <Animation />
       <StarStream />

@@ -16,7 +16,7 @@ export function Header() {
         <a href="/">
           <div>
             <img
-              src="/icon_transparent_header.png"
+              src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon_transparent_header.png"
               alt="icon"
               className="header--title__icon"
             />

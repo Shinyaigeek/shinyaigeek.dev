@@ -27,7 +27,7 @@ export const getRss = async () => {
     <managingEditor>me@shinyaigeek.dev (Shinobu Hayashi)</managingEditor>
     <webMaster>me@shinyaigeek.dev (Shinobu Hayashi)</webMaster>
     <image>
-        <url>https://shinyaigeek.dev/icon.png</url>
+        <url>https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon.png</url>
         <title>しにゃいの学習帳</title>
         <link>https://shinyaigeek.dev/</link>
         <width>32</width>

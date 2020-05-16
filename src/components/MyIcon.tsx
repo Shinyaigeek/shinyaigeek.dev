@@ -12,7 +12,7 @@ export const MyIcon = (props: { styles?: React.CSSProperties }) => {
           position: "absolute",
         }}>
         <img
-          src="/icon_transparent.png"
+          src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon_transparent.png"
           style={{
             width: "100%",
             height: "100%",
@@ -37,7 +37,7 @@ export const MyIcon = (props: { styles?: React.CSSProperties }) => {
               width: "100%",
               objectFit: "contain",
             }}
-            src="/earth.png"
+            src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/earth.png"
             alt="earth"
           />
         </div>

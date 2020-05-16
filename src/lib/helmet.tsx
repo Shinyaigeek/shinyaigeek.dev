@@ -29,10 +29,10 @@ const SiteHead = (props: HeadProps) => (
     <meta name="twitter:site" content="@shinyaigeek" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary" />
-    <meta property="og:image" content="https://shinyaigeek.dev/icon.png" />
-    <meta name="twitter:image" content="https://shinyaigeek.dev/icon.png" />
+    <meta property="og:image" content="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon.png" />
+    <meta name="twitter:image" content="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon.png" />
 
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="/layout.css" />
     <link rel="stylesheet" type="text/css" href={"/" + props.style + ".css"} />
 

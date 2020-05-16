@@ -19,6 +19,10 @@ import { getRss } from "./src/lib/getRss";
 
 const TITLE = "しにゃいの学習帳"
 
+import dotenv from "dotenv"
+
+dotenv.config()
+
 const app = express();
 
 app.use(express.static("static"));
