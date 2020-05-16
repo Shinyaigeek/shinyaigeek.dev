@@ -14,7 +14,7 @@
     "build:style:post": "node-sass -r src/styles/post.scss dist/post.css --output-style compressed",
     "build:style": "yarn run build:style:layout && yarn run build:style:home && yarn run build:style:post && yarn run build:style:profile",
     "build": "webpack --config webpack.config.server.js --mode=none && yarn run build:style && yarn run build:client",
-    "start": "fastify start dist/server.js",
+    "start": "ts-node server.ts",
     "perf": "ts-node scripts/perf.ts"
   },
   "repository": {
