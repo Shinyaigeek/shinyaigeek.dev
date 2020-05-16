@@ -75,7 +75,7 @@
         },
         {
             "src": "/.*",
-            "dest": "express.ts"
+            "dest": "server.ts"
         }
     ],
     "env": {
