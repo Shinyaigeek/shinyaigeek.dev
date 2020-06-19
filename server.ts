@@ -30,9 +30,10 @@ const TITLE = "しにゃいの学習帳";
 
 const app = fastify();
 
-app.register(fastifyStatic, {
-  root: path.join(__dirname, "./dist"),
-});
+// app.register(fastifyStatic, {
+//   root: path.join(__dirname, "dist"),
+//   prefix: "/", // optional: default '/'
+// });
 
 app.get("/", (req, res) => {
   const slug = getHomeSlug(req.req.url || "");
@@ -89,16 +90,6 @@ app.get("/", (req, res) => {
       });
       res.send(renderedHtml);
     }
-  });
-});
-
-app.get("/json", (req, res) => {
-  const slug = getHomeSlug(req.req.url || "");
-  getBlogPosts(slug).then((items) => {
-    res.headers({
-      "content-type": "application/json",
-    });
-    res.send(JSON.stringify(items));
   });
 });
 
@@ -385,6 +376,7 @@ app.get("/getRss", (req, res) => {
     res.send("oops");
   }
 });
+
 // Run the server!
 app.listen(8080, (err, address) => {
   if (err) throw err;

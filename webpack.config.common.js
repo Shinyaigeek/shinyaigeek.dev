@@ -10,6 +10,7 @@ module.exports = {
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", "node_modules"],
+    mainFields: ["main", "module"]
   },
   externals: [
     "long", // optional dependency fast-json-stringify
