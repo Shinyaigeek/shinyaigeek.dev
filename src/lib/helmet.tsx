@@ -33,8 +33,8 @@ const SiteHead = (props: HeadProps) => (
     <meta name="twitter:image" content="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon.png" />
 
     <link rel="icon" type="image/x-icon" href="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="/layout.css" />
-    <link rel="stylesheet" type="text/css" href={"/" + props.style + ".css"} />
+    <link rel="stylesheet" type="text/css" href="https://storage.cloud.google.com/blog_assets_shinyaigeek/layout.css" />
+    <link rel="stylesheet" type="text/css" href={"https://storage.cloud.google.com/blog_assets_shinyaigeek/" + props.style + ".css"} />
 
     <link
       rel="alternate"
@@ -59,7 +59,7 @@ const helmet = (props: HelmetProps) => {
       <div id="_app">
         <props.children {...props.props} />
       </div>
-      {props.style === "profile" && <script src="/profile.js" />}
+      {props.style === "profile" && <script src="https://storage.cloud.google.com/blog_assets_shinyaigeek/profile.js" />}
     </html>
   );
 };
