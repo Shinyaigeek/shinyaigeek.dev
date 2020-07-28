@@ -6,5 +6,6 @@ module.exports = {
   target: "web",
   entry: {
     profile: "./src/front/profile.ts",
+    solid: "./src/app.tsx"
   }
 };
