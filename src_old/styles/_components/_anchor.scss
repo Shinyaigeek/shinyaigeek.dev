@@ -1,0 +1,21 @@
+@import "../core";
+
+.post--anchor {
+  position: fixed;
+  top: 84px;
+  left: 20vw;
+  width: 180px;
+  color: $theme_background;
+  background: $theme_text;
+  a {
+    display: block;
+    color: $theme_background;
+    margin: 4px 0 4px 4px;
+    text-decoration: none;
+  }
+}
+
+details > summary::-webkit-details-marker {
+  color: $theme_background;
+  margin-left: 6px;
+}
