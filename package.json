@@ -57,6 +57,7 @@
     "github-calendar": "^2.1.1",
     "highlight.js": "^9.18.1",
     "html-react-parser": "^0.10.1",
+    "html-webpack-plugin": "^4.3.0",
     "long": "^4.0.0",
     "marked": "^0.8.0",
     "node-fetch": "^2.6.0",
@@ -77,8 +78,10 @@
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3",
     "uglify-es": "^3.3.9",
+    "universal-router": "^9.0.1",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^5.0.9"
   }
 }
