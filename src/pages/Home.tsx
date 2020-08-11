@@ -1,16 +1,15 @@
 import { createState, Component } from "solid-js";
+import { Top } from "../components/Top/Top";
+
+export interface HomeProps {}
 
 export const Home: Component<{}> = () => {
   const [state, setState] = createState({
     user: {
       firstName: "John",
-      lastName: "Smith"
-    }
+      lastName: "Smith",
+    },
   });
 
-  return (
-    <div
-      onClick={() => setState("user", "lastName", (l: string) => l + "!")}
-    >{state.user.firstName} {state.user.lastName}</div>
-  );
+  return <div><Top /></div>;
 };
