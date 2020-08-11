@@ -1,3 +1,4 @@
 {
-    "presets": [["solid", { "generate": "ssr", "hydratable": true }]]
+  "presets": ["solid", "@babel/preset-env"],
+  "plugins": ["solid-styled-jsx/babel"]
 }
