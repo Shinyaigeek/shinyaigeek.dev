@@ -11,11 +11,6 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", "node_modules"],
   },
-  externals: [
-    "long", // optional dependency fast-json-stringify
-    "uglify-es", // optional dependency fast-json-stringify
-    "uglify-es/package.json", // optional dependency fast-json-stringify
-  ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     port: 8080,
@@ -25,15 +20,17 @@ module.exports = {
     rules: [
       {
         test: /\.ts(x?)$/,
-        loader: "ts-loader",
-        options: {
-          transpileOnly: true,
+        use: ["babel-loader", "ts-loader"],
+      },
+      {
+        test: /\.js(x?)$/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["solid"],
+          },
         },
       },
-      // {
-      //   test: /\.js(x?)$/,
-      //   loader: "babel-loader"
-      // },
       {
         test: /\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"],
