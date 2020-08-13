@@ -38,13 +38,11 @@ export const Link: Component<LinkProps> = (props) => {
   };
 
   return (
-    <>
-      <a
-        className={`link ${props.className}`}
-        id={props.id || ""}
-        href={`${props.href}`}>
-        {props.label}
-      </a>
-    </>
+    <a
+      className={`link ${props.className}`}
+      id={props.id || ""}
+      href={`${props.href}`}>
+      {props.label}
+    </a>
   );
 };

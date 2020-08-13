@@ -1,11 +1,12 @@
 ---
 name: webpackからReact Lazy+Suspenseを試す
 tags: [Programming, JavaScript, React]
-description: お久しぶりです。しにゃいです。
-この記事ではまた React+webpack をやろうと思います。今回は Lazy+Suspense を用いてコンポーネントを動的に読み込むやつをやろうと思います。
-よかったら前回の記事も読んでねん。
-[脱 create-react-app、React アプリの小さめ構築](https://www.shinyaigeek.com/p/21)
-[React アプリ小さめ構成 with react-router 編](https://www.shinyaigeek.com/p/22)
+description: |
+    お久しぶりです。しにゃいです。
+    この記事ではまた React+webpack をやろうと思います。今回は Lazy+Suspense を用いてコンポーネントを動的に読み込むやつをやろうと思います。
+    よかったら前回の記事も読んでねん。
+    [脱 create-react-app、React アプリの小さめ構築](https://www.shinyaigeek.com/p/21)
+    [React アプリ小さめ構成 with react-router 編](https://www.shinyaigeek.com/p/22)
 date: 2019/6/21
 ---
 

@@ -1,9 +1,10 @@
 ---
 name: 極めるとは、どういうことか
 tags: [Poem]
-description: ![6-1](//images.ctfassets.net/6ib5avrqb1b0/2tV05IT2K1xo7TvtrU4WAK/c46612c75ee0710af94f8c13d21dcb63/6-1.jpg)
-お久しぶりです、しにゃいです。出落ち感すごいっすね
-急に何かキモい自分語りしたくなる時ってありません？僕はあります。します
+description: |
+    ![6-1](//images.ctfassets.net/6ib5avrqb1b0/2tV05IT2K1xo7TvtrU4WAK/c46612c75ee0710af94f8c13d21dcb63/6-1.jpg)
+    お久しぶりです、しにゃいです。出落ち感すごいっすね
+    急に何かキモい自分語りしたくなる時ってありません？僕はあります。します
 date: 2018/11/17
 ---
 

@@ -1,9 +1,10 @@
 ---
 name:  CyberAgent主催『Web Speed Hackathon Online』参加ログ
 tags: [Programming, web]
-description: Cyber Agent主催のWeb Speed Hackathon Online 4/25, 4/26に参加してきました. 結果は残念ながらレギュレーション違反で選外でしたが, とても楽しく刺激を得られたイベントになりました.
+description: |
+  Cyber Agent主催のWeb Speed Hackathon Online 4/25, 4/26に参加してきました. 結果は残念ながらレギュレーション違反で選外でしたが, とても楽しく刺激を得られたイベントになりました.
 
-この混乱した情勢の中オンラインという形でシステムを整えて実施してくださったCyber Agentの皆さん, ありがとうございました.
+  この混乱した情勢の中オンラインという形でシステムを整えて実施してくださったCyber Agentの皆さん, ありがとうございました.
 date: 2020/4/26
 ---
 
