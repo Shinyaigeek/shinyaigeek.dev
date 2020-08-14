@@ -16,27 +16,6 @@ module.exports = {
     port: 8080,
     host: `localhost`,
   },
-  module: {
-    rules: [
-      {
-        test: /\.ts(x?)$/,
-        use: ["babel-loader", "ts-loader"],
-      },
-      {
-        test: /\.js(x?)$/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["solid"],
-          },
-        },
-      },
-      {
-        test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
-      },
-    ],
-  },
 
   plugins: [
     new webpack.DefinePlugin({
