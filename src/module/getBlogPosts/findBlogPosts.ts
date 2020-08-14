@@ -1,13 +1,10 @@
 import { Meta } from "../../utils/makeIndex/makeIndex";
 import { HomeSlug } from "../getHomeSlug/getHomeSlug";
 import { findBlogPostsByTag } from "./findBlogPostsByTag";
+import { findBlogPostsByPage } from "./findBlogPostsByPage";
 
 export const findBlogPosts = (posts: Meta[], slug: HomeSlug) => {
-    if(!slug.page && !slug.tag) {
-        return posts.slice(0, 10);
-    }
+  const sortedByTag = findBlogPostsByTag(posts, slug.tag);
 
-    const sortedByTag = findBlogPostsByTag(posts, slug.tag);
-
-    
-}
+  return findBlogPostsByPage(sortedByTag, slug.page);
+};
