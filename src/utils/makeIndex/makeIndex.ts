@@ -2,11 +2,12 @@ import path from "path";
 import fs from "fs";
 import fm from "front-matter";
 
-interface Meta {
+export interface Meta {
   date: string;
   description: string;
   name: string;
   tags: string[];
+  slug: string;
 }
 
 const makeIndex = () => {
@@ -19,7 +20,14 @@ const makeIndex = () => {
       const postPath = path.join(__dirname, "../../../post/" + post);
       const raw = fs.readFileSync(postPath, "utf-8");
       const content = fm<Meta>(raw);
-      posts.push(content.attributes);
+      posts.push(
+        Object.assign(
+          {
+            slug: post.replace(".md", ""),
+          },
+          content.attributes
+        )
+      );
     }
   });
 
