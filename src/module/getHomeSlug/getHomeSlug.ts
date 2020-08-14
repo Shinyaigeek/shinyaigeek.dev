@@ -1,4 +1,4 @@
-interface HomeSlug {
+export interface HomeSlug {
   slug: string;
   tag?: string;
   page?: number;
