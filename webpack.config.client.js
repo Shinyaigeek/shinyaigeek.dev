@@ -17,7 +17,10 @@ const client = {
           {
             loader: "babel-loader",
             options: {
-              presets: ["solid", "@babel/preset-env"],
+              presets: [
+                ["solid", { generate: "dom", hydratable: true }],
+                "@babel/preset-env",
+              ],
               plugins: ["solid-styled-jsx/babel"],
             },
           },
