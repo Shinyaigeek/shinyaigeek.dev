@@ -1,4 +1,0 @@
-{
-  "presets": ["solid", "@babel/preset-env"],
-  "plugins": ["solid-styled-jsx/babel"]
-}
