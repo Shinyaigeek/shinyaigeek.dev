@@ -3,7 +3,7 @@ import { Component } from "solid-js";
 export const MyIcon: Component<{}> = () => {
   return (
     <>
-      <div className="myicon" style={props.styles}>
+      <div className="myicon">
         <div className="monkey">
           <img
             src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon_transparent.png"
