@@ -23,7 +23,8 @@ module.exports = {
       CONTENTFUL_ACCESS_TOKEN: JSON.stringify(
         process.env.CONTENTFUL_ACCESS_TOKEN
       ),
-      BLOG_POSTS_INDEX_URL: JSON.stringify(process.env.BLOG_POSTS_INDEX_URL)
+      BLOG_POSTS_INDEX_URL: JSON.stringify(process.env.BLOG_POSTS_INDEX_URL),
+      EACH_PAGE_NUM: JSON.stringify(process.env.EACH_PAGE_NUM)
     }),
   ],
 };
