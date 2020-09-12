@@ -54,7 +54,7 @@
     "html-react-parser": "^0.10.1",
     "long": "^4.0.0",
     "marked": "^0.8.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
     "now": "^18.0.0",
