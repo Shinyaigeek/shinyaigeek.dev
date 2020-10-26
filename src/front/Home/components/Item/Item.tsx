@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Divider } from "./Divider";
-import { Button } from "./Button";
+import { Divider } from "../../../components/Divider/Divider";
+import { Button } from "../../../components/Button/Button";
 
-import { getOmmit } from "../lib/getOmmit";
+import { getOmmit } from "../../../../util/getOmmit";
 
 export interface MetaData {
   title: string;

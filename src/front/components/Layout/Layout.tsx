@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Header } from "./Header";
-import { Footer } from "./Footer";
-import { FootTag, TAGS } from "./FootTag";
+import { Header } from "../Header/Header";
+import { Footer } from "../Footer/Footer";
+import { FootTags, TAGS } from "../FootTags/FootTags";
 
 export function Layout(Component: (props?: any) => JSX.Element) {
   return (props?: any) => (
@@ -11,7 +11,7 @@ export function Layout(Component: (props?: any) => JSX.Element) {
       <div className="inner">
         <Component {...props} />
       </div>
-      <FootTag tags={TAGS} />
+      <FootTags tags={TAGS} />
       <Footer />
     </div>
   );

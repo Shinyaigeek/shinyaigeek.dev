@@ -1,5 +1,5 @@
 import React from "react";
-import { TagProps, Tag } from "./Tag";
+import { TagProps, Tag } from "../Tag/Tag";
 
 export const TAGS: TagProps[] = [
   {
@@ -46,7 +46,7 @@ export const TAGS: TagProps[] = [
   }
 ];
 
-export function FootTag(props: { tags: TagProps[] }) {
+export function FootTags(props: { tags: TagProps[] }) {
   return (
     <div className="footTag">
       {props.tags.map(tag => {

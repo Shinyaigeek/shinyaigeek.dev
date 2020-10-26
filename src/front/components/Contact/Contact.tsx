@@ -5,9 +5,9 @@ import {
   Twitter,
   Github,
 } from "@zeit-ui/react-icons";
-import { Button } from "./Button";
+import { Button } from "../Button/Button";
 
-export default function ThatsMe() {
+export default function Contact() {
   return (
     <div className="thatsMe">
       <a href="/profile">

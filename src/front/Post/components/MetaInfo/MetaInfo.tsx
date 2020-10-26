@@ -2,7 +2,7 @@ import React from "react";
 
 import { Edit } from "@zeit-ui/react-icons";
 
-import { DecorationTag } from "./DecorationTag";
+import { DecorationTag } from "../../../components/DecorationTag/DecorationTag";
 
 export function MetaInfo(props: {
   fields: {
