@@ -1,9 +1,9 @@
 import React from "react";
-import { Layout } from "../components/Layout";
-import { Entry } from "../lib/getBlogPost";
-import { Top } from "../components/Top";
-import { Item } from "../components/Item";
-import { Page } from "../components/Page";
+import { Layout } from "../components/Layout/Layout";
+import { Entry } from "../../util/getBlogPost";
+import { WelcomePage } from "./components/WelcomePage/WelcomePage";
+import { Item } from "./components/Item/Item";
+import { Pagenation } from "./components/Pagenation/Pagenation";
 
 const Home = (props: {
   items: Entry[];
@@ -12,7 +12,7 @@ const Home = (props: {
 }) => {
   return (
     <div>
-      <Top />
+      <WelcomePage />
       {props.items.map((item, index) => {
         return (
           <div key={index}>
@@ -20,7 +20,7 @@ const Home = (props: {
           </div>
         );
       })}
-      <Page {...props} />
+      <Pagenation {...props} />
     </div>
   );
 };

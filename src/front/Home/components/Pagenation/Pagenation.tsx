@@ -5,7 +5,7 @@ interface Props {
   next: number | false;
 }
 
-export function Page(props: Props) {
+export function Pagenation(props: Props) {
   return (
     <div className="pagination--wrapper">
       {props.prev && (

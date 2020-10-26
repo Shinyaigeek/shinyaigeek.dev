@@ -7,18 +7,18 @@ import { renderToString } from "react-dom/server";
 
 import marked from "marked";
 
-import Home from "./src/pages/Home";
-import Post from "./src/pages/Post";
-import Profile from "./src/pages/Profile";
+import Home from "../front/Home/Home";
+import Post from "../front/Post/Post";
+import Profile from "../front/Profile/Profile";
 
-import helmet from "./src/lib/helmet";
+import helmet from "../util/helmet";
 
-import { getBlogPost, getBlogSlug, Entry } from "./src/lib/getBlogPost";
-import { getBlogPosts, getHomeSlug } from "./src/lib/getBlogPosts";
-import { getSiteMap } from "./src/lib/getSitemap";
+import { getBlogPost, getBlogSlug, Entry } from "../util/getBlogPost";
+import { getBlogPosts, getHomeSlug } from "../util/getBlogPosts";
+import { getSiteMap } from "../util/getSitemap";
 
 import hljs from "highlight.js";
-import { getRss } from "./src/lib/getRss";
+import { getRss } from "../util/getRss";
 
 import path from "path";
 

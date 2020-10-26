@@ -1,15 +1,15 @@
 import React from "react";
-import { Layout } from "../components/Layout";
-import { Divider } from "../components/Divider";
-import { MyIcon } from "../components/MyIcon";
-import { BaseProfile } from "../components/BaseProfile";
-import { GitHubCalender } from "../components/GitHubCalender";
+import { Layout } from "../components/Layout/Layout";
+import { Divider } from "../components/Divider/Divider";
+import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
+import { BaseProfile } from "./components/BaseProfile/BaseProfile";
+import { GitHubCalender } from "./components/GitHubCalender/GitHubCalender";
 
 const Profile = () => {
   return (
     <div className="profile">
       <div>
-        <MyIcon
+        <Shinyaigeek
           styles={{
             height: "300px",
             width: "300px",

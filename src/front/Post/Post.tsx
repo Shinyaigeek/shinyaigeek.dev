@@ -1,12 +1,12 @@
 import React from "react";
 import parse from "html-react-parser";
 
-import { Layout } from "../components/Layout";
-import { Entry } from "../lib/getBlogPost";
-import { MetaInfo } from "../components/MetaInfo";
-import { Anchor } from "../components/Anchor";
-import { BaseProfile } from "../components/BaseProfile";
-import { MyIcon } from "../components/MyIcon";
+import { Layout } from "../components/Layout/Layout";
+import { Entry } from "../../util/getBlogPost";
+import { MetaInfo } from "./components/MetaInfo/MetaInfo";
+import { Anchor } from "./components/Anchor/Anchor";
+import { BaseProfile } from "../Profile/components/BaseProfile/BaseProfile";
+import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
 
 interface Props extends Entry {
   anchors: string[];
@@ -19,7 +19,7 @@ function Post(props: Props) {
       <MetaInfo {...props} />
       {parse(props.fields.content)}
 
-      <MyIcon
+      <Shinyaigeek
         styles={{
           height: "200px",
           width: "200px",

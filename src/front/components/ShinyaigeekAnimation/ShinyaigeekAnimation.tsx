@@ -1,10 +1,10 @@
 import React from "react";
-import { MyIcon } from "./MyIcon";
+import { Shinyaigeek } from "../Shinyaigeek/Shinyaigeek";
 
-export function Animation() {
+export function ShinyaigeekAnimation() {
   return (
     <div>
-      <MyIcon
+      <Shinyaigeek
         styles={{
           position: "absolute",
           bottom: "25px",

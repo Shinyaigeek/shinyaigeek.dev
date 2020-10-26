@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export const MyIcon = (props: { styles?: React.CSSProperties }) => {
+export const Shinyaigeek = (props: { styles?: React.CSSProperties }) => {
   return (
     <div className="myicon" style={props.styles}>
       <div
