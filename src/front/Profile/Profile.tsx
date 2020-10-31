@@ -4,7 +4,7 @@ import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
 import { BaseProfile } from "./components/BaseProfile/BaseProfile";
 import { GitHubCalender } from "./components/GitHubCalender/GitHubCalender";
 
-const Profile = () => {
+export const Profile = () => {
   return (
     <div className="profile">
       <div>
@@ -69,4 +69,4 @@ const Profile = () => {
   );
 };
 
-export default Layout(Profile);
+// export default Layout(Profile);

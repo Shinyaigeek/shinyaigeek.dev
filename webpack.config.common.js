@@ -25,10 +25,7 @@ module.exports = {
     rules: [
       {
         test: /\.ts(x?)$/,
-        loader: "ts-loader",
-        options: {
-          transpileOnly: true,
-        },
+        use: ["babel-loader", "ts-loader"],
       },
       // {
       //   test: /\.js(x?)$/,
