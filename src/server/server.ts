@@ -9,7 +9,7 @@ import marked from "marked";
 
 import Home from "../front/Home/Home";
 import Post from "../front/Post/Post";
-import Profile from "../front/Profile/Profile";
+import {Profile} from "../front/Profile/Profile";
 
 import helmet from "../util/helmet";
 
