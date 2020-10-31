@@ -1,7 +1,3 @@
-import * as React from "react";
-
-import { Twitter, Linkedin, Github } from "@zeit-ui/react-icons";
-
 export const BaseProfile = () => {
   return (
     <div className="baseprofile">
@@ -15,17 +11,17 @@ export const BaseProfile = () => {
       <div className="mySnsBox">
         <div className="sns">
           <a id="twitter" href="https://twitter.com/Shinyaigeek">
-            <Twitter size={54} />
+            {/* <Twitter size={54} /> */}
           </a>
         </div>
         <div className="sns">
           <a id="github" href="https://github.com/Shinyaigeek">
-            <Github size={54} />
+            {/* <Github size={54} /> */}
           </a>
         </div>
         <div className="sns">
           <a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/">
-            <Linkedin size={54} />
+            {/* <Linkedin size={54} /> */}
           </a>
         </div>
       </div>

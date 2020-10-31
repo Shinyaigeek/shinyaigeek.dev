@@ -1,6 +1,4 @@
-import React from "react";
-
-import { Edit } from "@zeit-ui/react-icons";
+// import { Edit } from "@zeit-ui/react-icons";
 
 import { DecorationTag } from "../../../components/DecorationTag/DecorationTag";
 
@@ -15,7 +13,7 @@ export function MetaInfo(props: {
     <div>
       <h1>{props.fields.title}</h1>
       <div>
-        <Edit />
+        {/* <Edit /> */}
         {props.fields.publishedAt}
       </div>
       <DecorationTag tags={props.fields.tags} />

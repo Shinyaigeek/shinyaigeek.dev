@@ -1,4 +1,3 @@
-import React from "react";
 import { TagProps, Tag } from "../Tag/Tag";
 
 export const TAGS: TagProps[] = [
