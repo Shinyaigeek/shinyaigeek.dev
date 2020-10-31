@@ -1,7 +1,3 @@
-import React from "react";
-
-// import { Tag } from "antd";
-
 interface Props {
   tags: string[];
 }

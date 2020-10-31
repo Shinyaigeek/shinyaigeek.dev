@@ -1,4 +1,3 @@
-import React from "react";
 import { Layout } from "../components/Layout/Layout";
 import { Divider } from "../components/Divider/Divider";
 import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
@@ -10,11 +9,11 @@ const Profile = () => {
     <div className="profile">
       <div>
         <Shinyaigeek
-          styles={{
-            height: "300px",
-            width: "300px",
-            margin: "0 auto",
-          }}
+          // styles={{
+          //   height: "300px",
+          //   width: "300px",
+          //   margin: "0 auto",
+          // }}
         />
 
         <BaseProfile />

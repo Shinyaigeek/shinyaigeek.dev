@@ -1,4 +1,3 @@
-import React from "react";
 import parse from "html-react-parser";
 
 import { Layout } from "../components/Layout/Layout";
@@ -20,11 +19,11 @@ function Post(props: Props) {
       {parse(props.fields.content)}
 
       <Shinyaigeek
-        styles={{
-          height: "200px",
-          width: "200px",
-          margin: "12px auto",
-        }}
+        // styles={{
+        //   height: "200px",
+        //   width: "200px",
+        //   margin: "12px auto",
+        // }}
       />
       <BaseProfile />
     </div>

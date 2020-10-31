@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Props {
   id: string;
   children: React.ReactChild;

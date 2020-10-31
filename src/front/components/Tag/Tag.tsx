@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface TagProps {
   child: React.ReactChild;
   slug: string;

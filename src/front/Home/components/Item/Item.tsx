@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Divider } from "../../../components/Divider/Divider";
 import { Button } from "../../../components/Button/Button";
 

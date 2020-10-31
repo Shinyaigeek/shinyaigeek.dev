@@ -1,7 +1,3 @@
-import React from "react";
-
-// import MailForm from "./MailForm";
-
 interface Props {
   showContactModal: boolean;
   setShowContactModal: Function;

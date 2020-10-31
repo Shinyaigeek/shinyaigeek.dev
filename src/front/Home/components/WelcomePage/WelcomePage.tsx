@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ShinyaigeekAnimation } from "../../../components/ShinyaigeekAnimation/ShinyaigeekAnimation";
 import { ScrollDown } from "../ScrollDown/ScrollDown";
 import { StarStream } from "../StartStream/StarStream";

@@ -1,5 +1,3 @@
-import React from "react";
-
 export function ScrollDown() {
   return (
     <div className="scroll--down__animation">

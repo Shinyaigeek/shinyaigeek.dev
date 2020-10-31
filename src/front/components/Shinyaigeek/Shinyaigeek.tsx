@@ -1,8 +1,12 @@
-import * as React from "react";
-
-export const Shinyaigeek = (props: { styles?: React.CSSProperties }) => {
+export const Shinyaigeek = () => {
   return (
-    <div className="myicon" style={props.styles}>
+    <div
+      className="myicon"
+      style={{
+        position: "absolute",
+        bottom: "25px",
+        right: "25px",
+      }}>
       <div
         className="monkey"
         style={{

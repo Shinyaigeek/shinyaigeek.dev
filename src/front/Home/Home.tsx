@@ -1,4 +1,3 @@
-import React from "react";
 import { Layout } from "../components/Layout/Layout";
 import { Entry } from "../../util/getBlogPost";
 import { WelcomePage } from "./components/WelcomePage/WelcomePage";

@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Props {
   prev: number | false;
   next: number | false;
