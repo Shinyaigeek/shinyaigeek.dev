@@ -869,12 +869,12 @@ babel-loader@^8.0.6:
     mkdirp "^0.5.1"
     pify "^4.0.1"
 
-babel-plugin-lit-jsx@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/babel-plugin-lit-jsx/-/babel-plugin-lit-jsx-0.0.10.tgz#ae8cfc125f6674ef10bae5aaf8b3e89a4077ac8e"
-  integrity sha512-m0ASsV8VVnclsMEX0AuM3QUK5dyQA8kfo4yS3Q2v/hIBTh2zqnkofusbbI0C+VUiUnCQ4oMV9aunmGrjku6PvQ==
+babel-plugin-lit-jsx@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/babel-plugin-lit-jsx/-/babel-plugin-lit-jsx-0.0.12.tgz#248060f5f4c9fed5244ffb065e44425a57bcd2e0"
+  integrity sha512-VsBlQksjlxL2KdHk4lxOetKKcHtj+LtQRq8e1ZYFZESK+LJg6r2xN313mCSOlbUPoADsMNzxZSLq/jji4mTp3A==
   dependencies:
-    lit-jsx-core "^0.0.10"
+    lit-jsx-core "^0.0.14"
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -3755,10 +3755,10 @@ lit-html@^1.3.0:
   resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-1.3.0.tgz#c80f3cc5793a6dea6c07172be90a70ab20e56034"
   integrity sha512-0Q1bwmaFH9O14vycPHw8C/IeHMk/uSDldVLIefu/kfbTBGIc44KGH6A8p1bDfxUfHdc8q6Ct7kQklWoHgr4t1Q==
 
-lit-jsx-core@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/lit-jsx-core/-/lit-jsx-core-0.0.10.tgz#6484aa877bdd8f36629d58f7f79d93575a235857"
-  integrity sha512-HDCuB7wxMSe3D03lLQQkprLttYMhIz2nE5s8hMXceUsXDtXQ7+WRwjse9F55lZwMthb1vGfHHldGqKU7yCbySw==
+lit-jsx-core@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/lit-jsx-core/-/lit-jsx-core-0.0.14.tgz#5b1d0cf4e7185ab41510948c45f283e8fcdaddd0"
+  integrity sha512-KKpz/F5ZHKJkEDulRuV/NToftxmFWV4/D4qzygVa7S7/dZKr5+Jl9qLquuqXsiXo3HnZzwYi0cw4GvAtdvtNNA==
   dependencies:
     "@types/node" "^14.14.6"
 
@@ -4679,6 +4679,11 @@ path-to-regexp@^4.0.0:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-4.0.5.tgz#2d4fd140af9a369bf7b68f77a7fdc340490f4239"
   integrity sha512-l+fTaGG2N9ZRpCEUj5fG1VKdDLaiqwCIvPngpnxzREhcdobhZC4ou4w984HBu72DqAJ5CfcdV6tjqNOunfpdsQ==
+
+path-to-regexp@^6.1.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-6.2.0.tgz#f7b3803336104c346889adece614669230645f38"
+  integrity sha512-f66KywYG6+43afgE/8j/GoiNyygk/bnoCbps++3ErRKsIYkGGupyv07R2Ok5m9i67Iqc+T2g1eAUGUPzWhYTyg==
 
 path-type@^1.0.0:
   version "1.1.0"
@@ -6370,6 +6375,13 @@ unique-string@^2.0.0:
   integrity sha512-uNaeirEPvpZWSgzwsPGtU2zVSTrn/8L5q/IexZmH0eH6SA73CmAA5U4GwORTxQAZs95TAXLNqeLoPPNO5gZfWg==
   dependencies:
     crypto-random-string "^2.0.0"
+
+universal-router@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/universal-router/-/universal-router-9.0.1.tgz#1f4cdd51a45f9e989e40a556a71a2c134552afea"
+  integrity sha512-cDKiUa0/XuEXVlbvngqW1gYaolq6/+hNakR291PostYaN5G7w6VOKfk3nIucHlX5MxFnvmSs9KsRgD+6pYwwzg==
+  dependencies:
+    path-to-regexp "^6.1.0"
 
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
