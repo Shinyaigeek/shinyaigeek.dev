@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:server": "nodemon dist/server.js --watch dist --watch server.js",
+    "dev:server": "ts-node --project src/server/tsconfig.json ./src/server/server.ts",
     "build:server": "webpack --config webpack.config.server.js --mode=development",
     "dev:client": "webpack-dev-server --config webpack.config.client.js --mode=development",
     "build:client": "webpack --config webpack.config.client.js --mode=production",
