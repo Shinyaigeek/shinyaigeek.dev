@@ -1,5 +1,3 @@
-import * as contentful from "contentful";
-
 import fetch from "node-fetch";
 
 require("dotenv").config();
@@ -16,7 +14,7 @@ export interface Entry {
   };
 }
 
-export const getBlogPost = async (target: string) => {
+export const getBlogPost = (target: string) => {
   const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
   if (!CONTENTFUL_ACCESS_TOKEN || !CONTENTFUL_SPACE_ID) {
     throw new Error("Please check env variable");
@@ -25,18 +23,18 @@ export const getBlogPost = async (target: string) => {
   return fetch(
     `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=blog&fields.slug=${target}`
   )
-    .then(item => {
+    .then((item) => {
       return item
         .json()
-        .then(entries => {
+        .then((entries) => {
           return entries.items[0] as Entry;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           return false as false;
         });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       return false as false;
     });
