@@ -1,7 +1,7 @@
 interface Props {
   anchors: string[];
 }
-
+import React from "react";
 export function Anchor(props: Props) {
   return (
     <details className="post--anchor">

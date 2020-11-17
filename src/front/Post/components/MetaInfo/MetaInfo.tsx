@@ -1,7 +1,7 @@
 // import { Edit } from "@zeit-ui/react-icons";
 
 import { DecorationTag } from "../../../components/DecorationTag/DecorationTag";
-
+import React from "react";
 export function MetaInfo(props: {
   fields: {
     tags: string[];

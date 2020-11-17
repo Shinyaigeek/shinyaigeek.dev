@@ -1,9 +1,9 @@
 import { Layout } from "../components/Layout/Layout";
-import { Entry } from "../../util/getBlogPost";
+import { Entry } from "../../server/util/getBlogPost";
 import { WelcomePage } from "./components/WelcomePage/WelcomePage";
 import { Item } from "./components/Item/Item";
 import { Pagenation } from "./components/Pagenation/Pagenation";
-
+import React from "react";
 const Home = (props: {
   items: Entry[];
   prev: number | false;

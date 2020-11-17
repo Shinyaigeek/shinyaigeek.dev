@@ -4,6 +4,7 @@
 //   Github,
 // } from "@zeit-ui/react-icons";
 import { Button } from "../Button/Button";
+import React from "react";
 
 export default function Contact() {
   return (

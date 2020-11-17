@@ -1,6 +1,6 @@
-import { getBlogPosts } from "../../../util/getBlogPosts";
-import { getBlogPost } from "../../../util/getBlogPost";
-import { ReactElement } from "react";
+import { getBlogPosts } from "../../../server/util/getBlogPosts";
+import { getBlogPost } from "../../../server/util/getBlogPost";
+import React, { ReactElement } from "react";
 
 interface Props {
   to: "/" | "/post" | "/profile";

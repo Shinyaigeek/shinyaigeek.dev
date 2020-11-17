@@ -2,7 +2,7 @@ interface Props {
   prev: number | false;
   next: number | false;
 }
-
+import React from "react";
 export function Pagenation(props: Props) {
   return (
     <div className="pagination--wrapper">
