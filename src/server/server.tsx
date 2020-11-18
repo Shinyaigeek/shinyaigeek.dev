@@ -5,12 +5,7 @@ import { getBlogPost } from "./util/getBlogPost";
 import * as React from "react";
 import { renderToString } from "react-dom/server";
 import Post from "../front/Post/Post";
-
-// const Post = () => (
-//   <div className="post">
-//     asdf
-//   </div>
-// );
+import Home from "../front/Home/Home";
 
 import dotenv from "dotenv";
 import marked from "marked";
@@ -87,6 +82,67 @@ app.get("/post/:slug", async (req, res) => {
     )
   );
 
+  res.send(renderedHtml);
+});
+
+app.get("/", async (req, res) => {
+  console.log("asdf");
+  const { tag, page } = req.query as {
+    tag?: string;
+    page?: string;
+  };
+
+  const posts = await getBlogPosts({
+    slug: "",
+    tag,
+    page: Number.isInteger(Number(page)) ? Number(page) : undefined,
+  });
+
+  const renderedHtml = posts
+    ? renderToString(
+        React.createElement(
+          helmet({
+            title: title,
+            children: Home,
+            style: "home",
+            slug: "https://shinyaigeek.dev",
+            props: {
+              items: posts.items,
+              prev: posts.prev,
+              next: posts.next,
+            },
+          })
+        )
+      )
+    : renderToString(
+        React.createElement(
+          helmet({
+            title: title,
+            children: Home,
+            style: "home",
+            slug: "https://shinyaigeek.dev",
+            props: {
+              items: [
+                {
+                  fields: {
+                    title: "Not Found",
+                    description: "item is not found",
+                    slug: "none",
+                    publishedAt: "0000/00/00",
+                    tags: [],
+                    content: "Item is not found",
+                    hasEn: false,
+                  },
+                },
+              ],
+            },
+          })
+        )
+      );
+
+  res.headers({
+    "content-type": "text/html; charset=utf-8",
+  });
   res.send(renderedHtml);
 });
 
