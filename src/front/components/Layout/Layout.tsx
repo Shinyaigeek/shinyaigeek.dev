@@ -1,6 +1,7 @@
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import { FootTags, TAGS } from "../FootTags/FootTags";
+import React from "react";
 
 export function Layout(Component: (props?: any) => JSX.Element) {
   return (props?: any) => (

@@ -1,3 +1,5 @@
+import React from "react";
+
 export const BaseProfile = () => {
   return (
     <div className="baseprofile">

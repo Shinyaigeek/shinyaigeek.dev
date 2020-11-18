@@ -5,6 +5,7 @@ export interface TagProps {
   border: string;
   background: string;
 }
+import React from "react";
 
 export function Tag(props: TagProps) {
   return (

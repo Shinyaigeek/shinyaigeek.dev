@@ -1,7 +1,7 @@
 import { ShinyaigeekAnimation } from "../../../components/ShinyaigeekAnimation/ShinyaigeekAnimation";
 import { ScrollDown } from "../ScrollDown/ScrollDown";
 import { StarStream } from "../StartStream/StarStream";
-
+import React from "react";
 export function WelcomePage() {
   return (
     <div className="welcome">

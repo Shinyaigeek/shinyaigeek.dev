@@ -1,12 +1,12 @@
 import parse from "html-react-parser";
 
 import { Layout } from "../components/Layout/Layout";
-import { Entry } from "../../util/getBlogPost";
+import { Entry } from "../../server/util/getBlogPost";
 import { MetaInfo } from "./components/MetaInfo/MetaInfo";
 import { Anchor } from "./components/Anchor/Anchor";
 import { BaseProfile } from "../Profile/components/BaseProfile/BaseProfile";
 import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
-
+import React from "react";
 interface Props extends Entry {
   anchors: string[];
 }

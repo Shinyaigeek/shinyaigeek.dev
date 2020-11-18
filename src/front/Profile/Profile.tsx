@@ -3,6 +3,8 @@ import { Divider } from "../components/Divider/Divider";
 import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
 import { BaseProfile } from "./components/BaseProfile/BaseProfile";
 import { GitHubCalender } from "./components/GitHubCalender/GitHubCalender";
+import { render } from "lit-html";
+import React from "react"
 
 export const Profile = () => {
   return (
@@ -68,5 +70,3 @@ export const Profile = () => {
     </div>
   );
 };
-
-// export default Layout(Profile);
