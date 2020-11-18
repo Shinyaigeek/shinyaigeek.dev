@@ -6,6 +6,7 @@ import * as React from "react";
 import { renderToString } from "react-dom/server";
 import Post from "../front/Post/Post";
 import Home from "../front/Home/Home";
+import { Profile } from "../front/Profile/Profile";
 
 import dotenv from "dotenv";
 import marked from "marked";
@@ -140,6 +141,23 @@ app.get("/", async (req, res) => {
         )
       );
 
+  res.headers({
+    "content-type": "text/html; charset=utf-8",
+  });
+  res.send(renderedHtml);
+});
+
+app.get("/profile", (req, res) => {
+  const renderedHtml = renderToString(
+    React.createElement(
+      helmet({
+        title: `Profile | ${title}`,
+        style: "profile",
+        children: Profile,
+        slug: "https://shinyaigeek.dev/profile",
+      })
+    )
+  );
   res.headers({
     "content-type": "text/html; charset=utf-8",
   });
