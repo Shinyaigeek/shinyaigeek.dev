@@ -6,6 +6,12 @@ interface HeadProps {
   slug: string;
 }
 
+const isProd = process.env.NODE_ENV === "production"
+const ASSETS_PORT = process.env.ASSETS_PORT ?? 3030;
+const ASSETS_SERVER = process.env.ASSETS_SERVER ?? "https://storage.cloud.google.com/blog_assets_shinyaigeek/static"
+
+const assets = isProd ? ASSETS_SERVER : "http://localhost:" + ASSETS_PORT;
+
 const SiteHead = (props: HeadProps) => (
   <head>
     <title>{props.title}</title>

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:server": "ts-node --project tsconfig.json ./src/server/server.tsx",
+    "dev:server": "NODE_ENV=development ts-node --project tsconfig.json ./src/server/server.tsx",
     "build:server": "tsc --project ./tsconfig.json",
     "dev:client": "webpack-dev-server --config webpack.config.client.js --mode=development",
     "build:client": "webpack --config webpack.config.client.js --mode=production",
@@ -15,7 +15,8 @@
     "build:style": "yarn run build:style:layout && yarn run build:style:home && yarn run build:style:post && yarn run build:style:profile",
     "build": "webpack --config webpack.config.server.js --mode=none && yarn run build:style && yarn run build:client",
     "start": "ts-node server.ts",
-    "perf": "ts-node scripts/perf.ts"
+    "perf": "ts-node scripts/perf.ts",
+    "serve": "NODE_ENV=production ts-node --project tsconfig.json ./src/server/server.tsx"
   },
   "repository": {
     "type": "git",
