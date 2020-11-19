@@ -17,8 +17,8 @@ module.exports = {
     "uglify-es/package.json", // optional dependency fast-json-stringify
   ],
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
-    port: 8080,
+    contentBase: path.join(__dirname, "./static"),
+    port: process.env.ASSETS_PORT ?? 3030,
     host: `localhost`,
   },
   module: {

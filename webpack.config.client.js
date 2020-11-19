@@ -5,6 +5,6 @@ module.exports = {
   ...common,
   target: "web",
   entry: {
-    profile: "./src/front/main.ts",
+    main: "./src/front/main.ts",
   }
 };
