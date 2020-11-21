@@ -5,6 +5,6 @@ module.exports = {
   ...common,
   target: "web",
   entry: {
-    main: "./src/front/main.ts",
+    main: "./src/front/main.tsx",
   }
 };

@@ -39,8 +39,7 @@ const SiteHead = (props: HeadProps) => (
     <meta name="twitter:image" content={`${assets}/icon.png`} />
 
     <link rel="icon" type="image/x-icon" href={`${assets}/favicon.ico`} />
-    <link rel="stylesheet" type="text/css" href="/layout.css" />
-    <link rel="stylesheet" type="text/css" href={"/" + props.style + ".css"} />
+    <link rel="stylesheet" type="text/css" href={`${assets}/styles.css`} />
 
     {/* <link
       rel="alternate"
@@ -65,7 +64,7 @@ const helmet = (props: HelmetProps) => {
       <div id="_app">
         <props.children {...props.props} />
       </div>
-      <script async defer src={`${assets}/main.js`} />
+      {/* <script async defer src={`${assets}/main.js`} /> */}
     </html>
   );
 };

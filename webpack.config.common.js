@@ -1,6 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 require("dotenv").config();
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
   ],
   devServer: {
     contentBase: path.join(__dirname, "./static"),
-    port: process.env.ASSETS_PORT ?? 3030,
+    port: process.env.ASSETS_PORT ? process.env.ASSETS_PORT : 3030,
     host: `localhost`,
   },
   module: {
@@ -27,6 +27,7 @@ module.exports = {
         test: /\.ts(x?)$/,
         use: [
           "babel-loader",
+          "linaria/loader",
           {
             loader: "ts-loader",
             options: {
@@ -41,8 +42,8 @@ module.exports = {
       //   loader: "babel-loader"
       // },
       {
-        test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
@@ -54,5 +55,10 @@ module.exports = {
         process.env.CONTENTFUL_ACCESS_TOKEN
       ),
     }),
+
+    new MiniCssExtractPlugin({
+      filename: "styles.css",
+    }),
+    
   ],
 };
