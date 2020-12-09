@@ -33,7 +33,36 @@ app.get("/prefetch/post/:slug", async (req, res) => {
   res.headers({
     "content-type": "application/json",
   });
-  res.send(JSON.stringify(post));
+  if (post) {
+    const html = marked(post.fields.content);
+
+    const anchorsWithH2: string[] | null = html.match(
+      /<h2 id=".+?">.+?<\/h2>/g
+    );
+    let anchors;
+    if (anchorsWithH2) {
+      anchors = anchorsWithH2.map((anc) => {
+        return anc.replace(/<h2 id=".+?">/, "").replace("</h2>", "");
+      });
+    }
+    const body = html.replace(/<h2 id=".+?">/g, (target: string) => {
+      const id = target.replace('<h2 id="', "").replace('">', "");
+      return `<h2 id="${encodeURI(id)}">`;
+    });
+    const pro = {
+      fields: {
+        title: post.fields.title,
+        description: post.fields.description,
+        tags: post.fields.tags,
+        publishedAt: post.fields.publishedAt,
+        hasEn: post.fields.hasEn,
+        content: body,
+        slug: post.fields.slug,
+      },
+      anchors: anchors,
+    };
+    res.send(JSON.stringify(pro));
+  }
 });
 
 app.get("/post/:slug", async (req, res) => {
@@ -87,7 +116,6 @@ app.get("/post/:slug", async (req, res) => {
 });
 
 app.get("/", async (req, res) => {
-  console.log("asdf");
   const { tag, page } = req.query as {
     tag?: string;
     page?: string;
