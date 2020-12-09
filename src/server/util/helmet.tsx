@@ -64,7 +64,7 @@ const helmet = (props: HelmetProps) => {
       <div id="_app">
         <props.children {...props.props} />
       </div>
-      {/* <script async defer src={`${assets}/main.js`} /> */}
+      <script async defer src={`${assets}/main.js`} />
     </html>
   );
 };
