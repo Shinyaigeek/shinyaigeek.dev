@@ -21,6 +21,8 @@ export const registerPrefetch = () => {
               evt.preventDefault();
               const fields = json.fields
               console.log(json)
+              document.title = fields.title
+              history.pushState(null, fields.title, entry.target.getAttribute("href"))
               render(<Post fields={fields} />, document.getElementById("_app")!);
             });
           });
