@@ -65,6 +65,21 @@ app.get("/prefetch/post/:slug", async (req, res) => {
   }
 });
 
+app.get("/prefetch/home", async (req, res) => {
+  const { tag, page } = req.query as {
+    tag?: string;
+    page?: string;
+  };
+
+  const posts = await getBlogPosts({
+    slug: "",
+    tag,
+    page: Number.isInteger(Number(page)) ? Number(page) : undefined,
+  });
+
+  res.send(JSON.stringify(posts));
+});
+
 app.get("/post/:slug", async (req, res) => {
   const slug: string = req.params.slug ?? "";
   const post = await getBlogPost(slug);
