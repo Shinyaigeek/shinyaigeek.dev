@@ -29,7 +29,7 @@ export const Item = (props: MetaData) => {
       <Divider />
       <div className="date">{props.publishedAt}</div>
       <div className="tags"></div>
-      {/* <div>{getOmmit(props.description)}</div> */}
+      <div>{getOmmit(props.description)}</div>
       <div className="read--more">
         <a className="item--home__anchor read--more__anchor" href={`/post/${props.slug}`}>
           <Button id="more-button">MORE</Button>

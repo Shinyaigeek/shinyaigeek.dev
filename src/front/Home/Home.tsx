@@ -13,9 +13,10 @@ const Home = (props: {
     <div>
       <WelcomePage />
       {props.items.map((item, index) => {
+        const { fields } = item;
         return (
           <div key={index}>
-            <Item {...item.fields} />
+            <Item {...fields} />
           </div>
         );
       })}

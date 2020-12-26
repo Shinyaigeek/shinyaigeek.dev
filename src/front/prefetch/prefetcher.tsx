@@ -12,9 +12,9 @@ export const __shinyaigeek_prefetch: {
 export const registerPrefetch = () => {
   const homeAnchor = document.getElementById("link2Home");
   if (homeAnchor) {
-    homeAnchor.addEventListener("click", (evt) => {
-      evt.preventDefault();
-      fetch("https://shinyaigeek.dev/prefetch/home").then((res) => {
+    fetch("/prefetch/home").then((res) => {
+      homeAnchor.addEventListener("click", (evt) => {
+        evt.preventDefault();
         res.json().then((json) => {
           __shinyaigeek_prefetch["home"] = json;
           evt.preventDefault();
