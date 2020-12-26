@@ -5,14 +5,43 @@
 // } from "@zeit-ui/react-icons";
 import { Button } from "../Button/Button";
 import React from "react";
+import { css } from "linaria";
+
+const contact = css`
+  width: 100%;
+  max-width: 300px;
+  margin: 18px auto;
+  text-align: center;
+  font-size: 18px;
+`;
+
+const icon = css`
+  padding-bottom: 8px;
+`
+
+const contactAnchor = css`
+  display: block;
+  width: 100%;
+`
+
+const sns = css`
+  margin: 0 auto;
+`
+
+const snsAnchor = css`
+  font-size: 42px;
+  margin: 2px auto;
+`;
 
 export default function Contact() {
   return (
-    <div className="thatsMe">
-      <a href="/profile">
-        <a>
-          <img src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon_thatsme.png" className="thatsMe--icon" alt="icon" />
-        </a>
+    <div className={contact}>
+      <a href="/profile" className={contactAnchor}>
+          <img
+            src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon_thatsme.png"
+            className={icon}
+            alt="icon"
+          />
       </a>
       しにゃい/Shinyaigeek
       <br />
@@ -20,8 +49,8 @@ export default function Contact() {
       <br />
       <Button id="thatsme--contact">Contact Me</Button>
       <div className="mySnsBox">
-        <div className="sns">
-          <a id="twitter" href="https://twitter.com/Shinyaigeek">
+        <div className={sns}>
+          <a id="twitter" href="https://twitter.com/Shinyaigeek" className={snsAnchor}>
             {/* <Twitter /> */}
             {/* <Icon
               type="twitter"
@@ -30,7 +59,7 @@ export default function Contact() {
           </a>
         </div>
         <div className="sns">
-          <a id="github" href="https://github.com/Shinyaigeek">
+          <a id="github" href="https://github.com/Shinyaigeek" className={snsAnchor}>
             {/* <Github /> */}
             {/* <Icon
               type="github"
@@ -39,7 +68,7 @@ export default function Contact() {
           </a>
         </div>
         <div className="sns">
-          <a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/">
+          <a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/" className={snsAnchor}>
             {/* <Icon
               type="linkedin"
               style={{ color: "#0077B5", fontSize: "42px", margin: "8px auto" }}

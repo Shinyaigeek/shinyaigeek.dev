@@ -6,10 +6,10 @@ export function ScrollDown() {
       <div className="scroll--down__box" />
       <a
         href="#home--items"
-        style={{
-          textDecoration: "none",
-          color: "white"
-        }}
+        // style={{
+        //   textDecoration: "none",
+        //   color: "white"
+        // }}
       >
         SCROLL DOWN
       </a>
