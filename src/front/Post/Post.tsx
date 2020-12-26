@@ -12,18 +12,22 @@ interface Props extends Entry {
 }
 
 function Post(props: Props) {
+  const { content } = props.fields;
   return (
     <div className="post--content">
       <Anchor anchors={props.anchors} />
       <MetaInfo {...props} />
-      {parse(props.fields.content)}
+      <div
+        dangerouslySetInnerHTML={{
+          __html: content,
+        }}></div>
 
       <Shinyaigeek
-        // styles={{
-        //   height: "200px",
-        //   width: "200px",
-        //   margin: "12px auto",
-        // }}
+      // styles={{
+      //   height: "200px",
+      //   width: "200px",
+      //   margin: "12px auto",
+      // }}
       />
       <BaseProfile />
     </div>
