@@ -1,5 +1,6 @@
 import { TagProps, Tag } from "../Tag/Tag";
 import React from "react";
+import { css } from "linaria";
 
 export const TAGS: TagProps[] = [
   {
@@ -46,9 +47,14 @@ export const TAGS: TagProps[] = [
   }
 ];
 
+const footTag = css`
+  width: 90vw;
+  margin: 12px auto;
+`
+
 export function FootTags(props: { tags: TagProps[] }) {
   return (
-    <div className="footTag">
+    <div className={footTag}>
       {props.tags.map(tag => {
         return <Tag {...tag} />;
       })}
