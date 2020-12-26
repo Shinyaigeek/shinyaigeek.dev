@@ -2,6 +2,7 @@ import { render } from "lit-html";
 import { path2prefetchPath } from "./path2prefetchPath";
 import Post from "../Post/Post";
 import { Profile } from "../Profile/Profile";
+import Home from "../Home/Home";
 
 // TODO: type safe key
 export const __shinyaigeek_prefetch: {
@@ -9,16 +10,30 @@ export const __shinyaigeek_prefetch: {
 } = {};
 
 export const registerPrefetch = () => {
+  const homeAnchor = document.getElementById("link2Home");
+  if (homeAnchor) {
+    homeAnchor.addEventListener("click", (evt) => {
+      evt.preventDefault();
+      fetch("https://shinyaigeek.dev/prefetch/home").then((res) => {
+        res.json().then((json) => {
+          __shinyaigeek_prefetch["home"] = json;
+          evt.preventDefault();
+          document.title = "しにゃいの学習帳";
+          history.pushState(null, "しにゃいの学習帳", "/");
+          render(
+            <Home items={json.items} prev={json.prev} next={json.next} />,
+            document.getElementById("_app")!
+          );
+        });
+      });
+    });
+  }
   const profileAnchor = document.getElementById("link2profile");
   if (profileAnchor) {
     profileAnchor.addEventListener("click", (evt) => {
       evt.preventDefault();
       document.title = "プロフィール | しにゃいの学習帳";
-      history.pushState(
-        null,
-        "プロフィール | しにゃいの学習帳",
-        "/profile"
-      );
+      history.pushState(null, "プロフィール | しにゃいの学習帳", "/profile");
       render(<Profile />, document.getElementById("_app")!);
     });
   }
