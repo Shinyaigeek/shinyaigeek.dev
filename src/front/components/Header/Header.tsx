@@ -43,7 +43,7 @@ export function Header() {
   return (
     <div className={header}>
       <div className={title}>
-        <a href="/">
+        <a href="/" id="link2Home">
           <div>
             <img
               src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon_transparent_header.png"
@@ -56,10 +56,14 @@ export function Header() {
       </div>
       <div className="header--contents">
         <div className={anchor}>
-          <a href="/">Blog</a>
+          <a href="/" id="link2Home">
+            Blog
+          </a>
         </div>
         <div className={anchor}>
-          <a href="/profile" id="link2profile">Profile</a>
+          <a href="/profile" id="link2profile">
+            Profile
+          </a>
         </div>
         <div className={anchor}>
           <a href="mailto:me@shinyaigeek.dev">Contact</a>
