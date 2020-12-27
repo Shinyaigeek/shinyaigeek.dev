@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:server": "NODE_ENV=development babel-node src/server/server.tsx --config-file ./src/server/babel.config.js --extensions '.ts,.tsx'",
+    "dev:server": "NODE_ENV=development nodemon --watch src/ --exec  babel-node src/server/server.tsx --config-file ./src/server/babel.config.js --extensions '.ts,.tsx'",
     "build:server": "babel src --config-file ./src/server/babel.config.js --extensions '.ts,.tsx' --out-dir asdf",
     "dev:client": "webpack-dev-server --config webpack.config.client.js --mode=development",
     "build:client": "webpack --config webpack.config.client.js --mode=production",
