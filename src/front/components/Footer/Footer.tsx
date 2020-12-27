@@ -7,7 +7,7 @@ const footer = css`
   padding-top: 15px;
   padding-bottom: 15px;
   color: var(--theme-text);
-  background-color: car(--theme-header)
+  background-color: var(--theme-header)
 `
 
 export function Footer() {
