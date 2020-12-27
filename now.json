@@ -38,7 +38,7 @@
         }
     ],
     "functions": {
-        "dist/server/server.js": {
+        "api/server/server.js": {
             "memory": 1024,
             "maxDuration": 10
         }
