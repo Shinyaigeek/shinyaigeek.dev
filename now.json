@@ -1,29 +1,4 @@
 {
-    "builds": [
-        {
-            "src": "package.json",
-            "use": "@now/static-build",
-            "config": {
-                "distDir": "dist"
-            }
-        },
-        {
-            "src": "/dist/*.js",
-            "use": "@now/static"
-        },
-        {
-            "src": "/public/*.css",
-            "use": "@now/static"
-        },
-        {
-            "src": "/static/*.png",
-            "use": "@now/static"
-        },
-        {
-            "src": "/dist/server/server.js",
-            "use": "@now/node-server"
-        }
-    ],
     "routes": [
         {
             "src": "/profile.js",
