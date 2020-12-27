@@ -1,24 +1,8 @@
 {
     "routes": [
         {
-            "src": "/profile.js",
+            "src": "/style.js",
             "dest": "dist/profile.js"
-        },
-        {
-            "src": "/home.css",
-            "dest": "dist/home.css"
-        },
-        {
-            "src": "/layout.css",
-            "dest": "dist/home.css"
-        },
-        {
-            "src": "/profile.css",
-            "dest": "dist/home.css"
-        },
-        {
-            "src": "/post.css",
-            "dest": "dist/home.css"
         },
         {
             "src": "/banana.png",
@@ -50,7 +34,7 @@
         },
         {
             "src": "/.*",
-            "dest": "dist/server/server.js"
+            "dest": "api/server/server.js"
         }
     ],
     "functions": {
