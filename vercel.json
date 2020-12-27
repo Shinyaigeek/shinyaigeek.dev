@@ -1,38 +1,4 @@
 {
-    "routes": [
-        {
-            "src": "/style.js",
-            "dest": "dist/profile.js"
-        },
-        {
-            "src": "/banana.png",
-            "dest": "static/banana.png"
-        },
-        {
-            "src": "/earth.png",
-            "dest": "static/earth.png"
-        },
-        {
-            "src": "/icon_blur.png",
-            "dest": "static/icon_blur.png"
-        },
-        {
-            "src": "/icon_thatsme.png",
-            "dest": "static/icon_thatsme.png"
-        },
-        {
-            "src": "/icon_transparent_header.png",
-            "dest": "static/icon_transparent_header.png"
-        },
-        {
-            "src": "/icon_transparent.png",
-            "dest": "static/icon_transparent.png"
-        },
-        {
-            "src": "/icon.png",
-            "dest": "static/icon.png"
-        }
-    ],
     "rewrites": [
         {
             "source": "/api/(.*)",
