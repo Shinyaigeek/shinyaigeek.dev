@@ -75,7 +75,7 @@
         },
         {
             "src": "/.*",
-            "dest": "server.ts"
+            "dest": "src/server/server.tsx"
         }
     ],
     "env": {
