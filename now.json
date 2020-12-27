@@ -20,7 +20,7 @@
             "use": "@now/static"
         },
         {
-            "src": "/src/server/server.tsx",
+            "src": "/dist/server/server.js",
             "use": "@now/node-server"
         }
     ],
@@ -75,7 +75,7 @@
         },
         {
             "src": "/.*",
-            "dest": "src/server/server.tsx"
+            "dest": "dist/server/server.js"
         }
     ],
     "env": {
