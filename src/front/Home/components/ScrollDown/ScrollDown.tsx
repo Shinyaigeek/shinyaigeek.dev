@@ -44,7 +44,7 @@ const box = css`
 export function ScrollDown() {
   return (
     <div className={scrollDownStyle}>
-      <div className={box} />
+      <div className={box}></div>
       <a href="#home--items">SCROLL DOWN</a>
     </div>
   );
