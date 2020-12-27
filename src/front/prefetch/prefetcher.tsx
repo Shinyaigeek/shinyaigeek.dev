@@ -3,6 +3,7 @@ import { path2prefetchPath } from "./path2prefetchPath";
 import Post from "../Post/Post";
 import { Profile } from "../Profile/Profile";
 import Home from "../Home/Home";
+import { registerGitHubCalendar } from "../registerGitHubCalendar";
 
 // TODO: type safe key
 export const __shinyaigeek_prefetch: {
@@ -35,6 +36,7 @@ export const registerPrefetch = () => {
       document.title = "プロフィール | しにゃいの学習帳";
       history.pushState(null, "プロフィール | しにゃいの学習帳", "/profile");
       render(<Profile />, document.getElementById("_app")!);
+      registerGitHubCalendar();
     });
   }
   // TODO polyfill
