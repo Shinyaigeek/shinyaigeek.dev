@@ -9,7 +9,9 @@ const inner = css`
   top: 72px;
   overflow: hidden;
   padding-bottom: 72px;
+`;
 
+const root = css`
   --theme-header: #1a161a;
   --theme-background: #fcfcfc;
   --theme-color: #1e1e1e;
@@ -33,6 +35,9 @@ const inner = css`
     --image-gray: grayscale(15%);
   }
 
+  background: var(--theme-background);
+  color: var(--theme-color);
+
   a {
     text-decoration: none;
   }
@@ -40,9 +45,9 @@ const inner = css`
 
 export function Layout(Component: (props?: any) => JSX.Element) {
   return (props?: any) => (
-    <div className={inner}>
+    <div className={root}>
       <Header />
-      <div className="inner">
+      <div className={inner}>
         <Component {...props} />
       </div>
       <FootTags tags={TAGS} />
