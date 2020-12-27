@@ -9,6 +9,10 @@ const inner = css`
   top: 72px;
   overflow: hidden;
   padding-bottom: 72px;
+
+  a {
+    text-decoration: none;
+  }
 `
 
 export function Layout(Component: (props?: any) => JSX.Element) {
