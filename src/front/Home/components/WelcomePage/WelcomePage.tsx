@@ -21,6 +21,12 @@ const banana = css`
   object-fit: contain;
 `;
 
+const shinyaigeek = css`
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+`;
+
 export function WelcomePage() {
   return (
     <div className={welcome}>
@@ -30,7 +36,7 @@ export function WelcomePage() {
         alt="banana"
       />
       <ScrollDown />
-      <Shinyaigeek />
+      <Shinyaigeek css={shinyaigeek} />
       <StarStream />
     </div>
   );
