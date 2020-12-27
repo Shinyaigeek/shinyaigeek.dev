@@ -10,10 +10,33 @@ const inner = css`
   overflow: hidden;
   padding-bottom: 72px;
 
+  --theme-header: #1a161a;
+  --theme-background: #fcfcfc;
+  --theme-color: #1e1e1e;
+  --headings-color: #f2aaf2;
+  --twitter-background: #fff;
+  --twitter-toggle: #e6ecf0;
+  --twitter-cancel: #e6ecf0;
+  --item-background: #fff;
+  --item-border: #f6e6ff;
+  --image-gray: grayscale(0%);
+
+  @media (prefers-color-scheme: dark) {
+    --theme-background: #3c3c3b;
+    --theme-color: #e4e4e4;
+    --headings-color: #d2f0da;
+    --twitter-background: #15202b;
+    --twitter-toggle: #1c2938;
+    --twitter-cancel: #243447;
+    --item-background: #7b7a79;
+    --item-border: #a2a2a1;
+    --image-gray: grayscale(15%);
+  }
+
   a {
     text-decoration: none;
   }
-`
+`;
 
 export function Layout(Component: (props?: any) => JSX.Element) {
   return (props?: any) => (
