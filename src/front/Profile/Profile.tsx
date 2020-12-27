@@ -4,18 +4,18 @@ import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
 import { BaseProfile } from "./components/BaseProfile/BaseProfile";
 import { GitHubCalender } from "./components/GitHubCalender/GitHubCalender";
 import { render } from "lit-html";
-import React from "react"
+import React from "react";
 
-export const Profile = () => {
+export const Profile = Layout(() => {
   return (
     <div className="profile">
       <div>
         <Shinyaigeek
-          // styles={{
-          //   height: "300px",
-          //   width: "300px",
-          //   margin: "0 auto",
-          // }}
+        // styles={{
+        //   height: "300px",
+        //   width: "300px",
+        //   margin: "0 auto",
+        // }}
         />
 
         <BaseProfile />
@@ -58,15 +58,22 @@ export const Profile = () => {
         <div className="description">
           <div className="title">About Me</div>
           <p className="content">
-            初めまして, 大手町で元気にweb developerをやっています.<br />
-            web技術そのもの, そしてwebのエコシステムに興味関心があります.<br />
-            web技術全般 ( server | edge | front )-side を触っていて, 特にfrontendをよくやっています.<br />
-            web app作成, web app, mediaのパフォーマンスチューニングがほんの少しだけできます.<br />
-            OSS にも関心があります<br />
+            初めまして, 大手町で元気にweb developerをやっています.
+            <br />
+            web技術そのもの, そしてwebのエコシステムに興味関心があります.
+            <br />
+            web技術全般 ( server | edge | front )-side を触っていて,
+            特にfrontendをよくやっています.
+            <br />
+            web app作成, web app,
+            mediaのパフォーマンスチューニングがほんの少しだけできます.
+            <br />
+            OSS にも関心があります
+            <br />
             絶賛就職活動中です.
           </p>
         </div>
       </div>
     </div>
   );
-};
+});
