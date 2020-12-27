@@ -10,13 +10,7 @@ export const Profile = Layout(() => {
   return (
     <div className="profile">
       <div>
-        <Shinyaigeek
-        // styles={{
-        //   height: "300px",
-        //   width: "300px",
-        //   margin: "0 auto",
-        // }}
-        />
+        <Shinyaigeek />
 
         <BaseProfile />
 
