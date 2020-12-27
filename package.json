@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev:server": "NODE_ENV=development nodemon --watch src/ --exec  babel-node src/server/server.tsx --config-file ./src/server/babel.config.js --extensions '.ts,.tsx'",
-    "build:server": "babel src --config-file ./src/server/babel.config.js --extensions '.ts,.tsx' --out-dir dist",
+    "build:server": "babel src --config-file ./src/server/babel.config.js --extensions '.ts,.tsx' --out-dir api",
     "dev:client": "webpack-dev-server --config webpack.config.client.js --mode=development",
     "build:client": "webpack --config webpack.config.client.js --mode=production",
     "build:style:layout": "node-sass -r src/styles/layout.scss dist/layout.css --output-style compressed",
@@ -16,7 +16,7 @@
     "build": "yarn build:server && yarn build:client",
     "start": "ts-node server.ts",
     "perf": "ts-node scripts/perf.ts",
-    "serve": "NODE_ENV=production ts-node --project tsconfig.json ./src/server/server.tsx"
+    "serve": "node api/server/server.js"
   },
   "repository": {
     "type": "git",
