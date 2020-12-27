@@ -6,9 +6,11 @@ interface HeadProps {
   slug: string;
 }
 
-const isProd = process.env.NODE_ENV === "production"
+const isProd = process.env.NODE_ENV === "production";
 const ASSETS_PORT = process.env.ASSETS_PORT ?? 3030;
-const ASSETS_SERVER = process.env.ASSETS_SERVER ?? "https://storage.cloud.google.com/blog_assets_shinyaigeek/static"
+const ASSETS_SERVER =
+  process.env.ASSETS_SERVER ??
+  "https://storage.cloud.google.com/blog_assets_shinyaigeek/static";
 
 const assets = isProd ? ASSETS_SERVER : "http://localhost:" + ASSETS_PORT;
 
@@ -40,6 +42,10 @@ const SiteHead = (props: HeadProps) => (
 
     <link rel="icon" type="image/x-icon" href={`${assets}/favicon.ico`} />
     <link rel="stylesheet" type="text/css" href={`${assets}/styles.css`} />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
+    />
 
     {/* <link
       rel="alternate"

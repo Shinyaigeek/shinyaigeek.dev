@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:server": "NODE_ENV=development babel-node src/server/server.tsx --config-file ./src/server/babel.config.js --extensions '.ts,.tsx'",
+    "dev:server": "NODE_ENV=development nodemon --watch src/ --exec  babel-node src/server/server.tsx --config-file ./src/server/babel.config.js --extensions '.ts,.tsx'",
     "build:server": "babel src --config-file ./src/server/babel.config.js --extensions '.ts,.tsx' --out-dir asdf",
     "dev:client": "webpack-dev-server --config webpack.config.client.js --mode=development",
     "build:client": "webpack --config webpack.config.client.js --mode=production",
@@ -59,7 +59,7 @@
     "fastify-static": "^2.7.0",
     "fastify-webpack": "^0.0.1-alpha.5",
     "fs": "^0.0.1-security",
-    "github-calendar": "^2.1.1",
+    "github-calendar": "^2.2.6",
     "highlight.js": "^10.4.1",
     "html-react-parser": "^0.10.1",
     "linaria": "^2.0.2",
