@@ -207,12 +207,6 @@ app.get("/profile", (req, res) => {
   res.send(renderedHtml);
 });
 
-const VERCEL = process.env.VERCEL;
-
-if (typeof VERCEL === "undefined") {
-  app.listen(port, (err, address) => {
-    if (err) throw err;
-  });
-}
-
-module.exports = app;
+app.listen(port, (err, address) => {
+  if (err) throw err;
+});
