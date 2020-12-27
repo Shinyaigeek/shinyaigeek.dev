@@ -34,6 +34,11 @@ const root = css`
     --item-border: #a2a2a1;
     --image-gray: grayscale(15%);
   }
+  :global() {
+    body {
+      margin: 0;
+    }
+  }
 
   background: var(--theme-background);
   color: var(--theme-color);
