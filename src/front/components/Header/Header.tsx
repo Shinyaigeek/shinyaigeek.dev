@@ -13,12 +13,12 @@ const header = css`
   width: 100vw;
   font-size: 30px;
   color: var(--theme-text);
-  background: var(--theme-header);
+  background: #1a161a;
+  box-shadow: 1px 1px 1px #544854;
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
-  background: black;
   z-index: 1000;
 
   a {
