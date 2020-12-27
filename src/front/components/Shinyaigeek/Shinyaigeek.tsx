@@ -1,4 +1,4 @@
-import { css } from "linaria";
+import { css, cx } from "linaria";
 import React from "react";
 
 const icon = css`
@@ -83,9 +83,15 @@ const monkeyImg = css`
   object-fit: contain;
 `;
 
-export const Shinyaigeek = () => {
+interface Props {
+  css?: string;
+}
+
+export const Shinyaigeek = (props: Props) => {
+  const { css } = props;
+  const additionalStyle = css ?? ""
   return (
-    <div className={icon}>
+    <div className={cx(icon, additionalStyle)}>
       <div className={monkey}>
         <img
           src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon_transparent.png"

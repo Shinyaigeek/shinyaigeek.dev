@@ -1,8 +1,8 @@
-import { ShinyaigeekAnimation } from "../../../components/ShinyaigeekAnimation/ShinyaigeekAnimation";
 import { ScrollDown } from "../ScrollDown/ScrollDown";
 import { StarStream } from "../StartStream/StarStream";
 import React from "react";
 import { css } from "linaria";
+import { Shinyaigeek } from "../../../components/Shinyaigeek/Shinyaigeek";
 
 const welcome = css`
   height: calc(100vh - 72px);
@@ -30,7 +30,7 @@ export function WelcomePage() {
         alt="banana"
       />
       <ScrollDown />
-      <ShinyaigeekAnimation />
+      <Shinyaigeek />
       <StarStream />
     </div>
   );
