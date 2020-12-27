@@ -23,10 +23,24 @@ const header = css`
   a {
     color: white;
   }
+
+  @media (min-width: 750px) {
+    display: flex;
+  }
+`;
+
+const contents = css`
+  width: auto;
+  display: flex;
+
+  @media (min-width: 750px) {
+    position: absolute;
+    right: 15px;
+  }
 `;
 
 const title = css`
-  position: none;
+  position: relative;
   left: 10px;
   width: fit-content;
 `;
@@ -42,6 +56,27 @@ const anchor = css`
   position: relative;
   display: inline-block;
   font-size: 16px;
+
+  &::after {
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    content: " ";
+    width: 100%;
+    height: 2px;
+    background: white;
+    transform: scale(0, 1);
+    transform-origin: center top;
+    transition: transform 0.3s;
+  }
+
+  &:hover::after {
+    transform: scale(1.1, 1);
+  }
+
+  @media (min-width: 750px) {
+    font-size: 28px !important;
+  }
 `;
 
 export function Header() {
@@ -59,7 +94,7 @@ export function Header() {
           </div>
         </a>
       </div>
-      <div className="header--contents">
+      <div className={contents}>
         <div className={anchor}>
           <a href="/" id="link2Home">
             Blog
