@@ -20,7 +20,7 @@
             "use": "@now/static"
         },
         {
-            "src": "/server.ts",
+            "src": "/src/server/server.tsx",
             "use": "@now/node-server"
         }
     ],
