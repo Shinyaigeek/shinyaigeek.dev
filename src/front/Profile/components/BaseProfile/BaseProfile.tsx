@@ -162,6 +162,11 @@ const jobGlitch = css`
   }
 `;
 
+const word = css`
+  font-size: 24px;
+  padding: 12px 0;
+`;
+
 export const BaseProfile = () => {
   return (
     <div className="baseprofile">
@@ -169,7 +174,7 @@ export const BaseProfile = () => {
       <div className={jobGlitch} data-text="Web Developer">
         Web Developer
       </div>
-      <div className="word">
+      <div className={word}>
         I Love and Development Web Technology and that's ecosystem!!
       </div>
       <div className="mySnsBox">
