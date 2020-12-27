@@ -5,10 +5,16 @@ import { BaseProfile } from "./components/BaseProfile/BaseProfile";
 import { GitHubCalender } from "./components/GitHubCalender/GitHubCalender";
 import { render } from "lit-html";
 import React from "react";
+import { css } from "linaria";
+
+const profile = css`
+  width: 80vw;
+  margin: 0 auto;
+`;
 
 export const Profile = Layout(() => {
   return (
-    <div className="profile">
+    <div className={profile}>
       <div>
         <Shinyaigeek />
 
