@@ -12,14 +12,12 @@ const Home = (props: {
   return (
     <div>
       <WelcomePage />
-      {props.items.map((item, index) => {
-        const { fields } = item;
-        return (
-          <div key={index}>
-            <Item {...fields} />
-          </div>
-        );
-      })}
+      <div id="home--items">
+        {props.items.map((item, index) => {
+          const { fields } = item;
+          return <Item {...fields} key={index} />;
+        })}
+      </div>
       <Pagenation {...props} />
     </div>
   );
