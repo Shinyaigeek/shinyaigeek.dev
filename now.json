@@ -78,6 +78,12 @@
             "dest": "dist/server/server.js"
         }
     ],
+    "functions": {
+        "dist/server/server.js": {
+            "memory": 3008,
+            "maxDuration": 60
+        }
+    },
     "env": {
         "CONTENTFUL_SPACE_ID": "@contentful-space-id-production-4lm2",
         "CONTENTFUL_ACCESS_TOKEN": "@contentful-access-token-production-ra4w"
