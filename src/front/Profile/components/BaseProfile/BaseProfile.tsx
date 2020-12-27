@@ -1,6 +1,9 @@
 import { css } from "linaria";
 import React from "react";
 
+import { Twitter, Linkedin, Github } from "@zeit-ui/react-icons";
+import { serverPath } from "../../../utils/consts/server";
+
 // * Math.random()でrandomを導出すると, SSR時にclassNameが変わってしまう可能性があるためrandomな値は静的な値としておく
 const noiseAnimRandomInt1 = [
   21,
@@ -167,6 +170,22 @@ const word = css`
   padding: 12px 0;
 `;
 
+const mySnsBox = css`
+  display: flex;
+  margin: 2px auto;
+  max-width: 500px;
+`;
+
+const snsIcon = css`
+  width: 54px;
+  margin: 0 auto;
+
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
+`;
+
 export const BaseProfile = () => {
   return (
     <div className="baseprofile">
@@ -177,20 +196,20 @@ export const BaseProfile = () => {
       <div className={word}>
         I Love and Development Web Technology and that's ecosystem!!
       </div>
-      <div className="mySnsBox">
-        <div className="sns">
+      <div className={mySnsBox}>
+        <div className={snsIcon}>
           <a id="twitter" href="https://twitter.com/Shinyaigeek">
-            {/* <Twitter size={54} /> */}
+            <img src={`${serverPath}twitter.svg`} />
           </a>
         </div>
-        <div className="sns">
+        <div className={snsIcon}>
           <a id="github" href="https://github.com/Shinyaigeek">
-            {/* <Github size={54} /> */}
+            <img src={`${serverPath}github.svg`} />
           </a>
         </div>
-        <div className="sns">
+        <div className={snsIcon}>
           <a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/">
-            {/* <Linkedin size={54} /> */}
+            <img src={`${serverPath}linkedin.svg`} />
           </a>
         </div>
       </div>
