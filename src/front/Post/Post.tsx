@@ -55,7 +55,7 @@ const postContent = css`
 function Post(props: Props) {
   const { content } = props.fields;
   return (
-    <div className={postContent}>
+    <div>
       <Anchor anchors={props.anchors} />
       <MetaInfo {...props} />
       <div
