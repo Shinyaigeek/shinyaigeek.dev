@@ -3725,7 +3725,7 @@ github-calendar-parser@^1.1.12:
   dependencies:
     github-calendar-legend "^1.0.11"
 
-github-calendar@^2.1.1:
+github-calendar@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/github-calendar/-/github-calendar-2.2.6.tgz#a03df2332a29adc6607fe3050acb340cc18fd567"
   integrity sha512-lhnBpcmkAGALLZgCmGhXlnYg1ABDLi3qKWOseaAFKmQieO6ruHGvoI065cZU95GJsddX7fiW6SiTeNR/RvqOVg==
