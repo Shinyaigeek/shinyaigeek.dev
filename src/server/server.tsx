@@ -215,4 +215,4 @@ if (typeof VERCEL === "undefined") {
   });
 }
 
-export default app;
+module.exports = app;
