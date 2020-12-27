@@ -19,6 +19,7 @@ const header = css`
   right: 0;
   top: 0;
   background: black;
+  z-index: 1000;
 
   a {
     color: white;
