@@ -9,6 +9,10 @@ const tag = css`
   display: flex;
   width: 80%;
   padding: 12px 0;
+
+  div {
+    padding: 2px 4px;
+  }
 `;
 
 export function DecorationTag(props: Props) {

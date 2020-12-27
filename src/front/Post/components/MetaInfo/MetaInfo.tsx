@@ -20,7 +20,6 @@ export function MetaInfo(props: {
     <div className={metaInfo}>
       <h1>{props.fields.title}</h1>
       <div>
-        {/* <Edit /> */}
         {props.fields.publishedAt}
       </div>
       <DecorationTag tags={props.fields.tags} />
