@@ -5,6 +5,12 @@
             "use": "@vercel/node"
         }
     ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "api/server/server.js"
+        }
+    ],
     "env": {
         "CONTENTFUL_SPACE_ID": "@contentful-space-id-production-4lm2",
         "CONTENTFUL_ACCESS_TOKEN": "@contentful-access-token-production-ra4w"
