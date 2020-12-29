@@ -207,6 +207,21 @@ app.get("/profile", (req, res) => {
   res.send(renderedHtml);
 });
 
+app.get("/json", async (req, res) => {
+  const { tag, page } = req.query as {
+    tag?: string;
+    page?: string;
+  };
+
+  const items = await getBlogPosts({
+    slug: "",
+    tag,
+    page: Number.isInteger(Number(page)) ? Number(page) : undefined,
+  });
+
+  return JSON.stringify(items);
+});
+
 app.listen(port, (err, address) => {
   if (err) throw err;
 });
