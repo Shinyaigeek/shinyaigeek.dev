@@ -14,6 +14,8 @@ import helmet from "./util/helmet";
 
 //@ts-ignore
 import register from "@babel/register";
+import { getSiteMap } from "./util/getSitemap";
+import { getRss } from "./util/getRss";
 
 register({
   presets: ["react"],
@@ -205,6 +207,178 @@ app.get("/profile", (req, res) => {
     "content-type": "text/html; charset=utf-8",
   });
   res.send(renderedHtml);
+});
+
+app.get("/json", async (req, res) => {
+  const { tag, page } = req.query as {
+    tag?: string;
+    page?: string;
+  };
+
+  const items = await getBlogPosts({
+    slug: "",
+    tag,
+    page: Number.isInteger(Number(page)) ? Number(page) : undefined,
+  });
+
+  return JSON.stringify(items);
+});
+
+app.put("/withItems", (req, res) => {
+  try {
+    const { rawItems } = req.body;
+    const items = JSON.parse(rawItems);
+    if (!items || items.items.length === 0) {
+      const renderedHtml = renderToString(
+        React.createElement(
+          helmet({
+            title: title,
+            children: Home,
+            style: "home",
+            slug: "https://shinyaigeek.dev/",
+            props: {
+              items: [
+                {
+                  fields: {
+                    title: "Not Found",
+                    description: "item is not found",
+                    slug: "none",
+                    publishedAt: "0000/00/00",
+                    tags: [],
+                    content: "Item is not found",
+                    hasEn: false,
+                  },
+                },
+              ],
+            },
+          })
+        )
+      );
+      res.send(renderedHtml);
+    } else {
+      const renderedHtml = renderToString(
+        React.createElement(
+          helmet({
+            title: title,
+            children: Home,
+            slug: "https://shinyaigeek.dev/",
+            style: "home",
+            props: {
+              items: items.items,
+              prev: items.prev,
+              next: items.next,
+            },
+          })
+        )
+      );
+      res.send(renderedHtml);
+    }
+  } catch (_) {
+    console.log(_);
+    res.send("oops");
+  }
+});
+
+app.put("/renderWithItem", (req, res) => {
+  try {
+    const { rawItem } = req.body;
+    const item = JSON.parse(rawItem).items[0];
+    if (!item) {
+      const renderedHtml = renderToString(
+        React.createElement(
+          helmet({
+            title: `Not Found | ${title}`,
+            children: Post,
+            style: "post",
+            slug: "https://shinyaigeek.dev",
+            props: {
+              fields: {
+                title: "Not Found",
+                description: "item is not found",
+                slug: "none",
+                publishedAt: "0000/00/00",
+                tags: [],
+                content: "Item is not found",
+                hasEn: false,
+              },
+              anchors: [],
+            },
+          })
+        )
+      );
+      res.send(renderedHtml);
+    } else {
+      const html = marked(item.fields.content);
+      const anchorsWithH2: string[] | null = html.match(
+        /<h2 id=".+?">.+?<\/h2>/g
+      );
+      let anchors;
+      if (anchorsWithH2) {
+        anchors = anchorsWithH2.map((anc) => {
+          return anc.replace(/<h2 id=".+?">/, "").replace("</h2>", "");
+        });
+      }
+      const body = html.replace(/<h2 id=".+?">/g, (target: string) => {
+        const id = target.replace('<h2 id="', "").replace('">', "");
+        return `<h2 id="${encodeURI(id)}">`;
+      });
+      const pro = {
+        fields: {
+          title: item.fields.title,
+          description: item.fields.description,
+          tags: item.fields.tags,
+          publishedAt: item.fields.publishedAt,
+          hasEn: item.fields.hasEn,
+          content: body,
+          slug: item.fields.slug,
+        },
+        anchors: anchors,
+      };
+      const renderedHtml = renderToString(
+        React.createElement(
+          helmet({
+            title: `${pro.fields.title} | ${title}`,
+            style: "post",
+            slug: `https://shinyaigeek.dev/${pro.fields.slug}`,
+            children: Post,
+            props: pro,
+          })
+        )
+      );
+      res.send(renderedHtml);
+    }
+  } catch (_) {
+    console.log(_);
+    res.send("oops");
+  }
+});
+
+app.get("/getSitemap", (req, res) => {
+  try {
+    getSiteMap()
+      .then((xml) => {
+        res.send(xml);
+      })
+      .catch((e) => {
+        throw new Error();
+      });
+  } catch (e) {
+    res.send("oops");
+  }
+});
+
+app.get("/getRss", (req, res) => {
+  try {
+    getRss()
+      .then((xml) => {
+        res.send(xml);
+      })
+      .catch((e) => {
+        throw new Error();
+      });
+  } catch (e) {
+    res.send("oops");
+  }
 });
 
 app.listen(port, (err, address) => {
