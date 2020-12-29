@@ -114,3 +114,4 @@ public
 .now
 .linaria-cache
 .DS_Store
+api/*

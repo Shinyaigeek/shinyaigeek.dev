@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev:server": "NODE_ENV=development nodemon --watch src/ --exec  babel-node src/server/server.tsx --config-file ./src/server/babel.config.js --extensions '.ts,.tsx'",
-    "build:server": "babel src --config-file ./src/server/babel.config.js --extensions '.ts,.tsx' --out-dir asdf",
+    "build:server": "babel src --config-file ./src/server/babel.config.js --extensions '.ts,.tsx' --out-dir api",
+    "build:server:vercel": "VERCEL=true babel src --config-file ./src/server/babel.config.js --extensions '.ts,.tsx' --out-dir api",
     "dev:client": "webpack-dev-server --config webpack.config.client.js --mode=development",
     "build:client": "webpack --config webpack.config.client.js --mode=production",
     "build:style:layout": "node-sass -r src/styles/layout.scss dist/layout.css --output-style compressed",
@@ -13,10 +14,11 @@
     "build:style:profile": "node-sass -r src/styles/profile.scss dist/profile.css --output-style compressed",
     "build:style:post": "node-sass -r src/styles/post.scss dist/post.css --output-style compressed",
     "build:style": "yarn run build:style:layout && yarn run build:style:home && yarn run build:style:post && yarn run build:style:profile",
-    "build": "webpack --config webpack.config.server.js --mode=none && yarn run build:style && yarn run build:client",
+    "build": "yarn build:server && yarn build:client",
+    "build:vercel": "yarn build:server:vercel && yarn build:client",
     "start": "ts-node server.ts",
     "perf": "ts-node scripts/perf.ts",
-    "serve": "NODE_ENV=production ts-node --project tsconfig.json ./src/server/server.tsx"
+    "serve": "node api/server/server.js"
   },
   "repository": {
     "type": "git",
