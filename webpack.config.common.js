@@ -6,7 +6,7 @@ require("dotenv").config();
 module.exports = {
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "[name].js",
+    filename: "[name].[contenthash].js",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", "node_modules"],
@@ -57,7 +57,7 @@ module.exports = {
     }),
 
     new MiniCssExtractPlugin({
-      filename: "styles.css",
+      filename: "styles.[contenthash].css",
     }),
     
   ],
