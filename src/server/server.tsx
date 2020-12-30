@@ -9,6 +9,7 @@ import Home from "../front/Home/Home";
 import { Profile } from "../front/Profile/Profile";
 
 import dotenv from "dotenv";
+import hljs from "highlight.js";
 import helmet from "./util/helmet";
 
 //@ts-ignore
@@ -37,7 +38,22 @@ app.get("/prefetch/post/:slug", async (req, res) => {
     "content-type": "application/json",
   });
   if (post) {
-    const md = new Remarkable();
+    const md = new Remarkable({
+      html: true,
+      highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          try {
+            return hljs.highlight(lang, str).value;
+          } catch (err) {}
+        }
+
+        try {
+          return hljs.highlightAuto(str).value;
+        } catch (err) {}
+
+        return ""; // use external default escaping
+      },
+    });
     const html = md.render(post.fields.content);
 
     const anchorsWithH2: string[] | null = html.match(
@@ -94,7 +110,22 @@ app.get("/post/:slug", async (req, res) => {
     return "not found";
   }
 
-  const md = new Remarkable();
+  const md = new Remarkable({
+    html: true,
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return hljs.highlight(lang, str).value;
+        } catch (err) {}
+      }
+
+      try {
+        return hljs.highlightAuto(str).value;
+      } catch (err) {}
+
+      return ""; // use external default escaping
+    },
+  });
 
   const html = md.render(post.fields.content);
 
@@ -312,7 +343,22 @@ app.put("/renderWithItem", (req, res) => {
       );
       res.send(renderedHtml);
     } else {
-      const md = new Remarkable();
+      const md = new Remarkable({
+        html: true,
+        highlight: function (str, lang) {
+          if (lang && hljs.getLanguage(lang)) {
+            try {
+              return hljs.highlight(lang, str).value;
+            } catch (err) {}
+          }
+
+          try {
+            return hljs.highlightAuto(str).value;
+          } catch (err) {}
+
+          return ""; // use external default escaping
+        },
+      });
       const html = md.render(item.fields.content);
       const anchorsWithH2: string[] | null = html.match(
         /<h2 id=".+?">.+?<\/h2>/g
