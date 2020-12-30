@@ -9,13 +9,14 @@ import Home from "../front/Home/Home";
 import { Profile } from "../front/Profile/Profile";
 
 import dotenv from "dotenv";
-import marked from "marked";
 import helmet from "./util/helmet";
 
 //@ts-ignore
 import register from "@babel/register";
 import { getSiteMap } from "./util/getSitemap";
 import { getRss } from "./util/getRss";
+
+import { Remarkable } from "remarkable";
 
 register({
   presets: ["react"],
@@ -36,7 +37,8 @@ app.get("/prefetch/post/:slug", async (req, res) => {
     "content-type": "application/json",
   });
   if (post) {
-    const html = marked(post.fields.content);
+    const md = new Remarkable();
+    const html = md.render(post.fields.content);
 
     const anchorsWithH2: string[] | null = html.match(
       /<h2 id=".+?">.+?<\/h2>/g
@@ -92,7 +94,9 @@ app.get("/post/:slug", async (req, res) => {
     return "not found";
   }
 
-  const html = marked(post.fields.content);
+  const md = new Remarkable();
+
+  const html = md.render(post.fields.content);
 
   const anchorsWithH2: string[] | null = html.match(/<h2 id=".+?">.+?<\/h2>/g);
   let anchors;
@@ -308,7 +312,8 @@ app.put("/renderWithItem", (req, res) => {
       );
       res.send(renderedHtml);
     } else {
-      const html = marked(item.fields.content);
+      const md = new Remarkable();
+      const html = md.render(item.fields.content);
       const anchorsWithH2: string[] | null = html.match(
         /<h2 id=".+?">.+?<\/h2>/g
       );
