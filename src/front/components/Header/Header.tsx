@@ -90,6 +90,8 @@ export function Header() {
               src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon_transparent_header.png"
               alt="icon"
               className={icon}
+              width="36px"
+              height="36px"
             />
             しにゃいの学習帳
           </div>

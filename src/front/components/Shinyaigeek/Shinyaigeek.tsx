@@ -97,6 +97,8 @@ export const Shinyaigeek = (props: Props) => {
           src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon_transparent.png"
           className={monkeyImg}
           alt="monkey-icon"
+          width="270px"
+          height="270px"
         />
       </div>
       <div className={earth}>
@@ -105,6 +107,8 @@ export const Shinyaigeek = (props: Props) => {
             <img
               src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/earth.png"
               alt="earth"
+              width="50px"
+              height="50px"
             />
           </div>
         </div>
