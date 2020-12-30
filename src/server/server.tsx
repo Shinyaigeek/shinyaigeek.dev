@@ -25,7 +25,7 @@ dotenv.config();
 
 const app = fastify();
 
-const port = process.env.SERVER_PORT ?? "8080";
+const port = process.env.PORT ?? "8080";
 
 const title = "しにゃいの学習帳";
 
@@ -381,6 +381,7 @@ app.get("/getRss", (req, res) => {
   }
 });
 
-app.listen(port, (err, address) => {
+app.listen(Number(port), "0.0.0.0", (err, address) => {
   if (err) throw err;
+  console.log("server runs at" + port + "/" + address);
 });
