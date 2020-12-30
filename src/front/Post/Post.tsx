@@ -47,6 +47,46 @@ const postContent = css`
     }
   }
 
+  h3 {
+    color: var(--theme-color);
+    margin: -108px;
+    padding: 108px;
+    &:before {
+      content: "";
+      background-color: var(--headings-color);
+      border-radius: 4px;
+      width: 12px;
+      height: 30px;
+      display: inline-block;
+      margin-right: 12px;
+      position: relative;
+      top: 6px;
+    }
+  }
+
+  h4 {
+    color: var(--theme-color);
+    margin: -108px;
+    padding: 108px;
+    &:before {
+      content: "";
+      background-color: var(--headings-color);
+      border-radius: 4px;
+      width: 12px;
+      height: 30px;
+      display: inline-block;
+      margin-right: 12px;
+      position: relative;
+      top: 6px;
+    }
+  }
+
+  pre {
+    background: black;
+    border-radius: 2px;
+    padding: 4px 6px;
+  }
+
   h1 {
     margin-top: 42px;
   }
