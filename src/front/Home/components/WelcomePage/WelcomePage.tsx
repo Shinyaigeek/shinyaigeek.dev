@@ -34,6 +34,8 @@ export function WelcomePage() {
         className={banana}
         src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/banana.png"
         alt="banana"
+        width="200px"
+        height="200px"
       />
       <ScrollDown />
       <Shinyaigeek css={shinyaigeek} />
