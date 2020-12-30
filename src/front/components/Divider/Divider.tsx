@@ -7,6 +7,7 @@ const divider = css`
     height: 2px;
     border: 1px solid var(--theme-color);
     border-radius: 12px;
+    margin: 12px;
 `;
 
 export function Divider() {
