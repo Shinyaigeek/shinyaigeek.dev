@@ -100,19 +100,20 @@ export const Profile = Layout(() => {
         <div className="description">
           <div className={title}>About Me</div>
           <p className="content">
-            初めまして, 大手町で元気にweb developerをやっています.
+            Web Developerとして活動しています, しにゃい(Shinyaigeek)と言います.
             <br />
-            web技術そのもの, そしてwebのエコシステムに興味関心があります.
             <br />
-            web技術全般 ( server | edge | front )-side を触っていて,
-            特にfrontendをよくやっています.
+            大学では, 環境工学, 深層学習, 画像解析などを専攻しています.(研究テーマは未定)
             <br />
-            web app作成, web app,
-            mediaのパフォーマンスチューニングがほんの少しだけできます.
             <br />
-            OSS にも関心があります
+            Web Developerとしても活動していて, Webの持つUniversalityに惹かれており, Webの可能性を拡げていきエンジニア以外にも伝えていきたいというお思いで仕事をしています.
             <br />
-            絶賛就職活動中です.
+            <br />
+            Web の持つUniversalityを最大限引き出せるように, ロースペックなPCでもアプリケーションが動くようClientでのRuntime Costを低減したり, 通信環境が悪くとも動くようI/O Costを低減したり, Accesibilityを考えたコードを書いたりとそういった営みが得意です. そのためWeb開発においてはServerもEdgeもClientも幅広く触ってはいますが, Clientがメインになっています.
+            <br />
+            <br />
+            趣味はプログラミングで, WebとBrowserとUXとASTが好きです.
+            
           </p>
         </div>
       </div>
