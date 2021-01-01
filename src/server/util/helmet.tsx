@@ -10,9 +10,9 @@ const isProd = process.env.NODE_ENV === "production";
 const ASSETS_PORT = process.env.ASSETS_PORT ?? 3030;
 const ASSETS_SERVER =
   process.env.ASSETS_SERVER ??
-  "https://storage.cloud.google.com/blog_assets_shinyaigeek/static";
+  "https://static.shinyaigeek.dev/static";
 
-const assets = isProd ? ASSETS_SERVER : "http://localhost:" + ASSETS_PORT;
+export const assets = isProd ? ASSETS_SERVER : "http://localhost:" + ASSETS_PORT;
 
 const SiteHead = (props: HeadProps) => (
   <head>
@@ -41,17 +41,18 @@ const SiteHead = (props: HeadProps) => (
     <meta name="twitter:image" content={`${assets}/icon.png`} />
 
     <link rel="icon" type="image/x-icon" href={`${assets}/favicon.ico`} />
-    <link rel="stylesheet" type="text/css" href={`${assets}/styles.css`} />
+    <link rel="stylesheet" type="text/css" href={`${assets}/styles.4aec5739415a38dbb689.css`} />
+    <link rel="stylesheet" type="text/css" href={`${assets}/a11y-dark.css`} />
     <link
       rel="stylesheet"
       href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
     />
 
-    {/* <link
+    <link
       rel="alternate"
       type="application/rss+xml"
       title="しにゃいの学習帳"
-      href="https://shinyaigeek.dev/getRss"></link> */}
+      href="https://shinyaigeek.dev/getRss"></link>
   </head>
 );
 
@@ -70,7 +71,7 @@ const helmet = (props: HelmetProps) => {
       <div id="_app">
         <props.children {...props.props} />
       </div>
-      <script async defer src={`${assets}/main.js`} />
+      <script async defer src={`${assets}/main.9d223fe25aac2b3878bc.js`} />
     </html>
   );
 };

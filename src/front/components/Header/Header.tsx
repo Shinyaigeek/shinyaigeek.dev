@@ -87,7 +87,7 @@ export function Header() {
         <a href="/" id="link2Home">
           <div>
             <img
-              src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon_transparent_header.png"
+              src={`${"https://static.shinyaigeek.dev/static"}/icon_transparent_header.png`}
               alt="icon"
               className={icon}
               width="36px"

@@ -32,7 +32,7 @@ export function WelcomePage() {
     <div className={welcome}>
       <img
         className={banana}
-        src="https://storage.cloud.google.com/blog_assets_shinyaigeek/static/banana.png"
+        src={`${"https://static.shinyaigeek.dev/static"}/banana.png`}
         alt="banana"
         width="200px"
         height="200px"
