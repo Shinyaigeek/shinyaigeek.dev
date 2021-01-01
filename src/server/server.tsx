@@ -3,7 +3,7 @@ import fastify from "fastify";
 import { getBlogPosts, getHomeSlug } from "./util/getBlogPosts";
 import { getBlogPost } from "./util/getBlogPost";
 import * as React from "react";
-import { renderToString } from "react-dom/server";
+import { renderToStaticNodeStream } from "react-dom/server";
 import Post from "../front/Post/Post";
 import Home from "../front/Home/Home";
 import { Profile } from "../front/Profile/Profile";
@@ -12,16 +12,10 @@ import dotenv from "dotenv";
 import hljs from "highlight.js";
 import helmet from "./util/helmet";
 
-//@ts-ignore
-import register from "@babel/register";
 import { getSiteMap } from "./util/getSitemap";
 import { getRss } from "./util/getRss";
 
 import { Remarkable } from "remarkable";
-
-register({
-  presets: ["react"],
-});
 
 dotenv.config();
 
@@ -152,7 +146,7 @@ app.get("/post/:slug", async (req, res) => {
     },
     anchors: anchors,
   };
-  const renderedHtml = renderToString(
+  const renderedHtml = renderToStaticNodeStream(
     React.createElement(
       helmet({
         title: `${pro.fields.title} | ${title}`,
@@ -180,7 +174,7 @@ app.get("/", async (req, res) => {
   });
 
   const renderedHtml = posts
-    ? renderToString(
+    ? renderToStaticNodeStream(
         React.createElement(
           helmet({
             title: title,
@@ -195,7 +189,7 @@ app.get("/", async (req, res) => {
           })
         )
       )
-    : renderToString(
+    : renderToStaticNodeStream(
         React.createElement(
           helmet({
             title: title,
@@ -228,7 +222,7 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  const renderedHtml = renderToString(
+  const renderedHtml = renderToStaticNodeStream(
     React.createElement(
       helmet({
         title: `Profile | ${title}`,
@@ -264,7 +258,7 @@ app.put("/withItems", (req, res) => {
     const { rawItems } = req.body;
     const items = JSON.parse(rawItems);
     if (!items || items.items.length === 0) {
-      const renderedHtml = renderToString(
+      const renderedHtml = renderToStaticNodeStream(
         React.createElement(
           helmet({
             title: title,
@@ -291,7 +285,7 @@ app.put("/withItems", (req, res) => {
       );
       res.send(renderedHtml);
     } else {
-      const renderedHtml = renderToString(
+      const renderedHtml = renderToStaticNodeStream(
         React.createElement(
           helmet({
             title: title,
@@ -319,7 +313,7 @@ app.put("/renderWithItem", (req, res) => {
     const { rawItem } = req.body;
     const item = JSON.parse(rawItem).items[0];
     if (!item) {
-      const renderedHtml = renderToString(
+      const renderedHtml = renderToStaticNodeStream(
         React.createElement(
           helmet({
             title: `Not Found | ${title}`,
@@ -385,7 +379,7 @@ app.put("/renderWithItem", (req, res) => {
         },
         anchors: anchors,
       };
-      const renderedHtml = renderToString(
+      const renderedHtml = renderToStaticNodeStream(
         React.createElement(
           helmet({
             title: `${pro.fields.title} | ${title}`,
