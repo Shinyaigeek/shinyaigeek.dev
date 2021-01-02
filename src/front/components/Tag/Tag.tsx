@@ -2,10 +2,8 @@ export interface TagProps {
   child: React.ReactChild;
   slug: string;
   color: string;
-  border: string;
-  background: string;
 }
-import { css } from "linaria";
+import { css, cx } from "linaria";
 import React from "react";
 
 const tag = css`
@@ -16,13 +14,12 @@ const tag = css`
   display: inline-block;
   font-size: 21px;
   font-weight: bold;
+  margin: 12px 18px;
 `;
 
 export function Tag(props: TagProps) {
   return (
-    <a
-      href={props.slug}
-      className={tag}>
+    <a href={props.slug} className={cx(tag, props.color)}>
       {props.child}
     </a>
   );
