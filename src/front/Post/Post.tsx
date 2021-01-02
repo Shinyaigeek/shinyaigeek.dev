@@ -85,6 +85,7 @@ const postContent = css`
     background: black;
     border-radius: 2px;
     padding: 4px 6px;
+    color: white;
   }
 
   h1 {
