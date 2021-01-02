@@ -8,7 +8,7 @@ const inner = css`
   position: relative;
   top: 72px;
   overflow: hidden;
-  padding-bottom: 72px;
+  margin-bottom: 84px;
 `;
 
 const root = css`
