@@ -84,7 +84,7 @@ export function Header() {
   return (
     <div className={header}>
       <div className={title}>
-        <a href="/" id="link2Home">
+        <a href="/" className="link2Home">
           <div>
             <img
               src={`${"https://static.shinyaigeek.dev/static"}/icon_transparent_header.png`}
@@ -99,7 +99,7 @@ export function Header() {
       </div>
       <div className={contents}>
         <div className={anchor}>
-          <a href="/" id="link2Home">
+          <a href="/" className="link2Home">
             Blog
           </a>
         </div>

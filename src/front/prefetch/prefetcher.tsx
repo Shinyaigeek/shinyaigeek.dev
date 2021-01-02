@@ -11,38 +11,42 @@ export const __shinyaigeek_prefetch: {
 } = {};
 
 export const registerPrefetch = () => {
-  const homeAnchor = document.getElementById("link2Home");
-  if (homeAnchor) {
+  const homeAnchors = Array.from(document.getElementsByClassName("link2Home"));
+  if (homeAnchors.length > 0) {
     if (!__shinyaigeek_prefetch["home"]) {
       fetch("/prefetch/home").then((res) => {
         res.json().then((json) => {
-          homeAnchor.addEventListener("click", (evt) => {
-            evt.preventDefault();
-            __shinyaigeek_prefetch["home"] = json;
-            evt.preventDefault();
-            document.title = "しにゃいの学習帳";
-            history.pushState(null, "しにゃいの学習帳", "/");
-            render(
-              <Home items={json.items} prev={json.prev} next={json.next} />,
-              document.getElementById("_app")!
-            );
+          homeAnchors.forEach((homeAnchor) => {
+            homeAnchor.addEventListener("click", (evt) => {
+              evt.preventDefault();
+              __shinyaigeek_prefetch["home"] = json;
+              evt.preventDefault();
+              document.title = "しにゃいの学習帳";
+              history.pushState(null, "しにゃいの学習帳", "/");
+              render(
+                <Home items={json.items} prev={json.prev} next={json.next} />,
+                document.getElementById("_app")!
+              );
+            });
           });
         });
       });
     } else {
-      homeAnchor.addEventListener("click", (evt) => {
-        evt.preventDefault();
-        evt.preventDefault();
-        document.title = "しにゃいの学習帳";
-        history.pushState(null, "しにゃいの学習帳", "/");
-        render(
-          <Home
-            items={__shinyaigeek_prefetch["home"].items}
-            prev={__shinyaigeek_prefetch["home"].prev}
-            next={__shinyaigeek_prefetch["home"].next}
-          />,
-          document.getElementById("_app")!
-        );
+      homeAnchors.forEach((homeAnchor) => {
+        homeAnchor.addEventListener("click", (evt) => {
+          evt.preventDefault();
+          evt.preventDefault();
+          document.title = "しにゃいの学習帳";
+          history.pushState(null, "しにゃいの学習帳", "/");
+          render(
+            <Home
+              items={__shinyaigeek_prefetch["home"].items}
+              prev={__shinyaigeek_prefetch["home"].prev}
+              next={__shinyaigeek_prefetch["home"].next}
+            />,
+            document.getElementById("_app")!
+          );
+        });
       });
     }
   }
