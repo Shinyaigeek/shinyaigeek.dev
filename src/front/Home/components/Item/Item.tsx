@@ -64,7 +64,7 @@ export const Item = (props: MetaData) => {
         <a
           className="item--home__anchor read--more__anchor"
           href={`/post/${props.slug}`}>
-          <Button id="more-button">MORE</Button>
+          <Button id="more-button">Read</Button>
         </a>
       </div>
     </div>
