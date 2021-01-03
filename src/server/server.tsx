@@ -27,7 +27,7 @@ const port = process.env.PORT ?? "8080";
 const title = "しにゃいの学習帳";
 
 app.get("/prefetch/post/:slug", async (req, res) => {
-  const slug: string = req.params.slug ?? "";
+  const slug: string = (req.params as { slug: string }).slug ?? "";
   const post = await getBlogPost(slug);
   res.headers({
     "content-type": "application/json",
@@ -96,7 +96,7 @@ app.get("/prefetch/home", async (req, res) => {
 });
 
 app.get("/post/:slug", async (req, res) => {
-  const slug: string = req.params.slug ?? "";
+  const slug: string = (req.params as { slug: string }).slug ?? "";
   console.log("uuuu");
   const post = await getBlogPost(slug);
   console.log("asdf");
@@ -160,7 +160,7 @@ app.get("/post/:slug", async (req, res) => {
       })
     )
   );
-  res.raw.write("<!DOCTYPE html>")
+  res.raw.write("<!DOCTYPE html>");
   res.send(renderedHtml);
 });
 
@@ -221,7 +221,7 @@ app.get("/", async (req, res) => {
   res.headers({
     "content-type": "text/html; charset=utf-8",
   });
-  res.raw.write("<!DOCTYPE html>")
+  res.raw.write("<!DOCTYPE html>");
   res.send(renderedHtml);
 });
 
@@ -239,7 +239,7 @@ app.get("/profile", (req, res) => {
   res.headers({
     "content-type": "text/html; charset=utf-8",
   });
-  res.raw.write("<!DOCTYPE html>")
+  res.raw.write("<!DOCTYPE html>");
   res.send(renderedHtml);
 });
 
@@ -260,7 +260,7 @@ app.get("/json", async (req, res) => {
 
 app.put("/withItems", (req, res) => {
   try {
-    const { rawItems } = req.body;
+    const { rawItems } = req.body as { rawItems: string };
     const items = JSON.parse(rawItems);
     if (!items || items.items.length === 0) {
       const renderedHtml = renderToStaticNodeStream(
@@ -288,7 +288,7 @@ app.put("/withItems", (req, res) => {
           })
         )
       );
-      res.raw.write("<!DOCTYPE html>")
+      res.raw.write("<!DOCTYPE html>");
       res.send(renderedHtml);
     } else {
       const renderedHtml = renderToStaticNodeStream(
@@ -306,7 +306,7 @@ app.put("/withItems", (req, res) => {
           })
         )
       );
-      res.raw.write("<!DOCTYPE html>")
+      res.raw.write("<!DOCTYPE html>");
       res.send(renderedHtml);
     }
   } catch (_) {
@@ -317,7 +317,7 @@ app.put("/withItems", (req, res) => {
 
 app.put("/renderWithItem", (req, res) => {
   try {
-    const { rawItem } = req.body;
+    const { rawItem } = req.body as { rawItem: string };
     const item = JSON.parse(rawItem).items[0];
     if (!item) {
       const renderedHtml = renderToStaticNodeStream(
@@ -342,7 +342,7 @@ app.put("/renderWithItem", (req, res) => {
           })
         )
       );
-      res.raw.write("<!DOCTYPE html>")
+      res.raw.write("<!DOCTYPE html>");
       res.send(renderedHtml);
     } else {
       const md = new Remarkable({
@@ -398,7 +398,7 @@ app.put("/renderWithItem", (req, res) => {
           })
         )
       );
-      res.raw.write("<!DOCTYPE html>")
+      res.raw.write("<!DOCTYPE html>");
       res.send(renderedHtml);
     }
   } catch (_) {
