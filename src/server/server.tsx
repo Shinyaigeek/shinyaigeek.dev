@@ -11,6 +11,7 @@ import { Profile } from "../front/Profile/Profile";
 import dotenv from "dotenv";
 import hljs from "highlight.js";
 import helmet from "./util/helmet";
+import stream from "stream";
 
 import { getSiteMap } from "./util/getSitemap";
 import { getRss } from "./util/getRss";
@@ -96,7 +97,9 @@ app.get("/prefetch/home", async (req, res) => {
 
 app.get("/post/:slug", async (req, res) => {
   const slug: string = req.params.slug ?? "";
+  console.log("uuuu");
   const post = await getBlogPost(slug);
+  console.log("asdf");
   res.headers({
     "content-type": "text/html; charset=utf-8",
   });
@@ -157,7 +160,7 @@ app.get("/post/:slug", async (req, res) => {
       })
     )
   );
-
+  res.raw.write("<!DOCTYPE html>")
   res.send(renderedHtml);
 });
 
@@ -218,6 +221,7 @@ app.get("/", async (req, res) => {
   res.headers({
     "content-type": "text/html; charset=utf-8",
   });
+  res.raw.write("<!DOCTYPE html>")
   res.send(renderedHtml);
 });
 
@@ -235,6 +239,7 @@ app.get("/profile", (req, res) => {
   res.headers({
     "content-type": "text/html; charset=utf-8",
   });
+  res.raw.write("<!DOCTYPE html>")
   res.send(renderedHtml);
 });
 
@@ -283,6 +288,7 @@ app.put("/withItems", (req, res) => {
           })
         )
       );
+      res.raw.write("<!DOCTYPE html>")
       res.send(renderedHtml);
     } else {
       const renderedHtml = renderToStaticNodeStream(
@@ -300,6 +306,7 @@ app.put("/withItems", (req, res) => {
           })
         )
       );
+      res.raw.write("<!DOCTYPE html>")
       res.send(renderedHtml);
     }
   } catch (_) {
@@ -335,6 +342,7 @@ app.put("/renderWithItem", (req, res) => {
           })
         )
       );
+      res.raw.write("<!DOCTYPE html>")
       res.send(renderedHtml);
     } else {
       const md = new Remarkable({
@@ -390,6 +398,7 @@ app.put("/renderWithItem", (req, res) => {
           })
         )
       );
+      res.raw.write("<!DOCTYPE html>")
       res.send(renderedHtml);
     }
   } catch (_) {
