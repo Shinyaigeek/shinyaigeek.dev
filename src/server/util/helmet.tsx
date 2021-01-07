@@ -9,10 +9,13 @@ interface HeadProps {
 const isProd = process.env.NODE_ENV === "production";
 const ASSETS_PORT = process.env.ASSETS_PORT ?? 3030;
 const ASSETS_SERVER =
-  process.env.ASSETS_SERVER ??
-  "https://static.shinyaigeek.dev/static";
+  process.env.ASSETS_SERVER ?? "https://static.shinyaigeek.dev/static";
 
-export const assets = isProd ? ASSETS_SERVER : "http://localhost:" + ASSETS_PORT;
+const ogp = "https://shinyaigeek-og-image.vercel.app/";
+
+export const assets = isProd
+  ? ASSETS_SERVER
+  : "http://localhost:" + ASSETS_PORT;
 
 const SiteHead = (props: HeadProps) => (
   <head>
@@ -36,12 +39,26 @@ const SiteHead = (props: HeadProps) => (
     <meta property="og:url" content={props.slug} />
     <meta name="twitter:site" content="@shinyaigeek" />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
-    <meta property="og:image" content={`${assets}/icon.png`} />
-    <meta name="twitter:image" content={`${assets}/icon.png`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      property="og:image"
+      content={`${ogp}api/?title=${encodeURIComponent(
+        props.title.replace(" | しにゃいの学習帳", "")
+      )}`}
+    />
+    <meta
+      name="twitter:image"
+      content={`${ogp}api/?title=${encodeURIComponent(
+        props.title.replace(" | しにゃいの学習帳", "")
+      )}`}
+    />
 
     <link rel="icon" type="image/x-icon" href={`${assets}/favicon.ico`} />
-    <link rel="stylesheet" type="text/css" href={`${assets}/styles.4aec5739415a38dbb689.css`} />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href={`${assets}/styles.09c56d8d88c9e6814d01.css`}
+    />
     <link rel="stylesheet" type="text/css" href={`${assets}/a11y-dark.css`} />
     <link
       rel="stylesheet"
@@ -71,7 +88,7 @@ const helmet = (props: HelmetProps) => {
       <div id="_app">
         <props.children {...props.props} />
       </div>
-      <script async defer src={`${assets}/main.9d223fe25aac2b3878bc.js`} />
+      <script async defer src={`${assets}/main.e0a90dbec219d93f54ee.js`} />
     </html>
   );
 };
