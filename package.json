@@ -18,6 +18,7 @@
     "build:vercel": "yarn build:server:vercel && yarn build:client",
     "start": "ts-node server.ts",
     "perf": "ts-node scripts/perf.ts",
+    "purge": "ts-node scripts/purgeCache.ts",
     "serve": "NODE_ENV=production node api/server/server.js"
   },
   "repository": {
