@@ -19,7 +19,9 @@
     "start": "ts-node server.ts",
     "perf": "ts-node scripts/perf.ts",
     "purge": "ts-node scripts/purgeCache.ts",
-    "serve": "NODE_ENV=production node api/server/server.js"
+    "serve": "NODE_ENV=production node api/server/server.js",
+    "deploy": "gcloud run deploy --image gcr.io/shinyaigeek/blog --platform managed",
+    "build:container": "gcloud builds submit --tag gcr.io/shinyaigeek/blog"
   },
   "repository": {
     "type": "git",
