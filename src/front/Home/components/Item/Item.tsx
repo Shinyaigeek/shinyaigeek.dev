@@ -32,7 +32,6 @@ const home = css`
   margin: 12px auto;
 
   .date {
-    color: #8fff9e;
     padding: 16px 6px;
     font-size: 18px;
   }
