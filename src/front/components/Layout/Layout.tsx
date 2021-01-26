@@ -13,7 +13,7 @@ const inner = css`
 
 const root = css`
   --theme-header: #1a161a;
-  --theme-background: #fcfcfc;
+  --theme-background: #eee;
   --theme-color: #1e1e1e;
   --headings-color: #f2aaf2;
   --twitter-background: #fff;
