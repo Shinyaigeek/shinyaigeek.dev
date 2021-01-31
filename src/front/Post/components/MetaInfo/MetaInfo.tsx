@@ -16,13 +16,12 @@ export function MetaInfo(props: {
     publishedAt: string;
   };
 }) {
+  const { tags } = props.fields;
   return (
     <div className={metaInfo}>
       <h1>{props.fields.title}</h1>
-      <div>
-        {props.fields.publishedAt}
-      </div>
-      <DecorationTag tags={props.fields.tags} />
+      <div>{props.fields.publishedAt}</div>
+      <DecorationTag tags={tags} />
     </div>
   );
 }
