@@ -11,7 +11,8 @@
     "build": "yarn build:server && yarn build:client",
     "purge": "ts-node scripts/purgeCache.ts",
     "deploy": "gcloud run deploy --image gcr.io/shinyaigeek/blog --platform managed",
-    "build:container": "gcloud builds submit --tag gcr.io/shinyaigeek/blog"
+    "build:container": "gcloud builds submit --tag gcr.io/shinyaigeek/blog",
+    "serve": "NODE_ENV=production node api/server/server.js"
   },
   "repository": {
     "type": "git",
