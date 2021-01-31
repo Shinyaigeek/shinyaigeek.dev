@@ -15,10 +15,10 @@ const tag = css`
   }
 `;
 
-export function DecorationTag(props: Props) {
+export function DecorationTag({ tags }: Props) {
   return (
     <div className={tag}>
-      {props.tags.map((tag, index) => {
+      {tags.map((tag, index) => {
         return <div key={`decorationTag__${index}`}>{tag}</div>;
       })}
     </div>
