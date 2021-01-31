@@ -8,7 +8,7 @@ WORKDIR /Users/svpcpw01/Documents/shinyaigeek.dev
 # Copy application dependency manifests to the container image.
 # A wildcard is used to ensure both package.json AND package-lock.json are copied.
 # Copying this separately prevents re-running npm install on every code change.
-COPY package.json tsconfig.json yarn.lock webpack.config.common.js webpack.config.server.js webpack.config.client.js babel.config.json ./
+COPY package.json tsconfig.json yarn.lock webpack.config.common.js webpack.config.client.js babel.config.json ./
 COPY src ./src/
 
 # Install production dependencies.
