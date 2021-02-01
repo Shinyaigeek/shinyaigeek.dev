@@ -1,9 +1,9 @@
-import { render } from "lit-html";
 import { path2prefetchPath } from "./path2prefetchPath";
 import Post from "../Post/Post";
 import { Profile } from "../Profile/Profile";
 import Home from "../Home/Home";
 import { registerGitHubCalendar } from "../registerGitHubCalendar";
+import { render } from "../utils/render";
 
 // TODO: type safe key
 export const __shinyaigeek_prefetch: {
