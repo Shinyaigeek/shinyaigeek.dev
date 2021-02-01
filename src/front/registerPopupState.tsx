@@ -1,10 +1,10 @@
-import { render } from "lit-html";
 import Home from "./Home/Home";
 import Post from "./Post/Post";
 import { path2prefetchPath } from "./prefetch/path2prefetchPath";
 import { __shinyaigeek_prefetch } from "./prefetch/prefetcher";
 import { Profile } from "./Profile/Profile";
 import { registerGitHubCalendar } from "./registerGitHubCalendar";
+import { render } from "./utils/render";
 
 export const registerPopupState = () => {
   if (!window.onpopstate) {
