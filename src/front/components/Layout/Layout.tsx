@@ -22,6 +22,8 @@ const root = css`
   --item-background: #fff;
   --item-border: #f6e6ff;
   --image-gray: grayscale(0%);
+  --anchor-color: royalblue;
+  --anchor-visited-color: brown;
 
   @media (prefers-color-scheme: dark) {
     --theme-background: #3c3c3b;
@@ -33,6 +35,8 @@ const root = css`
     --item-background: #7b7a79;
     --item-border: #a2a2a1;
     --image-gray: grayscale(15%);
+    --anchor-color: CornflowerBlue;
+    --anchor-visited-color: RosyBrown;
   }
   :global() {
     body {
@@ -45,6 +49,10 @@ const root = css`
 
   a {
     text-decoration: none;
+    color: var(--anchor-color);
+    &:visited {
+      color: var(--anchor-visited-color);
+    }
   }
 `;
 
