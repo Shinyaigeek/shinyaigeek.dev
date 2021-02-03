@@ -22,7 +22,7 @@ const header = css`
   z-index: 1000;
 
   a {
-    color: white;
+    color: white !important;
   }
 
   @media (min-width: 750px) {
