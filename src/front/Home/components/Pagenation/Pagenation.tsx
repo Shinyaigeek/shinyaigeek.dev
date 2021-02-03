@@ -18,6 +18,7 @@ const paginationIcon = css`
   text-decoration: none;
   position: absolute;
   bottom: 0;
+  color: var(--text-background) !important;
 `;
 
 const prev = css`

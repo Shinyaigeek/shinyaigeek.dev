@@ -15,6 +15,7 @@ const tag = css`
   font-size: 21px;
   font-weight: bold;
   margin: 12px 18px;
+  color: black !important;
 `;
 
 export function Tag(props: TagProps) {
