@@ -57,7 +57,9 @@ const SiteHead = (props: HeadProps) => (
     <link
       rel="stylesheet"
       type="text/css"
-      href={`${assets}/styles.09c56d8d88c9e6814d01.css`}
+      href={`${assets}/styles${
+        process.env.CONTENTHASH_CSS ? "." + process.env.CONTENTHASH_CSS : ""
+      }.css`}
     />
     <link rel="stylesheet" type="text/css" href={`${assets}/a11y-dark.css`} />
     <link
@@ -88,7 +90,13 @@ const helmet = (props: HelmetProps) => {
       <div id="_app">
         <props.children {...props.props} />
       </div>
-      <script async defer src={`${assets}/main.e0a90dbec219d93f54ee.js`} />
+      <script
+        async
+        defer
+        src={`${assets}/main${
+          process.env.CONTENTHASH_JS ? "." + process.env.CONTENTHASH_JS : ""
+        }.js`}
+      />
     </html>
   );
 };
