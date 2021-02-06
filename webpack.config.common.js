@@ -3,10 +3,12 @@ const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 require("dotenv").config();
 
+const isProd = process.env.NODE_ENV !== "development";
+
 module.exports = {
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "[name].[contenthash].js",
+    filename: isProd ? "[name].[contenthash].js" : "[name].js",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", "node_modules"],
@@ -57,8 +59,7 @@ module.exports = {
     }),
 
     new MiniCssExtractPlugin({
-      filename: "styles.[contenthash].css",
+      filename: isRrod ? "styles.[contenthash].css" : "styles.css",
     }),
-    
   ],
 };
