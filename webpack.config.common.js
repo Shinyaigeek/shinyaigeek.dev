@@ -4,10 +4,11 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 require("dotenv").config();
 
 const isProd = process.env.NODE_ENV !== "development";
+const output = process.env.STATIC_FILE_OUTPUT || "dist";
 
 module.exports = {
   output: {
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, output),
     filename: isProd ? "[name].[contenthash].js" : "[name].js",
   },
   resolve: {
