@@ -60,7 +60,7 @@ module.exports = {
     }),
 
     new MiniCssExtractPlugin({
-      filename: isRrod ? "styles.[contenthash].css" : "styles.css",
+      filename: isProd ? "styles.[contenthash].css" : "styles.css",
     }),
   ],
 };
