@@ -10,6 +10,14 @@ module.exports = {
       },
     ],
     "linaria/babel",
-    "@babel/preset-typescript"
+    "@babel/preset-typescript",
+  ],
+  plugins: [
+    [
+      "transform-inline-environment-variables",
+      {
+        include: ["CONTENTHASH_JS", "CONTENTHASH_CSS"],
+      },
+    ],
   ],
 };
