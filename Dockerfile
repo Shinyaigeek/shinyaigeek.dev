@@ -10,6 +10,8 @@ WORKDIR /Users/svpcpw01/Documents/shinyaigeek.dev
 # Copying this separately prevents re-running npm install on every code change.
 COPY package.json tsconfig.json yarn.lock webpack.config.common.js webpack.config.client.js babel.config.json ./
 COPY src ./src/
+COPY scripts ./scripts/
+COPY static ./static/
 
 # Install production dependencies.
 RUN yarn install && yarn run build
