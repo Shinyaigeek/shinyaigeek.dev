@@ -34,6 +34,7 @@
     "@babel/preset-react": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
     "@babel/register": "^7.12.1",
+    "@google-cloud/storage": "^5.7.4",
     "@linaria/babel": "^3.0.0-beta.0",
     "@linaria/core": "^3.0.0-beta.0",
     "@linaria/react": "^3.0.0-beta.0",
