@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "contenthash": "ts-node -O '{\"module\":\"commonjs\"}' scripts/getContenthash.ts",
+    "clear": "ts-node -O '{\"module\":\"commonjs\"}' scripts/deleteDistAssets.ts",
     "dev:server": "NODE_ENV=development nodemon --watch src/ --exec  babel-node src/server/server.tsx --config-file ./src/server/babel.config.js --extensions '.ts,.tsx'",
     "build:server": "babel src --config-file ./src/server/babel.config.js --extensions '.ts,.tsx' --out-dir api",
     "dev:client": "NODE_ENV=development webpack-dev-server --config webpack.config.client.js --mode=development",
