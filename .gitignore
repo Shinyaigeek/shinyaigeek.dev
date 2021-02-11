@@ -115,3 +115,4 @@ public
 .linaria-cache
 .DS_Store
 api/*
+meta/*
