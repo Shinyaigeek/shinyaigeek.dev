@@ -3931,22 +3931,22 @@ github-calendar-legend@^1.0.11:
   resolved "https://registry.yarnpkg.com/github-calendar-legend/-/github-calendar-legend-1.0.11.tgz#0ffca7a893956d0babd4019bcbfbba5be230e3c7"
   integrity sha512-V7AkszKw2fMeU+g6W5dQ7vDGzJ3giSaukdOUEdUqhcHhQDVYcQf7c0Q3korbQzJsh+Wh3MqyPtN+ZSAuEnHP2A==
 
-github-calendar-parser@^1.1.12:
-  version "1.1.12"
-  resolved "https://registry.yarnpkg.com/github-calendar-parser/-/github-calendar-parser-1.1.12.tgz#298e7d3055c18efb9fcf5880fa0d5fda91f536d9"
-  integrity sha512-b/0LokoOtm5ep0a48KdYiWEq3nLOKMtDfk5ePz7R2R3X7XOOTT8R+InjEWGFU3c1aJJH04E+JjwNmbAmmeOPDg==
+github-calendar-parser@^1.1.13:
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/github-calendar-parser/-/github-calendar-parser-1.1.13.tgz#ab60a4cac0d2a121f946172487650e937cb3f778"
+  integrity sha512-zZZATmg54pX9Qyqc3I7FQ1M4Nfg0/+XshlGinf41tI8tZk96VWCMCIW52pzicwepdP/Ny5LZaBGE/NtprKevdw==
   dependencies:
     github-calendar-legend "^1.0.11"
 
-github-calendar@^2.2.6:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/github-calendar/-/github-calendar-2.2.6.tgz#a03df2332a29adc6607fe3050acb340cc18fd567"
-  integrity sha512-lhnBpcmkAGALLZgCmGhXlnYg1ABDLi3qKWOseaAFKmQieO6ruHGvoI065cZU95GJsddX7fiW6SiTeNR/RvqOVg==
+github-calendar@^2.2.7:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/github-calendar/-/github-calendar-2.2.7.tgz#6bca00167492233a1dd14f610cbb3fd3331aeb26"
+  integrity sha512-9/YY5e9OoXPJP2bEMRKgLtKpHJQY9eotghCUMmxkJNAaXP6OHGy/Pg7FZD21xlG5GGTkTe39W5+66APU0sWMEw==
   dependencies:
     add-subtract-date "^1.0.15"
     elly "^1.1.11"
     formatoid "^1.2.4"
-    github-calendar-parser "^1.1.12"
+    github-calendar-parser "^1.1.13"
 
 glob-parent@^3.1.0:
   version "3.1.0"
