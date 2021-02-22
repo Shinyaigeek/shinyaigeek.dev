@@ -18,6 +18,8 @@ import { getRss } from "./util/getRss";
 
 import { Remarkable } from "remarkable";
 
+import { tweetMacroPlugin } from "remarkable-plugin-tweet-share";
+
 dotenv.config();
 
 const app = fastify();
@@ -49,6 +51,9 @@ app.get("/prefetch/post/:slug", async (req, res) => {
         return ""; // use external default escaping
       },
     });
+
+    md.use(tweetMacroPlugin);
+
     const html = md.render(post.fields.content);
 
     const anchorsWithH2: string[] | null = html.match(
@@ -123,6 +128,8 @@ app.get("/post/:slug", async (req, res) => {
       return ""; // use external default escaping
     },
   });
+
+  md.use(tweetMacroPlugin);
 
   const html = md.render(post.fields.content);
 
