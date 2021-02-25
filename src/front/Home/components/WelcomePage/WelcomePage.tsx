@@ -1,4 +1,3 @@
-import { ScrollDown } from "../ScrollDown/ScrollDown";
 import { StarStream } from "../StartStream/StarStream";
 import React from "react";
 import { css } from "linaria";
@@ -37,7 +36,6 @@ export function WelcomePage() {
         width="200px"
         height="200px"
       />
-      <ScrollDown />
       <Shinyaigeek css={shinyaigeek} />
       <StarStream />
     </div>
