@@ -62,7 +62,8 @@ export const Item = (props: MetaData) => {
       <div className="read--more">
         <a
           className="item--home__anchor read--more__anchor"
-          href={`/post/${props.slug}`}>
+          href={`/post/${props.slug}`}
+          tabIndex={-1}>
           <Button id="more-button">Read</Button>
         </a>
       </div>
