@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import assert from "assert";
-import fetch from "node-fetch"
+import fetch from "node-fetch";
 
 const baseUrl = "https://api.cloudflare.com/client/v4/";
 
@@ -12,7 +12,7 @@ export const purgeCache = () => {
     CLOUDFLARE_EMAIL: email,
   } = process.env;
   assert(token && id && email, "CloudFlare Token is undefined");
-  console.log(token)
+  console.log(token);
   const target = `${baseUrl}zones/${id}/purge_cache`;
   return fetch(target, {
     method: "POST",
@@ -22,7 +22,11 @@ export const purgeCache = () => {
       "X-Auth-Key": token,
     },
     body: JSON.stringify({
-        files: ["https://shinyaigeek.dev/korehanai.html"]
+      files: [
+        "https://shinyaigeek.dev/**/*.js",
+        "https://shinyaigeek.dev/**/*.css",
+        "https://shinyaigeek.dev/**/*.html",
+      ],
     }),
   })
     .then(async (res) => {
@@ -33,4 +37,4 @@ export const purgeCache = () => {
     });
 };
 
-purgeCache()
+purgeCache();
