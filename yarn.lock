@@ -6693,6 +6693,11 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
+remarkable-plugin-heading-id@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/remarkable-plugin-heading-id/-/remarkable-plugin-heading-id-1.0.0.tgz#3e8ebff9b11e489895bb528800ac85773f3d6021"
+  integrity sha512-UlkYVGFOCBukpYRU1T7g67alTLzSeDN0W+6gsUeJcTnz1hOhGa4fHI2LzNJjqXpUuU/s+SaAQiweOp4zYDCKtQ==
+
 remarkable-plugin-tweet-share@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/remarkable-plugin-tweet-share/-/remarkable-plugin-tweet-share-1.0.0.tgz#8dc74dfdcec1aeef445682a429b6b981076c8a85"
