@@ -33,9 +33,7 @@ export function Anchor(props: Props) {
       {props.anchors &&
         props.anchors.map((anchor, index) => {
           return (
-            <a
-              key={index}
-              href={`#${encodeURI(anchor.toLowerCase()).replace(/%20/g, "-")}`}>
+            <a key={index} href={`#2__${index}`}>
               {anchor}
             </a>
           );

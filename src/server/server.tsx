@@ -76,10 +76,6 @@ app.get("/prefetch/post/:slug", async (req, res) => {
         return anc.replace(/<h2 id=".+?">/, "").replace("</h2>", "");
       });
     }
-    const body = html.replace(/<h2 id=".+?">/g, (target: string) => {
-      const id = target.replace('<h2 id="', "").replace('">', "");
-      return `<h2 id="${encodeURI(id)}">`;
-    });
     const pro = {
       fields: {
         title: post.fields.title,
@@ -87,7 +83,7 @@ app.get("/prefetch/post/:slug", async (req, res) => {
         tags: post.fields.tags,
         publishedAt: post.fields.publishedAt,
         hasEn: post.fields.hasEn,
-        content: body,
+        content: html,
         slug: post.fields.slug,
       },
       anchors: anchors,
@@ -161,10 +157,6 @@ app.get("/post/:slug", async (req, res) => {
       return anc.replace(/<h2 id=".+?">/, "").replace("</h2>", "");
     });
   }
-  const body = html.replace(/<h2 id=".+?">/g, (target: string) => {
-    const id = target.replace('<h2 id="', "").replace('">', "");
-    return `<h2 id="${encodeURI(id)}">`;
-  });
   const pro = {
     fields: {
       title: post.fields.title,
@@ -172,7 +164,7 @@ app.get("/post/:slug", async (req, res) => {
       tags: post.fields.tags,
       publishedAt: post.fields.publishedAt,
       hasEn: post.fields.hasEn,
-      content: body,
+      content: html,
       slug: post.fields.slug,
     },
     anchors: anchors,

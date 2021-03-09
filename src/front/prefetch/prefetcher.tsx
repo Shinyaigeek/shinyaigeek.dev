@@ -66,6 +66,9 @@ export const registerPrefetch = () => {
     if (entry.target.getAttribute("href") === "/profile") {
       return;
     }
+    if(entry.target.getAttribute("href")?.startsWith("#")) {
+      return;
+    }
     const prefetchPath = path2prefetchPath(entry.target.getAttribute("href"));
     if (prefetchPath) {
       if (!__shinyaigeek_prefetch[prefetchPath]) {

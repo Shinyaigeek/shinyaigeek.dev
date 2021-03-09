@@ -9,6 +9,9 @@ import { render } from "./utils/render";
 export const registerPopupState = () => {
   if (!window.onpopstate) {
     window.onpopstate = () => {
+      if (document.location.hash.length > 0) {
+        return;
+      }
       switch (document.location.pathname) {
         case "/": {
           if (__shinyaigeek_prefetch["home"]) {
@@ -41,7 +44,7 @@ export const registerPopupState = () => {
             if (prefetchPath) {
               if (__shinyaigeek_prefetch[prefetchPath]) {
                 document.title = __shinyaigeek_prefetch[prefetchPath].title;
-                console.log(__shinyaigeek_prefetch[prefetchPath])
+                console.log(__shinyaigeek_prefetch[prefetchPath]);
                 render(
                   <Post fields={__shinyaigeek_prefetch[prefetchPath].fields} />,
                   document.getElementById("_app")!
