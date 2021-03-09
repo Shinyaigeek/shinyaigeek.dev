@@ -19,6 +19,7 @@ import { getRss } from "./util/getRss";
 import { Remarkable } from "remarkable";
 
 import { tweetMacroPlugin } from "remarkable-plugin-tweet-share";
+import { remarkablePluginHeadingId } from "remarkable-plugin-heading-id";
 
 dotenv.config();
 
@@ -53,6 +54,16 @@ app.get("/prefetch/post/:slug", async (req, res) => {
     });
 
     md.use(tweetMacroPlugin);
+    md.use(remarkablePluginHeadingId, {
+      targets: ["h2"],
+      createId: (
+        level: 1 | 2 | 3 | 4 | 5 | 6,
+        _: string,
+        idx: number
+      ) => {
+        return `${level}__${idx}`
+      },
+    });
 
     const html = md.render(post.fields.content);
 
@@ -130,6 +141,16 @@ app.get("/post/:slug", async (req, res) => {
   });
 
   md.use(tweetMacroPlugin);
+  md.use(remarkablePluginHeadingId, {
+    targets: ["h2"],
+    createId: (
+      level: 1 | 2 | 3 | 4 | 5 | 6,
+      _: string,
+      idx: number
+    ) => {
+      return `${level}__${idx}`
+    },
+  });
 
   const html = md.render(post.fields.content);
 
