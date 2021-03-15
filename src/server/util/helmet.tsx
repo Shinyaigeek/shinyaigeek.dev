@@ -97,6 +97,10 @@ const helmet = (props: HelmetProps) => {
           process.env.CONTENTHASH_JS ? "." + process.env.CONTENTHASH_JS : ""
         }.js`}
       />
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "0893ac88cf0542af88bfd9b93008b408", "spa": true}'></script>
     </html>
   );
 };
