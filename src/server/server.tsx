@@ -95,7 +95,7 @@ app.get("/prefetch/home", async (req, res) => {
     page?: string;
   };
 
-  const posts = await getBlogPosts({
+  const [posts, _] = await getBlogPosts({
     slug: "",
     tag,
     page: Number.isInteger(Number(page)) ? Number(page) : undefined,
