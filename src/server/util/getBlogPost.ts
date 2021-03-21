@@ -12,6 +12,9 @@ export interface Entry {
     content: string;
     hasEn: boolean;
   };
+  sys: {
+    updatedAt: string;
+  };
 }
 
 export const getBlogPost = (target: string) => {
