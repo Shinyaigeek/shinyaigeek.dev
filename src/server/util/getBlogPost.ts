@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import { generateHash } from "./generateHash";
 
 require("dotenv").config();
 
@@ -11,6 +12,9 @@ export interface Entry {
     tags: string[];
     content: string;
     hasEn: boolean;
+  };
+  sys: {
+    updatedAt: string;
   };
 }
 
@@ -27,16 +31,18 @@ export const getBlogPost = (target: string) => {
       return item
         .json()
         .then((entries) => {
-          return entries.items[0] as Entry;
+          const item = entries.items[0] as Entry;
+          const hash = generateHash(item.sys.updatedAt);
+          return [item, hash] as const;
         })
         .catch((err) => {
           console.log(err);
-          return false as false;
+          return [false as false, -1] as const;
         });
     })
     .catch((err) => {
       console.log(err);
-      return false as false;
+      return [false as false, -1] as const;
     });
 };
 

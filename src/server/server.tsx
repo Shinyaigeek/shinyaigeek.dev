@@ -20,6 +20,7 @@ import { Remarkable } from "remarkable";
 
 import { tweetMacroPlugin } from "remarkable-plugin-tweet-share";
 import { remarkablePluginHeadingId } from "remarkable-plugin-heading-id";
+import { generateHash } from "./util/generateHash";
 
 dotenv.config();
 
@@ -31,7 +32,7 @@ const title = "しにゃいの学習帳";
 
 app.get("/prefetch/post/:slug", async (req, res) => {
   const slug: string = (req.params as { slug: string }).slug ?? "";
-  const post = await getBlogPost(slug);
+  const [post, _] = await getBlogPost(slug);
   res.headers({
     "content-type": "application/json",
   });
@@ -56,12 +57,8 @@ app.get("/prefetch/post/:slug", async (req, res) => {
     md.use(tweetMacroPlugin);
     md.use(remarkablePluginHeadingId, {
       targets: ["h2"],
-      createId: (
-        level: 1 | 2 | 3 | 4 | 5 | 6,
-        _: string,
-        idx: number
-      ) => {
-        return `${level}__${idx}`
+      createId: (level: 1 | 2 | 3 | 4 | 5 | 6, _: string, idx: number) => {
+        return `${level}__${idx}`;
       },
     });
 
@@ -109,12 +106,7 @@ app.get("/prefetch/home", async (req, res) => {
 
 app.get("/post/:slug", async (req, res) => {
   const slug: string = (req.params as { slug: string }).slug ?? "";
-  console.log("uuuu");
-  const post = await getBlogPost(slug);
-  console.log("asdf");
-  res.headers({
-    "content-type": "text/html; charset=utf-8",
-  });
+  const [post, hash] = await getBlogPost(slug);
   if (!post) {
     return "not found";
   }
@@ -139,12 +131,8 @@ app.get("/post/:slug", async (req, res) => {
   md.use(tweetMacroPlugin);
   md.use(remarkablePluginHeadingId, {
     targets: ["h2"],
-    createId: (
-      level: 1 | 2 | 3 | 4 | 5 | 6,
-      _: string,
-      idx: number
-    ) => {
-      return `${level}__${idx}`
+    createId: (level: 1 | 2 | 3 | 4 | 5 | 6, _: string, idx: number) => {
+      return `${level}__${idx}`;
     },
   });
 
@@ -180,6 +168,9 @@ app.get("/post/:slug", async (req, res) => {
       })
     )
   );
+  res.raw.setHeader("Content-Type", "text/html; charset=utf-8");
+  res.raw.setHeader("Cache-Control", "no-cache");
+  res.raw.setHeader("ETag", hash);
   res.raw.write("<!DOCTYPE html>");
   res.send(renderedHtml);
 });
@@ -190,7 +181,7 @@ app.get("/", async (req, res) => {
     page?: string;
   };
 
-  const posts = await getBlogPosts({
+  const [posts, hash] = await getBlogPosts({
     slug: "",
     tag,
     page: Number.isInteger(Number(page)) ? Number(page) : undefined,
@@ -238,9 +229,9 @@ app.get("/", async (req, res) => {
         )
       );
 
-  res.headers({
-    "content-type": "text/html; charset=utf-8",
-  });
+  res.raw.setHeader("Content-Type", "text/html; charset=utf-8");
+  res.raw.setHeader("Cache-Control", "no-cache");
+  res.raw.setHeader("ETag", hash);
   res.raw.write("<!DOCTYPE html>");
   res.send(renderedHtml);
 });
@@ -256,9 +247,11 @@ app.get("/profile", (req, res) => {
       })
     )
   );
-  res.headers({
-    "content-type": "text/html; charset=utf-8",
-  });
+  const hash = generateHash("");
+  res.raw.setHeader("Content-Type", "text/html; charset=utf-8");
+  res.raw.setHeader("Cache-Control", "no-cache");
+  res.raw.setHeader("ETag", hash);
+  res.raw.write("<!DOCTYPE html>");
   res.raw.write("<!DOCTYPE html>");
   res.send(renderedHtml);
 });
