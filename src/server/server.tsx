@@ -19,6 +19,7 @@ import { getRss } from "./util/getRss";
 import { Remarkable } from "remarkable";
 
 import { tweetMacroPlugin } from "remarkable-plugin-tweet-share";
+//@ts-ignore
 import { remarkablePluginHeadingId } from "remarkable-plugin-heading-id";
 import { generateHash } from "./util/generateHash";
 
@@ -424,6 +425,7 @@ app.get("/getSitemap", (req, res) => {
   try {
     getSiteMap()
       .then((xml) => {
+        res.header("Content-Type", "text/xml; charset=utf-8");
         res.send(xml);
       })
       .catch((e) => {
@@ -438,6 +440,7 @@ app.get("/getRss", (req, res) => {
   try {
     getRss()
       .then((xml) => {
+        res.header("Content-Type", "text/xml; charset=utf-8");
         res.send(xml);
       })
       .catch((e) => {
