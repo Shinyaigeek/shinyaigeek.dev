@@ -67,6 +67,29 @@ const SiteHead = (props: HeadProps) => (
       href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
     />
 
+    <link rel="preload" as="style" href={`${assets}/a11y-dark.css`} />
+    <link
+      rel="preload"
+      as="style"
+      href={`${assets}/styles${
+        process.env.CONTENTHASH_CSS ? "." + process.env.CONTENTHASH_CSS : ""
+      }.css`}
+    />
+    <link
+      rel="preload"
+      as="style"
+      href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://static.shinyaigeek.dev/static/icon_transparent_header.png"
+    />
+
+    <link rel="dns-prefetch" href="//static.shinyaigeek.dev" />
+
+    <link rel="preconnect" href="//static.shinyaigeek.dev" />
+
     <link
       rel="alternate"
       type="application/rss+xml"
