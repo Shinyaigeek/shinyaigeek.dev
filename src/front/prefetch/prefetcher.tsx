@@ -21,8 +21,8 @@ export const registerPrefetch = () => {
               evt.preventDefault();
               __shinyaigeek_prefetch["home"] = json;
               evt.preventDefault();
-              document.title = "しにゃいの学習帳";
-              history.pushState(null, "しにゃいの学習帳", "/");
+              document.title = "shinyaigeek.dev";
+              history.pushState(null, "shinyaigeek.dev", "/");
               render(
                 <Home items={json.items} prev={json.prev} next={json.next} />,
                 document.getElementById("_app")!
@@ -36,8 +36,8 @@ export const registerPrefetch = () => {
         homeAnchor.addEventListener("click", (evt) => {
           evt.preventDefault();
           evt.preventDefault();
-          document.title = "しにゃいの学習帳";
-          history.pushState(null, "しにゃいの学習帳", "/");
+          document.title = "shinyaigeek.dev";
+          history.pushState(null, "shinyaigeek.dev", "/");
           render(
             <Home
               items={__shinyaigeek_prefetch["home"].items}
@@ -54,8 +54,8 @@ export const registerPrefetch = () => {
   if (profileAnchor) {
     profileAnchor.addEventListener("click", (evt) => {
       evt.preventDefault();
-      document.title = "プロフィール | しにゃいの学習帳";
-      history.pushState(null, "プロフィール | しにゃいの学習帳", "/profile");
+      document.title = "プロフィール | shinyaigeek.dev";
+      history.pushState(null, "プロフィール | shinyaigeek.dev", "/profile");
       render(<Profile />, document.getElementById("_app")!);
       registerGitHubCalendar();
     });

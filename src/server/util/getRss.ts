@@ -17,7 +17,7 @@ export const getRss = () => {
             <rss version='2.0'  xmlns:atom="http://www.w3.org/2005/Atom">
             <channel>
             <atom:link href="https://shinyaigeek.dev/getRss" rel="self" type="application/rss+xml" />
-            <title>しにゃいの学習帳</title>
+            <title>shinyaigeek.dev</title>
             <link>https://shinyaigeek.dev/</link>
             <description>見習いWeb developer兼大学生のブログ. 主にweb開発の知見について喋ります</description>
             <language>ja</language>
@@ -26,7 +26,7 @@ export const getRss = () => {
             <webMaster>me@shinyaigeek.dev (Shinobu Hayashi)</webMaster>
             <image>
                 <url>https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon.png</url>
-                <title>しにゃいの学習帳</title>
+                <title>shinyaigeek.dev</title>
                 <link>https://shinyaigeek.dev/</link>
                 <width>32</width>
                 <height>32</height>
@@ -38,7 +38,7 @@ export const getRss = () => {
                 }) => {
                   return `
                 <item>
-                <title>${con.fields.title} | しにゃいの学習帳</title>
+                <title>${con.fields.title} | shinyaigeek.dev</title>
                 <link>https://shinyaigeek.dev/post/${con.fields.slug}</link>
                 <description>${con.fields.description}</description>
                 <guid>https://shinyaigeek.dev/post/${con.fields.slug}</guid>

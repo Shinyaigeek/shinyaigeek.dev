@@ -93,7 +93,7 @@ export function Header() {
               width="36px"
               height="36px"
             />
-            しにゃいの学習帳
+            shinyaigeek.dev
           </div>
         </a>
       </div>
