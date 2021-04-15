@@ -29,7 +29,7 @@ const app = fastify();
 
 const port = process.env.PORT ?? "8080";
 
-const title = "しにゃいの学習帳";
+const title = "shinyaigeek.dev";
 
 app.get("/prefetch/post/:slug", async (req, res) => {
   const slug: string = (req.params as { slug: string }).slug ?? "";

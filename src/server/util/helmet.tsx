@@ -26,7 +26,7 @@ const SiteHead = (props: HeadProps) => (
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <meta property="og:title" content={props.title} />
-    <meta property="og:site_name" content="しにゃいの学習帳" />
+    <meta property="og:site_name" content="shinyaigeek.dev" />
     <meta property="og:locale" content="ja_JP" />
     <meta
       name="description"
@@ -43,13 +43,13 @@ const SiteHead = (props: HeadProps) => (
     <meta
       property="og:image"
       content={`${ogp}api/?title=${encodeURIComponent(
-        props.title.replace(" | しにゃいの学習帳", "")
+        props.title.replace(" | shinyaigeek.dev", "")
       )}`}
     />
     <meta
       name="twitter:image"
       content={`${ogp}api/?title=${encodeURIComponent(
-        props.title.replace(" | しにゃいの学習帳", "")
+        props.title.replace(" | shinyaigeek.dev", "")
       )}`}
     />
 
@@ -93,7 +93,7 @@ const SiteHead = (props: HeadProps) => (
     <link
       rel="alternate"
       type="application/rss+xml"
-      title="しにゃいの学習帳"
+      title="shinyaigeek.dev"
       href="https://shinyaigeek.dev/getRss"></link>
   </head>
 );

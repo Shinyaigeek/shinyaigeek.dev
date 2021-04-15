@@ -15,7 +15,7 @@ export const registerPopupState = () => {
       switch (document.location.pathname) {
         case "/": {
           if (__shinyaigeek_prefetch["home"]) {
-            document.title = "しにゃいの学習帳";
+            document.title = "shinyaigeek.dev";
             render(
               <Home
                 items={__shinyaigeek_prefetch["home"].items}
@@ -31,7 +31,7 @@ export const registerPopupState = () => {
         }
 
         case "/profile": {
-          document.title = "プロフィール | しにゃいの学習帳";
+          document.title = "プロフィール | shinyaigeek.dev";
           render(<Profile />, document.getElementById("_app")!);
           registerGitHubCalendar();
           break;
