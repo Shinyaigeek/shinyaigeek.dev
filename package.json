@@ -94,5 +94,11 @@
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
+  },
+  "devDependencies": {
+    "@lingui/cli": "^3.8.9",
+    "@lingui/core": "^3.8.9",
+    "@lingui/macro": "^3.8.9",
+    "babel-plugin-macros": "^3.0.1"
   }
 }
