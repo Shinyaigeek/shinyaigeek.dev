@@ -22,6 +22,19 @@ import { tweetMacroPlugin } from "remarkable-plugin-tweet-share";
 //@ts-ignore
 import { remarkablePluginHeadingId } from "remarkable-plugin-heading-id";
 import { generateHash } from "./util/generateHash";
+import { i18n } from "@lingui/core";
+
+// allow js
+// @ts-ignore
+import { messages as ja } from "../locales/ja/messages";
+
+// allow js
+// @ts-ignore
+import { messages as en } from "../locales/en/messages";
+
+i18n.load("ja", ja);
+i18n.load("en", en);
+i18n.activate("ja");
 
 dotenv.config();
 
@@ -238,6 +251,28 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
+  const renderedHtml = renderToStaticNodeStream(
+    React.createElement(
+      helmet({
+        title: `Profile | ${title}`,
+        style: "profile",
+        children: Profile,
+        slug: "https://shinyaigeek.dev/profile",
+      })
+    )
+  );
+  const hash = generateHash("");
+  res.raw.setHeader("Content-Type", "text/html; charset=utf-8");
+  res.raw.setHeader("Cache-Control", "no-cache");
+  res.raw.setHeader("ETag", hash);
+  res.raw.write("<!DOCTYPE html>");
+  res.raw.write("<!DOCTYPE html>");
+  res.send(renderedHtml);
+});
+
+// TODO refactor
+app.get("/en/profile", (req, res) => {
+  i18n.activate("en");
   const renderedHtml = renderToStaticNodeStream(
     React.createElement(
       helmet({

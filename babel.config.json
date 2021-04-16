@@ -1,4 +1,11 @@
 {
-  "presets": ["@babel/preset-react", "@babel/preset-env", "linaria/babel"],
-  "plugins": ["babel-plugin-lit-jsx"]
+  "presets": [
+    "@babel/preset-react",
+    "@babel/preset-env",
+    "linaria/babel"
+  ],
+  "plugins": [
+    "babel-plugin-lit-jsx",
+    "macros"
+  ]
 }

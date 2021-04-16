@@ -19,5 +19,6 @@ module.exports = {
         include: ["CONTENTHASH_JS", "CONTENTHASH_CSS"],
       },
     ],
+    "macros"
   ],
 };

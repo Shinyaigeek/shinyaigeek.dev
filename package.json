@@ -16,7 +16,9 @@
     "deploy": "gcloud run deploy --image gcr.io/shinyaigeek/blog --platform managed",
     "deploy:assets": "yarn clear && yarn build && yarn upload && yarn purge",
     "build:container": "gcloud builds submit --tag gcr.io/shinyaigeek/blog",
-    "serve": "NODE_ENV=production node api/server/server.js"
+    "serve": "NODE_ENV=production node api/server/server.js",
+    "i18n:extract": "lingui extract",
+    "i18n:compile": "lingui compile"
   },
   "repository": {
     "type": "git",
@@ -94,5 +96,11 @@
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
+  },
+  "devDependencies": {
+    "@lingui/cli": "^3.8.9",
+    "@lingui/core": "^3.8.9",
+    "@lingui/macro": "^3.8.9",
+    "babel-plugin-macros": "^3.0.1"
   }
 }

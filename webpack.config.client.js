@@ -21,7 +21,7 @@ module.exports = {
                 "@babel/preset-env",
                 "linaria/babel",
               ],
-              plugins: ["babel-plugin-lit-jsx"],
+              plugins: ["babel-plugin-lit-jsx", "macros"],
             },
           },
           "linaria/loader",
