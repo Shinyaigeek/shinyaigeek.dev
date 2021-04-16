@@ -7,6 +7,7 @@ import { render } from "lit-html";
 import React from "react";
 import { css } from "linaria";
 import { JobItem } from "./components/JobItem/JobItem";
+import { t } from "@lingui/macro";
 
 const profile = css`
   width: 80vw;
@@ -41,7 +42,7 @@ export const Profile = Layout(() => {
         <Divider />
 
         <div className="history--study element">
-          <span className={title}>学歴</span>
+          <span className={title}>{t`education`}</span>
           <ul className={lists}>
             <li>2018年:西大和学園高等学校卒業</li>
             <li>2018年:東京大学文科Ⅲ類入学</li>
@@ -103,17 +104,24 @@ export const Profile = Layout(() => {
             Web Developerとして活動しています, しにゃい(Shinyaigeek)と言います.
             <br />
             <br />
-            大学では, 環境工学, 深層学習, 画像解析などを専攻しています.(研究テーマは未定)
+            大学では, 環境工学, 深層学習,
+            画像解析などを専攻しています.(研究テーマは未定)
             <br />
             <br />
-            Web Developerとしても活動していて, Webの持つUniversalityに惹かれており, Webの可能性を拡げていきエンジニア以外にも伝えていきたいというお思いで仕事をしています.
+            Web Developerとしても活動していて,
+            Webの持つUniversalityに惹かれており,
+            Webの可能性を拡げていきエンジニア以外にも伝えていきたいというお思いで仕事をしています.
             <br />
             <br />
-            Web の持つUniversalityを最大限引き出せるように, ロースペックなPCでもアプリケーションが動くようClientでのRuntime Costを低減したり, 通信環境が悪くとも動くようI/O Costを低減したり, Accesibilityを考えたコードを書いたりとそういった営みが得意です. そのためWeb開発においてはServerもEdgeもClientも幅広く触ってはいますが, Clientがメインになっています.
+            Web の持つUniversalityを最大限引き出せるように,
+            ロースペックなPCでもアプリケーションが動くようClientでのRuntime
+            Costを低減したり, 通信環境が悪くとも動くようI/O Costを低減したり,
+            Accesibilityを考えたコードを書いたりとそういった営みが得意です.
+            そのためWeb開発においてはServerもEdgeもClientも幅広く触ってはいますが,
+            Clientがメインになっています.
             <br />
             <br />
             趣味はプログラミングで, WebとBrowserとUXとASTが好きです.
-            
           </p>
         </div>
       </div>
