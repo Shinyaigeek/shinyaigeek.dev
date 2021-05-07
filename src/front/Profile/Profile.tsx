@@ -44,10 +44,10 @@ export const Profile = Layout(() => {
         <div className="history--study element">
           <span className={title}>{t`education`}</span>
           <ul className={lists}>
-            <li>2018年:西大和学園高等学校卒業</li>
-            <li>2018年:東京大学文科Ⅲ類入学</li>
-            <li>2019年:東京大学工学部システム創成学科内定</li>
-            <li>2020年:東京大学工学部システム創成学科進学</li>
+            <li>2018: {t`graduate_nishiyamato`}</li>
+            <li>2018: {t`enroll_univ_tokyo`}</li>
+            <li>2019: {t`will_major_in_system`}</li>
+            <li>2020: {t`major_in_system`}</li>
             <li>???</li>
           </ul>
         </div>

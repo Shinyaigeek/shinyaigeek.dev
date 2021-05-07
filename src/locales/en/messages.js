@@ -1,1 +1,1 @@
-/*eslint-disable*/module.exports={messages:{"education":"Education"}};
+/*eslint-disable*/module.exports={messages:{"education":"Education","enroll_univ_tokyo":"Enter University of Tokyo","graduate_nishiyamato":"Graduated from Nishiyamato highschool","major_in_system":"Major in Factory of Engineering","will_major_in_system":"decide informally to major in Factory of Engineering"}};

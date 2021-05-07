@@ -1,3 +1,7 @@
 {
-  "education": "学歴"
+  "education": "学歴",
+  "enroll_univ_tokyo": "東京大学入学",
+  "graduate_nishiyamato": "西大和学園高等学校卒業",
+  "major_in_system": "工学部システム創成学科進学",
+  "will_major_in_system": "工学部システム創成学科内定"
 }
