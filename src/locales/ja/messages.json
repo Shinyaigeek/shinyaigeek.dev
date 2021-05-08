@@ -1,3 +1,26 @@
 {
-  "education": "学歴"
+  "certain_news_media_company": "某メディア企業",
+  "certain_news_media_company_description": "フロントエンドエンジニアとして, Web Frontend文脈でのパフォーマンス改善, インテラクティブなアプリケーション開発に従事する.",
+  "certain_news_media_company_position": "Webエンジニア",
+  "cybozu": "Cybozu",
+  "cybozu_description": "学生インターンとして, チームを組みkintoneででの協働をより補強する拡張機能の開発を行う.",
+  "cybozu_position": "Internship Student",
+  "education": "学歴",
+  "enroll_univ_tokyo": "東京大学入学",
+  "graduate_nishiyamato": "西大和学園高等学校卒業",
+  "major_in_system": "工学部システム創成学科進学",
+  "moshimos": "MOSHIMOS",
+  "moshimos_description": "Webエンジニアとしてアプリケーション開発に従事する. バックエンドからフロントエンドまで, 幅広く担当.",
+  "moshimos_position": "Web Engineer",
+  "recruit": "Recruit",
+  "recruit_description": "フロントエンドのUI改善, Web 標準動向の調査を行なっていました.",
+  "recruit_position": "Web Engineer",
+  "voyage_group": "VOYAGE GROUP",
+  "voyage_group_description": "TreasureでWeb Application開発のいろはを学び, その後チームを組んでバックエンドはfirebase, go, フロントエンドはPreact, bootstrapでブログ投稿プラットフォームの開発を行っていました.",
+  "voyage_group_position": "Treasure Internship Student",
+  "wantedly": "Wantedly",
+  "wantedly_description": "Wentedly Webアプリの新機能開発.",
+  "wantedly_position": "Web Engineer",
+  "will_major_in_system": "工学部システム創成学科内定",
+  "working_experience": "職歴"
 }
