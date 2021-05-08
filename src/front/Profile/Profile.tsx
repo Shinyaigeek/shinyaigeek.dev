@@ -55,44 +55,44 @@ export const Profile = Layout(() => {
         <Divider />
 
         <div className="history--job element">
-          <span className={title}>実務経験歴</span>
+          <span className={title}>{t`working_experience`}</span>
           <ul>
-            <JobItem
-              job="合同会社MOSHIMOS"
-              term="2018年10月 ~ 2018年12月"
-              description="合同会社MOSHIMOSにて, Codeignighterによるバックエンド開発からjQueryによるフロントエンド開発まで幅広く行いました."
-              position="Web Application Engineer"
-            />
-            <JobItem
-              job="大手町のメディア企業"
-              term="2019年4月 ~ (現在)"
-              description="主にフロントエンドの業務に携わっています. Edge ComputingによるUX/DXの改善, リッチな操作感が要求されるアプリケーションのフロントエンド開発, 技術ブログのパフォーマンス改善, アクセシビリティ改善, DXの改善に取り組んでいました."
-              position="Web Developer/長期インターン"
-            />
-            <JobItem
-              job="VOYAGE GROUPE"
-              term="2020年8月"
-              description="TreasureでWeb Application開発のいろはを学び, その後チームを組んでバックエンドはfirebase, go, フロントエンドはPreact, bootstrapでブログ投稿プラットフォームの開発を行っていました.そこでは主にフロントエンドテックリードを担当していました."
-              position="Treasure サマーインターン生"
-            />
-            <JobItem
-              job="Wantedly"
-              term="2020年8月 ~ 2020年9月"
-              description="フロントエンド面の機能拡充に取り組んでいました. React, GraphQL, TypeScript, Styled-Componentを主に扱っていました."
-              position="Web Developer/サマーインターン"
-            />
-            <JobItem
-              job="Cybozu"
-              term="2020年9月"
-              description="一週間の間, チームを組んでCybozuの製品であるkintoneの拡張機能を開発していました. lit-html, parcel, linariaでタイマーアプリ拡張を作りました. チームワークを意識して開発を行っていました."
-              position="Web Developer/サマーインターン"
-            />
-            <JobItem
-              job="Recruit"
-              term="2020年10月 ~ 2020年11月"
-              description="フロントエンドのUI改善, Web 標準動向の調査を行なっていました."
-              position="Web Developer/サマーインターン"
-            />
+            {JobItem({
+              job: t`certain_news_media_company`,
+              term: "2019/04 ~",
+              description: t`certain_news_media_company_description`,
+              position: t`certain_news_media_company_position`,
+            })}
+            {JobItem({
+              job: t`recruit`,
+              term: "2020/10 ~ 2020/11",
+              description: t`recruit_description`,
+              position: t`recruit_position`,
+            })}
+            {JobItem({
+              job: t`cybozu`,
+              term: "2020/09",
+              description: t`cybozu_description`,
+              position: t`cybozu_position`,
+            })}
+            {JobItem({
+              job: t`wantedly`,
+              term: "2020/08 ~ 2020/09",
+              description: t`wantedly_description`,
+              position: t`wantedly_position`,
+            })}
+            {JobItem({
+              job: t`voyage_group`,
+              term: "2020/08",
+              description: t`voyage_group_description`,
+              position: t`voyage_group_position`,
+            })}
+            {JobItem({
+              job: t`moshimos`,
+              term: "2018/10 ~ 2018/12",
+              description: t`moshimos_description`,
+              position: t`moshimos_position`,
+            })}
           </ul>
         </div>
 
