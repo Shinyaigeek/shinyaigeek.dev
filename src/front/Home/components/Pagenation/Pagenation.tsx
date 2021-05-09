@@ -58,16 +58,16 @@ const next = css`
 export function Pagenation(props: Props) {
   return (
     <div className={pagination}>
-      {props.prev && (
+      {props.prev ? (
         <a className={cx(paginationIcon, prev)} href={`/?page=${props.prev}`}>
           &lt; prev
         </a>
-      )}
-      {props.next && (
+      ) : ""}
+      {props.next ? (
         <a className={cx(paginationIcon, next)} href={`/?page=${props.next}`}>
           next &gt;
         </a>
-      )}
+      ) : ""}
     </div>
   );
 }
