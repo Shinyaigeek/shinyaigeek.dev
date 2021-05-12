@@ -6,7 +6,7 @@ const footer = css`
   margin-top: 5px;
   padding-top: 15px;
   padding-bottom: 15px;
-  color: var(--theme-text);
+  color: var(--theme-color);
   background-color: var(--theme-header)
 `
 
