@@ -1,5 +1,5 @@
 import { Layout } from "../components/Layout/Layout";
-import { Entry } from "../../server/util/getBlogPost";
+import { Entry } from "../../build/util/getBlogPost";
 import { WelcomePage } from "./components/WelcomePage/WelcomePage";
 import { Item } from "./components/Item/Item";
 import { Pagenation } from "./components/Pagenation/Pagenation";
