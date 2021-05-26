@@ -2,15 +2,23 @@ type p = string;
 type html = string;
 export type handler = (path: `/${p}`) => html;
 
+declare function on(
+  path: `/${p}`,
+  handler: handler,
+  children: undefined
+): Router;
+declare function on(
+  path: `/${p}`,
+  handler: undefined,
+  children: Router[]
+): Router;
+
+// todo asynchrous, parallel
 export class Router {
   routing: Map<`/${p}`, handler> = new Map();
   constructor() {}
 
-  on: (path: `/${p}`, handler: handler, children?: Router[]) => Router = (
-    path,
-    handler,
-    children
-  ) => {
+  on: typeof on = (path, handler, children) => {
     if (!!children) {
       for (let child of children) {
         for (let [childRoute, childRouteHandler] of child.routing) {
@@ -18,7 +26,9 @@ export class Router {
         }
       }
     } else {
-      this.routing.set(path, handler);
+      if (handler) {
+        this.routing.set(path, handler);
+      }
     }
     return this;
   };
