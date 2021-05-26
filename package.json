@@ -63,6 +63,7 @@
     "fastify": "^3.9.2",
     "fastify-static": "^2.7.0",
     "fastify-webpack": "^0.0.1-alpha.5",
+    "front-matter": "^4.0.2",
     "fs": "^0.0.1-security",
     "github-calendar": "^2.2.7",
     "highlight.js": "10.4.1",
