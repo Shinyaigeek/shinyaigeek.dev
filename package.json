@@ -18,7 +18,8 @@
     "build:container": "gcloud builds submit --tag gcr.io/shinyaigeek/blog",
     "serve": "NODE_ENV=production node api/server/server.js",
     "i18n:extract": "lingui extract",
-    "i18n:compile": "lingui compile"
+    "i18n:compile": "lingui compile",
+    "_build:ssg": "babel-node src/build/build.ts --config-file ./src/build/babel.config.js --extensions '.ts,.tsx'"
   },
   "repository": {
     "type": "git",
@@ -63,6 +64,7 @@
     "fastify": "^3.9.2",
     "fastify-static": "^2.7.0",
     "fastify-webpack": "^0.0.1-alpha.5",
+    "front-matter": "^4.0.2",
     "fs": "^0.0.1-security",
     "github-calendar": "^2.2.7",
     "highlight.js": "10.4.1",
