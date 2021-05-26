@@ -6,8 +6,20 @@ export class Router {
   routing: Map<`/${p}`, handler> = new Map();
   constructor() {}
 
-  on: (path: `/${p}`, handler: handler) => Router = (path, handler) => {
-    this.routing.set(path, handler);
+  on: (path: `/${p}`, handler: handler, children?: Router[]) => Router = (
+    path,
+    handler,
+    children
+  ) => {
+    if (!!children) {
+      for (let child of children) {
+        for (let [childRoute, childRouteHandler] of child.routing) {
+          this.routing.set(`${path}${childRoute}`, childRouteHandler);
+        }
+      }
+    } else {
+      this.routing.set(path, handler);
+    }
     return this;
   };
 
@@ -16,5 +28,13 @@ export class Router {
       const html = routeHandler(route);
       handler(route, html);
     }
-  }
+  };
+
+  resolve: (path: `/${p}`) => html = (path) => {
+    const handler = this.routing.get(path);
+    if (!handler) {
+      throw new Error(`${path} does not exist on routing`);
+    }
+    return handler(path);
+  };
 }
