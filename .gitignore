@@ -108,7 +108,7 @@ typings/
 .vscode-test
 
 dist
-public
+
 
 .vscode
 .now
