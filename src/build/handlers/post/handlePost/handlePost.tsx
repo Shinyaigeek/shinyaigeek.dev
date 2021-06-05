@@ -8,6 +8,7 @@ import { tweetMacroPlugin } from "remarkable-plugin-tweet-share";
 // @ts-ignore
 import { remarkablePluginHeadingId } from "remarkable-plugin-heading-id";
 import React from "react";
+import hljs from "highlight.js";
 
 export const handlePost: (p: `/${string}`) => string = function (p) {
   const _post = fs.readFileSync(
