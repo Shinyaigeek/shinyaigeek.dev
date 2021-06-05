@@ -9,6 +9,8 @@ import { tweetMacroPlugin } from "remarkable-plugin-tweet-share";
 import { remarkablePluginHeadingId } from "remarkable-plugin-heading-id";
 import React from "react";
 import hljs from "highlight.js";
+import helmet from "../../../../../src/build/util/helmet";
+import { BLOG_TITLE } from "../../../../../src/consts";
 
 export const handlePost: (p: `/${string}`) => string = function (p) {
   const _post = fs.readFileSync(
@@ -63,5 +65,15 @@ export const handlePost: (p: `/${string}`) => string = function (p) {
     anchors,
   };
 
-  return renderToStaticMarkup(<Post {...fields} />);
+  const Html = React.createElement(
+    helmet({
+      children: Post,
+      title: `${fields.fields.title} | ${BLOG_TITLE}`,
+      style: "post",
+      slug: `https://shinyaigeek.dev/${fields.fields.slug}`,
+      props: fields
+    })
+  );
+
+  return renderToStaticMarkup(Html);
 };

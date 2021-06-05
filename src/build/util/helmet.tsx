@@ -94,7 +94,8 @@ const SiteHead = (props: HeadProps) => (
       rel="alternate"
       type="application/rss+xml"
       title="shinyaigeek.dev"
-      href="https://shinyaigeek.dev/getRss"></link>
+      href="https://shinyaigeek.dev/getRss"
+    ></link>
   </head>
 );
 
@@ -110,9 +111,11 @@ const helmet = (props: HelmetProps) => {
   return () => (
     <html lang="ja">
       <SiteHead {...props} />
-      <div id="_app">
-        <props.children {...props.props} />
-      </div>
+      <body>
+        <div id="_app">
+          <props.children {...props.props} />
+        </div>
+      </body>
       <script
         async
         defer
@@ -123,7 +126,8 @@ const helmet = (props: HelmetProps) => {
       <script
         defer
         src="https://static.cloudflareinsights.com/beacon.min.js"
-        data-cf-beacon='{"token": "0893ac88cf0542af88bfd9b93008b408", "spa": true}'></script>
+        data-cf-beacon='{"token": "0893ac88cf0542af88bfd9b93008b408", "spa": true}'
+      ></script>
     </html>
   );
 };
