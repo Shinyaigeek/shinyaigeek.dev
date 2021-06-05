@@ -2,10 +2,10 @@
 title: fastifyでstreamを配信する時生のnode/httpに書き込むとResponse Headerが書き込まれなくなる問題
 tags: [JavaScript,Nodejs, HTTP]
 description: |
-fastifyの `reply.header(key, value)` は header に書き込まれるべき key-value を呼び出されたタイミングで HTTP Response に書き込むのではなく, `res.send` のタイミングで書き込んでいます.
-Stream を配信する際, `reply.raw.write` を呼び出してしまっていると Header は暗黙的に flush されてしまっており書き込めなくなってしまいます.
+  fastifyの `reply.header(key, value)` は header に書き込まれるべき key-value を呼び出されたタイミングで HTTP Response に書き込むのではなく, `res.send` のタイミングで書き込んでいます.
+  Stream を配信する際, `reply.raw.write` を呼び出してしまっていると Header は暗黙的に flush されてしまっており書き込めなくなってしまいます.
 
-workaroundとしては, `reply.raw.write` の前に `reply.raw.setHeader` を呼び出し header の書き込みを fastify に任せるのではなく自分で担ってしまいこれを回避するのが良さそう.
+  workaroundとしては, `reply.raw.write` の前に `reply.raw.setHeader` を呼び出し header の書き込みを fastify に任せるのではなく自分で担ってしまいこれを回避するのが良さそう.
 publishedAt: 2021/03/21
 updatedAt: 2021/03/21
 ---

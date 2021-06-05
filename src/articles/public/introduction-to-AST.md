@@ -2,15 +2,15 @@
 title: ASTで僕の考えた最強のDXを実現する 〜自分のDXは自分で守っていけ〜
 tags: [JavaScript,AST]
 description: |
-ASTイジイジするのはいいぞ！！
-* 難しくない
-* 自分のDXを自分で守るというエキサイティングな体験ができる
-* 触れる範囲が広がる
-* プログラミングをやる限りお世話になる
+  ASTイジイジするのはいいぞ！！
+  * 難しくない
+  * 自分のDXを自分で守るというエキサイティングな体験ができる
+  * 触れる範囲が広がる
+  * プログラミングをやる限りお世話になる
 
-と良いことづくめで最高なので布教したい
+  と良いことづくめで最高なので布教したい
 
-また, このブログは [https://docs.google.com/presentation/d/1Ykka2_NvseClPO2J_oFqRUb_sD6rZfYBU-XWnsdTn9U/edit?usp=sharing](https://docs.google.com/presentation/d/1Ykka2_NvseClPO2J_oFqRUb_sD6rZfYBU-XWnsdTn9U/edit?usp=sharing) の補助資料です. まあこの記事の方を読めば大丈夫です大丈夫です.
+  また, このブログは [https://docs.google.com/presentation/d/1Ykka2_NvseClPO2J_oFqRUb_sD6rZfYBU-XWnsdTn9U/edit?usp=sharing](https://docs.google.com/presentation/d/1Ykka2_NvseClPO2J_oFqRUb_sD6rZfYBU-XWnsdTn9U/edit?usp=sharing) の補助資料です. まあこの記事の方を読めば大丈夫です大丈夫です.
 publishedAt: 2020/09/12
 updatedAt: 2020/09/12
 ---
