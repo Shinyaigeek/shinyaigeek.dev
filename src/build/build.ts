@@ -1,5 +1,5 @@
 import path from "path";
-// import { handleIndex } from "./handlers/index";
+import { handleIndex } from "./handlers/index";
 import { getChildren } from "./handlers/post/getChildren/getChildren";
 import { handlePost } from "./handlers/post/handlePost/handlePost";
 import { handleProfile } from "./handlers/profile/handleProfile";
@@ -12,7 +12,7 @@ const postChildren = getChildren();
 
 // todo interface
 router.on("/post", undefined, [postChildren]);
-// router.on("/index.html", handleIndex, undefined);
+router.on("/", handleIndex, undefined);
 router.on("/profile", handleProfile, undefined);
 router.out(function (slug, html) {
   writeFileWithDir(path.join(__dirname, `../../dist${slug}/index.html`), html);

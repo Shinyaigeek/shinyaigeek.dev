@@ -1,11 +1,28 @@
 import { Entry } from "./getBlogPost";
 import fetch from "node-fetch";
 import { generateHash } from "./generateHash";
-
+import fs from "fs";
+import fm from "front-matter";
 interface HomeSlug {
   slug: string;
   tag?: string;
   page?: number;
+}
+
+export const __getBlogPosts: (dir: `${string}/`) => Entry[] = function(dir) {
+  const slugs = fs.readdirSync(dir);
+  const posts = slugs.map(slug => fs.readFileSync(`${dir}${slug}`, { encoding: "utf8" }))
+  return posts.map(post => {
+    const { attributes } = fm(post);
+    return {
+      fields: {
+        ...(attributes) as any
+      },
+      sys: {
+        updatedAt: (attributes as any).updatedAt
+      }
+    }
+  })
 }
 
 export const getBlogPosts = (query: HomeSlug) => {
