@@ -9,21 +9,28 @@ interface HomeSlug {
   page?: number;
 }
 
-export const __getBlogPosts: (dir: `${string}/`) => Entry[] = function(dir) {
+export const __getBlogPosts: (dir: `${string}/`) => Entry[] = function (dir) {
   const slugs = fs.readdirSync(dir);
-  const posts = slugs.map(slug => fs.readFileSync(`${dir}${slug}`, { encoding: "utf8" }))
-  return posts.map(post => {
+  const posts = slugs.map(
+    (slug) =>
+      [
+        fs.readFileSync(`${dir}${slug}`, { encoding: "utf8" }),
+        slug.replace(".md", ".html"),
+      ] as const
+  );
+  return posts.map(([post, slug]) => {
     const { attributes } = fm(post);
     return {
       fields: {
-        ...(attributes) as any
+        ...(attributes as any),
+        slug,
       },
       sys: {
-        updatedAt: (attributes as any).updatedAt
-      }
-    }
-  })
-}
+        updatedAt: (attributes as any).updatedAt,
+      },
+    };
+  });
+};
 
 export const getBlogPosts = (query: HomeSlug) => {
   const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
@@ -48,11 +55,14 @@ export const getBlogPosts = (query: HomeSlug) => {
           const hash = generateHash(
             items.reduce((acc, cur) => acc + cur.sys.updatedAt, "")
           );
-          return [{
-            items: entries.items as Entry[],
-            prev: entries.skip !== 0 && page - 1,
-            next: entries.skip + entries.limit < entries.total && page + 1,
-          }, hash] as const;
+          return [
+            {
+              items: entries.items as Entry[],
+              prev: entries.skip !== 0 && page - 1,
+              next: entries.skip + entries.limit < entries.total && page + 1,
+            },
+            hash,
+          ] as const;
         })
         .catch((err) => {
           console.log(err);
