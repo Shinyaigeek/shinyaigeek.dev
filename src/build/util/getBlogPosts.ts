@@ -15,7 +15,7 @@ export const __getBlogPosts: (dir: `${string}/`) => Entry[] = function (dir) {
     (slug) =>
       [
         fs.readFileSync(`${dir}${slug}`, { encoding: "utf8" }),
-        slug.replace(".md", ".html"),
+        slug.replace(".md", "/"),
       ] as const
   );
   return posts.map(([post, slug]) => {
