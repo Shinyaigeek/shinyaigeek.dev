@@ -7,19 +7,11 @@
     "contenthash": "ts-node -O '{\"module\":\"commonjs\"}' scripts/getContenthash.ts",
     "clear": "ts-node -O '{\"module\":\"commonjs\"}' scripts/deleteDistAssets.ts",
     "upload": "ts-node -O '{\"module\":\"commonjs\"}' scripts/uploadAssetsToGCS.ts",
-    "dev:server": "NODE_ENV=development nodemon --watch src/ --exec  babel-node src/server/server.tsx --config-file ./src/server/babel.config.js --extensions '.ts,.tsx'",
-    "build:server": "babel src --config-file ./src/server/babel.config.js --extensions '.ts,.tsx,.js' --out-dir api",
-    "dev:client": "NODE_ENV=development webpack-dev-server --config webpack.config.client.js --mode=development",
-    "build:client": "webpack --config webpack.config.client.js --mode=production",
-    "build": "yarn build:client && yarn contenthash",
     "purge": "ts-node -O '{\"module\":\"commonjs\"}' scripts/purgeCache.ts",
-    "deploy": "gcloud run deploy --image gcr.io/shinyaigeek/blog --platform managed",
-    "deploy:assets": "yarn clear && yarn build && yarn upload && yarn purge",
-    "build:container": "gcloud builds submit --tag gcr.io/shinyaigeek/blog",
-    "serve": "NODE_ENV=production node api/server/server.js",
     "i18n:extract": "lingui extract",
     "i18n:compile": "lingui compile",
-    "_build:ssg": "babel-node src/build/build.ts --config-file ./src/build/babel.config.js --extensions '.ts,.tsx'"
+    "_build:ssg": "babel src --config-file ./src/build/babel.config.js --extensions '.ts,.tsx' --out-dir lib && node lib/build/build.js",
+    "_build:css": "webpack --config webpack.config.css.js --mode=production"
   },
   "repository": {
     "type": "git",
