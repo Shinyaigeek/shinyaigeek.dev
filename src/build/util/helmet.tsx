@@ -7,7 +7,7 @@ interface HeadProps {
 }
 
 const isProd = process.env.NODE_ENV === "production";
-const ASSETS_PORT = process.env.ASSETS_PORT ?? 3030;
+const ASSETS_PORT = process.env.ASSETS_PORT ?? 8080;
 const ASSETS_SERVER =
   process.env.ASSETS_SERVER ?? "https://static.shinyaigeek.dev/static";
 

@@ -10,8 +10,11 @@
     "purge": "ts-node -O '{\"module\":\"commonjs\"}' scripts/purgeCache.ts",
     "i18n:extract": "lingui extract",
     "i18n:compile": "lingui compile",
-    "_build:ssg": "babel src --config-file ./src/build/babel.config.js --extensions '.ts,.tsx' --out-dir lib && node lib/build/build.js",
-    "_build:css": "webpack --config webpack.config.css.js --mode=production"
+    "_build:ssg": "babel-node src/build/build.ts --config-file ./src/build/babel.config.js --extensions '.ts,.tsx' --out-dir",
+    "_build:css": "webpack --config webpack.config.css.js --mode=production",
+    "_build": "yarn _build:css && yarn contenthash",
+    "dev": "nodemon --watch src/ --exec  yarn _build",
+    "serve": "miniserve dist --index index.html"
   },
   "repository": {
     "type": "git",
