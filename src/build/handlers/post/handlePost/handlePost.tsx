@@ -61,6 +61,7 @@ export const handlePost: (p: `/${string}`) => string = function (p) {
     fields: {
       slug: p.replace("/", ""),
       ...(attributes as any),
+      content: html,
     },
     anchors,
   };
@@ -71,7 +72,7 @@ export const handlePost: (p: `/${string}`) => string = function (p) {
       title: `${fields.fields.title} | ${BLOG_TITLE}`,
       style: "post",
       slug: `https://shinyaigeek.dev/${fields.fields.slug}`,
-      props: fields
+      props: fields,
     })
   );
 
