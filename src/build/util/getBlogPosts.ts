@@ -18,18 +18,26 @@ export const __getBlogPosts: (dir: `${string}/`) => Entry[] = function (dir) {
         slug.replace(".md", "/"),
       ] as const
   );
-  return posts.map(([post, slug]) => {
-    const { attributes } = fm(post);
-    return {
-      fields: {
-        ...(attributes as any),
-        slug,
-      },
-      sys: {
-        updatedAt: (attributes as any).updatedAt,
-      },
-    };
-  });
+  return posts
+    .map(([post, slug]) => {
+      const { attributes } = fm(post);
+      return {
+        fields: {
+          ...(attributes as any),
+          slug,
+        },
+        sys: {
+          updatedAt: (attributes as any).updatedAt,
+        },
+      };
+    })
+    .sort((l, r) => {
+      if (new Date(l.fields.publishedAt) > new Date(r.fields.publishedAt)) {
+        return -1;
+      }
+
+      return 1;
+    });
 };
 
 export const getBlogPosts = (query: HomeSlug) => {
