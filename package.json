@@ -12,7 +12,7 @@
     "i18n:compile": "lingui compile",
     "_build:ssg": "babel-node src/build/build.ts --config-file ./src/build/babel.config.js --extensions '.ts,.tsx'",
     "_build:css": "webpack --config webpack.config.css.js --mode=production",
-    "_build": "yarn clear && yarn _build:css && yarn contenthash",
+    "_build": "export NODE_ENV=production && yarn clear && yarn _build:css && yarn contenthash",
     "dev": "nodemon --watch src/ --exec  yarn _build",
     "serve": "miniserve dist --index index.html"
   },

@@ -10,6 +10,10 @@ module.exports = {
   entry: {
     main: "./src/front/main.tsx",
   },
+  output: {
+    path: path.join(__dirname, output),
+    filename: isProd ? "[name].[contenthash].js" : "[name].js",
+  },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", "node_modules"],
   },
