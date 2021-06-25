@@ -43,7 +43,7 @@ if( hoge === "bar" ) {
 
 例えばですが, 上記のコードの AST はどのようなものになるか見てみましょう.
 
-![ast](/introduction-to-AST/ast-tree.png)
+![ast](/assets/introduction-to-AST/ast-tree.png)
 
 if文を分解してみましょう.
 if文は「もし〜〜なら、〜〜する」ということを記述できますね。
@@ -63,7 +63,7 @@ AST上だと、まず `ifStatement` という Node が登場します.
 
 ## ASTが使われているもの
 
-![ast-tool](/introduction-to-AST/ast-tool.png)
+![ast-tool](/assets/introduction-to-AST/ast-tool.png)
 
 JSでいえば, babel, eslint, prettier, webpack, などなど, 私たちの開発者体験を潤す様々なツールがASTを用いています.
 
@@ -71,7 +71,7 @@ JSでいえば, babel, eslint, prettier, webpack, などなど, 私たちの開�
 
 ## ASTでコードをいじいじするときのあれこれ
 
-![ast-process](/introduction-to-AST/ast-overview.png)
+![ast-process](/assets/introduction-to-AST/ast-overview.png)
 
 大まかに分けて以下の三つのプロセスがあります。
 * parse: JS -> AST
@@ -82,7 +82,7 @@ JSでいえば, babel, eslint, prettier, webpack, などなど, 私たちの開�
 `transform` の段階で, AST の中身を弄っていきます.
 そして最後に `unparse` の段階で transform された AST を JavaScript のソースコードへと変換してくれます.
 
-![ast_process2](/introduction-to-AST/transform.png)
+![ast_process2](/assets/introduction-to-AST/transform.png)
 
 また, 多くの場合先人の弛まぬ努力のおかげで, `parse`, `unparse` についてはライブラリがほぼほぼ担ってくれていて, 実装者がこのプロセスについて考えることは少ないです.
 

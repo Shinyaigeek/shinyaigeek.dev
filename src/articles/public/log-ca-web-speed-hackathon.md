@@ -13,7 +13,7 @@ updatedAt: 2020/04/26
 
 Cyber Agent主催のWeb Speed Hackathon Online 4/25, 4/26に参加してきました. 結果は残念ながらレギュレーション違反で選外でしたが, とても楽しく刺激を得られたイベントになりました.
 
-![hackathon-res](/log-ca-web-speed-hackathon/hackathon-res.png.png)
+![hackathon-res](/assets/log-ca-web-speed-hackathon/hackathon-res.png.png)
 
 この混乱した情勢の中オンラインという形でシステムを整えて実施してくださったCyber Agentの皆さん, ありがとうございました.
 
@@ -65,7 +65,7 @@ Cyber Agent主催のWeb Speed Hackathon Online 4/25, 4/26に参加してきま�
 * 一部ライブラリの削除
   * jQuery, moment, lodashを剥がしました -> ここでやらかした可能性もありますね。。
   * [webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer)で剥がすべきライブラリを洗い出しました
-    ![webpack-bundle-analyzer](/log-ca-web-speed-hackathon/webpack-bundle-analyzer.png)
+    ![webpack-bundle-analyzer](/assets/log-ca-web-speed-hackathon/webpack-bundle-analyzer.png)
   * immutable.jsとbluebird.jsについては辛そうだったので諦めました。。
 * html, cssのminify
   * htmlはHtmlWebpackPluginに任せました

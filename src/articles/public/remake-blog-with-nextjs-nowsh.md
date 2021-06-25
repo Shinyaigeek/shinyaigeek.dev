@@ -24,7 +24,7 @@ asdfasdfasdfasdf## 作り替えに至った経緯
 ですが蓋を開けるとあら不思議、あまりの~~クソ~~コードぷりになかなか作業が進まない。
 具体的に言ってしまうと@ts-ignoreとanyのオンパレードで下手したらJSのまま作業するよりも酷い代物が出来上がっていました。
 そんなものをアップデートしようとしても全然コンパイルが通らず、しかもバカ遅い。
-![27-1](/remake-blog-with-nextjs-nowsh/27-1.jpeg)
+![27-1](/assets/remake-blog-with-nextjs-nowsh/27-1.jpeg)
 ちなみにこれが書き換える前のlighthouseのスコア、無慈悲な0点に涙を禁じ得ません。
 そしてもう何もかもが無理になり一から作り直してしまうことにしました()
 
@@ -83,7 +83,7 @@ githubと連携できて、各コミットごとにデプロイされて、maste
 
 markdownと言った文章の推敲をしてくれるというもの。
 こんな感じで怒られる
-![27-3](/remake-blog-with-nextjs-nowsh/27-3.png)
+![27-3](/assets/remake-blog-with-nextjs-nowsh/27-3.png)
 僕はGithub Actionsを使ってプルリクごとに走らせている。
 自分の日本語力のNASAに直面させられて辛い。
 
@@ -121,7 +121,7 @@ Fastly触りたかったけど月50$-は貧乏学生には厳しい。。
 
 ## 結果
 
-![27-2](/remake-blog-with-nextjs-nowsh/27-2.png)
+![27-2](/assets/remake-blog-with-nextjs-nowsh/27-2.png)
 一応ここまではスコアが伸びた。
 ただブログでこのスコアか。。って辛さはある。
 

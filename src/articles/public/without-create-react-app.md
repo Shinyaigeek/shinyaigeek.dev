@@ -235,7 +235,7 @@ cd components
 touch App.tsx
 ```
 
-![21-2](/without-create-react-app/21-2.png)
+![21-2](/assets/without-create-react-app/21-2.png)
 とりあえずこんな感じの構成になったらOKです。
 こっから書き込んで行きましょう。
 まずindex.htmlファイルから
@@ -256,7 +256,7 @@ touch App.tsx
 こんな感じで書きます。id=appになってる要素に対してreactがrenderして行く感じです。
 あれ、jsファイル読み込んでなくないって思うじゃないですか？webpackにぶっこんだhtml-webpack-pluginがいい感じにjsファイルを読み込んだscriptタグを足して出力してくれるんですよね。いやめっちゃ便利。
 ちなみに出来上がるHTMLファイルはこんな感じ。
-![21-3](/without-create-react-app/21-3.png)
+![21-3](/assets/without-create-react-app/21-3.png)
 で次はJavaScriptファイルをまとめて行きましょう。
 まずはcomponents/内のApp.tsxから。
 
@@ -273,7 +273,7 @@ export default function App() {
 ```
 ひとまずこんな感じでパッとコンポーネント作ってしまいます。
 ちなみにVSCode使ってる方でしたら、es7という拡張機能を入れればrfcと打ち込むだけでベースとなる部分を一括で作ってくれるのでめっちゃおすすめです。
-![21-4](/without-create-react-app/21-4.gif)
+![21-4](/assets/without-create-react-app/21-4.gif)
 で次はindex.tsxを書いて行きましょう。
 
 ```TypeScript
@@ -291,9 +291,9 @@ ReactDOM.render(
 これでtargetに指定されたところにAppコンポーネントがレンダリングされます。
 まずターミナルにてwebpackを実行してみましょう。
 そうするとdistファイルが以下の様に出力されます。
-![21-5](/without-create-react-app/21-5.png)
+![21-5](/assets/without-create-react-app/21-5.png)
 そして出力されたdist/以下のindex.htmlを開けばこんな感じになります、成功です。
-![21-6](/without-create-react-app/21-6.png)
+![21-6](/assets/without-create-react-app/21-6.png)
 で次はターミナルにて
 ```Console
 npm run dev
@@ -313,7 +313,7 @@ export default function App() {
 }
 ```
 無事変更が検知されて以下の様になると思います、ようこそReactへ！！
-![21-7](/without-create-react-app/21-7.png)
+![21-7](/assets/without-create-react-app/21-7.png)
 
 一応僕が作った、この記事の通りに作ればこうなるはずだよ！！！って感じのgitリポジトリを下に置いておきます。
 [完成品](https://github.com/Shinyaigeek/without-create-react-app)
