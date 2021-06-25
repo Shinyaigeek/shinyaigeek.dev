@@ -13,7 +13,7 @@ updatedAt: 2020/04/26
 
 Cyber Agent主催のWeb Speed Hackathon Online 4/25, 4/26に参加してきました. 結果は残念ながらレギュレーション違反で選外でしたが, とても楽しく刺激を得られたイベントになりました.
 
-![hackathon-res](/assets/log-ca-web-speed-hackathon/hackathon-res.png.png)
+![hackathon-res](/assets/log-ca-web-speed-hackathon/hackathon-res.png)
 
 この混乱した情勢の中オンラインという形でシステムを整えて実施してくださったCyber Agentの皆さん, ありがとうございました.
 
