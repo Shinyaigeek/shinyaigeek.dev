@@ -235,7 +235,7 @@ cd components
 touch App.tsx
 ```
 
-![21-2](//images.ctfassets.net/6ib5avrqb1b0/4FpKAYEQUJQRdMffT1dmEk/6357c21a3d2f6e23013dfba9c5143c60/21-2.png)
+![21-2](/without-create-react-app/21-2.png)
 とりあえずこんな感じの構成になったらOKです。
 こっから書き込んで行きましょう。
 まずindex.htmlファイルから
@@ -256,7 +256,7 @@ touch App.tsx
 こんな感じで書きます。id=appになってる要素に対してreactがrenderして行く感じです。
 あれ、jsファイル読み込んでなくないって思うじゃないですか？webpackにぶっこんだhtml-webpack-pluginがいい感じにjsファイルを読み込んだscriptタグを足して出力してくれるんですよね。いやめっちゃ便利。
 ちなみに出来上がるHTMLファイルはこんな感じ。
-![21-3](//images.ctfassets.net/6ib5avrqb1b0/79nsDh6Mqm3XhRBiJehw0F/cd1e4874fd1fbfcda073d7126d9d80fc/21-3.png)
+![21-3](/without-create-react-app/21-3.png)
 で次はJavaScriptファイルをまとめて行きましょう。
 まずはcomponents/内のApp.tsxから。
 
@@ -273,7 +273,7 @@ export default function App() {
 ```
 ひとまずこんな感じでパッとコンポーネント作ってしまいます。
 ちなみにVSCode使ってる方でしたら、es7という拡張機能を入れればrfcと打ち込むだけでベースとなる部分を一括で作ってくれるのでめっちゃおすすめです。
-![21-4](//images.ctfassets.net/6ib5avrqb1b0/50HQt4FyzzwQYST113JtJp/dfc1cbc7bfbaead67e280b068644fd44/21-4.gif)
+![21-4](/without-create-react-app/21-4.gif)
 で次はindex.tsxを書いて行きましょう。
 
 ```TypeScript
@@ -291,9 +291,9 @@ ReactDOM.render(
 これでtargetに指定されたところにAppコンポーネントがレンダリングされます。
 まずターミナルにてwebpackを実行してみましょう。
 そうするとdistファイルが以下の様に出力されます。
-![21-5](//images.ctfassets.net/6ib5avrqb1b0/1vQw17YyyNp26622xeJTdm/b707e062ce7487494b313f111f92506b/21-5.png)
+![21-5](/without-create-react-app/21-5.png)
 そして出力されたdist/以下のindex.htmlを開けばこんな感じになります、成功です。
-![21-6](//images.ctfassets.net/6ib5avrqb1b0/4gbBnCaVxNHYZUTDIaFUc7/2a409a4f7ffab75e46e5f2c6cdf66462/21-6.png)
+![21-6](/without-create-react-app/21-6.png)
 で次はターミナルにて
 ```Console
 npm run dev
@@ -313,7 +313,7 @@ export default function App() {
 }
 ```
 無事変更が検知されて以下の様になると思います、ようこそReactへ！！
-![21-7](//images.ctfassets.net/6ib5avrqb1b0/2UTesw4pcwrklQFfntvcRS/9a51dfacee82c99d9d6fb80ac8b49112/21-7.png)
+![21-7](/without-create-react-app/21-7.png)
 
 一応僕が作った、この記事の通りに作ればこうなるはずだよ！！！って感じのgitリポジトリを下に置いておきます。
 [完成品](https://github.com/Shinyaigeek/without-create-react-app)

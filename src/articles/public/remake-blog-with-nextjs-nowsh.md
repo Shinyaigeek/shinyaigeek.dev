@@ -9,7 +9,6 @@ description: |
   ですが蓋を開けるとあら不思議、あまりの~~クソ~~コードぷりになかなか作業が進まない。
   具体的に言ってしまうと@ts-ignoreとanyのオンパレードで下手したらJSのまま作業するよりも酷い代物が出来上がっていました。
   そんなものをアップデートしようとしても全然コンパイルが通らず、しかもバカ遅い。
-  ![27-1](//images.ctfassets.net/6ib5avrqb1b0/1pGRDYrjlORgA07fHoIJpJ/69276f41d669c08bf74403212044dee3/27-1.jpg)
   ちなみにこれが書き換える前のlighthouseのスコア、無慈悲な0点に涙を禁じ得ません。
   そしてもう何もかもが無理になり一から作り直してしまうことにしました()
 publishedAt: 2019/12/14
@@ -25,7 +24,7 @@ asdfasdfasdfasdf## 作り替えに至った経緯
 ですが蓋を開けるとあら不思議、あまりの~~クソ~~コードぷりになかなか作業が進まない。
 具体的に言ってしまうと@ts-ignoreとanyのオンパレードで下手したらJSのまま作業するよりも酷い代物が出来上がっていました。
 そんなものをアップデートしようとしても全然コンパイルが通らず、しかもバカ遅い。
-![27-1](//images.ctfassets.net/6ib5avrqb1b0/1pGRDYrjlORgA07fHoIJpJ/69276f41d669c08bf74403212044dee3/27-1.jpg)
+![27-1](/remake-blog-with-nextjs-nowsh/27-1.jpeg)
 ちなみにこれが書き換える前のlighthouseのスコア、無慈悲な0点に涙を禁じ得ません。
 そしてもう何もかもが無理になり一から作り直してしまうことにしました()
 
@@ -84,7 +83,7 @@ githubと連携できて、各コミットごとにデプロイされて、maste
 
 markdownと言った文章の推敲をしてくれるというもの。
 こんな感じで怒られる
-![27-3](//images.ctfassets.net/6ib5avrqb1b0/5QyjELI9c7X25D9IChuvo6/71d848be235ff045de9d30f94dfcc534/27-3.png)
+![27-3](/remake-blog-with-nextjs-nowsh/27-3.png)
 僕はGithub Actionsを使ってプルリクごとに走らせている。
 自分の日本語力のNASAに直面させられて辛い。
 
@@ -122,7 +121,7 @@ Fastly触りたかったけど月50$-は貧乏学生には厳しい。。
 
 ## 結果
 
-![27-2](//images.ctfassets.net/6ib5avrqb1b0/6vr4l0mNRNNqKQYBFOj0O7/012b1afbca5d5dbd5f5528167dc95031/27-2.png)
+![27-2](/remake-blog-with-nextjs-nowsh/27-2.png)
 一応ここまではスコアが伸びた。
 ただブログでこのスコアか。。って辛さはある。
 

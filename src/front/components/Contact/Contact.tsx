@@ -37,7 +37,7 @@ export default function Contact() {
   return (
     <div className={contact}>
       <a href="/profile" className={contactAnchor}>
-        <img src={`${"https://static.shinyaigeek.dev/static"}/icon_thatsme.png`} className={icon} alt="icon" />
+        <img src={`/assets/static/icon_thatsme.png`} className={icon} alt="icon" />
       </a>
       しにゃい/Shinyaigeek
       <br />

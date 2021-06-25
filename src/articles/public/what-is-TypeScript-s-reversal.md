@@ -52,7 +52,7 @@ animalArray = catArray; // OK
 これは直感的に理解しやすい事象かなとは思います。 Cat Type に Animal Type を代入しようとするともしかすると Cow が入ってくるかもしれませんしこれを弾いてくれるのは感謝の極みでしょう。逆に Animal Type に Cat Type が入り得るのも至極妥当な話といえましょう。
 因みに TypeScript はこんなエラーを吐いてくれています。
 
-![25-3](//images.ctfassets.net/6ib5avrqb1b0/1msn5WjAoHOJN763fzU8zD/ead548268146ad69250a721b1455fd30/25-3.png)
+![25-3](/what-is-TypeScript-s-reversal/25-3.png)
 
 Animal Type を Cat Type へは入れられないよと教えてくれて、その一例として Dog をあげてくれています。因みにこの時Animal Type は Cat Type の SuperType (より上位の概念といった感じ)といったりします(この逆は SubTypeです)。
 
@@ -85,7 +85,7 @@ animalFunc = catFunc; // Error
 だって！！上で！！ Cat Type に Animal Type を入れると！！エラーになるやんゆうてたやん！！ってなるじゃないですか。
 実はこれ根本的には共変の時に起こるエラーと雰囲気は変わりません。
 
-![25-4](//images.ctfassets.net/6ib5avrqb1b0/5HXXgn59pnCMu4TivUSa5y/2b79263a86498d5a85e78929ef87fb5c/25-4.png)
+![25-4](/what-is-TypeScript-s-reversal/25-4.png)
 
 因みに TypeScript が吐くエラーはこんな感じ。
 この時 catFunc の引数である Cat と、 animalFunc の引数である Animal について、 Animal は Cat のSuperTypeですから、より引数として寛容といえましょう。
