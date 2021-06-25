@@ -1,4 +1,7 @@
 import React from "react";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 interface HeadProps {
   title: string;
@@ -7,7 +10,7 @@ interface HeadProps {
 }
 
 const isProd = process.env.NODE_ENV === "production";
-const ASSETS_PORT = process.env.ASSETS_PORT ?? 3030;
+const ASSETS_PORT = process.env.ASSETS_PORT ?? 8080;
 const ASSETS_SERVER =
   process.env.ASSETS_SERVER ?? "https://static.shinyaigeek.dev/static";
 
@@ -53,7 +56,11 @@ const SiteHead = (props: HeadProps) => (
       )}`}
     />
 
-    <link rel="icon" type="image/x-icon" href={`${assets}/favicon.ico`} />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href={`${assets}/assets/static/favicon.ico`}
+    />
     <link
       rel="stylesheet"
       type="text/css"
@@ -61,13 +68,21 @@ const SiteHead = (props: HeadProps) => (
         process.env.CONTENTHASH_CSS ? "." + process.env.CONTENTHASH_CSS : ""
       }.css`}
     />
-    <link rel="stylesheet" type="text/css" href={`${assets}/a11y-dark.css`} />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href={`${assets}/assets/static/a11y-dark.css`}
+    />
     <link
       rel="stylesheet"
       href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
     />
 
-    <link rel="preload" as="style" href={`${assets}/a11y-dark.css`} />
+    <link
+      rel="preload"
+      as="style"
+      href={`${assets}/assets/static/a11y-dark.css`}
+    />
     <link
       rel="preload"
       as="style"
@@ -83,18 +98,15 @@ const SiteHead = (props: HeadProps) => (
     <link
       rel="preload"
       as="image"
-      href="https://static.shinyaigeek.dev/static/icon_transparent_header.png"
+      href={`${assets}/assets/static/icon_transparent_header.png`}
     />
-
-    <link rel="dns-prefetch" href="//static.shinyaigeek.dev" />
-
-    <link rel="preconnect" href="//static.shinyaigeek.dev" />
 
     <link
       rel="alternate"
       type="application/rss+xml"
       title="shinyaigeek.dev"
-      href="https://shinyaigeek.dev/getRss"></link>
+      href="https://shinyaigeek.dev/rss.xml"
+    ></link>
   </head>
 );
 
@@ -110,20 +122,16 @@ const helmet = (props: HelmetProps) => {
   return () => (
     <html lang="ja">
       <SiteHead {...props} />
-      <div id="_app">
-        <props.children {...props.props} />
-      </div>
-      <script
-        async
-        defer
-        src={`${assets}/main${
-          process.env.CONTENTHASH_JS ? "." + process.env.CONTENTHASH_JS : ""
-        }.js`}
-      />
+      <body>
+        <div id="_app">
+          <props.children {...props.props} />
+        </div>
+      </body>
       <script
         defer
         src="https://static.cloudflareinsights.com/beacon.min.js"
-        data-cf-beacon='{"token": "0893ac88cf0542af88bfd9b93008b408", "spa": true}'></script>
+        data-cf-beacon='{"token": "0893ac88cf0542af88bfd9b93008b408", "spa": true}'
+      ></script>
     </html>
   );
 };

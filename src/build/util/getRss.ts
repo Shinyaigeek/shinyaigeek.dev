@@ -1,19 +1,15 @@
 import dotenv from "dotenv";
 import fetch from "node-fetch";
-
+import { getBlogPosts, __getBlogPosts } from "./getBlogPosts";
+import path from "path";
 dotenv.config();
 
 export const getRss = () => {
-  const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
-  if (!CONTENTFUL_ACCESS_TOKEN || !CONTENTFUL_SPACE_ID) {
-    throw new Error("Please check env variable");
-  }
-  const url = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=blog&order=-sys.createdAt&select=fields.description,fields.publishedAt,fields.title,fields.tags,fields.slug`;
-  return fetch(url).then((item) => {
-    return item.json().then((json) => {
-      const { items } = json;
+  const items = __getBlogPosts(
+    path.join(__dirname, "../../articles/") as `${string}/`
+  );
 
-      const xml = `<?xml version="1.0" encoding="UTF-8"?>
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
             <rss version='2.0'  xmlns:atom="http://www.w3.org/2005/Atom">
             <channel>
             <atom:link href="https://shinyaigeek.dev/getRss" rel="self" type="application/rss+xml" />
@@ -51,7 +47,5 @@ export const getRss = () => {
             </rss>
           `;
 
-      return xml;
-    });
-  });
+  return xml;
 };

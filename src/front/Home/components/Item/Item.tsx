@@ -1,7 +1,7 @@
 import { Divider } from "../../../components/Divider/Divider";
 import { Button } from "../../../components/Button/Button";
 
-import { getOmmit } from "../../../../server/util/getOmmit";
+import { getOmmit } from "../../../../build/util/getOmmit";
 import React from "react";
 import { css } from "linaria";
 export interface MetaData {

@@ -1,5 +1,5 @@
-import { getBlogPosts } from "../../../server/util/getBlogPosts";
-import { getBlogPost } from "../../../server/util/getBlogPost";
+import { getBlogPosts } from "../../../build/util/getBlogPosts";
+import { getBlogPost } from "../../../build/util/getBlogPost";
 import React, { ReactElement } from "react";
 
 interface Props {

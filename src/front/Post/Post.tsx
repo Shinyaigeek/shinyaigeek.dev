@@ -1,7 +1,7 @@
 import parse from "html-react-parser";
 
 import { Layout } from "../components/Layout/Layout";
-import { Entry } from "../../server/util/getBlogPost";
+import { Entry } from "../../build/util/getBlogPost";
 import { MetaInfo } from "./components/MetaInfo/MetaInfo";
 import { Anchor } from "./components/Anchor/Anchor";
 import { BaseProfile } from "../Profile/components/BaseProfile/BaseProfile";

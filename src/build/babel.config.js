@@ -13,12 +13,6 @@ module.exports = {
     "@babel/preset-typescript",
   ],
   plugins: [
-    [
-      "transform-inline-environment-variables",
-      {
-        include: ["CONTENTHASH_JS", "CONTENTHASH_CSS"],
-      },
-    ],
     "macros"
   ],
 };

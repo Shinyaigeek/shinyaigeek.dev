@@ -94,7 +94,7 @@ export const Shinyaigeek = (props: Props) => {
     <div className={cx(icon, additionalStyle)}>
       <div className={monkey}>
         <img
-          src={`${"https://static.shinyaigeek.dev/static"}/icon_transparent.png`}
+          src={`/assets/static/icon_transparent.png`}
           className={monkeyImg}
           alt="monkey-icon"
           width="270px"
@@ -105,7 +105,7 @@ export const Shinyaigeek = (props: Props) => {
         <div className={earthX}>
           <div className={earthY}>
             <img
-              src={`${"https://static.shinyaigeek.dev/static"}/earth.png`}
+              src={`/assets/static/earth.png`}
               alt="earth"
               width="50px"
               height="50px"

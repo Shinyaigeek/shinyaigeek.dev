@@ -3,6 +3,8 @@ import assert from "assert";
 import fetch from "node-fetch";
 
 const baseUrl = "https://api.cloudflare.com/client/v4/";
+//6386a36a9ac3e8c8494e8a4d43fd4f79b0956
+//5cbceaea7b728562c7efd0a00cec0d25
 
 export const purgeCache = () => {
   dotenv.config();
@@ -12,24 +14,24 @@ export const purgeCache = () => {
     CLOUDFLARE_EMAIL: email,
   } = process.env;
   assert(token && id && email, "CloudFlare Token is undefined");
-  console.log(token);
   const target = `${baseUrl}zones/${id}/purge_cache`;
   return fetch(target, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "X-Auth-Email": email,
-      "X-Auth-Key": token,
+      "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify({
       files: [
-        "https://shinyaigeek.dev/**/*.js",
-        "https://shinyaigeek.dev/**/*.css",
+        "https://static.shinyaigeek.dev/**/*.js",
+        "https://static.shinyaigeek.dev/**/*.css",
         "https://shinyaigeek.dev/**/*.html",
       ],
     }),
   })
     .then(async (res) => {
+      console.log(res)
       console.log(await res.json());
     })
     .catch((e) => {

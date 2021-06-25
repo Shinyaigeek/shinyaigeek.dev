@@ -199,17 +199,17 @@ export const BaseProfile = () => {
       <div className={mySnsBox}>
         <div className={snsIcon}>
           <a id="twitter" href="https://twitter.com/Shinyaigeek">
-            <img src={`https://static.shinyaigeek.dev/static/twitter.svg`} alt="twitter" width="54px" height="54px" />
+            <img src={`/assets/static/twitter.svg`} alt="twitter" width="54px" height="54px" />
           </a>
         </div>
         <div className={snsIcon}>
           <a id="github" href="https://github.com/Shinyaigeek">
-            <img src={`https://static.shinyaigeek.dev/static/github.svg`} alt="github" width="54px" height="54px"  />
+            <img src={`/assets/static/github.svg`} alt="github" width="54px" height="54px"  />
           </a>
         </div>
         <div className={snsIcon}>
           <a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/">
-            <img src={`https://static.shinyaigeek.dev/static/linkedin.svg`} alt="linkedin" width="54px" height="54px"  />
+            <img src={`/assets/static/linkedin.svg`} alt="linkedin" width="54px" height="54px"  />
           </a>
         </div>
       </div>
