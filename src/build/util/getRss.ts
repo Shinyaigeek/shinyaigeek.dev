@@ -6,7 +6,7 @@ dotenv.config();
 
 export const getRss = () => {
   const items = __getBlogPosts(
-    path.join(__dirname, "../../articles/") as `${string}/`
+    path.join(__dirname, "../../articles/public/") as `${string}/`
   );
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

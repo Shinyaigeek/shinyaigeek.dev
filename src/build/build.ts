@@ -5,6 +5,7 @@ import { handlePost } from "./handlers/post/handlePost/handlePost";
 import { handleProfile } from "./handlers/profile/handleProfile";
 import { Router } from "./router/router";
 import { writeFileWithDir } from "./util/writeFileWithDir";
+import { minify } from "html-minifier";
 
 const router = new Router();
 
@@ -15,5 +16,8 @@ router.on("/post", undefined, [postChildren]);
 router.on("/", handleIndex, undefined);
 router.on("/profile", handleProfile, undefined);
 router.out(function (slug, html) {
-  writeFileWithDir(path.join(__dirname, `../../public${slug}/index.html`), html);
+  writeFileWithDir(
+    path.join(__dirname, `../../public${slug}/index.html`),
+    minify(html)
+  );
 });
