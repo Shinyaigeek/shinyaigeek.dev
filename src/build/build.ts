@@ -6,6 +6,7 @@ import { handleProfile } from "./handlers/profile/handleProfile";
 import { Router } from "./router/router";
 import { writeFileWithDir } from "./util/writeFileWithDir";
 import { minify } from "html-minifier";
+import { addDOCTYP } from "./util/addDOCTYPE";
 
 const router = new Router();
 
@@ -18,6 +19,6 @@ router.on("/profile", handleProfile, undefined);
 router.out(function (slug, html) {
   writeFileWithDir(
     path.join(__dirname, `../../public${slug}/index.html`),
-    minify(html)
+    minify(addDOCTYP(html))
   );
 });
