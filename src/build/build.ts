@@ -7,6 +7,19 @@ import { Router } from "./router/router";
 import { writeFileWithDir } from "./util/writeFileWithDir";
 import { minify } from "html-minifier";
 import { addDOCTYP } from "./util/addDOCTYPE";
+import { i18n } from "@lingui/core";
+
+// allow js
+// @ts-ignore
+import { messages as ja } from "../locales/ja/messages";
+
+// allow js
+// @ts-ignore
+import { messages as en } from "../locales/en/messages";
+
+i18n.load("ja", ja);
+i18n.load("en", en);
+i18n.activate("ja");
 
 const router = new Router();
 
