@@ -52,6 +52,10 @@ const earth = css`
   }
 
   animation: 5s infinite forwards normal earth ease-in-out;
+
+  @media (prefers-reduced-motion) {
+    animation: dissolve;
+  }
 `;
 
 const earthY = css`
@@ -68,6 +72,10 @@ const earthY = css`
   animation: 5s infinite forwards normal earthY ease-in-out -1.25s;
   width: 50px;
   height: 50px;
+
+  @media (prefers-reduced-motion) {
+    animation: dissolve;
+  }
 `;
 
 const monkey = css`
