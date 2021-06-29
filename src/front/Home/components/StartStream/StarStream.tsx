@@ -86,6 +86,10 @@ const stars = css`
   height: 20vh;
   transform-origin: center center;
 
+  @media (prefers-reduced-motion) {
+    animation: dissolve;
+  }
+
   ${Array(25)
     .fill(0)
     .map((_, idx) => {
@@ -94,10 +98,6 @@ const stars = css`
     animation-delay: ${idx * 100 + 100}ms;
     animation-duration: ${startStreamRandomInt250[idx] * 3}ms;
     left: ${startStreamRandomInt100[idx]}vw;
-  }
-
-  @media (prefers-reduced-motion) {
-    animation: dissolve;
   }
   `;
     })

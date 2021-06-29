@@ -29,6 +29,10 @@ const earthX = css`
   }
 
   animation: 5s infinite forwards normal earthX ease-in-out;
+
+  @media (prefers-reduced-motion) {
+    animation: dissolve;
+  }
 `;
 
 const earth = css`
