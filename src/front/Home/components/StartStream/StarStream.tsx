@@ -95,6 +95,10 @@ const stars = css`
     animation-duration: ${startStreamRandomInt250[idx] * 3}ms;
     left: ${startStreamRandomInt100[idx]}vw;
   }
+
+  @media (prefers-reduced-motion) {
+    animation: dissolve;
+  }
   `;
     })
     .join("")}
