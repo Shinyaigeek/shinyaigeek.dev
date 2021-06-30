@@ -4377,6 +4377,13 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
+github-calendar-element@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/github-calendar-element/-/github-calendar-element-1.0.1.tgz#82dc02df99625f2cdd2f21d2f9470c1ff62e553e"
+  integrity sha512-PLeV/xnjejOfiFpTiLRz+hrebe9tCrymZgEBnSrwmDs9EYlIFu6SXG/MUaR8LLjgJFCGZ9aPj5RFO7zYZcib5w==
+  dependencies:
+    github-calendar "^2.2.7"
+
 github-calendar-legend@^1.0.11:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/github-calendar-legend/-/github-calendar-legend-1.0.11.tgz#0ffca7a893956d0babd4019bcbfbba5be230e3c7"

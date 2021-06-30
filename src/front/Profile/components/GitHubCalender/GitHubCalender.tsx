@@ -9,10 +9,10 @@ const loadingStyle = css`
 
 export const GitHubCalender = () => {
   return (
-    <div className="ghCalender">
+    <github-calendar user-name="shinyaigeek" cache={86400}>
       <div className={loadingStyle}>
         <Loading />
       </div>
-    </div>
+    </github-calendar>
   );
 };

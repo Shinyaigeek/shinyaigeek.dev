@@ -132,6 +132,7 @@ const helmet = (props: HelmetProps) => {
         src="https://static.cloudflareinsights.com/beacon.min.js"
         data-cf-beacon='{"token": "0893ac88cf0542af88bfd9b93008b408", "spa": true}'
       ></script>
+      <script defer src="/r.js" async></script>
     </html>
   );
 };

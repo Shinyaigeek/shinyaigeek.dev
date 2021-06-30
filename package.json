@@ -14,6 +14,7 @@
     "_build:ssg": "babel-node src/build/build.ts --config-file ./src/build/babel.config.js --extensions '.ts,.tsx'",
     "_build:css": "webpack --config webpack.config.css.js --mode=production",
     "_build": "export NODE_ENV=production && yarn clear && yarn _build:css && yarn contenthash && yarn rss",
+    "_build:dev": "export NODE_ENV=development && yarn clear && yarn _build:css && yarn _build:ssg && yarn rss",
     "dev": "nodemon --watch src/ --exec  yarn _build",
     "serve": "miniserve dist --index index.html"
   },
@@ -63,6 +64,7 @@
     "front-matter": "^4.0.2",
     "fs": "^0.0.1-security",
     "github-calendar": "^2.2.7",
+    "github-calendar-element": "^1.0.1",
     "highlight.js": "10.4.1",
     "html-minifier": "^4.0.0",
     "html-react-parser": "^0.10.1",

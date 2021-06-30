@@ -9,6 +9,7 @@ const output = process.env.STATIC_FILE_OUTPUT || "dist";
 module.exports = {
   entry: {
     main: "./src/front/main.tsx",
+    r: "./src/front/_main.ts",
   },
   output: {
     path: path.join(__dirname, output),

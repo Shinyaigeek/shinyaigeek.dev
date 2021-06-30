@@ -5,7 +5,6 @@
     "linaria/babel"
   ],
   "plugins": [
-    "babel-plugin-lit-jsx",
     "macros"
   ]
 }
