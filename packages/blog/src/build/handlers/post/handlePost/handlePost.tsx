@@ -9,8 +9,8 @@ import { tweetMacroPlugin } from "remarkable-plugin-tweet-share";
 import { remarkablePluginHeadingId } from "remarkable-plugin-heading-id";
 import React from "react";
 import hljs from "highlight.js";
-import helmet from "../../../../../src/build/util/helmet";
-import { BLOG_TITLE } from "../../../../../src/consts";
+import helmet from "../../../util/helmet";
+import { BLOG_TITLE } from "../../../../consts";
 
 export const handlePost: (p: `/${string}`) => string = function (p) {
   const _post = fs.readFileSync(

@@ -1,9 +1,9 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import Home from "../../../front/Home/Home";
 import React from "react";
-import helmet from "../../../../src/build/util/helmet";
-import { BLOG_TITLE } from "../../../../src/consts";
-import { __getBlogPosts } from "../../../../src/build/util/getBlogPosts";
+import helmet from "../../util/helmet";
+import { BLOG_TITLE } from "../../../consts";
+import { __getBlogPosts } from "../../util/getBlogPosts";
 import path from "path";
 
 export const handleIndex: () => string = function () {

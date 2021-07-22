@@ -1,5 +1,5 @@
 import path from "path";
-import { handleIndex } from "./handlers/index";
+import { handleIndex } from "./handlers/index/index";
 import { getChildren } from "./handlers/post/getChildren/getChildren";
 import { handlePost } from "./handlers/post/handlePost/handlePost";
 import { handleProfile } from "./handlers/profile/handleProfile";
