@@ -6,7 +6,9 @@ import { Editor } from "./pages/Editor/Editor";
 const App: React.FC = function () {
   return (
     <RecoilRoot>
-      <Editor />
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <Editor />
+      </React.Suspense>
     </RecoilRoot>
   );
 };

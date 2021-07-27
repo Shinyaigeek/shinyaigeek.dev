@@ -3,22 +3,28 @@ import { useEffect } from "react";
 import { useFS } from "../../components/useLocalDirectory/useLocalDirectory";
 
 export const Editor: FC = function () {
-  const [directoryHandler, pickDirectory] = useFS();
+  const [imgDirHandler, articleDirHandler, pickDirectory] = useFS();
 
   useEffect(() => {
-    console.log(directoryHandler);
-  }, [directoryHandler]);
+    console.log(imgDirHandler);
+  }, [imgDirHandler]);
+
+  useEffect(() => {
+    console.log(articleDirHandler);
+  }, [articleDirHandler]);
 
   return (
     <div>
       hi{" "}
       <button
         onClick={() => {
-          pickDirectory().then(() => {
-            console.log("directory selected");
-          }).catch(() => {
-            console.log("directory not selected");
-          });
+          pickDirectory()
+            .then(() => {
+              console.log("directory selected");
+            })
+            .catch(() => {
+              console.log("directory not selected");
+            });
         }}
       >
         push

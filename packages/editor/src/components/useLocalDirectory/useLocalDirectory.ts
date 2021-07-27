@@ -1,17 +1,21 @@
 import { useCallback } from "react";
-import { RecoilState, useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { directory } from "./atom";
+import { imgDirAndArticleDir } from "./selector";
 
 export const useFS: () => readonly [
   FileSystemDirectoryHandle | undefined,
+  FileSystemDirectoryHandle | undefined,
   () => Promise<void>
 ] = function () {
-  const [directoryHandler, setDirectoryHandler] = useRecoilState(directory);
+  const [_, setDirectoryHandler] = useRecoilState(directory);
+  const [imgDirHandler, articleDirHandler] =
+    useRecoilValue(imgDirAndArticleDir);
   const pickTargetDirectory = useCallback(async () => {
     const handle = await window.showDirectoryPicker();
 
     setDirectoryHandler(handle);
   }, [setDirectoryHandler]);
 
-  return [directoryHandler, pickTargetDirectory] as const;
+  return [imgDirHandler, articleDirHandler, pickTargetDirectory] as const;
 };
