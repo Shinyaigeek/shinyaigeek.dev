@@ -1,25 +1,25 @@
 import { selector } from "recoil";
 import { directory } from "./atom";
 
-/**
- * @package
- */
 export interface Directory {
   handler: FileSystemDirectoryHandle;
   files: string[];
   directories: Directory[];
   dirName: string;
+  path: string;
 }
 
 const getDirectoryFromHandler: (
   handler: FileSystemDirectoryHandle,
-  dirName: string
-) => Promise<Directory> = async function (handler, dirName) {
+  dirName: string,
+  path: string
+) => Promise<Directory> = async function (handler, dirName, path) {
   const directory: Directory = {
     handler,
     files: [],
     directories: [],
     dirName,
+    path: path,
   };
 
   for await (const name of handler.keys()) {
@@ -29,7 +29,8 @@ const getDirectoryFromHandler: (
       directory.directories.push(
         await getDirectoryFromHandler(
           await handler.getDirectoryHandle(name),
-          name
+          name,
+          path + name + "/"
         )
       );
     }
@@ -59,6 +60,7 @@ export const imgDirAndArticleDir = selector({
         files: [],
         directories: [],
         dirName: "static",
+        path: "src/assets/",
       };
 
       const articleDir: Directory = {
@@ -66,6 +68,7 @@ export const imgDirAndArticleDir = selector({
         files: [],
         directories: [],
         dirName: "articles",
+        path: "src/articles/",
       };
 
       for await (const name of imgDirHandler.keys()) {
@@ -75,7 +78,8 @@ export const imgDirAndArticleDir = selector({
           imgDir.directories.push(
             await getDirectoryFromHandler(
               await imgDirHandler.getDirectoryHandle(name),
-              name
+              name,
+              "src/assets/" + name + "/"
             )
           );
         }
@@ -88,7 +92,8 @@ export const imgDirAndArticleDir = selector({
           articleDir.directories.push(
             await getDirectoryFromHandler(
               await articleDirHandler.getDirectoryHandle(name),
-              name
+              name,
+              "src/articles/" + name + "/"
             )
           );
         }

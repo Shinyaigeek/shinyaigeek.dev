@@ -10,10 +10,11 @@ export const useFS: () => readonly [
   (
     filename: string,
     currentDirHandler: FileSystemDirectoryHandle | undefined
-  ) => Promise<void>
+  ) => Promise<void>,
+  FileSystemFileHandle | undefined
 ] = function () {
   const [rootDirectoryHandler, setDirectoryHandler] = useRecoilState(directory);
-  const [_, setEditingFileHandler] =
+  const [currentEditingFileHandler, setEditingFileHandler] =
     useRecoilState(editingFile);
   const [imgDir, articleDir] = useRecoilValue(imgDirAndArticleDir);
   const pickTargetDirectory = useCallback(async () => {
@@ -57,5 +58,6 @@ export const useFS: () => readonly [
     articleDir,
     pickTargetDirectory,
     changeCurrentEditingFile,
+    currentEditingFileHandler,
   ] as const;
 };
