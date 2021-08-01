@@ -26,9 +26,7 @@ export const useFS: () => readonly [
   const changeCurrentEditingFile = useCallback(
     async (
       filename: string,
-      currentDirHandler:
-        | FileSystemDirectoryHandle
-        | undefined = rootDirectoryHandler
+      currentDirHandler: FileSystemDirectoryHandle = rootDirectoryHandler!
     ): Promise<void> => {
       if (!articleDir || !currentDirHandler) {
         throw new Error(
@@ -37,6 +35,8 @@ export const useFS: () => readonly [
       }
 
       const path = filename.split("/");
+
+      console.log(path, currentDirHandler);
 
       const key = path[0];
 

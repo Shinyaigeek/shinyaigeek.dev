@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { useEffect } from "react";
 import { ArticleDir } from "../../components/ArticleDir/ArticleDir";
+import { TextEditor } from "../../components/TextEditor/TextEditor";
 import { useFS } from "../../components/useLocalDirectory/useLocalDirectory";
 
 export const Editor: FC = function () {
@@ -32,6 +33,8 @@ export const Editor: FC = function () {
       </button>
 
       <ArticleDir />
+
+      <TextEditor />
     </div>
   );
 };
