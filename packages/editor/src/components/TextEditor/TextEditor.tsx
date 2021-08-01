@@ -28,5 +28,5 @@ export const TextEditor: FC = function () {
 
   if (!file) return <div />;
 
-  return <div>{file}</div>;
+  return <div style={{ width: "70vw" }}>{file}</div>;
 };

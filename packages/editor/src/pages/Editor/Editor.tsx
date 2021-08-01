@@ -31,10 +31,10 @@ export const Editor: FC = function () {
       >
         push
       </button>
-
-      <ArticleDir />
-
-      <TextEditor />
+      <div style={{ display: "flex" }}>
+        <ArticleDir />
+        <TextEditor />
+      </div>
     </div>
   );
 };
