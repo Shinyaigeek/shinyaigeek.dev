@@ -19,5 +19,9 @@ module.exports = {
   ],
   rules: {
     "import-access/jsdoc": ["error"],
+    // TODO: react-gui の 型定義が公開されたらこのruleはerrorにする
+    "@typescript-eslint/ban-ts-comment": 0,
+    "@typescript-eslint/no-unsafe-assignment": 0,
+    "@typescript-eslint/no-unsafe-call": 0,
   },
 };
