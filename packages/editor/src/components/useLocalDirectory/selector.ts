@@ -8,15 +8,18 @@ export interface Directory {
   handler: FileSystemDirectoryHandle;
   files: string[];
   directories: Directory[];
+  dirName: string;
 }
 
 const getDirectoryFromHandler: (
-  handler: FileSystemDirectoryHandle
-) => Promise<Directory> = async function (handler) {
+  handler: FileSystemDirectoryHandle,
+  dirName: string
+) => Promise<Directory> = async function (handler, dirName) {
   const directory: Directory = {
     handler,
     files: [],
     directories: [],
+    dirName,
   };
 
   for await (const name of handler.keys()) {
@@ -24,7 +27,10 @@ const getDirectoryFromHandler: (
       directory.files.push(name);
     } else {
       directory.directories.push(
-        await getDirectoryFromHandler(await handler.getDirectoryHandle(name))
+        await getDirectoryFromHandler(
+          await handler.getDirectoryHandle(name),
+          name
+        )
       );
     }
   }
@@ -52,12 +58,14 @@ export const imgDirAndArticleDir = selector({
         handler: imgDirHandler,
         files: [],
         directories: [],
+        dirName: "static",
       };
 
       const articleDir: Directory = {
         handler: articleDirHandler,
         files: [],
         directories: [],
+        dirName: "articles",
       };
 
       for await (const name of imgDirHandler.keys()) {
@@ -66,7 +74,8 @@ export const imgDirAndArticleDir = selector({
         } else {
           imgDir.directories.push(
             await getDirectoryFromHandler(
-              await imgDirHandler.getDirectoryHandle(name)
+              await imgDirHandler.getDirectoryHandle(name),
+              name
             )
           );
         }
@@ -78,7 +87,8 @@ export const imgDirAndArticleDir = selector({
         } else {
           articleDir.directories.push(
             await getDirectoryFromHandler(
-              await articleDirHandler.getDirectoryHandle(name)
+              await articleDirHandler.getDirectoryHandle(name),
+              name
             )
           );
         }
