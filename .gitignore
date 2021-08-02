@@ -108,7 +108,8 @@ typings/
 .vscode-test
 
 dist
-public
+
+packages/blog/public
 
 .vscode
 .now
