@@ -11,8 +11,7 @@ interface HeadProps {
 
 const isProd = process.env.NODE_ENV === "production";
 const ASSETS_PORT = process.env.ASSETS_PORT ?? 8080;
-const ASSETS_SERVER =
-  process.env.ASSETS_SERVER ?? "https://static.shinyaigeek.dev/static";
+const ASSETS_SERVER = process.env.ASSETS_SERVER ?? "https://shinyaigeek.dev";
 
 const ogp = "https://shinyaigeek-og-image.vercel.app/";
 
@@ -132,7 +131,13 @@ const helmet = (props: HelmetProps) => {
         src="https://static.cloudflareinsights.com/beacon.min.js"
         data-cf-beacon='{"token": "0893ac88cf0542af88bfd9b93008b408", "spa": true}'
       ></script>
-      <script defer src="/r.js" async></script>
+      <script
+        defer
+        src={`${assets}/r${
+          process.env.CONTENTHASH_JS ? "." + process.env.CONTENTHASH_JS : ""
+        }.js`}
+        async
+      ></script>
     </html>
   );
 };
