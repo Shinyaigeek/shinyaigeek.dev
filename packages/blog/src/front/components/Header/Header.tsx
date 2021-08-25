@@ -25,7 +25,7 @@ const header = css`
     color: white !important;
   }
 
-  @media (min-width: 750px) {
+  @media (min-width: 840px) {
     display: flex;
   }
 `;
@@ -34,7 +34,7 @@ const contents = css`
   width: auto;
   display: flex;
 
-  @media (min-width: 750px) {
+  @media (min-width: 840px) {
     position: absolute;
     right: 15px;
   }
@@ -75,7 +75,7 @@ const anchor = css`
     transform: scale(1.1, 1);
   }
 
-  @media (min-width: 750px) {
+  @media (min-width: 840px) {
     font-size: 28px !important;
   }
 `;
@@ -106,6 +106,11 @@ export function Header() {
         <div className={anchor}>
           <a href="/profile" id="link2profile">
             Profile
+          </a>
+        </div>
+        <div className={anchor}>
+          <a href="https://github-activity.shinyaigeek.dev/" id="link2activity">
+            Activity
           </a>
         </div>
         <div className={anchor}>
