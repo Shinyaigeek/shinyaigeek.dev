@@ -13,9 +13,9 @@
     "i18n:compile": "lingui compile",
     "_build:ssg": "babel-node src/build/build.ts --config-file ./src/build/babel.config.js --extensions '.ts,.tsx'",
     "_build:css": "webpack --config webpack.config.css.js --mode=production",
-    "_build": "export NODE_ENV=production && yarn clear && yarn _build:css && yarn contenthash && yarn rss",
-    "_build:dev": "export NODE_ENV=development && yarn clear && yarn _build:css && yarn _build:ssg && yarn rss",
-    "dev": "nodemon --watch src/ --exec  yarn _build",
+    "_build": "export NODE_ENV=production && npm run clear && npm run _build:css && npm run contenthash && npm run rss",
+    "_build:dev": "export NODE_ENV=development && npm run clear && npm run _build:css && npm run _build:ssg && npm run rss",
+    "dev": "nodemon --watch src/ --exec  npm run _build",
     "serve": "miniserve dist --index index.html"
   },
   "repository": {
@@ -55,6 +55,7 @@
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "body-parser": "^1.19.0",
     "contentful": "^8.1.7",
+    "css-loader": "^6.3.0",
     "dotenv": "^8.2.0",
     "emailjs-com": "^2.4.1",
     "fastify": "^3.9.2",
