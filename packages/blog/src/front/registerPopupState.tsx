@@ -4,7 +4,6 @@ import { path2prefetchPath } from "./prefetch/path2prefetchPath";
 import { __shinyaigeek_prefetch } from "./prefetch/prefetcher";
 import { Profile } from "./Profile/Profile";
 import { registerGitHubCalendar } from "./registerGitHubCalendar";
-import { render } from "./utils/render";
 
 export const registerPopupState = () => {
   if (!window.onpopstate) {
@@ -16,14 +15,11 @@ export const registerPopupState = () => {
         case "/": {
           if (__shinyaigeek_prefetch["home"]) {
             document.title = "shinyaigeek.dev";
-            render(
-              <Home
-                items={__shinyaigeek_prefetch["home"].items}
-                prev={__shinyaigeek_prefetch["home"].prev}
-                next={__shinyaigeek_prefetch["home"].next}
-              />,
-              document.getElementById("_app")!
-            );
+            <Home
+              items={__shinyaigeek_prefetch["home"].items}
+              prev={__shinyaigeek_prefetch["home"].prev}
+              next={__shinyaigeek_prefetch["home"].next}
+            />;
           } else {
             location.assign("/");
           }
@@ -32,7 +28,7 @@ export const registerPopupState = () => {
 
         case "/profile": {
           document.title = "プロフィール | shinyaigeek.dev";
-          render(<Profile />, document.getElementById("_app")!);
+          <Profile />;
           registerGitHubCalendar();
           break;
         }
@@ -45,10 +41,7 @@ export const registerPopupState = () => {
               if (__shinyaigeek_prefetch[prefetchPath]) {
                 document.title = __shinyaigeek_prefetch[prefetchPath].title;
                 console.log(__shinyaigeek_prefetch[prefetchPath]);
-                render(
-                  <Post fields={__shinyaigeek_prefetch[prefetchPath].fields} />,
-                  document.getElementById("_app")!
-                );
+                <Post fields={__shinyaigeek_prefetch[prefetchPath].fields} />;
                 break;
               }
             }

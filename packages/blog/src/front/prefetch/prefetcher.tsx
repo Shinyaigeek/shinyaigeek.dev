@@ -3,7 +3,6 @@ import Post from "../Post/Post";
 import { Profile } from "../Profile/Profile";
 import Home from "../Home/Home";
 import { registerGitHubCalendar } from "../registerGitHubCalendar";
-import { render } from "../utils/render";
 
 // TODO: type safe key
 export const __shinyaigeek_prefetch: {
@@ -23,10 +22,7 @@ export const registerPrefetch = () => {
               evt.preventDefault();
               document.title = "shinyaigeek.dev";
               history.pushState(null, "shinyaigeek.dev", "/");
-              render(
-                <Home items={json.items} prev={json.prev} next={json.next} />,
-                document.getElementById("_app")!
-              );
+              <Home items={json.items} prev={json.prev} next={json.next} />;
             });
           });
         });
@@ -38,14 +34,11 @@ export const registerPrefetch = () => {
           evt.preventDefault();
           document.title = "shinyaigeek.dev";
           history.pushState(null, "shinyaigeek.dev", "/");
-          render(
-            <Home
-              items={__shinyaigeek_prefetch["home"].items}
-              prev={__shinyaigeek_prefetch["home"].prev}
-              next={__shinyaigeek_prefetch["home"].next}
-            />,
-            document.getElementById("_app")!
-          );
+          <Home
+            items={__shinyaigeek_prefetch["home"].items}
+            prev={__shinyaigeek_prefetch["home"].prev}
+            next={__shinyaigeek_prefetch["home"].next}
+          />;
         });
       });
     }
@@ -56,7 +49,7 @@ export const registerPrefetch = () => {
       evt.preventDefault();
       document.title = "プロフィール | shinyaigeek.dev";
       history.pushState(null, "プロフィール | shinyaigeek.dev", "/profile");
-      render(<Profile />, document.getElementById("_app")!);
+      <Profile />;
       registerGitHubCalendar();
     });
   }
@@ -66,7 +59,7 @@ export const registerPrefetch = () => {
     if (entry.target.getAttribute("href") === "/profile") {
       return;
     }
-    if(entry.target.getAttribute("href")?.startsWith("#")) {
+    if (entry.target.getAttribute("href")?.startsWith("#")) {
       return;
     }
     const prefetchPath = path2prefetchPath(entry.target.getAttribute("href"));
@@ -85,10 +78,7 @@ export const registerPrefetch = () => {
                 fields.title,
                 entry.target.getAttribute("href")
               );
-              render(
-                <Post fields={fields} />,
-                document.getElementById("_app")!
-              );
+              <Post fields={fields} />;
             });
           });
         });
@@ -102,7 +92,7 @@ export const registerPrefetch = () => {
             fields.title,
             entry.target.getAttribute("href")
           );
-          render(<Post fields={fields} />, document.getElementById("_app")!);
+          <Post fields={fields} />;
         });
       }
     }
