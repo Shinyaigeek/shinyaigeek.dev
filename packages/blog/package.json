@@ -37,7 +37,7 @@
     "contentful": "^8.1.7",
     "emailjs-com": "^2.4.1",
     "fastify": "^3.9.2",
-    "fastify-static": "^2.7.0",
+    "fastify-static": "^4.2.4",
     "fastify-webpack": "^0.0.1-alpha.5",
     "front-matter": "^4.0.2",
     "github-calendar": "^2.2.7",
