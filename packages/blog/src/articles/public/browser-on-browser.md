@@ -54,7 +54,7 @@ fn create_block(render_object: RenderObject) -> Primitive {
   }
 }
 
-fn create_block(render_object: RenderObject) -> Primitive {
+fn create_text(render_object: RenderObject) -> Primitive {
   Primitive::Text {
     ...
   }
@@ -62,5 +62,7 @@ fn create_block(render_object: RenderObject) -> Primitive {
 
 ```
 
-このように `RenderObject` をもとにそれを iced のPrimitiveという単位に変換します. このPrimitiveを
+このように `RenderObject` をもとにそれを iced のPrimitiveという単位に変換します. create_block では「この位置でこの大きさで, この背景色のブロック」というのを生成します. 同様に create_text では「この位置でこのフォントでこの文字」というのを生成します。
+
+
 
