@@ -64,5 +64,37 @@ fn create_text(render_object: RenderObject) -> Primitive {
 
 このように `RenderObject` をもとにそれを iced のPrimitiveという単位に変換します. create_block では「この位置でこの大きさで, この背景色のブロック」というのを生成します. 同様に create_text では「この位置でこのフォントでこの文字」というのを生成します。
 
+## Webでの実装
 
+Webでの実装では, これをCanvas APIベースのものに置き換えます.
 
+まず, RenderTreeの構築処理までとLayout処理の一部は, nativeで使われている実装と共通のものを使いまわせるので, それ以降の, 
+
+* Layout処理におけるこの文をこのフォントで描画したときどれくらい幅, 高さをとるかの取得
+* 実際に描画する処理
+
+をWebでも動くようにするために, Canvas APIによって実装します.
+
+* /core: RenderTreeの構築まで
+* /native: nativeでの描画処理
+* /wasm: webでの描画処理
+
+とpackageを分けて, native, wasmからcoreに依存する形で実装します.
+
+それありきで, 以下のような実装をしています.
+
+```rust
+
+fn create_block(render_object: RenderObject, canvas_context: CanvasContext) -> Primitive {
+  canvas_context.set_style
+}
+
+fn create_text(render_object: RenderObject, canvas_context: CanvasContext) -> Primitive {
+  Primitive::Text {
+    ...
+  }
+}
+
+```
+
+`web-sys` moduleから, Canvas APIにアクセスして, よしなに描画します.
