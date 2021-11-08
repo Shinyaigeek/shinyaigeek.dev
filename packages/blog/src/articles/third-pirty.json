@@ -1,26 +1,26 @@
 [
   {
     "media": "speakerdeck",
-    "url": "https://speakerdeck.com/shinyaigeek/burauzazuo-rifalsesu-me",
+    "slug": "https://speakerdeck.com/shinyaigeek/burauzazuo-rifalsesu-me",
     "title": "ブラウザ作りのすゝめ",
     "ogp": "https://files.speakerdeck.com/presentations/f70e84d625ae44949d1a6f6a87909011/slide_0.jpg?19382839",
     "description": "",
-    "published_at": "2021/10/26"
+    "publishedAt": "2021/10/26"
   },
   {
     "media": "speakerdeck",
-    "url": "https://speakerdeck.com/shinyaigeek/astwoiziizisitepu-falsekangaetazui-qiang-falsedxwode-ru",
+    "slug": "https://speakerdeck.com/shinyaigeek/astwoiziizisitepu-falsekangaetazui-qiang-falsedxwode-ru",
     "title": "ASTをいじいじして僕のかんがえた最強のDXを得る",
     "ogp": "https://files.speakerdeck.com/presentations/4de462dfa8914419a9432b5a7e5f2074/slide_0.jpg?16696680",
     "description": "",
-    "published_at": "2020/10/12"
+    "publishedAt": "2020/10/12"
   },
   {
     "media": "speakerdeck",
-    "url": "https://speakerdeck.com/shinyaigeek/web-frontend-performance-tuning",
+    "slug": "https://speakerdeck.com/shinyaigeek/web-frontend-performance-tuning",
     "title": "Web Frontend Performance Tuning",
     "ogp": "https://files.speakerdeck.com/presentations/0d49c61a696a4074a475bc4220eea006/slide_0.jpg?15867702",
     "description": "サマーインターン前につよつよになっちゃおうの会でWebフロントエンドのパフォーマンスについてLTした際の資料です",
-    "published_at": "2020/6/18"
+    "publishedAt": "2020/6/18"
   }
 ]

@@ -3,10 +3,10 @@ import { strict as assert } from "assert";
 
 export interface Entry {
   title: string;
-  url: string;
+  slug: string;
   ogp?: string;
   description?: string;
-  published_at: string;
+  publishedAt: string;
 }
 
 export const getThirdPirty = (target: string) => {
@@ -19,13 +19,13 @@ export const getThirdPirty = (target: string) => {
 
   return json.map((entry) => {
     assert(entry.title);
-    assert(entry.url);
-    assert(entry.published_at);
+    assert(entry.slug);
+    assert(entry.publishedAt);
 
     return {
       ...entry,
       ogp: entry.ogp === "" ? undefined : entry.ogp,
       description: entry.description === "" ? undefined : entry.description,
     };
-  });
+  }) as Entry[];
 };
