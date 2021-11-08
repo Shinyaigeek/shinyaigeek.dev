@@ -49,6 +49,10 @@ const home = css`
     margin: 4px 0;
     height: 64px;
   }
+
+  .ogp {
+    width: 100%;
+  }
 `;
 
 export const Item = (props: MetaData) => {
@@ -61,7 +65,7 @@ export const Item = (props: MetaData) => {
       <div className="date">{props.publishedAt}</div>
       <div className="tags"></div>
       <div>{getOmmit(props.description ?? "")}</div>
-      {props.ogp && <img src={props.ogp} alt={props.title} />}
+      {props.ogp && <img src={props.ogp} alt={props.title} className="ogp" />}
       <div className="read--more">
         <a
           className="item--home__anchor read--more__anchor"
