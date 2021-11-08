@@ -6,10 +6,12 @@ import React from "react";
 import { css } from "linaria";
 export interface MetaData {
   title: string;
-  description: string;
+  description?: string;
+  ogp?: string;
   publishedAt: string;
   // tags: string[];
   slug: string;
+  media?: string;
 }
 
 const itemHomeAnchor = css`
@@ -58,12 +60,14 @@ export const Item = (props: MetaData) => {
       <Divider />
       <div className="date">{props.publishedAt}</div>
       <div className="tags"></div>
-      <div>{getOmmit(props.description)}</div>
+      <div>{getOmmit(props.description ?? "")}</div>
+      {props.ogp && <img src={props.ogp} alt={props.title} />}
       <div className="read--more">
         <a
           className="item--home__anchor read--more__anchor"
-          href={`/post/${props.slug}`}
-          tabIndex={-1}>
+          href={!props.media ? `/post/${props.slug}` : props.slug}
+          tabIndex={-1}
+        >
           <Button id="more-button">Read</Button>
         </a>
       </div>
