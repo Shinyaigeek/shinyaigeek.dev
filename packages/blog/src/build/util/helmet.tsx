@@ -17,7 +17,7 @@ const ogp = "https://shinyaigeek-og-image.vercel.app/";
 
 export const assets = isProd
   ? ASSETS_SERVER
-  : "http://localhost:" + ASSETS_PORT;
+  : "http://localhost:" + ASSETS_PORT + "/dist";
 
 const SiteHead = (props: HeadProps) => (
   <head>

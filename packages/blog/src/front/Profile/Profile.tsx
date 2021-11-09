@@ -7,6 +7,7 @@ import React from "react";
 import { css } from "linaria";
 import { JobItem } from "./components/JobItem/JobItem";
 import { t } from "@lingui/macro";
+import { Card, CardShowcase } from "./components/Card/Card";
 
 const profile = css`
   width: 80vw;
@@ -124,9 +125,60 @@ export const Profile = Layout(() => {
         <div className="interests">
           <div className={title}>My Interests</div>
           <p className="content">
+            <CardShowcase>
+              {interests.map((interest) => (
+                <Card
+                  title={interest.title}
+                  img={interest.img ?? "/assets/static/placeholder.jpeg"}
+                />
+              ))}
+            </CardShowcase>
           </p>
         </div>
       </div>
     </div>
   );
 });
+
+interface Interest {
+  title: string;
+  img?: string;
+}
+
+const interests: Interest[] = [
+  {
+    title: "JavaScript",
+    img: "/assets/static/javascript.png",
+  },
+
+  {
+    title: "TypeScript",
+    img: "/assets/static/typescript.png",
+  },
+  {
+    title: "React",
+    img: "/assets/static/react.png",
+  },
+  {
+    title: "Rust",
+    img: "/assets/static/rust.png",
+  },
+  {
+    title: "AMP",
+    img: "/assets/static/amp.png",
+  },
+  {
+    title: "Fastly",
+    img: "/assets/static/fastly.png",
+  },
+  {
+    title: "CloudFlare",
+    img: "/assets/static/cloudflare.png",
+  },
+  {
+    title: "Web Performance",
+  },
+  {
+    title: "Browser",
+  },
+];

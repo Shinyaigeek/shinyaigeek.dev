@@ -7,9 +7,14 @@ interface Props {
 }
 
 export const Card: React.FC<Props> = function ({ title, img }) {
-  return <li className={CardStyle}></li>;
+  return (
+    <li className={CardStyle}>
+      <div className="title">{title}</div>
+      <img src={img} alt={title} loading="lazy" />
+    </li>
+  );
 };
 
-export const CardShowcase: React.FC<{ list: Props[] }> = function ({ list }) {
-  return <ul className={CardShowcaseStyle}></ul>;
+export const CardShowcase: React.FC = function ({ children }) {
+  return <ul className={CardShowcaseStyle}>{children}</ul>;
 };
