@@ -6,7 +6,7 @@ import React from "react";
 
 const postAnchor = css`
   position: fixed;
-  top: 84px;
+  top: 72px;
   left: 20vw;
   width: 180px;
   color: black;

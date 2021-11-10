@@ -16,7 +16,7 @@ const postContent = css`
   font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ",
     Meiryo, "ＭＳ Ｐゴシック", "-apple-system", BlinkMacSystemFont, sans-serif;
   width: 75%;
-  margin: 12px auto;
+  margin: 16px auto;
   overflow: hidden;
 
   table tr td {
