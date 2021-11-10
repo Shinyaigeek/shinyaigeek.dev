@@ -24,7 +24,9 @@ const postContent = css`
   }
 
   img {
-    width: 250px;
+    width: 80%;
+    min-width: 250px;
+    max-width: 750px;
     display: block;
     object-fit: contain;
     margin: 0 auto;
