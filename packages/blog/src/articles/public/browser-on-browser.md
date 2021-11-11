@@ -9,7 +9,7 @@ updatedAt: 2019/08/12
 
 ## 初めに
 
-こんにちは, しにゃい/Shinyaigeek です.
+こんにちは, [しにゃい/Shinyaigeek](https://twitter.com/Shinyaigeek) です.
 
 
 ちまちまと作っていた自作ブラウザ [Shinyaic](https://github.com/shinyaigeek/shinyaic) をChrome上で動かすことができたので, それについて勉強ノートを書こうと思います.
@@ -24,7 +24,7 @@ updatedAt: 2019/08/12
 
 ブラウザの仕組みはおおまかに書くとこの概略図のようになっています. 本当は描画の処理はもう少し細かいんですがここでは割愛します.
 
-まずHTMLからDOMを構築, CSSからCSSOMを構築して, それをもとにRenderTreeを構築します. このRenderTreeには描画に必要な情報が格納されます. DOMは **Document Object Model** の名の通り, HTMLのマークアップの構造に基づいた情報が格納されています. 例えばこのノードはH1要素である...と言ったこと, あるいはheadタグやmetaタグなど描画されるわけではない要素についてのノードも格納されています. 一方RenderTreeは描画に必要な情報が格納されるので, `display: none;` が付与されていたりあるいはheadタグといった, 描画されない要素のノードは含まれません. また基本的にはそのノードがHTMLにおける何タグであるか, といった情報も削げ落ちており, Block NodeかInline Nodeか, そしてどんなスタイルが当たっているか, といった情報が格納されます.
+まずHTMLからDOMを構築, CSSからCSSOMを構築して, それをもとにRenderTreeを構築します. このRenderTreeには描画に必要な情報が格納されます. DOMは **Document Object Model** という名の通り, HTMLのマークアップの構造に基づいた情報が格納されています. 例えばこのノードはH1要素である...と言ったこと, あるいはheadタグやmetaタグなど描画されるわけではない要素についてのノードも格納されています. 一方RenderTreeは描画に必要な情報が格納されるので, `display: none;` が付与されていたりあるいはheadタグといった, 描画されない要素のノードは含まれません. また基本的にはそのノードがHTMLにおける何タグであるか, といった情報も削げ落ちており, Block NodeかInline Nodeか, そしてどんなスタイルが当たっているか, といった情報が格納されます.
 
 RenderTreeを構築すれば, 次はそれを元に矩形情報を計算します. このノードがどれくらいの大きさで, どの位置に描画されるか, ということを計算して, それが完了すれば実際に描画処理を行います.
 
@@ -99,4 +99,12 @@ fn create_text(render_object: RenderObject, canvas_context: CanvasContext) -> Pr
 
 ```
 
-`web-sys` moduleから, Canvas APIにアクセスして, よしなに描画します.
+**web-sys** moduleから, Canvas APIにアクセスして, よしなに描画します.
+
+WASMから, このようにHTMLを入力にとりCanvas上に描画するところまで実行することができました.
+
+https://shinyaic-wasm-playground.vercel.app/
+
+## 終わりに
+
+
