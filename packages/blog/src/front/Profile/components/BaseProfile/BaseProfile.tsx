@@ -1,9 +1,6 @@
 import { css } from "linaria";
 import React from "react";
 
-import { Twitter, Linkedin, Github } from "@zeit-ui/react-icons";
-import { serverPath } from "../../../utils/consts/server";
-
 // * Math.random()でrandomを導出すると, SSR時にclassNameが変わってしまう可能性があるためrandomな値は静的な値としておく
 const noiseAnimRandomInt1 = [
   21,
