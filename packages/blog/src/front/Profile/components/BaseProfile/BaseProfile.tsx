@@ -168,6 +168,7 @@ const jobGlitch = css`
 const word = css`
   font-size: 24px;
   padding: 12px 0;
+  text-align: center;
 `;
 
 const mySnsBox = css`
