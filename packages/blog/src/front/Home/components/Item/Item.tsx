@@ -67,7 +67,17 @@ export const Item = (props: MetaData) => {
       <div className="tags"></div>
       <div>{getOmmit(props.description ?? "")}</div>
       {props.ogp && (
-        <img src={props.ogp} alt={props.title} className="ogp" loading="lazy" />
+        <a
+          href={!props.media ? `/post/${props.slug}` : props.slug}
+          tabIndex={-1}
+        >
+          <img
+            src={props.ogp}
+            alt={props.title}
+            className="ogp"
+            loading="lazy"
+          />
+        </a>
       )}
       <div className="read--more">
         <a
