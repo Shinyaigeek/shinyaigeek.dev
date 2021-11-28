@@ -1,6 +1,14 @@
 [
   {
     "media": "speakerdeck",
+    "slug": "https://speakerdeck.com/shinyaigeek/jia-su-suruedge-computing",
+    "title": "加速するEdge Computing",
+    "ogp": "https://files.speakerdeck.com/presentations/557f1c609c98473fa0afd5e21655b199/slide_0.jpg?19661841",
+    "description": "JSConf JP 2021にてLTさせていただいた時の資料です.",
+    "publishedAt": "2021/11/27"
+  },
+  {
+    "media": "speakerdeck",
     "slug": "https://speakerdeck.com/shinyaigeek/burauzazuo-rifalsesu-me",
     "title": "ブラウザ作りのすゝめ",
     "ogp": "https://files.speakerdeck.com/presentations/f70e84d625ae44949d1a6f6a87909011/slide_0.jpg?19382839",
