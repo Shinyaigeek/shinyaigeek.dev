@@ -88,6 +88,7 @@ const postContent = css`
     border-radius: 2px;
     padding: 4px 6px;
     color: white;
+    overflow: scroll;
   }
 
   h1 {
