@@ -1,0 +1,484 @@
+<!DOCTYPE html><html lang="ja"><head><title>ASTで僕の考えた最強のDXを実現する 〜自分のDXは自分で守っていけ〜 | shinyaigeek.dev</title><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta property="og:title" content="ASTで僕の考えた最強のDXを実現する 〜自分のDXは自分で守っていけ〜 | shinyaigeek.dev"><meta property="og:site_name" content="shinyaigeek.dev"><meta property="og:locale" content="ja_JP"><meta name="description" content="見習いWeb developer兼大学生のブログ. 主にweb開発の知見について喋ります"><meta property="og:description" content="見習いWeb developer兼大学生のブログ. 主にweb開発の知見について喋ります"><meta property="og:url" content="https://shinyaigeek.dev/post/introduction-to-AST"><meta name="twitter:site" content="@shinyaigeek"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:image" content="https://shinyaigeek-og-image.vercel.app/api/?title=AST%E3%81%A7%E5%83%95%E3%81%AE%E8%80%83%E3%81%88%E3%81%9F%E6%9C%80%E5%BC%B7%E3%81%AEDX%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B%20%E3%80%9C%E8%87%AA%E5%88%86%E3%81%AEDX%E3%81%AF%E8%87%AA%E5%88%86%E3%81%A7%E5%AE%88%E3%81%A3%E3%81%A6%E3%81%84%E3%81%91%E3%80%9C"><meta name="twitter:image" content="https://shinyaigeek-og-image.vercel.app/api/?title=AST%E3%81%A7%E5%83%95%E3%81%AE%E8%80%83%E3%81%88%E3%81%9F%E6%9C%80%E5%BC%B7%E3%81%AEDX%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B%20%E3%80%9C%E8%87%AA%E5%88%86%E3%81%AEDX%E3%81%AF%E8%87%AA%E5%88%86%E3%81%A7%E5%AE%88%E3%81%A3%E3%81%A6%E3%81%84%E3%81%91%E3%80%9C"><link rel="icon" type="image/x-icon" href="https://shinyaigeek.dev/assets/static/favicon.ico"><link rel="stylesheet" type="text/css" href="https://shinyaigeek.dev/styles.205c4d88ce50e5b652fc.css"><link rel="stylesheet" type="text/css" href="https://shinyaigeek.dev/a11y-dark.min.css"><link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"><link rel="preload" as="style" href="https://shinyaigeek.dev/a11y-dark.min.css"><link rel="preload" as="style" href="https://shinyaigeek.dev/styles.205c4d88ce50e5b652fc.css"><link rel="preload" as="style" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"><link rel="preload" as="image" href="https://shinyaigeek.dev/assets/static/icon_transparent_header.png"><link rel="alternate" type="application/rss+xml" title="shinyaigeek.dev" href="https://shinyaigeek.dev/rss.xml"></head><body><div id="_app"><div class="r5xxgyg"><div class="hxs2oc3"><div class="t15f2u4l"><a href="/" class="link2Home"><div><img src="/assets/static/icon_transparent_header.png" alt="icon" class="ib360hc" width="36px" height="36px">shinyaigeek.dev</div></a></div><div class="c1508669"><div class="aondxz7"><a href="/" class="link2Home">Blog</a></div><div class="aondxz7"><a href="/profile" id="link2profile">Profile</a></div><div class="aondxz7"><a href="https://github-activity.shinyaigeek.dev/" id="link2activity">Activity</a></div><div class="aondxz7"><a href="mailto:me@shinyaigeek.dev">Contact</a></div></div></div><div class="iqwsz9a"><div><details class="p1cxnigz"><summary class="post--anchor__title" id="post--anchor__title">目次</summary><a href="#2__0">TL;DR</a><a href="#2__1">AST とは</a><a href="#2__2">ASTが使われているもの</a><a href="#2__3">ASTでコードをいじいじするときのあれこれ</a><a href="#2__4">ASTを試してみる</a><a href="#2__5">まとめ</a></details><div class="m6cmszt"><h1>ASTで僕の考えた最強のDXを実現する 〜自分のDXは自分で守っていけ〜</h1><div>2020/09/12</div><div class="t1hw9n1v"><div>JavaScript</div><div>AST</div></div></div><div class="p8rsdcs"><h2 id="2__0">TL;DR</h2>
+<p>ASTイジイジするのはいいぞ！！</p>
+<ul>
+<li>難しくない</li>
+<li>自分のDXを自分で守るというエキサイティングな体験ができる</li>
+<li>触れる範囲が広がる</li>
+<li>プログラミングをやる限りお世話になる</li>
+</ul>
+<p>と良いことづくめで最高なので布教したい</p>
+<p>また, このブログは <a href="https://docs.google.com/presentation/d/1Ykka2_NvseClPO2J_oFqRUb_sD6rZfYBU-XWnsdTn9U/edit?usp=sharing">https://docs.google.com/presentation/d/1Ykka2_NvseClPO2J_oFqRUb_sD6rZfYBU-XWnsdTn9U/edit?usp=sharing</a> の補助資料です. まあこの記事の方を読めば大丈夫です大丈夫です.</p>
+<h2 id="2__1">AST とは</h2>
+<p>ASTとは <strong>A</strong>bstract <strong>S</strong>ntax <strong>T</strong>ree の略です. 日本語でいうと <strong>抽象構文木</strong> というやつです.
+<strong>Tree</strong> とあるように, プログラムの文法構造を <strong>Tree</strong> 構造で表現したものになります.
+Tree 構造なので, それぞれのプログラムの節々を <strong>Node</strong> と言います.</p>
+<pre><code class="language-javascript">
+<span class="hljs-keyword">if</span>( hoge === <span class="hljs-string">&quot;bar&quot;</span> ) {
+  <span class="hljs-title function_">foga</span>();
+}
+
+</code></pre>
+<p>例えばですが, 上記のコードの AST はどのようなものになるか見てみましょう.</p>
+<p><img src="/assets/introduction-to-AST/ast-tree.png" alt="ast"></p>
+<p>if文を分解してみましょう.
+if文は「もし〜〜なら、〜〜する」ということを記述できますね。
+コードを見てみると、「もし hoge が &quot;bar&quot; という string literal 値だったら, fuga という関数を引数なしで実行する」という感じですね.
+AST上だと、まず <code>ifStatement</code> という Node が登場します.
+そして, その <code>if</code> の子の Node として, <code>if</code> 文の「条件式」や, その「条件を満たす時に実行される処理」が入ります。
+そして条件式の中を見ていきましょう.
+条件式の中は、まず <code>Binary Expression</code> という Node が登場します. これは二項演算式で, 二つの値を比較したり, ということをしているということがわかりますね(図では簡略のため省略しています)
+で, <code>Binary Expression</code> で具体的に何をしているかという話になるのですが,</p>
+<ul>
+<li>等しいかどうか</li>
+<li><code>hoge</code> という変数</li>
+<li>&quot;bar&quot; という string literal値</li>
+</ul>
+<p>ということになりますね.</p>
+<p>このブログ(発表)では, ASTをイジイジするアプローチから code に対して介入し何らかの mutation を行なっていくプロセスを解説していきます.</p>
+<h2 id="2__2">ASTが使われているもの</h2>
+<p><img src="/assets/introduction-to-AST/ast-tool.png" alt="ast-tool"></p>
+<p>JSでいえば, babel, eslint, prettier, webpack, などなど, 私たちの開発者体験を潤す様々なツールがASTを用いています.</p>
+<p>僕はJSばかり書いているのでJSの例しか出せませんが, エンジニアがプログラムを扱う以上, ほぼほぼ必ずどこかでお世話になっているといっても過言はないはずです.</p>
+<h2 id="2__3">ASTでコードをいじいじするときのあれこれ</h2>
+<p><img src="/assets/introduction-to-AST/ast-overview.png" alt="ast-process"></p>
+<p>大まかに分けて以下の三つのプロセスがあります。</p>
+<ul>
+<li>parse: JS -&gt; AST</li>
+<li>transform: transform AST</li>
+<li>unparse: AST -&gt; JS</li>
+</ul>
+<p><code>parse</code> の段階で, JavaScriptのソースコードを AST へと変換します.
+<code>transform</code> の段階で, AST の中身を弄っていきます.
+そして最後に <code>unparse</code> の段階で transform された AST を JavaScript のソースコードへと変換してくれます.</p>
+<p><img src="/assets/introduction-to-AST/transform.png" alt="ast_process2"></p>
+<p>また, 多くの場合先人の弛まぬ努力のおかげで, <code>parse</code>, <code>unparse</code> についてはライブラリがほぼほぼ担ってくれていて, 実装者がこのプロセスについて考えることは少ないです.</p>
+<p>では実際に <code>parse</code> と <code>unparse</code> だけ試してみましょう.</p>
+<h2 id="2__4">ASTを試してみる</h2>
+<p>次のコードを試してみましょう。実行環境は Node.js 上です.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { parse } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@babel/parser&quot;</span>);
+
+<span class="hljs-keyword">const</span> code = <span class="hljs-string">`
+if(hoge === &quot;bar&quot;) {
+  fuga();
+}
+`</span>
+
+<span class="hljs-comment">// JSをASTにparseする</span>
+<span class="hljs-keyword">const</span> ast = <span class="hljs-title function_">parser</span>(code);
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">dir</span>(ast, { <span class="hljs-attr">depth</span>: <span class="hljs-literal">null</span> });
+</code></pre>
+<p>するとこんな出力が出ると思います。(隅から隅まで読まなくても大丈夫です)</p>
+<pre><code class="language-javascript"><span class="hljs-title class_">Node</span> {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;File&#x27;</span>,
+  <span class="hljs-attr">start</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">end</span>: <span class="hljs-number">34</span>,
+  <span class="hljs-attr">loc</span>: <span class="hljs-title class_">SourceLocation</span> {
+    <span class="hljs-attr">start</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">0</span> },
+    <span class="hljs-attr">end</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">5</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">0</span> },
+    <span class="hljs-attr">filename</span>: <span class="hljs-literal">undefined</span>,
+    <span class="hljs-attr">identifierName</span>: <span class="hljs-literal">undefined</span>
+  },
+  <span class="hljs-attr">range</span>: <span class="hljs-literal">undefined</span>,
+  <span class="hljs-attr">leadingComments</span>: <span class="hljs-literal">undefined</span>,
+  <span class="hljs-attr">trailingComments</span>: <span class="hljs-literal">undefined</span>,
+  <span class="hljs-attr">innerComments</span>: <span class="hljs-literal">undefined</span>,
+  <span class="hljs-attr">extra</span>: <span class="hljs-literal">undefined</span>,
+  <span class="hljs-attr">errors</span>: [],
+  <span class="hljs-attr">program</span>: <span class="hljs-title class_">Node</span> {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;Program&#x27;</span>,
+    <span class="hljs-attr">start</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">end</span>: <span class="hljs-number">34</span>,
+    <span class="hljs-attr">loc</span>: <span class="hljs-title class_">SourceLocation</span> {
+      <span class="hljs-attr">start</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">0</span> },
+      <span class="hljs-attr">end</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">5</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">0</span> },
+      <span class="hljs-attr">filename</span>: <span class="hljs-literal">undefined</span>,
+      <span class="hljs-attr">identifierName</span>: <span class="hljs-literal">undefined</span>
+    },
+    <span class="hljs-attr">range</span>: <span class="hljs-literal">undefined</span>,
+    <span class="hljs-attr">leadingComments</span>: <span class="hljs-literal">undefined</span>,
+    <span class="hljs-attr">trailingComments</span>: <span class="hljs-literal">undefined</span>,
+    <span class="hljs-attr">innerComments</span>: <span class="hljs-literal">undefined</span>,
+    <span class="hljs-attr">extra</span>: <span class="hljs-literal">undefined</span>,
+    <span class="hljs-attr">sourceType</span>: <span class="hljs-string">&#x27;script&#x27;</span>,
+    <span class="hljs-attr">interpreter</span>: <span class="hljs-literal">null</span>,
+    <span class="hljs-attr">body</span>: [
+      <span class="hljs-title class_">Node</span> {
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;IfStatement&#x27;</span>,
+        <span class="hljs-attr">start</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">end</span>: <span class="hljs-number">33</span>,
+        <span class="hljs-attr">loc</span>: <span class="hljs-title class_">SourceLocation</span> {
+          <span class="hljs-attr">start</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">0</span> },
+          <span class="hljs-attr">end</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">4</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">1</span> },
+          <span class="hljs-attr">filename</span>: <span class="hljs-literal">undefined</span>,
+          <span class="hljs-attr">identifierName</span>: <span class="hljs-literal">undefined</span>
+        },
+        <span class="hljs-attr">range</span>: <span class="hljs-literal">undefined</span>,
+        <span class="hljs-attr">leadingComments</span>: <span class="hljs-literal">undefined</span>,
+        <span class="hljs-attr">trailingComments</span>: <span class="hljs-literal">undefined</span>,
+        <span class="hljs-attr">innerComments</span>: <span class="hljs-literal">undefined</span>,
+        <span class="hljs-attr">extra</span>: <span class="hljs-literal">undefined</span>,
+        <span class="hljs-attr">test</span>: <span class="hljs-title class_">Node</span> {
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;BinaryExpression&#x27;</span>,
+          <span class="hljs-attr">start</span>: <span class="hljs-number">4</span>,
+          <span class="hljs-attr">end</span>: <span class="hljs-number">18</span>,
+          <span class="hljs-attr">loc</span>: <span class="hljs-title class_">SourceLocation</span> {
+            <span class="hljs-attr">start</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">3</span> },
+            <span class="hljs-attr">end</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">17</span> },
+            <span class="hljs-attr">filename</span>: <span class="hljs-literal">undefined</span>,
+            <span class="hljs-attr">identifierName</span>: <span class="hljs-literal">undefined</span>
+          },
+          <span class="hljs-attr">range</span>: <span class="hljs-literal">undefined</span>,
+          <span class="hljs-attr">leadingComments</span>: <span class="hljs-literal">undefined</span>,
+          <span class="hljs-attr">trailingComments</span>: <span class="hljs-literal">undefined</span>,
+          <span class="hljs-attr">innerComments</span>: <span class="hljs-literal">undefined</span>,
+          <span class="hljs-attr">extra</span>: <span class="hljs-literal">undefined</span>,
+          <span class="hljs-attr">left</span>: <span class="hljs-title class_">Node</span> {
+            <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;Identifier&#x27;</span>,
+            <span class="hljs-attr">start</span>: <span class="hljs-number">4</span>,
+            <span class="hljs-attr">end</span>: <span class="hljs-number">8</span>,
+            <span class="hljs-attr">loc</span>: <span class="hljs-title class_">SourceLocation</span> {
+              <span class="hljs-attr">start</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">3</span> },
+              <span class="hljs-attr">end</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">7</span> },
+              <span class="hljs-attr">filename</span>: <span class="hljs-literal">undefined</span>,
+              <span class="hljs-attr">identifierName</span>: <span class="hljs-string">&#x27;hoge&#x27;</span>
+            },
+            <span class="hljs-attr">range</span>: <span class="hljs-literal">undefined</span>,
+            <span class="hljs-attr">leadingComments</span>: <span class="hljs-literal">undefined</span>,
+            <span class="hljs-attr">trailingComments</span>: <span class="hljs-literal">undefined</span>,
+            <span class="hljs-attr">innerComments</span>: <span class="hljs-literal">undefined</span>,
+            <span class="hljs-attr">extra</span>: <span class="hljs-literal">undefined</span>,
+            <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;hoge&#x27;</span>
+          },
+          <span class="hljs-attr">operator</span>: <span class="hljs-string">&#x27;===&#x27;</span>,
+          <span class="hljs-attr">right</span>: <span class="hljs-title class_">Node</span> {
+            <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;StringLiteral&#x27;</span>,
+            <span class="hljs-attr">start</span>: <span class="hljs-number">13</span>,
+            <span class="hljs-attr">end</span>: <span class="hljs-number">18</span>,
+            <span class="hljs-attr">loc</span>: <span class="hljs-title class_">SourceLocation</span> {
+              <span class="hljs-attr">start</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">12</span> },
+              <span class="hljs-attr">end</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">17</span> },
+              <span class="hljs-attr">filename</span>: <span class="hljs-literal">undefined</span>,
+              <span class="hljs-attr">identifierName</span>: <span class="hljs-literal">undefined</span>
+            },
+            <span class="hljs-attr">range</span>: <span class="hljs-literal">undefined</span>,
+            <span class="hljs-attr">leadingComments</span>: <span class="hljs-literal">undefined</span>,
+            <span class="hljs-attr">trailingComments</span>: <span class="hljs-literal">undefined</span>,
+            <span class="hljs-attr">innerComments</span>: <span class="hljs-literal">undefined</span>,
+            <span class="hljs-attr">extra</span>: { <span class="hljs-attr">rawValue</span>: <span class="hljs-string">&#x27;bar&#x27;</span>, <span class="hljs-attr">raw</span>: <span class="hljs-string">&#x27;&quot;bar&quot;&#x27;</span> },
+            <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;bar&#x27;</span>
+          }
+        },
+        <span class="hljs-attr">consequent</span>: <span class="hljs-title class_">Node</span> {
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;BlockStatement&#x27;</span>,
+          <span class="hljs-attr">start</span>: <span class="hljs-number">20</span>,
+          <span class="hljs-attr">end</span>: <span class="hljs-number">33</span>,
+          <span class="hljs-attr">loc</span>: <span class="hljs-title class_">SourceLocation</span> {
+            <span class="hljs-attr">start</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">19</span> },
+            <span class="hljs-attr">end</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">4</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">1</span> },
+            <span class="hljs-attr">filename</span>: <span class="hljs-literal">undefined</span>,
+            <span class="hljs-attr">identifierName</span>: <span class="hljs-literal">undefined</span>
+          },
+          <span class="hljs-attr">range</span>: <span class="hljs-literal">undefined</span>,
+          <span class="hljs-attr">leadingComments</span>: <span class="hljs-literal">undefined</span>,
+          <span class="hljs-attr">trailingComments</span>: <span class="hljs-literal">undefined</span>,
+          <span class="hljs-attr">innerComments</span>: <span class="hljs-literal">undefined</span>,
+          <span class="hljs-attr">extra</span>: <span class="hljs-literal">undefined</span>,
+          <span class="hljs-attr">body</span>: [
+            <span class="hljs-title class_">Node</span> {
+              <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;ExpressionStatement&#x27;</span>,
+              <span class="hljs-attr">start</span>: <span class="hljs-number">24</span>,
+              <span class="hljs-attr">end</span>: <span class="hljs-number">31</span>,
+              <span class="hljs-attr">loc</span>: <span class="hljs-title class_">SourceLocation</span> {
+                <span class="hljs-attr">start</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">2</span> },
+                <span class="hljs-attr">end</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">9</span> },
+                <span class="hljs-attr">filename</span>: <span class="hljs-literal">undefined</span>,
+                <span class="hljs-attr">identifierName</span>: <span class="hljs-literal">undefined</span>
+              },
+              <span class="hljs-attr">range</span>: <span class="hljs-literal">undefined</span>,
+              <span class="hljs-attr">leadingComments</span>: <span class="hljs-literal">undefined</span>,
+              <span class="hljs-attr">trailingComments</span>: <span class="hljs-literal">undefined</span>,
+              <span class="hljs-attr">innerComments</span>: <span class="hljs-literal">undefined</span>,
+              <span class="hljs-attr">extra</span>: <span class="hljs-literal">undefined</span>,
+              <span class="hljs-attr">expression</span>: <span class="hljs-title class_">Node</span> {
+                <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;CallExpression&#x27;</span>,
+                <span class="hljs-attr">start</span>: <span class="hljs-number">24</span>,
+                <span class="hljs-attr">end</span>: <span class="hljs-number">30</span>,
+                <span class="hljs-attr">loc</span>: <span class="hljs-title class_">SourceLocation</span> {
+                  <span class="hljs-attr">start</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">2</span> },
+                  <span class="hljs-attr">end</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">8</span> },
+                  <span class="hljs-attr">filename</span>: <span class="hljs-literal">undefined</span>,
+                  <span class="hljs-attr">identifierName</span>: <span class="hljs-literal">undefined</span>
+                },
+                <span class="hljs-attr">range</span>: <span class="hljs-literal">undefined</span>,
+                <span class="hljs-attr">leadingComments</span>: <span class="hljs-literal">undefined</span>,
+                <span class="hljs-attr">trailingComments</span>: <span class="hljs-literal">undefined</span>,
+                <span class="hljs-attr">innerComments</span>: <span class="hljs-literal">undefined</span>,
+                <span class="hljs-attr">extra</span>: <span class="hljs-literal">undefined</span>,
+                <span class="hljs-attr">callee</span>: <span class="hljs-title class_">Node</span> {
+                  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;Identifier&#x27;</span>,
+                  <span class="hljs-attr">start</span>: <span class="hljs-number">24</span>,
+                  <span class="hljs-attr">end</span>: <span class="hljs-number">28</span>,
+                  <span class="hljs-attr">loc</span>: <span class="hljs-title class_">SourceLocation</span> {
+                    <span class="hljs-attr">start</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">2</span> },
+                    <span class="hljs-attr">end</span>: <span class="hljs-title class_">Position</span> { <span class="hljs-attr">line</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">column</span>: <span class="hljs-number">6</span> },
+                    <span class="hljs-attr">filename</span>: <span class="hljs-literal">undefined</span>,
+                    <span class="hljs-attr">identifierName</span>: <span class="hljs-string">&#x27;fuga&#x27;</span>
+                  },
+                  <span class="hljs-attr">range</span>: <span class="hljs-literal">undefined</span>,
+                  <span class="hljs-attr">leadingComments</span>: <span class="hljs-literal">undefined</span>,
+                  <span class="hljs-attr">trailingComments</span>: <span class="hljs-literal">undefined</span>,
+                  <span class="hljs-attr">innerComments</span>: <span class="hljs-literal">undefined</span>,
+                  <span class="hljs-attr">extra</span>: <span class="hljs-literal">undefined</span>,
+                  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;fuga&#x27;</span>
+                },
+                <span class="hljs-attr">arguments</span>: []
+              }
+            }
+          ],
+          <span class="hljs-attr">directives</span>: []
+        },
+        <span class="hljs-attr">alternate</span>: <span class="hljs-literal">null</span>
+      }
+    ],
+    <span class="hljs-attr">directives</span>: []
+  },
+  <span class="hljs-attr">comments</span>: []
+}
+</code></pre>
+<p>確かに, <code>ifStatement</code> のなかに, <code>test</code> (図で言うところの条件) があり, さらに <code>consequent</code> (図で言うところのthen) があり, <code>test</code> の中に <code>BinaryExpression</code> (図で言うところの二項演算子) があって, となっていることを確認できると思います.</p>
+<p>ライブラリに乗っかるだけで, JavaScriptのソースコードを AST へと簡単に <code>parse</code> できたのが体感できたと思います.</p>
+<p>次に <code>unparse</code> もやってみましょう.
+先ほどのコードを次のように書き換えてみてください.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { parse } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@babel/parser&quot;</span>);
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">default</span>: generate } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@babel/generator&quot;</span>);
+
+<span class="hljs-keyword">const</span> code = <span class="hljs-string">`
+if(hoge === &quot;bar&quot;) {
+  fuga();
+}
+`</span>
+
+<span class="hljs-keyword">const</span> ast = <span class="hljs-title function_">parser</span>(code);
+
+<span class="hljs-comment">// ASTをJSへとunparseする</span>
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">code</span>: output } = <span class="hljs-title function_">generate</span>(ast);
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(output)
+
+</code></pre>
+<pre><code class="language-javascript"><span class="hljs-keyword">if</span> (hoge === <span class="hljs-string">&quot;bar&quot;</span>) {
+  <span class="hljs-title function_">fuga</span>();
+}
+</code></pre>
+<p>このような, 入力したcodeと全く同じcodeが出力されたと思います. 簡単ですね.</p>
+<p>では次に実際にコードをいじいじしてみましょう.</p>
+<p>今回は簡単に, 変数を全部絵文字にしてくれる君を作ってみます.</p>
+<p>今回やりたいことの下準備として, 以下のようなclassを用意してください.
+これはtextを渡すと絵文字に変換してくれる君です.
+以前変換したことのあるtextを渡すと, そのときの絵文字を返してくれるようにしています.
+このコード自体はこのブログの本旨から外れるので読む必要はないです.</p>
+<pre><code class="language-javascript">
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Text2Emoji</span> {
+  emojis;
+  textMap;
+  baseNumber;
+  idx;
+
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) {
+    <span class="hljs-keyword">if</span>(props.<span class="hljs-property">emojis</span>.<span class="hljs-property">length</span> &lt; <span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;emojis should be more than 1&quot;</span>)
+    }
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">emojis</span> = props.<span class="hljs-property">emojis</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">textMap</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">textMap</span>.<span class="hljs-title function_">set</span>();
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">baseNumber</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">emojis</span>.<span class="hljs-property">length</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">idx</span> = <span class="hljs-number">0</span>;
+  }
+
+  <span class="hljs-title function_">convert</span>(<span class="hljs-params">text</span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_isRegistered</span>(text)) {
+      <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">textMap</span>.<span class="hljs-title function_">get</span>(text);
+    }
+
+    <span class="hljs-keyword">const</span> emoji = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_num2Emoji</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">idx</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">idx</span> += <span class="hljs-number">1</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">textMap</span>.<span class="hljs-title function_">set</span>(text, emoji);
+    <span class="hljs-keyword">return</span> emoji;
+
+  }
+
+  <span class="hljs-title function_">_isRegistered</span>(<span class="hljs-params">text</span>) {
+    <span class="hljs-keyword">return</span> !!<span class="hljs-variable language_">this</span>.<span class="hljs-property">textMap</span>.<span class="hljs-title function_">get</span>(text);
+  }
+
+  <span class="hljs-title function_">_num2Emoji</span>(<span class="hljs-params">num</span>) {
+    <span class="hljs-keyword">const</span> convertedNum = num.<span class="hljs-title function_">toString</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">baseNumber</span>).<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;&quot;</span>);
+    <span class="hljs-keyword">const</span> key = convertedNum.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">el</span>) =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">emojis</span>[el]).<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>);
+    <span class="hljs-keyword">return</span> key
+  }
+}
+
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-title class_">Text2Emoji</span>
+}
+
+</code></pre>
+<p>では, <code>transform</code> の部分のコードを書いていきましょう.
+まずこのコードを実行してみてください.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { parse } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@babel/parser&quot;</span>);
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">default</span>: generate } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@babel/generator&quot;</span>);
+<span class="hljs-comment">// transform に必要な @babel/traverse をimport</span>
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">default</span>: traverse } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@babel/traverse&quot;</span>);
+
+<span class="hljs-comment">// いじいじする対象のコード</span>
+<span class="hljs-keyword">const</span> code = <span class="hljs-string">`
+const NAME = &quot;Shinyaigeek&quot;;
+const JOB = &quot;frontend engineer&quot;;
+const INTERESTS =  [&quot;web performance&quot;, &quot;AST&quot;, &quot;Usability&quot;]
+const AGE= 21;
+
+const hey = () =&gt; {
+    return \`Hi!! there!! My name is \${NAME}. I&#x27;m \${JOB}. I&#x27;m \${AGE} years old.My interests are \${INTERESTS.map(interest =&gt; interest + &quot;/&quot;)}\`
+}
+
+console.log(hey());
+`</span>
+
+<span class="hljs-keyword">const</span> ast = <span class="hljs-title function_">parser</span>(code);
+
+<span class="hljs-keyword">const</span> visitor = {};
+
+<span class="hljs-comment">// ASTを走査して, 特定Nodeについて処理を行う</span>
+<span class="hljs-title function_">traverse</span>(ast, visitor);
+
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">code</span>: output } = <span class="hljs-title function_">generate</span>(ast);
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(output)
+</code></pre>
+<p>そうすると, さっき実行したJavaScriptと同じ出力がされたと思います.
+<code>transform</code> で, astに対して破壊的変更を行い, その結果のASTを <code>generate</code> 関数に渡すのですが, 今回は変換の処理を何もしていません.</p>
+<p>次に変換の処理を書いていきます.</p>
+<p><code>@babel/traverse</code> だと, visitor patternを採用しています.
+visitor patternと言うのは, 走査対象の特定部分に <strong>訪問</strong> していく <code>visitor object</code> に処理を記述して, その処理を特定部分で実行していく, と言うパターンのことです.
+テレビの集金を例に出すと, あるテレビ局の電波を受診している家庭に, 取り立て人が <strong>訪問</strong> して, 料金を取り立てると言う <strong>処理</strong> を実行していくと言うことになりますね.
+取り立て人は, テレビ局の電波を受診していない家庭では取り立てと言う <strong>処理</strong> は実行しないですね.</p>
+<p>百聞は一見にしかずということで, 早速実際にコードを書いて試していきましょう.
+次のコードを実行してみてください.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { parse } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@babel/parser&quot;</span>);
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">default</span>: generate } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@babel/generator&quot;</span>);
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">default</span>: traverse } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@babel/traverse&quot;</span>);
+
+<span class="hljs-keyword">const</span> code = <span class="hljs-string">`
+const NAME = &quot;Shinyaigeek&quot;;
+const JOB = &quot;frontend engineer&quot;;
+const INTERESTS =  [&quot;web performance&quot;, &quot;AST&quot;, &quot;Usability&quot;]
+const AGE= 21;
+
+const hey = () =&gt; {
+    return \`Hi!! there!! My name is \${NAME}. I&#x27;m \${JOB}. I&#x27;m \${AGE} years old.My interests are \${INTERESTS.map(interest =&gt; interest + &quot;/&quot;)}\`
+}
+
+console.log(hey());
+`</span>
+
+<span class="hljs-keyword">const</span> ast = <span class="hljs-title function_">parse</span>(code);
+
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">code</span>: output } = <span class="hljs-title function_">generate</span>(ast);
+
+<span class="hljs-comment">// visitor patternを書き込んでいく</span>
+<span class="hljs-keyword">const</span> visitor = {
+    <span class="hljs-comment">// Identifier に訪問する visitor オブジェクト</span>
+    <span class="hljs-title class_">Identifier</span>(nodePath) {
+        <span class="hljs-comment">// visitor objectで行う処理</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(nodePath.<span class="hljs-property">node</span>.<span class="hljs-property">type</span> + <span class="hljs-string">&quot;: &quot;</span> + nodePath.<span class="hljs-property">node</span>.<span class="hljs-property">name</span>)
+    }
+};
+
+<span class="hljs-title function_">traverse</span>(ast, visitor);
+</code></pre>
+<p>すると次のような出力が出ると思います.</p>
+<pre><code class="language-cli"><span class="hljs-symbol">Identifier:</span> NAME
+<span class="hljs-symbol">Identifier:</span> JOB
+<span class="hljs-symbol">Identifier:</span> INTERESTS
+<span class="hljs-symbol">Identifier:</span> AGE
+<span class="hljs-symbol">Identifier:</span> hey
+<span class="hljs-symbol">Identifier:</span> NAME
+<span class="hljs-symbol">Identifier:</span> JOB
+<span class="hljs-symbol">Identifier:</span> AGE
+<span class="hljs-symbol">Identifier:</span> INTERESTS
+<span class="hljs-symbol">Identifier:</span> map
+<span class="hljs-symbol">Identifier:</span> interest
+<span class="hljs-symbol">Identifier:</span> interest
+<span class="hljs-symbol">Identifier:</span> console
+<span class="hljs-symbol">Identifier:</span> log
+<span class="hljs-symbol">Identifier:</span> hey
+</code></pre>
+<p>これで全ての識別子に <strong>訪問</strong> して, その識別子の名前をlogで出力しているというのがわかりますね.
+次に, log に出すだけではなく, 実際に AST の transform を行なっていきましょう.</p>
+<p>次のコードを実行してみてください.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { parse } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@babel/parser&quot;</span>);
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">default</span>: generate } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@babel/generator&quot;</span>);
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">default</span>: traverse } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@babel/traverse&quot;</span>);
+<span class="hljs-keyword">const</span> { <span class="hljs-title class_">Text2Emoji</span> } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./Text2Emoji&quot;</span>);
+
+<span class="hljs-comment">// textを絵文字にしてくれる君</span>
+<span class="hljs-keyword">const</span> converter = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Text2Emoji</span>({
+  <span class="hljs-attr">emojis</span>: [<span class="hljs-string">&quot;🐈&quot;</span>, <span class="hljs-string">&quot;🦍&quot;</span>, <span class="hljs-string">&quot;🐵&quot;</span>, <span class="hljs-string">&quot;🐶&quot;</span>]
+})
+
+<span class="hljs-keyword">const</span> code = <span class="hljs-string">`
+const NAME = &quot;Shinyaigeek&quot;;
+const JOB = &quot;frontend engineer&quot;;
+const INTERESTS =  [&quot;web performance&quot;, &quot;AST&quot;, &quot;Usability&quot;]
+const AGE= 21;
+
+const hey = () =&gt; {
+    return \`Hi!! there!! My name is \${NAME}. I&#x27;m \${JOB}. I&#x27;m \${AGE} years old.My interests are \${INTERESTS.map(interest =&gt; interest + &quot;/&quot;)}\`
+}
+
+console.log(hey());
+`</span>
+
+<span class="hljs-keyword">const</span> ast = <span class="hljs-title function_">parse</span>(code);
+
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">code</span>: output } = <span class="hljs-title function_">generate</span>(ast);
+
+<span class="hljs-keyword">const</span> visitor = {
+    <span class="hljs-title class_">Identifier</span>(nodePath) {
+        <span class="hljs-comment">// visitor objectで行う処理</span>
+        <span class="hljs-comment">// 識別子の名前を絵文字にする</span>
+        <span class="hljs-keyword">const</span> emoji = converter.<span class="hljs-title function_">convert</span>(nodePath.<span class="hljs-property">node</span>.<span class="hljs-property">name</span>);
+        <span class="hljs-comment">// 訪問した識別子を, 名前が絵文字になった識別子に置き換える</span>
+        nodePath.<span class="hljs-title function_">replaceWith</span>(
+          <span class="hljs-title function_">identifier</span>(emoji)
+        )
+        <span class="hljs-comment">// 名前がすでに絵文字になった識別子を再度訪問しないように, skip する</span>
+        nodePath.<span class="hljs-title function_">skip</span>();
+    }
+};
+
+<span class="hljs-title function_">traverse</span>(ast, visitor);
+
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">code</span>: output } = <span class="hljs-title function_">generate</span>(ast)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(output);
+</code></pre>
+<p>するとこのような出力が出たと思います.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> 🐈 = <span class="hljs-string">&quot;Shinyaigeek&quot;</span>;
+<span class="hljs-keyword">const</span> 🦍 = <span class="hljs-string">&quot;frontend engineer&quot;</span>;
+<span class="hljs-keyword">const</span> 🐵 = [<span class="hljs-string">&quot;web performance&quot;</span>, <span class="hljs-string">&quot;AST&quot;</span>, <span class="hljs-string">&quot;Usability&quot;</span>];
+<span class="hljs-keyword">const</span> 🐶 = <span class="hljs-number">21</span>;
+
+<span class="hljs-keyword">const</span> 🦍🐈 = <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`Hi!! there!! My name is <span class="hljs-subst">${🐈}</span>. I&#x27;m <span class="hljs-subst">${🦍}</span>. I&#x27;m <span class="hljs-subst">${🐶}</span> years old.My interests are <span class="hljs-subst">${🐵.🦍🦍((🦍🐵) =&gt; 🦍🐵 + <span class="hljs-string">&quot;/&quot;</span>)}</span>`</span>;
+};
+
+🦍🐶.🐵🐈(🦍🐈());
+</code></pre>
+<p>お！！識別子が絵文字に変換されてくれてますね！！
+各識別子がちゃんと対応していることを確認してみてください.</p>
+<p>今回は変数全部絵文字にする君というかなりしょうもないツールを作っただけですが, 賢い人ならあれもできそうこれもできそうと, 何かアイディアが浮かび上がったかもしれませんね.</p>
+<h2 id="2__5">まとめ</h2>
+<p>ASTを触れるようになると, 自分の開発者体験を自分で守っていくというエキサイティングな体験ができるようになります.
+Let's AST!!</p>
+</div><div class="i1vwknbf"><div class="m1cfivxx"><img src="/assets/static/icon_transparent.png" class="m1gtmmy1" alt="monkey-icon" width="270px" height="270px"></div><div class="e1l513qn"><div class="e1goj3hq"><div class="eiko6kt"><img src="/assets/static/earth.png" alt="earth" width="50px" height="50px"></div></div></div></div><div class="baseprofile"><div class="njjupn">Shinobu Hayashi a.k.a Shinyaigeek(しにゃい)</div><div class="j15lqbo8" data-text="Web Developer">Web Developer</div><div class="w11bhc9z">I Love and Development Web Technology and that&#x27;s ecosystem!!</div><div class="m6tsee8"><div class="s11qrd2e"><a id="twitter" href="https://twitter.com/Shinyaigeek"><img src="/assets/static/twitter.svg" alt="twitter" width="54px" height="54px"></a></div><div class="s11qrd2e"><a id="github" href="https://github.com/Shinyaigeek"><img src="/assets/static/github.svg" alt="github" width="54px" height="54px"></a></div><div class="s11qrd2e"><a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/"><img src="/assets/static/linkedin.svg" alt="linkedin" width="54px" height="54px"></a></div></div></div></div></div><div class="fxlvuz3">Copyright. 2020 Shinyaigeek</div></div></div></body><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;0893ac88cf0542af88bfd9b93008b408&quot;, &quot;spa&quot;: true}"></script><script defer="" src="https://shinyaigeek.dev/r.505b1eebe770374f3371.js" async=""></script></html>
