@@ -117,3 +117,4 @@ packages/blog/public
 .DS_Store
 api/*
 meta/*
+packages/blog/assets/*
