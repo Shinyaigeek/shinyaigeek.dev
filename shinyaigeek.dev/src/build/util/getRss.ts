@@ -1,11 +1,10 @@
 import dotenv from "dotenv";
-import fetch from "node-fetch";
-import { getBlogPosts, __getBlogPosts } from "./getBlogPosts";
+import { getBlogPosts } from "./getBlogPosts";
 import path from "path";
 dotenv.config();
 
 export const getRss = () => {
-  const items = __getBlogPosts(
+  const items = getBlogPosts(
     path.join(__dirname, "../../articles/public/") as `${string}/`
   );
 

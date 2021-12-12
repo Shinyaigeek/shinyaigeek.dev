@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
-import fetch from "node-fetch";
+import { getBlogPosts } from "./getBlogPosts";
+import path from "path";
 
 dotenv.config();
 
@@ -8,12 +9,11 @@ export const getSiteMap = () => {
   if (!CONTENTFUL_ACCESS_TOKEN || !CONTENTFUL_SPACE_ID) {
     throw new Error("Please check env variable");
   }
-  const url = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=blog&order=-sys.createdAt&select=fields.description,fields.publishedAt,fields.title,fields.tags,fields.slug`;
-  return fetch(url).then((item) => {
-    return item.json().then((json) => {
-      const { items } = json;
+  const items = getBlogPosts(
+    path.join(__dirname, "../../articles/public/") as `${string}/`
+  );
 
-      const xml = `<?xml version="1.0" encoding="UTF-8"?>
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <url>
                 <loc>https://shinyaigeek.dev/</loc>
@@ -42,7 +42,5 @@ export const getSiteMap = () => {
         </urlset>
           `;
 
-      return xml;
-    });
-  });
+  return xml;
 };

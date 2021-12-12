@@ -3,12 +3,12 @@ import Home from "../../../client/Home/Home";
 import React from "react";
 import helmet from "../../util/helmet";
 import { BLOG_TITLE } from "../../../consts";
-import { __getBlogPosts } from "../../util/getBlogPosts";
+import { getBlogPosts } from "../../util/getBlogPosts";
 import path from "path";
 import { getThirdPirty } from "../../util/getThirdPirty";
 
 export const handleIndex: () => string = function () {
-  const blogEntries = __getBlogPosts(
+  const blogEntries = getBlogPosts(
     path.join(__dirname, "../../../articles/public/") as `${string}/`
   );
   const thirdPirtyEntries = getThirdPirty(

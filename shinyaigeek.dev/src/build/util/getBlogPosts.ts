@@ -1,6 +1,4 @@
 import { Entry } from "./getBlogPost";
-import fetch from "node-fetch";
-import { generateHash } from "./generateHash";
 import fs from "fs";
 import fm from "front-matter";
 interface HomeSlug {
@@ -9,7 +7,7 @@ interface HomeSlug {
   page?: number;
 }
 
-export const __getBlogPosts: (dir: `${string}/`) => Entry[] = function (dir) {
+export const getBlogPosts: (dir: `${string}/`) => Entry[] = function (dir) {
   const slugs = fs.readdirSync(dir);
   const posts = slugs.map(
     (slug) =>
@@ -37,49 +35,6 @@ export const __getBlogPosts: (dir: `${string}/`) => Entry[] = function (dir) {
       }
 
       return 1;
-    });
-};
-
-export const getBlogPosts = (query: HomeSlug) => {
-  const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
-  if (!CONTENTFUL_ACCESS_TOKEN || !CONTENTFUL_SPACE_ID) {
-    throw new Error("Please check env variable");
-  }
-  let url = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=blog&limit=10&order=-sys.createdAt&select=fields.description,fields.publishedAt,fields.title,fields.tags,fields.slug,sys.updatedAt`;
-  if (query.tag) {
-    url += `&fields.tags[all]=${query.tag}`;
-  }
-  if (query.page) {
-    url += `&skip=${(query.page - 1) * 10}`;
-  }
-  const page = query.page ?? 1;
-
-  return fetch(url)
-    .then((item) => {
-      return item
-        .json()
-        .then((entries) => {
-          const items = entries.items as Entry[];
-          const hash = generateHash(
-            items.reduce((acc, cur) => acc + cur.sys.updatedAt, "")
-          );
-          return [
-            {
-              items: entries.items as Entry[],
-              prev: entries.skip !== 0 && page - 1,
-              next: entries.skip + entries.limit < entries.total && page + 1,
-            },
-            hash,
-          ] as const;
-        })
-        .catch((err) => {
-          console.log(err);
-          return [false as false, -1] as const;
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-      return [false as false, -1] as const;
     });
 };
 
