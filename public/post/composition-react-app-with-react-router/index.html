@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="ja"><head><title>Reactアプリ小さめ構成with react-router 編 | shinyaigeek.dev</title><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta property="og:title" content="Reactアプリ小さめ構成with react-router 編 | shinyaigeek.dev"><meta property="og:site_name" content="shinyaigeek.dev"><meta property="og:locale" content="ja_JP"><meta name="description" content="見習いWeb developer兼大学生のブログ. 主にweb開発の知見について喋ります"><meta property="og:description" content="見習いWeb developer兼大学生のブログ. 主にweb開発の知見について喋ります"><meta property="og:url" content="https://shinyaigeek.dev/post/composition-react-app-with-react-router"><meta name="twitter:site" content="@shinyaigeek"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:image" content="https://shinyaigeek-og-image.vercel.app/api/?title=React%E3%82%A2%E3%83%97%E3%83%AA%E5%B0%8F%E3%81%95%E3%82%81%E6%A7%8B%E6%88%90with%20react-router%20%E7%B7%A8"><meta name="twitter:image" content="https://shinyaigeek-og-image.vercel.app/api/?title=React%E3%82%A2%E3%83%97%E3%83%AA%E5%B0%8F%E3%81%95%E3%82%81%E6%A7%8B%E6%88%90with%20react-router%20%E7%B7%A8"><link rel="icon" type="image/x-icon" href="https://shinyaigeek.dev/assets/static/favicon.ico"><link rel="stylesheet" type="text/css" href="https://shinyaigeek.dev/styles.205c4d88ce50e5b652fc.css"><link rel="stylesheet" type="text/css" href="https://shinyaigeek.dev/a11y-dark.min.css"><link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"><link rel="preload" as="style" href="https://shinyaigeek.dev/a11y-dark.min.css"><link rel="preload" as="style" href="https://shinyaigeek.dev/styles.205c4d88ce50e5b652fc.css"><link rel="preload" as="style" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"><link rel="preload" as="image" href="https://shinyaigeek.dev/assets/static/icon_transparent_header.png"><link rel="alternate" type="application/rss+xml" title="shinyaigeek.dev" href="https://shinyaigeek.dev/rss.xml"></head><body><div id="_app"><div class="r5xxgyg"><div class="hxs2oc3"><div class="t15f2u4l"><a href="/" class="link2Home"><div><img src="/assets/static/icon_transparent_header.png" alt="icon" class="ib360hc" width="36px" height="36px">shinyaigeek.dev</div></a></div><div class="c1508669"><div class="aondxz7"><a href="/" class="link2Home">Blog</a></div><div class="aondxz7"><a href="/profile" id="link2profile">Profile</a></div><div class="aondxz7"><a href="https://github-activity.shinyaigeek.dev/" id="link2activity">Activity</a></div><div class="aondxz7"><a href="mailto:me@shinyaigeek.dev">Contact</a></div></div></div><div class="iqwsz9a"><div><details class="p1cxnigz"><summary class="post--anchor__title" id="post--anchor__title">目次</summary><a href="#2__0">はじめに</a><a href="#2__1">react-router とは</a><a href="#2__2">導入</a><a href="#2__3">Default を設定したい</a><a href="#2__4">Cannot GET URL エラーがでる</a><a href="#2__5">404エラーが出る</a></details><div class="m6cmszt"><h1>Reactアプリ小さめ構成with react-router 編</h1><div>2019/08/12</div><div class="t1hw9n1v"><div>Programming</div><div>JavaScript</div><div>React</div></div></div><div class="p8rsdcs"><h2 id="2__0">はじめに</h2>
+<p>この記事は前回の記事の続きという感じです。これまた初学者向け
+<a href="https://www.shinyaigeek.com/p/22">脱 create-react-app、React アプリの小さめ構築</a></p>
+<p>この記事を読めば create-react-app なしで react アプリを構築できる様になるのですが、その続きとしてこの記事では react-router について扱おうと思います(開発していて思いの外どぶったので)</p>
+<p>react-router のエラー、割とありますよね.
+ていうか公式の API なり Document なりがよくわからないって感じはします。
+なんかよくわからないけど 404 エラーが出たり、CANNOT GET URL みたいなエラーが出たり、僕もこれでどぶって、いい感じの日本語記事が見つからなかったのもあってじゃあ紹介しておこうかなという感じです。</p>
+<h2 id="2__1">react-router とは</h2>
+<p>react-router とは react でルーティングを実現してくれるというやつです。
+じゃあルーティングとは何か、この URL を渡されたらこんなのを表示して！！って教えこむことです。</p>
+<p>例えば'なんちゃらなんちゃら/login'っていう URL ではログイン画面を見せたいじゃないですか、'なんちゃらなんちゃら/home'っていう URL ではホーム画面を見せたいじゃないですか、これを実現するお！！ってやつです。</p>
+<p>英語読める人はここ読むと詳しくわかると思います。
+<a href="https://reacttraining.com/react-router/web/guides/quick-start">REACT TRAINING/REACT ROUTER</a></p>
+<h2 id="2__2">導入</h2>
+<p>まずモジュールをインストールしましょう。</p>
+<pre><code class="language-TypeScript">npm install react-router-dom
+</code></pre>
+<p>でそれをインポートします。</p>
+<pre><code class="language-TypeScript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">BrowserRouter</span>, <span class="hljs-title class_">Route</span>, <span class="hljs-title class_">Link</span>, <span class="hljs-title class_">Switch</span>, <span class="hljs-title class_">Redirect</span>} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-router-dom&#x27;</span>;
+</code></pre>
+<p>この辺がよく使うやつですね。
+BrowserRouter は react-router-dom の親分めいたやつと言いますか、BrowserRouter のなかで Route や Link を使って行くという感じです。
+似た様なのに HashRouter と MemoryRouter,StaticRouter があります。
+MemoryRouter に関してはデバッグ用と言いますか、テストやクライアントサイドでない環境で遊びたい時に使うやつです(ほぼ使わないので忘れていいと思います)。
+StaticRouter については React をサーバーサイドレンダリングしたいときに使うやつです。だから Static っていう形容詞がついています。
+対照的に BrowserRouter ですとブラウザ上でのルーティングができます。ただこれは history API を採用していますのでレガシーな環境では利用できません。逆に HashRouter ですと URL hash を利用していますので環境の制限はありません。ただそのおかげで location.key や location.state はカバーされていません。
+長々と喋りましたが面倒くさい時は脳死で BrowserRouter で構いません。</p>
+<p>書き方としては</p>
+<pre><code class="language-TypeScript">
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Home</span>(<span class="hljs-params"></span>){
+    <span class="hljs-keyword">return</span>(
+        <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>ログインしました<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    )
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Login</span>(<span class="hljs-params"></span>){
+    <span class="hljs-keyword">return</span>(
+        <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>ログインして下さい<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    )
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Test</span>(<span class="hljs-params"></span>){
+    <span class="hljs-keyword">return</span>(
+        <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;test&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">BrowserRouter</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#x27;/login&#x27;</span>&gt;</span>Login<span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#x27;/home&#x27;</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span>
+
+                <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&#x27;/login&#x27;</span> <span class="hljs-attr">render</span>=<span class="hljs-string">{()</span> =&gt;</span> Login()} /&gt;
+                <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&#x27;/home&#x27;</span> <span class="hljs-attr">render</span>=<span class="hljs-string">{()</span> =&gt;</span> Home()} /&gt;
+            <span class="hljs-tag">&lt;/<span class="hljs-name">BrouserRouter</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    )
+}
+</code></pre>
+<p>こんな感じでやれば取り敢えずの実装は出来ます。ただ色々と問題も生じます。
+例えば上の Route の path に引っかからない奴がでる(switch-case でいう default 的な)とき返す component を設定したい、あるいはそのときログイン画面へリダイレクトさせたい。
+あるいはこれをやったけど 404 エラーがでた、あるいは Cannot GET URL みたいなエラーがでたみたいなことがあると思います。以下でそれについて書いておこうかなと思います。</p>
+<h2 id="2__3">Default を設定したい</h2>
+<p>Route で引っ掛けるやつ以外の URL ではこのコンポーネントを表示させたい、あるいはリダイレクトさせたいってときのやつをここで紹介します。(要するにデフォルト設定)</p>
+<p>こんなときに役に立つのが Switch です。</p>
+<p>以前のやつに加筆しますと</p>
+<pre><code class="language-TypeScript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Login</span>(<span class="hljs-params"></span>){
+    略
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Home</span>(<span class="hljs-params"></span>) {
+    略
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Default</span>(<span class="hljs-params"></span>){
+    略
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Test</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span>(
+        <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;test&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">BrowserRouter</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#x27;/login&#x27;</span>&gt;</span>Login<span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#x27;/home&#x27;</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Switch</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&#x27;/login&#x27;</span> <span class="hljs-attr">render</span>=<span class="hljs-string">{()</span> =&gt;</span> Login()} /&gt;
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&#x27;/home&#x27;</span> <span class="hljs-attr">render</span>=<span class="hljs-string">{()</span> =&gt;</span> Home()} /&gt;
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">render</span>=<span class="hljs-string">{()</span> =&gt;</span> Default()} /&gt;
+                <span class="hljs-tag">&lt;/<span class="hljs-name">Switch</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">BrouserRouter</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    )
+}
+</code></pre>
+<p>これで/loginでも/homeでもないURLが渡されるとDefaultコンポーネントがレンダリングされます。
+でリダイレクトさせたいって時はRedirectを使います。
+この場合は上の</p>
+<pre><code class="language-TypeScript">&lt;<span class="hljs-title class_">Route</span> render={<span class="hljs-function">() =&gt;</span> <span class="hljs-title class_">Default</span>()} /&gt;
+</code></pre>
+<p>を</p>
+<pre><code class="language-TypeScript">&lt;<span class="hljs-title class_">Route</span> render={<span class="hljs-function">() =&gt;</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Redirect</span> <span class="hljs-attr">push</span>=<span class="hljs-string">&#x27;/login&#x27;</span> /&gt;</span></span>} /&gt;
+</code></pre>
+<p>って変えるだけ。これで/loginへとリダイレクトされていきます、やったね！！</p>
+<h2 id="2__4">Cannot GET URL エラーがでる</h2>
+<p>めっちゃ簡単です、webpack.config.jsの設定をほんのちょっと触るだけです。</p>
+<pre><code class="language-JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+    略
+    <span class="hljs-attr">devServer</span>: {
+        <span class="hljs-attr">historyApiFallback</span>:<span class="hljs-literal">true</span>,
+    }
+}
+</code></pre>
+<p>webpackのdevServerにこれを加筆するだけです。</p>
+<h2 id="2__5">404エラーが出る</h2>
+<p>404エラーには２パターンあります、これにはブラウザ側で吐かれているエラーを確認してみて下さい。
+もし404になっているのがfavicon.icoでしたらそれはただのwebページのアイコンが見つからないよ！！っていうエラーです。この場合スルーして大丈夫です。</p>
+<p>もし404になっているのがwebpackによってバンドルされた後の出力されたjsファイルでしたらそれはディレクトリミスです。
+相対パスで参照しているがために生じてしまったエラーです。
+この場合は</p>
+<pre><code class="language-JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+    略
+    <span class="hljs-attr">output</span>: {
+        <span class="hljs-attr">path</span>: path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">&#x27;/dist/&#x27;</span>),
+        <span class="hljs-attr">publicPath</span>: <span class="hljs-string">&#x27;/&#x27;</span>,
+        <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;bundle.js&#x27;</span>
+    },
+}
+</code></pre>
+<p>こんな感じにして絶対パスを指定してあげれば大丈夫です。</p>
+</div><div class="i1vwknbf"><div class="m1cfivxx"><img src="/assets/static/icon_transparent.png" class="m1gtmmy1" alt="monkey-icon" width="270px" height="270px"></div><div class="e1l513qn"><div class="e1goj3hq"><div class="eiko6kt"><img src="/assets/static/earth.png" alt="earth" width="50px" height="50px"></div></div></div></div><div class="baseprofile"><div class="njjupn">Shinobu Hayashi a.k.a Shinyaigeek(しにゃい)</div><div class="j15lqbo8" data-text="Web Developer">Web Developer</div><div class="w11bhc9z">I Love and Development Web Technology and that&#x27;s ecosystem!!</div><div class="m6tsee8"><div class="s11qrd2e"><a id="twitter" href="https://twitter.com/Shinyaigeek"><img src="/assets/static/twitter.svg" alt="twitter" width="54px" height="54px"></a></div><div class="s11qrd2e"><a id="github" href="https://github.com/Shinyaigeek"><img src="/assets/static/github.svg" alt="github" width="54px" height="54px"></a></div><div class="s11qrd2e"><a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/"><img src="/assets/static/linkedin.svg" alt="linkedin" width="54px" height="54px"></a></div></div></div></div></div><div class="fxlvuz3">Copyright. 2020 Shinyaigeek</div></div></div></body><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;0893ac88cf0542af88bfd9b93008b408&quot;, &quot;spa&quot;: true}"></script><script defer="" src="https://shinyaigeek.dev/r.505b1eebe770374f3371.js" async=""></script></html>
