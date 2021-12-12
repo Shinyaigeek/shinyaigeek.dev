@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import fm from "front-matter";
 import { renderToStaticMarkup } from "react-dom/server";
-import Post from "../../../../front/Post/Post";
+import Post from "../../../../client/Post/Post";
 import { Remarkable } from "remarkable";
 import { tweetMacroPlugin } from "remarkable-plugin-tweet-share";
 // @ts-ignore

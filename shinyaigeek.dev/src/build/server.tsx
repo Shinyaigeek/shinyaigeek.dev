@@ -4,9 +4,9 @@ import { getBlogPosts, getHomeSlug } from "./util/getBlogPosts";
 import { getBlogPost } from "./util/getBlogPost";
 import * as React from "react";
 import { renderToStaticNodeStream } from "react-dom/server";
-import Post from "../front/Post/Post";
-import Home from "../front/Home/Home";
-import { Profile } from "../front/Profile/Profile";
+import Post from "../client/Post/Post";
+import Home from "../client/Home/Home";
+import { Profile } from "../client/Profile/Profile";
 
 import dotenv from "dotenv";
 import hljs from "highlight.js";

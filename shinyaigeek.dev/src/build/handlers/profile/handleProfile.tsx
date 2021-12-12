@@ -1,7 +1,7 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import React from "react";
 import helmet from "../../util/helmet";
-import { Profile } from "../../../front/Profile/Profile";
+import { Profile } from "../../../client/Profile/Profile";
 import { BLOG_TITLE } from "../../../consts";
 
 export const handleProfile: (p: `/${string}`) => string = function (p) {

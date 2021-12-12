@@ -1,5 +1,5 @@
 import { renderToStaticMarkup } from "react-dom/server";
-import Home from "../../../front/Home/Home";
+import Home from "../../../client/Home/Home";
 import React from "react";
 import helmet from "../../util/helmet";
 import { BLOG_TITLE } from "../../../consts";
