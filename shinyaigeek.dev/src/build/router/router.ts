@@ -1,3 +1,5 @@
+import { i18n } from "@lingui/core";
+
 type p = string;
 type html = string;
 export type handler = (path: `/${p}`) => html;
@@ -16,6 +18,8 @@ declare function on(
 // todo asynchrous, parallel
 export class Router {
   routing: Map<`/${p}`, handler> = new Map();
+  languages: Set<string> = new Set();
+  defaultLanguage?: string;
   constructor() {}
 
   on: typeof on = (path, handler, children) => {
@@ -34,9 +38,22 @@ export class Router {
   };
 
   out: (handler: (path: `/${p}`, html: html) => void) => void = (handler) => {
-    for (let [route, routeHandler] of this.routing) {
-      const html = routeHandler(route);
-      handler(route, html);
+    for (const lang of this.languages) {
+      if (this.defaultLanguage === undefined) {
+        throw new Error("router.registerDefaultLanguage should be called");
+      }
+
+      i18n.activate(lang);
+
+      for (let [_route, routeHandler] of this.routing) {
+        const route =
+          this.defaultLanguage === lang
+            ? _route
+            : (`/${lang}${_route}` as `/${p}`);
+
+        const html = routeHandler(route);
+        handler(route, html);
+      }
     }
   };
 
@@ -46,5 +63,23 @@ export class Router {
       throw new Error(`${path} does not exist on routing`);
     }
     return handler(path);
+  };
+
+  // TODO: lingui message is js
+  registerLanguage: (language: string, message: any) => void = (
+    language,
+    message
+  ) => {
+    this.languages.add(language);
+    i18n.load(language, message);
+  };
+
+  // TODO: lingui message is js
+  registerDefaultLanguage: (language: string, message: any) => void = (
+    language,
+    message
+  ) => {
+    this.defaultLanguage = language;
+    this.registerLanguage(language, message);
   };
 }

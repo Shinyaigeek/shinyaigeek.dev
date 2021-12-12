@@ -17,13 +17,12 @@ import { messages as ja } from "../locales/ja/messages";
 // @ts-ignore
 import { messages as en } from "../locales/en/messages";
 
-i18n.load("ja", ja);
-i18n.load("en", en);
-i18n.activate("ja");
-
 const router = new Router();
 
 const postChildren = getChildren();
+
+router.registerDefaultLanguage("ja", ja);
+router.registerLanguage("en", en);
 
 // todo interface
 router.on("/post", undefined, [postChildren]);
