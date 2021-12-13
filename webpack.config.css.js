@@ -16,7 +16,7 @@ module.exports = {
     filename: isProd ? "[name].[contenthash].js" : "[name].js",
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", "node_modules"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".scss"],
   },
   module: {
     rules: [
