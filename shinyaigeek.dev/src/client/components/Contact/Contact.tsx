@@ -1,8 +1,3 @@
-// import {
-//   Linkedin,
-//   Twitter,
-//   Github,
-// } from "@zeit-ui/react-icons";
 import { Button } from "../Button/Button";
 import React from "react";
 import { css } from "linaria";
@@ -50,11 +45,6 @@ export default function Contact() {
             id="twitter"
             href="https://twitter.com/Shinyaigeek"
             className={snsAnchor}>
-            {/* <Twitter /> */}
-            {/* <Icon
-              type="twitter"
-              style={{ color: "#38A1F3", fontSize: "42px", margin: "8px auto" }}
-            /> */}
           </a>
         </div>
         <div className="sns">
@@ -62,11 +52,6 @@ export default function Contact() {
             id="github"
             href="https://github.com/Shinyaigeek"
             className={snsAnchor}>
-            {/* <Github /> */}
-            {/* <Icon
-              type="github"
-              style={{ color: "#000", fontSize: "42px", margin: "8px auto" }}
-            /> */}
           </a>
         </div>
         <div className="sns">
@@ -74,12 +59,6 @@ export default function Contact() {
             id="linkedin"
             href="https://www.linkedin.com/in/shinyaigeek/"
             className={snsAnchor}>
-            {/* <Icon
-              type="linkedin"
-              style={{ color: "#0077B5", fontSize: "42px", margin: "8px auto" }}
-              theme="filled"
-            /> */}
-            {/* <Linkedin /> */}
           </a>
         </div>
       </div>
