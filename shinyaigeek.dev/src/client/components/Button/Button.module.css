@@ -12,8 +12,8 @@
   border-radius: 6px;
   text-align: center;
   vertical-align: middle;
+}
 
-  &:hover {
-    background: #ffbc6e;
-  }
+.button:hover {
+  background: #ffbc6e;
 }

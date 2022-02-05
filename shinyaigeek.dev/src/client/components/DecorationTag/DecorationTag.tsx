@@ -1,6 +1,6 @@
 import { css } from "linaria";
 import React from "react";
-import * as tag from "./DecorationTag.module.scss";
+import * as styles from "./DecorationTag.module.css";
 
 interface Props {
   tags: string[];
@@ -8,9 +8,13 @@ interface Props {
 
 export function DecorationTag({ tags }: Props) {
   return (
-    <div className={tag.tag}>
+    <div className={styles.tag}>
       {tags.map((tag, index) => {
-        return <div key={`decorationTag__${index}`}>{tag}</div>;
+        return (
+          <div className={styles.content} key={`decorationTag__${index}`}>
+            {tag}
+          </div>
+        );
       })}
     </div>
   );

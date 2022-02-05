@@ -8,8 +8,8 @@ const output = process.env.STATIC_FILE_OUTPUT || "dist";
 
 module.exports = {
   entry: {
-    main: "./src/front/main.tsx",
-    r: "./src/front/_main.ts",
+    main: "./shinyaigeek.dev/src/client/main.tsx",
+    r: "./shinyaigeek.dev/src/client/_main.ts",
   },
   output: {
     path: path.join(__dirname, output),
@@ -24,7 +24,6 @@ module.exports = {
         test: /\.ts(x?)$/,
         use: [
           "babel-loader",
-          "linaria/loader",
           {
             loader: "ts-loader",
             options: {
@@ -34,13 +33,19 @@ module.exports = {
           },
         ],
       },
-      // {
-      //   test: /\.js(x?)$/,
-      //   loader: "babel-loader"
-      // },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                auto: true,
+              },
+            },
+          },
+        ],
       },
     ],
   },

@@ -2,8 +2,8 @@
   display: flex;
   width: 80%;
   padding: 12px 0;
+}
 
-  div {
-    padding: 2px 4px;
-  }
+.content {
+  padding: 2px 4px;
 }
