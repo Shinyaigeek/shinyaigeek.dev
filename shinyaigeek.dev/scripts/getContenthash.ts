@@ -7,7 +7,7 @@ dotenv.config();
 
 const getContenthash = () => {
   const output = process.env.STATIC_FILE_OUTPUT || "dist";
-  const dirs = fs.readdirSync(path.join(__dirname, "../" + output));
+  const dirs = fs.readdirSync(path.join(__dirname, "../../" + output));
   const outputExt2contenthash = new Map<string, string>();
   for (let file of dirs) {
     if (file.endsWith(".js")) {
