@@ -118,3 +118,4 @@ packages/blog/public
 api/*
 meta/*
 packages/blog/assets/*
+server/*
