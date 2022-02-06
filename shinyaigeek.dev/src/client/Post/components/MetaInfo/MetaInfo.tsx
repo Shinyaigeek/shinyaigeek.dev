@@ -2,12 +2,7 @@
 
 import { DecorationTag } from "../../../components/DecorationTag/DecorationTag";
 import React from "react";
-import { css } from "linaria";
-
-const metaInfo = css`
-  width: 80vw;
-  margin 12px auto;
-`;
+import * as metaInfo from "./MetaInfo.module.scss";
 
 export function MetaInfo(props: {
   fields: {
@@ -18,7 +13,7 @@ export function MetaInfo(props: {
 }) {
   const { tags } = props.fields;
   return (
-    <div className={metaInfo}>
+    <div className={metaInfo.metaInfo}>
       <h1>{props.fields.title}</h1>
       <div>{props.fields.publishedAt}</div>
       <DecorationTag tags={tags} />

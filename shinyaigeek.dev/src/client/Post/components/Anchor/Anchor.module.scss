@@ -1,0 +1,19 @@
+.postAnchor {
+  position: fixed;
+  top: 72px;
+  left: 20vw;
+  width: 180px;
+  color: black;
+  background: white;
+  a {
+    display: block;
+    color: black;
+    margin: 4px 0 4px 4px;
+    text-decoration: none;
+  }
+
+  > summary::-webkit-details-marker {
+    color: black;
+    margin-left: 6px;
+  }
+}
