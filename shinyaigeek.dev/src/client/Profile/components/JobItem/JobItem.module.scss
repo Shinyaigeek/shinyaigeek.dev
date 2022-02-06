@@ -1,0 +1,20 @@
+.jobItem {
+  margin: 12px 2px;
+  .title {
+    font-size: 18px;
+  }
+
+  .position {
+    display: inline-block;
+    margin-right: 9px;
+  }
+
+  .term {
+    display: inline-block;
+    margin-left: 9px;
+  }
+
+  .meta {
+    margin: 3px 4px;
+  }
+}

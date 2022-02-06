@@ -1,0 +1,185 @@
+.snsIcon {
+  width: 54px;
+  margin: 0 auto;
+
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+.mySnsBox {
+  display: flex;
+  margin: 2px auto;
+  max-width: 500px;
+}
+
+.word {
+  font-size: 24px;
+  padding: 12px 0;
+  text-align: center;
+}
+
+.name {
+  font-size: 24px;
+  text-align: center;
+}
+
+.jobGlitch {
+  font-size: 32px;
+  text-align: center;
+  position: relative;
+  width: max-content;
+  margin: 0 auto;
+  &:after {
+    @keyframes noise-anim {
+      0% {
+        clip: rect(21px, 9999px, 40px, 0);
+      }
+      5% {
+        clip: rect(99px, 9999px, 2px, 0);
+      }
+      10% {
+        clip: rect(70px, 9999px, 50px, 0);
+      }
+      15% {
+        clip: rect(38px, 9999px, 26px, 0);
+      }
+      20% {
+        clip: rect(1px, 9999px, 48px, 0);
+      }
+      25% {
+        clip: rect(7px, 9999px, 36px, 0);
+      }
+      30% {
+        clip: rect(35px, 9999px, 63px, 0);
+      }
+      35% {
+        clip: rect(21px, 9999px, 67px, 0);
+      }
+      40% {
+        clip: rect(28px, 9999px, 79px, 0);
+      }
+      45% {
+        clip: rect(66px, 9999px, 37px, 0);
+      }
+      50% {
+        clip: rect(60px, 9999px, 77px, 0);
+      }
+      55% {
+        clip: rect(60px, 9999px, 42px, 0);
+      }
+      60% {
+        clip: rect(97px, 9999px, 47px, 0);
+      }
+      65% {
+        clip: rect(54px, 9999px, 77px, 0);
+      }
+      70% {
+        clip: rect(74px, 9999px, 5px, 0);
+      }
+      75% {
+        clip: rect(77px, 9999px, 83px, 0);
+      }
+      80% {
+        clip: rect(65px, 9999px, 1px, 0);
+      }
+      85% {
+        clip: rect(68px, 9999px, 88px, 0);
+      }
+      90% {
+        clip: rect(8px, 9999px, 95px, 0);
+      }
+      95% {
+        clip: rect(97px, 9999px, 49px, 0);
+      }
+      100% {
+        clip: rect(undefinedpx, 9999px, undefinedpx, 0);
+      }
+    }
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    text-shadow: -1px 0 red;
+    top: 0;
+    color: white;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: 2s infinite linear alternate-reverse noise-anim;
+    white-space: nowrap;
+  }
+  &:before {
+    @keyframes noise-anim-2 {
+      0% {
+        clip: rect(62px, 9999px, 78px, 0);
+      }
+      5% {
+        clip: rect(86px, 9999px, 83px, 0);
+      }
+      10% {
+        clip: rect(56px, 9999px, 93px, 0);
+      }
+      15% {
+        clip: rect(22px, 9999px, 17px, 0);
+      }
+      20% {
+        clip: rect(36px, 9999px, 77px, 0);
+      }
+      25% {
+        clip: rect(99px, 9999px, 50px, 0);
+      }
+      30% {
+        clip: rect(48px, 9999px, 43px, 0);
+      }
+      35% {
+        clip: rect(60px, 9999px, 50px, 0);
+      }
+      40% {
+        clip: rect(23px, 9999px, 91px, 0);
+      }
+      45% {
+        clip: rect(9px, 9999px, 80px, 0);
+      }
+      50% {
+        clip: rect(90px, 9999px, 36px, 0);
+      }
+      55% {
+        clip: rect(55px, 9999px, 33px, 0);
+      }
+      60% {
+        clip: rect(34px, 9999px, 30px, 0);
+      }
+      65% {
+        clip: rect(95px, 9999px, 12px, 0);
+      }
+      70% {
+        clip: rect(26px, 9999px, 42px, 0);
+      }
+      75% {
+        clip: rect(50px, 9999px, 10px, 0);
+      }
+      80% {
+        clip: rect(94px, 9999px, 84px, 0);
+      }
+      85% {
+        clip: rect(27px, 9999px, 94px, 0);
+      }
+      90% {
+        clip: rect(77px, 9999px, 77px, 0);
+      }
+      95% {
+        clip: rect(27px, 9999px, 58px, 0);
+      }
+    }
+    content: attr(data-text);
+    position: absolute;
+    left: -2px;
+    text-shadow: 1px 0 blue;
+    top: 0;
+    color: white;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: 3s infinite linear alternate-reverse noise-anim-2;
+    white-space: nowrap;
+  }
+}

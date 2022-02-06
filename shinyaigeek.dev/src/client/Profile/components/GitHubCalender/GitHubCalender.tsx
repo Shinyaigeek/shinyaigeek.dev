@@ -1,16 +1,11 @@
-import { css } from "linaria";
 import React from "react";
 import { Loading } from "../Loading/Loading";
-
-const loadingStyle = css`
-  width: 100%;
-  height: 30vh;
-`;
+import * as gitHubCalendar from "./GitHubCalender.module.scss";
 
 export const GitHubCalender = () => {
   return (
     <github-calendar user-name="shinyaigeek" cache={86400}>
-      <div className={loadingStyle}>
+      <div className={gitHubCalendar.loadingStyle}>
         <Loading />
       </div>
     </github-calendar>

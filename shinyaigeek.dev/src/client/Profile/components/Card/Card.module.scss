@@ -1,6 +1,4 @@
-import { css } from "linaria";
-
-export const CardStyle = css`
+.cardStyle {
   width: 200px;
   height: 150px;
 
@@ -13,10 +11,10 @@ export const CardStyle = css`
   margin: 12px 24px;
 
   img {
-      width: 75px;
-      height: 75px;
-      display: block;
-      margin: auto;
+    width: 75px;
+    height: 75px;
+    display: block;
+    margin: auto;
   }
 
   .title {
@@ -25,6 +23,4 @@ export const CardStyle = css`
     display: inline-block;
     margin: 2px auto;
   }
-`;
-
-export const CardShowcaseStyle = css``;
+}

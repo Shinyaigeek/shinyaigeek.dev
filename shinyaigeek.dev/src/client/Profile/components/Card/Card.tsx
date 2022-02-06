@@ -1,5 +1,5 @@
 import React from "react";
-import { CardStyle, CardShowcaseStyle } from "./Card.style";
+import * as CardStyle from "./Card.module.scss";
 
 interface Props {
   title: string;
@@ -8,7 +8,7 @@ interface Props {
 
 export const Card: React.FC<Props> = function ({ title, img }) {
   return (
-    <li className={CardStyle}>
+    <li className={CardStyle.cardStyle}>
       <div className="title">{title}</div>
       <img src={img} alt={title} loading="lazy" />
     </li>
@@ -16,5 +16,5 @@ export const Card: React.FC<Props> = function ({ title, img }) {
 };
 
 export const CardShowcase: React.FC = function ({ children }) {
-  return <ul className={CardShowcaseStyle}>{children}</ul>;
+  return <ul>{children}</ul>;
 };

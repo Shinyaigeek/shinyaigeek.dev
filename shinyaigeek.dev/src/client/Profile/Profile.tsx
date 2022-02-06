@@ -4,32 +4,14 @@ import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
 import { BaseProfile } from "./components/BaseProfile/BaseProfile";
 import { GitHubCalender } from "./components/GitHubCalender/GitHubCalender";
 import React from "react";
-import { css } from "linaria";
 import { JobItem } from "./components/JobItem/JobItem";
 import { t } from "@lingui/macro";
 import { Card, CardShowcase } from "./components/Card/Card";
-
-const profile = css`
-  width: 80vw;
-  margin: 0 auto;
-`;
-
-const title = css`
-  font-size: 24px;
-  margin: 18px 16px;
-`;
-
-const lists = css`
-  font-size: 18px;
-
-  li {
-    margin: 4px;
-  }
-`;
+import * as profile from "./Profile.module.scss";
 
 export const Profile = Layout(() => {
   return (
-    <div className={profile}>
+    <div className={profile.profile}>
       <div>
         <Shinyaigeek />
 
@@ -42,7 +24,7 @@ export const Profile = Layout(() => {
         <Divider />
 
         <div className="description">
-          <div className={title}>About Me</div>
+          <div className={profile.title}>About Me</div>
           <p className="content">
             Web Developerとして活動しています, しにゃい(Shinyaigeek)と言います.
             <br />
@@ -66,8 +48,8 @@ export const Profile = Layout(() => {
         <Divider />
 
         <div className="history--study element">
-          <span className={title}>{t`education`}</span>
-          <ul className={lists}>
+          <span className={profile.title}>{t`education`}</span>
+          <ul className={profile.lists}>
             <li>2018: {t`graduate_nishiyamato`}</li>
             <li>2018: {t`enroll_univ_tokyo`}</li>
             <li>2019: {t`will_major_in_system`}</li>
@@ -79,7 +61,7 @@ export const Profile = Layout(() => {
         <Divider />
 
         <div className="history--job element">
-          <span className={title}>{t`working_experience`}</span>
+          <span className={profile.title}>{t`working_experience`}</span>
           <ul>
             {JobItem({
               job: t`certain_news_media_company`,

@@ -1,5 +1,5 @@
-import { css } from "linaria";
 import React from "react";
+import * as jobItem from "./JobItem.module.scss";
 
 interface Props {
   job: string;
@@ -8,30 +8,9 @@ interface Props {
   position: string;
 }
 
-const jobItem = css`
-  margin: 12px 2px;
-  .title {
-    font-size: 18px;
-  }
-
-  .position {
-    display: inline-block;
-    margin-right: 9px;
-  }
-
-  .term {
-    display: inline-block;
-    margin-left: 9px;
-  }
-
-  .meta {
-      margin: 3px 4px;
-  }
-`;
-
 export const JobItem = (props: Props) => {
   return (
-    <li className={jobItem}>
+    <li className={jobItem.jobItem}>
       <div className="title">{props.job}</div>
       <div className="meta">
         <div className="position">{props.position}</div>/
