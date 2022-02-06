@@ -4,7 +4,7 @@ export interface TagProps {
   color: string;
 }
 import React from "react";
-import * as tag from "./Tag.module.scss";
+import tag from "./Tag.module.scss";
 
 export function Tag(props: TagProps) {
   return (

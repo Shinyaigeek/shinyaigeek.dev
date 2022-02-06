@@ -1,6 +1,6 @@
 import { Button } from "../Button/Button";
 import React from "react";
-import * as contact from "./Contact.module.scss";
+import contact from "./Contact.module.scss";
 
 export default function Contact() {
   return (

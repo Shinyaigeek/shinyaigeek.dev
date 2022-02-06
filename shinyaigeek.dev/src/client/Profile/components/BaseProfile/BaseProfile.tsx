@@ -1,5 +1,5 @@
 import React from "react";
-import * as baseProfile from "./BaseProfile.module.scss";
+import baseProfile from "./BaseProfile.module.scss";
 
 export const BaseProfile = () => {
   return (

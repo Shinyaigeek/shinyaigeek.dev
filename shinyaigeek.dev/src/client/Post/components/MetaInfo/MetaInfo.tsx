@@ -2,7 +2,7 @@
 
 import { DecorationTag } from "../../../components/DecorationTag/DecorationTag";
 import React from "react";
-import * as metaInfo from "./MetaInfo.module.scss";
+import metaInfo from "./MetaInfo.module.scss";
 
 export function MetaInfo(props: {
   fields: {

@@ -1,5 +1,5 @@
 import React from "react";
-import * as divider from "./Divider.module.scss";
+import divider from "./Divider.module.scss";
 
 export function Divider() {
     return (

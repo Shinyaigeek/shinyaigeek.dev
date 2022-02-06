@@ -3,7 +3,7 @@ import { Button } from "../../../components/Button/Button";
 
 import { getOmmit } from "../../../../build/util/getOmmit";
 import React from "react";
-import * as item from "./Item.module.scss";
+import item from "./Item.module.scss";
 export interface MetaData {
   title: string;
   description?: string;

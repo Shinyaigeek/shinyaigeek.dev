@@ -7,7 +7,7 @@ import React from "react";
 import { JobItem } from "./components/JobItem/JobItem";
 import { t } from "@lingui/macro";
 import { Card, CardShowcase } from "./components/Card/Card";
-import * as profile from "./Profile.module.scss";
+import profile from "./Profile.module.scss";
 
 export const Profile = Layout(() => {
   return (

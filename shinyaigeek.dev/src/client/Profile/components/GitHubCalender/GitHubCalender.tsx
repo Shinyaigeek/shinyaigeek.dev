@@ -1,6 +1,6 @@
 import React from "react";
 import { Loading } from "../Loading/Loading";
-import * as gitHubCalendar from "./GitHubCalendar.module.scss";
+import gitHubCalendar from "./GitHubCalendar.module.scss";
 
 export const GitHubCalender = () => {
   return (
