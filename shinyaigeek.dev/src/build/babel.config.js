@@ -9,7 +9,6 @@ module.exports = {
         },
       },
     ],
-    "linaria/babel",
     "@babel/preset-typescript",
   ],
   plugins: [

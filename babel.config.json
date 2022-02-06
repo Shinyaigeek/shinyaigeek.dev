@@ -2,7 +2,6 @@
   "presets": [
     "@babel/preset-react",
     "@babel/preset-env",
-    "linaria/babel"
   ],
   "plugins": [
     "macros"

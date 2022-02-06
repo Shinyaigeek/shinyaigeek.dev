@@ -30,7 +30,6 @@ module.exports = {
         test: /\.ts(x?)$/,
         use: [
           "babel-loader",
-          "linaria/loader",
           {
             loader: "ts-loader",
             options: {

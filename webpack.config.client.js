@@ -16,15 +16,10 @@ module.exports = {
           {
             loader: "babel-loader",
             options: {
-              presets: [
-                "@babel/preset-react",
-                "@babel/preset-env",
-                "linaria/babel",
-              ],
+              presets: ["@babel/preset-react", "@babel/preset-env"],
               plugins: ["babel-plugin-lit-jsx", "macros"],
             },
           },
-          "linaria/loader",
           {
             loader: "ts-loader",
             options: {

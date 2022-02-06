@@ -1,4 +1,3 @@
-import { css } from "linaria";
 import React from "react";
 import * as styles from "./DecorationTag.module.scss";
 
