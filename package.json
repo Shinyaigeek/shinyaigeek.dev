@@ -15,7 +15,7 @@
     "_build:css": "webpack --config webpack.config.css.js --mode=production",
     "_build": "export NODE_ENV=production && npm run clear && npm run _build:css && npm run contenthash && npm run rss",
     "_build:dev": "export NODE_ENV=development && npm run _build:css && npm run _build:ssg && npm run rss",
-    "_build:server": "export NODE_ENV=production && webpack --config webpack.config.server.js",
+    "_build:server": "export NODE_ENV=development && webpack --config webpack.config.server.js",
     "dev": "nodemon --watch src/ --exec  npm run _build",
     "serve": "miniserve ./ --index index.html"
   },

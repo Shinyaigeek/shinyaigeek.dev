@@ -6,7 +6,7 @@ import { handlePost } from "../handlePost/handlePost";
 export const getChildren: () => Router = function () {
   const children = new Router();
   const posts = fs.readdirSync(
-    path.join(__dirname, "../../../../articles/public")
+    path.join(__dirname, "../shinyaigeek.dev/src/articles/public")
   );
   for (let post of posts) {
     children.on(`/${post.replace(".md", "")}`, handlePost, undefined);

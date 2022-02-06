@@ -105,7 +105,7 @@ export const Profile = Layout(() => {
         <Divider />
 
         <div className="interests">
-          <div className={title}>My Interests</div>
+          <div className={profile.title}>My Interests</div>
           <p className="content">
             <CardShowcase>
               {interests.map((interest) => (
