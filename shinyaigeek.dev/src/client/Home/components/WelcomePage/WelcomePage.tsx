@@ -1,42 +1,19 @@
 import { StarStream } from "../StartStream/StarStream";
 import React from "react";
-import { css } from "linaria";
 import { Shinyaigeek } from "../../../components/Shinyaigeek/Shinyaigeek";
-
-const welcome = css`
-  height: calc(100vh - 72px);
-  width: 100vw;
-  position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 999;
-`;
-
-const banana = css`
-  height: 200px;
-  margin: 20px 20px;
-  object-fit: contain;
-`;
-
-const shinyaigeek = css`
-  position: absolute;
-  bottom: 25px;
-  right: 25px;
-`;
+import * as welcomePage from "./WelcomePage.module.scss";
 
 export function WelcomePage() {
   return (
-    <div className={welcome}>
+    <div className={welcomePage.welcome}>
       <img
-        className={banana}
+        className={welcomePage.banana}
         src={`/assets/static/banana.png`}
         alt="banana"
         width="200px"
         height="200px"
       />
-      <Shinyaigeek css={shinyaigeek} />
+      <Shinyaigeek css={welcomePage.shinyaigeek} />
       <StarStream />
     </div>
   );

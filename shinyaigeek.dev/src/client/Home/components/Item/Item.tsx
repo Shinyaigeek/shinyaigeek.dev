@@ -3,7 +3,7 @@ import { Button } from "../../../components/Button/Button";
 
 import { getOmmit } from "../../../../build/util/getOmmit";
 import React from "react";
-import { css } from "linaria";
+import * as item from "./Item.module.scss";
 export interface MetaData {
   title: string;
   description?: string;
@@ -14,52 +14,10 @@ export interface MetaData {
   media?: string;
 }
 
-const itemHomeAnchor = css`
-  color: var(--theme-color);
-  text-decoration: none;
-  display: inline-block;
-
-  .title {
-    font-size: 32px;
-    text-align: center;
-    font-weight: bold;
-    padding: 8px 12px;
-  }
-`;
-
-const home = css`
-  min-width: 300px;
-  width: 80%;
-  max-width: 750px;
-  margin: 12px auto;
-
-  .date {
-    padding: 16px 6px;
-    font-size: 18px;
-  }
-
-  .read--more__anchor {
-    margin: 16px 0;
-    position: absolute;
-    right: 24px;
-  }
-
-  .read--more {
-    position: relative;
-    margin: 4px 0;
-    height: 64px;
-  }
-
-  .ogp {
-    width: 100%;
-    margin: 12px 0;
-  }
-`;
-
 export const Item = (props: MetaData) => {
   return (
-    <div className={home}>
-      <a className={itemHomeAnchor} href={`/post/${props.slug}`}>
+    <div className={item.home}>
+      <a className={item.itemHomeAnchor} href={`/post/${props.slug}`}>
         <div className="title">{props.title}</div>
       </a>
       <Divider />
