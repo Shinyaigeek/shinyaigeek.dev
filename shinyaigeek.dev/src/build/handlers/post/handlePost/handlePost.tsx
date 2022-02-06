@@ -16,7 +16,9 @@ export const handlePost: (p: `/${string}`) => string = function (p) {
   const _post = fs.readFileSync(
     path.join(
       __dirname,
-      "../shinyaigeek.dev/src/articles/public" + p.replace("/post", "") + ".md"
+      "../shinyaigeek.dev/src/articles/public" +
+        p.replace("/post", "").replace("/en/", "/") +
+        ".md"
     ),
     {
       encoding: "utf-8",
