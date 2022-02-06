@@ -3,7 +3,6 @@ import { Entry } from "../../build/util/getBlogPost";
 import { Entry as ThirdPirtyEntry } from "../../build/util/getThirdPirty";
 import { WelcomePage } from "./components/WelcomePage/WelcomePage";
 import { Item } from "./components/Item/Item";
-import { Pagenation } from "./components/Pagenation/Pagenation";
 import React from "react";
 const Home = (props: {
   items: Entry[];
@@ -29,7 +28,6 @@ const Home = (props: {
           return <Item {...fields} key={index} />;
         })}
       </div>
-      <Pagenation {...props} />
     </div>
   );
 };

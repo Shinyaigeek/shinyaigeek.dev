@@ -2,7 +2,7 @@ interface Props {
   anchors: string[];
 }
 import React from "react";
-import * as postAnchor from "./PostAnchor.module.scss";
+import * as postAnchor from "./Anchor.module.scss";
 
 export function Anchor(props: Props) {
   return (
