@@ -58,19 +58,19 @@ const SiteHead = (props: HeadProps) => (
     <link
       rel="icon"
       type="image/x-icon"
-      href={`${assets}/assets/static/favicon.ico`}
+      href={`/assets/static/favicon.ico`}
     />
     <link
       rel="stylesheet"
       type="text/css"
-      href={`${assets}/styles${
+      href={`/styles${
         process.env.CONTENTHASH_CSS ? "." + process.env.CONTENTHASH_CSS : ""
       }.css`}
     />
     <link
       rel="stylesheet"
       type="text/css"
-      href={`${assets}/a11y-dark.min.css`}
+      href={`/a11y-dark.min.css`}
     />
     <link
       rel="stylesheet"
@@ -85,7 +85,7 @@ const SiteHead = (props: HeadProps) => (
     <link
       rel="preload"
       as="style"
-      href={`${assets}/styles${
+      href={`/styles${
         process.env.CONTENTHASH_CSS ? "." + process.env.CONTENTHASH_CSS : ""
       }.css`}
     />
@@ -97,7 +97,7 @@ const SiteHead = (props: HeadProps) => (
     <link
       rel="preload"
       as="image"
-      href={`${assets}/assets/static/icon_transparent_header.png`}
+      href={`/assets/static/icon_transparent_header.png`}
     />
 
     <link

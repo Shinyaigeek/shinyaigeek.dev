@@ -5,7 +5,7 @@ import path from "path";
 export const buildRss = async () => {
   const rss = await getRss();
 
-  writeFileSync(path.join(__dirname, "../public/rss.xml"), rss);
+  writeFileSync(path.join(__dirname, "../../public/rss.xml"), rss);
 };
 
 buildRss();
