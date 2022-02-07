@@ -1,6 +1,5 @@
 const path = require("path");
 const webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 require("dotenv").config();
 
 const isProd = process.env.NODE_ENV !== "development";
@@ -12,11 +11,12 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, output),
-    filename: isProd ? "[name].[contenthash].js" : "[name].js",
+    filename: "[name].js",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", ".scss"],
   },
+  mode: "development",
   target: "node",
   module: {
     rules: [
@@ -36,7 +36,6 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
@@ -57,10 +56,7 @@ module.exports = {
       CONTENTFUL_ACCESS_TOKEN: JSON.stringify(
         process.env.CONTENTFUL_ACCESS_TOKEN
       ),
-    }),
-
-    new MiniCssExtractPlugin({
-      filename: isProd ? "styles.[contenthash].css" : "styles.css",
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
     }),
   ],
 };
