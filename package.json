@@ -7,7 +7,6 @@
     "contenthash": "ts-node -O '{\"module\":\"commonjs\"}' shinyaigeek.dev/scripts/getContenthash.ts",
     "clear": "ts-node -O '{\"module\":\"commonjs\"}' shinyaigeek.dev/scripts/deleteDistAssets.ts",
     "rss": "ts-node -O '{\"module\":\"commonjs\"}' shinyaigeek.dev/scripts/buildRss.ts",
-    "upload": "ts-node -O '{\"module\":\"commonjs\"}' shinyaigeek.dev/scripts/uploadAssetsToGCS.ts",
     "purge": "ts-node -O '{\"module\":\"commonjs\"}' shinyaigeek.dev/scripts/purgeCache.ts",
     "i18n:extract": "lingui extract",
     "i18n:compile": "lingui compile",
