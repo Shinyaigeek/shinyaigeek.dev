@@ -32,7 +32,6 @@
   "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "contentful": "^8.1.7",
     "emailjs-com": "^2.4.1",
     "front-matter": "^4.0.2",
     "github-calendar": "^2.2.7",
