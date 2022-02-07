@@ -10,12 +10,12 @@
     "purge": "ts-node -O '{\"module\":\"commonjs\"}' shinyaigeek.dev/scripts/purgeCache.ts",
     "i18n:extract": "lingui extract",
     "i18n:compile": "lingui compile",
-    "_build:ssg": "babel-node shinyaigeek.dev/src/build/build.ts --config-file ./shinyaigeek.dev/src/build/babel.config.js --extensions '.ts,.tsx' --loader=sass-loader --loader=css-loader?modules",
-    "_build:css": "webpack --config webpack.config.css.js --mode=production",
-    "_build": "export NODE_ENV=production && npm run clear && npm run _build:css && npm run contenthash && npm run rss",
-    "_build:dev": "export NODE_ENV=development && npm run _build:css && npm run _build:ssg && npm run rss",
-    "_build:server": "export NODE_ENV=development && webpack --config webpack.config.server.js",
-    "dev": "nodemon --watch src/ --exec  npm run _build",
+    "build:ssg": "babel-node shinyaigeek.dev/src/build/build.ts --config-file ./shinyaigeek.dev/src/build/babel.config.js --extensions '.ts,.tsx' --loader=sass-loader --loader=css-loader?modules",
+    "build:css": "webpack --config webpack.config.css.js --mode=production",
+    "build": "export NODE_ENV=production && npm run clear && npm run build:css && npm run contenthash && npm run rss",
+    "build:dev": "export NODE_ENV=development && npm run build:css && npm run build:ssg && npm run rss",
+    "build:server": "export NODE_ENV=development && webpack --config webpack.config.server.js",
+    "dev": "nodemon --watch src/ --exec  npm run build",
     "serve": "miniserve ./ --index index.html"
   },
   "repository": {

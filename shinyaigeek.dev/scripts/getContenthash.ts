@@ -33,4 +33,4 @@ const js = outputContenthash.get("js");
 const css = outputContenthash.get("css");
 
 // cp.exec(`CONTENTHASH_JS=${js} CONTENTHASH_CSS=${css} yarn build:server`)
-cp.exec(`CONTENTHASH_JS=${js} CONTENTHASH_CSS=${css} yarn _build:ssg`);
+cp.exec(`CONTENTHASH_JS=${js} CONTENTHASH_CSS=${css} yarn build:ssg`);
