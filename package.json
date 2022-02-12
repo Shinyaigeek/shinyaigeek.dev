@@ -13,8 +13,8 @@
     "i18n:compile": "lingui compile",
     "build:ssg": "yarn build:server && node server/main.js",
     "build:css": "webpack --config webpack.config.css.js --mode=production",
-    "build": "export NODE_ENV=production && npm run clear && npm run build:css && npm run contenthash && npm run rss",
-    "build:dev": "export NODE_ENV=development && npm run build:css && npm run build:ssg && npm run rss",
+    "build": "export NODE_ENV=production && npm run clear && npm run build:css && npm run contenthash && npm run rss && yarn mv:assets",
+    "build:dev": "export NODE_ENV=development && npm run build:css && npm run build:ssg && npm run rss && yarn mv:assets",
     "build:server": "webpack --config webpack.config.server.js",
     "dev": "nodemon --watch src/ --exec  npm run build",
     "serve": "miniserve ./ --index index.html"

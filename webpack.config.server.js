@@ -41,6 +41,7 @@ module.exports = {
             options: {
               modules: {
                 auto: true,
+                exportOnlyLocals: true
               },
             },
           },
