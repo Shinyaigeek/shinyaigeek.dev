@@ -80,7 +80,7 @@ const SiteHead = (props: HeadProps) => (
     <link
       rel="preload"
       as="style"
-      href={`${assets}/a11y-dark.min.css`}
+      href={`/a11y-dark.min.css`}
     />
     <link
       rel="preload"
