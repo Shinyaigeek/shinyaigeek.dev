@@ -10,7 +10,7 @@ const getContenthash = () => {
   const dirs = fs.readdirSync(path.join(__dirname, "../../" + output));
   const outputExt2contenthash = new Map<string, string>();
   for (let file of dirs) {
-    if (file.endsWith(".js")) {
+    if (file.endsWith(".js") && file.startsWith("r")) {
       outputExt2contenthash.set("js", file.split(".")[1]);
     } else if (file.endsWith(".css")) {
       outputExt2contenthash.set("css", file.split(".")[1]);

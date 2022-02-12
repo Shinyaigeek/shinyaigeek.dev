@@ -133,7 +133,7 @@ const helmet = (props: HelmetProps) => {
       ></script>
       <script
         defer
-        src={`${assets}/r${
+        src={`/r${
           process.env.CONTENTHASH_JS ? "." + process.env.CONTENTHASH_JS : ""
         }.js`}
         async
