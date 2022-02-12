@@ -147,7 +147,7 @@ const interests: Interest[] = [
   },
   {
     title: "AMP",
-    img: "/assets/static/amp.png",
+    img: "/assets/static/AMP.png",
   },
   {
     title: "Fastly",
