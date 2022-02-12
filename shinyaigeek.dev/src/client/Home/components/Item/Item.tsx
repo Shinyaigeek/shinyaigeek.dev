@@ -18,11 +18,11 @@ export const Item = (props: MetaData) => {
   return (
     <div className={item.home}>
       <a className={item.itemHomeAnchor} href={`/post/${props.slug}`}>
-        <div className="title">{props.title}</div>
+        <div className={item.title}>{props.title}</div>
       </a>
       <Divider />
-      <div className="date">{props.publishedAt}</div>
-      <div className="tags"></div>
+      <div className={item.date}>{props.publishedAt}</div>
+      <div className={item.tags}></div>
       <div>{getOmmit(props.description ?? "")}</div>
       {props.ogp && (
         <a
@@ -32,14 +32,14 @@ export const Item = (props: MetaData) => {
           <img
             src={props.ogp}
             alt={props.title}
-            className="ogp"
+            className={item.ogp}
             loading="lazy"
           />
         </a>
       )}
-      <div className="read--more">
+      <div className={item.readMore}>
         <a
-          className="item--home__anchor read--more__anchor"
+          className={`item--home__anchor ${item.readMoreAnchor}`}
           href={!props.media ? `/post/${props.slug}` : props.slug}
           tabIndex={-1}
         >

@@ -11,10 +11,10 @@ interface Props {
 export const JobItem = (props: Props) => {
   return (
     <li className={jobItem.jobItem}>
-      <div className="title">{props.job}</div>
-      <div className="meta">
-        <div className="position">{props.position}</div>/
-        <div className="term">{props.term}</div>
+      <div className={jobItem.title}>{props.job}</div>
+      <div className={jobItem.meta}>
+        <div className={jobItem.position}>{props.position}</div>/
+        <div className={jobItem.term}>{props.term}</div>
       </div>
       <div className="description">{props.description}</div>
     </li>

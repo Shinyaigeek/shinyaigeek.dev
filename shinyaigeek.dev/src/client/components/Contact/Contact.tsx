@@ -25,14 +25,14 @@ export default function Contact() {
             className={contact.snsAnchor}
           ></a>
         </div>
-        <div className="sns">
+        <div className={contact.sns}>
           <a
             id="github"
             href="https://github.com/Shinyaigeek"
             className={contact.snsAnchor}
           ></a>
         </div>
-        <div className="sns">
+        <div className={contact.scs}>
           <a
             id="linkedin"
             href="https://www.linkedin.com/in/shinyaigeek/"

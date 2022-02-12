@@ -9,7 +9,7 @@ interface Props {
 export const Card: React.FC<Props> = function ({ title, img }) {
   return (
     <li className={CardStyle.cardStyle}>
-      <div className="title">{title}</div>
+      <div className={CardStyle.title}>{title}</div>
       <img src={img} alt={title} loading="lazy" />
     </li>
   );

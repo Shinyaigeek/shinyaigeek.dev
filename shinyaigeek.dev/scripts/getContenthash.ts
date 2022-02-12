@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const getContenthash = () => {
-  const output = process.env.STATIC_FILE_OUTPUT || "dist";
+  const output = process.env.STATIC_FILE_OUTPUT || "public";
   const dirs = fs.readdirSync(path.join(__dirname, "../../" + output));
   const outputExt2contenthash = new Map<string, string>();
   for (let file of dirs) {

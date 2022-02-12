@@ -5,6 +5,12 @@
   margin-bottom: 84px;
 }
 
+:global() {
+  body {
+    margin: 0;
+  }
+}
+
 .root {
   --theme-header: #1a161a;
   --theme-background: #eee;
@@ -31,11 +37,6 @@
     --image-gray: grayscale(15%);
     --anchor-color: CornflowerBlue;
     --anchor-visited-color: RosyBrown;
-  }
-  :global() {
-    body {
-      margin: 0;
-    }
   }
 
   background: var(--theme-background);
