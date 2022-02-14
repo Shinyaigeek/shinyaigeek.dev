@@ -17,7 +17,10 @@ export interface MetaData {
 export const Item = (props: MetaData) => {
   return (
     <div className={item.home}>
-      <a className={item.itemHomeAnchor} href={`/post/${props.slug}`}>
+      <a
+        className={item.itemHomeAnchor}
+        href={!props.media ? `/post/${props.slug}` : props.slug}
+      >
         <div className={item.title}>{props.title}</div>
       </a>
       <Divider />
