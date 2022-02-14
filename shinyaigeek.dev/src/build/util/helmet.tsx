@@ -63,7 +63,7 @@ const SiteHead = (props: HeadProps) => (
     <link
       rel="stylesheet"
       type="text/css"
-      href={`/styles${
+      href={`/assets/styles${
         process.env.CONTENTHASH_CSS ? "." + process.env.CONTENTHASH_CSS : ""
       }.css`}
     />
@@ -85,7 +85,7 @@ const SiteHead = (props: HeadProps) => (
     <link
       rel="preload"
       as="style"
-      href={`/styles${
+      href={`/assets/styles${
         process.env.CONTENTHASH_CSS ? "." + process.env.CONTENTHASH_CSS : ""
       }.css`}
     />
@@ -133,7 +133,7 @@ const helmet = (props: HelmetProps) => {
       ></script>
       <script
         defer
-        src={`/r${
+        src={`/assets/r${
           process.env.CONTENTHASH_JS ? "." + process.env.CONTENTHASH_JS : ""
         }.js`}
         async

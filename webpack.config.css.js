@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 require("dotenv").config();
 
 const isProd = process.env.NODE_ENV !== "development";
-const output = process.env.STATIC_FILE_OUTPUT || "public";
+const output = process.env.STATIC_FILE_OUTPUT || "public/assets";
 
 module.exports = {
   entry: {
