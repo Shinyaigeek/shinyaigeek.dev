@@ -37,6 +37,8 @@ export const Item = (props: MetaData) => {
             alt={props.title}
             className={item.ogp}
             loading="lazy"
+            width={1024}
+            height={576}
           />
         </a>
       )}
