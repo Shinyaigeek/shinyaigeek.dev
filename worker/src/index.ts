@@ -1,6 +1,6 @@
 import resolveAcceptLanguage from 'resolve-accept-language'
 
-addEventListener('fetch', (event) => {
+const handler = function (event: FetchEvent) {
   const { url } = event.request
   const { pathname, search } = new URL(url)
 
@@ -30,4 +30,8 @@ addEventListener('fetch', (event) => {
   }
 
   return fetch(event.request)
+}
+
+addEventListener('fetch', (event) => {
+  event.respondWith(handler(event))
 })
