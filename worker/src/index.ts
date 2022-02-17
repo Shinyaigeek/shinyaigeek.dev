@@ -8,11 +8,7 @@ addEventListener('fetch', (event) => {
     return fetch(event.request)
   }
 
-  if (
-    !pathname.includes('.') ||
-    !pathname.endsWith('.html') ||
-    !pathname.endsWith('/')
-  ) {
+  if (!pathname.endsWith('.html') && !pathname.endsWith('/')) {
     return fetch(event.request)
   }
 
@@ -27,7 +23,10 @@ addEventListener('fetch', (event) => {
   )
 
   if (preferedLanguage === 'en-US') {
-    return Response.redirect(`https://shinyaigeek.dev/en${pathname}${search}`, 301)
+    return Response.redirect(
+      `https://shinyaigeek.dev/en${pathname}${search}`,
+      301,
+    )
   }
 
   return fetch(event.request)
