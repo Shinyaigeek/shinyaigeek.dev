@@ -6660,6 +6660,11 @@ wildcard@^2.0.0:
   resolved "https://registry.yarnpkg.com/wildcard/-/wildcard-2.0.0.tgz#a77d20e5200c6faaac979e4b3aadc7b3dd7f8fec"
   integrity sha512-JcKqAHLPxcdb9KM49dufGXn2x3ssnfjbcaQdLlfZsL9rH9wgDQjUtDxbo8NE0F6SFvydeu1VhZe7hZuHsB2/pw==
 
+wrangler@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/wrangler/-/wrangler-0.0.4.tgz#ad56905f6fdbbcd67fd469345fe4739ad8f7d3de"
+  integrity sha512-X+5yKzNh2v/6qBLXGxqTvbUOtIGccwpabpK1MAUj2QVy2n1/0rPVRQCEZ9K5ENcWkEpnjdAQYfJt6Akg6Nwnow==
+
 wrap-ansi@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-5.1.0.tgz#1fd1f67235d5b6d0fee781056001bfb694c03b09"
