@@ -7440,6 +7440,11 @@ requires-port@^1.0.0:
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
 
+resolve-accept-language@^1.0.50:
+  version "1.0.50"
+  resolved "https://registry.yarnpkg.com/resolve-accept-language/-/resolve-accept-language-1.0.50.tgz#631dd8d30594aaa32fdbea4599fd91ee1da6f84a"
+  integrity sha512-dsbk8Ca+KHHpTBsHzhf2dU1yPoYb8t9GfjCP1K3UEIFa54rEmEMmRGnbOzdCMRz34WwCBZRnKwrjA1YON/KcHA==
+
 resolve-cwd@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/resolve-cwd/-/resolve-cwd-2.0.0.tgz#00a9f7387556e27038eae232caa372a6a59b665a"
