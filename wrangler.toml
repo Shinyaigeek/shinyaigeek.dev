@@ -1,4 +1,4 @@
-name = "my-app"
+name = "handle-language"
 type = "javascript"
 zone_id = ""
 account_id = ""
@@ -7,6 +7,6 @@ workers_dev = true
 compatibility_date = "2022-02-17"
 
 [build]
-command = "npm install && npm run build"
+command = "yarn worker:build"
 [build.upload]
 format = "service-worker"
