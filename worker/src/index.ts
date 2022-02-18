@@ -4,10 +4,6 @@ const handler = function (event: FetchEvent) {
   const { url } = event.request
   const { pathname, search } = new URL(url)
 
-  if (pathname.startsWith('/en')) {
-    return fetch(event.request)
-  }
-
   if (!pathname.endsWith('.html') && !pathname.endsWith('/')) {
     return fetch(event.request)
   }
@@ -24,7 +20,7 @@ const handler = function (event: FetchEvent) {
 
   if (preferedLanguage === 'en-US') {
     return Response.redirect(
-      `https://shinyaigeek.dev/en${pathname}${search}`,
+      `https://en.shinyaigeek.dev${pathname}${search}`,
       301,
     )
   }
