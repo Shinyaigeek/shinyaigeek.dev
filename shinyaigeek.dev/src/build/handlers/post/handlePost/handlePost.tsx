@@ -59,6 +59,15 @@ export const handlePost: (p: `/${string}`) => string = function (p) {
     });
   }
 
+  const language = p.startsWith("/en")
+    ? "en"
+    : p.startsWith("/ja")
+    ? "ja"
+    : undefined;
+  if (!language) {
+    throw new Error(`invalid path, ${p}`);
+  }
+
   const fields = {
     fields: {
       slug: p.replace("/", ""),
@@ -66,6 +75,8 @@ export const handlePost: (p: `/${string}`) => string = function (p) {
       content: html,
     },
     anchors,
+    language,
+    currentPath: p.replace("/en/", "/").replace("/ja/", "/"),
   };
 
   const Html = React.createElement(

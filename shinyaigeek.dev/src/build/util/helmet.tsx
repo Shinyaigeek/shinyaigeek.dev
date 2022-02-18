@@ -55,11 +55,7 @@ const SiteHead = (props: HeadProps) => (
       )}`}
     />
 
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href={`/assets/static/favicon.ico`}
-    />
+    <link rel="icon" type="image/x-icon" href={`/assets/static/favicon.ico`} />
     <link
       rel="stylesheet"
       type="text/css"
@@ -77,11 +73,7 @@ const SiteHead = (props: HeadProps) => (
       href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
     />
 
-    <link
-      rel="preload"
-      as="style"
-      href={`/assets/static/a11y-dark.min.css`}
-    />
+    <link rel="preload" as="style" href={`/assets/static/a11y-dark.min.css`} />
     <link
       rel="preload"
       as="style"

@@ -6,7 +6,7 @@ import layout from "./Layout.module.scss";
 export function Layout(Component: (props?: any) => JSX.Element) {
   return (props?: any) => (
     <div className={layout.root}>
-      <Header />
+      <Header language={props.language} currentPath={props.currentPath} />
       <div className={layout.inner}>
         <Component {...props} />
       </div>
