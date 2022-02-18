@@ -30,7 +30,7 @@ export const getSiteMap = () => {
                 <priority>1.0</priority>
             </url>
             <url>
-                <loc>https://shinyaigeek.dev/en/</loc>
+                <loc>https://en.shinyaigeek.dev/</loc>
                 <lastmod>${lastmod}</lastmod>
                 <changefreq>monthly</changefreq>
                 <priority>1.0</priority>
@@ -42,7 +42,7 @@ export const getSiteMap = () => {
                 <priority>0.8</priority>
             </url>
             <url>
-                <loc>https://shinyaigeek.dev/en/profile/</loc>
+                <loc>https://en.shinyaigeek.dev/profile/</loc>
                 <lastmod>${lastmod}</lastmod>
                 <changefreq>monthly</changefreq>
                 <priority>0.8</priority>
@@ -56,7 +56,7 @@ export const getSiteMap = () => {
     <priority>0.8</priority>
 </url>
 <url>
-    <loc>https://shinyaigeek.dev/en/post/${con.fields.slug}</loc>
+    <loc>https://en.shinyaigeek.dev/post/${con.fields.slug}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
