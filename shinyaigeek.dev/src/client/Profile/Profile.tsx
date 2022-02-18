@@ -105,13 +105,13 @@ export const Profile = Layout(() => {
         <Divider />
 
         <div className="interests">
-          <div className={profile.title}>My Interests</div>
+          <div className={profile.title}>Specialities</div>
           <p className="content">
             <CardShowcase>
-              {interests.map((interest) => (
+              {specialities.map((speciality) => (
                 <Card
-                  title={interest.title}
-                  img={interest.img ?? "/assets/static/placeholder.jpeg"}
+                  title={speciality.title}
+                  img={speciality.img ?? "/assets/static/placeholder.jpeg"}
                 />
               ))}
             </CardShowcase>
@@ -122,12 +122,12 @@ export const Profile = Layout(() => {
   );
 });
 
-interface Interest {
+interface Speciality {
   title: string;
   img?: string;
 }
 
-const interests: Interest[] = [
+const specialities: Speciality[] = [
   {
     title: "JavaScript",
     img: "/assets/static/javascript.png",
@@ -146,10 +146,6 @@ const interests: Interest[] = [
     img: "/assets/static/rust.png",
   },
   {
-    title: "AMP",
-    img: "/assets/static/AMP.png",
-  },
-  {
     title: "Fastly",
     img: "/assets/static/fastly.png",
   },
@@ -163,4 +159,10 @@ const interests: Interest[] = [
   {
     title: "Browser",
   },
+  {
+    title: "Network",
+  },
+  {
+    title: "Web Frontend Tooling"
+  }
 ];
