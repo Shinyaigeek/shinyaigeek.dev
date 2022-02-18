@@ -46,10 +46,7 @@ export class Router {
       i18n.activate(lang);
 
       for (let [_route, routeHandler] of this.routing) {
-        const route =
-          this.defaultLanguage === lang
-            ? _route
-            : (`/${lang}${_route}` as `/${p}`);
+        const route = `/${lang}${_route}` as `/${p}`;
 
         const html = routeHandler(route);
         handler(route, html);

@@ -17,7 +17,7 @@ export const handlePost: (p: `/${string}`) => string = function (p) {
     path.join(
       __dirname,
       "../shinyaigeek.dev/src/articles/public" +
-        p.replace("/post", "").replace("/en/", "/") +
+        p.replace("/post", "").replace("/en/", "/").replace("/ja/", "/") +
         ".md"
     ),
     {
