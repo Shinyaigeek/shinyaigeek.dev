@@ -11,7 +11,7 @@ export const getRss = () => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
             <rss version='2.0'  xmlns:atom="http://www.w3.org/2005/Atom">
             <channel>
-            <atom:link href="https://shinyaigeek.dev/getRss" rel="self" type="application/rss+xml" />
+            <atom:link href="https://shinyaigeek.dev/rss.xml" rel="self" type="application/rss+xml" />
             <title>shinyaigeek.dev</title>
             <link>https://shinyaigeek.dev/</link>
             <description>見習いWeb developer兼大学生のブログ. 主にweb開発の知見について喋ります</description>
@@ -20,7 +20,7 @@ export const getRss = () => {
             <managingEditor>me@shinyaigeek.dev (Shinobu Hayashi)</managingEditor>
             <webMaster>me@shinyaigeek.dev (Shinobu Hayashi)</webMaster>
             <image>
-                <url>https://storage.cloud.google.com/blog_assets_shinyaigeek/static/icon.png</url>
+                <url>https://shinyaigeek.dev/assets/static/icon.png</url>
                 <title>shinyaigeek.dev</title>
                 <link>https://shinyaigeek.dev/</link>
                 <width>32</width>
