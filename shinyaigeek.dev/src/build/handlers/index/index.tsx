@@ -7,9 +7,12 @@ import { getBlogPosts } from "../../util/getBlogPosts";
 import path from "path";
 import { getThirdPirty } from "../../util/getThirdPirty";
 
-export const handleIndex: () => string = function () {
+export const handleIndex: (p: string) => string = function (p) {
   const blogEntries = getBlogPosts(
-    path.join(__dirname, "../shinyaigeek.dev/src/articles/public/") as `${string}/`
+    path.join(
+      __dirname,
+      "../shinyaigeek.dev/src/articles/public/"
+    ) as `${string}/`
   );
   const thirdPirtyEntries = getThirdPirty(
     path.join(__dirname, "../shinyaigeek.dev/src/articles/third-pirty.json")
@@ -25,6 +28,8 @@ export const handleIndex: () => string = function () {
         thirdPirtyItems: thirdPirtyEntries,
         prev: false,
         next: false,
+        language: p.startsWith("/en") ? "en" : "ja",
+        currentPath: p.replace("/en/", "/").replace("/ja/", "/"),
       },
     })
   );

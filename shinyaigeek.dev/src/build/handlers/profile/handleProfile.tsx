@@ -5,14 +5,18 @@ import { Profile } from "../../../client/Profile/Profile";
 import { BLOG_TITLE } from "../../../consts";
 
 export const handleProfile: (p: `/${string}`) => string = function (p) {
-    const Html = React.createElement(
-        helmet({
-          children: Profile,
-          title: `Profile | ${BLOG_TITLE}`,
-          style: "profile",
-          slug: `https://shinyaigeek.dev/profile`
-        })
-      );
-    
-      return renderToStaticMarkup(Html);
+  const Html = React.createElement(
+    helmet({
+      children: Profile,
+      title: `Profile | ${BLOG_TITLE}`,
+      style: "profile",
+      slug: `https://shinyaigeek.dev/profile`,
+      props: {
+        language: p.startsWith("/en") ? "en" : "ja",
+        currentPath: p.replace("/en/", "/").replace("/ja/", "/"),
+      },
+    })
+  );
+
+  return renderToStaticMarkup(Html);
 };
