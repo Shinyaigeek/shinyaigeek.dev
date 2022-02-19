@@ -13,17 +13,20 @@ import helmet from "../../../util/helmet";
 import { BLOG_TITLE } from "../../../../consts";
 
 export const handlePost: (p: `/${string}`) => string = function (p) {
-  const _post = fs.readFileSync(
-    path.join(
-      __dirname,
-      "../shinyaigeek.dev/src/articles/public" +
-        p.replace("/post", "").replace("/en/", "/").replace("/ja/", "/") +
-        ".md"
-    ),
-    {
-      encoding: "utf-8",
-    }
+  const _postPath = path.join(
+    __dirname,
+    "../shinyaigeek.dev/src/articles/public" +
+      p.replace("/post", "").replace("/en/", "/").replace("/ja/", "/") +
+      ".md"
   );
+  const postPath = fs.existsSync(
+    _postPath.replace("articles/public/", "articles/en/")
+  )
+    ? _postPath.replace("articles/public/", "articles/en/")
+    : _postPath;
+  const _post = fs.readFileSync(postPath, {
+    encoding: "utf-8",
+  });
 
   // todo type assertion
   const { attributes, body } = fm(_post);
