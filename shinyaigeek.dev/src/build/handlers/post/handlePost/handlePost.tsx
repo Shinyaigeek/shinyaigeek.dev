@@ -19,11 +19,11 @@ export const handlePost: (p: `/${string}`) => string = function (p) {
       p.replace("/post", "").replace("/en/", "/").replace("/ja/", "/") +
       ".md"
   );
-  const postPath = fs.existsSync(
-    _postPath.replace("articles/public/", "articles/en/")
-  )
-    ? _postPath.replace("articles/public/", "articles/en/")
-    : _postPath;
+  const postPath =
+    p.startsWith("/en") &&
+    fs.existsSync(_postPath.replace("articles/public/", "articles/en/"))
+      ? _postPath.replace("articles/public/", "articles/en/")
+      : _postPath;
   const _post = fs.readFileSync(postPath, {
     encoding: "utf-8",
   });
