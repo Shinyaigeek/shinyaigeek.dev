@@ -1,8 +1,7 @@
 ---
 title: m17n with cloudflare workers
 tags: [Programming,CDN,CloudFlare]
-description: |
-  I implemented multilingual support on my blog page. I used cloudflare workers for that, and the experience was great, so I will leave it as a note.
+description: I implemented multilingual support on my blog page. I used cloudflare workers for that, and the experience was great, so I will leave it as a note.
 publishedAt: 2022/02/19
 updatedAt: 2022/02/19
 ---

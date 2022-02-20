@@ -1,8 +1,7 @@
 ---
 title: cloudflare workers で多言語対応を行う
 tags: [Programming,CDN,CloudFlare]
-description: |
-  弊ブログで多言語対応を行なった。その際 cloudflare workers を利用したが体験が良かったのでメモとして残しておく。
+description: 弊ブログで多言語対応を行なった。その際 cloudflare workers を利用したが体験が良かったのでメモとして残しておく。
 publishedAt: 2022/02/19
 updatedAt: 2022/02/19
 ---
