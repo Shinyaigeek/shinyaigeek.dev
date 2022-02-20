@@ -89,6 +89,7 @@ export const handlePost: (p: `/${string}`) => string = function (p) {
       style: "post",
       slug: `https://shinyaigeek.dev/${fields.fields.slug}`,
       props: fields,
+      language: p.startsWith("/en") ? "en" : "ja"
     })
   );
 

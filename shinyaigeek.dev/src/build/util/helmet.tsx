@@ -7,6 +7,7 @@ interface HeadProps {
   title: string;
   style: string;
   slug: string;
+  language: "en" | "ja";
 }
 
 const isProd = process.env.NODE_ENV === "production";
@@ -107,11 +108,12 @@ interface HelmetProps {
   style: string;
   props?: any;
   slug: string;
+  language: "en" | "ja"
 }
 
 const helmet = (props: HelmetProps) => {
   return () => (
-    <html lang="ja">
+    <html lang={props.language}>
       <SiteHead {...props} />
       <body>
         <div id="_app">

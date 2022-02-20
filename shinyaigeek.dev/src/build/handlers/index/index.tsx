@@ -31,6 +31,7 @@ export const handleIndex: (p: string) => string = function (p) {
         language: p.startsWith("/en") ? "en" : "ja",
         currentPath: p.replace("/en/", "/").replace("/ja/", "/"),
       },
+      language: p.startsWith("/en") ? "en" : "ja"
     })
   );
 
