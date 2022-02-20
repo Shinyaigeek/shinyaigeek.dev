@@ -15,8 +15,11 @@ export const getBlogPosts: (
   const posts = slugs.map(
     (slug) =>
       [
-        language === "en" && fs.existsSync(`${dir}en/${slug}`)
-          ? fs.readFileSync(`${dir}en/${slug}`, { encoding: "utf8" })
+        language === "en" &&
+        fs.existsSync(`${dir.replace("/public/", "/")}en/${slug}`)
+          ? fs.readFileSync(`${dir.replace("/public/", "/")}en/${slug}`, {
+              encoding: "utf8",
+            })
           : fs.readFileSync(`${dir}${slug}`, { encoding: "utf8" }),
         slug.replace(".md", "/"),
       ] as const
