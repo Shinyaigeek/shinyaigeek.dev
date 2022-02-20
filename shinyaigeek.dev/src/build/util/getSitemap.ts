@@ -6,15 +6,15 @@ dotenv.config();
 
 function formatDate(date: Date) {
   var y = date.getFullYear();
-  var m = ('00' + (date.getMonth()+1)).slice(-2);
-  var d = ('00' + date.getDate()).slice(-2);
-  return (y + '-' + m + '-' + d);
+  var m = ("00" + (date.getMonth() + 1)).slice(-2);
+  var d = ("00" + date.getDate()).slice(-2);
+  return y + "-" + m + "-" + d;
 }
 
 export const getSiteMap = () => {
-  
   const items = getBlogPosts(
-    path.join(__dirname, "../../articles/public/") as `${string}/`
+    path.join(__dirname, "../../articles/public/") as `${string}/`,
+    "ja"
   );
   const date = new Date();
   const lastmod = formatDate(date);

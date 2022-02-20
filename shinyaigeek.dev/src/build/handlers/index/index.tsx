@@ -12,7 +12,8 @@ export const handleIndex: (p: string) => string = function (p) {
     path.join(
       __dirname,
       "../shinyaigeek.dev/src/articles/public/"
-    ) as `${string}/`
+    ) as `${string}/`,
+    p.startsWith("/en") ? "en" : "ja"
   );
   const thirdPirtyEntries = getThirdPirty(
     path.join(__dirname, "../shinyaigeek.dev/src/articles/third-pirty.json")
@@ -31,7 +32,7 @@ export const handleIndex: (p: string) => string = function (p) {
         language: p.startsWith("/en") ? "en" : "ja",
         currentPath: p.replace("/en/", "/").replace("/ja/", "/"),
       },
-      language: p.startsWith("/en") ? "en" : "ja"
+      language: p.startsWith("/en") ? "en" : "ja",
     })
   );
 

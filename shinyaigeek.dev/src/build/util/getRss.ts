@@ -3,9 +3,10 @@ import { getBlogPosts } from "./getBlogPosts";
 import path from "path";
 dotenv.config();
 
-export const getRss = () => {
+export const getRss = (language: "en" | "ja") => {
   const items = getBlogPosts(
-    path.join(__dirname, "../../articles/public/") as `${string}/`
+    path.join(__dirname, "../../articles/public/") as `${string}/`,
+    language
   );
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

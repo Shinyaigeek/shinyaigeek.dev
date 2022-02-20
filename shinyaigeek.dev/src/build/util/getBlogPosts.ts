@@ -7,12 +7,17 @@ interface HomeSlug {
   page?: number;
 }
 
-export const getBlogPosts: (dir: `${string}/`) => Entry[] = function (dir) {
+export const getBlogPosts: (
+  dir: `${string}/`,
+  language: "en" | "ja"
+) => Entry[] = function (dir, language) {
   const slugs = fs.readdirSync(dir);
   const posts = slugs.map(
     (slug) =>
       [
-        fs.readFileSync(`${dir}${slug}`, { encoding: "utf8" }),
+        language === "en" && fs.existsSync(`${dir}en/${slug}`)
+          ? fs.readFileSync(`${dir}en/${slug}`, { encoding: "utf8" })
+          : fs.readFileSync(`${dir}${slug}`, { encoding: "utf8" }),
         slug.replace(".md", "/"),
       ] as const
   );
