@@ -26,22 +26,7 @@ export const Profile = Layout(() => {
         <div className="description">
           <div className={profile.title}>About Me</div>
           <p className="content">
-            Web Developerとして活動しています, しにゃい(Shinyaigeek)と言います.
-            <br />
-            <br />
-            Webというプラットフォームの持つUniversalityに惹かれており,
-            Webの可能性を拡げていきエンジニア以外にも伝えていきたいというお思いで仕事をしています.
-            <br />
-            <br />
-            Web の持つUniversalityを最大限引き出せるように,
-            ロースペックなPCでもアプリケーションが動くようClientでのRuntime
-            Costを低減したり, 通信環境が悪くとも動くようI/O Costを低減したり,
-            Accesibilityを考えたコードを書いたりとそういった営みが得意です.
-            そのためWeb開発においてはServerもEdgeもClientも幅広く触ってはいますが,
-            Clientがメインになっています.
-            <br />
-            <br />
-            趣味はプログラミングで, WebとBrowserとUXとASTが好きです.
+            {t`aboutme_content`}
           </p>
         </div>
 
