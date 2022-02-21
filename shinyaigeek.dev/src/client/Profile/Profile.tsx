@@ -25,9 +25,10 @@ export const Profile = Layout(() => {
 
         <div className="description">
           <div className={profile.title}>About Me</div>
-          <p className="content">
-            {t`aboutme_content`}
-          </p>
+          <p
+            className="content"
+            dangerouslySetInnerHTML={{ __html: t`aboutme_content` }}
+          ></p>
         </div>
 
         <Divider />
@@ -148,6 +149,6 @@ const specialities: Speciality[] = [
     title: "Network",
   },
   {
-    title: "Web Frontend Tooling"
-  }
+    title: "Web Frontend Tooling",
+  },
 ];
