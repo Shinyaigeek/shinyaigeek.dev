@@ -97,7 +97,7 @@ const SiteHead = (props: HeadProps) => (
       rel="alternate"
       type="application/rss+xml"
       title="shinyaigeek.dev"
-      href="https://shinyaigeek.dev/rss.xml"
+      href="/rss.xml"
     ></link>
   </head>
 );
