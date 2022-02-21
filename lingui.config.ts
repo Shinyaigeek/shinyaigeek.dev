@@ -2,7 +2,7 @@ export default {
   locales: ["en", "ja"],
   catalogs: [
     {
-      path: "src/locales/{locale}/messages",
+      path: "shinyaigeek.dev/src/locales/{locale}/messages",
       include: ["src"],
     },
   ],
