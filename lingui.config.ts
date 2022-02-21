@@ -3,7 +3,7 @@ export default {
   catalogs: [
     {
       path: "shinyaigeek.dev/src/locales/{locale}/messages",
-      include: ["src"],
+      include: ["shinyaigeek.dev/src"],
     },
   ],
   format: "minimal",
