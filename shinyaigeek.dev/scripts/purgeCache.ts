@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import assert from "assert";
 import fetch from "node-fetch";
 import path from "path";
+import { JSDOM } from "jsdom";
 
 const baseUrl = "https://api.cloudflare.com/client/v4/";
 //6386a36a9ac3e8c8494e8a4d43fd4f79b0956
@@ -31,8 +32,43 @@ async function shouldPurge(filename: string) {
   })();
 }
 
-function getContentsShouldPurged() {
-  const shouldPurgeContents = [];
+async function getContentsShouldPurged() {
+  const paths = [
+    "/index.html",
+    "/post/browser-on-browser/index.html",
+    "/profile/index.html",
+  ];
+
+  const _shouldPurgeAssets = await Promise.all(
+    paths.map(async (p) => {
+      const html = await fetch(`https://shinyaigeek.dev${p}`);
+      const dom = new JSDOM(await html.text());
+      const scripts = Array.from(
+        dom.window.document.querySelectorAll("script")
+      );
+      const styles = Array.from(dom.window.document.querySelectorAll("link"));
+      const assets = [...scripts, ...styles];
+      return assets
+        .map((asset) => {
+          if (asset.tagName === "link") {
+            const { href } = asset as HTMLLinkElement; // TODO
+            if (!href.startsWith("http")) {
+              /* TODO */ return href;
+            }
+          } else if (asset.tagName === "script") {
+            const { src } = asset as HTMLScriptElement; // TODO
+            if (!src.startsWith("http")) {
+              /* TODO */ return src;
+            }
+          }
+          return undefined;
+        })
+        .filter((asset) => typeof asset !== "undefined");
+    })
+  );
+  const shouldPurgeAssets = _shouldPurgeAssets.flat();
+
+  return shouldPurgeAssets as string[]; // TODO
 }
 
 export const purgeCache = () => {
