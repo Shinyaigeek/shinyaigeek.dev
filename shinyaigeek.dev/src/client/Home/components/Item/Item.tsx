@@ -48,7 +48,7 @@ export const Item = (props: MetaData) => {
           href={!props.media ? `/post/${props.slug}` : props.slug}
           tabIndex={-1}
         >
-          <Button id="more-button">Read</Button>
+          Read
         </a>
       </div>
     </div>
