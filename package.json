@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
   "dependencies": {
+    "@types/jsdom": "^16.2.14",
     "accept-language": "^3.0.18",
     "body-parser": "^1.19.0",
     "emailjs-com": "^2.4.1",
