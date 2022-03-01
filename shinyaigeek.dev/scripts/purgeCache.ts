@@ -58,12 +58,18 @@ async function getContentsShouldPurged() {
           // @ts-ignore
           if (asset.tagName === "LINK") {
             const { href } = asset as HTMLLinkElement; // TODO
-            if (!href.startsWith("http")) {
+            if (
+              !href.startsWith("http") &&
+              !href.startsWith("/cdn-cgi") /* TODO ? */
+            ) {
               /* TODO */ return href;
             }
           } else if (asset.tagName === "SCRIPT") {
             const { src } = asset as HTMLScriptElement; // TODO
-            if (!src.startsWith("http")) {
+            if (
+              !src.startsWith("http") &&
+              !src.startsWith("/cdn-cgi") /* TODO ? */
+            ) {
               /* TODO */ return src;
             }
           }
@@ -73,6 +79,7 @@ async function getContentsShouldPurged() {
     })
   );
   const allAssets = _allAssets.flat() as string[]; // TODO;
+  console.log(allAssets);
 
   const allPurgeAssets = await Promise.all(
     allAssets.map(async (asset) =>
@@ -119,4 +126,4 @@ export const purgeCache = () => {
 
 (async () => {
   console.log(await getContentsShouldPurged());
-})()
+})();
