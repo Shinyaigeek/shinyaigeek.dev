@@ -55,12 +55,13 @@ async function getContentsShouldPurged() {
       const assets = [...scripts, ...styles];
       return assets
         .map((asset) => {
-          if (asset.tagName === "link") {
+          // @ts-ignore
+          if (asset.tagName === "LINK") {
             const { href } = asset as HTMLLinkElement; // TODO
             if (!href.startsWith("http")) {
               /* TODO */ return href;
             }
-          } else if (asset.tagName === "script") {
+          } else if (asset.tagName === "SCRIPT") {
             const { src } = asset as HTMLScriptElement; // TODO
             if (!src.startsWith("http")) {
               /* TODO */ return src;
@@ -114,4 +115,8 @@ export const purgeCache = () => {
     });
 };
 
-purgeCache();
+// purgeCache();
+
+(async () => {
+  console.log(await getContentsShouldPurged());
+})()
