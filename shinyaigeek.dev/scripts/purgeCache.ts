@@ -39,7 +39,7 @@ async function getContentsShouldPurged() {
     "/profile/index.html",
   ];
 
-  const _shouldPurgeAssets = await Promise.all(
+  const _allAssets = await Promise.all(
     paths.map(async (p) => {
       const html = await fetch(`https://shinyaigeek.dev${p}`);
       const dom = new JSDOM(await html.text());
@@ -66,9 +66,9 @@ async function getContentsShouldPurged() {
         .filter((asset) => typeof asset !== "undefined");
     })
   );
-  const shouldPurgeAssets = _shouldPurgeAssets.flat();
+  const allAssets = _allAssets.flat();
 
-  return shouldPurgeAssets as string[]; // TODO
+  return allAssets.filter((asset) => {});
 }
 
 export const purgeCache = () => {
