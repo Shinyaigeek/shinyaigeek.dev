@@ -75,7 +75,12 @@ async function getContentsShouldPurged() {
           }
           return undefined;
         })
-        .filter((asset) => typeof asset !== "undefined");
+        .filter(
+          (asset) =>
+            typeof asset !== "undefined" &&
+            !asset.endsWith("png") &&
+            !asset.endsWith("io")
+        );
     })
   );
   const allAssets = _allAssets.flat() as string[]; // TODO;
