@@ -3,6 +3,7 @@ import assert from "assert";
 import fetch from "node-fetch";
 import path from "path";
 import { JSDOM } from "jsdom";
+import fs from "fs";
 
 const baseUrl = "https://api.cloudflare.com/client/v4/";
 //6386a36a9ac3e8c8494e8a4d43fd4f79b0956
@@ -16,7 +17,8 @@ const domains = [
 ];
 
 async function shouldPurge(filename: string) {
-  const remoteSource = await fetch(`https://shinyaigeek.dev${filename}`);
+  const _remoteSource = await fetch(`https://shinyaigeek.dev${filename}`);
+  const remoteSource = await _remoteSource.text();
   const localSourcePath = (() => {
     if (filename.endsWith(".html")) {
       return path.resolve(__dirname, `../../public/ja${filename}`);
@@ -30,6 +32,9 @@ async function shouldPurge(filename: string) {
 
     return path.resolve(__dirname, `../../public${filename}`);
   })();
+
+  const localSource = fs.readFileSync(localSourcePath, "utf-8");
+  return localSource !== remoteSource;
 }
 
 async function getContentsShouldPurged() {
@@ -66,9 +71,14 @@ async function getContentsShouldPurged() {
         .filter((asset) => typeof asset !== "undefined");
     })
   );
-  const allAssets = _allAssets.flat();
+  const allAssets = _allAssets.flat() as string[]; // TODO;
 
-  return allAssets.filter((asset) => {});
+  const allPurgeAssets = await Promise.all(
+    allAssets.map(async (asset) =>
+      (await shouldPurge(asset)) ? asset : undefined
+    )
+  );
+  return allPurgeAssets.filter((asset) => !!asset);
 }
 
 export const purgeCache = () => {
