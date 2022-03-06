@@ -5,17 +5,22 @@
   width: 204px;
   color: var(--theme-color);
   background: var(--theme-background);
-  border: var(--theme-color);
+  border: var(--theme-color) 1px solid;
   border-radius: 6px;
   a {
     display: block;
-    color: black;
-    margin: 4px 0 4px 4px;
+    color: var(--theme-color);
+    margin: 6px 0 6px 6px;
     text-decoration: none;
+
+    &:before {
+      content: '##';
+      margin-right: 2px;
+    }
   }
 
   > summary::-webkit-details-marker {
-    color: black;
+    color: var(--theme-color);
     margin-left: 6px;
   }
 
