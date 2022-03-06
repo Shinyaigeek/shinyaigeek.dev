@@ -3,12 +3,13 @@ interface Props {
 }
 import React from "react";
 import postAnchor from "./Anchor.module.scss";
+import { t } from "@lingui/macro";
 
 export function Anchor(props: Props) {
   return (
     <details className={postAnchor.postAnchor}>
       <summary className="post--anchor__title" id="post--anchor__title">
-        目次
+        {t`index`}
       </summary>
       {props.anchors &&
         props.anchors.map((anchor, index) => {
