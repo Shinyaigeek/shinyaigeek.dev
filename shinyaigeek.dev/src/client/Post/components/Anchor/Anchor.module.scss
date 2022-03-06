@@ -3,8 +3,10 @@
   top: 72px;
   left: 20vw;
   width: 204px;
-  color: black;
-  background: white;
+  color: var(--theme-color);
+  background: var(--theme-background);
+  border: var(--theme-color);
+  border-radius: 6px;
   a {
     display: block;
     color: black;
