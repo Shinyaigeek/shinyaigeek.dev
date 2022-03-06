@@ -2,7 +2,7 @@
   position: fixed;
   top: 72px;
   left: 20vw;
-  width: 180px;
+  width: 204px;
   color: black;
   background: white;
   a {
@@ -15,5 +15,10 @@
   > summary::-webkit-details-marker {
     color: black;
     margin-left: 6px;
+  }
+
+  summary {
+    font-size: 18px;
+    font-weight: bold;
   }
 }
