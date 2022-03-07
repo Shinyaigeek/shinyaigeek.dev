@@ -5,7 +5,11 @@ export const BaseProfile = () => {
   return (
     <div className="baseprofile">
       <div className={baseProfile.name}>
-        Shinobu Hayashi a.k.a Shinyaigeek(しにゃい)
+        Hi{" "}
+        <span role="img" aria-label="wave hand">
+          👋
+        </span>{" "}
+        I'm Shinobu Hayashi a.k.a Shinyaigeek(しにゃい)
       </div>
       <div className={baseProfile.jobGlitch} data-text="Web Developer">
         Web Developer
