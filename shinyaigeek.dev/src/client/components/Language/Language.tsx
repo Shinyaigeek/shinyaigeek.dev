@@ -38,24 +38,28 @@ export const Language: React.FC<Props> = function ({
         </span>{" "}
         {t`current_language`}
       </summary>
-      {Array.from(languages.keys()).map((language) => {
-        return (
-          <a
-            key={language}
-            href={`${
-              language === "en"
-                ? "https://ja.shinyaigeek.dev"
-                : "http://en.shinyaigeek.dev"
-            }${currentPath}`}
-            className={language === currentLanguage ? languageStyle.active : ""}
-          >
-            <span role="img" aria-label="country">
-              {languages.get(language)!.icon}
-            </span>
-            {languages.get(language)!.name}
-          </a>
-        );
-      })}
+      <div className={languageStyle.languageWrapper}>
+        {Array.from(languages.keys()).map((language) => {
+          return (
+            <a
+              key={language}
+              href={`${
+                language === "en"
+                  ? "https://ja.shinyaigeek.dev"
+                  : "http://en.shinyaigeek.dev"
+              }${currentPath}`}
+              className={`${languageStyle.language} ${
+                language === currentLanguage ? languageStyle.active : ""
+              }`}
+            >
+              <span role="img" aria-label="country">
+                {languages.get(language)!.icon}
+              </span>
+              {languages.get(language)!.name}
+            </a>
+          );
+        })}
+      </div>
     </details>
   );
 };
