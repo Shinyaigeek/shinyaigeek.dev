@@ -4,9 +4,11 @@ import header from "./Header.module.scss";
 export function Header({
   language,
   currentPath,
+  page,
 }: {
   language: "en" | "ja";
   currentPath: string;
+  page: string;
 }) {
   return (
     <div className={header.header}>
@@ -37,22 +39,28 @@ export function Header({
             {language === "en" ? "ja" : "en"}
           </a>
         </div>
-        <div className={header.anchor}>
+        <div
+          className={`${header.anchor} ${page === "home" ? header.active : ""}`}
+        >
           <a href="/" className="link2Home">
             Blog
           </a>
         </div>
-        <div className={header.anchor}>
+        <div
+          className={`${header.anchor} ${
+            page === "profile" ? header.active : ""
+          }`}
+        >
           <a href="/profile" id="link2profile">
             Profile
           </a>
         </div>
-        <div className={header.anchor}>
+        <div className={`${header.anchor}`}>
           <a href="https://github-activity.shinyaigeek.dev/" id="link2activity">
             Activity
           </a>
         </div>
-        <div className={header.anchor}>
+        <div className={`${header.anchor}`}>
           <a href="mailto:me@shinyaigeek.dev">Contact</a>
         </div>
       </div>
