@@ -1,4 +1,5 @@
 import React from "react";
+import { Language } from "../Language/Language";
 import header from "./Header.module.scss";
 
 export function Header({
@@ -28,16 +29,7 @@ export function Header({
       </div>
       <div className={header.contents}>
         <div className={header.anchor}>
-          <a
-            href={`${
-              language === "en"
-                ? "https://ja.shinyaigeek.dev"
-                : "http://en.shinyaigeek.dev"
-            }${currentPath}`}
-            className="link2Home"
-          >
-            {language === "en" ? "ja" : "en"}
-          </a>
+          <Language currentLanguage={language} currentPath={currentPath} />
         </div>
         <div
           className={`${header.anchor} ${page === "home" ? header.active : ""}`}
