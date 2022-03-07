@@ -57,7 +57,7 @@
   &::after {
     position: absolute;
     left: 0;
-    bottom: 2px;
+    bottom: -2px;
     content: " ";
     width: 100%;
     height: 2px;
@@ -82,7 +82,7 @@
     &::after {
       position: absolute;
       left: 0;
-      bottom: 2px;
+      bottom: -2px;
       content: " ";
       width: 100%;
       height: 2px;
