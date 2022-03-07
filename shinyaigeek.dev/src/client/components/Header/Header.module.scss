@@ -15,20 +15,28 @@
     color: var(--theme-text) !important;
   }
 
-  @media (min-width: 840px) {
+  @media (min-width: 890px) {
     display: flex;
   }
 }
 
 .contents {
-  width: auto;
+  width: 100%;
   display: flex;
   align-items: center;
-  height: 100%;
+  height: min-content;
 
-  @media (min-width: 840px) {
+  @media (min-width: 890px) {
     position: absolute;
     right: 15px;
+    height: 100%;
+    width: auto;
+  }
+
+  @media (max-width: 889px) {
+    padding: 3px 0;
+    background: #1a161a;
+    box-shadow: 1px 1px 1px #544854;
   }
 }
 
@@ -71,7 +79,7 @@
     transform: scale(1.1, 1);
   }
 
-  @media (min-width: 840px) {
+  @media (min-width: 890px) {
     font-size: 28px !important;
   }
 }
