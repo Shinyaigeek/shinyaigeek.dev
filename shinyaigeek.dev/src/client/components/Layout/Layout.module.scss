@@ -24,6 +24,7 @@
   --image-gray: grayscale(0%);
   --anchor-color: royalblue;
   --anchor-visited-color: brown;
+  --important-color: #F2D544;
 
   @media (prefers-color-scheme: dark) {
     --theme-background: #3c3c3b;
@@ -37,6 +38,7 @@
     --image-gray: grayscale(15%);
     --anchor-color: CornflowerBlue;
     --anchor-visited-color: RosyBrown;
+    --important-color: #FFE76A;
   }
 
   background: var(--theme-background);

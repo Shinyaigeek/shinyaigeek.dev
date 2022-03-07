@@ -20,9 +20,15 @@
   text-align: center;
 }
 
-.name {
-  font-size: 24px;
+.hello {
+  font-size: 36px;
   text-align: center;
+}
+
+.name {
+  color: var(--important-color);
+  font-weight: bold;
+  white-space: nowrap;
 }
 
 .jobGlitch {
