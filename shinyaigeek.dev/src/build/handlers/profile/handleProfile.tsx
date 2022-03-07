@@ -8,7 +8,7 @@ export const handleProfile: (p: `/${string}`) => string = function (p) {
   const Html = React.createElement(
     helmet({
       children: Profile,
-      title: `Profile | ${BLOG_TITLE}`,
+      title: `About Shinyaigeek | ${BLOG_TITLE}`,
       style: "profile",
       slug: `https://shinyaigeek.dev/profile`,
       props: {
