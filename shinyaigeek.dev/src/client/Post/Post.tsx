@@ -25,14 +25,10 @@ function Post(props: Props) {
         }}
       ></div>
 
-      <Shinyaigeek
-      // styles={{
-      //   height: "200px",
-      //   width: "200px",
-      //   margin: "12px auto",
-      // }}
-      />
-      <BaseProfile />
+      <div className={postContent.profile}>
+        <Shinyaigeek />
+        <BaseProfile />
+      </div>
     </div>
   );
 }
