@@ -22,7 +22,7 @@ export const handleIndex: (p: string) => string = function (p) {
     helmet({
       children: Home,
       title: `${BLOG_TITLE}`,
-      style: "home",
+      page: "home",
       slug: `https://shinyaigeek.dev`,
       props: {
         items: blogEntries,

@@ -86,7 +86,7 @@ export const handlePost: (p: `/${string}`) => string = function (p) {
     helmet({
       children: Post,
       title: `${fields.fields.title} | ${BLOG_TITLE}`,
-      style: "post",
+      page: "post",
       slug: `https://shinyaigeek.dev/${fields.fields.slug}`,
       props: fields,
       language: p.startsWith("/en") ? "en" : "ja"

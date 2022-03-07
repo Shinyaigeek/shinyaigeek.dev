@@ -9,7 +9,7 @@ export const handleProfile: (p: `/${string}`) => string = function (p) {
     helmet({
       children: Profile,
       title: `About Shinyaigeek | ${BLOG_TITLE}`,
-      style: "profile",
+      page: "profile",
       slug: `https://shinyaigeek.dev/profile`,
       props: {
         language: p.startsWith("/en") ? "en" : "ja",
