@@ -5,7 +5,6 @@ dotenv.config();
 
 interface HeadProps {
   title: string;
-  page: string;
   slug: string;
   language: "en" | "ja";
 }
@@ -105,7 +104,6 @@ const SiteHead = (props: HeadProps) => (
 interface HelmetProps {
   children: () => JSX.Element;
   title: string;
-  page: string;
   props?: any;
   slug: string;
   language: "en" | "ja"

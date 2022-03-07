@@ -80,16 +80,16 @@ export const handlePost: (p: `/${string}`) => string = function (p) {
     anchors,
     language,
     currentPath: p.replace("/en/", "/").replace("/ja/", "/"),
+    page: "post",
   };
 
   const Html = React.createElement(
     helmet({
       children: Post,
       title: `${fields.fields.title} | ${BLOG_TITLE}`,
-      page: "post",
       slug: `https://shinyaigeek.dev/${fields.fields.slug}`,
       props: fields,
-      language: p.startsWith("/en") ? "en" : "ja"
+      language: p.startsWith("/en") ? "en" : "ja",
     })
   );
 

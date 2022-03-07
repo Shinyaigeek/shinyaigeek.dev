@@ -22,7 +22,6 @@ export const handleIndex: (p: string) => string = function (p) {
     helmet({
       children: Home,
       title: `${BLOG_TITLE}`,
-      page: "home",
       slug: `https://shinyaigeek.dev`,
       props: {
         items: blogEntries,
@@ -30,6 +29,7 @@ export const handleIndex: (p: string) => string = function (p) {
         prev: false,
         next: false,
         language: p.startsWith("/en") ? "en" : "ja",
+        page: "home",
         currentPath: p.replace("/en/", "/").replace("/ja/", "/"),
       },
       language: p.startsWith("/en") ? "en" : "ja",
