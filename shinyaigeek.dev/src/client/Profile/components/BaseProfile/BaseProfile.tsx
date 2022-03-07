@@ -12,7 +12,7 @@ export const BaseProfile = () => {
         I'm{" "}
         <span className={baseProfile.name}>
           Shinobu Hayashi a.k.a Shinyaigeek(しにゃい)
-        </span>
+        </span>.
       </div>
       <div className={baseProfile.jobGlitch}>
         <span data-text="Web Developer" className={baseProfile.glitch}>
@@ -33,7 +33,7 @@ export const BaseProfile = () => {
         </span>{" "}
       </div>
       <div className={baseProfile.word}>
-        I Love and Development Web Technology and that's ecosystem!!
+        Faster, Lighter, More accessible, More secure, More productive Web for anyone, anytime , anywhere.
       </div>
       <div className={baseProfile.mySnsBox}>
         <div className={baseProfile.snsIcon}>
