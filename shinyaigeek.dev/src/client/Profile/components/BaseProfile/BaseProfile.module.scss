@@ -33,7 +33,14 @@
   font-size: 2.4rem;
   position: relative;
   width: max-content;
+}
+
+.glitch {
+  position: relative;
   &:after {
+    display: flex;
+    align-items: center;
+    height: 100%;
     @keyframes noise-anim {
       0% {
         clip: rect(21px, 9999px, 40px, 0);
@@ -111,6 +118,9 @@
     white-space: nowrap;
   }
   &:before {
+    display: flex;
+    align-items: center;
+    height: 100%;
     @keyframes noise-anim-2 {
       0% {
         clip: rect(62px, 9999px, 78px, 0);

@@ -14,8 +14,23 @@ export const BaseProfile = () => {
           Shinobu Hayashi a.k.a Shinyaigeek(しにゃい)
         </span>
       </div>
-      <div className={baseProfile.jobGlitch} data-text="Web Developer">
-        Web Developer
+      <div className={baseProfile.jobGlitch}>
+        <span data-text="Web Developer" className={baseProfile.glitch}>
+          Web Developer
+        </span>{" "}
+        <span role="img" aria-label="net">
+          🕸
+        </span>{" "}
+        /{" "}
+        <span
+          data-text="Reliable web Enthusiast"
+          className={baseProfile.glitch}
+        >
+          Reliable Web Enthusiast
+        </span>{" "}
+        <span role="img" aria-label="fire">
+          🔥
+        </span>{" "}
       </div>
       <div className={baseProfile.word}>
         I Love and Development Web Technology and that's ecosystem!!
