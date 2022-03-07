@@ -23,6 +23,8 @@
 .contents {
   width: auto;
   display: flex;
+  align-items: center;
+  height: 100%;
 
   @media (min-width: 840px) {
     position: absolute;
