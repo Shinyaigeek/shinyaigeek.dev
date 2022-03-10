@@ -13,16 +13,29 @@ export const languages = new Map<
   language,
   {
     name: string;
-    icon: string;
+    icon: JSX.Element;
   }
 >();
 languages.set("ja", {
   name: "日本語",
-  icon: "🇯🇵",
+  icon: (
+    <g-emoji fallback-src="/assets/static/jp.png" alias="Japan">
+      🇯🇵
+    </g-emoji>
+  ),
 });
 languages.set("en", {
   name: "English",
-  icon: "🇺🇸 🇬🇧",
+  icon: (
+    <span>
+      <g-emoji fallback-src="/assets/static/us.png" alias="America">
+        🇺🇸
+      </g-emoji>
+      <g-emoji fallback-src="/assets/static/gb.png" alias="United States">
+        🇬🇧
+      </g-emoji>
+    </span>
+  ),
 });
 
 export const Language: React.FC<Props> = function ({
@@ -34,7 +47,9 @@ export const Language: React.FC<Props> = function ({
       <summary>
         {" "}
         <span role="img" aria-label="language">
-          🌎
+          <g-emoji fallback-src="/assets/static/earth_africa.png" alias="earth">
+            🌍
+          </g-emoji>
         </span>{" "}
         {t`current_language`}
       </summary>
