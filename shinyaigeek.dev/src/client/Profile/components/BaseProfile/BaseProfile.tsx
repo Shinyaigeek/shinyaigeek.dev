@@ -12,15 +12,19 @@ export const BaseProfile = () => {
         I'm{" "}
         <span className={baseProfile.name}>
           Shinobu Hayashi a.k.a Shinyaigeek(しにゃい)
-        </span>.
+        </span>
+        .
       </div>
       <div className={baseProfile.jobGlitch}>
         <span data-text="Web Developer" className={baseProfile.glitch}>
           Web Developer
         </span>{" "}
-        <span role="img" aria-label="net">
+        <g-emoji
+          fallback-src="/assets/static/spider_web.png"
+          alias="spider-web"
+        >
           🕸
-        </span>{" "}
+        </g-emoji>{" "}
         /{" "}
         <span
           data-text="Reliable web Enthusiast"
@@ -28,12 +32,13 @@ export const BaseProfile = () => {
         >
           Reliable Web Enthusiast
         </span>{" "}
-        <span role="img" aria-label="fire">
+        <g-emoji fallback-src="/assets/static/fire.png" alias="fire">
           🔥
-        </span>{" "}
+        </g-emoji>{" "}
       </div>
       <div className={baseProfile.word}>
-        Faster, Lighter, More accessible, More secure, More productive Web for anyone, anytime , anywhere.
+        Faster, Lighter, More accessible, More secure, More productive Web for
+        anyone, anytime , anywhere.
       </div>
       <div className={baseProfile.mySnsBox}>
         <div className={baseProfile.snsIcon}>
