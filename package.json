@@ -14,7 +14,7 @@
     "i18n:compile": "lingui compile",
     "build:ssg": "yarn build:server && node server/main.js",
     "build:css": "webpack --config webpack.config.css.js --mode=production",
-    "build": "export NODE_ENV=production && npm run clear && npm run build:css && npm run contenthash && npm run rss && npm run sitemap && yarn mv:assets",
+    "build": "NODE_ENV=production npm run clear && NODE_ENV=production npm run build:css && npm run contenthash && npm run rss && npm run sitemap && yarn mv:assets",
     "build:dev": "export NODE_ENV=development && npm run build:css && npm run build:ssg && npm run rss && npm run sitemap && yarn mv:assets",
     "build:server": "webpack --config webpack.config.server.js",
     "dev": "nodemon --watch src/ --exec  npm run build",
@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
   "dependencies": {
+    "@github/g-emoji-element": "^1.1.5",
     "@types/jsdom": "^16.2.14",
     "accept-language": "^3.0.18",
     "body-parser": "^1.19.0",
