@@ -52,9 +52,6 @@ export function Header({
             Activity
           </a>
         </div>
-        <div className={`${header.anchor}`}>
-          <a href="mailto:me@shinyaigeek.dev">Contact</a>
-        </div>
       </div>
     </div>
   );
