@@ -14,8 +14,16 @@
   max-width: 500px;
 }
 
+.mail {
+  margin: 6px 0;
+  text-align: center;
+  a {
+    color: var(--theme-color);
+  }
+}
+
 .word {
-  font-size:3vw;
+  font-size: 3vw;
   padding: 12px 0;
 }
 

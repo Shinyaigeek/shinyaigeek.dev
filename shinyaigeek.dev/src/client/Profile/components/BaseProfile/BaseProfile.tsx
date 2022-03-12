@@ -72,6 +72,14 @@ export const BaseProfile = () => {
           </a>
         </div>
       </div>
+      <div className={baseProfile.mail}>
+        <a href="mailto:me@shinyaigeek.dev">
+          Contact Me on Email{" "}
+          <g-emoji fallback-src="/assets/static/email.png" alias="email">
+            📧
+          </g-emoji>
+        </a>
+      </div>
     </div>
   );
 };
