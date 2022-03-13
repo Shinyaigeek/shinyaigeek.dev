@@ -1,5 +1,13 @@
 [
   {
+    "media": "blog",
+    "slug": "https://hack.nikkei.com/blog/advent20211206/",
+    "title": "Compute@Edge は GraphQL Server の夢を見るか",
+    "ogp": "https://hack.dev.n8s.jp/images/advent20211206/ogimage.png",
+    "description": "fastly の提供するEdge Computing基盤のCompute@EdgeのJavaScriptの対応が始まったことを受け、Compute@Edgeで何ができるのかをComput@EdgeでGraphQL Serverを立てることを通して考察します。",
+    "publishedAt": "2021/12/06"
+  },
+  {
     "media": "speakerdeck",
     "slug": "https://speakerdeck.com/shinyaigeek/jia-su-suruedge-computing",
     "title": "加速するEdge Computing",
@@ -14,6 +22,14 @@
     "ogp": "https://files.speakerdeck.com/presentations/f70e84d625ae44949d1a6f6a87909011/slide_0.jpg?19382839",
     "description": "",
     "publishedAt": "2021/10/26"
+  },
+  {
+    "media": "blog",
+    "slug": "https://blog.recruit.co.jp/rtc/2020/12/09/web_issue_survey/",
+    "title": "リクルートでのWeb Issue調査の取り組み",
+    "ogp": "https://s3-ap-northeast-1.amazonaws.com/prod-rtc-blog/wp-content/uploads/2020/12/08174733/fc6927a4cd7fc6f068de9eb5d3ae4aff.jpg",
+    "description": "リクルートで携わった、攻めのセキュリティ対策としてリクルートで行われている web issueの追従、調査の取り組みについて書いています。",
+    "publishedAt": "2020/12/09"
   },
   {
     "media": "speakerdeck",
