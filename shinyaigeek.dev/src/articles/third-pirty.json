@@ -3,7 +3,7 @@
     "media": "blog",
     "slug": "https://hack.nikkei.com/blog/advent20211206/",
     "title": "Compute@Edge は GraphQL Server の夢を見るか",
-    "ogp": "https://hack.dev.n8s.jp/images/advent20211206/ogimage.png",
+    "ogp": "https://hack.nikkei.com/images/advent20211206/ogimage.png",
     "description": "fastly の提供するEdge Computing基盤のCompute@EdgeのJavaScriptの対応が始まったことを受け、Compute@Edgeで何ができるのかをComput@EdgeでGraphQL Serverを立てることを通して考察します。",
     "publishedAt": "2021/12/06"
   },
