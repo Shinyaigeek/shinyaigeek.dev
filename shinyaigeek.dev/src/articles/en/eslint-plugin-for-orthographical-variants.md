@@ -38,7 +38,7 @@ const audioPath = "hoge"; // ok
 const musicPath = "hoge"; // warning!
 ```
 
-This ESLint Plugin will bind such orthographical variants in JavaScript/TypeScript code. The following is a list of almost all declarable Id-like objects that can be bound, 
+This ESLint Plugin will bind such orthographical variants in JavaScript/TypeScript code. I think this plugin could support almost of the case (but perhaps, there is an omission). 
 - Variable name
 - Function name
 - Class name
@@ -47,24 +47,21 @@ This ESLint Plugin will bind such orthographical variants in JavaScript/TypeScri
 - Interface name
 - etc...
 
-etc., I think I've probably covered most of them.
+I think I've probably covered most of them.
 
-## モチベーション
+## Motivation
 
-コードの表記揺れ, 複数の手で作られるようなコードベースだとそこまで珍しいものでもないですが, 我々エンジニアという生き物は何事にも意味を見出そうとしてしまうため, 単なる表記揺れの意味を考えてしまったり, 地味に検索abilityも落ちるので辛いです. また事業ドメインの単語が, コードベース中だと別の言葉になってしまっている, と言ったこともたま〜によくあり, そうなると新しくプロジェクトに参画した人にとっては意味のわからない謎になってしまいます.
+An orthographical variant is not rare, in specially in the codebase made by multiple people, but we are an engineer and intend to find meaning in anything, also in just an orthographical variant, and it also reduces the search-ability. It is also common that a word in a business domain becomes another word in a codebase, which makes it a mystery for newcomers to the project.
 
-そもそも事業ドメインの単語が多いと辛いよね, という話もあり, 辞書ファイルをみんなで管理している, と言った例も見かけます. これは辞書ファイルを管理するついでにこの表記揺れもしばれると嬉しいのでは, と思い作りました.
+In the first place, existing a lot of the term on a business domain brings difficulty, so in some case we have been enforced to manage such terms in a dictionary file. I thought it will be cool to ban bothering orthographical variants via managing such a dictionary file, so I created this plugin.
 
-## 仕組み
+## How to
 
-わざわざ書くほどのものでもないですが, 
+It is really easy but...
 
-1. eslint 持つ AST 中の特定の Node にアクセスする
-2. 変数名を取得する
-3. 表記揺れチェック
-
-
-という感じです.
+1. Access a specific Node in AST
+2. get variable name
+3. check it whether it is an orthographical variant.
 
 ```typescript
     VariableDeclarator(node) {
@@ -92,9 +89,9 @@ etc., I think I've probably covered most of them.
       },
 ```
 
-上記のコードは一例ですが, VariableDeclarator (=変数宣言) の node にアクセスしています.
+The above code is just an example. It accesses the node of VariableDeclarator (=variable declaration).
 
-VariableDeclarator のにおける `node.id` は
+In VariableDeclarator, `node.id` can be the one of
 
 - `Identifier`
 ```javascript
@@ -109,12 +106,12 @@ const [hoge] = ["hoge"];
 const { hoge } = { hoge: "hoge" };
 ```
 
-の3通り取り得ます. それぞれの場合においていい感じに変数名に当たるものを全て取得します. (`ObjectPattern` や `ArrayPattern` はネスとされていることもあるので再帰的に取得する必要があります)
+Get variable names in each case. (`ObjectPattern` and `ArrayPattern` are sometimes nested, so I needed to get them recursively).
 
-あとは辞書ファイルをロードして表記揺れかどうか判定するだけです.
+All that is left is to load the dictionary file and judge if it is a orthographical variant or not.
 
-どんな感じに動いているかは, 僕の描きかけのテストを見てください. https://github.com/Shinyaigeek/eslint-plugin-ban-orthographical-variant/blob/main/src/__tests__/ban-orthographical-variant.test.ts
+If you want to see how it works, please check out test cases. https://github.com/Shinyaigeek/eslint-plugin-ban-orthographical-variant/blob/main/src/__tests__/ban-orthographical-variant.test.ts
 
-## なぜいらないの？
+## Why not is this needed?
 
-テストのためにmock用の辞書ファイル書いてたらそもそも辞書ファイル書きたくないことに気づいてしまった, やるならここをハックすべきだった気がする.
+When I was writing a dictionary file for mock for testing, I realized that I didn't want to write a dictionary file in the first place, so I think I should have hacked here.
