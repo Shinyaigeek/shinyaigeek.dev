@@ -60,8 +60,8 @@ export const Language: React.FC<Props> = function ({
               key={language}
               href={`${
                 language === "en"
-                  ? "https://ja.shinyaigeek.dev"
-                  : "http://en.shinyaigeek.dev"
+                  ? "https://en.shinyaigeek.dev"
+                  : "http://ja.shinyaigeek.dev"
               }${currentPath}`}
               className={`${languageStyle.language} ${
                 language === currentLanguage ? languageStyle.active : ""
