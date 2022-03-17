@@ -123,6 +123,9 @@
     overflow: hidden;
     clip: rect(0, 900px, 0, 0);
     animation: 2s infinite linear alternate-reverse noise-anim;
+    @media (prefers-reduced-motion) {
+      animation: dissolve;
+    }
     white-space: nowrap;
   }
   &:before {
@@ -200,6 +203,9 @@
     overflow: hidden;
     clip: rect(0, 900px, 0, 0);
     animation: 3s infinite linear alternate-reverse noise-anim-2;
+    @media (prefers-reduced-motion) {
+      animation: dissolve;
+    }
     white-space: nowrap;
   }
 }
