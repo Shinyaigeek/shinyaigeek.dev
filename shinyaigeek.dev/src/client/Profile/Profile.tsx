@@ -97,7 +97,7 @@ export const Profile = Layout(() => {
               {specialities.map((speciality) => (
                 <Card
                   title={speciality.title}
-                  img={speciality.img ?? "/assets/static/placeholder.jpeg"}
+                  img={speciality.img ?? "/assets/static/placeholder.png"}
                 />
               ))}
             </CardShowcase>
