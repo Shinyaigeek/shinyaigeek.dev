@@ -10,16 +10,18 @@
   border-radius: 6px;
   margin: 12px 24px;
 
+  list-style: none;
+
   img {
-    width: 75px;
-    height: 75px;
+    width: 37.5%;
+    height: 50%;
     display: block;
     margin: auto;
     object-fit: contain;
   }
 
   .title {
-    font-size: 20px;
+    font-size: 10%;
     padding: 2px;
     display: inline-block;
     margin: 2px auto;
