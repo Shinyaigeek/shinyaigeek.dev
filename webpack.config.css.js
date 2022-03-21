@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 require("dotenv").config();
 
 const isProd = process.env.NODE_ENV !== "development";
@@ -63,4 +64,13 @@ module.exports = {
       filename: isProd ? "styles.[contenthash].css" : "styles.css",
     }),
   ],
+
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin({
+        minify: CssMinimizerPlugin.parcelCssMinify
+      })
+    ]
+  }
 };
