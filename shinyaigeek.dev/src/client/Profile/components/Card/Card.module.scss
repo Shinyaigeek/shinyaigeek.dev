@@ -1,6 +1,11 @@
 .cardStyle {
-  width: 200px;
-  height: 150px;
+  max-width: 200px;
+  max-height: 150px;
+  min-width: 80px;
+  min-height: 60px;
+
+  width: 20vw;
+  height: 16vw;
 
   display: inline-block;
 
@@ -21,7 +26,7 @@
   }
 
   .title {
-    font-size: 1.2rem;
+    font-size: clamp(1px,0.6rem,36px);
     padding: 2px;
     display: inline-block;
     margin: 2px auto;
