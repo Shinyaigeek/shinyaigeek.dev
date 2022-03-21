@@ -38,6 +38,7 @@
     "@types/jsdom": "^16.2.14",
     "accept-language": "^3.0.18",
     "body-parser": "^1.19.0",
+    "css-minimizer-webpack-plugin": "^3.4.1",
     "emailjs-com": "^2.4.1",
     "front-matter": "^4.0.2",
     "github-calendar": "^2.2.7",
