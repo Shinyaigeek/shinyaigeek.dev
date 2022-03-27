@@ -44,15 +44,15 @@ const SiteHead = (props: HeadProps) => (
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       property="og:image"
-      content={`${ogp}api/?title=${encodeURIComponent(
+      content={`${ogp}api/v2/${encodeURIComponent(
         props.title.replace(" | shinyaigeek.dev", "")
-      )}`}
+      )}.png`}
     />
     <meta
       name="twitter:image"
-      content={`${ogp}api/?title=${encodeURIComponent(
+      content={`${ogp}api/v2/${encodeURIComponent(
         props.title.replace(" | shinyaigeek.dev", "")
-      )}`}
+      )}.png`}
     />
 
     <link rel="icon" type="image/x-icon" href={`/assets/static/favicon.ico`} />
@@ -106,7 +106,7 @@ interface HelmetProps {
   title: string;
   props?: any;
   slug: string;
-  language: "en" | "ja"
+  language: "en" | "ja";
 }
 
 const helmet = (props: HelmetProps) => {
