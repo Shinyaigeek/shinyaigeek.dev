@@ -12,6 +12,11 @@
   body {
     margin: 0;
   }
+
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  }
 }
 
 .root {
@@ -27,7 +32,7 @@
   --image-gray: grayscale(0%);
   --anchor-color: royalblue;
   --anchor-visited-color: brown;
-  --important-color: #F2D544;
+  --important-color: #f2d544;
 
   @media (prefers-color-scheme: dark) {
     --theme-background: #3c3c3b;
@@ -41,7 +46,7 @@
     --image-gray: grayscale(15%);
     --anchor-color: CornflowerBlue;
     --anchor-visited-color: RosyBrown;
-    --important-color: #FFE76A;
+    --important-color: #ffe76a;
   }
 
   background: var(--theme-background);
