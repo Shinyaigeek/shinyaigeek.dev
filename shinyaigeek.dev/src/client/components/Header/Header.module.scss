@@ -2,7 +2,7 @@
   height: 72px;
   width: 100vw;
   font-size: 30px;
-  color: var(--theme-text);
+  color: #e4e4e4;
   background: #1a161a;
   box-shadow: 1px 1px 1px #544854;
   position: fixed;
@@ -60,7 +60,7 @@
   position: relative;
   display: inline-block;
   font-size: 16px;
-  color: #fff;
+  color: #e4e4e4;
 
   &::after {
     position: absolute;
