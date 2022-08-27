@@ -40,7 +40,7 @@ export const Profile = Layout(() => {
             <li>2018: {t`enroll_univ_tokyo`}</li>
             <li>2019: {t`will_major_in_system`}</li>
             <li>2020: {t`major_in_system`}</li>
-            <li>???</li>
+            <li>2022: {t`graduate_utokyo`}</li>
           </ul>
         </div>
 

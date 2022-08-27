@@ -10,8 +10,9 @@
   "education": "Education",
   "enroll_univ_tokyo": "Enter University of Tokyo",
   "graduate_nishiyamato": "Graduated from Nishiyamato highschool",
+  "graduate_utokyo": "Graduated from University of Tokyo",
   "index": "Table of Contents",
-  "major_in_system": "Major in Factory of Engineering",
+  "major_in_system": "Major in Factory of Engineering in University of Tokyo",
   "moshimos": "MOSHIMOS",
   "moshimos_description": "I made web application from backend to frontend.",
   "moshimos_position": "Web Engineer",
@@ -24,6 +25,6 @@
   "wantedly": "Wantedly",
   "wantedly_description": "I make Wantedly web application's new feature",
   "wantedly_position": "Web Engineer",
-  "will_major_in_system": "decide informally to major in Factory of Engineering",
+  "will_major_in_system": "decide informally to major in Factory of Engineering in University of Tokyo",
   "working_experience": "Working Experience"
 }
