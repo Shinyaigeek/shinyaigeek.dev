@@ -18,7 +18,7 @@
     "build:dev": "export NODE_ENV=development && npm run build:css && npm run build:ssg && npm run rss && npm run sitemap && yarn mv:assets",
     "build:server": "webpack --config webpack.config.server.js",
     "dev": "nodemon --watch src/ --exec  npm run build",
-    "serve": "miniserve ./ --index index.html",
+    "serve": "miniserve ./public --index ja/index.html",
     "worker:publish": "wrangler publish ",
     "worker:build": "webpack --config webpack.config.worker.js"
   },
