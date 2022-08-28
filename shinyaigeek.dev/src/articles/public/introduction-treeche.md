@@ -10,6 +10,8 @@ updatedAt: 2022/08/27
 
 Treecheとは、**Tree** -Shakable **Che** ckerの略です. JavaScript/TypeScript module が Tree-Shakable かどうかを確認するためのツールです. バンドルサイズの削減やそれによるUserExperienceの最適化に有用です.
 
+[https://github.com/Shinyaigeek/treeche](https://github.com/Shinyaigeek/treeche)
+
 ## Example
 
 ```typescript

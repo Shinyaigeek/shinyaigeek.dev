@@ -10,6 +10,8 @@ updatedAt: 2022/08/27
 
 Treeche stands for **Tree** -Shakable **Che** cker. You can check whether or not your JavaScript/TypeScript Application is tree-shakable with Treeche, and this diagnose will allow you to reduce bundle size and optimize UserExperience!!
 
+[https://github.com/Shinyaigeek/treeche](https://github.com/Shinyaigeek/treeche)
+
 ## Example
 
 ```typescript
