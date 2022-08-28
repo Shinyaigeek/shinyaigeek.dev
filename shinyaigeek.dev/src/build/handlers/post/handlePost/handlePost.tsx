@@ -12,7 +12,7 @@ import hljs from "highlight.js";
 import helmet from "../../../util/helmet";
 import { BLOG_TITLE } from "../../../../consts";
 
-export const handlePost: (p: `/${string}`) => string = function (p) {
+export const handlePost: (p: `/${string}`) => Promise<string> = async function (p) {
   const _postPath = path.join(
     __dirname,
     "../shinyaigeek.dev/src/articles/public" +

@@ -4,7 +4,7 @@ import helmet from "../../util/helmet";
 import { Profile } from "../../../client/Profile/Profile";
 import { BLOG_TITLE } from "../../../consts";
 
-export const handleProfile: (p: `/${string}`) => string = function (p) {
+export const handleProfile: (p: `/${string}`) => Promise<string> = async function (p) {
   const Html = React.createElement(
     helmet({
       children: Profile,

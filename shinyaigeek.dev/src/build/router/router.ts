@@ -2,7 +2,7 @@ import { i18n } from "@lingui/core";
 
 type p = string;
 type html = string;
-export type handler = (path: `/${p}`) => html;
+export type handler = (path: `/${p}`) => Promise<html>;
 
 declare function on(
   path: `/${p}`,
@@ -37,7 +37,7 @@ export class Router {
     return this;
   };
 
-  out: (handler: (path: `/${p}`, html: html) => void) => void = (handler) => {
+  out: (handler: (path: `/${p}`, html: html) => void) => Promise<void> = async (handler) => {
     for (const lang of this.languages) {
       if (this.defaultLanguage === undefined) {
         throw new Error("router.registerDefaultLanguage should be called");
@@ -48,13 +48,13 @@ export class Router {
       for (let [_route, routeHandler] of this.routing) {
         const route = `/${lang}${_route}` as `/${p}`;
 
-        const html = routeHandler(route);
+        const html = await routeHandler(route);
         handler(route, html);
       }
     }
   };
 
-  resolve: (path: `/${p}`) => html = (path) => {
+  resolve: (path: `/${p}`) => Promise<html> = (path) => {
     const handler = this.routing.get(path);
     if (!handler) {
       throw new Error(`${path} does not exist on routing`);

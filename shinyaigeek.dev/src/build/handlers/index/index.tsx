@@ -7,7 +7,7 @@ import { getBlogPosts } from "../../util/getBlogPosts";
 import path from "path";
 import { getThirdPirty } from "../../util/getThirdPirty";
 
-export const handleIndex: (p: string) => string = function (p) {
+export const handleIndex: (p: string) => Promise<string> = async function (p) {
   const blogEntries = getBlogPosts(
     path.join(
       __dirname,
