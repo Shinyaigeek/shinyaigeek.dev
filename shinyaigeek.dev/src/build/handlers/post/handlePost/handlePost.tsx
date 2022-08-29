@@ -2,17 +2,23 @@ import fs from "fs";
 import path from "path";
 import fm from "front-matter";
 import { renderToStaticMarkup } from "react-dom/server";
+import { remark } from "remark";
 import Post from "../../../../client/Post/Post";
-import { Remarkable } from "remarkable";
 import { tweetMacroPlugin } from "remarkable-plugin-tweet-share";
 // @ts-ignore
 import { remarkablePluginHeadingId } from "remarkable-plugin-heading-id";
 import React from "react";
 import hljs from "highlight.js";
+import gfm from "remark-gfm";
+import raw from "rehype-raw";
+import md2html from "remark-rehype";
+import rehypeStringify from "rehype-stringify";
 import helmet from "../../../util/helmet";
 import { BLOG_TITLE } from "../../../../consts";
 
-export const handlePost: (p: `/${string}`) => Promise<string> = async function (p) {
+export const handlePost: (p: `/${string}`) => Promise<string> = async function (
+  p
+) {
   const _postPath = path.join(
     __dirname,
     "../shinyaigeek.dev/src/articles/public" +
@@ -30,30 +36,19 @@ export const handlePost: (p: `/${string}`) => Promise<string> = async function (
 
   // todo type assertion
   const { attributes, body } = fm(_post);
-  const md = new Remarkable({
-    html: true,
-    highlight: function (str, lang) {
-      if (lang && hljs.getLanguage(lang)) {
-        try {
-          return hljs.highlight(lang, str).value;
-        } catch (err) {}
-      }
-
-      try {
-        return hljs.highlightAuto(str).value;
-      } catch (err) {}
-
-      return ""; // use external default escaping
-    },
-  });
-  md.use(tweetMacroPlugin);
-  md.use(remarkablePluginHeadingId, {
-    targets: ["h2"],
-    createId: (level: 1 | 2 | 3 | 4 | 5 | 6, _: string, idx: number) => {
-      return `${level}__${idx}`;
-    },
-  });
-  const html = md.render(body);
+  const md = await remark();
+  // md.use(tweetMacroPlugin, false);
+  // md.use(remarkablePluginHeadingId, {
+  //   targets: ["h2"],
+  //   createId: (level: 1 | 2 | 3 | 4 | 5 | 6, _: string, idx: number) => {
+  //     return `${level}__${idx}`;
+  //   },
+  // });
+  md.use(gfm);
+  md.use(md2html, { allowDangerousHtml: true });
+  md.use(raw);
+  md.use(rehypeStringify);
+  const html = String(await md.process(body));
   const anchorsWithH2: string[] | null = html.match(/<h2 id=".+?">.+?<\/h2>/g);
   let anchors;
   if (anchorsWithH2) {
