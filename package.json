@@ -96,6 +96,7 @@
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-config-typescript": "^3.0.0",
+    "hast-util-select": "^5.0.2",
     "jest": "^27.0.1",
     "prettier": "^2.3.0",
     "rehype-raw": "^6.1.1",

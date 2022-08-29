@@ -15,6 +15,20 @@ import md2html from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import helmet from "../../../util/helmet";
 import { BLOG_TITLE } from "../../../../consts";
+import { selectAll } from "hast-util-select";
+
+const htmlH2 = () => {
+  return (tree: any) => {
+    let count = 0;
+    selectAll("h2", tree).forEach((node) => {
+      node.properties = {
+        ...node.properties,
+        id: `2__${count}`,
+      };
+      count++;
+    });
+  };
+};
 
 export const handlePost: (p: `/${string}`) => Promise<string> = async function (
   p
@@ -47,6 +61,7 @@ export const handlePost: (p: `/${string}`) => Promise<string> = async function (
   md.use(gfm);
   md.use(md2html, { allowDangerousHtml: true });
   md.use(raw);
+  md.use(htmlH2);
   md.use(rehypeStringify);
   const html = String(await md.process(body));
   const anchorsWithH2: string[] | null = html.match(/<h2 id=".+?">.+?<\/h2>/g);
