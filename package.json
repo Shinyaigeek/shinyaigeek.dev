@@ -99,6 +99,7 @@
     "jest": "^27.0.1",
     "prettier": "^2.3.0",
     "rehype-raw": "^6.1.1",
+    "rehype-stringify": "^9.0.3",
     "remark": "^14.0.2",
     "remark-gfm": "^3.0.1",
     "remark-mdx": "^2.1.3",
