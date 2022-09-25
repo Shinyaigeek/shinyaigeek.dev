@@ -4,7 +4,7 @@ const handler = function (event: FetchEvent) {
   const { url } = event.request
   const { pathname, search } = new URL(url)
 
-  if (!pathname.endsWith('.html') && !pathname.endsWith('/')) {
+  if (!(pathname.endsWith('.html') || pathname.endsWith('/'))) {
     return fetch(event.request)
   }
 
