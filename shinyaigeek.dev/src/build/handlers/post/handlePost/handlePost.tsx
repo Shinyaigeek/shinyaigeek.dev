@@ -98,6 +98,7 @@ export const handlePost: (p: `/${string}`) => Promise<string> = async function (
       children: Post,
       title: `${fields.fields.title} | ${BLOG_TITLE}`,
       slug: `https://shinyaigeek.dev/${fields.fields.slug}`,
+      which: fields.fields.slug.slice(fields.fields.slug.lastIndexOf("/") + 1),
       props: fields,
       language: p.startsWith("/en") ? "en" : "ja",
     })

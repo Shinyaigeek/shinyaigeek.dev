@@ -10,6 +10,7 @@ export const handleProfile: (p: `/${string}`) => Promise<string> = async functio
       children: Profile,
       title: `About Shinyaigeek | ${BLOG_TITLE}`,
       slug: `https://shinyaigeek.dev/profile`,
+      which: "profile",
       props: {
         language: p.startsWith("/en") ? "en" : "ja",
         currentPath: p.replace("/en/", "/").replace("/ja/", "/"),

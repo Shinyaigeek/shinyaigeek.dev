@@ -7,6 +7,7 @@ interface HeadProps {
   title: string;
   slug: string;
   language: "en" | "ja";
+  which: string;
 }
 
 const isProd = process.env.NODE_ENV === "production";
@@ -44,15 +45,11 @@ const SiteHead = (props: HeadProps) => (
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       property="og:image"
-      content={`${ogp}api/v2/${encodeURIComponent(
-        props.title.replace(" | shinyaigeek.dev", "")
-      )}.png`}
+      content={`/assets/ogimage/${props.language}/${props.which}.png`}
     />
     <meta
       name="twitter:image"
-      content={`${ogp}api/v2/${encodeURIComponent(
-        props.title.replace(" | shinyaigeek.dev", "")
-      )}.png`}
+      content={`/assets/ogimage/${props.language}/${props.which}.png`}
     />
 
     <link rel="icon" type="image/x-icon" href={`/assets/static/favicon.ico`} />
@@ -107,6 +104,7 @@ interface HelmetProps {
   props?: any;
   slug: string;
   language: "en" | "ja";
+  which: string;
 }
 
 const helmet = (props: HelmetProps) => {
