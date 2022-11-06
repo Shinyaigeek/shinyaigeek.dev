@@ -1,8 +1,7 @@
 ---
 title: pnpm outdated コマンドが JSON format をサポートした
 tags: [Blog,JavaScript,TypeScript,OSS]
-description: |
-  pnpm で古くなったパッケージを検知する outdated コマンドで, JSON 形式での出力をサポートしました.
+description: pnpm で古くなったパッケージを検知する outdated コマンドで, JSON 形式での出力をサポートしました.
 publishedAt: 2022/11/06
 updatedAt: 2018/11/06
 ---
@@ -24,7 +23,7 @@ pnpm は symlink を用いて, npm モジュールの高速で省容量なダウ
 
 また, pnpm の特徴として大胆に他のパッケージマネージャーにはない utility コマンドやオプションを追加して行っている, といったことも挙げられます. 
 
-!tweet[](https://twitter.com/Shinyaigeek/status/1577947254916550656)
+[![tweet i have joined pnpm](../../../assets/pnpm-outdated-command-supports-json-format/tweet.png)](https://twitter.com/Shinyaigeek/status/1577947254916550656)
 
 pnpm のメンバーとして, `pnpm outdated` コマンドに JSON 形式での出力機能を実装したので, それについてブログに書き起こそうと思います.
 

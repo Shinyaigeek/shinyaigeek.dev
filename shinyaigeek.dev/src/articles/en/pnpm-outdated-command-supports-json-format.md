@@ -1,8 +1,7 @@
 ---
 title: pnpm outdated command supports JSON format output
 tags: [Blog,JavaScript,TypeScript,OSS]
-description: |
-  pnpm outdated command, which detects outdated packages in a project, now supports output in JSON format.
+description: pnpm outdated command, which detects outdated packages in a project, now supports output in JSON format.
 publishedAt: 2022/11/06
 updatedAt: 2018/11/06
 ---
@@ -24,7 +23,7 @@ pnpm uses symlink to provide fast and space-saving download of npm modules. Norm
 
 Another feature of pnpm is that it boldly adds utility commands and options not found in other package managers. 
 
-!tweet[](https://twitter.com/Shinyaigeek/status/1577947254916550656)
+[![tweet i have joined pnpm](../../assets/pnpm-outdated-command-supports-json-format/tweet.png)](https://twitter.com/Shinyaigeek/status/1577947254916550656)
 
 As a member of pnpm, I have implemented JSON format output for the `pnpm outdated` command, and I write a blog post about it.
 
