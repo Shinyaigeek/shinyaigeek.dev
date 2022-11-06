@@ -55,10 +55,36 @@ export const OGImageTemplate: FunctionComponent<Props> = function ({
           width: "70vw",
           height: "70vh",
           top: `${0.2 * height}px`,
-          right: "84px"
+          right: "84px",
         }}
       >
         {title}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          backgroundImage:
+            "linear-gradient(to right, #ff6abb, #ffffff)",
+          height: "18px",
+          width: `${width * 0.4}px`,
+          position: "absolute",
+          top: `${0.78 * height}px`,
+          left: `${width * 0.2}px`,
+          borderRadius: "9px"
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          fontSize: "64px",
+          fontWeight: "normal",
+          fontFamily: "Roboto",
+          top: `${0.8 * height}px`,
+          left: `${width * 0.2}px`,
+          position: "absolute",
+        }}
+      >
+        shinyaigeek.dev
       </div>
     </div>
   );
