@@ -37,6 +37,7 @@
   "dependencies": {
     "@github/g-emoji-element": "^1.1.5",
     "@parcel/css": "^1.7.1",
+    "@resvg/resvg-js": "^2.1.0",
     "@types/jsdom": "^16.2.14",
     "accept-language": "^3.0.18",
     "body-parser": "^1.19.0",
