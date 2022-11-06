@@ -24,6 +24,42 @@ const generateOGImage: () => Promise<void> = async function () {
     )
     .flat() as (Entry & { language: string })[];
 
+  blogPosts.push({
+    language: "ja",
+    // @ts-ignore
+    fields: {
+    title: "Shinyaigeek's blog",
+    slug: "top/"
+    }
+  })
+
+  blogPosts.push({
+    language: "en",
+    // @ts-ignore
+    fields: {
+    title: "Shinyaigeek's blog",
+    slug: "top/"
+    }
+  })
+
+  blogPosts.push({
+    language: "ja",
+    // @ts-ignore
+    fields: {
+    title: "About Shinyaigeek",
+    slug: "profile/"
+    }
+  })
+
+  blogPosts.push({
+    language: "en",
+    // @ts-ignore
+    fields: {
+    title: "About Shinyaigeek",
+    slug: "profile/"
+    }
+  })
+
   await Promise.all(
     blogPosts.map(async (blogPost) => {
       const pngData = await generateOGImageFromBlogPost({
