@@ -16,17 +16,17 @@ export const OGImageTemplate: FunctionComponent<Props> = function ({
   logo,
 }) {
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", width: `${width}px`, height: `${height}px`, background: "#ffffff" }}>
       <div
         className="frame"
         style={{
-          width: `${0.8 * width}px`,
-          height: `${0.8 * height}px`,
+          width: `${0.85 * width}px`,
+          height: `${0.85 * height}px`,
           borderRadius: "36px",
           border: `#FFE86A ${FRAME_BOLD}px solid`,
           position: "absolute",
-          top: `${0.1 * height - FRAME_BOLD}px`,
-          left: `${0.1 * width - FRAME_BOLD}px`,
+          top: `${0.075 * height + FRAME_BOLD * 0.3}px`,
+          left: `${0.075 * width + FRAME_BOLD * 0.15}px`,
         }}
       />
       <img
@@ -35,8 +35,8 @@ export const OGImageTemplate: FunctionComponent<Props> = function ({
         width={420}
         height={320}
         style={{
-            left: `${width * 0.8 - 420}px`,
-            top: `${height * 0.8 - 420}px`
+            left: `${width * 0.925 - 420 - FRAME_BOLD * 0.75}px`,
+            top: `${height * 0.925 - 420 - FRAME_BOLD * 0.42}px`
         }}
       />
     </div>
