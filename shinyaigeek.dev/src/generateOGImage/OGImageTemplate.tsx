@@ -49,14 +49,13 @@ export const OGImageTemplate: FunctionComponent<Props> = function ({
       <div
         style={{
           display: "flex",
-          fontSize: "96px",
+          fontSize: "108px",
           fontWeight: "bold",
           fontFamily: "Roboto",
           width: "70vw",
           height: "70vh",
-        //   position: "absolute",
-        //   top: "calc(24vh + 96px)",
-        //   left: "calc(12vw + 72px)",
+          top: `${0.2 * height}px`,
+          right: "84px"
         }}
       >
         {title}
