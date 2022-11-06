@@ -60,6 +60,7 @@
     "resolve-accept-language": "^1.0.50",
     "sass": "^1.49.7",
     "sass-loader": "^12.4.0",
+    "satori": "^0.0.43",
     "serve-static": "^1.14.1",
     "uglify-es": "^3.3.9",
     "universal-router": "^9.0.1"
