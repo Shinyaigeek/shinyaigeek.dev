@@ -1,3 +1,4 @@
+import React from "react";
 import satori from "satori";
 import { OGImageTemplate } from "./OGImageTemplate";
 import { Resvg } from "@resvg/resvg-js";

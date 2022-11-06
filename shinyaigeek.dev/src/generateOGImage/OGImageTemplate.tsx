@@ -16,7 +16,7 @@ export const OGImageTemplate: FunctionComponent<Props> = function({ title, width
             width: `${0.8 * width}px`,
             height: `${0.8 * height}px`,
             borderRadius: "36px",
-            border: `#FFE86A ${FRAME_BOLD} solid`,
+            border: `#FFE86A ${FRAME_BOLD}px solid`,
             position: "absolute",
             top: `${0.1 * height - FRAME_BOLD}px`,
             left: `${0.1 * width - FRAME_BOLD}px`,

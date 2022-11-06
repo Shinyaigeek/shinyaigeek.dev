@@ -21,7 +21,7 @@
     "serve": "miniserve ./public --index index.html",
     "worker:publish": "wrangler publish ",
     "worker:build": "webpack --config webpack.config.worker.js",
-    "d": "ts-node -O '{\"module\":\"commonjs\", \"jsx\":\"react\"}' shinyaigeek.dev/scripts/buildOGImage.tsx"
+    "d": "ts-node -O '{\"module\":\"commonjs\", \"jsx\":\"react\"}' shinyaigeek.dev/src/generateOGImage/generateOGImage.ts"
   },
   "repository": {
     "type": "git",
