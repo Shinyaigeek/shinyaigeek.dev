@@ -16,7 +16,14 @@ export const OGImageTemplate: FunctionComponent<Props> = function ({
   logo,
 }) {
   return (
-    <div style={{ display: "flex", width: `${width}px`, height: `${height}px`, background: "#ffffff" }}>
+    <div
+      style={{
+        display: "flex",
+        width: `${width}px`,
+        height: `${height}px`,
+        background: "#ffffff",
+      }}
+    >
       <div
         className="frame"
         style={{
@@ -35,10 +42,25 @@ export const OGImageTemplate: FunctionComponent<Props> = function ({
         width={420}
         height={320}
         style={{
-            left: `${width * 0.925 - 420 - FRAME_BOLD * 0.75}px`,
-            top: `${height * 0.925 - 420 - FRAME_BOLD * 0.42}px`
+          left: `${width * 0.925 - 420 - FRAME_BOLD * 0.75}px`,
+          top: `${height * 0.925 - 420 - FRAME_BOLD * 0.42}px`,
         }}
       />
+      <div
+        style={{
+          display: "flex",
+          fontSize: "96px",
+          fontWeight: "bold",
+          fontFamily: "Roboto",
+          width: "70vw",
+          height: "70vh",
+        //   position: "absolute",
+        //   top: "calc(24vh + 96px)",
+        //   left: "calc(12vw + 72px)",
+        }}
+      >
+        {title}
+      </div>
     </div>
   );
 };
