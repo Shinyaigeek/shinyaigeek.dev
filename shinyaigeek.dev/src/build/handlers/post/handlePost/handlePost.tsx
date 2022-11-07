@@ -13,6 +13,7 @@ import gfm from "remark-gfm";
 import raw from "rehype-raw";
 import md2html from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
+import rehypeHighlight from 'rehype-highlight'
 import helmet from "../../../util/helmet";
 import { BLOG_TITLE } from "../../../../consts";
 import { selectAll } from "hast-util-select";
@@ -62,6 +63,7 @@ export const handlePost: (p: `/${string}`) => Promise<string> = async function (
   md.use(md2html, { allowDangerousHtml: true });
   md.use(raw);
   md.use(htmlH2);
+  md.use(rehypeHighlight)
   md.use(rehypeStringify);
   const html = String(await md.process(body));
   const anchorsWithH2: string[] | null = html.match(/<h2 id=".+?">.+?<\/h2>/g);
