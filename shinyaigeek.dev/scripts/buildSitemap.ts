@@ -3,9 +3,12 @@ import { getSiteMap } from "../src/build/util/getSitemap";
 import path from "path";
 
 export const buildSitemap = async () => {
-  const rss = await getSiteMap();
+  const languages = ["en", "ja"] as const;
+  for (const language of languages) {
+    const sitemap = await getSiteMap(language);
 
-  writeFileSync(path.join(__dirname, "../../public/sitemap.xml"), rss);
+    writeFileSync(path.join(__dirname, `../../public/${language}/sitemap.xml`), sitemap);
+  }
 };
 
 buildSitemap();

@@ -11,10 +11,10 @@ function formatDate(date: Date) {
   return y + "-" + m + "-" + d;
 }
 
-export const getSiteMap = () => {
+export const getSiteMap = (language: "en" | "ja") => {
   const items = getBlogPosts(
     path.join(__dirname, "../../articles/public/") as `${string}/`,
-    "ja"
+    language
   );
   const date = new Date();
   const lastmod = formatDate(date);
