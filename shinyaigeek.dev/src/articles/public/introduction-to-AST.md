@@ -463,7 +463,7 @@ traverse(ast, visitor);
 
 すると次のような出力が出ると思います.
 
-```cli
+```shell
 Identifier: NAME
 Identifier: JOB
 Identifier: INTERESTS

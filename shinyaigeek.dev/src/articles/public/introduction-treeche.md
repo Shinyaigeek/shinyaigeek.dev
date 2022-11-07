@@ -28,7 +28,7 @@ export function getCurrentYear() {
 
 このような場合、Treeche は以下のような出力をします.
 
-```cli
+```shell
 🚨 ~/application/side_effect.ts is not tree-shakable due to the following code:
 
 
@@ -46,7 +46,7 @@ export function getCurrentYear(currentDate: Date) {
 
 treeche を実行すると下記のような出力がなされます.
 
-```cli
+```shell
 Congratulation 🎉 All files are tree-shakeable ✨
 ```
 
@@ -131,7 +131,7 @@ console.log(hoge());
 
 Treecheをグローバルインストールして使うのみです.
 
-```cli
+```shell
 npm install treeche -g
 treeche "**/*.ts" --excludes "node_modules" "**/*.test.ts"
 ```

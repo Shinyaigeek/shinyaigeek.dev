@@ -28,7 +28,7 @@ The above code is not tree-shakable, because the above typescript module has sid
 
 Treeche show the diagnose like below for the above code:
 
-```cli
+```shell
 🚨 ~/application/side_effect.ts is not tree-shakable due to the following code:
 
 
@@ -46,7 +46,7 @@ export function getCurrentYear(currentDate: Date) {
 
 and Treeche will show the diagnose like below:
 
-```cli
+```shell
 Congratulation 🎉 All files are tree-shakeable ✨
 ```
 
@@ -131,7 +131,7 @@ Why is an unnecessary `new Date().getFullYear()` in the bundled output? Because 
 
 First, global install Treeche.
 
-```cli
+```shell
 npm install treeche -g
 treeche "**/*.ts" --excludes "node_modules" "**/*.test.ts"
 ```

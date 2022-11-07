@@ -72,7 +72,7 @@ updatedAt: 2020/04/13
 
 まずcloudflare workerを編集するために**wrangler**を導入しましょう.
 
-```cli
+```shell
 npm i @cloudflare/wrangler -g
 ```
 
@@ -80,7 +80,7 @@ npm i @cloudflare/wrangler -g
 
 で次にworkerのcodeを置いておきたいディレクトリで
 
-```cli
+```shell
 wrangler generate my-router-app
 ```
 
@@ -106,7 +106,7 @@ return Response
 
 因みにですが**wrangler**を使っていれば
 
-```cli
+```shell
 wrangler publish // publishされる
 
 wrangler preview --watch // dev-serverを建てる(HRM付き)
