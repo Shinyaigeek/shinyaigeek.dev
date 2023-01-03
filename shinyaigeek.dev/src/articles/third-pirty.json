@@ -1,6 +1,14 @@
 [
   {
     "media": "blog",
+    "slug": "https://hack.nikkei.com/blog/advent20221212/",
+    "title": "Edge Proxy OVER THE EDGE",
+    "ogp": "https://hack.nikkei.com/images/ogp/advent20221212.png",
+    "description": "workerd に見出した、Edge を越えてさまざまな場所で動かしうる Edge Proxy としてのユースケースについて紹介します",
+    "publishedAt": "2022/12/12"
+  },
+  {
+    "media": "blog",
     "slug": "https://hack.nikkei.com/blog/advent20211206/",
     "title": "Compute@Edge は GraphQL Server の夢を見るか",
     "ogp": "https://hack.nikkei.com/images/advent20211206/ogimage.png",
