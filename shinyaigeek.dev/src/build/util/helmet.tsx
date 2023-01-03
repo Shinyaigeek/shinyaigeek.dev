@@ -33,11 +33,11 @@ const SiteHead = (props: HeadProps) => (
     <meta property="og:locale" content="ja_JP" />
     <meta
       name="description"
-      content="見習いWeb developer兼大学生のブログ. 主にweb開発の知見について喋ります"
+      content="Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"
     />
     <meta
       property="og:description"
-      content="見習いWeb developer兼大学生のブログ. 主にweb開発の知見について喋ります"
+      content="Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"
     />
     <meta property="og:url" content={props.slug} />
     <meta name="twitter:site" content="@shinyaigeek" />
@@ -45,11 +45,19 @@ const SiteHead = (props: HeadProps) => (
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       property="og:image"
-      content={`/assets/ogimage/${props.language}/${props.which}.png`}
+      content={`${
+        props.language === "en"
+          ? "https://en.shinyaigeek.dev"
+          : "https://ja.shinyaigeek.dev"
+      }/assets/ogimage/${props.language}/${props.which}.png`}
     />
     <meta
       name="twitter:image"
-      content={`/assets/ogimage/${props.language}/${props.which}.png`}
+      content={`${
+        props.language === "en"
+          ? "https://en.shinyaigeek.dev"
+          : "https://ja.shinyaigeek.dev"
+      }/assets/ogimage/${props.language}/${props.which}.png`}
     />
 
     <link rel="icon" type="image/x-icon" href={`/assets/static/favicon.ico`} />

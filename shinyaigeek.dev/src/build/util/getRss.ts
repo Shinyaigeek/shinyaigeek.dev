@@ -15,7 +15,7 @@ export const getRss = (language: "en" | "ja") => {
             <atom:link href="https://shinyaigeek.dev/rss.xml" rel="self" type="application/rss+xml" />
             <title>shinyaigeek.dev</title>
             <link>https://shinyaigeek.dev/</link>
-            <description>見習いWeb developer兼大学生のブログ. 主にweb開発の知見について喋ります</description>
+            <description>Web が好きなオタクのブログ. 主にweb開発の知見について喋ります</description>
             <language>ja</language>
             <copyright>(C) Shinyaigeek All Rights Reserved.</copyright>
             <managingEditor>me@shinyaigeek.dev (Shinobu Hayashi)</managingEditor>
