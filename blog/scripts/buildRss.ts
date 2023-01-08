@@ -8,12 +8,12 @@ export const buildRss = async () => {
   for (const language of languages) {
     const rss = await getRss(language);
 
-    await fs.mkdir(path.join(__dirname, `../../public/${language}`), {
+    await fs.mkdir(path.join(__dirname, `../public/${language}`), {
       recursive: true,
     });
 
     writeFileSync(
-      path.join(__dirname, `../../public/${language}/rss.xml`),
+      path.join(__dirname, `../public/${language}/rss.xml`),
       rss
     );
   }

@@ -120,5 +120,7 @@ meta/*
 packages/blog/assets/*
 server/*
 /public/*
+blog/public/*
+blog/server/*
 
 messages.js

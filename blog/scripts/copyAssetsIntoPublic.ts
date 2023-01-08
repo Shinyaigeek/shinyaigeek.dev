@@ -39,5 +39,5 @@ function copyFolderRecursiveSync(source: string, target: string) {
 
 copyFolderRecursiveSync(
   path.join(__dirname, "../src/assets"),
-  path.join(__dirname, "../../public")
+  path.join(__dirname, "../public")
 );

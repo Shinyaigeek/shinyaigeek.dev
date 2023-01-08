@@ -5,10 +5,10 @@ import fs from "fs/promises";
 import { Entry } from "../build/util/getBlogPost";
 
 const generateOGImage: () => Promise<void> = async function () {
-  await fs.mkdir(path.join(__dirname, "../../../public/assets/ogimage/ja"), {
+  await fs.mkdir(path.join(__dirname, "../../public/assets/ogimage/ja"), {
     recursive: true,
   });
-  await fs.mkdir(path.join(__dirname, "../../../public/assets/ogimage/en"), {
+  await fs.mkdir(path.join(__dirname, "../../public/assets/ogimage/en"), {
     recursive: true,
   });
 
@@ -69,7 +69,7 @@ const generateOGImage: () => Promise<void> = async function () {
       fs.writeFile(
         path.join(
           __dirname,
-          `../../../public/assets/ogimage/${
+          `../../public/assets/ogimage/${
             blogPost.language
           }/${blogPost.fields.slug.slice(0, -1)}.png`
         ),

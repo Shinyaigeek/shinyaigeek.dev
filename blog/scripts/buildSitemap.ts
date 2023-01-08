@@ -7,7 +7,7 @@ export const buildSitemap = async () => {
   for (const language of languages) {
     const sitemap = await getSiteMap(language);
 
-    writeFileSync(path.join(__dirname, `../../public/${language}/sitemap.xml`), sitemap);
+    writeFileSync(path.join(__dirname, `../public/${language}/sitemap.xml`), sitemap);
   }
 };
 
