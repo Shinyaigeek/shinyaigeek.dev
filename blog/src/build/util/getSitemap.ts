@@ -19,12 +19,10 @@ export const getSiteMap = (language: "en" | "ja") => {
 	const date = new Date();
 	const lastmod = formatDate(date);
 
-	// TODO lastmod
-
 	const xml = `<?xml version="1.0" encoding="UTF-8"?>
             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <url>
-                <loc>https://shinyaigeek.dev/</loc>
+                <loc>https://ja.shinyaigeek.dev/</loc>
                 <lastmod>${lastmod}</lastmod>
                 <changefreq>monthly</changefreq>
                 <priority>1.0</priority>
@@ -36,7 +34,7 @@ export const getSiteMap = (language: "en" | "ja") => {
                 <priority>1.0</priority>
             </url>
             <url>
-                <loc>https://shinyaigeek.dev/profile/</loc>
+                <loc>https://ja.shinyaigeek.dev/profile/</loc>
                 <lastmod>${lastmod}</lastmod>
                 <changefreq>monthly</changefreq>
                 <priority>0.8</priority>
@@ -50,7 +48,7 @@ export const getSiteMap = (language: "en" | "ja") => {
             ${items
 							.map((con: { fields: { slug: string } }) => {
 								return `<url>
-    <loc>https://shinyaigeek.dev/post/${con.fields.slug}</loc>
+    <loc>https://ja.shinyaigeek.dev/post/${con.fields.slug}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
