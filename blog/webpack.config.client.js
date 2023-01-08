@@ -1,4 +1,4 @@
-const common = require("./webpack.config.common");
+const common = require("../webpack.config.common");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 

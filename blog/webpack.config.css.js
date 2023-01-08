@@ -9,8 +9,8 @@ const output = process.env.STATIC_FILE_OUTPUT || "public/assets";
 
 module.exports = {
   entry: {
-    main: "./shinyaigeek.dev/src/client/main.tsx",
-    r: "./shinyaigeek.dev/src/client/_main.ts",
+    main: "./src/client/main.tsx",
+    r: "./src/client/_main.ts",
   },
   output: {
     path: path.join(__dirname, output),

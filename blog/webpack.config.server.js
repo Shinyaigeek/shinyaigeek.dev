@@ -7,7 +7,7 @@ const output = process.env.STATIC_FILE_OUTPUT || "server";
 
 module.exports = {
   entry: {
-    main: "./shinyaigeek.dev/src/build/build.ts",
+    main: "./src/build/build.ts",
   },
   output: {
     path: path.join(__dirname, output),
