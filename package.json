@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/Shinyaigeek/Shinyaigeek/issues"
   },
-  "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme"
+  "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
+  "devDependencies": {
+    "typescript": "^4.3.2"
+  }
 }
