@@ -4,7 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "contenthash": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/getContenthash.ts",
+    "clear": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/deleteDistAssets.ts",
+    "rss": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/buildRss.ts",
+    "sitemap": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/buildSitemap.ts",
+    "purge": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/purgeCache.ts",
+    "mv:assets": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/copyAssetsIntoPublic.ts",
+    "i18n:extract": "lingui extract",
+    "i18n:compile": "lingui compile",
+    "build:ssg": "pnpm build:server && node server/main.js",
+    "build:css": "webpack --config webpack.config.css.js --mode=production",
+    "build": "NODE_ENV=production pnpm clear && NODE_ENV=production pnpm build:css && pnpm contenthash && pnpm rss && pnpm sitemap && yarn mv:assets && yarn generate-og-image",
+    "build:dev": "export NODE_ENV=development && pnpm build:css && pnpm build:ssg && pnpm rss && pnpm sitemap && yarn mv:assets",
+    "build:server": "webpack --config webpack.config.server.js",
+    "dev": "nodemon --watch src/ --exec  pnpm build",
+    "serve": "miniserve ./public --index index.html",
+    "generate-og-image": "ts-node -O '{\"module\":\"commonjs\", \"jsx\":\"react\"}' ./src/generateOGImage/generateOGImage.ts"
   },
   "keywords": [],
   "author": "",

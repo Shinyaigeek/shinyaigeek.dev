@@ -1,0 +1,13 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "worker:publish": "wrangler publish ",
+    "worker:build": "webpack --config webpack.config.worker.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
