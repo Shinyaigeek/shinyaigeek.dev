@@ -4,19 +4,16 @@ import path from "path";
 import fs from "fs/promises";
 
 export const buildRss = async () => {
-  const languages = ["en", "ja"] as const;
-  for (const language of languages) {
-    const rss = await getRss(language);
+	const languages = ["en", "ja"] as const;
+	for (const language of languages) {
+		const rss = await getRss(language);
 
-    await fs.mkdir(path.join(__dirname, `../public/${language}`), {
-      recursive: true,
-    });
+		await fs.mkdir(path.join(__dirname, `../public/${language}`), {
+			recursive: true,
+		});
 
-    writeFileSync(
-      path.join(__dirname, `../public/${language}/rss.xml`),
-      rss
-    );
-  }
+		writeFileSync(path.join(__dirname, `../public/${language}/rss.xml`), rss);
+	}
 };
 
 buildRss();

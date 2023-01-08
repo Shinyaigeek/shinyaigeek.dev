@@ -1,6 +1,6 @@
 // @ts-ignore
-import GitHubCalendar from "github-calendar"
+import GitHubCalendar from "github-calendar";
 
 GitHubCalendar(".ghCalender", "shinyaigeek", {
-    responsive: true
-})
+	responsive: true,
+});

@@ -1,17 +1,17 @@
 interface Flags {
-    target?: string
+	target?: string;
 }
 
 export const flagParser = () => {
-    const args = process.argv;
+	const args = process.argv;
 
-    const res: Flags = {};
+	const res: Flags = {};
 
-    args.forEach(ar => {
-        if (ar.includes("--target") || ar.includes("-t")) {
-            res.target = ar.split("=")[1]
-        }
-    })
+	args.forEach((ar) => {
+		if (ar.includes("--target") || ar.includes("-t")) {
+			res.target = ar.split("=")[1];
+		}
+	});
 
-    return res
-}
+	return res;
+};

@@ -28,8 +28,8 @@ router.on("/post", undefined, [postChildren]);
 router.on("/", handleIndex, undefined);
 router.on("/profile", handleProfile, undefined);
 router.out(function (slug, html) {
-  writeFileWithDir(
-    path.join(__dirname, `../public${slug}/index.html`),
-    minify(addDOCTYP(html))
-  );
+	writeFileWithDir(
+		path.join(__dirname, `../public${slug}/index.html`),
+		minify(addDOCTYP(html)),
+	);
 });

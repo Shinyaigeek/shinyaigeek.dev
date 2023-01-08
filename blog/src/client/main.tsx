@@ -6,7 +6,7 @@ import { registerPopupState } from "./registerPopupState";
 // @ts-ignore
 import { messages as ja } from "../locales/ja/messages";
 i18n.load("ja", ja);
-i18n.activate("ja")
+i18n.activate("ja");
 
 registerPrefetch();
 
