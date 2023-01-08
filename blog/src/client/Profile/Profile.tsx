@@ -28,7 +28,7 @@ export const Profile = Layout(() => {
 					<p
 						className="content"
 						dangerouslySetInnerHTML={{ __html: t`aboutme_content` }}
-					></p>
+					/>
 				</div>
 
 				<Divider />

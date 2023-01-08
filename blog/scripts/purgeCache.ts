@@ -59,16 +59,14 @@ async function getContentsShouldPurged() {
 					if (asset.tagName === "LINK") {
 						const { href } = asset as HTMLLinkElement; // TODO
 						if (
-							!href.startsWith("http") &&
-							!href.startsWith("/cdn-cgi") /* TODO ? */
+							!(href.startsWith("http") ||href.startsWith("/cdn-cgi") /* TODO ? */) /* TODO ? */
 						) {
 							/* TODO */ return href;
 						}
 					} else if (asset.tagName === "SCRIPT") {
 						const { src } = asset as HTMLScriptElement; // TODO
 						if (
-							!src.startsWith("http") &&
-							!src.startsWith("/cdn-cgi") /* TODO ? */
+							!(src.startsWith("http") ||src.startsWith("/cdn-cgi") /* TODO ? */) /* TODO ? */
 						) {
 							/* TODO */ return src;
 						}

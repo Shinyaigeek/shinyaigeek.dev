@@ -23,7 +23,7 @@ function Post(props: Props) {
 				dangerouslySetInnerHTML={{
 					__html: content,
 				}}
-			></div>
+			/>
 
 			<div className={postContent.profile}>
 				<Shinyaigeek />

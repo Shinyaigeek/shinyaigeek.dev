@@ -10,7 +10,7 @@ export const handleProfile: (p: `/${string}`) => Promise<string> =
 			helmet({
 				children: Profile,
 				title: `About Shinyaigeek | ${BLOG_TITLE}`,
-				slug: `https://shinyaigeek.dev/profile`,
+				slug: "https://shinyaigeek.dev/profile",
 				which: "profile",
 				props: {
 					language: p.startsWith("/en") ? "en" : "ja",

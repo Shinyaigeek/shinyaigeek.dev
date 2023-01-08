@@ -8,7 +8,7 @@ export function WelcomePage() {
 		<div className={welcomePage.welcome}>
 			<img
 				className={welcomePage.banana}
-				src={`/assets/static/banana.png`}
+				src={"/assets/static/banana.png"}
 				alt="banana"
 				width="200px"
 				height="200px"

@@ -36,9 +36,7 @@ export const handlePost: (p: `/${string}`) => Promise<string> = async function (
 ) {
 	const _postPath = path.join(
 		__dirname,
-		"../src/articles/public" +
-			p.replace("/post", "").replace("/en/", "/").replace("/ja/", "/") +
-			".md",
+		`../src/articles/public${p.replace("/post", "").replace("/en/", "/").replace("/ja/", "/")}.md`,
 	);
 	const postPath =
 		p.startsWith("/en") &&

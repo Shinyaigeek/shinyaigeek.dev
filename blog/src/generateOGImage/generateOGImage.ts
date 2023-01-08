@@ -13,7 +13,7 @@ const generateOGImage: () => Promise<void> = async function () {
 	});
 
 	const blogPosts = (["ja", "en"] as const)
-		.map((language) =>
+		.flatMap((language) =>
 			getBlogPosts(
 				path.join(__dirname, "../articles/public/") as `${string}/`,
 				language,
@@ -21,8 +21,7 @@ const generateOGImage: () => Promise<void> = async function () {
 				...blogPost,
 				language,
 			})),
-		)
-		.flat() as (Entry & { language: string })[];
+		) as (Entry & { language: string })[];
 
 	blogPosts.push({
 		language: "ja",

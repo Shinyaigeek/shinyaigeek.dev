@@ -7,6 +7,10 @@
     "type": "git",
     "url": "git+https://github.com/Shinyaigeek/Shinyaigeek.git"
   },
+  "scripts": {
+    "format": "rome format --write .",
+    "lint": "rome check --apply-suggested ."
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

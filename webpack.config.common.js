@@ -22,7 +22,7 @@ module.exports = {
 	devServer: {
 		contentBase: path.join(__dirname, "./static"),
 		port: process.env.ASSETS_PORT ? process.env.ASSETS_PORT : 3030,
-		host: `localhost`,
+		host: "localhost",
 	},
 	module: {
 		rules: [

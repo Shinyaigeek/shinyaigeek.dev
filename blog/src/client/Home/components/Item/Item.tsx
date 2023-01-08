@@ -25,7 +25,7 @@ export const Item = (props: MetaData) => {
 			</a>
 			<Divider />
 			<div className={item.date}>{props.publishedAt}</div>
-			<div className={item.tags}></div>
+			<div className={item.tags} />
 			<div>{getOmmit(props.description ?? "")}</div>
 			{props.ogp && (
 				<a

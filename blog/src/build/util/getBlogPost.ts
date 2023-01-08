@@ -20,7 +20,7 @@ export interface Entry {
 
 export const getBlogPost = (target: string) => {
 	const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
-	if (!CONTENTFUL_ACCESS_TOKEN || !CONTENTFUL_SPACE_ID) {
+	if (!(CONTENTFUL_ACCESS_TOKEN && CONTENTFUL_SPACE_ID)) {
 		throw new Error("Please check env variable");
 	}
 

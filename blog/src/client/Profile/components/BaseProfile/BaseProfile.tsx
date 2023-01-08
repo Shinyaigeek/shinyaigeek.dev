@@ -44,7 +44,7 @@ export const BaseProfile = () => {
 				<div className={baseProfile.snsIcon}>
 					<a id="twitter" href="https://twitter.com/Shinyaigeek">
 						<img
-							src={`/assets/static/twitter.svg`}
+							src={"/assets/static/twitter.svg"}
 							alt="twitter"
 							width="54px"
 							height="54px"
@@ -54,7 +54,7 @@ export const BaseProfile = () => {
 				<div className={baseProfile.snsIcon}>
 					<a id="github" href="https://github.com/Shinyaigeek">
 						<img
-							src={`/assets/static/github.svg`}
+							src={"/assets/static/github.svg"}
 							alt="github"
 							width="54px"
 							height="54px"
@@ -64,7 +64,7 @@ export const BaseProfile = () => {
 				<div className={baseProfile.snsIcon}>
 					<a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/">
 						<img
-							src={`/assets/static/linkedin.svg`}
+							src={"/assets/static/linkedin.svg"}
 							alt="linkedin"
 							width="54px"
 							height="54px"

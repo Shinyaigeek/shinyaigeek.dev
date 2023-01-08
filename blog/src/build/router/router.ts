@@ -23,7 +23,7 @@ export class Router {
 	constructor() {}
 
 	on: typeof on = (path, handler, children) => {
-		if (!!children) {
+		if (children) {
 			for (let child of children) {
 				for (let [childRoute, childRouteHandler] of child.routing) {
 					this.routing.set(`${path}${childRoute}`, childRouteHandler);

@@ -19,7 +19,7 @@ export const handleIndex: (p: string) => Promise<string> = async function (p) {
 		helmet({
 			children: Home,
 			title: `${BLOG_TITLE}`,
-			slug: `https://shinyaigeek.dev`,
+			slug: "https://shinyaigeek.dev",
 			which: "top",
 			props: {
 				items: blogEntries,

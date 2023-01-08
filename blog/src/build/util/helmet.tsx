@@ -18,7 +18,7 @@ const ogp = "https://shinyaigeek-og-image.vercel.app/";
 
 export const assets = isProd
 	? ASSETS_SERVER
-	: "http://localhost:" + ASSETS_PORT + "/dist";
+	: `http://localhost:${ASSETS_PORT}/dist`;
 
 const SiteHead = (props: HeadProps) => (
 	<head>
@@ -60,30 +60,30 @@ const SiteHead = (props: HeadProps) => (
 			}/assets/ogimage/${props.language}/${props.which}.png`}
 		/>
 
-		<link rel="icon" type="image/x-icon" href={`/assets/static/favicon.ico`} />
+		<link rel="icon" type="image/x-icon" href={"/assets/static/favicon.ico"} />
 		<link
 			rel="stylesheet"
 			type="text/css"
 			href={`/assets/styles${
-				process.env.CONTENTHASH_CSS ? "." + process.env.CONTENTHASH_CSS : ""
+				process.env.CONTENTHASH_CSS ? `.${process.env.CONTENTHASH_CSS}` : ""
 			}.css`}
 		/>
 		<link
 			rel="stylesheet"
 			type="text/css"
-			href={`/assets/static/a11y-dark.min.css`}
+			href={"/assets/static/a11y-dark.min.css"}
 		/>
 		<link
 			rel="stylesheet"
 			href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
 		/>
 
-		<link rel="preload" as="style" href={`/assets/static/a11y-dark.min.css`} />
+		<link rel="preload" as="style" href={"/assets/static/a11y-dark.min.css"} />
 		<link
 			rel="preload"
 			as="style"
 			href={`/assets/styles${
-				process.env.CONTENTHASH_CSS ? "." + process.env.CONTENTHASH_CSS : ""
+				process.env.CONTENTHASH_CSS ? `.${process.env.CONTENTHASH_CSS}` : ""
 			}.css`}
 		/>
 		<link
@@ -94,7 +94,7 @@ const SiteHead = (props: HeadProps) => (
 		<link
 			rel="preload"
 			as="image"
-			href={`/assets/static/icon_transparent_header.png`}
+			href={"/assets/static/icon_transparent_header.png"}
 		/>
 
 		<link
@@ -102,7 +102,7 @@ const SiteHead = (props: HeadProps) => (
 			type="application/rss+xml"
 			title="shinyaigeek.dev"
 			href="/rss.xml"
-		></link>
+		/>
 	</head>
 );
 
@@ -128,14 +128,14 @@ const helmet = (props: HelmetProps) => {
 				defer
 				src="https://static.cloudflareinsights.com/beacon.min.js"
 				data-cf-beacon='{"token": "0893ac88cf0542af88bfd9b93008b408", "spa": true}'
-			></script>
+			/>
 			<script
 				defer
 				src={`/assets/r${
-					process.env.CONTENTHASH_JS ? "." + process.env.CONTENTHASH_JS : ""
+					process.env.CONTENTHASH_JS ? `.${process.env.CONTENTHASH_JS}` : ""
 				}.js`}
 				async
-			></script>
+			/>
 		</html>
 	);
 };

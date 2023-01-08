@@ -17,7 +17,7 @@ export function Header({
 				<a href="/" className="link2Home">
 					<div>
 						<img
-							src={`/assets/static/icon_transparent_header.png`}
+							src={"/assets/static/icon_transparent_header.png"}
 							alt="icon"
 							className={header.icon}
 							width="36px"

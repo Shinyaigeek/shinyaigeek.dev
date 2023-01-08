@@ -7,7 +7,7 @@ export const Loading = () => {
 			{Array(30)
 				.fill(0)
 				.map((_) => {
-					return <div></div>;
+					return <div />;
 				})}
 		</div>
 	);

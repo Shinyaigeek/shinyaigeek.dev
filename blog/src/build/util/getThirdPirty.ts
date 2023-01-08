@@ -14,7 +14,7 @@ export const getThirdPirty = (target: string) => {
 	const json = JSON.parse(jsonSrc);
 
 	if (!Array.isArray(json)) {
-		throw new Error("third pirty.json should be array, but got " + typeof json);
+		throw new Error(`third pirty.json should be array, but got ${typeof json}`);
 	}
 
 	return json.map((entry) => {

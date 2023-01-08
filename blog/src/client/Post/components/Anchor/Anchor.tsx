@@ -11,8 +11,7 @@ export function Anchor(props: Props) {
 			<summary className="post--anchor__title" id="post--anchor__title">
 				{t`index`}
 			</summary>
-			{props.anchors &&
-				props.anchors.map((anchor, index) => {
+			{props.anchors?.map((anchor, index) => {
 					return (
 						<a key={index} href={`#2__${index}`}>
 							{anchor}

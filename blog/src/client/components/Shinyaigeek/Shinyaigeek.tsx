@@ -12,7 +12,7 @@ export const Shinyaigeek = (props: Props) => {
 		<div className={`${shinyaigeek.icon} ${additionalStyle}`}>
 			<div className={shinyaigeek.monkey}>
 				<img
-					src={`/assets/static/icon_transparent.png`}
+					src={"/assets/static/icon_transparent.png"}
 					className={shinyaigeek.monkeyImg}
 					alt="monkey-icon"
 					width="270px"
@@ -23,7 +23,7 @@ export const Shinyaigeek = (props: Props) => {
 				<div className={shinyaigeek.earthX}>
 					<div className={shinyaigeek.earthY}>
 						<img
-							src={`/assets/static/earth.png`}
+							src={"/assets/static/earth.png"}
 							alt="earth"
 							width="50px"
 							height="50px"
