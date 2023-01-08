@@ -1,178 +1,186 @@
 lockfileVersion: 5.4
 
-specifiers:
-  '@babel/cli': ^7.12.1
-  '@babel/core': ^7.12.3
-  '@babel/node': ^7.12.6
-  '@babel/preset-env': ^7.12.1
-  '@babel/preset-react': ^7.12.1
-  '@babel/preset-typescript': ^7.12.1
-  '@babel/register': ^7.12.1
-  '@cloudflare/workers-types': ^3.0.0
-  '@cloudflare/wrangler': ^1.19.8
-  '@github/g-emoji-element': ^1.1.5
-  '@lingui/cli': ^3.8.9
-  '@lingui/core': ^3.8.9
-  '@lingui/macro': ^3.8.9
-  '@parcel/css': ^1.7.1
-  '@resvg/resvg-js': ^2.1.0
-  '@types/highlight.js': ^9.12.3
-  '@types/html-minifier': ^4.0.0
-  '@types/image-to-base64': ^2.1.0
-  '@types/jest': ^26.0.23
-  '@types/jsdom': ^16.2.14
-  '@types/marked': ^0.7.2
-  '@types/node-fetch': ^2.5.5
-  '@types/react': ^16.9.56
-  '@types/react-dom': ^16.9.9
-  '@types/remarkable': ^2.0.0
-  '@types/service-worker-mock': ^2.0.1
-  '@typescript-eslint/eslint-plugin': ^4.16.1
-  '@typescript-eslint/parser': ^4.16.1
-  accept-language: ^3.0.18
-  babel-loader: ^8.0.6
-  babel-plugin-macros: ^3.0.1
-  babel-plugin-transform-inline-environment-variables: ^0.4.3
-  body-parser: ^1.19.0
-  css-loader: ^6.3.0
-  css-minimizer-webpack-plugin: ^3.4.1
-  dotenv: ^8.2.0
-  emailjs-com: ^2.4.1
-  eslint: ^7.21.0
-  eslint-config-prettier: ^8.1.0
-  eslint-config-typescript: ^3.0.0
-  front-matter: ^4.0.2
-  github-calendar: ^2.2.7
-  github-calendar-element: ^1.0.1
-  hast-util-select: ^5.0.2
-  highlight.js: 11.3.1
-  html-minifier: ^4.0.0
-  html-react-parser: ^1.3.0
-  image-to-base64: ^2.2.0
-  jest: ^27.0.1
-  jsdom: ^19.0.0
-  marked: ^4.0.10
-  mini-css-extract-plugin: ^1.3.1
-  node-fetch: ^2.6.7
-  nodemon: ^2.0.2
-  prettier: ^2.3.0
-  react: ^17.0.1
-  react-dom: ^17.0.1
-  rehype-highlight: ^6.0.0
-  rehype-raw: ^6.1.1
-  rehype-stringify: ^9.0.3
-  remark: ^14.0.2
-  remark-gfm: ^3.0.1
-  remark-mdx: ^2.1.3
-  remark-rehype: ^10.1.0
-  remarkable: ^2.0.1
-  remarkable-plugin-heading-id: ^1.0.0
-  remarkable-plugin-tweet-share: ^1.0.0
-  resolve-accept-language: ^1.0.50
-  resvg: ^1.6.4
-  sass: ^1.49.7
-  sass-loader: ^12.4.0
-  satori: ^0.0.43
-  serve-static: ^1.14.1
-  service-worker-mock: ^2.0.5
-  style-loader: ^1.1.3
-  ts-jest: ^27.0.1
-  ts-loader: ^9.2.2
-  ts-node: ^10.2.1
-  typescript: ^4.3.2
-  uglify-es: ^3.3.9
-  universal-router: ^9.0.1
-  webpack: ^5.38.1
-  webpack-cli: ^4.7.0
-  webpack-dev-server: ^3.10.3
+importers:
 
-dependencies:
-  '@github/g-emoji-element': 1.1.5
-  '@parcel/css': 1.14.0
-  '@resvg/resvg-js': 2.1.0
-  '@types/jsdom': 16.2.15
-  accept-language: 3.0.18
-  body-parser: 1.20.1
-  css-minimizer-webpack-plugin: 3.4.1_dopcz5fbf26aufdjwy27irqy6u
-  emailjs-com: 2.6.4
-  front-matter: 4.0.2
-  github-calendar: 2.3.1
-  github-calendar-element: 1.0.1
-  highlight.js: 11.3.1
-  html-minifier: 4.0.0
-  html-react-parser: 1.4.14_react@17.0.2
-  image-to-base64: 2.2.0
-  jsdom: 19.0.0
-  marked: 4.2.2
-  mini-css-extract-plugin: 1.6.2_webpack@5.74.0
-  node-fetch: 2.6.7
-  nodemon: 2.0.20
-  react: 17.0.2
-  react-dom: 17.0.2_react@17.0.2
-  rehype-highlight: 6.0.0
-  remarkable: 2.0.1
-  remarkable-plugin-heading-id: 1.0.0_remarkable@2.0.1
-  remarkable-plugin-tweet-share: 1.0.0_z7farnhv4k4izt53zqbld7lu7e
-  resolve-accept-language: 1.1.26
-  resvg: 1.6.4
-  sass: 1.56.0
-  sass-loader: 12.6.0_sass@1.56.0+webpack@5.74.0
-  satori: 0.0.43
-  serve-static: 1.15.0
-  uglify-es: 3.3.9
-  universal-router: 9.1.0
+  .:
+    specifiers: {}
 
-devDependencies:
-  '@babel/cli': 7.19.3_@babel+core@7.20.2
-  '@babel/core': 7.20.2
-  '@babel/node': 7.20.2_@babel+core@7.20.2
-  '@babel/preset-env': 7.20.2_@babel+core@7.20.2
-  '@babel/preset-react': 7.18.6_@babel+core@7.20.2
-  '@babel/preset-typescript': 7.18.6_@babel+core@7.20.2
-  '@babel/register': 7.18.9_@babel+core@7.20.2
-  '@cloudflare/workers-types': 3.18.0
-  '@cloudflare/wrangler': 1.20.0
-  '@lingui/cli': 3.14.0_khjrg45iipipzp6epvlub3p3o4
-  '@lingui/core': 3.14.0
-  '@lingui/macro': 3.14.0_77kbcrdiyapudxn3kt35uy5344
-  '@types/highlight.js': 9.12.4
-  '@types/html-minifier': 4.0.2
-  '@types/image-to-base64': 2.1.0
-  '@types/jest': 26.0.24
-  '@types/marked': 0.7.4
-  '@types/node-fetch': 2.6.2
-  '@types/react': 16.14.34
-  '@types/react-dom': 16.9.17
-  '@types/remarkable': 2.0.3
-  '@types/service-worker-mock': 2.0.1
-  '@typescript-eslint/eslint-plugin': 4.33.0_k4l66av2tbo6kxzw52jzgbfzii
-  '@typescript-eslint/parser': 4.33.0_3rubbgt5ekhqrcgx4uwls3neim
-  babel-loader: 8.3.0_hkczypimj4evef4hfazf6yfxte
-  babel-plugin-macros: 3.1.0
-  babel-plugin-transform-inline-environment-variables: 0.4.4
-  css-loader: 6.7.1_webpack@5.74.0
-  dotenv: 8.6.0
-  eslint: 7.32.0
-  eslint-config-prettier: 8.5.0_eslint@7.32.0
-  eslint-config-typescript: 3.0.0_q4lu4jsu4joku2dgqmmaqgji2m
-  hast-util-select: 5.0.2
-  jest: 27.5.1_ts-node@10.9.1
-  prettier: 2.7.1
-  rehype-raw: 6.1.1
-  rehype-stringify: 9.0.3
-  remark: 14.0.2
-  remark-gfm: 3.0.1
-  remark-mdx: 2.1.5
-  remark-rehype: 10.1.0
-  service-worker-mock: 2.0.5
-  style-loader: 1.3.0_webpack@5.74.0
-  ts-jest: 27.1.5_ner7qetvk2gbnqvp7emnozdzcm
-  ts-loader: 9.4.1_qqxisngxjbp7lstdk7boexbu3e
-  ts-node: 10.9.1_cbe7ovvae6zqfnmtgctpgpys54
-  typescript: 4.8.4
-  webpack: 5.74.0_webpack-cli@4.10.0
-  webpack-cli: 4.10.0_enc4da54mvzgn7gkchuyvuyzgu
-  webpack-dev-server: 3.11.3_5v66e2inugklgvlh4huuavolfq
+  blog:
+    specifiers:
+      '@babel/cli': ^7.12.1
+      '@babel/core': ^7.12.3
+      '@babel/node': ^7.12.6
+      '@babel/preset-env': ^7.12.1
+      '@babel/preset-react': ^7.12.1
+      '@babel/preset-typescript': ^7.12.1
+      '@babel/register': ^7.12.1
+      '@github/g-emoji-element': ^1.1.5
+      '@lingui/cli': ^3.8.9
+      '@lingui/core': ^3.8.9
+      '@lingui/macro': ^3.8.9
+      '@parcel/css': ^1.7.1
+      '@resvg/resvg-js': ^2.1.0
+      '@types/highlight.js': ^9.12.3
+      '@types/html-minifier': ^4.0.0
+      '@types/image-to-base64': ^2.1.0
+      '@types/jest': ^26.0.23
+      '@types/jsdom': ^16.2.14
+      '@types/marked': ^0.7.2
+      '@types/node-fetch': ^2.5.5
+      '@types/react': ^16.9.56
+      '@types/react-dom': ^16.9.9
+      '@types/remarkable': ^2.0.0
+      '@types/service-worker-mock': ^2.0.1
+      '@typescript-eslint/eslint-plugin': ^4.16.1
+      '@typescript-eslint/parser': ^4.16.1
+      accept-language: ^3.0.18
+      babel-loader: ^8.0.6
+      babel-plugin-macros: ^3.0.1
+      babel-plugin-transform-inline-environment-variables: ^0.4.3
+      body-parser: ^1.19.0
+      css-loader: ^6.3.0
+      css-minimizer-webpack-plugin: ^3.4.1
+      dotenv: ^8.2.0
+      emailjs-com: ^2.4.1
+      eslint: ^7.21.0
+      eslint-config-prettier: ^8.1.0
+      eslint-config-typescript: ^3.0.0
+      front-matter: ^4.0.2
+      github-calendar: ^2.2.7
+      github-calendar-element: ^1.0.1
+      hast-util-select: ^5.0.2
+      highlight.js: 11.3.1
+      html-minifier: ^4.0.0
+      html-react-parser: ^1.3.0
+      image-to-base64: ^2.2.0
+      jest: ^27.0.1
+      jsdom: ^19.0.0
+      marked: ^4.0.10
+      mini-css-extract-plugin: ^1.3.1
+      node-fetch: ^2.6.7
+      nodemon: ^2.0.2
+      prettier: ^2.3.0
+      react: ^17.0.1
+      react-dom: ^17.0.1
+      rehype-highlight: ^6.0.0
+      rehype-raw: ^6.1.1
+      rehype-stringify: ^9.0.3
+      remark: ^14.0.2
+      remark-gfm: ^3.0.1
+      remark-mdx: ^2.1.3
+      remark-rehype: ^10.1.0
+      remarkable: ^2.0.1
+      remarkable-plugin-heading-id: ^1.0.0
+      remarkable-plugin-tweet-share: ^1.0.0
+      resolve-accept-language: ^1.0.50
+      resvg: ^1.6.4
+      sass: ^1.49.7
+      sass-loader: ^12.4.0
+      satori: ^0.0.43
+      serve-static: ^1.14.1
+      service-worker-mock: ^2.0.5
+      style-loader: ^1.1.3
+      ts-jest: ^27.0.1
+      ts-loader: ^9.2.2
+      ts-node: ^10.2.1
+      typescript: ^4.3.2
+      uglify-es: ^3.3.9
+      universal-router: ^9.0.1
+      webpack: ^5.38.1
+      webpack-cli: ^4.7.0
+      webpack-dev-server: ^3.10.3
+    dependencies:
+      '@github/g-emoji-element': 1.1.5
+      '@parcel/css': 1.14.0
+      '@resvg/resvg-js': 2.1.0
+      '@types/jsdom': 16.2.15
+      accept-language: 3.0.18
+      body-parser: 1.20.1
+      css-minimizer-webpack-plugin: 3.4.1_dopcz5fbf26aufdjwy27irqy6u
+      emailjs-com: 2.6.4
+      front-matter: 4.0.2
+      github-calendar: 2.3.1
+      github-calendar-element: 1.0.1
+      highlight.js: 11.3.1
+      html-minifier: 4.0.0
+      html-react-parser: 1.4.14_react@17.0.2
+      image-to-base64: 2.2.0
+      jsdom: 19.0.0
+      marked: 4.2.2
+      mini-css-extract-plugin: 1.6.2_webpack@5.74.0
+      node-fetch: 2.6.7
+      nodemon: 2.0.20
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      rehype-highlight: 6.0.0
+      remarkable: 2.0.1
+      remarkable-plugin-heading-id: 1.0.0_remarkable@2.0.1
+      remarkable-plugin-tweet-share: 1.0.0_z7farnhv4k4izt53zqbld7lu7e
+      resolve-accept-language: 1.1.26
+      resvg: 1.6.4
+      sass: 1.56.0
+      sass-loader: 12.6.0_sass@1.56.0+webpack@5.74.0
+      satori: 0.0.43
+      serve-static: 1.15.0
+      uglify-es: 3.3.9
+      universal-router: 9.1.0
+    devDependencies:
+      '@babel/cli': 7.19.3_@babel+core@7.20.2
+      '@babel/core': 7.20.2
+      '@babel/node': 7.20.2_@babel+core@7.20.2
+      '@babel/preset-env': 7.20.2_@babel+core@7.20.2
+      '@babel/preset-react': 7.18.6_@babel+core@7.20.2
+      '@babel/preset-typescript': 7.18.6_@babel+core@7.20.2
+      '@babel/register': 7.18.9_@babel+core@7.20.2
+      '@lingui/cli': 3.14.0_khjrg45iipipzp6epvlub3p3o4
+      '@lingui/core': 3.14.0
+      '@lingui/macro': 3.14.0_77kbcrdiyapudxn3kt35uy5344
+      '@types/highlight.js': 9.12.4
+      '@types/html-minifier': 4.0.2
+      '@types/image-to-base64': 2.1.0
+      '@types/jest': 26.0.24
+      '@types/marked': 0.7.4
+      '@types/node-fetch': 2.6.2
+      '@types/react': 16.14.34
+      '@types/react-dom': 16.9.17
+      '@types/remarkable': 2.0.3
+      '@types/service-worker-mock': 2.0.1
+      '@typescript-eslint/eslint-plugin': 4.33.0_k4l66av2tbo6kxzw52jzgbfzii
+      '@typescript-eslint/parser': 4.33.0_3rubbgt5ekhqrcgx4uwls3neim
+      babel-loader: 8.3.0_hkczypimj4evef4hfazf6yfxte
+      babel-plugin-macros: 3.1.0
+      babel-plugin-transform-inline-environment-variables: 0.4.4
+      css-loader: 6.7.1_webpack@5.74.0
+      dotenv: 8.6.0
+      eslint: 7.32.0
+      eslint-config-prettier: 8.5.0_eslint@7.32.0
+      eslint-config-typescript: 3.0.0_q4lu4jsu4joku2dgqmmaqgji2m
+      hast-util-select: 5.0.2
+      jest: 27.5.1_ts-node@10.9.1
+      prettier: 2.7.1
+      rehype-raw: 6.1.1
+      rehype-stringify: 9.0.3
+      remark: 14.0.2
+      remark-gfm: 3.0.1
+      remark-mdx: 2.1.5
+      remark-rehype: 10.1.0
+      service-worker-mock: 2.0.5
+      style-loader: 1.3.0_webpack@5.74.0
+      ts-jest: 27.1.5_ner7qetvk2gbnqvp7emnozdzcm
+      ts-loader: 9.4.1_qqxisngxjbp7lstdk7boexbu3e
+      ts-node: 10.9.1_cbe7ovvae6zqfnmtgctpgpys54
+      typescript: 4.8.4
+      webpack: 5.74.0_webpack-cli@4.10.0
+      webpack-cli: 4.10.0_enc4da54mvzgn7gkchuyvuyzgu
+      webpack-dev-server: 3.11.3_5v66e2inugklgvlh4huuavolfq
+
+  worker:
+    specifiers:
+      '@cloudflare/workers-types': ^3.0.0
+      '@cloudflare/wrangler': ^1.19.8
+    devDependencies:
+      '@cloudflare/workers-types': 3.18.0
+      '@cloudflare/wrangler': 1.20.0
 
 packages:
 
@@ -2136,6 +2144,7 @@ packages:
 
   /@sinonjs/commons/1.8.4:
     resolution: {integrity: sha512-RpmQdHVo8hCEHDVpO39zToS9jOhR6nw+/lQAzRNq9ErrGV9IeHM71XCn68svVl/euFeVW6BWX4p35gkhbOcSIQ==}
+    deprecated: Breaks compatibility with ES5, use v1.8.5
     dependencies:
       type-detect: 4.0.8
     dev: true
@@ -2229,12 +2238,12 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.10
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
 
   /@types/eslint/8.4.10:
     resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
 
   /@types/estree-jsx/1.0.0:
@@ -2248,7 +2257,6 @@ packages:
 
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
-    dev: true
 
   /@types/glob/7.2.0:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
@@ -2958,7 +2966,7 @@ packages:
   /axios/0.21.4:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
     transitivePeerDependencies:
       - debug
     dev: true
@@ -4863,7 +4871,7 @@ packages:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
 
-  /follow-redirects/1.15.2_debug@4.3.4:
+  /follow-redirects/1.15.2:
     resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
     engines: {node: '>=4.0'}
     peerDependencies:
@@ -4871,8 +4879,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dependencies:
-      debug: 4.3.4_supports-color@6.1.0
 
   /for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}
@@ -5498,7 +5504,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -8557,7 +8563,7 @@ packages:
   /pseudolocale/1.2.0:
     resolution: {integrity: sha512-k0OQFvIlvpRdzR0dPVrrbWX7eE9EaZ6gpZtTlFSDi1Gf9tMy9wiANCNu7JZ0drcKgUri/39a2mBbH0goiQmrmQ==}
     dependencies:
-      commander: 6.2.1
+      commander: 7.2.0
     dev: true
 
   /psl/1.9.0:
