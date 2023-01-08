@@ -36,7 +36,7 @@ export const handlePost: (p: `/${string}`) => Promise<string> = async function (
 ) {
   const _postPath = path.join(
     __dirname,
-    "../shinyaigeek.dev/src/articles/public" +
+    "../src/articles/public" +
       p.replace("/post", "").replace("/en/", "/").replace("/ja/", "/") +
       ".md"
   );

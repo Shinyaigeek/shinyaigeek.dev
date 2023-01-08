@@ -11,12 +11,12 @@ export const handleIndex: (p: string) => Promise<string> = async function (p) {
   const blogEntries = getBlogPosts(
     path.join(
       __dirname,
-      "../shinyaigeek.dev/src/articles/public/"
+      "../src/articles/public/"
     ) as `${string}/`,
     p.startsWith("/en") ? "en" : "ja"
   );
   const thirdPirtyEntries = getThirdPirty(
-    path.join(__dirname, "../shinyaigeek.dev/src/articles/third-pirty.json")
+    path.join(__dirname, "../src/articles/third-pirty.json")
   );
   const Html = React.createElement(
     helmet({
