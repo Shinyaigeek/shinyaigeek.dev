@@ -2,16 +2,17 @@
   "name": "worker",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
   "main": "index.js",
   "scripts": {
-    "worker:publish": "wrangler publish ",
-    "worker:build": "webpack --config webpack.config.worker.js"
+    "worker:build": "webpack --config webpack.config.worker.js",
+    "worker:publish": "wrangler publish "
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@cloudflare/workers-types": "^3.0.0",
-    "@cloudflare/wrangler": "^1.19.8"
+    "@cloudflare/wrangler": "^1.19.8",
+    "accept-language": "^3.0.18"
   }
 }
