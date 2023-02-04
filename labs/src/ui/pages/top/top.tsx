@@ -1,4 +1,5 @@
 import React, { type FunctionComponent } from "react";
+import { HeaderComponent } from "../../components/header/header";
 
 interface Props {
   allProjects: string[];
@@ -7,5 +8,10 @@ interface Props {
 export const TopPageComponent: FunctionComponent<Props> = function ({
   allProjects,
 }) {
-  return <div>hello {allProjects.map((project) => `${project},`)}</div>;
+  return (
+    <div>
+      <HeaderComponent />
+      hello {allProjects.map((project) => `${project},`)}
+    </div>
+  );
 };
