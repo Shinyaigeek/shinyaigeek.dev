@@ -16,9 +16,14 @@
   "license": "ISC",
   "dependencies": {
     "@astrojs/cloudflare": "^5.0.0",
-    "astro": "^1.9.1"
+    "@astrojs/react": "^2.0.2",
+    "astro": "^1.9.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
     "wrangler": "^2.6.2"
   }
 }

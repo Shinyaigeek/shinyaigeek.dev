@@ -176,12 +176,22 @@ importers:
   labs:
     specifiers:
       '@astrojs/cloudflare': ^5.0.0
+      '@astrojs/react': ^2.0.2
+      '@types/react': ^16.9.56
+      '@types/react-dom': ^16.9.9
       astro: ^1.9.1
+      react: ^17.0.1
+      react-dom: ^17.0.1
       wrangler: ^2.6.2
     dependencies:
       '@astrojs/cloudflare': 5.0.0_astro@1.9.1
+      '@astrojs/react': 2.0.2_2r6io62wbf3a5srxylxnuna6di
       astro: 1.9.1
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     devDependencies:
+      '@types/react': 16.14.34
+      '@types/react-dom': 16.9.17
       wrangler: 2.6.2
 
   worker:
@@ -285,6 +295,25 @@ packages:
     engines: {node: ^14.18.0 || >=16.12.0}
     dependencies:
       prismjs: 1.29.0
+    dev: false
+
+  /@astrojs/react/2.0.2_2r6io62wbf3a5srxylxnuna6di:
+    resolution: {integrity: sha512-UmQNvzJul5M/Q9aZJXnqz4z0ODZXkLuaNvgsYoKB7OdM8c2v85FsTjMZZJ7BvFo4On31jJ0rL/gwTaCeuYqmpw==}
+    engines: {node: '>=16.12.0'}
+    peerDependencies:
+      '@types/react': ^17.0.50 || ^18.0.21
+      '@types/react-dom': ^17.0.17 || ^18.0.6
+      react: ^17.0.2 || ^18.0.0
+      react-dom: ^17.0.2 || ^18.0.0
+    dependencies:
+      '@babel/core': 7.20.2
+      '@babel/plugin-transform-react-jsx': 7.19.0_@babel+core@7.20.2
+      '@types/react': 16.14.34
+      '@types/react-dom': 16.9.17
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /@astrojs/telemetry/1.0.1:
@@ -2749,13 +2778,11 @@ packages:
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
-    dev: true
 
   /@types/react-dom/16.9.17:
     resolution: {integrity: sha512-qSRyxEsrm5btPXnowDOs5jSkgT8ldAA0j6Qp+otHUh+xHzy3sXmgNfyhucZjAjkgpdAUw9rJe0QRtX/l+yaS4g==}
     dependencies:
       '@types/react': 16.14.34
-    dev: true
 
   /@types/react/16.14.34:
     resolution: {integrity: sha512-b99nWeGGReLh6aKBppghVqp93dFJtgtDOzc8NXM6hewD8PQ2zZG5kBLgbx+VJr7Q7WBMjHxaIl3dwpwwPIUgyA==}
@@ -2763,7 +2790,6 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.1.1
-    dev: true
 
   /@types/relateurl/0.2.29:
     resolution: {integrity: sha512-QSvevZ+IRww2ldtfv1QskYsqVVVwCKQf1XbwtcyyoRvLIQzfyPhj/C+3+PKzSDRdiyejaiLgnq//XTkleorpLg==}
@@ -2782,7 +2808,6 @@ packages:
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
-    dev: true
 
   /@types/service-worker-mock/2.0.1:
     resolution: {integrity: sha512-LqaP0QmgppRF7YEaqx4amoazHNXaX5bIFDAu62LnWIc5ku0HbgqlPKroQstAu8WsdmWIqEfI9VGlP8Skkq+m5A==}
@@ -4574,7 +4599,6 @@ packages:
 
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
-    dev: true
 
   /data-uri-to-buffer/4.0.0:
     resolution: {integrity: sha512-Vr3mLBA8qWmcuschSLAOogKgQ/Jwxulv3RNE4FXnYWRGujzrRWQI4m12fQqRkwX06C0KanhLr4hK+GydchZsaA==}
