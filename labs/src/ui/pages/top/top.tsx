@@ -17,7 +17,7 @@ export const TopPageComponent: FunctionComponent<Props> = function ({
           Labs playground for shinyaigeek's private study of web ecosystem
         </h1>
         {allProjects.map((project) => (
-          <a href={`/projects/${project}`}>{project}</a>
+          <a href={`/projects/${project}/`}>{project}</a>
         ))}
       </main>
     </div>
