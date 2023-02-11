@@ -2,6 +2,11 @@
 import { Prerender2PageComponent } from "../../../ui/pages/projects/prerender2/prerender2";
 ---
 <html>
+  <head>
+    <script type="speculationrules">
+      { "prerender": [{ "source": "list", "urls": ["/projects/prerender2/subpage/"] }] }
+    </script>
+  </head>
   <body>
     <Prerender2PageComponent />
   </body>

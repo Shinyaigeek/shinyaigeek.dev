@@ -4,10 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
     "deploy-page": "wrangler worker publish dist",
     "login": "wrangler login"
   },
@@ -15,14 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@astrojs/react": "^2.0.2",
-    "astro": "^1.9.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@types/react": "^16.9.56",
-    "@types/react-dom": "^16.9.9",
-    "wrangler": "^2.6.2"
+    "@types/react-dom": "^16.9.9"
   }
 }
