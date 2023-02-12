@@ -1,5 +1,3 @@
-import type { ServerResponse } from "http";
-import path from "path";
 import { buildFastifyServer } from "./server";
 
 const MANIFEST_FILE_PATH = "build/server/manifest.json";
