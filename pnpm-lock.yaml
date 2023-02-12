@@ -180,6 +180,7 @@ importers:
       fastify: ^4.13.0
       react: ^17.0.1
       react-dom: ^17.0.1
+      ts-node: ^10.2.1
       webpack: ^5.38.1
     dependencies:
       fastify: 4.13.0
@@ -188,6 +189,7 @@ importers:
     devDependencies:
       '@types/react': 16.14.34
       '@types/react-dom': 16.9.17
+      ts-node: 10.9.1_cbe7ovvae6zqfnmtgctpgpys54
       webpack: 5.74.0
 
   worker:
