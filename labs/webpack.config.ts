@@ -12,6 +12,10 @@ const config: webpack.Configuration = {
         test: /\.tsx?$/,
         loader: "swc-loader",
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
 };
