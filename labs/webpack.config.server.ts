@@ -3,14 +3,17 @@ import webpack from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { merge } from "webpack-merge";
 import { webpackBaseConfig } from "./webpack.config.base";
+import { getBuiltAssetFilename } from "./tools/build-utility";
+
+const builtAssetsFilename = getBuiltAssetFilename();
 
 const config: webpack.Configuration = merge(
   {
     entry: {
-      server: "./src/server/index.tsx"
+      server: "./src/server/index.tsx",
     },
     output: {
-      filename: "[name].js"
+      filename: "[name].js",
     },
     target: "node",
     module: {
@@ -24,6 +27,9 @@ const config: webpack.Configuration = merge(
     plugins: [
       new MiniCssExtractPlugin({
         filename: "ignored.css",
+      }),
+      new webpack.DefinePlugin({
+        $CSS_BUILT_ASSET_FILENAME: JSON.stringify(builtAssetsFilename.css),
       }),
     ],
   },
