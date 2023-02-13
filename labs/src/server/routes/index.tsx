@@ -9,6 +9,7 @@ export const TopPageRoutes: FastifyPluginAsync = async function (app) {
       <TopPageComponent allProjects={["prerender2"]} />
     );
 
+    res.type("text/html");
     res.send(html);
   });
 };
