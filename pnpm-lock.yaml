@@ -184,6 +184,7 @@ importers:
       mini-css-extract-plugin: ^1.3.1
       react: ^17.0.1
       react-dom: ^17.0.1
+      rimraf: ^4.1.2
       style-loader: ^1.1.3
       swc-loader: ^0.2.3
       ts-node: ^10.2.1
@@ -200,6 +201,7 @@ importers:
       '@types/react-dom': 16.9.17
       css-loader: 6.7.1_webpack@5.74.0
       mini-css-extract-plugin: 1.6.2_webpack@5.74.0
+      rimraf: 4.1.2
       style-loader: 1.3.0_webpack@5.74.0
       swc-loader: 0.2.3_oogp7xv4rppobi5ktio24rc7mq
       ts-node: 10.9.1_kxdsiv7aezulimm23ssquliqqq
@@ -9696,6 +9698,12 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: true
+
+  /rimraf/4.1.2:
+    resolution: {integrity: sha512-BlIbgFryTbw3Dz6hyoWFhKk+unCcHMSkZGrTFVAx2WmttdBSonsdtRlwiuTbDqTKr+UlXIUqJVS4QT5tUzGENQ==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /rollup-plugin-typescript2/0.30.0_oa2candk7eitu7usnsurwiyuuu:

@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "__prebuild:clean": "rimraf dist",
+    "build:prepare": "pnpm --filter labs run --sequential /__prebuild:.*/",
     "build:client": "webpack --config webpack.config.client.ts",
     "build:server": "webpack --config webpack.config.server.ts",
     "build": "pnpm --filter labs run --sequential /build:.*/",
@@ -25,6 +27,7 @@
     "@types/react-dom": "^16.9.9",
     "css-loader": "^6.3.0",
     "mini-css-extract-plugin": "^1.3.1",
+    "rimraf": "^4.1.2",
     "style-loader": "^1.1.3",
     "swc-loader": "^0.2.3",
     "ts-node": "^10.2.1",
