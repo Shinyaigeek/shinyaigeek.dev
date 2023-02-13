@@ -176,10 +176,12 @@ importers:
   labs:
     specifiers:
       '@swc/core': ^1.3.35
+      '@types/mini-css-extract-plugin': ^2.5.1
       '@types/react': ^16.9.56
       '@types/react-dom': ^16.9.9
       css-loader: ^6.3.0
       fastify: ^4.13.0
+      mini-css-extract-plugin: ^1.3.1
       react: ^17.0.1
       react-dom: ^17.0.1
       style-loader: ^1.1.3
@@ -192,9 +194,11 @@ importers:
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
       '@swc/core': 1.3.35
+      '@types/mini-css-extract-plugin': 2.5.1_webpack@5.74.0
       '@types/react': 16.14.34
       '@types/react-dom': 16.9.17
       css-loader: 6.7.1_webpack@5.74.0
+      mini-css-extract-plugin: 1.6.2_webpack@5.74.0
       style-loader: 1.3.0_webpack@5.74.0
       swc-loader: 0.2.3_oogp7xv4rppobi5ktio24rc7mq
       ts-node: 10.9.1_kxdsiv7aezulimm23ssquliqqq
@@ -2503,6 +2507,15 @@ packages:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
     dependencies:
       '@types/unist': 2.0.6
+    dev: true
+
+  /@types/mini-css-extract-plugin/2.5.1_webpack@5.74.0:
+    resolution: {integrity: sha512-evjjtJttaUexgg3au9ZJFy76tV9mySwX3a4Jl82BuormBYluWLRt0xk2urWrhOdPgDWzulRFyotwYOJTmkSgKw==}
+    deprecated: This is a stub types definition. mini-css-extract-plugin provides its own type definitions, so you do not need this installed.
+    dependencies:
+      mini-css-extract-plugin: 1.6.2_webpack@5.74.0
+    transitivePeerDependencies:
+      - webpack
     dev: true
 
   /@types/minimatch/5.1.2:
@@ -8099,7 +8112,7 @@ packages:
     dependencies:
       loader-utils: 2.0.3
       schema-utils: 3.1.1
-      webpack: 5.74.0_webpack-cli@4.10.0
+      webpack: 5.74.0_@swc+core@1.3.35
       webpack-sources: 1.4.3
     dev: true
 

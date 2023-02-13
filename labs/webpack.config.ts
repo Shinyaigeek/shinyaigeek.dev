@@ -1,4 +1,6 @@
 import webpack from "webpack";
+// @ts-ignore
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 const config: webpack.Configuration = {
   entry: "./src/server/index.tsx",
@@ -14,10 +16,15 @@ const config: webpack.Configuration = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    }),
+  ],
 };
 
 export default config;
