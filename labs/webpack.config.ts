@@ -4,7 +4,7 @@ const config: webpack.Configuration = {
   entry: "./src/server/index.tsx",
   target: "node",
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"],
+    extensions: [".ts", ".tsx", ".js", ".json", ".css"],
   },
   module: {
     rules: [
