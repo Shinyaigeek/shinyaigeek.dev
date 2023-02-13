@@ -12,7 +12,6 @@ const config: webpack.Configuration = merge(
     output: {
       filename: "[name].[contenthash].js"
     },
-    target: "node",
     module: {
       rules: [
         {

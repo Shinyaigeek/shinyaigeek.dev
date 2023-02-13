@@ -6,7 +6,12 @@ import { webpackBaseConfig } from "./webpack.config.base";
 
 const config: webpack.Configuration = merge(
   {
-    entry: "./src/server/index.tsx",
+    entry: {
+      server: "./src/server/index.tsx"
+    },
+    output: {
+      filename: "[name].[contenthash].js"
+    },
     target: "node",
     module: {
       rules: [
@@ -18,7 +23,7 @@ const config: webpack.Configuration = merge(
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: "[name].css",
+        filename: "ignored.css",
       }),
     ],
   },
