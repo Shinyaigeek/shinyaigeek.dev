@@ -10,7 +10,7 @@ const config: webpack.Configuration = merge(
       server: "./src/server/index.tsx"
     },
     output: {
-      filename: "[name].[contenthash].js"
+      filename: "[name].js"
     },
     target: "node",
     module: {
