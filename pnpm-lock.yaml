@@ -188,6 +188,7 @@ importers:
       swc-loader: ^0.2.3
       ts-node: ^10.2.1
       webpack: ^5.38.1
+      webpack-merge: ^5.8.0
     dependencies:
       fastify: 4.13.0
       react: 17.0.2
@@ -203,6 +204,7 @@ importers:
       swc-loader: 0.2.3_oogp7xv4rppobi5ktio24rc7mq
       ts-node: 10.9.1_kxdsiv7aezulimm23ssquliqqq
       webpack: 5.74.0_@swc+core@1.3.35
+      webpack-merge: 5.8.0
 
   worker:
     specifiers:
