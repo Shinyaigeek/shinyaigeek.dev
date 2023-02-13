@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.server.ts",
+    "build:server": "webpack --config webpack.config.server.ts",
+    "build:client": "webpack --config webpack.config.client.ts",
     "deploy-page": "wrangler worker publish dist",
     "login": "wrangler login"
   },
