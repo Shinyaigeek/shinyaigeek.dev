@@ -8,7 +8,7 @@ export const HeadComponent: FunctionComponent<Props> = function () {
   return (
     <head>
       <title>Labs | shinyaigeek.dev</title>
-      <link rel="stylesheet" href={$CSS_BUILT_ASSET_FILENAME} />
+      <link rel="stylesheet" href={`/${$CSS_BUILT_ASSET_FILENAME}`} />
     </head>
   );
 };
