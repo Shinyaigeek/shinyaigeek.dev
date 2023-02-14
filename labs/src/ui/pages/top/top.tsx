@@ -2,6 +2,7 @@ import React, { type FunctionComponent } from "react";
 import { HeaderComponent } from "../../components/header/header";
 import { HeadComponent } from "../../components/head/head";
 import styles from "./top.module.css";
+import "../../styles/global.css";
 
 interface Props {
   allProjects: string[];
