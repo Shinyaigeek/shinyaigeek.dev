@@ -12,6 +12,9 @@ export const Prerender2PageComponent: FunctionComponent<Props> = function () {
     <html>
       <head>
         <HeadComponent />
+        <script type="speculationrules">
+          {`{ "prerender": [{ "source": "list", "urls": ["/projects/prerender2/subpage/"] }] }`}
+        </script>
       </head>
       <body>
         <HeaderComponent />
