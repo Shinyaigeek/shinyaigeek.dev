@@ -10,7 +10,9 @@ interface Props {}
 export const Prerender2PageComponent: FunctionComponent<Props> = function () {
   return (
     <html>
-      <HeadComponent />
+      <head>
+        <HeadComponent />
+      </head>
       <body>
         <HeaderComponent />
         <main className={styles.prerender2}>

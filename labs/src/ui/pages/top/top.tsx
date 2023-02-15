@@ -13,7 +13,9 @@ export const TopPageComponent: FunctionComponent<Props> = function ({
 }) {
   return (
     <html>
-      <HeadComponent />
+      <head>
+        <HeadComponent />
+      </head>
       <body>
         <HeaderComponent />
         <main className={styles.top}>
