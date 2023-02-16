@@ -2,6 +2,7 @@ import webpack from 'webpack';
 // @ts-ignore
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { webpackBaseConfig } from 'build-tool/webpack/webpack.config.base';
+import merge from 'webpack-merge';
 
 const config: webpack.Configuration = {
     target: 'web',
@@ -17,3 +18,5 @@ const config: webpack.Configuration = {
         ],
     },
 };
+
+export default merge(config, webpackBaseConfig);
