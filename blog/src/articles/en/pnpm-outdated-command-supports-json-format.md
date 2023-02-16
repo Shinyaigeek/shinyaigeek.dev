@@ -1,6 +1,6 @@
 ---
 title: pnpm outdated command supports JSON format output
-tags: [Blog,JavaScript,TypeScript,OSS]
+tags: [Blog, JavaScript, TypeScript, OSS]
 description: pnpm outdated command, which detects outdated packages in a project, now supports output in JSON format.
 publishedAt: 2022/11/06
 updatedAt: 2018/11/06
@@ -8,10 +8,9 @@ updatedAt: 2018/11/06
 
 ## TL;DR
 
-- pnpm outdated command supports JSON format output
-- this allows us to make automation process of upgrading dependent packages in a project
-- I implemented this, so I write a blog post about this
-
+-   pnpm outdated command supports JSON format output
+-   this allows us to make automation process of upgrading dependent packages in a project
+-   I implemented this, so I write a blog post about this
 
 ## What is pnpm?
 
@@ -21,7 +20,7 @@ pnpm is one of the package managers used in Node.js environment.
 
 pnpm uses symlink to provide fast and space-saving download of npm modules. Normally, when you install npm modules in a project, themselves, and all their nested dependencies, are downloaded under `node_modules`. In the case of pnpm, pnpm will store those modules in a single disk area across projects, and hard links to them will be placed under the project. In addition, when a project depends on a same modules but with different versions, pnpm saves only the differences of updates for each module, instead of installing each one in its entirety. These methods save space and speed up the installation of modules.
 
-Another feature of pnpm is that it boldly adds utility commands and options not found in other package managers. 
+Another feature of pnpm is that it boldly adds utility commands and options not found in other package managers.
 
 [![tweet i have joined pnpm](../../assets/pnpm-outdated-command-supports-json-format/tweet.png)](https://twitter.com/Shinyaigeek/status/1577947254916550656)
 
@@ -39,10 +38,10 @@ It also supports output in list format, so that I get an output like below with 
 
 ![result of pnpm outdated --table false](../../../assets/pnpm-outdated-command-supports-json-format/pnpm-outdated-with-list.png)
 
-## Why did we want to support JSON format output in pnpm outdated 
+## Why did we want to support JSON format output in pnpm outdated
 
 the above table and list formats are too human-friendly and it is difficult to automate a process of updating dependent packages with such a formats.
-To facilitate automation, JSON format is now also supported as an output format. 
+To facilitate automation, JSON format is now also supported as an output format.
 
 ## About `--format` option
 

@@ -1,24 +1,26 @@
 {
-  "name": "shinyaigeek.dev",
-  "version": "1.0.0",
-  "description": "",
-  "main": "worker/dist/worker.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Shinyaigeek/Shinyaigeek.git"
-  },
-  "scripts": {
-    "format": "rome format --write .",
-    "lint": "rome check --apply-suggested ."
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Shinyaigeek/Shinyaigeek/issues"
-  },
-  "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
-  "devDependencies": {
-    "typescript": "^4.3.2"
-  }
+    "name": "shinyaigeek.dev",
+    "version": "1.0.0",
+    "description": "",
+    "main": "worker/dist/worker.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Shinyaigeek/Shinyaigeek.git"
+    },
+    "scripts": {
+        "__prettier": "prettier '**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx,html,md,css,json,yaml,yml}'",
+        "format": "pnpm run __prettier --write",
+        "format:check": "pnpm run __prettier --check"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Shinyaigeek/Shinyaigeek/issues"
+    },
+    "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
+    "devDependencies": {
+        "prettier": "^2.3.0",
+        "typescript": "^4.3.2"
+    }
 }

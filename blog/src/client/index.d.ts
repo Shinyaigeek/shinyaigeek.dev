@@ -1,22 +1,22 @@
-import { DOMAttributes } from "react";
+import { DOMAttributes } from 'react';
 
-declare module "*.scss" {
-	interface IClassNames {
-		[className: string]: string;
-	}
-	const classNames: IClassNames;
-	export = classNames;
+declare module '*.scss' {
+    interface IClassNames {
+        [className: string]: string;
+    }
+    const classNames: IClassNames;
+    export = classNames;
 }
 
 type CustomElement<T> = Partial<T & DOMAttributes<T> & { children: any }>;
 
 declare global {
-	namespace JSX {
-		interface IntrinsicElements {
-			["g-emoji"]: CustomElement<{
-				"fallback-src": string;
-				alias: string;
-			}>;
-		}
-	}
+    namespace JSX {
+        interface IntrinsicElements {
+            ['g-emoji']: CustomElement<{
+                'fallback-src': string;
+                alias: string;
+            }>;
+        }
+    }
 }

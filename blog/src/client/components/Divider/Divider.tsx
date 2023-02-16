@@ -1,6 +1,6 @@
-import React from "react";
-import divider from "./Divider.module.scss";
+import React from 'react';
+import divider from './Divider.module.scss';
 
 export function Divider() {
-	return <div className={divider.divider} />;
+    return <div className={divider.divider} />;
 }

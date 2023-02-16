@@ -16,36 +16,36 @@ As mentioned above, this is an ESLint Plugin that binds the orthographical varia
 
 https://github.com/Shinyaigeek/eslint-plugin-ban-orthographical-variant
 
-
 ```json
 {
-  "Audio": {
-    "synonyms": ["Speech", "Music"]
-  },
-  "Video": {
-    "synonyms": ["Movie", "TV Show", "Game", "Animation", "Documentary"]
-  },
-  "Image": {
-    "synonyms": ["Photo", "Drawing", "Painting", "Photograph", "Illustration"]
-  }
+    "Audio": {
+        "synonyms": ["Speech", "Music"]
+    },
+    "Video": {
+        "synonyms": ["Movie", "TV Show", "Game", "Animation", "Documentary"]
+    },
+    "Image": {
+        "synonyms": ["Photo", "Drawing", "Painting", "Photograph", "Illustration"]
+    }
 }
 ```
 
 if you prepare the dictionary file json such above,
 
 ```javascript
-const audioPath = "hoge"; // ok
-const musicPath = "hoge"; // warning!
+const audioPath = 'hoge'; // ok
+const musicPath = 'hoge'; // warning!
 ```
 
-This ESLint Plugin will bind such orthographical variants in JavaScript/TypeScript code. I think this plugin could support almost of the case (but perhaps, there is an omission). 
-- Variable name
-- Function name
-- Class name
-- Method name
-- Enum name
-- Interface name
-- etc...
+This ESLint Plugin will bind such orthographical variants in JavaScript/TypeScript code. I think this plugin could support almost of the case (but perhaps, there is an omission).
+
+-   Variable name
+-   Function name
+-   Class name
+-   Method name
+-   Enum name
+-   Interface name
+-   etc...
 
 I think I've probably covered most of them.
 
@@ -93,17 +93,22 @@ The above code is just an example. It accesses the node of VariableDeclarator (=
 
 In VariableDeclarator, `node.id` can be the one of
 
-- `Identifier`
+-   `Identifier`
+
 ```javascript
-const hoge = "hoge";
+const hoge = 'hoge';
 ```
-- `ArrayPattern`
+
+-   `ArrayPattern`
+
 ```javascript
-const [hoge] = ["hoge"];
+const [hoge] = ['hoge'];
 ```
-- `ObjectPattern`
+
+-   `ObjectPattern`
+
 ```javascript
-const { hoge } = { hoge: "hoge" };
+const { hoge } = { hoge: 'hoge' };
 ```
 
 Get variable names in each case. (`ObjectPattern` and `ArrayPattern` are sometimes nested, so I needed to get them recursively).

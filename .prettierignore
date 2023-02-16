@@ -1,0 +1,6 @@
+dist
+node_modules
+.linaria-cache
+public
+server
+pnpm-lock.yaml
