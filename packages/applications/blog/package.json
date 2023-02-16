@@ -28,6 +28,7 @@
         "@github/g-emoji-element": "^1.1.5",
         "@resvg/resvg-js": "^2.1.0",
         "body-parser": "^1.19.0",
+        "build-tool": "workspace:*",
         "emailjs-com": "^2.4.1",
         "front-matter": "^4.0.2",
         "github-calendar": "^2.2.7",
@@ -106,6 +107,7 @@
         "uglify-es": "^3.3.9",
         "webpack": "^5.38.1",
         "webpack-cli": "^4.7.0",
-        "webpack-dev-server": "^3.10.3"
+        "webpack-dev-server": "^3.10.3",
+        "webpack-merge": "^5.8.0"
     }
 }
