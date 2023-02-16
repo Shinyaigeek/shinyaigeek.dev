@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+            <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <url>
+                <loc>https://ja.shinyaigeek.dev/</loc>
+                <lastmod>2023-01-08</lastmod>
+                <changefreq>monthly</changefreq>
+                <priority>1.0</priority>
+            </url>
+            <url>
+                <loc>https://en.shinyaigeek.dev/</loc>
+                <lastmod>2023-01-08</lastmod>
+                <changefreq>monthly</changefreq>
+                <priority>1.0</priority>
+            </url>
+            <url>
+                <loc>https://ja.shinyaigeek.dev/profile/</loc>
+                <lastmod>2023-01-08</lastmod>
+                <changefreq>monthly</changefreq>
+                <priority>0.8</priority>
+            </url>
+            <url>
+                <loc>https://en.shinyaigeek.dev/profile/</loc>
+                <lastmod>2023-01-08</lastmod>
+                <changefreq>monthly</changefreq>
+                <priority>0.8</priority>
+            </url>
+            <url>
+    <loc>https://ja.shinyaigeek.dev/post/pnpm-outdated-command-supports-json-format/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/pnpm-outdated-command-supports-json-format/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/introduction-treeche/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/introduction-treeche/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/eslint-plugin-for-orthographical-variants/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/eslint-plugin-for-orthographical-variants/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/m17n-with-cloudflare-workers/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/m17n-with-cloudflare-workers/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/browser-on-browser/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/browser-on-browser/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/fatsify-header-with-raw-write-to-node-http-on-stream/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/fatsify-header-with-raw-write-to-node-http-on-stream/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/log-2020/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/log-2020/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/introduction-to-AST/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/introduction-to-AST/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/log-ca-web-speed-hackathon/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/log-ca-web-speed-hackathon/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/how-to-make-economic-ssr-with-clourflareworker/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/how-to-make-economic-ssr-with-clourflareworker/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/remake-blog-with-nextjs-nowsh/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/remake-blog-with-nextjs-nowsh/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/what-is-TypeScript-s-reversal/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/what-is-TypeScript-s-reversal/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/composition-react-app-with-react-router/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/composition-react-app-with-react-router/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/without-create-react-app/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/without-create-react-app/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url><url>
+    <loc>https://ja.shinyaigeek.dev/post/nice-to-meet-you/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+<url>
+    <loc>https://en.shinyaigeek.dev/post/nice-to-meet-you/</loc>
+    <lastmod>2023-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+              
+        </urlset>
+          

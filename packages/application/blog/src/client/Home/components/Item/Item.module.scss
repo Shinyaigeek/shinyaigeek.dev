@@ -1,0 +1,44 @@
+.itemHomeAnchor {
+  color: var(--theme-color);
+  text-decoration: none;
+  display: inline-block;
+
+  .title {
+    font-size: 32px;
+    text-align: center;
+    font-weight: bold;
+    padding: 8px 12px;
+  }
+}
+
+.home {
+  min-width: 300px;
+  width: 80%;
+  max-width: 750px;
+  margin: 12px auto;
+
+  .date {
+    padding: 16px 6px;
+    font-size: 18px;
+  }
+
+  .readMoreAnchor {
+    margin: 16px 0;
+    position: absolute;
+    right: 24px;
+    font-size: 20px;
+    color: var(--theme-color);
+  }
+
+  .readMore {
+    position: relative;
+    margin: 4px 0;
+    height: 64px;
+  }
+
+  .ogp {
+    width: 100%;
+    margin: 12px 0;
+    height: fit-content;
+  }
+}

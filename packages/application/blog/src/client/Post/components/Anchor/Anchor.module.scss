@@ -1,0 +1,36 @@
+.postAnchor {
+  position: fixed;
+  top: 72px;
+  @media (max-width: 889px) {
+    top: 102px;
+  }
+  left: 20vw;
+  width: 204px;
+  color: var(--theme-color);
+  background: var(--theme-background);
+  border: var(--theme-color) 1px solid;
+  border-radius: 6px;
+  padding: 4px;
+  a {
+    display: block;
+    color: var(--theme-color);
+    margin: 6px 0 6px 6px;
+    text-decoration: none;
+
+    &:before {
+      content: '##';
+      margin-right: 2px;
+      font-size: 14px;
+    }
+  }
+
+  > summary::-webkit-details-marker {
+    color: var(--theme-color);
+    margin-left: 6px;
+  }
+
+  summary {
+    font-size: 18px;
+    font-weight: bold;
+  }
+}

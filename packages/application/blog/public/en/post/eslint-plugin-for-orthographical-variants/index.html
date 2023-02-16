@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en"><head><title>ESLint plugin to ban orthographical variants in code | shinyaigeek.dev</title><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta property="og:title" content="ESLint plugin to ban orthographical variants in code | shinyaigeek.dev"><meta property="og:site_name" content="shinyaigeek.dev"><meta property="og:locale" content="ja_JP"><meta name="description" content="Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"><meta property="og:description" content="Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"><meta property="og:url" content="https://shinyaigeek.dev/en/post/eslint-plugin-for-orthographical-variants"><meta name="twitter:site" content="@shinyaigeek"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:image" content="https://en.shinyaigeek.dev/assets/ogimage/en/eslint-plugin-for-orthographical-variants.png"><meta name="twitter:image" content="https://en.shinyaigeek.dev/assets/ogimage/en/eslint-plugin-for-orthographical-variants.png"><link rel="icon" type="image/x-icon" href="/assets/static/favicon.ico"><link rel="stylesheet" type="text/css" href="/assets/styles.ada9902fc362b01889c3.css"><link rel="stylesheet" type="text/css" href="/assets/static/a11y-dark.min.css"><link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"><link rel="preload" as="style" href="/assets/static/a11y-dark.min.css"><link rel="preload" as="style" href="/assets/styles.ada9902fc362b01889c3.css"><link rel="preload" as="style" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"><link rel="preload" as="image" href="/assets/static/icon_transparent_header.png"><link rel="alternate" type="application/rss+xml" title="shinyaigeek.dev" href="/rss.xml"></head><body><div id="_app"><div class="fmapAu0fpx364Dzl_9z0"><div class="J2e3WZniL57BvLtita5T"><div class="kVHiWHyN1gv5Y41SpACy"><a href="/" class="link2Home"><div><img src="/assets/static/icon_transparent_header.png" alt="icon" class="vwQ8HQPKPoICc2atrDju" width="36px" height="36px">shinyaigeek.dev</div></a></div><div class="hOkVSJvM823tjX0FjgO_"><div class="FpNMxf5Gx0pwkDBdeqif"><details><summary> <span role="img" aria-label="language"><g-emoji fallback-src="/assets/static/earth_africa.png" alias="earth">🌍</g-emoji></span> English</summary><div class="ZAVxrSvsXSeI9pV9Rbax"><a href="http://ja.shinyaigeek.dev/post/eslint-plugin-for-orthographical-variants" class="aYFqAG93sRJ7BJMCPjsa"><span role="img" aria-label="country"><g-emoji fallback-src="/assets/static/jp.png" alias="Japan">🇯🇵</g-emoji></span>日本語</a><a href="https://en.shinyaigeek.dev/post/eslint-plugin-for-orthographical-variants" class="aYFqAG93sRJ7BJMCPjsa undefined"><span role="img" aria-label="country"><span><g-emoji fallback-src="/assets/static/us.png" alias="America">🇺🇸</g-emoji><g-emoji fallback-src="/assets/static/gb.png" alias="United States">🇬🇧</g-emoji></span></span>English</a></div></details></div><div class="FpNMxf5Gx0pwkDBdeqif"><a href="/" class="link2Home">Blog</a></div><div class="FpNMxf5Gx0pwkDBdeqif"><a href="/profile" id="link2profile">Profile</a></div><div class="FpNMxf5Gx0pwkDBdeqif"><a href="https://github-activity.shinyaigeek.dev/" id="link2activity">Activity</a></div></div></div><div class="sxaQUUuymSmhNwqAMaks"><div><details class="h0AHqg9AmVXjXCnYqFqc"><summary class="post--anchor__title" id="post--anchor__title">Table of Contents</summary><a href="#2__0">What is this</a><a href="#2__1">Summary of this plugin</a><a href="#2__2">Motivation</a><a href="#2__3">How to</a><a href="#2__4">Why not is this needed?</a></details><div class="Y8c8TlU3k_Y72ndSGmnk"><h1>ESLint plugin to ban orthographical variants in code</h1><div>2022/03/15</div><div class="BYkaTwWlH4C2pP1hi2JY"><div>Programming</div><div>JavaScript</div><div>DX</div><div>Frontend</div></div></div><div class="L6tHhpo3uw534DnsakEH"><h2 id="2__0">What is this</h2>
+<p>I created an ESLint Plugin to ban orthographical variants in code. I realized that the cost-effectiveness of this plugin was not good when I wrote some tests for this plugin, and I gave birth to a monster that is neither interesting nor technically great nor convenient. This blog post is a grave marker for this monster.</p>
+<h2 id="2__1">Summary of this plugin</h2>
+<p>As mentioned above, this is an ESLint Plugin that binds the orthographical variants in code.</p>
+<p><a href="https://github.com/Shinyaigeek/eslint-plugin-ban-orthographical-variant">https://github.com/Shinyaigeek/eslint-plugin-ban-orthographical-variant</a></p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"Audio"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"synonyms"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"Speech"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"Music"</span><span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"Video"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"synonyms"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"Movie"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"TV Show"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"Game"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"Animation"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"Documentary"</span><span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"Image"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"synonyms"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">"Photo"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"Drawing"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"Painting"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"Photograph"</span><span class="hljs-punctuation">,</span> <span class="hljs-string">"Illustration"</span><span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>if you prepare the dictionary file json such above,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> audioPath = <span class="hljs-string">"hoge"</span>; <span class="hljs-comment">// ok</span>
+<span class="hljs-keyword">const</span> musicPath = <span class="hljs-string">"hoge"</span>; <span class="hljs-comment">// warning!</span>
+</code></pre>
+<p>This ESLint Plugin will bind such orthographical variants in JavaScript/TypeScript code. I think this plugin could support almost of the case (but perhaps, there is an omission).</p>
+<ul>
+<li>Variable name</li>
+<li>Function name</li>
+<li>Class name</li>
+<li>Method name</li>
+<li>Enum name</li>
+<li>Interface name</li>
+<li>etc...</li>
+</ul>
+<p>I think I've probably covered most of them.</p>
+<h2 id="2__2">Motivation</h2>
+<p>An orthographical variant is not rare, in specially in the codebase made by multiple people, but we are an engineer and intend to find meaning in anything, also in just an orthographical variant, and it also reduces the search-ability. It is also common that a word in a business domain becomes another word in a codebase, which makes it a mystery for newcomers to the project.</p>
+<p>In the first place, existing a lot of the term on a business domain brings difficulty, so in some case we have been enforced to manage such terms in a dictionary file. I thought it will be cool to ban bothering orthographical variants via managing such a dictionary file, so I created this plugin.</p>
+<h2 id="2__3">How to</h2>
+<p>It is really easy but...</p>
+<ol>
+<li>Access a specific Node in AST</li>
+<li>get variable name</li>
+<li>check it whether it is an orthographical variant.</li>
+</ol>
+<pre><code class="hljs language-typescript">    <span class="hljs-title class_">VariableDeclarator</span>(node) {
+        <span class="hljs-keyword">const</span> identifier = node.<span class="hljs-property">id</span>;
+
+        <span class="hljs-keyword">const</span> variableNames = <span class="hljs-title function_">getVariableNameFromBindingName</span>(identifier);
+
+        <span class="hljs-keyword">const</span> dictionaryPath = <span class="hljs-title function_">getDictionaryPath</span>(options[<span class="hljs-number">0</span>].<span class="hljs-property">dictionaryPath</span>);
+        <span class="hljs-keyword">const</span> dictionary = <span class="hljs-title function_">getDictionary</span>(dictionaryPath);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> variableName <span class="hljs-keyword">of</span> variableNames) {
+          <span class="hljs-title function_">lintWithVariable</span>(
+            variableName,
+            dictionary,
+            <span class="hljs-function">(<span class="hljs-params">originWord, synomsysWord</span>) =></span>
+              <span class="hljs-title function_">report</span>({
+                node,
+                <span class="hljs-attr">messageId</span>: <span class="hljs-string">"banOrthographicalVariant"</span>,
+                <span class="hljs-attr">data</span>: {
+                  originWord,
+                  synomsysWord,
+                },
+              })
+          );
+        }
+      },
+</code></pre>
+<p>The above code is just an example. It accesses the node of VariableDeclarator (=variable declaration).</p>
+<p>In VariableDeclarator, <code>node.id</code> can be the one of</p>
+<ul>
+<li><code>Identifier</code></li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> hoge = <span class="hljs-string">"hoge"</span>;
+</code></pre>
+<ul>
+<li><code>ArrayPattern</code></li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> [hoge] = [<span class="hljs-string">"hoge"</span>];
+</code></pre>
+<ul>
+<li><code>ObjectPattern</code></li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> { hoge } = { <span class="hljs-attr">hoge</span>: <span class="hljs-string">"hoge"</span> };
+</code></pre>
+<p>Get variable names in each case. (<code>ObjectPattern</code> and <code>ArrayPattern</code> are sometimes nested, so I needed to get them recursively).</p>
+<p>All that is left is to load the dictionary file and judge if it is a orthographical variant or not.</p>
+<p>If you want to see how it works, please check out test cases. <a href="https://github.com/Shinyaigeek/eslint-plugin-ban-orthographical-variant/blob/main/src/__tests__/ban-orthographical-variant.test.ts">https://github.com/Shinyaigeek/eslint-plugin-ban-orthographical-variant/blob/main/src/__tests__/ban-orthographical-variant.test.ts</a></p>
+<h2 id="2__4">Why not is this needed?</h2>
+<p>When I was writing a dictionary file for mock for testing, I realized that I didn't want to write a dictionary file in the first place, so I think I should have hacked here.</p></div><div class="XTxSDCE1gmhoF59UaA7g"><div class="mdGYkZO2YHxhxRXU338z"><div class="O6UishUpXe8xGlTrCl8G"><img src="/assets/static/icon_transparent.png" class="J5UgGRYhWe9JWeYlm2bw" alt="monkey-icon" width="270px" height="270px"></div><div class="cab8_7jeBIe5dRHd8ikS"><div class="kEage_DVZV_Stt0z3eAT"><div class="_5U8hWpqU834VUiKxwCpA"><img src="/assets/static/earth.png" alt="earth" width="50px" height="50px"></div></div></div></div><div class="baseprofile"><div class="_pakeuUKwDGIGV1PIDFI">Hi <span role="img" aria-label="wave hand">👋</span> I&#x27;m <span class="zQUgJkaqGKzVRFrvk7mk">Shinobu Hayashi a.k.a Shinyaigeek(しにゃい)</span>.</div><div class="CMC6WyjhCeKfvY5zyyq0"><span data-text="Web Developer" class="v7yavk2O9dr3NZXn186P">Web Developer</span> <g-emoji fallback-src="/assets/static/spider_web.png" alias="spider-web">🕸</g-emoji> / <span data-text="Reliable web Enthusiast" class="v7yavk2O9dr3NZXn186P">Reliable Web Enthusiast</span> <g-emoji fallback-src="/assets/static/fire.png" alias="fire">🔥</g-emoji> </div><div class="gA7tXpIz5V3YPffc9WIr">Faster, Lighter, More accessible, More secure, More productive Web for anyone, anytime , anywhere.</div><div class="v0ZqRqZjlqevKrsWtDTt"><div class="zdvavtYkqc1dXYPR1y0c"><a id="twitter" href="https://twitter.com/Shinyaigeek"><img src="/assets/static/twitter.svg" alt="twitter" width="54px" height="54px"></a></div><div class="zdvavtYkqc1dXYPR1y0c"><a id="github" href="https://github.com/Shinyaigeek"><img src="/assets/static/github.svg" alt="github" width="54px" height="54px"></a></div><div class="zdvavtYkqc1dXYPR1y0c"><a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/"><img src="/assets/static/linkedin.svg" alt="linkedin" width="54px" height="54px"></a></div></div><div class="l5KzSvykijElHJc7q2c9"><a href="mailto:me@shinyaigeek.dev">Contact Me on Email <g-emoji fallback-src="/assets/static/email.png" alias="email">📧</g-emoji></a></div></div></div></div></div><div class="AJQSVdi_FHylcHDbYLWV">Copyright. 2022 Shinyaigeek</div></div></div></body><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;0893ac88cf0542af88bfd9b93008b408&quot;, &quot;spa&quot;: true}"></script><script defer="" src="/assets/r.a0d01c88f547277aab5a.js" async=""></script></html>

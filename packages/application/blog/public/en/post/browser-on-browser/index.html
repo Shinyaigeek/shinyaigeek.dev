@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="en"><head><title>ブラウザの上でブラウザを動かす | shinyaigeek.dev</title><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta property="og:title" content="ブラウザの上でブラウザを動かす | shinyaigeek.dev"><meta property="og:site_name" content="shinyaigeek.dev"><meta property="og:locale" content="ja_JP"><meta name="description" content="Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"><meta property="og:description" content="Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"><meta property="og:url" content="https://shinyaigeek.dev/en/post/browser-on-browser"><meta name="twitter:site" content="@shinyaigeek"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:image" content="https://en.shinyaigeek.dev/assets/ogimage/en/browser-on-browser.png"><meta name="twitter:image" content="https://en.shinyaigeek.dev/assets/ogimage/en/browser-on-browser.png"><link rel="icon" type="image/x-icon" href="/assets/static/favicon.ico"><link rel="stylesheet" type="text/css" href="/assets/styles.ada9902fc362b01889c3.css"><link rel="stylesheet" type="text/css" href="/assets/static/a11y-dark.min.css"><link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"><link rel="preload" as="style" href="/assets/static/a11y-dark.min.css"><link rel="preload" as="style" href="/assets/styles.ada9902fc362b01889c3.css"><link rel="preload" as="style" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"><link rel="preload" as="image" href="/assets/static/icon_transparent_header.png"><link rel="alternate" type="application/rss+xml" title="shinyaigeek.dev" href="/rss.xml"></head><body><div id="_app"><div class="fmapAu0fpx364Dzl_9z0"><div class="J2e3WZniL57BvLtita5T"><div class="kVHiWHyN1gv5Y41SpACy"><a href="/" class="link2Home"><div><img src="/assets/static/icon_transparent_header.png" alt="icon" class="vwQ8HQPKPoICc2atrDju" width="36px" height="36px">shinyaigeek.dev</div></a></div><div class="hOkVSJvM823tjX0FjgO_"><div class="FpNMxf5Gx0pwkDBdeqif"><details><summary> <span role="img" aria-label="language"><g-emoji fallback-src="/assets/static/earth_africa.png" alias="earth">🌍</g-emoji></span> English</summary><div class="ZAVxrSvsXSeI9pV9Rbax"><a href="http://ja.shinyaigeek.dev/post/browser-on-browser" class="aYFqAG93sRJ7BJMCPjsa"><span role="img" aria-label="country"><g-emoji fallback-src="/assets/static/jp.png" alias="Japan">🇯🇵</g-emoji></span>日本語</a><a href="https://en.shinyaigeek.dev/post/browser-on-browser" class="aYFqAG93sRJ7BJMCPjsa undefined"><span role="img" aria-label="country"><span><g-emoji fallback-src="/assets/static/us.png" alias="America">🇺🇸</g-emoji><g-emoji fallback-src="/assets/static/gb.png" alias="United States">🇬🇧</g-emoji></span></span>English</a></div></details></div><div class="FpNMxf5Gx0pwkDBdeqif"><a href="/" class="link2Home">Blog</a></div><div class="FpNMxf5Gx0pwkDBdeqif"><a href="/profile" id="link2profile">Profile</a></div><div class="FpNMxf5Gx0pwkDBdeqif"><a href="https://github-activity.shinyaigeek.dev/" id="link2activity">Activity</a></div></div></div><div class="sxaQUUuymSmhNwqAMaks"><div><details class="h0AHqg9AmVXjXCnYqFqc"><summary class="post--anchor__title" id="post--anchor__title">Table of Contents</summary><a href="#2__0">初めに</a><a href="#2__1">ブラウザの仕組み概略図</a><a href="#2__2">ブラウザ on ブラウザ</a><a href="#2__3">nativeでの実装</a><a href="#2__4">Webでの実装</a><a href="#2__5">終わりに</a></details><div class="Y8c8TlU3k_Y72ndSGmnk"><h1>ブラウザの上でブラウザを動かす</h1><div>2021/12/10</div><div class="BYkaTwWlH4C2pP1hi2JY"><div>Programming</div><div>Rust</div><div>JavaScript</div><div>Web</div><div>Browser</div></div></div><div class="L6tHhpo3uw534DnsakEH"><h2 id="2__0">初めに</h2>
+<p>こんにちは, <a href="https://twitter.com/Shinyaigeek">しにゃい/Shinyaigeek</a> です.</p>
+<p>趣味でちまちまと作っていた自作ブラウザ <a href="https://github.com/shinyaigeek/shinyaic">Shinyaic</a> を Chrome 上で動かすことができたので, それについて勉強ノートを書こうと思います.</p>
+<p>最初に, 実際に Chrome 上でどのように自作ブラウザが動いているかの様子を載せたいと思います.</p>
+<p><strong><code>&#x3C;input /></code> の値が空の時は paint ボタンを押すとこちらで用意したHTML &#x26; CSSで描画される</strong></p>
+<p><img src="../../../assets/browser-on-browser/shinyaic.png" alt="Shinyaic with default html"></p>
+<p><strong>example.com を入力に入れると, いい感じに描画される</strong></p>
+<p><img src="../../../assets/browser-on-browser/example.png" alt="shinyaic with example.com"></p>
+<p>(実はそもそも自作ブラウザが開発途中で, example.comくらいしかまともに描画できませんがそこはご了承ください...)</p>
+<p><a href="https://shinyaic-wasm-playground.vercel.app/">Shinyaic Wasm Playground</a> から実際に Chrome ブラウザの上で自作ブラウザを動かすことができます.</p>
+<p>playground 自体のリポジトリは <a href="https://github.com/Shinyaigeek/ShinyaicWasmPlayground">https://github.com/Shinyaigeek/ShinyaicWasmPlayground</a> です.</p>
+<p>また補足になるのですが, <strong>ブラウザ</strong> という言葉がどこまでを含むのか, についても先に決めておきたいと思います. 本稿ではブラウザは HTML や CSS を受け取って, それを元に描画するところ, ある種の HTML Rendering Engine とも言える部分をブラウザとして進めていきます. なので, JS Engine や HTTP 通信をする, といった部分は本稿の対象外となります.</p>
+<p>本稿ではこの自作ブラウザの実装についての詳細には触れるつもりがありません, 興味がある方は以下のスライドを見てくださると幸いです.</p>
+<p><a href="https://speakerdeck.com/shinyaigeek/burauzazuo-rifalsesu-me"><img src="https://files.speakerdeck.com/presentations/f70e84d625ae44949d1a6f6a87909011/slide_0.jpg?19382839" alt=""></a></p>
+<h2 id="2__1">ブラウザの仕組み概略図</h2>
+<p><img src="/assets/browser-on-browser/sys.png" alt="browser system"></p>
+<p>ブラウザの仕組みの概略図をおおまかに書くとこのようになっています. 本当は描画の処理はもう少し細かいんですし, ブラウザ固有の部分もあったりするのですがそこまで突っ込むと本題から外れてしまうため本稿では割愛します.</p>
+<p>まず HTML から DOM を構築, CSS から CSSOM を構築して, それらをもとに <code>RenderTree</code> を構築します. この <code>RenderTree</code> には描画に必要な情報が格納されます. DOM は <strong>Document Object Model</strong> という名の通り, HTML のマークアップの構造に基づいた情報が格納されています. 例えばこのノードはH1要素である...と言ったこと, あるいは <code>&#x3C;head /></code> 要素 や <code>&#x3C;meta /></code> 要素など描画されるわけではない要素についてのノードも格納されています. 一方 <code>RenderTree</code> は描画に必要な情報のみが格納されるので, <code>display: none;</code> が付与されていたりあるいは <code>&#x3C;head /></code> 要素といった, 描画されない要素のノードは含まれません. また基本的にはそのノードが HTML における何タグであるか, といった情報も削げ落ちており, どんな Node であるか (Block か Inline か Scroll か etc...) か, そしてどんなスタイルが適応されるか, といった情報が格納されます.</p>
+<p><code>RenderTree</code> を構築すれば, 次はそれを元に矩形情報を計算します. このノードがどれくらいの大きさで, どの位置に描画されるか, ということを計算して, それが完了すれば実際に描画処理を行います.</p>
+<h2 id="2__2">ブラウザ on ブラウザ</h2>
+<p>このブラウザを動かすための処理のうち, 実際にブラウザ上で実行できる部分はシンプルなブラウザであれば意外に多いということに上のセクションで気付く方もいらっしゃるかと思います.</p>
+<p>HTML -> DOM にする処理や, <code>RenderTree</code> を構築する処理は OS のあれこれに依存している処理というわけではないので, 普通にブラウザ上のランタイムでも実行することができます. 今回は自作ブラウザを Rust で実装していたので, WASM へと compile した上でそれをブラウザで動かしていましたが, 普通に JavaScript で書けばそのまま動かすこともできます.</p>
+<p>単純に実装したブラウザがブラウザ上で動かすことが難しい主な箇所は, 描画処理と矩形情報を算出する処理となります. というのも僕の自作ブラウザや, 世の一般的なブラウザといったネイティブアプリが行う OS の低レイヤのAPIを用いて行われている描画処理をそのまま Web で行うってできなくない？となるのは至極当然のことと言えるでしょう. また矩形情報の算出も矩形情報を得るためにはこういった文をこのフォントサイズでこのフォントで描画するとどれくらいの幅, 高さをとるか, やあるいはどれくらいの window サイズで描画するか, といったことに依存してしまい, こうした処理も一筋縄ではいきません.(icedのように, for Web な出力もできるGUI Library for Native Appもありますが, 流石に即オチが過ぎるので今回はそれに頼りません)</p>
+<p>描画する処理, 矩形情報を算出する処理をブラウザ上で実行するために, これらの処理を for Web として <a href="https://developer.mozilla.org/ja/docs/Web/API/Canvas_API">Canvas API</a> で行うよう実装できれば, Web上で, ブラウザ上で自作ブラウザを動かすことが可能なのでは? というのが本稿の概要であり, 今回の趣味開発(?)の原点発想となります.</p>
+<h2 id="2__3">nativeでの実装</h2>
+<p>僕の自作ブラウザでは, <a href="https://github.com/iced-rs/iced">iced</a> という描画エンジンを利用しています.</p>
+<p>それありきで, 以下のような実装をしています (細かい実装は割愛しています).</p>
+<p><strong>textからそれがそのフォントでそのフォントサイズで描画されるとどれくらいの幅, 高さを取るか算出する処理</strong></p>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_font_rendered_size</span>(&#x26;<span class="hljs-keyword">self</span>, width: <span class="hljs-type">f64</span>, text: <span class="hljs-type">String</span>) <span class="hljs-punctuation">-></span> PaintFontRenderedRect {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword"></span><span class="hljs-variable">ctfont</span> = <span class="hljs-keyword">self</span>
+        .font
+        .<span class="hljs-title function_ invoke__">native_font</span>()
+        .<span class="hljs-title function_ invoke__">clone_with_font_size</span>(<span class="hljs-keyword">self</span>.size <span class="hljs-keyword">as</span> <span class="hljs-type">f64</span>);
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword"></span><span class="hljs-variable">font</span> = ctfont.<span class="hljs-title function_ invoke__">bounding_box</span>();
+
+    <span class="hljs-comment">// 細かい実装は割愛</span>
+
+    PaintFontRenderedRect {
+        width: width,
+        height: height,
+    }
+}
+</code></pre>
+<p><strong>RenderObject をもとに描画する処理</strong></p>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">use</span> iced_graphics::Primitive;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">create_block</span>(render_object: RenderObject) <span class="hljs-punctuation">-></span> Primitive {
+  Primitive::Quad {
+    ...
+  }
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">create_text</span>(render_object: RenderObject) <span class="hljs-punctuation">-></span> Primitive {
+  Primitive::Text {
+    ...
+  }
+}
+
+</code></pre>
+<p>このように <code>RenderObject</code> をもとに, 矩形情報を計算しそれを元に <code>iced</code> の <code>Primitive</code> という単位に変換します. <code>create_block</code> では「この位置でこの大きさで, この背景色のブロック」というのを生成します. 同様に <code>create_text</code> では「この位置でこのフォントでこの文字」というのを生成します.</p>
+<p>これにより生成された <code>Primitive</code> を <code>iced</code> に食わせることによって実際にネイティブアプリとして描画することが実現されています.</p>
+<h2 id="2__4">Webでの実装</h2>
+<p>Web での実装では, これを Canvas API ベースのものに置き換えます.</p>
+<p>まず, <code>RenderTree</code> の構築処理までと Layout 処理の一部は, native で使われている実装と共通のものを使いまわせるので, それ以降の,</p>
+<ul>
+<li>Layout処理におけるこの文をこのフォントで描画したときどれくらい幅, 高さをとるかの取得</li>
+<li>実際に描画する処理</li>
+</ul>
+<p>をWebでも動くようにするために, Canvas APIによって実装します.</p>
+<ul>
+<li>/core: RenderTreeの構築までと, 一部の句形情報算出のための処理</li>
+<li>/native: nativeでの処理</li>
+<li>/wasm: webでの処理</li>
+</ul>
+<p>とpackageを分けて, native, wasm から core に依存する形で実装します.</p>
+<p>それありきで, Web で動かすための /wasm package では以下のような実装をしています. (細かい実装は割愛しています)</p>
+<p><strong>textからそれがそのフォントでそのフォントサイズで描画されるとどれくらいの幅, 高さを取るか算出する処理</strong></p>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_font_rendered_size</span>(&#x26;<span class="hljs-keyword">self</span>, width: <span class="hljs-type">f64</span>, text: <span class="hljs-type">String</span>) <span class="hljs-punctuation">-></span> PaintFontRenderedRect {
+  <span class="hljs-keyword">self</span>.canvas_context.<span class="hljs-title function_ invoke__">set_font</span>(...);
+  <span class="hljs-keyword">let</span> <span class="hljs-keyword"></span><span class="hljs-variable">text_rect</span> = canvas.<span class="hljs-title function_ invoke__">measure_text</span>(...).<span class="hljs-title function_ invoke__">unwrap</span>();
+  <span class="hljs-keyword">let</span> <span class="hljs-keyword"></span><span class="hljs-variable">text_width</span> = text_rect.<span class="hljs-title function_ invoke__">width</span>();
+  <span class="hljs-keyword">let</span> <span class="hljs-keyword"></span><span class="hljs-variable">height</span> = text_rect.<span class="hljs-title function_ invoke__">actual_bounding_box_descent</span>() + text_rect.<span class="hljs-title function_ invoke__">actual_bounding_box_ascent</span>();
+
+  <span class="hljs-comment">// 割愛</span>
+
+  PaintFontRenderedRect {
+      width: width,
+      height: height,
+  }
+}
+</code></pre>
+<p><strong>RenderObject をもとに描画する処理</strong></p>
+<pre><code class="hljs language-rust">
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">create_block</span>(render_object: RenderObject, canvas_context: CanvasContext) <span class="hljs-punctuation">-></span> Primitive {
+  canvas_context.<span class="hljs-title function_ invoke__">set_fill_style</span>(...);
+  canvas_context.<span class="hljs-title function_ invoke__">fill_rect</span>(...);
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">create_text</span>(render_object: RenderObject, canvas_context: CanvasContext) <span class="hljs-punctuation">-></span> Primitive {
+  canvas.<span class="hljs-title function_ invoke__">set_fill_style</span>(...);
+  canvas.<span class="hljs-title function_ invoke__">set_font</span>(...);
+}
+
+</code></pre>
+<p><strong>web-sys</strong> moduleから, Canvas APIにアクセスして, よしなに矩形情報の算出, 描画を行います.</p>
+<p>WASM から, このように HTML を入力にとり Canvas 上に描画するところまで実行することができました. やはり標準化されている仕様に則って当たり前のことを当たり前にすれば変な遊びもできてしまうので楽しいですね.</p>
+<h2 id="2__5">終わりに</h2>
+<p>本稿を通じて少しでも自作ブラウザ, 車輪の再発明って楽しそうだなと感じていただければ幸いです. また, 最近 OSS や卒論にかまけて開発が止まっていますが, 自作ブラウザ <a href="https://github.com/shinyaigeek/shinyaic">Shinyaic</a> を見ていただいたり面白いと思ったなら star をつけてくださると励みになります！</p>
+<p>ブラウザの中でブラウザを動かせるようになったので, 次はブラウザの中でブラウザの中でブラウザを動かしたいと思います.</p></div><div class="XTxSDCE1gmhoF59UaA7g"><div class="mdGYkZO2YHxhxRXU338z"><div class="O6UishUpXe8xGlTrCl8G"><img src="/assets/static/icon_transparent.png" class="J5UgGRYhWe9JWeYlm2bw" alt="monkey-icon" width="270px" height="270px"></div><div class="cab8_7jeBIe5dRHd8ikS"><div class="kEage_DVZV_Stt0z3eAT"><div class="_5U8hWpqU834VUiKxwCpA"><img src="/assets/static/earth.png" alt="earth" width="50px" height="50px"></div></div></div></div><div class="baseprofile"><div class="_pakeuUKwDGIGV1PIDFI">Hi <span role="img" aria-label="wave hand">👋</span> I&#x27;m <span class="zQUgJkaqGKzVRFrvk7mk">Shinobu Hayashi a.k.a Shinyaigeek(しにゃい)</span>.</div><div class="CMC6WyjhCeKfvY5zyyq0"><span data-text="Web Developer" class="v7yavk2O9dr3NZXn186P">Web Developer</span> <g-emoji fallback-src="/assets/static/spider_web.png" alias="spider-web">🕸</g-emoji> / <span data-text="Reliable web Enthusiast" class="v7yavk2O9dr3NZXn186P">Reliable Web Enthusiast</span> <g-emoji fallback-src="/assets/static/fire.png" alias="fire">🔥</g-emoji> </div><div class="gA7tXpIz5V3YPffc9WIr">Faster, Lighter, More accessible, More secure, More productive Web for anyone, anytime , anywhere.</div><div class="v0ZqRqZjlqevKrsWtDTt"><div class="zdvavtYkqc1dXYPR1y0c"><a id="twitter" href="https://twitter.com/Shinyaigeek"><img src="/assets/static/twitter.svg" alt="twitter" width="54px" height="54px"></a></div><div class="zdvavtYkqc1dXYPR1y0c"><a id="github" href="https://github.com/Shinyaigeek"><img src="/assets/static/github.svg" alt="github" width="54px" height="54px"></a></div><div class="zdvavtYkqc1dXYPR1y0c"><a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/"><img src="/assets/static/linkedin.svg" alt="linkedin" width="54px" height="54px"></a></div></div><div class="l5KzSvykijElHJc7q2c9"><a href="mailto:me@shinyaigeek.dev">Contact Me on Email <g-emoji fallback-src="/assets/static/email.png" alias="email">📧</g-emoji></a></div></div></div></div></div><div class="AJQSVdi_FHylcHDbYLWV">Copyright. 2022 Shinyaigeek</div></div></div></body><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;0893ac88cf0542af88bfd9b93008b408&quot;, &quot;spa&quot;: true}"></script><script defer="" src="/assets/r.a0d01c88f547277aab5a.js" async=""></script></html>

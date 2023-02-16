@@ -1,0 +1,27 @@
+.header {
+    background-color: var(--theme-header);
+    height: 72px;
+    width: 100vw;
+    font-size: 30px;
+    color: #e4e4e4;
+    box-shadow: 1px 1px 1px #544854;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+.icon {
+    width: 36px;
+    object-fit: contain;
+}
+
+.title {
+    position: relative;
+    left: 10px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}

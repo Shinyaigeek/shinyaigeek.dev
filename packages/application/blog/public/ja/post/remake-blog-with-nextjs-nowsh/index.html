@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="ja"><head><title>Next.jsとnow.shでブログを新しく作り替えた | shinyaigeek.dev</title><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta property="og:title" content="Next.jsとnow.shでブログを新しく作り替えた | shinyaigeek.dev"><meta property="og:site_name" content="shinyaigeek.dev"><meta property="og:locale" content="ja_JP"><meta name="description" content="Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"><meta property="og:description" content="Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"><meta property="og:url" content="https://shinyaigeek.dev/ja/post/remake-blog-with-nextjs-nowsh"><meta name="twitter:site" content="@shinyaigeek"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:image" content="https://ja.shinyaigeek.dev/assets/ogimage/ja/remake-blog-with-nextjs-nowsh.png"><meta name="twitter:image" content="https://ja.shinyaigeek.dev/assets/ogimage/ja/remake-blog-with-nextjs-nowsh.png"><link rel="icon" type="image/x-icon" href="/assets/static/favicon.ico"><link rel="stylesheet" type="text/css" href="/assets/styles.ada9902fc362b01889c3.css"><link rel="stylesheet" type="text/css" href="/assets/static/a11y-dark.min.css"><link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"><link rel="preload" as="style" href="/assets/static/a11y-dark.min.css"><link rel="preload" as="style" href="/assets/styles.ada9902fc362b01889c3.css"><link rel="preload" as="style" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"><link rel="preload" as="image" href="/assets/static/icon_transparent_header.png"><link rel="alternate" type="application/rss+xml" title="shinyaigeek.dev" href="/rss.xml"></head><body><div id="_app"><div class="fmapAu0fpx364Dzl_9z0"><div class="J2e3WZniL57BvLtita5T"><div class="kVHiWHyN1gv5Y41SpACy"><a href="/" class="link2Home"><div><img src="/assets/static/icon_transparent_header.png" alt="icon" class="vwQ8HQPKPoICc2atrDju" width="36px" height="36px">shinyaigeek.dev</div></a></div><div class="hOkVSJvM823tjX0FjgO_"><div class="FpNMxf5Gx0pwkDBdeqif"><details><summary> <span role="img" aria-label="language"><g-emoji fallback-src="/assets/static/earth_africa.png" alias="earth">🌍</g-emoji></span> 日本語</summary><div class="ZAVxrSvsXSeI9pV9Rbax"><a href="http://ja.shinyaigeek.dev/post/remake-blog-with-nextjs-nowsh" class="aYFqAG93sRJ7BJMCPjsa undefined"><span role="img" aria-label="country"><g-emoji fallback-src="/assets/static/jp.png" alias="Japan">🇯🇵</g-emoji></span>日本語</a><a href="https://en.shinyaigeek.dev/post/remake-blog-with-nextjs-nowsh" class="aYFqAG93sRJ7BJMCPjsa"><span role="img" aria-label="country"><span><g-emoji fallback-src="/assets/static/us.png" alias="America">🇺🇸</g-emoji><g-emoji fallback-src="/assets/static/gb.png" alias="United States">🇬🇧</g-emoji></span></span>English</a></div></details></div><div class="FpNMxf5Gx0pwkDBdeqif"><a href="/" class="link2Home">Blog</a></div><div class="FpNMxf5Gx0pwkDBdeqif"><a href="/profile" id="link2profile">Profile</a></div><div class="FpNMxf5Gx0pwkDBdeqif"><a href="https://github-activity.shinyaigeek.dev/" id="link2activity">Activity</a></div></div></div><div class="sxaQUUuymSmhNwqAMaks"><div><details class="h0AHqg9AmVXjXCnYqFqc"><summary class="post--anchor__title" id="post--anchor__title">目次</summary><a href="#2__0">やったこと</a><a href="#2__1">やらなかった/やれなかったこと</a><a href="#2__2">結果</a></details><div class="Y8c8TlU3k_Y72ndSGmnk"><h1>Next.jsとnow.shでブログを新しく作り替えた</h1><div>2019/12/14</div><div class="BYkaTwWlH4C2pP1hi2JY"><div>Blog</div><div>Programming</div><div>JavaScript</div><div>React</div></div></div><div class="L6tHhpo3uw534DnsakEH"><p>asdfasdfasdfasdf## 作り替えに至った経緯</p>
+<p><a href="https://nextjs.org/blog/next-9">Next.js 9</a>
+7月8日Next.jsのv9リリースが発表されました。</p>
+<p>実はこのブログの前身もNext.jsで書かれていて書いた当時はまだv8でした。でv9リリースからおよそ5ヶ月が経ってやっと、重い腰を上げて自分のブログのアップデートを試みました。
+ですが蓋を開けるとあら不思議、あまりの<del>クソ</del>コードぷりになかなか作業が進まない。
+具体的に言ってしまうと@ts-ignoreとanyのオンパレードで下手したらJSのまま作業するよりも酷い代物が出来上がっていました。
+そんなものをアップデートしようとしても全然コンパイルが通らず、しかもバカ遅い。
+<img src="/assets/remake-blog-with-nextjs-nowsh/27-1.jpeg" alt="27-1">
+ちなみにこれが書き換える前のlighthouseのスコア、無慈悲な0点に涙を禁じ得ません。
+そしてもう何もかもが無理になり一から作り直してしまうことにしました()</p>
+<h2 id="2__0">やったこと</h2>
+<p>ここからだらだらと箇条書きになります。</p>
+<ul>
+<li>SSRした</li>
+</ul>
+<p>実は以前のブログはstatic file exportしたものを一々FTPしてました(ぇ
+Next.jsのSSR (with rehydration) はTTFBがちょっと辛いというのはありましたが、以前のぐっちゃぐちゃになっていたものに比べるとかなり早くなりました。
+(<del>それでもまだ速さが物足りないしブログにSSRはミスマッチな気がするからGatsbyに乗り換えたい</del>)</p>
+<ul>
+<li>ダークモードに対応した</li>
+</ul>
+<p>スマホやブラウザのダークモード、ライトモードそれぞれによって微妙に異なる配色を採用するようにしています。
+cssのprefers-color-schemeというメディアクエリで対応できたので、そこでcss変数作ってよしなにやりました。
+prefers-*はユーザーの閲覧環境に関するメディアクエリで、まだ実装はされてない(はず)ですけど今後はアニメーションの動きを減らすか否か、コントラストが高いか低いかというのにも対応できるようになるっぽい？</p>
+<ul>
+<li>画像の遅延読み込み</li>
+</ul>
+<p>ブログのコンテンツ一覧のページのアイキャッチ?画像の読み込みがボトルネックになっていたので、低解像度のデフォルトとなる画像をあらかじめ読み込んで表示させておき、Intersection Observer APIというターゲットとなる要素について、それが指定された要素あるいはビューポートと<em>交差</em>するたびに呼ばれるコールバック関数を定められるAPIを用いています。
+僕はuseEffect(componentDidMound)の中で、windowのloadイベントでIntersectionObserverを定め〜って感じの実装にしました。
+これにより、ファーストビューではブログのアイキャッチ画像は低解像度のものが表示され、帯域の節約になりもちろんロード時間も減ります。そして下にスクロールしてそれが表示される！！ってなると(ビューポートと交差すると)新たに普通の解像度のその記事のアイキャッチ画像が読み込まれ差し込まれるという具合です。
+僕の場合これがかなり速度に貢献した。</p>
+<ul>
+<li>webフォントとの別れ</li>
+</ul>
+<p>Unicode-rangeで帯域減らしたといえど4.7MBは辛かった、以上</p>
+<ul>
+<li>animationをkeyframesで表現</li>
+</ul>
+<p>以前は<a href="https://motion.ant.design/components/tween-one">Ant Motion</a>のtween oneというライブラリを用いてアニメーションを表現していたけれど、僕のCSS習熟度が上がりこれ別にkeyframesで表現できるくねってなった、あとはやるだけ。
+ちなみにトップページの惑星の公転周期っぽいアニメーションは</p>
+<pre><code class="hljs language-JSX">&#x3C;div className=<span class="hljs-string">"target_x"</span>>
+  <span class="xml"><span class="hljs-tag">&#x3C;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"target_y"</span>></span>
+    <span class="hljs-tag">&#x3C;<span class="hljs-name">Target</span> /></span>
+  <span class="hljs-tag">&#x3C;/<span class="hljs-name">div</span>></span></span>
+&#x3C;/div>
+</code></pre>
+<p>みたいな感じで二つのdivでラッピングして、target_{x|y}にそれぞれx軸,y軸方向のtransformを与えて、animation-timing-functionにease-in-outを与えてあげると、x軸方向、y軸方向に同時にease-in-outに動き〜となってその二つの動きが合成されて円周上を回転する(語彙力)
+あとはz-indexの魔法をかけておしまい。</p>
+<ul>
+<li>now.shでデプロイ</li>
+</ul>
+<p>zeitの提供する静的サイトプラットフォームの<a href="https://zeit.co/dashboard">now.sh</a>を使ってデプロイした。
+githubと連携できて、各コミットごとにデプロイされて、master pushで本番環境に反映されるという感じでとてもDXが良い</p>
+<ul>
+<li>any, @ts-ignoreとの別れ</li>
+</ul>
+<p>用法用量見極められるようになるまでは。。</p>
+<ul>
+<li>textlintの導入</li>
+</ul>
+<p>markdownと言った文章の推敲をしてくれるというもの。
+こんな感じで怒られる
+<img src="/assets/remake-blog-with-nextjs-nowsh/27-3.png" alt="27-3">
+僕はGithub Actionsを使ってプルリクごとに走らせている。
+自分の日本語力のNASAに直面させられて辛い。</p>
+<ul>
+<li>sitemapの自動生成</li>
+</ul>
+<p>今まではブログのコンテンツの追加のたびにsitemapも書き換えていたけれど、API routesでapiを用意して、そこを叩くとsitemap.xmlが生成されて返されるという仕組みにした。</p>
+<ul>
+<li>AntDesignは続投</li>
+</ul>
+<p>一番好きなUIライブラリーまである。Headings Anchorとか変態だと思う。</p>
+<ul>
+<li>MathJaxを突っ込む</li>
+</ul>
+<p>Texで数式を描けるようにしました。やったね！ブログでも数学ができるよ!(<del>やるとは言ってない</del>)</p>
+<h2 id="2__1">やらなかった/やれなかったこと</h2>
+<ul>
+<li>webp対応</li>
+</ul>
+<p>力尽きた。。
+safariさんはwebp対応をやな。。</p>
+<ul>
+<li>server push</li>
+</ul>
+<p>nextjsでserver pushするのどうするんや。。ってなって詰んでます。。
+求)知見</p>
+<ul>
+<li>cache</li>
+</ul>
+<p>同上、Cache-Control触ってない。。</p>
+<ul>
+<li>CDN</li>
+</ul>
+<p>Fastly触りたかったけど月50$-は貧乏学生には厳しい。。</p>
+<h2 id="2__2">結果</h2>
+<p><img src="/assets/remake-blog-with-nextjs-nowsh/27-2.png" alt="27-2">
+一応ここまではスコアが伸びた。
+ただブログでこのスコアか。。って辛さはある。</p>
+<p>元気がでたらまたいろいろ触ってみます。
+とりあえずしばらくは数学と物理の試験に追われます。</p></div><div class="XTxSDCE1gmhoF59UaA7g"><div class="mdGYkZO2YHxhxRXU338z"><div class="O6UishUpXe8xGlTrCl8G"><img src="/assets/static/icon_transparent.png" class="J5UgGRYhWe9JWeYlm2bw" alt="monkey-icon" width="270px" height="270px"></div><div class="cab8_7jeBIe5dRHd8ikS"><div class="kEage_DVZV_Stt0z3eAT"><div class="_5U8hWpqU834VUiKxwCpA"><img src="/assets/static/earth.png" alt="earth" width="50px" height="50px"></div></div></div></div><div class="baseprofile"><div class="_pakeuUKwDGIGV1PIDFI">Hi <span role="img" aria-label="wave hand">👋</span> I&#x27;m <span class="zQUgJkaqGKzVRFrvk7mk">Shinobu Hayashi a.k.a Shinyaigeek(しにゃい)</span>.</div><div class="CMC6WyjhCeKfvY5zyyq0"><span data-text="Web Developer" class="v7yavk2O9dr3NZXn186P">Web Developer</span> <g-emoji fallback-src="/assets/static/spider_web.png" alias="spider-web">🕸</g-emoji> / <span data-text="Reliable web Enthusiast" class="v7yavk2O9dr3NZXn186P">Reliable Web Enthusiast</span> <g-emoji fallback-src="/assets/static/fire.png" alias="fire">🔥</g-emoji> </div><div class="gA7tXpIz5V3YPffc9WIr">Faster, Lighter, More accessible, More secure, More productive Web for anyone, anytime , anywhere.</div><div class="v0ZqRqZjlqevKrsWtDTt"><div class="zdvavtYkqc1dXYPR1y0c"><a id="twitter" href="https://twitter.com/Shinyaigeek"><img src="/assets/static/twitter.svg" alt="twitter" width="54px" height="54px"></a></div><div class="zdvavtYkqc1dXYPR1y0c"><a id="github" href="https://github.com/Shinyaigeek"><img src="/assets/static/github.svg" alt="github" width="54px" height="54px"></a></div><div class="zdvavtYkqc1dXYPR1y0c"><a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/"><img src="/assets/static/linkedin.svg" alt="linkedin" width="54px" height="54px"></a></div></div><div class="l5KzSvykijElHJc7q2c9"><a href="mailto:me@shinyaigeek.dev">Contact Me on Email <g-emoji fallback-src="/assets/static/email.png" alias="email">📧</g-emoji></a></div></div></div></div></div><div class="AJQSVdi_FHylcHDbYLWV">Copyright. 2022 Shinyaigeek</div></div></div></body><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;0893ac88cf0542af88bfd9b93008b408&quot;, &quot;spa&quot;: true}"></script><script defer="" src="/assets/r.a0d01c88f547277aab5a.js" async=""></script></html>

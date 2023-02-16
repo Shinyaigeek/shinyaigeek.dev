@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en"><head><title>TypeScriptの反変とどう向き合うか | shinyaigeek.dev</title><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta property="og:title" content="TypeScriptの反変とどう向き合うか | shinyaigeek.dev"><meta property="og:site_name" content="shinyaigeek.dev"><meta property="og:locale" content="ja_JP"><meta name="description" content="Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"><meta property="og:description" content="Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"><meta property="og:url" content="https://shinyaigeek.dev/en/post/what-is-TypeScript-s-reversal"><meta name="twitter:site" content="@shinyaigeek"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta property="og:image" content="https://en.shinyaigeek.dev/assets/ogimage/en/what-is-TypeScript-s-reversal.png"><meta name="twitter:image" content="https://en.shinyaigeek.dev/assets/ogimage/en/what-is-TypeScript-s-reversal.png"><link rel="icon" type="image/x-icon" href="/assets/static/favicon.ico"><link rel="stylesheet" type="text/css" href="/assets/styles.ada9902fc362b01889c3.css"><link rel="stylesheet" type="text/css" href="/assets/static/a11y-dark.min.css"><link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"><link rel="preload" as="style" href="/assets/static/a11y-dark.min.css"><link rel="preload" as="style" href="/assets/styles.ada9902fc362b01889c3.css"><link rel="preload" as="style" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"><link rel="preload" as="image" href="/assets/static/icon_transparent_header.png"><link rel="alternate" type="application/rss+xml" title="shinyaigeek.dev" href="/rss.xml"></head><body><div id="_app"><div class="fmapAu0fpx364Dzl_9z0"><div class="J2e3WZniL57BvLtita5T"><div class="kVHiWHyN1gv5Y41SpACy"><a href="/" class="link2Home"><div><img src="/assets/static/icon_transparent_header.png" alt="icon" class="vwQ8HQPKPoICc2atrDju" width="36px" height="36px">shinyaigeek.dev</div></a></div><div class="hOkVSJvM823tjX0FjgO_"><div class="FpNMxf5Gx0pwkDBdeqif"><details><summary> <span role="img" aria-label="language"><g-emoji fallback-src="/assets/static/earth_africa.png" alias="earth">🌍</g-emoji></span> English</summary><div class="ZAVxrSvsXSeI9pV9Rbax"><a href="http://ja.shinyaigeek.dev/post/what-is-TypeScript-s-reversal" class="aYFqAG93sRJ7BJMCPjsa"><span role="img" aria-label="country"><g-emoji fallback-src="/assets/static/jp.png" alias="Japan">🇯🇵</g-emoji></span>日本語</a><a href="https://en.shinyaigeek.dev/post/what-is-TypeScript-s-reversal" class="aYFqAG93sRJ7BJMCPjsa undefined"><span role="img" aria-label="country"><span><g-emoji fallback-src="/assets/static/us.png" alias="America">🇺🇸</g-emoji><g-emoji fallback-src="/assets/static/gb.png" alias="United States">🇬🇧</g-emoji></span></span>English</a></div></details></div><div class="FpNMxf5Gx0pwkDBdeqif"><a href="/" class="link2Home">Blog</a></div><div class="FpNMxf5Gx0pwkDBdeqif"><a href="/profile" id="link2profile">Profile</a></div><div class="FpNMxf5Gx0pwkDBdeqif"><a href="https://github-activity.shinyaigeek.dev/" id="link2activity">Activity</a></div></div></div><div class="sxaQUUuymSmhNwqAMaks"><div><details class="h0AHqg9AmVXjXCnYqFqc"><summary class="post--anchor__title" id="post--anchor__title">Table of Contents</summary><a href="#2__0">はじめに</a><a href="#2__1">反変とは</a><a href="#2__2">教えてTypeScriptさん</a></details><div class="Y8c8TlU3k_Y72ndSGmnk"><h1>TypeScriptの反変とどう向き合うか</h1><div>2019/08/28</div><div class="BYkaTwWlH4C2pP1hi2JY"><div>Programming</div><div>JavaScript</div></div></div><div class="L6tHhpo3uw534DnsakEH"><h2 id="2__0">はじめに</h2>
+<p>お久しぶりです、しにゃいです。
+　TypeScript いいですよね、静的型付けにより今あなたが触っているプロジェクトをより安全に進めて行くことができます。
+しかしそんな TypeScript さんもなんだこれは、といってしまうような一見よくわからない挙動をすることがあります。
+この記事ではその中の一つともいえよう反変について扱っておこうかなと思います。</p>
+<h2 id="2__1">反変とは</h2>
+<p>まず反変とはについてから知りましょう。そのために共変、反変という概念を知りましょう。
+それぞれ</p>
+<ul>
+<li>共変:型の順序関係を維持する</li>
+<li>反変:型の順序関係を反転させる</li>
+</ul>
+<p>となっています。
+もうちょっと言うと
+Cat　⊆ Animal(この例だと真部分集合になりますのでこの記号は不適切ですが)となるような奴に対して、 Cat , Animal に何かしようとなってその時に型の順序関係が維持されるか否かが共変、反変となります。
+でもパッと辞書的な意味を見せられてもいまいちピンと来ないですよね。
+なので TypeScript さんに共変と反変の例を見せてもらいましょう。</p>
+<h2 id="2__2">教えてTypeScriptさん</h2>
+<pre><code class="hljs language-TypeScript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Animal</span> = <span class="hljs-string">"Cat"</span> | <span class="hljs-string">"Dog"</span> | <span class="hljs-string">"Pig"</span> | <span class="hljs-string">"Cow"</span> | <span class="hljs-string">"Chicken"</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Cat</span> = <span class="hljs-string">"Cat"</span>
+
+<span class="hljs-keyword">declare</span> <span class="hljs-keyword">let</span> <span class="hljs-attr">cat</span>:<span class="hljs-title class_">Cat</span>;
+<span class="hljs-keyword">declare</span> <span class="hljs-keyword">let</span> <span class="hljs-attr">animal</span>:<span class="hljs-title class_">Animal</span>;
+
+cat = animal; <span class="hljs-comment">//Error</span>
+animal = cat; <span class="hljs-comment">//OK</span>
+
+<span class="hljs-keyword">declare</span> <span class="hljs-keyword">let</span> <span class="hljs-attr">catArray</span>:<span class="hljs-title class_">Cat</span>[];
+<span class="hljs-keyword">declare</span> <span class="hljs-keyword">let</span> <span class="hljs-attr">animalArray</span>:<span class="hljs-title class_">Animal</span>[];
+
+catArray = animalArray; <span class="hljs-comment">// Error</span>
+animalArray = catArray; <span class="hljs-comment">// OK</span>
+</code></pre>
+<p>まずこれは共変の一例です。Cat Type に Animal Type を代入しようとしてエラーが生じています。逆に Animal Type に Cat Type を代入してもエラーは生じません。
+これは直感的に理解しやすい事象かなとは思います。 Cat Type に Animal Type を代入しようとするともしかすると Cow が入ってくるかもしれませんしこれを弾いてくれるのは感謝の極みでしょう。逆に Animal Type に Cat Type が入り得るのも至極妥当な話といえましょう。
+因みに TypeScript はこんなエラーを吐いてくれています。</p>
+<p><img src="/assets/what-is-TypeScript-s-reversal/25-3.png" alt="25-3"></p>
+<p>Animal Type を Cat Type へは入れられないよと教えてくれて、その一例として Dog をあげてくれています。因みにこの時Animal Type は Cat Type の SuperType (より上位の概念といった感じ)といったりします(この逆は SubTypeです)。</p>
+<p>そして上記の型の理由から catArray は animalArray で置き換え不可能です(なんどもいうように Cow とかがくる可能性があるので)
+しかしその逆に animalArray は catArray で置き換え可能です。
+そしてその Cat Type から構成される配列と Animal Type から構成される配列とを比較すると型の順序関係が Cat Type と Animal Type の関係から維持されていることがわかり、配列を構成する演算子は共変であるといえましょう。</p>
+<p>では次に反変の例を見て見ましょう。</p>
+<pre><code class="hljs language-TypeScript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Animal</span> = <span class="hljs-string">"Cat"</span> | <span class="hljs-string">"Dog"</span> | <span class="hljs-string">"Pig"</span> | <span class="hljs-string">"Cow"</span> | <span class="hljs-string">"Chicken"</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Cat</span> = <span class="hljs-string">"Cat"</span>
+
+<span class="hljs-keyword">declare</span> <span class="hljs-keyword">let</span> <span class="hljs-attr">cat</span>:<span class="hljs-title class_">Cat</span>;
+<span class="hljs-keyword">declare</span> <span class="hljs-keyword">let</span> <span class="hljs-attr">animal</span>:<span class="hljs-title class_">Animal</span>;
+
+cat = animal; <span class="hljs-comment">//Error</span>
+animal = cat; <span class="hljs-comment">//OK</span>
+
+<span class="hljs-keyword">declare</span> <span class="hljs-keyword">let</span> <span class="hljs-attr">catFunc</span>:<span class="hljs-function">(<span class="hljs-params">cat:Cat</span>) =></span>  <span class="hljs-built_in">void</span>;
+<span class="hljs-keyword">declare</span> <span class="hljs-keyword">let</span> <span class="hljs-attr">animalFunc</span>:<span class="hljs-function">(<span class="hljs-params">animal:Animal</span>) =></span> <span class="hljs-built_in">void</span>;
+
+catFunc = animalFunc; <span class="hljs-comment">// OK</span>
+animalFunc = catFunc; <span class="hljs-comment">// Error</span>
+</code></pre>
+<p>こういう感じになります。
+前もって触れておきますが、実は上で Error となっているところはデフォルトの TypeScript さんはスルーします。これはv2.6から追加された　--strictFunctionTypes によってこれを弾いてくれるようになります。もちろん --strict でも弾くことができます。
+でも上記の例とは逆に、catFunc に animalFunc を入れると TypeScript はエラーを投げず、 animalFunc に catFunc を投げるとエラーを投げます。これはちょっと直感に反することかもしれません。
+だって！！上で！！ Cat Type に Animal Type を入れると！！エラーになるやんゆうてたやん！！ってなるじゃないですか。
+実はこれ根本的には共変の時に起こるエラーと雰囲気は変わりません。</p>
+<p><img src="/assets/what-is-TypeScript-s-reversal/25-4.png" alt="25-4"></p>
+<p>因みに TypeScript が吐くエラーはこんな感じ。
+この時 catFunc の引数である Cat と、 animalFunc の引数である Animal について、 Animal は Cat のSuperTypeですから、より引数として寛容といえましょう。
+つまり catFunc は animalFunc で置き換え可能ということです。そしてその逆は不可能ということになります。
+もうちょっと詳細にいえば catFunc を animalFunc に置き換えても catFunc が受け取るはずだった Cat Type の引数は全部受け止められます。
+でもその逆に　animalFunc を catFunc に置き換えると animalFunc が受け取り得る Dog Type　等の引数を受け止められなくなります。
+それがTypeScriptが警告している文面の意味です。
+こう考えると逆に --strictFunctionTypes が効いていないと Error が生じないのも変というか型保全性の面から考えると怖い話なような気がしますね(公式曰くただぱっと見ありえそうな感じがするからみたいな理由があった気がする)
+一つ誤解しないで欲しいのは TypeScript が反変性をフォローしているのは全然厄介なことではなくて、むしろ型保全性の面から見ればヒューマンエラーをより減らせる素晴らしいことです。
+因みにですが反変が起こってエラーが生じたときは TypeScript の吐くエラー文も順序が反転しています。
+ていうか基本的に関数引数の型と関数は反変の関係になるっぽい(?)です。(だからこその--strictFunctionTypesなのかなと)</p>
+<p>個人的にはこの辺のややこしさと上手く付き合って行くには深いところでの「型を保ったまま置き換えが可能か」という意識と、ゆるふわな浅いところでの「関数引数の型と関数は反変の関係になる」っていう意識を持つとよくて、さすればいい感じに TypeScript とその反変性に向き合って、より安全にコードを無駄に沼にはまったりせず書けるでしょう。</p></div><div class="XTxSDCE1gmhoF59UaA7g"><div class="mdGYkZO2YHxhxRXU338z"><div class="O6UishUpXe8xGlTrCl8G"><img src="/assets/static/icon_transparent.png" class="J5UgGRYhWe9JWeYlm2bw" alt="monkey-icon" width="270px" height="270px"></div><div class="cab8_7jeBIe5dRHd8ikS"><div class="kEage_DVZV_Stt0z3eAT"><div class="_5U8hWpqU834VUiKxwCpA"><img src="/assets/static/earth.png" alt="earth" width="50px" height="50px"></div></div></div></div><div class="baseprofile"><div class="_pakeuUKwDGIGV1PIDFI">Hi <span role="img" aria-label="wave hand">👋</span> I&#x27;m <span class="zQUgJkaqGKzVRFrvk7mk">Shinobu Hayashi a.k.a Shinyaigeek(しにゃい)</span>.</div><div class="CMC6WyjhCeKfvY5zyyq0"><span data-text="Web Developer" class="v7yavk2O9dr3NZXn186P">Web Developer</span> <g-emoji fallback-src="/assets/static/spider_web.png" alias="spider-web">🕸</g-emoji> / <span data-text="Reliable web Enthusiast" class="v7yavk2O9dr3NZXn186P">Reliable Web Enthusiast</span> <g-emoji fallback-src="/assets/static/fire.png" alias="fire">🔥</g-emoji> </div><div class="gA7tXpIz5V3YPffc9WIr">Faster, Lighter, More accessible, More secure, More productive Web for anyone, anytime , anywhere.</div><div class="v0ZqRqZjlqevKrsWtDTt"><div class="zdvavtYkqc1dXYPR1y0c"><a id="twitter" href="https://twitter.com/Shinyaigeek"><img src="/assets/static/twitter.svg" alt="twitter" width="54px" height="54px"></a></div><div class="zdvavtYkqc1dXYPR1y0c"><a id="github" href="https://github.com/Shinyaigeek"><img src="/assets/static/github.svg" alt="github" width="54px" height="54px"></a></div><div class="zdvavtYkqc1dXYPR1y0c"><a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/"><img src="/assets/static/linkedin.svg" alt="linkedin" width="54px" height="54px"></a></div></div><div class="l5KzSvykijElHJc7q2c9"><a href="mailto:me@shinyaigeek.dev">Contact Me on Email <g-emoji fallback-src="/assets/static/email.png" alias="email">📧</g-emoji></a></div></div></div></div></div><div class="AJQSVdi_FHylcHDbYLWV">Copyright. 2022 Shinyaigeek</div></div></div></body><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;0893ac88cf0542af88bfd9b93008b408&quot;, &quot;spa&quot;: true}"></script><script defer="" src="/assets/r.a0d01c88f547277aab5a.js" async=""></script></html>
