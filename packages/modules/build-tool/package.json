@@ -6,9 +6,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@swc/core": "^1.3.35",
     "webpack": "^5.38.1"
   },
   "peerDependencies": {
+    "@swc/core": "^1",
+    "css-loader": "^6",
+    "swc-loader": "^0.2",
     "webpack": "^5"
   }
 }
