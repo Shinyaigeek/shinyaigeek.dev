@@ -2,6 +2,7 @@
     "name": "shinyaigeek.dev",
     "version": "1.0.0",
     "description": "",
+    "type": "module",
     "main": "worker/dist/worker.js",
     "repository": {
         "type": "git",
@@ -10,7 +11,8 @@
     "scripts": {
         "__prettier": "prettier '**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx,html,md,css,json,yaml,yml}'",
         "format": "pnpm run __prettier --write",
-        "format:check": "pnpm run __prettier --check"
+        "format:check": "pnpm run __prettier --check",
+        "lint": "eslint . --color --max-warnings 0"
     },
     "keywords": [],
     "author": "",
@@ -20,6 +22,10 @@
     },
     "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
     "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^4.16.1",
+        "eslint": "^7.21.0",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-unicorn": "^45.0.2",
         "prettier": "^2.3.0",
         "typescript": "^4.3.2"
     }
