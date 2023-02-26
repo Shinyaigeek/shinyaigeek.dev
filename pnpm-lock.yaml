@@ -91,6 +91,7 @@ importers:
       remarkable-plugin-tweet-share: ^1.0.0
       resolve-accept-language: ^1.0.50
       resvg: ^1.6.4
+      rimraf: ^4.1.2
       sass: ^1.49.7
       sass-loader: ^12.4.0
       satori: ^0.0.43
@@ -176,6 +177,7 @@ importers:
       remark-gfm: 3.0.1
       remark-mdx: 2.1.5
       remark-rehype: 10.1.0
+      rimraf: 4.1.2
       sass: 1.56.0
       sass-loader: 12.6.0_sass@1.56.0+webpack@5.74.0
       satori: 0.0.43
