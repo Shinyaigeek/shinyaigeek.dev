@@ -5,8 +5,19 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "files": [
+    "./webpack"
+  ],
+  "types": "./index.ts",
   "exports": {
-    "webpack.config.base.ts": "./webpack/webpack.config.base.ts"
+    ".": {
+      "default": "./index.ts",
+      "types": "./index.ts"
+    },
+    "./webpack": {
+      "default": "./webpack/webpack.config.base.ts",
+      "types": "./webpack/webpack.config.base.ts"
+    }
   },
   "devDependencies": {
     "@swc/core": "^1.3.35",
