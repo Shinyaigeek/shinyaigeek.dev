@@ -200,6 +200,7 @@ importers:
       '@types/mini-css-extract-plugin': ^2.5.1
       '@types/react': ^16.9.56
       '@types/react-dom': ^16.9.9
+      build-tool: workspace:*
       css-loader: ^6.3.0
       fastify: ^4.13.0
       mini-css-extract-plugin: ^1.3.1
@@ -221,6 +222,7 @@ importers:
       '@types/mini-css-extract-plugin': 2.5.1_webpack@5.74.0
       '@types/react': 16.14.34
       '@types/react-dom': 16.9.17
+      build-tool: link:../../modules/build-tool
       css-loader: 6.7.1_webpack@5.74.0
       mini-css-extract-plugin: 1.6.2_webpack@5.74.0
       rimraf: 4.1.2
@@ -5491,18 +5493,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: true
-
-  /follow-redirects/1.15.2_debug@4.3.4:
-    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.4_supports-color@6.1.0
 
   /for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}
@@ -6143,7 +6133,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
