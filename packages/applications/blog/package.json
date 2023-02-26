@@ -8,9 +8,9 @@
     "main": "index.js",
     "scripts": {
         "build": "NODE_ENV=production pnpm clear && NODE_ENV=production pnpm build:css && pnpm contenthash && pnpm rss && pnpm sitemap && yarn mv:assets && yarn generate-og-image",
-        "build:css": "webpack --config webpack.config.client.js --mode=production",
+        "build:css": "webpack --config webpack.config.client.ts --mode=production",
         "build:dev": "export NODE_ENV=development && pnpm build:css && pnpm build:ssg && pnpm rss && pnpm sitemap && yarn mv:assets",
-        "build:server": "webpack --config webpack.config.server.js",
+        "build:server": "webpack --config webpack.config.server.ts",
         "build:ssg": "pnpm build:server && node server/main.js",
         "clear": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/deleteDistAssets.ts",
         "contenthash": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/getContenthash.ts",
