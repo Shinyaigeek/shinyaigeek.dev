@@ -6,6 +6,7 @@
     "license": "ISC",
     "author": "",
     "main": "index.js",
+    "type": "module",
     "scripts": {
         "build": "NODE_ENV=production pnpm clear && NODE_ENV=production pnpm build:css && pnpm contenthash && pnpm rss && pnpm sitemap && yarn mv:assets && yarn generate-og-image",
         "build:css": "webpack --config webpack.config.client.ts --mode=production",
