@@ -2,8 +2,8 @@ import webpack from 'webpack';
 // @ts-ignore
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { merge } from 'webpack-merge';
-import { webpackBaseConfig } from 'build-tool/webpack/webpack.config.base';
-import { getBuiltAssetFilename } from './tools/build-utility';
+import { webpackBaseConfig } from 'build-tool';
+import { getBuiltAssetFilename } from './tools/build-utility.js';
 
 const builtAssetsFilename = getBuiltAssetFilename();
 
