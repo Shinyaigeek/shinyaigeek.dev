@@ -3,11 +3,13 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
+    "type": "module",
     "scripts": {
         "__prebuild:clean": "rimraf dist",
         "build:prepare": "pnpm --filter labs run --sequential /__prebuild:.*/",
-        "build:client": "webpack --config webpack.config.client.ts",
-        "build:server": "webpack --config webpack.config.server.ts",
+        "__webpack": "NODE_OPTIONS=\"--loader ts-node/esm\" webpack",
+        "build:client": "pnpm __webpack --config webpack.config.client.ts",
+        "build:server": "pnpm __webpack --config webpack.config.server.ts",
         "build": "pnpm --filter labs run --sequential /build:.*/",
         "deploy-page": "wrangler worker publish dist",
         "login": "wrangler login"
