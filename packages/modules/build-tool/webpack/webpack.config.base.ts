@@ -14,7 +14,7 @@ export const webpackBaseConfig: webpack.Configuration = {
             },
             {
                 test: /\.css$/i,
-                use: ['css-loader'],
+                use: ['css-loader', 'sass-loader'],
             },
         ],
     },
