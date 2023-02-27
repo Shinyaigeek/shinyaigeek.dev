@@ -1,1 +1,1 @@
-export { webpackBaseConfig } from "./webpack/webpack.config.base"
+export { webpackBaseConfig } from "./webpack/webpack.config.base.js"
