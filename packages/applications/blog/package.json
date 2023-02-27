@@ -100,7 +100,7 @@
         "remark-rehype": "^10.1.0",
         "rimraf": "^4.1.2",
         "sass": "^1.49.7",
-        "sass-loader": "^12.4.0",
+        "sass-loader": "^12.6.0",
         "satori": "^0.0.43",
         "serve-static": "^1.14.1",
         "service-worker-mock": "^2.0.5",

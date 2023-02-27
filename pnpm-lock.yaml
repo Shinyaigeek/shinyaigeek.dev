@@ -94,7 +94,7 @@ importers:
       resvg: ^1.6.4
       rimraf: ^4.1.2
       sass: ^1.49.7
-      sass-loader: ^12.4.0
+      sass-loader: ^12.6.0
       satori: ^0.0.43
       serve-static: ^1.14.1
       service-worker-mock: ^2.0.5
@@ -211,6 +211,7 @@ importers:
       react: ^17.0.1
       react-dom: ^17.0.1
       rimraf: ^4.1.2
+      sass-loader: ^12.4.0
       style-loader: ^1.1.3
       swc-loader: ^0.2.3
       ts-node: ^10.2.1
@@ -230,9 +231,10 @@ importers:
       css-loader: 6.7.1_webpack@5.74.0
       mini-css-extract-plugin: 1.6.2_webpack@5.74.0
       rimraf: 4.1.2
+      sass-loader: 12.6.0_webpack@5.74.0
       style-loader: 1.3.0_webpack@5.74.0
       swc-loader: 0.2.3_oogp7xv4rppobi5ktio24rc7mq
-      ts-node: 10.9.1_kxdsiv7aezulimm23ssquliqqq
+      ts-node: 10.9.1_5vaiixca45nmtdi6xhdkstytei
       webpack: 5.74.0_@swc+core@1.3.35
       webpack-merge: 5.8.0
 
@@ -10072,6 +10074,30 @@ packages:
       webpack: 5.74.0_xipzd3bgg7oqyn3t64y3vtumte
     dev: true
 
+  /sass-loader/12.6.0_webpack@5.74.0:
+    resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
+    engines: {node: '>= 12.13.0'}
+    peerDependencies:
+      fibers: '>= 3.1.0'
+      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
+      sass: ^1.3.0
+      sass-embedded: '*'
+      webpack: ^5.0.0
+    peerDependenciesMeta:
+      fibers:
+        optional: true
+      node-sass:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+    dependencies:
+      klona: 2.0.5
+      neo-async: 2.6.2
+      webpack: 5.74.0_@swc+core@1.3.35
+    dev: true
+
   /sass/1.56.0:
     resolution: {integrity: sha512-WFJ9XrpkcnqZcYuLRJh5qiV6ibQOR4AezleeEjTjMsCocYW59dEG19U3fwTTXxzi2Ed3yjPBp727hbbj53pHFw==}
     engines: {node: '>=12.0.0'}
@@ -11087,38 +11113,6 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /ts-node/10.9.1_kxdsiv7aezulimm23ssquliqqq:
-    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
-    hasBin: true
-    peerDependencies:
-      '@swc/core': '>=1.2.50'
-      '@swc/wasm': '>=1.2.50'
-      '@types/node': '*'
-      typescript: '>=2.7'
-    peerDependenciesMeta:
-      '@swc/core':
-        optional: true
-      '@swc/wasm':
-        optional: true
-    dependencies:
-      '@cspotcode/source-map-support': 0.8.1
-      '@swc/core': 1.3.35
-      '@tsconfig/node10': 1.0.9
-      '@tsconfig/node12': 1.0.11
-      '@tsconfig/node14': 1.0.3
-      '@tsconfig/node16': 1.0.3
-      '@types/node': 18.11.9
-      acorn: 8.8.1
-      acorn-walk: 8.2.0
-      arg: 4.1.3
-      create-require: 1.1.1
-      diff: 4.0.2
-      make-error: 1.3.6
-      typescript: 4.8.4
-      v8-compile-cache-lib: 3.0.1
-      yn: 3.1.1
-    dev: true
-
   /ts-node/9.1.1_typescript@4.9.5:
     resolution: {integrity: sha512-hPlt7ZACERQGf03M253ytLY3dHbGNGrAq9qIHWUY9XHYl1z7wYngSr3OQ5xmui8o2AaxsONxIzjafLUiWBo1Fg==}
     engines: {node: '>=10.0.0'}
@@ -11215,12 +11209,6 @@ packages:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}
     dependencies:
       is-typedarray: 1.0.0
-    dev: true
-
-  /typescript/4.8.4:
-    resolution: {integrity: sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
     dev: true
 
   /typescript/4.9.5:

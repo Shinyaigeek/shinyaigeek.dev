@@ -27,6 +27,7 @@
   "peerDependencies": {
     "@swc/core": "^1",
     "css-loader": "^6",
+    "sass-loader": "^12",
     "swc-loader": "^0.2",
     "webpack": "^5"
   }
