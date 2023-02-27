@@ -1,7 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
-import merge from 'webpack-merge';
-import { webpackBaseConfig } from 'build-tool/webpack/webpack.config.base';
+import { merge } from 'webpack-merge';
+import { webpackBaseConfig } from 'build-tool';
 
 import { config } from 'dotenv';
 config();
