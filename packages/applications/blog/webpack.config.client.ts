@@ -1,3 +1,4 @@
+import path from "path";
 import webpack from 'webpack';
 // @ts-ignore
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -7,7 +8,11 @@ import { merge } from 'webpack-merge';
 const config: webpack.Configuration = {
     target: 'web',
     entry: {
-        main: './src/client/main.tsx',
+        client: './src/client/main.tsx',
+    },
+    output: {
+        path: path.join(__dirname, 'public'),
+        filename: '[name].js',
     },
     module: {
         rules: [
