@@ -9,7 +9,7 @@
     "main": "index.js",
     "scripts": {
         "__webpack": "NODE_OPTIONS=\"--loader ts-node/esm\" webpack",
-        "build": "NODE_ENV=production pnpm clear && NODE_ENV=production pnpm build:css && pnpm contenthash && pnpm rss && pnpm sitemap && yarn mv:assets && yarn generate-og-image",
+        "build": "pnpm clear && NODE_ENV=production pnpm build:css && pnpm contenthash && pnpm rss && pnpm sitemap && yarn mv:assets && yarn generate-og-image",
         "build:css": "pnpm __webpack --config webpack.config.client.ts --mode=production",
         "build:dev": "export NODE_ENV=development && pnpm build:css && pnpm build:ssg && pnpm rss && pnpm sitemap && yarn mv:assets",
         "build:server": "pnpm __webpack --config webpack.config.server.ts",
