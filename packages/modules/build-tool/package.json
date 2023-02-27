@@ -5,6 +5,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "files": [
     "./webpack"
   ],
