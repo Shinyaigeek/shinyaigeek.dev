@@ -7,7 +7,7 @@ import { merge } from 'webpack-merge';
 const config: webpack.Configuration = {
     target: 'web',
     entry: {
-        main: './src/front/main.tsx',
+        main: './src/client/main.tsx',
     },
     module: {
         rules: [
