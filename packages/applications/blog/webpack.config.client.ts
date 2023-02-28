@@ -21,6 +21,11 @@ const config: webpack.Configuration = {
             },
         ],
     },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: '[name].[contenthash].css',
+        }),
+    ],
 };
 
 export default merge(config, webpackBaseConfig);
