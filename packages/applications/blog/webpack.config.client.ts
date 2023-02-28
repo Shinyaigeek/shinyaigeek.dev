@@ -11,8 +11,7 @@ const config: webpack.Configuration = {
         client: './src/client/main.tsx',
     },
     output: {
-        path: path.join(__dirname, 'public'),
-        filename: '[name].js',
+        filename: '[name].[contenthash].js',
     },
     module: {
         rules: [

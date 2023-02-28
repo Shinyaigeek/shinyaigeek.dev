@@ -11,8 +11,7 @@ const configForApplicationServer: webpack.Configuration = {
         main: './src/build/build.ts',
     },
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: '[name].js',
+        filename: '[name].[contenthash].js',
     },
     mode: 'development',
     target: 'node',
