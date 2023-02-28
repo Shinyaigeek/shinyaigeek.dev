@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './DecorationTag.module.scss';
+import styles from './DecorationTag.module.css';
 
 interface Props {
     tags: string[];

@@ -2,7 +2,7 @@ interface Props {
     anchors: string[];
 }
 import React from 'react';
-import postAnchor from './Anchor.module.scss';
+import postAnchor from './Anchor.module.css';
 import { t } from '@lingui/macro';
 
 export function Anchor(props: Props) {

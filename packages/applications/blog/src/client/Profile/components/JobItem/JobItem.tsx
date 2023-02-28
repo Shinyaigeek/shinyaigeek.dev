@@ -1,5 +1,5 @@
 import React from 'react';
-import jobItem from './JobItem.module.scss';
+import jobItem from './JobItem.module.css';
 
 interface Props {
     job: string;

@@ -1,5 +1,5 @@
 import React from 'react';
-import starStream from './StarStream.module.scss';
+import starStream from './StarStream.module.css';
 
 export function StarStream() {
     return (

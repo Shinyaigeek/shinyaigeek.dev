@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro';
 import React from 'react';
-import languageStyle from './Language.module.scss';
+import languageStyle from './Language.module.css';
 
 interface Props {
     currentLanguage: language;

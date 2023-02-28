@@ -7,7 +7,7 @@ import { Anchor } from './components/Anchor/Anchor';
 import { BaseProfile } from '../Profile/components/BaseProfile/BaseProfile';
 import { Shinyaigeek } from '../components/Shinyaigeek/Shinyaigeek';
 import React from 'react';
-import postContent from './Post.module.scss';
+import postContent from './Post.module.css';
 interface Props extends Entry {
     anchors: string[];
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Language } from '../Language/Language';
-import header from './Header.module.scss';
+import header from './Header.module.css';
 
 export function Header({
     language,

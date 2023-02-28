@@ -1,5 +1,5 @@
 import React from 'react';
-import shinyaigeek from './Shinyaigeek.module.scss';
+import shinyaigeek from './Shinyaigeek.module.css';
 
 interface Props {
     css?: string;

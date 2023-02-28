@@ -1,5 +1,5 @@
 import React from 'react';
-import button from './Button.module.scss';
+import button from './Button.module.css';
 
 interface Props {
     id: string;

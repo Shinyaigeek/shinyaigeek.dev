@@ -1,7 +1,7 @@
 import { StarStream } from '../StartStream/StarStream';
 import React from 'react';
 import { Shinyaigeek } from '../../../components/Shinyaigeek/Shinyaigeek';
-import welcomePage from './WelcomePage.module.scss';
+import welcomePage from './WelcomePage.module.css';
 
 export function WelcomePage() {
     return (
