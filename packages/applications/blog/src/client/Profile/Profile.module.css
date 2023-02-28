@@ -10,8 +10,8 @@
 
 .lists {
   font-size: 18px;
+}
 
-  li {
-    margin: 4px;
-  }
+.lists li {
+  margin: 4px;
 }

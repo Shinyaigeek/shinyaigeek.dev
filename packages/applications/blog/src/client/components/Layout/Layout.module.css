@@ -1,22 +1,21 @@
 .inner {
   position: relative;
   top: 72px;
-  @media (max-width: 889px) {
-    top: 102px;
-  }
   overflow: hidden;
   margin-bottom: 84px;
 }
 
-:global() {
-  body {
-    margin: 0;
-  }
 
-  html {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+@media (max-width: 889px) {
+  .inner {
+    top: 102px;
   }
+}
+
+
+:global() html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
 
 .root {
@@ -34,7 +33,16 @@
   --anchor-visited-color: brown;
   --important-color: #f2d544;
 
-  @media (prefers-color-scheme: dark) {
+  background: var(--theme-background);
+  color: var(--theme-color);
+
+
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  .root {
     --theme-background: #3c3c3b;
     --theme-color: #e4e4e4;
     --headings-color: #d2f0da;
@@ -48,15 +56,13 @@
     --anchor-visited-color: RosyBrown;
     --important-color: #ffe76a;
   }
+}
 
-  background: var(--theme-background);
-  color: var(--theme-color);
+.root a {
+  text-decoration: none;
+  color: var(--anchor-color);
+}
 
-  a {
-    text-decoration: none;
-    color: var(--anchor-color);
-    &:visited {
-      color: var(--anchor-visited-color);
-    }
-  }
+.root a:visited {
+  color: var(--anchor-visited-color);
 }

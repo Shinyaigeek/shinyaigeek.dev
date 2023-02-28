@@ -1,0 +1,79 @@
+@keyframes spin-fade {
+  50% {
+    opacity: 0.3;
+    -webkit-transform: scale(0.4);
+    transform: scale(0.4);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.loadingStyle {
+  width: 114.83999999999999px;
+  height: 114.83999999999999px;
+  top: calc(15vh - 57.419999999999995px);
+  position: relative;
+  margin: auto;
+}
+
+.loadingStyle div {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  margin: 2px;
+  background: var(--theme-color);
+  position: absolute;
+}
+
+
+.loadingStyle div:nth-child(1) {
+  animation: spin-fade 1s -0s infinite linear;
+  top: 0px;
+  left: 72.41999999999999px;
+}
+
+.loadingStyle div:nth-child(2) {
+  animation: spin-fade 1s -0.125s infinite linear;
+  top: 21.216407355021218px;
+  left: 93.63640735502122px;
+}
+
+.loadingStyle div:nth-child(3) {
+  animation: spin-fade 1s -0.25s infinite linear;
+  top: 51.21640735502122px;
+  left: 93.63640735502122px;
+}
+
+.loadingStyle div:nth-child(4) {
+  animation: spin-fade 1s -0.375s infinite linear;
+  top: 72.43281471004244px;
+  left: 72.41999999999999px;
+}
+
+.loadingStyle div:nth-child(5) {
+  animation: spin-fade 1s -0.5s infinite linear;
+  top: 72.43281471004244px;
+  left: 42.419999999999995px;
+}
+
+.loadingStyle div:nth-child(6) {
+  animation: spin-fade 1s -0.625s infinite linear;
+  top: 51.21640735502122px;
+  left: 21.203592644978777px;
+}
+
+.loadingStyle div:nth-child(7) {
+  animation: spin-fade 1s -0.75s infinite linear;
+  top: 21.216407355021218px;
+  left: 21.203592644978777px;
+}
+
+.loadingStyle div:nth-child(8) {
+  animation: spin-fade 1s -0.875s infinite linear;
+  top: 0px;
+  left: 42.419999999999995px;
+}

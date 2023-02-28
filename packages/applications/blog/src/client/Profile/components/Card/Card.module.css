@@ -16,19 +16,19 @@
   margin: 12px 24px;
 
   list-style: none;
+}
 
-  img {
-    width: 37.5%;
-    height: 50%;
-    display: block;
-    margin: auto;
-    object-fit: contain;
-  }
+.cardStyle img {
+  width: 37.5%;
+  height: 50%;
+  display: block;
+  margin: auto;
+  object-fit: contain;
+}
 
-  .title {
-    font-size: clamp(1px,0.6rem,36px);
-    padding: 2px;
-    display: inline-block;
-    margin: 2px auto;
-  }
+.cardStyle .title {
+  font-size: clamp(1px,0.6rem,36px);
+  padding: 2px;
+  display: inline-block;
+  margin: 2px auto;
 }
