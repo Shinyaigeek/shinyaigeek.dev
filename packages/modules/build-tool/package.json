@@ -21,7 +21,7 @@
     }
   },
   "devDependencies": {
-    "@swc/core": "^1.3.35",
+    "@swc/core": "^1.3.49",
     "webpack": "^5.38.1"
   },
   "peerDependencies": {
