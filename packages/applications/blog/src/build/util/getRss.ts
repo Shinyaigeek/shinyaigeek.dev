@@ -1,7 +1,13 @@
 import dotenv from 'dotenv';
-import { getBlogPosts } from './getBlogPosts';
+import { getBlogPosts } from './getBlogPosts.js';
 import path from 'path';
+import { fileURLToPath } from 'url';
 dotenv.config();
+
+
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 
 export const getRss = (language: 'en' | 'ja') => {
     const items = getBlogPosts(

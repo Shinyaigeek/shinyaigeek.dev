@@ -21,7 +21,7 @@
         "i18n:extract": "lingui extract",
         "mv:assets": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/copyAssetsIntoPublic.ts",
         "purge": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/purgeCache.ts",
-        "rss": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/buildRss.ts",
+        "rss": "ts-node --esm ./scripts/buildRss.ts",
         "serve": "miniserve ./public --index index.html",
         "sitemap": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/buildSitemap.ts"
     },

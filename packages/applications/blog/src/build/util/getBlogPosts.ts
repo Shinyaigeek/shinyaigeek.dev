@@ -1,4 +1,4 @@
-import { Entry } from './getBlogPost';
+import { Entry } from './getBlogPost.js';
 import fs from 'fs';
 import fm from 'front-matter';
 interface HomeSlug {

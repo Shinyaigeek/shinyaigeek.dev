@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { generateHash } from './generateHash';
+import { generateHash } from './generateHash.js';
 
 require('dotenv').config();
 
