@@ -23,7 +23,7 @@
         "purge": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/purgeCache.ts",
         "rss": "ts-node --esm ./scripts/buildRss.ts",
         "serve": "miniserve ./public --index index.html",
-        "sitemap": "ts-node -O '{\"module\":\"commonjs\"}' ./scripts/buildSitemap.ts"
+        "sitemap": "ts-node --esm ./scripts/buildSitemap.ts"
     },
     "dependencies": {
         "@github/g-emoji-element": "^1.1.5",
