@@ -1,3 +1,5 @@
+import { formatter } from "@lingui/format-json"
+
 export default {
     locales: ['en', 'ja'],
     catalogs: [
@@ -6,5 +8,5 @@ export default {
             include: ['./src'],
         },
     ],
-    format: 'minimal',
+    format: formatter({ style: 'minimal' })
 };

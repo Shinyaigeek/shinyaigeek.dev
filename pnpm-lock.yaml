@@ -131,6 +131,9 @@ importers:
       '@lingui/core':
         specifier: ^4.0.0
         version: 4.0.0
+      '@lingui/format-json':
+        specifier: ^4.0.0
+        version: 4.0.0
       '@lingui/macro':
         specifier: ^4.0.0
         version: 4.0.0(@lingui/react@4.0.0)(babel-plugin-macros@3.1.0)
@@ -1777,7 +1780,7 @@ packages:
     resolution: {integrity: sha512-mrzLkl6U9YLF8qpqI7TB82PESyEGjm/0Ly91jG575eVxMMlb8fYfOXFZIJ8XfLrJZQbm7dlKry2bJmXBUEkdFg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      regenerator-runtime: 0.13.10
+      regenerator-runtime: 0.13.11
     dev: true
 
   /@babel/runtime@7.21.0:
@@ -2526,6 +2529,14 @@ packages:
     dependencies:
       '@babel/runtime': 7.21.0
       '@lingui/message-utils': 4.0.0
+    dev: true
+
+  /@lingui/format-json@4.0.0:
+    resolution: {integrity: sha512-uOkF5Rc5b8lz4pwYr7hzFh5ag9t4/wxGe36mVT5MeHQX10gV7Bds2uzqxPRWEKGyALUvrQxPeB3yTJy9/S8qcA==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      '@lingui/conf': 4.0.0
+      ramda: 0.28.0
     dev: true
 
   /@lingui/format-po@4.0.0:
@@ -7400,7 +7411,7 @@ packages:
     resolution: {integrity: sha512-rMyFe1+jnyAAf+NHwTclDz0eAaLkVDdKVHHBFWsBWHnnh5YeJMNWWsv7AbFYXfK3oTqvL7VTWkhNLu1jX24D+g==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
-      '@babel/code-frame': 7.18.6
+      '@babel/code-frame': 7.21.4
       '@jest/types': 27.5.1
       '@types/stack-utils': 2.0.1
       chalk: 4.1.2
@@ -9298,7 +9309,7 @@ packages:
     resolution: {integrity: sha512-ayCKvm/phCGxOkYRSCM82iDwct8/EonSEgCSxWxD7ve6jHggsFl4fZVQBPRNgQoKiuV/odhFrGzQXZwbifC8Rg==}
     engines: {node: '>=8'}
     dependencies:
-      '@babel/code-frame': 7.18.6
+      '@babel/code-frame': 7.21.4
       error-ex: 1.3.2
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4
@@ -9948,6 +9959,10 @@ packages:
     resolution: {integrity: sha512-SbiLPU40JuJniHexQSAgad32hfwd+DRUdwF2PlVuI5RZD0/vahUco7R8vD86J/tcEKKF9vZrUVwgtmGCqlCKyA==}
     dev: true
 
+  /ramda@0.28.0:
+    resolution: {integrity: sha512-9QnLuG/kPVgWvMQ4aODhsBUFKOUmnbUnsSXACv+NCQZcHbeb+v8Lodp8OVxtRULN1/xOyYLLaL6npE6dMq5QTA==}
+    dev: true
+
   /randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
     dependencies:
@@ -10106,7 +10121,7 @@ packages:
   /regenerator-transform@0.15.0:
     resolution: {integrity: sha512-LsrGtPmbYg19bcPHwdtmXwbW+TqNvtY4riE3P83foeHRroMbH6/2ddFBfab3t7kbzc7v7p4wbkIecHImqt0QNg==}
     dependencies:
-      '@babel/runtime': 7.20.1
+      '@babel/runtime': 7.21.0
     dev: true
 
   /regex-escape@3.4.10:

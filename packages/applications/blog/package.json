@@ -61,6 +61,7 @@
         "@babel/register": "^7.12.1",
         "@lingui/cli": "^4.0.0",
         "@lingui/core": "^4.0.0",
+        "@lingui/format-json": "^4.0.0",
         "@lingui/macro": "^4.0.0",
         "@lingui/swc-plugin": "^4.0.0",
         "@parcel/css": "^1.7.1",
