@@ -1,10 +1,14 @@
 import React from 'react';
 import satori from 'satori';
-import { OGImageTemplate } from './OGImageTemplate';
+import { OGImageTemplate } from './OGImageTemplate.js';
 import { Resvg } from '@resvg/resvg-js';
 import imageToBase64 from 'image-to-base64';
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 
 interface Args {
     title: string;

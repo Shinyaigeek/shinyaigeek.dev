@@ -16,7 +16,7 @@
         "build:ssg": "pnpm build:server && node server/main.js",
         "clear": "rimraf ./public",
         "dev": "nodemon --watch src/ --exec  pnpm build",
-        "generate-og-image": "ts-node -O '{\"module\":\"commonjs\", \"jsx\":\"react\"}' ./src/generateOGImage/generateOGImage.ts",
+        "generate-og-image": "ts-node --esm ./src/generateOGImage/generateOGImage.ts",
         "i18n:compile": "lingui compile",
         "i18n:extract": "lingui extract",
         "mv:assets": "ts-node --esm ./scripts/copyAssetsIntoPublic.ts",

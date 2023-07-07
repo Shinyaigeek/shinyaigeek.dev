@@ -1,8 +1,12 @@
 import path from 'path';
-import { getBlogPosts } from '../build/util/getBlogPosts';
-import { generateOGImageFromBlogPost } from './generateOGImageFromBlogPost';
+import { getBlogPosts } from '../build/util/getBlogPosts.js';
+import { generateOGImageFromBlogPost } from './generateOGImageFromBlogPost.js';
 import fs from 'fs/promises';
-import { Entry } from '../build/util/getBlogPost';
+import { Entry } from '../build/util/getBlogPost.js';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 
 const generateOGImage: () => Promise<void> = async function () {
     await fs.mkdir(path.join(__dirname, '../../public/assets/ogimage/ja'), {
