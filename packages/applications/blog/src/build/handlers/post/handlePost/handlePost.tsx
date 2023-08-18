@@ -17,6 +17,10 @@ import rehypeHighlight from 'rehype-highlight';
 import helmet from '../../../util/helmet';
 import { BLOG_TITLE } from '../../../../consts';
 import { selectAll } from 'hast-util-select';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const htmlH2 = () => {
     return (tree: any) => {
@@ -34,7 +38,7 @@ const htmlH2 = () => {
 export const handlePost: (p: `/${string}`) => Promise<string> = async function (p) {
     const _postPath = path.join(
         __dirname,
-        `../src/articles/public${p
+        `../../../../articles/public${p
             .replace('/post', '')
             .replace('/en/', '/')
             .replace('/ja/', '/')}.md`

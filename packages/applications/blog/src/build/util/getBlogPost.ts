@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { generateHash } from './generateHash.js';
 
-require('dotenv').config();
+// require('dotenv').config();
 
 export interface Entry {
     fields: {

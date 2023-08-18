@@ -18,5 +18,8 @@ export const buildSwcConfig: () => Config = function () {
                 ]
             }
         },
+        module: {
+            type: 'nodenext',
+        },
     };
 };

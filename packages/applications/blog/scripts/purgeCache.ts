@@ -4,6 +4,10 @@ import fetch from 'node-fetch';
 import path from 'path';
 import { JSDOM } from 'jsdom';
 import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const baseUrl = 'https://api.cloudflare.com/client/v4/';
 //6386a36a9ac3e8c8494e8a4d43fd4f79b0956

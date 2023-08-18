@@ -6,14 +6,18 @@ import { BLOG_TITLE } from '../../../consts';
 import { getBlogPosts } from '../../util/getBlogPosts';
 import path from 'path';
 import { getThirdPirty } from '../../util/getThirdPirty';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const handleIndex: (p: string) => Promise<string> = async function (p) {
     const blogEntries = getBlogPosts(
-        path.join(__dirname, '../src/articles/public/') as `${string}/`,
+        path.join(__dirname, '../../../articles/public/') as `${string}/`,
         p.startsWith('/en') ? 'en' : 'ja'
     );
     const thirdPirtyEntries = getThirdPirty(
-        path.join(__dirname, '../src/articles/third-pirty.json')
+        path.join(__dirname, '../../../articles/third-pirty.json')
     );
     const Html = React.createElement(
         helmet({
