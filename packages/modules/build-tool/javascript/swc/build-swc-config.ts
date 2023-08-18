@@ -13,10 +13,8 @@ export const buildSwcConfig: () => Config = function () {
                 },
             },
             experimental: {
-                plugins: [
-                    ["@lingui/swc-plugin", {}]
-                ]
-            }
+                plugins: [['@lingui/swc-plugin', {}]],
+            },
         },
         module: {
             type: 'nodenext',

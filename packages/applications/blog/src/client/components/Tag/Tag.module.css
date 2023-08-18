@@ -1,11 +1,11 @@
 .tag {
-  border-radius: 4px;
-  width: min-content;
-  padding: 2px 5px;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 21px;
-  font-weight: bold;
-  margin: 12px 18px;
-  color: black !important;
+    border-radius: 4px;
+    width: min-content;
+    padding: 2px 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 21px;
+    font-weight: bold;
+    margin: 12px 18px;
+    color: black !important;
 }

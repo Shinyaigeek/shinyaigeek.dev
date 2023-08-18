@@ -1,4 +1,4 @@
-import path from "path";
+import path from 'path';
 import webpack from 'webpack';
 // @ts-ignore
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';

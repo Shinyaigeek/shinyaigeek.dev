@@ -7,9 +7,7 @@ const buildEslintCommand = async (filenames) => {
     if (filteredFiles.length < 1) {
         return '';
     }
-    return `eslint --fix ${filteredFiles
-        .map((f) => path.relative(process.cwd(), f))
-        .join(' ')}`;
+    return `eslint --fix ${filteredFiles.map((f) => path.relative(process.cwd(), f)).join(' ')}`;
 };
 
 const removeIgnoredFiles = async (files) => {

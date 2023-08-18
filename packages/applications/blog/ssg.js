@@ -1,3 +1,3 @@
-import { build } from "./dist/main.js"
+import { build } from './dist/main.js';
 
-build()
+build();
