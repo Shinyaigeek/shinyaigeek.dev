@@ -24,8 +24,6 @@ export const hoge = () => {
 
   const postChildren = getChildren();
 
-  console.log(ja, en)
-
   router.registerDefaultLanguage("ja", ja);
   router.registerLanguage("en", en);
 
