@@ -1,3 +1,3 @@
-import { hoge } from "./dist/main.js"
+import { build } from "./dist/main.js"
 
-hoge()
+build()

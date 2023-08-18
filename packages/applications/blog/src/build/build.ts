@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 import { messages as ja } from "../locales/ja/messages";
 import { messages as en } from "../locales/en/messages";
 
-export const hoge = () => {
+export const build = () => {
   const router = new Router();
 
   const postChildren = getChildren();
