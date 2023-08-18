@@ -11,12 +11,7 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// allow js
-// @ts-ignore
 import { messages as ja } from "../locales/ja/messages";
-
-// allow js
-// @ts-ignore
 import { messages as en } from "../locales/en/messages";
 
 export const hoge = () => {
