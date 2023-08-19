@@ -14,7 +14,7 @@ const generateOGImage: () => Promise<void> = async function () {
     });
 
     const blogPosts = (['ja', 'en'] as const).flatMap((language) =>
-        getBlogPosts(getContentAbsolutePath('./articles/public/') as `${string}/`, language).map(
+        getBlogPosts(getContentAbsolutePath('./src/articles/public/') as `${string}/`, language).map(
             (blogPost) => ({
                 ...blogPost,
                 language,

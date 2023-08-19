@@ -9,10 +9,10 @@ import { getContentAbsolutePath } from '../../../contents-handler/get-content-pa
 
 export const handleIndex: (p: string) => Promise<string> = async function (p) {
     const blogEntries = getBlogPosts(
-        getContentAbsolutePath('./articles/public') as `${string}/`,
+        getContentAbsolutePath('./src/articles/public/') as `${string}/`,
         p.startsWith('/en') ? 'en' : 'ja'
     );
-    const thirdPirtyEntries = getThirdPirty(getContentAbsolutePath('./articles/third-pirty.json'));
+    const thirdPirtyEntries = getThirdPirty(getContentAbsolutePath('./src/articles/third-pirty.json'));
     const Html = React.createElement(
         helmet({
             children: Home,

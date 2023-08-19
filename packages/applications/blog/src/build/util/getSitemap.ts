@@ -14,7 +14,7 @@ function formatDate(date: Date) {
 
 export const getSiteMap = (language: 'en' | 'ja') => {
     const items = getBlogPosts(
-        getContentAbsolutePath('./articles/public/') as `${string}/`,
+        getContentAbsolutePath('./src/articles/public/') as `${string}/`,
         language
     );
     const date = new Date();
