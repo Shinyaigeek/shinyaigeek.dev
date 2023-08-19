@@ -4,21 +4,15 @@ import React from 'react';
 import helmet from '../../util/helmet';
 import { BLOG_TITLE } from '../../../consts';
 import { getBlogPosts } from '../../util/getBlogPosts';
-import path from 'path';
 import { getThirdPirty } from '../../util/getThirdPirty';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { getContentAbsolutePath } from '../../../contents-handler/get-content-path';
 
 export const handleIndex: (p: string) => Promise<string> = async function (p) {
     const blogEntries = getBlogPosts(
-        path.join(__dirname, '../../../articles/public/') as `${string}/`,
+        getContentAbsolutePath('./articles/public') as `${string}/`,
         p.startsWith('/en') ? 'en' : 'ja'
     );
-    const thirdPirtyEntries = getThirdPirty(
-        path.join(__dirname, '../../../articles/third-pirty.json')
-    );
+    const thirdPirtyEntries = getThirdPirty(getContentAbsolutePath('./articles/third-pirty.json'));
     const Html = React.createElement(
         helmet({
             children: Home,

@@ -1,15 +1,10 @@
 import { Router } from '../../../router/router';
-import fs from 'fs';
-import path from 'path';
 import { handlePost } from '../handlePost/handlePost';
-import { fileURLToPath } from 'url';
+import { readContentsDirectory } from 'packages/applications/blog/src/contents-handler/contents-reader';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-export const getChildren: () => Router = function () {
+export const getChildren: () => Promise<Router> = async function () {
     const children = new Router();
-    const posts = fs.readdirSync(path.join(__dirname, '../../../../articles/public'));
+    const posts = await readContentsDirectory('./articles/public');
     for (let post of posts) {
         children.on(`/${post.replace('.md', '')}`, handlePost, undefined);
     }

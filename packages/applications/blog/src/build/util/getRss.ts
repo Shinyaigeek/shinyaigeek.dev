@@ -1,16 +1,11 @@
 import dotenv from 'dotenv';
 import { getBlogPosts } from './getBlogPosts.js';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { getContentAbsolutePath } from '../../contents-handler/get-content-path.js';
 dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-
-const __dirname = path.dirname(__filename);
 
 export const getRss = (language: 'en' | 'ja') => {
     const items = getBlogPosts(
-        path.join(__dirname, '../../articles/public/') as `${string}/`,
+        getContentAbsolutePath('./articles/public') as `${string}/`,
         language
     );
 

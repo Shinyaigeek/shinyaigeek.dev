@@ -1,14 +1,8 @@
-import path from 'path';
 import fs from 'fs';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
+import { readContentsDirectory } from '../src/contents-handler/contents-reader';
 
-const __dirname = path.dirname(__filename);
-
-export const LABS_OUTPUT_DIRECTORY = path.join(__dirname, '../public');
-
-export const getBuiltAssetFilename = function () {
-    const builtAssets = fs.readdirSync(LABS_OUTPUT_DIRECTORY);
+export const getBuiltAssetFilename = async function () {
+    const builtAssets = await readContentsDirectory('./public');
 
     const css = builtAssets.find((asset) => asset.startsWith('client') && asset.endsWith('.css'));
 

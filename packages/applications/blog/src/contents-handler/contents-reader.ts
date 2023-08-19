@@ -10,9 +10,9 @@ export const readContent: (pathFromBlog: string) => Promise<string> = async func
     });
 };
 
-export const readContentsDirectory: (pathFromBlog: string) => Promise<string[]> = async function(
+export const readContentsDirectory: (pathFromBlog: string) => Promise<string[]> = async function (
     pathFromBlog
 ) {
     const targetDirectoryPath = getContentAbsolutePath(pathFromBlog);
-    return fs.readdir(targetDirectoryPath)
-}
+    return fs.readdir(targetDirectoryPath);
+};

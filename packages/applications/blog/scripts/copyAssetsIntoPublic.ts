@@ -1,9 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-
-const __dirname = path.dirname(__filename);
+import { getContentAbsolutePath } from '../src/contents-handler/get-content-path';
 
 function copyFileSync(source: string, target: string) {
     var targetFile = target;
@@ -41,4 +38,4 @@ function copyFolderRecursiveSync(source: string, target: string) {
     }
 }
 
-copyFolderRecursiveSync(path.join(__dirname, '../src/assets'), path.join(__dirname, '../public'));
+copyFolderRecursiveSync(getContentAbsolutePath('./src/assets'), getContentAbsolutePath('./public'));

@@ -1,10 +1,7 @@
 import dotenv from 'dotenv';
 import { getBlogPosts } from './getBlogPosts.js';
 import path from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-
-const __dirname = path.dirname(__filename);
+import { getContentAbsolutePath } from '../../contents-handler/get-content-path.js';
 
 dotenv.config();
 
@@ -17,7 +14,7 @@ function formatDate(date: Date) {
 
 export const getSiteMap = (language: 'en' | 'ja') => {
     const items = getBlogPosts(
-        path.join(__dirname, '../../articles/public/') as `${string}/`,
+        getContentAbsolutePath('./articles/public/') as `${string}/`,
         language
     );
     const date = new Date();

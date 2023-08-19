@@ -4,11 +4,7 @@ import { OGImageTemplate } from './OGImageTemplate.js';
 import { Resvg } from '@resvg/resvg-js';
 import imageToBase64 from 'image-to-base64';
 import fs from 'fs/promises';
-import path from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-
-const __dirname = path.dirname(__filename);
+import { getContentAbsolutePath } from '../contents-handler/get-content-path.js';
 
 interface Args {
     title: string;
@@ -35,7 +31,7 @@ export const generateOGImageFromBlogPost: (args: Args) => Promise<Buffer> = asyn
             fonts: [
                 {
                     name: 'Roboto',
-                    data: await fs.readFile(path.join(__dirname, './KosugiMaru-Regular.ttf')),
+                    data: await fs.readFile(getContentAbsolutePath('./KosugiMaru-Regular.ttf')),
                     weight: 800,
                     style: 'normal',
                 },

@@ -17,10 +17,7 @@ import rehypeHighlight from 'rehype-highlight';
 import helmet from '../../../util/helmet';
 import { BLOG_TITLE } from '../../../../consts';
 import { selectAll } from 'hast-util-select';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { getContentAbsolutePath } from 'packages/applications/blog/src/contents-handler/get-content-path';
 
 const htmlH2 = () => {
     return (tree: any) => {
@@ -36,12 +33,8 @@ const htmlH2 = () => {
 };
 
 export const handlePost: (p: `/${string}`) => Promise<string> = async function (p) {
-    const _postPath = path.join(
-        __dirname,
-        `../../../../articles/public${p
-            .replace('/post', '')
-            .replace('/en/', '/')
-            .replace('/ja/', '/')}.md`
+    const _postPath = getContentAbsolutePath(
+        `./articles/public${p.replace('/post', '').replace('/en/', '/').replace('/ja/', '/')}.md`
     );
     const postPath =
         p.startsWith('/en') && fs.existsSync(_postPath.replace('articles/public/', 'articles/en/'))
@@ -54,13 +47,6 @@ export const handlePost: (p: `/${string}`) => Promise<string> = async function (
     // todo type assertion
     const { attributes, body } = fm(_post);
     const md = await remark();
-    // md.use(tweetMacroPlugin, false);
-    // md.use(remarkablePluginHeadingId, {
-    //   targets: ["h2"],
-    //   createId: (level: 1 | 2 | 3 | 4 | 5 | 6, _: string, idx: number) => {
-    //     return `${level}__${idx}`;
-    //   },
-    // });
     md.use(gfm);
     md.use(md2html, { allowDangerousHtml: true });
     md.use(raw);
