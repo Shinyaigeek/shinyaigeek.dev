@@ -9,3 +9,10 @@ export const readContent: (pathFromBlog: string) => Promise<string> = async func
         encoding: 'utf-8',
     });
 };
+
+export const readContentsDirectory: (pathFromBlog: string) => Promise<string[]> = async function(
+    pathFromBlog
+) {
+    const targetDirectoryPath = getContentAbsolutePath(pathFromBlog);
+    return fs.readdir(targetDirectoryPath)
+}
