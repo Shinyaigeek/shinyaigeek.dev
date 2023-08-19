@@ -29,21 +29,29 @@ export class Router {
         return this;
     };
 
-    out: (handler: (path: `/${p}`, html: html) => void) => Promise<void> = async (handler) => {
-        for (const lang of this.languages) {
-            if (this.defaultLanguage === undefined) {
-                throw new Error('router.registerDefaultLanguage should be called');
-            }
+    out: (handler: (path: `/${p}`, html: html) => Promise<void>) => Promise<void> = async (
+        handler
+    ) => {
+        await Promise.all(
+            Array.from(this.languages)
+                .map((language) => {
+                    if (this.defaultLanguage === undefined) {
+                        throw new Error('router.registerDefaultLanguage should be called');
+                    }
 
-            i18n.activate(lang);
+                    i18n.activate(language);
 
-            for (let [_route, routeHandler] of this.routing) {
-                const route = `/${lang}${_route}` as `/${p}`;
+                    return Array.from(this.routing.entries()).map(
+                        async ([_route, routeHandler]) => {
+                            const route = `/${language}${_route}` as `/${p}`;
 
-                const html = await routeHandler(route);
-                handler(route, html);
-            }
-        }
+                            const html = await routeHandler(route);
+                            handler(route, html);
+                        }
+                    );
+                })
+                .flat()
+        );
     };
 
     resolve: (path: `/${p}`) => Promise<html> = (path) => {

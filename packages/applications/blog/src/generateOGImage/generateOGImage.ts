@@ -14,12 +14,13 @@ const generateOGImage: () => Promise<void> = async function () {
     });
 
     const blogPosts = (['ja', 'en'] as const).flatMap((language) =>
-        getBlogPosts(getContentAbsolutePath('./src/articles/public/') as `${string}/`, language).map(
-            (blogPost) => ({
-                ...blogPost,
-                language,
-            })
-        )
+        getBlogPosts(
+            getContentAbsolutePath('./src/articles/public/') as `${string}/`,
+            language
+        ).map((blogPost) => ({
+            ...blogPost,
+            language,
+        }))
     ) as (Entry & { language: string })[];
 
     blogPosts.push({

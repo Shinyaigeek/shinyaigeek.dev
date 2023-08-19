@@ -22,7 +22,7 @@ export const build = async () => {
     router.on('/post', undefined, [postChildren]);
     router.on('/', handleIndex, undefined);
     router.on('/profile', handleProfile, undefined);
-    router.out(async function (slug, html) {
-        writeContent(`./public${slug}/index.html`, minify(addDOCTYP(html)));
+    await router.out(async function (slug, html) {
+        await writeContent(`./public${slug}/index.html`, minify(addDOCTYP(html)));
     });
 };

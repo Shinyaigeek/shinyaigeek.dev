@@ -12,7 +12,9 @@ export const handleIndex: (p: string) => Promise<string> = async function (p) {
         getContentAbsolutePath('./src/articles/public/') as `${string}/`,
         p.startsWith('/en') ? 'en' : 'ja'
     );
-    const thirdPirtyEntries = getThirdPirty(getContentAbsolutePath('./src/articles/third-pirty.json'));
+    const thirdPirtyEntries = getThirdPirty(
+        getContentAbsolutePath('./src/articles/third-pirty.json')
+    );
     const Html = React.createElement(
         helmet({
             children: Home,

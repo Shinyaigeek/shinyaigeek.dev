@@ -34,7 +34,10 @@ const htmlH2 = () => {
 
 export const handlePost: (p: `/${string}`) => Promise<string> = async function (p) {
     const _postPath = getContentAbsolutePath(
-        `./src/articles/public${p.replace('/post', '').replace('/en/', '/').replace('/ja/', '/')}.md`
+        `./src/articles/public${p
+            .replace('/post', '')
+            .replace('/en/', '/')
+            .replace('/ja/', '/')}.md`
     );
     const postPath =
         p.startsWith('/en') && fs.existsSync(_postPath.replace('articles/public/', 'articles/en/'))
