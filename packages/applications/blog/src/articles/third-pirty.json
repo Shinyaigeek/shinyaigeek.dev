@@ -1,5 +1,21 @@
 [
     {
+        "media": "speakerdeck",
+        "slug": "https://speakerdeck.com/shinyaigeek/managing-side-effect-in-frontend-development",
+        "title": "Managing \"side effect\" in Frontend Development",
+        "ogp": "https://files.speakerdeck.com/presentations/1927f54b59774c08a6f2f0ee719ff03a/slide_0.jpg?27866330",
+        "description": "In the web frontend development context, we should care about function's side effect not only for simplicity of the function's responsibility, but also for preventing unnecessary/dangerous code from leaking into client side. This slides show why we should care about side effect in frontend development, and introduce treeche, which is the tool to detect side effect in the ESModule",
+        "publishedAt": "2023/11/26"
+    },
+    {
+        "media": "speakerdeck",
+        "slug": "https://speakerdeck.com/shinyaigeek/bao-su-nori-jing-dian-zi-ban-kai-fa-nojin",
+        "title": "爆速の日経電子版開発の今",
+        "ogp": "https://files.speakerdeck.com/presentations/c12718b5c5b24bf0b3a9211aa9173206/slide_0.jpg",
+        "description": "Nikkei Tech Talk #3 メディア企業のWebフロントエンド～多様な開発と技術選定～ https://nikkei.connpass.com/event/268793/ で発表させていただいた際の資料です。日経電子版の開発の今についてお話ししました。",
+        "publishedAt": "2023/2/26"
+    },
+    {
         "media": "blog",
         "slug": "https://hack.nikkei.com/blog/advent20221212/",
         "title": "Edge Proxy OVER THE EDGE",
