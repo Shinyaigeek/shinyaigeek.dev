@@ -31,7 +31,7 @@ export const generateOGImageFromBlogPost: (args: Args) => Promise<Buffer> = asyn
             fonts: [
                 {
                     name: 'Roboto',
-                    data: await fs.readFile(getContentAbsolutePath('./KosugiMaru-Regular.ttf')),
+                    data: await fs.readFile(getContentAbsolutePath('./src/generateOGImage/KosugiMaru-Regular.ttf')),
                     weight: 800,
                     style: 'normal',
                 },

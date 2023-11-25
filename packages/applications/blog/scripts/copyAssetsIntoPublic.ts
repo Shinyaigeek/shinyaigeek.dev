@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { getContentAbsolutePath } from '../src/contents-handler/get-content-path';
+import { getContentAbsolutePath } from '../src/contents-handler/get-content-path.js';
 
 function copyFileSync(source: string, target: string) {
     var targetFile = target;
