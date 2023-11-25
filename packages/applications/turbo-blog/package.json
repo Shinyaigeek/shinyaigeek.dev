@@ -1,0 +1,16 @@
+{
+    "name": "turbo-blog",
+    "version": "1.0.0",
+    "description": "",
+    "keywords": [],
+    "license": "ISC",
+    "type": "module",
+    "author": "",
+    "main": "index.js",
+    "scripts": {
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+    }
+}
