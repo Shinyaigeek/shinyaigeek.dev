@@ -16,139 +16,139 @@ msgstr ""
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:30
 msgid "aboutme_content"
-msgstr ""
+msgstr "こんにちは、こんばんは、しにゃいと申します。<br />Web Developerとして活動しております。<br /><br />Webというプラットフォームの普遍性に惹かれていて、その可能性を広げていくための活動をしております。この活動を通して、Webの可能性を人々に伝えていきたいと思っています。<br /><br />「どこでもいつでも誰にでも」を標語として掲げ、Webの普遍性を最大限に引き出すために、クライアントマシンのスペックが低くてもアプリケーションが動くようにクライアントマシンのRuntime Costを下げたり、クライアントマシンの通信状況が悪くてもアプリケーションが動くようにI/O Costを下げたり、目の見えない人や認知障害の人はもちろん、料理や筋トレで手が不自由な人でもコンテンツにアクセスできるように、アクセシビリティを考慮したコードを書いたりしています。この意志を実現するために、Webフロントエンドだけでなく、CDN Edge Proxy、サーバーサイドなど、幅広くWeb開発に携わってきました。<br /><br />趣味はWebとプログラミングです。趣味で自作ブラウザを作ったり、parcel-bundlerの優れたスケーラビリティ（Transformer, Resolver, Pipeline, ...）とWeb開発へのカバレッジ（TypeScript, Vue, React, Scss, CoffeeScript ...）に惚れ込み、parcel-bundlerにcontributeしています。<br /><br />現在、積極的に仕事を探しているわけではありませんが、Web開発職の副業に関するメッセージは大歓迎です!"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:53
 msgid "certain_news_media_company"
-msgstr ""
+msgstr "某メディア企業"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:55
 msgid "certain_news_media_company_description"
-msgstr ""
+msgstr "フロントエンドエンジニアとして, Web Frontend文脈でのパフォーマンス改善, インテラクティブなアプリケーション開発に従事する."
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:56
 msgid "certain_news_media_company_position"
-msgstr ""
+msgstr "Webエンジニア"
 
 #. js-lingui-generated-id
 #: src/client/components/Language/Language.tsx:66
 msgid "current_language"
-msgstr ""
+msgstr "日本語"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:65
 msgid "cybozu"
-msgstr ""
+msgstr "Cybozu"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:67
 msgid "cybozu_description"
-msgstr ""
+msgstr "学生インターンとして, チームを組みkintoneででの協働をより補強する拡張機能の開発を行う."
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:68
 msgid "cybozu_position"
-msgstr ""
+msgstr "Internship Student"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:37
 msgid "education"
-msgstr ""
+msgstr "学歴"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:40
 msgid "enroll_univ_tokyo"
-msgstr ""
+msgstr "東京大学入学"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:39
 msgid "graduate_nishiyamato"
-msgstr ""
+msgstr "西大和学園高等学校卒業"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:43
 msgid "graduate_utokyo"
-msgstr ""
+msgstr "東京大学工学部システム創成学科卒業"
 
 #. js-lingui-generated-id
 #: src/client/Post/components/Anchor/Anchor.tsx:15
 msgid "index"
-msgstr ""
+msgstr "目次"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:42
 msgid "major_in_system"
-msgstr ""
+msgstr "東京大学工学部システム創成学科進学"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:83
 msgid "moshimos"
-msgstr ""
+msgstr "MOSHIMOS"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:85
 msgid "moshimos_description"
-msgstr ""
+msgstr "Webエンジニアとしてアプリケーション開発に従事する"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:86
 msgid "moshimos_position"
-msgstr ""
+msgstr "Web Engineer"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:59
 msgid "recruit"
-msgstr ""
+msgstr "Recruit"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:61
 msgid "recruit_description"
-msgstr ""
+msgstr "フロントエンドのUI改善, Web 標準動向の調査を行なっていました."
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:62
 msgid "recruit_position"
-msgstr ""
+msgstr "Web Engineer"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:77
 msgid "voyage_group"
-msgstr ""
+msgstr "VOYAGE GROUP"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:79
 msgid "voyage_group_description"
-msgstr ""
+msgstr "TreasureでWeb Application開発のいろはを学び, その後チームを組んでバックエンドはfirebase, go, フロントエンドはPreact, bootstrapでブログ投稿プラットフォームの開発を行っていました."
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:80
 msgid "voyage_group_position"
-msgstr ""
+msgstr "Treasure Internship Student"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:71
 msgid "wantedly"
-msgstr ""
+msgstr "Wantedly"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:73
 msgid "wantedly_description"
-msgstr ""
+msgstr "Wentedly Webアプリの新機能開発."
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:74
 msgid "wantedly_position"
-msgstr ""
+msgstr "Web Engineer"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:41
 msgid "will_major_in_system"
-msgstr ""
+msgstr "東京大学工学部システム創成学科内定"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:50
 msgid "working_experience"
-msgstr ""
+msgstr "職歴"
