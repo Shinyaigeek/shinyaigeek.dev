@@ -1,4 +1,4 @@
-import { formatter } from '@lingui/format-json';
+import { formatter } from '@lingui/format-po';
 
 export default {
     locales: ['en', 'ja'],
@@ -8,5 +8,5 @@ export default {
             include: ['./src'],
         },
     ],
-    format: formatter({ style: 'minimal' }),
+    format: formatter({ explicitIdAsDefault: true }),
 };

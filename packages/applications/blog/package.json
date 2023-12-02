@@ -9,7 +9,7 @@
     "main": "index.js",
     "scripts": {
         "__webpack": "NODE_OPTIONS=\"--loader ts-node/esm\" webpack",
-        "build": "pnpm clear && NODE_ENV=production pnpm build:css && pnpm rss && pnpm sitemap && pnpm mv:assets && pnpm generate-og-image",
+        "build": "NODE_ENV=production pnpm build:css && pnpm rss && pnpm sitemap && pnpm mv:assets && pnpm generate-og-image",
         "build:css": "pnpm __webpack --config webpack.config.client.ts --mode=production",
         "build:dev": "export NODE_ENV=development && pnpm build:css && pnpm build:ssg && pnpm rss && pnpm sitemap && pnpm mv:assets",
         "build:server": "pnpm __webpack --config webpack.config.server.ts",
@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "@github/g-emoji-element": "^1.1.5",
+        "@lingui/format-po": "^4.6.0",
         "@resvg/resvg-js": "^2.1.0",
         "body-parser": "^1.19.0",
         "build-tool": "workspace:*",

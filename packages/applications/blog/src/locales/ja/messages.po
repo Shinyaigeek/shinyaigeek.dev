@@ -1,0 +1,154 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2023-12-02 23:55+0900\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: ja\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:30
+msgid "aboutme_content"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:53
+msgid "certain_news_media_company"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:55
+msgid "certain_news_media_company_description"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:56
+msgid "certain_news_media_company_position"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/components/Language/Language.tsx:66
+msgid "current_language"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:65
+msgid "cybozu"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:67
+msgid "cybozu_description"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:68
+msgid "cybozu_position"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:37
+msgid "education"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:40
+msgid "enroll_univ_tokyo"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:39
+msgid "graduate_nishiyamato"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:43
+msgid "graduate_utokyo"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Post/components/Anchor/Anchor.tsx:15
+msgid "index"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:42
+msgid "major_in_system"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:83
+msgid "moshimos"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:85
+msgid "moshimos_description"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:86
+msgid "moshimos_position"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:59
+msgid "recruit"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:61
+msgid "recruit_description"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:62
+msgid "recruit_position"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:77
+msgid "voyage_group"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:79
+msgid "voyage_group_description"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:80
+msgid "voyage_group_position"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:71
+msgid "wantedly"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:73
+msgid "wantedly_description"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:74
+msgid "wantedly_position"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:41
+msgid "will_major_in_system"
+msgstr ""
+
+#. js-lingui-generated-id
+#: src/client/Profile/Profile.tsx:50
+msgid "working_experience"
+msgstr ""
