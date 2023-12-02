@@ -16,139 +16,139 @@ msgstr ""
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:30
 msgid "aboutme_content"
-msgstr ""
+msgstr "Hi! I am Shinyaigeek(Shinobu Hayashi).<br />I am working as a Web Developer.<br /><br />I am attracted by the universality of the Web platform, and I am working to expand the possibilities of that. Through this work, I want to tell the possibilities of the web to people.<br /><br />Under the slogan of \"anywhere, anytime, anyone\", in order to maximize the universality of the Web, I am working on reducing the Runtime Cost on the client machine so that applications can run even if the client machine spec is low, and reducing I/O Cost so that applications can run even if the client machine is in the poor connection, and writing the code with accessibility in mind so that anyone can access the contents, not only the blind or who have cognitive impairment but also who does not have free hand because of cooking or muscle training. To accomplish this wish, I have worked on a wide range of web development, not only web frontend but also CDN, Edge Proxy, Server-side.<br /><br />My hobby is web and programming. I am make the handmade browser as a hobby, and I contribute parcel-bundler because I am in love with the parcel-bundler because parcel-bundler have the grate scalability(Transformer, Resolver, Pipeline, ...) and the great coverage of the web development(TypeScript, Vue, React, Scss, CoffeeScript...).<br /><br />I am not actively looking for a job at the moment, but the message about a side work for a web dev position is welcome!!"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:53
 msgid "certain_news_media_company"
-msgstr ""
+msgstr "Certain News media company"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:55
 msgid "certain_news_media_company_description"
-msgstr ""
+msgstr "I contributed to Web frontend performance tuning, and development interactive SPA."
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:56
 msgid "certain_news_media_company_position"
-msgstr ""
+msgstr "Web Engineer"
 
 #. js-lingui-generated-id
 #: src/client/components/Language/Language.tsx:66
 msgid "current_language"
-msgstr ""
+msgstr "English"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:65
 msgid "cybozu"
-msgstr ""
+msgstr "Cybozu"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:67
 msgid "cybozu_description"
-msgstr ""
+msgstr "I made the kintone's extension to allow kintone users to collaborate more with the other internship students."
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:68
 msgid "cybozu_position"
-msgstr ""
+msgstr "Internship Student"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:37
 msgid "education"
-msgstr ""
+msgstr "Education"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:40
 msgid "enroll_univ_tokyo"
-msgstr ""
+msgstr "Enter University of Tokyo"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:39
 msgid "graduate_nishiyamato"
-msgstr ""
+msgstr "Graduated from Nishiyamato highschool"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:43
 msgid "graduate_utokyo"
-msgstr ""
+msgstr "Graduated from University of Tokyo"
 
 #. js-lingui-generated-id
 #: src/client/Post/components/Anchor/Anchor.tsx:15
 msgid "index"
-msgstr ""
+msgstr "Table of Contents"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:42
 msgid "major_in_system"
-msgstr ""
+msgstr "Major in Factory of Engineering in University of Tokyo"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:83
 msgid "moshimos"
-msgstr ""
+msgstr "MOSHIMOS"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:85
 msgid "moshimos_description"
-msgstr ""
+msgstr "I made web application from backend to frontend."
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:86
 msgid "moshimos_position"
-msgstr ""
+msgstr "Web Engineer"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:59
 msgid "recruit"
-msgstr ""
+msgstr "Recruit"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:61
 msgid "recruit_description"
-msgstr ""
+msgstr "I improve SPA's UI and investigate Web standard"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:62
 msgid "recruit_position"
-msgstr ""
+msgstr "Web Engineer"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:77
 msgid "voyage_group"
-msgstr ""
+msgstr "VOYAGE GROUP"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:79
 msgid "voyage_group_description"
-msgstr ""
+msgstr "I make media application with the other internship team."
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:80
 msgid "voyage_group_position"
-msgstr ""
+msgstr "Treasure Internship Student"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:71
 msgid "wantedly"
-msgstr ""
+msgstr "Wantedly"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:73
 msgid "wantedly_description"
-msgstr ""
+msgstr "I make Wantedly web application's new feature"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:74
 msgid "wantedly_position"
-msgstr ""
+msgstr "Web Engineer"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:41
 msgid "will_major_in_system"
-msgstr ""
+msgstr "decide informally to major in Factory of Engineering in University of Tokyo"
 
 #. js-lingui-generated-id
 #: src/client/Profile/Profile.tsx:50
 msgid "working_experience"
-msgstr ""
+msgstr "Working Experience"
