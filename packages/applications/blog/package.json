@@ -9,20 +9,20 @@
     "main": "index.js",
     "scripts": {
         "__webpack": "NODE_OPTIONS=\"--loader ts-node/esm\" webpack",
-        "build": "NODE_ENV=production pnpm build:css && pnpm rss && pnpm sitemap && pnpm mv:assets && pnpm generate-og-image",
+        "build": "NODE_ENV=production pnpm build:css && pnpm build:rss && pnpm build:sitemap && pnpm mv:assets && pnpm build:og-image",
         "build:css": "pnpm __webpack --config webpack.config.client.ts --mode=production",
-        "build:dev": "export NODE_ENV=development && pnpm build:css && pnpm build:ssg && pnpm rss && pnpm sitemap && pnpm mv:assets",
+        "build:dev": "export NODE_ENV=development && pnpm build:css && pnpm build:ssg && pnpm build:rss && pnpm build:sitemap && pnpm mv:assets",
         "build:server": "pnpm __webpack --config webpack.config.server.ts",
         "build:ssg": "pnpm build:server && node ssg.js",
+        "build:rss": "ts-node --esm ./scripts/buildRss.ts",
+        "build:sitemap": "ts-node --esm ./scripts/buildSitemap.ts",
+        "build:og-image": "ts-node --esm ./src/generateOGImage/generateOGImage.ts",
         "clear": "rimraf ./public",
         "dev": "nodemon --watch src/ --exec  pnpm build",
-        "generate-og-image": "ts-node --esm ./src/generateOGImage/generateOGImage.ts",
         "i18n:compile": "lingui compile --typescript",
         "i18n:extract": "lingui extract",
         "mv:assets": "ts-node --esm ./scripts/copyAssetsIntoPublic.ts",
-        "rss": "ts-node --esm ./scripts/buildRss.ts",
-        "serve": "miniserve ./public --index index.html",
-        "sitemap": "ts-node --esm ./scripts/buildSitemap.ts"
+        "serve": "miniserve ./public --index index.html",\
     },
     "dependencies": {
         "@github/g-emoji-element": "^1.1.5",
