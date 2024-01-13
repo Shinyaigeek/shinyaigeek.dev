@@ -20,7 +20,6 @@
         "i18n:compile": "lingui compile --typescript",
         "i18n:extract": "lingui extract",
         "mv:assets": "ts-node --esm ./scripts/copyAssetsIntoPublic.ts",
-        "purge": "ts-node --esm ./scripts/purgeCache.ts",
         "rss": "ts-node --esm ./scripts/buildRss.ts",
         "serve": "miniserve ./public --index index.html",
         "sitemap": "ts-node --esm ./scripts/buildSitemap.ts"
