@@ -22,7 +22,7 @@
         "i18n:compile": "lingui compile --typescript",
         "i18n:extract": "lingui extract",
         "mv:assets": "ts-node --esm ./scripts/copyAssetsIntoPublic.ts",
-        "serve": "miniserve ./public --index index.html",\
+        "serve": "miniserve ./public --index index.html"
     },
     "dependencies": {
         "@github/g-emoji-element": "^1.1.5",
