@@ -1,5 +1,13 @@
 [
     {
+        "media": "blog",
+        "slug": "https://hack.nikkei.com/blog/advent20231220/",
+        "title": "処理系フレンドリーコードによる「フロントエンド」のコードベース改善のアプローチ",
+        "description": "",
+        "ogp": "https://hack.nikkei.com/images/ogp/advent20231220.png",
+        "publishedAt": "2023/12/20"
+    },
+    {
         "media": "speakerdeck",
         "slug": "https://speakerdeck.com/shinyaigeek/managing-side-effect-in-frontend-development",
         "title": "Managing \"side effect\" in Frontend Development",

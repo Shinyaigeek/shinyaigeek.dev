@@ -28,4 +28,4 @@ const config: webpack.Configuration = {
     ],
 };
 
-export default merge(config, webpackBaseConfig);
+export default merge(config, webpackBaseConfig as any);

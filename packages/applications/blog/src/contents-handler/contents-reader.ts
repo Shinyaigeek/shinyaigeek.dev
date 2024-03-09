@@ -1,5 +1,5 @@
 import fs from 'fs/promises';
-import { getContentAbsolutePath } from './get-content-path.js';
+import { getContentAbsolutePath } from './get-content-path';
 
 export const readContent: (pathFromBlog: string) => Promise<string> = async function (
     pathFromBlog

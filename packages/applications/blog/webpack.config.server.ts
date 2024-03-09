@@ -53,4 +53,4 @@ const configForApplicationServer: webpack.Configuration = {
     ],
 };
 
-export default merge(webpackBaseConfig, configForApplicationServer);
+export default merge(webpackBaseConfig, configForApplicationServer as any);

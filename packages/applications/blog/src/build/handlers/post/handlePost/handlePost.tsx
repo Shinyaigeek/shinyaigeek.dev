@@ -17,7 +17,7 @@ import rehypeHighlight from 'rehype-highlight';
 import helmet from '../../../util/helmet';
 import { BLOG_TITLE } from '../../../../consts';
 import { selectAll } from 'hast-util-select';
-import { getContentAbsolutePath } from 'packages/applications/blog/src/contents-handler/get-content-path';
+import { getContentAbsolutePath } from '../../../../contents-handler/get-content-path';
 
 const htmlH2 = () => {
     return (tree: any) => {
