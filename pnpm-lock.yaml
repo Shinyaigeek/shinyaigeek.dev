@@ -291,6 +291,9 @@ importers:
       swc-loader: 0.2.3_7u4rglgmnjrsh3xllouk24ji5u
       webpack: 5.89.0_@swc+core@1.3.100
 
+  packages/modules/ssg-router:
+    specifiers: {}
+
 packages:
 
   /@aashutoshrathi/word-wrap/1.2.6:
