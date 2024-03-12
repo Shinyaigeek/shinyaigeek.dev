@@ -292,7 +292,10 @@ importers:
       webpack: 5.89.0_@swc+core@1.3.100
 
   packages/modules/ssg-router:
-    specifiers: {}
+    specifiers:
+      option-t: ^39.0.3
+    dependencies:
+      option-t: 39.0.3
 
 packages:
 
@@ -10258,6 +10261,11 @@ packages:
     dependencies:
       is-wsl: 1.1.0
     dev: true
+
+  /option-t/39.0.3:
+    resolution: {integrity: sha512-yNx9WlvXitsGeg0Tc5fM40BSJghhFbprHRYiNNL8HlvWQamjiMz4uk50vFQ/s4aMW9YpTmElrHtzNBVF/sr00w==}
+    engines: {node: '>=16.20.0'}
+    dev: false
 
   /optionator/0.9.3:
     resolution: {integrity: sha512-JjCoypp+jKn1ttEFExxhetCKeJt9zhAgAve5FXHixTvFDW/5aEktX9bufBKLRRMdU7bNtpLfcGu94B3cdEJgjg==}
