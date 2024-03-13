@@ -22,10 +22,23 @@ export class Router implements BasicRouter {
     async out(path: string) {
         const handler = this.routing.get(path);
 
+        for (const onRouted of this.onRoutedPlugins) {
+            await onRouted(path, handler?.generate, handler?.output);
+        }
+
         if (handler) {
             const { generate, output } = handler;
             const content = await generate({ path });
+
+            for (const onGenerated of this.onGeneratedPlugins) {
+                await onGenerated(path, content);
+            }
+
             await output({ path, content });
+
+            for (const onOutput of this.onOutputPlugins) {
+                await onOutput(path);
+            }
         }
     }
 
