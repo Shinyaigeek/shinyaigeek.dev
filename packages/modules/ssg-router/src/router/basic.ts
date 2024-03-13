@@ -1,10 +1,18 @@
-export type HandlerArguments = {
+import { Plugin } from '../plugin/basic';
+
+export type GenerateHandlerArguments = {
     path: string;
 };
+export type GenerateHandler = (args: GenerateHandlerArguments) => Promise<string>;
 
-export type Handler = (args: HandlerArguments) => Promise<string>;
+export type OutputHandlerArguments = {
+    path: string;
+    content: string;
+};
+export type OutputHandler = (args: OutputHandlerArguments) => Promise<void>;
 
 export type BasicRouter = {
-    on: (path: string, handler: Handler) => void;
+    on: (path: string, arg: { generate: GenerateHandler, output: OutputHandler }) => void;
     out: (path: string) => Promise<void>;
+    register: (plugin: Plugin) => void;
 };
