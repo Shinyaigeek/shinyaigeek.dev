@@ -7,10 +7,10 @@ export class Router implements BasicRouter {
         this.routing.set(path, handler);
     }
 
-    out(path: string) {
+    async out(path: string) {
         const handler = this.routing.get(path);
         if (handler) {
-            handler({ path });
+            await handler({ path });
         }
     }
     
