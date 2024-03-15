@@ -11,7 +11,8 @@
     "dev": "NODE_ENV=development rspack serve",
     "build": "NODE_ENV=production rspack build",
     "__rspack": "NODE_OPTIONS=\"--loader ts-node/esm\" rspack",
-    "build:client": "NODE_ENV=production pnpm __rspack build --config rspack.config.client.ts"
+    "build:client": "NODE_ENV=production pnpm __rspack build --config rspack.config.client.ts",
+    "build:server": "NODE_ENV=production pnpm __rspack build --config rspack.config.server.ts"
   },
   "dependencies": {
     "@lingui/core": "^4.0.0",
