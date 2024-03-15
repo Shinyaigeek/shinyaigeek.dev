@@ -19,6 +19,18 @@ export class Router implements BasicRouter {
         this.routing.set(path, handler);
     }
 
+    onChildren(generateChildren: () => Promise<string[]>) {
+        this.on('/', {
+            generate: async ({ path }) => {
+                const children = await generateChildren();
+                return JSON.stringify(children);
+            },
+            output: async ({ path, content }) => {
+                console.log(`output: ${path}`);
+            },
+        });
+    }
+
     async out(path: string) {
         const handler = this.routing.get(path);
 

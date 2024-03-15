@@ -8,5 +8,15 @@
     "type": "module",
     "dependencies": {
         "option-t": "^39.0.3"
+    },
+    "exports": {
+        "./router": {
+            "default": "./router/router.ts",
+            "types": "./router/router.ts"
+        },
+        "./plugin": {
+            "default": "./plugin/basic.ts",
+            "types": "./plugin/basic.ts"
+        }
     }
 }

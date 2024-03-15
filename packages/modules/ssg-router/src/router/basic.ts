@@ -13,6 +13,7 @@ export type OutputHandler = (args: OutputHandlerArguments) => Promise<void>;
 
 export type BasicRouter = {
     on: (path: string, arg: { generate: GenerateHandler, output: OutputHandler }) => void;
+    onChildren: (generateChildren: () => Promise<string[]>) => void;
     out: (path: string) => Promise<void>;
     register: (plugin: Plugin) => void;
 };
