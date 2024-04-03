@@ -1,4 +1,4 @@
-import { Content } from "../content/content";
+import { Content } from "../content/content.entity";
 
 export class BlogContent extends Content {
     public title: string;
