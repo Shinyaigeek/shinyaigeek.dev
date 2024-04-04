@@ -5,19 +5,19 @@ import { Prerender2PageComponent } from "../../../ui/pages/projects/prerender2/p
 import { Prerender2SubPageComponent } from "../../../ui/pages/projects/prerender2/subpage";
 
 export const Prerender2ProjectPageRoutes: FastifyPluginAsync = async function (
-  app
+	app,
 ) {
-  app.get("/projects/prerender2/", async (req, res) => {
-    const html = renderToStaticMarkup(<Prerender2PageComponent />);
+	app.get("/projects/prerender2/", async (req, res) => {
+		const html = renderToStaticMarkup(<Prerender2PageComponent />);
 
-    res.type("text/html");
-    res.send(html);
-  });
+		res.type("text/html");
+		res.send(html);
+	});
 
-  app.get("/projects/prerender2/subpage/", async (req, res) => {
-    const html = renderToStaticMarkup(<Prerender2SubPageComponent />);
+	app.get("/projects/prerender2/subpage/", async (req, res) => {
+		const html = renderToStaticMarkup(<Prerender2SubPageComponent />);
 
-    res.type("text/html");
-    res.send(html);
-  });
+		res.type("text/html");
+		res.send(html);
+	});
 };

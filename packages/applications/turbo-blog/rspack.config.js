@@ -7,16 +7,16 @@ const isDev = process.env.NODE_ENV === "development";
 module.exports = {
 	context: __dirname,
 	entry: {
-		main: "./src/main.tsx"
+		main: "./src/main.tsx",
 	},
 	resolve: {
-		extensions: ["...", ".ts", ".tsx", ".jsx"]
+		extensions: ["...", ".ts", ".tsx", ".jsx"],
 	},
 	module: {
 		rules: [
 			{
 				test: /\.svg$/,
-				type: "asset"
+				type: "asset",
 			},
 			{
 				test: /\.(jsx?|tsx?)$/,
@@ -28,38 +28,38 @@ module.exports = {
 							jsc: {
 								parser: {
 									syntax: "typescript",
-									tsx: true
+									tsx: true,
 								},
 								transform: {
 									react: {
 										runtime: "automatic",
 										development: isDev,
-										refresh: isDev
-									}
-								}
+										refresh: isDev,
+									},
+								},
 							},
 							env: {
 								targets: [
 									"chrome >= 87",
 									"edge >= 88",
 									"firefox >= 78",
-									"safari >= 14"
-								]
-							}
-						}
-					}
-				]
-			}
-		]
+									"safari >= 14",
+								],
+							},
+						},
+					},
+				],
+			},
+		],
 	},
 	plugins: [
 		new rspack.DefinePlugin({
-			"process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
+			"process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
 		}),
 		new rspack.ProgressPlugin({}),
 		new rspack.HtmlRspackPlugin({
-			template: "./index.html"
+			template: "./index.html",
 		}),
-		isDev ? new refreshPlugin() : null
-	].filter(Boolean)
+		isDev ? new refreshPlugin() : null,
+	].filter(Boolean),
 };

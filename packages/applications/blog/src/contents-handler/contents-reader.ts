@@ -1,18 +1,17 @@
-import fs from 'fs/promises';
-import { getContentAbsolutePath } from './get-content-path';
+import fs from "fs/promises";
+import { getContentAbsolutePath } from "./get-content-path";
 
-export const readContent: (pathFromBlog: string) => Promise<string> = async function (
-    pathFromBlog
-) {
-    const targetFilePath = getContentAbsolutePath(pathFromBlog);
-    return fs.readFile(targetFilePath, {
-        encoding: 'utf-8',
-    });
-};
+export const readContent: (pathFromBlog: string) => Promise<string> =
+	async function (pathFromBlog) {
+		const targetFilePath = getContentAbsolutePath(pathFromBlog);
+		return fs.readFile(targetFilePath, {
+			encoding: "utf-8",
+		});
+	};
 
-export const readContentsDirectory: (pathFromBlog: string) => Promise<string[]> = async function (
-    pathFromBlog
-) {
-    const targetDirectoryPath = getContentAbsolutePath(pathFromBlog);
-    return fs.readdir(targetDirectoryPath);
+export const readContentsDirectory: (
+	pathFromBlog: string,
+) => Promise<string[]> = async function (pathFromBlog) {
+	const targetDirectoryPath = getContentAbsolutePath(pathFromBlog);
+	return fs.readdir(targetDirectoryPath);
 };

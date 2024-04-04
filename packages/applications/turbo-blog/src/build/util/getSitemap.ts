@@ -1,26 +1,26 @@
-import dotenv from 'dotenv';
-import { getBlogPosts } from './getBlogPosts.js';
-import path from 'path';
-import { getContentAbsolutePath } from '../../contents-handler/get-content-path.js';
+import dotenv from "dotenv";
+import { getBlogPosts } from "./getBlogPosts.js";
+import path from "path";
+import { getContentAbsolutePath } from "../../contents-handler/get-content-path.js";
 
 dotenv.config();
 
 function formatDate(date: Date) {
-    var y = date.getFullYear();
-    var m = `00${date.getMonth() + 1}`.slice(-2);
-    var d = `00${date.getDate()}`.slice(-2);
-    return `${y}-${m}-${d}`;
+	var y = date.getFullYear();
+	var m = `00${date.getMonth() + 1}`.slice(-2);
+	var d = `00${date.getDate()}`.slice(-2);
+	return `${y}-${m}-${d}`;
 }
 
-export const getSiteMap = (language: 'en' | 'ja') => {
-    const items = getBlogPosts(
-        getContentAbsolutePath('./src/articles/public/') as `${string}/`,
-        language
-    );
-    const date = new Date();
-    const lastmod = formatDate(date);
+export const getSiteMap = (language: "en" | "ja") => {
+	const items = getBlogPosts(
+		getContentAbsolutePath("./src/articles/public/") as `${string}/`,
+		language,
+	);
+	const date = new Date();
+	const lastmod = formatDate(date);
 
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+	const xml = `<?xml version="1.0" encoding="UTF-8"?>
             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <url>
                 <loc>https://ja.shinyaigeek.dev/</loc>
@@ -47,8 +47,8 @@ export const getSiteMap = (language: 'en' | 'ja') => {
                 <priority>0.8</priority>
             </url>
             ${items
-                .map((con: { fields: { slug: string } }) => {
-                    return `<url>
+							.map((con: { fields: { slug: string } }) => {
+								return `<url>
     <loc>https://ja.shinyaigeek.dev/post/${con.fields.slug}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
@@ -60,11 +60,11 @@ export const getSiteMap = (language: 'en' | 'ja') => {
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
 </url>`;
-                })
-                .join('')}
+							})
+							.join("")}
               
         </urlset>
           `;
 
-    return xml;
+	return xml;
 };

@@ -1,13 +1,13 @@
 {
-    "extends": "../../../tsconfig.base.json",
-    "compilerOptions": {
-        "paths": {
-            "build-tool": ["../../modules/build-tool"]
-        }
-    },
-    "references": [
-        {
-            "path": "../../modules/build-tool"
-        }
-    ]
+	"extends": "../../../tsconfig.base.json",
+	"compilerOptions": {
+		"paths": {
+			"build-tool": ["../../modules/build-tool"]
+		}
+	},
+	"references": [
+		{
+			"path": "../../modules/build-tool"
+		}
+	]
 }

@@ -4,12 +4,12 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { TopPageComponent } from "../../ui/pages/top/top";
 
 export const TopPageRoutes: FastifyPluginAsync = async function (app) {
-  app.get("/", async (req, res) => {
-    const html = renderToStaticMarkup(
-      <TopPageComponent allProjects={["prerender2"]} />
-    );
+	app.get("/", async (req, res) => {
+		const html = renderToStaticMarkup(
+			<TopPageComponent allProjects={["prerender2"]} />,
+		);
 
-    res.type("text/html");
-    res.send(html);
-  });
+		res.type("text/html");
+		res.send(html);
+	});
 };

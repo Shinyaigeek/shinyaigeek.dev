@@ -1,18 +1,18 @@
 {
-  "name": "worker",
-  "version": "1.0.0",
-  "description": "",
-  "keywords": [],
-  "license": "ISC",
-  "author": "",
-  "main": "index.js",
-  "scripts": {
-    "worker:build": "webpack --config webpack.config.worker.js",
-    "worker:publish": "wrangler publish "
-  },
-  "devDependencies": {
-    "@cloudflare/workers-types": "^3.0.0",
-    "@cloudflare/wrangler": "^1.19.8",
-    "accept-language": "^3.0.18"
-  }
+	"name": "worker",
+	"version": "1.0.0",
+	"description": "",
+	"keywords": [],
+	"license": "ISC",
+	"author": "",
+	"main": "index.js",
+	"scripts": {
+		"worker:build": "webpack --config webpack.config.worker.js",
+		"worker:publish": "wrangler publish "
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^3.0.0",
+		"@cloudflare/wrangler": "^1.19.8",
+		"accept-language": "^3.0.18"
+	}
 }

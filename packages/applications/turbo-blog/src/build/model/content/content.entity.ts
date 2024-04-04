@@ -1,7 +1,7 @@
 export class Content {
-    public content: string;
+	public content: string;
 
-    constructor(content: string) {
-        this.content = content;
-    }
+	constructor(content: string) {
+		this.content = content;
+	}
 }
