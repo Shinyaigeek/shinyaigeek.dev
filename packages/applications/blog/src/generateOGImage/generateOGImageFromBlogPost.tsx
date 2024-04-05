@@ -1,10 +1,10 @@
+import { Resvg } from "@resvg/resvg-js";
+import fs from "fs/promises";
+import imageToBase64 from "image-to-base64";
 import React from "react";
 import satori from "satori";
-import { OGImageTemplate } from "./OGImageTemplate.js";
-import { Resvg } from "@resvg/resvg-js";
-import imageToBase64 from "image-to-base64";
-import fs from "fs/promises";
 import { getContentAbsolutePath } from "../contents-handler/get-content-path.js";
+import { OGImageTemplate } from "./OGImageTemplate.js";
 
 interface Args {
 	title: string;
@@ -14,7 +14,7 @@ const OGImageHeight = 1080;
 const OGImageWidth = 1920;
 
 export const generateOGImageFromBlogPost: (args: Args) => Promise<Buffer> =
-	async function ({ title }) {
+	async ({ title }) => {
 		const logo = await imageToBase64(
 			"https://shinyaigeek.dev/assets/static/shinyaigeek_icon.png",
 		);

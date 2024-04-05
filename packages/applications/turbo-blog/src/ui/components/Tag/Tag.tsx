@@ -3,7 +3,7 @@ export interface TagProps {
 	slug: string;
 	color: string;
 }
-import React from "react";
+import type React from "react";
 import tag from "./Tag.module.css";
 
 export function Tag(props: TagProps) {

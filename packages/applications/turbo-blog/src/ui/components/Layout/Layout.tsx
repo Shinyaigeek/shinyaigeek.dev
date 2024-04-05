@@ -1,6 +1,6 @@
-import { Header } from "../Header/Header";
-import { Footer } from "../Footer/Footer";
 import React from "react";
+import { Footer } from "../Footer/Footer";
+import { Header } from "../Header/Header";
 import layout from "./Layout.module.css";
 
 export function Layout(Component: (props?: any) => JSX.Element) {

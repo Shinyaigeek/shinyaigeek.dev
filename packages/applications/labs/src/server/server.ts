@@ -1,5 +1,5 @@
-import fastify from "fastify";
 import fastifyStatic from "@fastify/static";
+import fastify from "fastify";
 import { LABS_OUTPUT_DIRECTORY } from "../../tools/build-utility";
 
 export async function buildFastifyServer(): Promise<

@@ -1,8 +1,8 @@
 import path from "path";
-import webpack from "webpack";
+import { webpackBaseConfig } from "build-tool";
 // @ts-ignore
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { webpackBaseConfig } from "build-tool";
+import type webpack from "webpack";
 import { merge } from "webpack-merge";
 
 const config: webpack.Configuration = {

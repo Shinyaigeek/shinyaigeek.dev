@@ -24,8 +24,8 @@ export class Router {
 
 	on: typeof on = (path, handler, children) => {
 		if (children) {
-			for (let child of children) {
-				for (let [childRoute, childRouteHandler] of child.routing) {
+			for (const child of children) {
+				for (const [childRoute, childRouteHandler] of child.routing) {
 					this.routing.set(`${path}${childRoute}`, childRouteHandler);
 				}
 			}
@@ -41,24 +41,22 @@ export class Router {
 		handler: (path: `/${p}`, html: html) => Promise<void>,
 	) => Promise<void> = async (handler) => {
 		await Promise.all(
-			Array.from(this.languages)
-				.map((language) => {
-					if (this.defaultLanguage === undefined) {
-						throw new Error("router.registerDefaultLanguage should be called");
-					}
+			Array.from(this.languages).flatMap((language) => {
+				if (this.defaultLanguage === undefined) {
+					throw new Error("router.registerDefaultLanguage should be called");
+				}
 
-					i18n.activate(language);
+				i18n.activate(language);
 
-					return Array.from(this.routing.entries()).map(
-						async ([_route, routeHandler]) => {
-							const route = `/${language}${_route}` as `/${p}`;
+				return Array.from(this.routing.entries()).map(
+					async ([_route, routeHandler]) => {
+						const route = `/${language}${_route}` as `/${p}`;
 
-							const html = await routeHandler(route);
-							handler(route, html);
-						},
-					);
-				})
-				.flat(),
+						const html = await routeHandler(route);
+						handler(route, html);
+					},
+				);
+			}),
 		);
 	};
 

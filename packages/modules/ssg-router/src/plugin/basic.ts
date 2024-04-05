@@ -1,4 +1,4 @@
-import { GenerateHandler, OutputHandler } from "../router/basic";
+import type { GenerateHandler, OutputHandler } from "../router/basic";
 
 export type Plugin = {
 	onRouted: (

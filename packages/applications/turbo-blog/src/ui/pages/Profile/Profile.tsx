@@ -1,13 +1,13 @@
-import { Layout } from "../components/Layout/Layout";
-import { Divider } from "../components/Divider/Divider";
-import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
-import { BaseProfile } from "./components/BaseProfile/BaseProfile";
-import { GitHubCalender } from "./components/GitHubCalender/GitHubCalender";
-import React from "react";
-import { JobItem } from "./components/JobItem/JobItem";
 import { t } from "@lingui/macro";
-import { Card, CardShowcase } from "./components/Card/Card";
+import React from "react";
+import { Divider } from "../components/Divider/Divider";
+import { Layout } from "../components/Layout/Layout";
+import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
 import profile from "./Profile.module.css";
+import { BaseProfile } from "./components/BaseProfile/BaseProfile";
+import { Card, CardShowcase } from "./components/Card/Card";
+import { GitHubCalender } from "./components/GitHubCalender/GitHubCalender";
+import { JobItem } from "./components/JobItem/JobItem";
 
 export const Profile = Layout(() => {
 	return (

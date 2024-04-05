@@ -1,4 +1,4 @@
-import { Configuration } from "@rspack/cli";
+import type { Configuration } from "@rspack/cli";
 import { buildSwcConfig } from "../javascript/swc/build-swc-config.js";
 
 export const rspackBaseConfig: Configuration = {

@@ -1,7 +1,7 @@
-import dotenv from "dotenv";
-import { getBlogPosts } from "./getBlogPosts.js";
 import path from "path";
+import dotenv from "dotenv";
 import { getContentAbsolutePath } from "../../contents-handler/get-content-path.js";
+import { getBlogPosts } from "./getBlogPosts.js";
 
 dotenv.config();
 

@@ -1,6 +1,6 @@
-import { Entry } from "./getBlogPost.js";
 import fs from "fs";
 import fm from "front-matter";
+import type { Entry } from "./getBlogPost.js";
 interface HomeSlug {
 	slug: string;
 	tag?: string;
@@ -10,7 +10,7 @@ interface HomeSlug {
 export const getBlogPosts: (
 	dir: `${string}/`,
 	language: "en" | "ja",
-) => Entry[] = function (dir, language) {
+) => Entry[] = (dir, language) => {
 	const slugs = fs.readdirSync(dir);
 	const posts = slugs.map(
 		(slug) =>

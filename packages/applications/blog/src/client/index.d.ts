@@ -1,4 +1,4 @@
-import { DOMAttributes } from "react";
+import type { DOMAttributes } from "react";
 
 declare module "*.scss" {
 	interface IClassNames {

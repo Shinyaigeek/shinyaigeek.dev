@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
-import { getBlogPosts } from "./getBlogPosts.js";
 import { getContentAbsolutePath } from "../../contents-handler/get-content-path.js";
+import { getBlogPosts } from "./getBlogPosts.js";
 dotenv.config();
 
 export const getRss = (language: "en" | "ja") => {

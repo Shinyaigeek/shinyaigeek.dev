@@ -1,5 +1,5 @@
-import { Shinyaigeek } from "../Shinyaigeek/Shinyaigeek";
 import React from "react";
+import { Shinyaigeek } from "../Shinyaigeek/Shinyaigeek";
 export function ShinyaigeekAnimation() {
 	return (
 		<div>

@@ -1,5 +1,5 @@
-import { Button } from "../Button/Button";
 import React from "react";
+import { Button } from "../Button/Button";
 import contact from "./Contact.module.css";
 
 export default function Contact() {

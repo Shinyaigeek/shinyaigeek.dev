@@ -1,11 +1,11 @@
 import path from "path";
-import { getBlogPosts } from "../build/util/getBlogPosts.js";
-import { generateOGImageFromBlogPost } from "./generateOGImageFromBlogPost.js";
 import fs from "fs/promises";
-import { Entry } from "../build/util/getBlogPost.js";
+import type { Entry } from "../build/util/getBlogPost.js";
+import { getBlogPosts } from "../build/util/getBlogPosts.js";
 import { getContentAbsolutePath } from "../contents-handler/get-content-path.js";
+import { generateOGImageFromBlogPost } from "./generateOGImageFromBlogPost.js";
 
-const generateOGImage: () => Promise<void> = async function () {
+const generateOGImage: () => Promise<void> = async () => {
 	await fs.mkdir(getContentAbsolutePath("./public/assets/ogimage/ja"), {
 		recursive: true,
 	});

@@ -1,4 +1,4 @@
-import { Plugin } from "../plugin/basic";
+import type { Plugin } from "../plugin/basic";
 
 export type GenerateHandlerArguments = {
 	path: string;

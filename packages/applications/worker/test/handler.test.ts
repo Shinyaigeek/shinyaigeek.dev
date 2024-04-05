@@ -1,5 +1,5 @@
-import { handleRequest } from "../src/handler";
 import makeServiceWorkerEnv from "service-worker-mock";
+import { handleRequest } from "../src/handler";
 
 declare var global: any;
 

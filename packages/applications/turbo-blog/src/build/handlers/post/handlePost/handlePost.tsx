@@ -1,23 +1,23 @@
 import fs from "fs";
 import path from "path";
 import fm from "front-matter";
+import { selectAll } from "hast-util-select";
+import hljs from "highlight.js";
+import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
+import rehypeHighlight from "rehype-highlight";
+import raw from "rehype-raw";
+import rehypeStringify from "rehype-stringify";
 import { remark } from "remark";
-import Post from "../../../../client/Post/Post";
-import { tweetMacroPlugin } from "remarkable-plugin-tweet-share";
+import gfm from "remark-gfm";
+import md2html from "remark-rehype";
 // @ts-ignore
 import { remarkablePluginHeadingId } from "remarkable-plugin-heading-id";
-import React from "react";
-import hljs from "highlight.js";
-import gfm from "remark-gfm";
-import raw from "rehype-raw";
-import md2html from "remark-rehype";
-import rehypeStringify from "rehype-stringify";
-import rehypeHighlight from "rehype-highlight";
-import helmet from "../../../util/helmet";
+import { tweetMacroPlugin } from "remarkable-plugin-tweet-share";
+import Post from "../../../../client/Post/Post";
 import { BLOG_TITLE } from "../../../../consts";
-import { selectAll } from "hast-util-select";
 import { getContentAbsolutePath } from "../../../../contents-handler/get-content-path";
+import helmet from "../../../util/helmet";
 
 const htmlH2 = () => {
 	return (tree: any) => {
@@ -32,9 +32,7 @@ const htmlH2 = () => {
 	};
 };
 
-export const handlePost: (p: `/${string}`) => Promise<string> = async function (
-	p,
-) {
+export const handlePost: (p: `/${string}`) => Promise<string> = async (p) => {
 	const _postPath = getContentAbsolutePath(
 		`./src/articles/public${p
 			.replace("/post", "")

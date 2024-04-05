@@ -1,4 +1,4 @@
-import { Configuration } from "@rspack/core";
+import type { Configuration } from "@rspack/core";
 import { rspackBaseConfig } from "build-tool";
 import { merge } from "webpack-merge";
 

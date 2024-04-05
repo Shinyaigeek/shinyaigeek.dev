@@ -1,6 +1,6 @@
-import { buildFastifyServer } from "./server";
 import { TopPageRoutes } from "./routes/index";
 import { Prerender2ProjectPageRoutes } from "./routes/projects/prerender2";
+import { buildFastifyServer } from "./server";
 
 (async function main() {
 	const server = await buildFastifyServer();

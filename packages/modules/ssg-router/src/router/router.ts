@@ -1,4 +1,4 @@
-import { Plugin } from "../plugin/basic";
+import type { Plugin } from "../plugin/basic";
 import type { BasicRouter, GenerateHandler, OutputHandler } from "./basic";
 
 export class Router implements BasicRouter {

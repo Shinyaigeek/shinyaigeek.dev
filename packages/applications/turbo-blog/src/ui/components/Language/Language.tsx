@@ -1,5 +1,5 @@
 import { t } from "@lingui/macro";
-import React from "react";
+import type React from "react";
 import languageStyle from "./Language.module.css";
 
 interface Props {
@@ -38,43 +38,38 @@ languages.set("en", {
 	),
 });
 
-export const Language: React.FC<Props> = function ({
-	currentLanguage,
-	currentPath,
-}) {
-	return (
-		<details>
-			<summary>
-				{" "}
-				<span role="img" aria-label="language">
-					<g-emoji fallback-src="/assets/static/earth_africa.png" alias="earth">
-						🌍
-					</g-emoji>
-				</span>{" "}
-				{t`current_language`}
-			</summary>
-			<div className={languageStyle.languageWrapper}>
-				{Array.from(languages.keys()).map((language) => {
-					return (
-						<a
-							key={language}
-							href={`${
-								language === "en"
-									? "https://en.shinyaigeek.dev"
-									: "http://ja.shinyaigeek.dev"
-							}${currentPath}`}
-							className={`${languageStyle.language} ${
-								language === currentLanguage ? languageStyle.active : ""
-							}`}
-						>
-							<span role="img" aria-label="country">
-								{languages.get(language)!.icon}
-							</span>
-							{languages.get(language)!.name}
-						</a>
-					);
-				})}
-			</div>
-		</details>
-	);
-};
+export const Language: React.FC<Props> = ({ currentLanguage, currentPath }) => (
+	<details>
+		<summary>
+			{" "}
+			<span role="img" aria-label="language">
+				<g-emoji fallback-src="/assets/static/earth_africa.png" alias="earth">
+					🌍
+				</g-emoji>
+			</span>{" "}
+			{t`current_language`}
+		</summary>
+		<div className={languageStyle.languageWrapper}>
+			{Array.from(languages.keys()).map((language) => {
+				return (
+					<a
+						key={language}
+						href={`${
+							language === "en"
+								? "https://en.shinyaigeek.dev"
+								: "http://ja.shinyaigeek.dev"
+						}${currentPath}`}
+						className={`${languageStyle.language} ${
+							language === currentLanguage ? languageStyle.active : ""
+						}`}
+					>
+						<span role="img" aria-label="country">
+							{languages.get(language)!.icon}
+						</span>
+						{languages.get(language)!.name}
+					</a>
+				);
+			})}
+		</div>
+	</details>
+);

@@ -1,9 +1,9 @@
 interface Props {
 	anchors: string[];
 }
+import { t } from "@lingui/macro";
 import React from "react";
 import postAnchor from "./Anchor.module.css";
-import { t } from "@lingui/macro";
 
 export function Anchor(props: Props) {
 	return (

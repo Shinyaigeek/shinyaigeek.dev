@@ -1,7 +1,7 @@
 import fs from "fs";
 import { readContentsDirectory } from "../src/contents-handler/contents-reader";
 
-export const getBuiltAssetFilename = async function () {
+export const getBuiltAssetFilename = async () => {
 	const builtAssets = await readContentsDirectory("./public");
 
 	const css = builtAssets.find(

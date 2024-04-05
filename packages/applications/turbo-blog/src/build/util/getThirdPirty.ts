@@ -1,5 +1,5 @@
-import fs from "fs";
 import { strict as assert } from "assert";
+import fs from "fs";
 
 export interface Entry {
 	title: string;

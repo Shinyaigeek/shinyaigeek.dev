@@ -1,9 +1,9 @@
-import { Layout } from "../components/Layout/Layout";
-import { Entry } from "../../build/util/getBlogPost";
-import { Entry as ThirdPirtyEntry } from "../../build/util/getThirdPirty";
-import { WelcomePage } from "./components/WelcomePage/WelcomePage";
-import { Item } from "./components/Item/Item";
 import React from "react";
+import type { Entry } from "../../build/util/getBlogPost";
+import type { Entry as ThirdPirtyEntry } from "../../build/util/getThirdPirty";
+import { Layout } from "../components/Layout/Layout";
+import { Item } from "./components/Item/Item";
+import { WelcomePage } from "./components/WelcomePage/WelcomePage";
 const Home = (props: {
 	items: Entry[];
 	thirdPirtyItems: ThirdPirtyEntry[];

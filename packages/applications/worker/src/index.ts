@@ -1,6 +1,6 @@
 import resolveAcceptLanguage from "resolve-accept-language";
 
-const handler = function (event: FetchEvent) {
+const handler = (event: FetchEvent) => {
 	const { url } = event.request;
 	const { pathname, search } = new URL(url);
 

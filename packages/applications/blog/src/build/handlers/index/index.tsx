@@ -1,13 +1,13 @@
+import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import Home from "../../../client/Home/Home";
-import React from "react";
-import helmet from "../../util/helmet";
 import { BLOG_TITLE } from "../../../consts";
+import { getContentAbsolutePath } from "../../../contents-handler/get-content-path";
 import { getBlogPosts } from "../../util/getBlogPosts";
 import { getThirdPirty } from "../../util/getThirdPirty";
-import { getContentAbsolutePath } from "../../../contents-handler/get-content-path";
+import helmet from "../../util/helmet";
 
-export const handleIndex: (p: string) => Promise<string> = async function (p) {
+export const handleIndex: (p: string) => Promise<string> = async (p) => {
 	const blogEntries = getBlogPosts(
 		getContentAbsolutePath("./src/articles/public/") as `${string}/`,
 		p.startsWith("/en") ? "en" : "ja",
