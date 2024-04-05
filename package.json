@@ -12,7 +12,8 @@
         "prepare": "husky install",
         "lint-staged": "lint-staged",
         "format": "biome format --write ./packages",
-        "lint": "eslint . --color --max-warnings 0"
+        "lint": "biome ci --formatter-enabled=true --linter-enabled=true --organize-imports-enabled=true ./packages",
+        "lint:fix": "biome check --apply ./packages"
     },
     "keywords": [],
     "author": "",
