@@ -68,6 +68,7 @@ export class Router {
 	};
 
 	// TODO: lingui message is js
+	// biome-ignore lint: reason
 	registerLanguage: (language: string, message: any) => void = (
 		language,
 		message,
@@ -77,6 +78,7 @@ export class Router {
 	};
 
 	// TODO: lingui message is js
+	// biome-ignore lint: reason
 	registerDefaultLanguage: (language: string, message: any) => void = (
 		language,
 		message,

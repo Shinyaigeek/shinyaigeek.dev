@@ -109,6 +109,7 @@ const SiteHead = (props: HeadProps) => (
 interface HelmetProps {
 	children: () => JSX.Element;
 	title: string;
+	// biome-ignore lint: reason
 	props?: any;
 	slug: string;
 	language: "en" | "ja";

@@ -1,9 +1,7 @@
 import React, { type FunctionComponent } from "react";
 import styles from "./header.module.css";
 
-type Props = {};
-
-export const HeaderComponent: FunctionComponent<Props> = () => (
+export const HeaderComponent: FunctionComponent = () => (
 	<header className={styles.header}>
 		<div className={styles.title}>
 			<div>

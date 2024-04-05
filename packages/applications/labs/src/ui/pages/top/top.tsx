@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const TopPageComponent: FunctionComponent<Props> = ({ allProjects }) => (
-	<html>
+	<html lang="ja">
 		<head>
 			<HeadComponent />
 		</head>

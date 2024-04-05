@@ -44,6 +44,7 @@ export const OGImageTemplate: FunctionComponent<Props> = ({
 				left: `${width * 0.925 - 420 - FRAME_BOLD * 0.75}px`,
 				top: `${height * 0.925 - 420 - FRAME_BOLD * 0.42}px`,
 			}}
+			alt="logo"
 		/>
 		<div
 			style={{

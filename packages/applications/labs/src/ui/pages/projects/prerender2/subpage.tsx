@@ -5,10 +5,8 @@ import { HeaderComponent } from "../../../components/header/header";
 import "../../../styles/global.css";
 import styles from "./prerender2.module.css";
 
-type Props = {};
-
-export const Prerender2SubPageComponent: FunctionComponent<Props> = () => (
-	<html>
+export const Prerender2SubPageComponent: FunctionComponent = () => (
+	<html lang="ja">
 		<head>
 			<HeadComponent />
 		</head>

@@ -20,6 +20,7 @@ function Post(props: Props) {
 			<MetaInfo {...props} />
 			<div
 				className={postContent.postContent}
+				// biome-ignore lint: reason
 				dangerouslySetInnerHTML={{
 					__html: content,
 				}}

@@ -8,8 +8,8 @@ interface Props {
 export function DecorationTag({ tags }: Props) {
 	return (
 		<div className={styles.tag}>
-			{tags.map((tag, index) => {
-				return <div key={`decorationTag__${index}`}>{tag}</div>;
+			{tags.map((tag) => {
+				return <div key={`decorationTag__${tag}`}>{tag}</div>;
 			})}
 		</div>
 	);

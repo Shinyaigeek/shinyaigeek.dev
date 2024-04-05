@@ -20,4 +20,5 @@ const configForApplicationServer: Configuration = {
 	target: "node",
 };
 
+// biome-ignore lint: reason
 export default merge(rspackBaseConfig, configForApplicationServer as any);

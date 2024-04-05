@@ -13,7 +13,7 @@ export function Anchor(props: Props) {
 			</summary>
 			{props.anchors?.map((anchor, index) => {
 				return (
-					<a key={index} href={`#2__${index}`}>
+					<a key={anchor} href={`#2__${index}`}>
 						{anchor}
 					</a>
 				);

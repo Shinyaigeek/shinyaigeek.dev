@@ -53,4 +53,5 @@ const configForApplicationServer: webpack.Configuration = {
 	],
 };
 
+// biome-ignore lint: reason
 export default merge(webpackBaseConfig, configForApplicationServer as any);

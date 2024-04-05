@@ -20,15 +20,15 @@ import { getContentAbsolutePath } from "../../../../contents-handler/get-content
 import helmet from "../../../util/helmet";
 
 const htmlH2 = () => {
-	return (tree: any) => {
+	return (tree: Parameters<typeof selectAll>[1]) => {
 		let count = 0;
-		selectAll("h2", tree).forEach((node) => {
+		for (const node of selectAll("h2", tree)) {
 			node.properties = {
 				...node.properties,
 				id: `2__${count}`,
 			};
 			count++;
-		});
+		}
 	};
 };
 
@@ -59,7 +59,7 @@ export const handlePost: (p: `/${string}`) => Promise<string> = async (p) => {
 	md.use(rehypeStringify);
 	const html = String(await md.process(body));
 	const anchorsWithH2: string[] | null = html.match(/<h2 id=".+?">.+?<\/h2>/g);
-	let anchors;
+	let anchors: string[];
 	if (anchorsWithH2) {
 		anchors = anchorsWithH2.map((anc) => {
 			return anc.replace(/<h2 id=".+?">/, "").replace("</h2>", "");
@@ -78,6 +78,7 @@ export const handlePost: (p: `/${string}`) => Promise<string> = async (p) => {
 	const fields = {
 		fields: {
 			slug: p.replace("/", ""),
+			// biome-ignore lint: reason
 			...(attributes as any),
 			content: html,
 		},

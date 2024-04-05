@@ -25,7 +25,7 @@ const Home = (props: {
 			<div id="home--items">
 				{items.map((item, index) => {
 					const fields = "fields" in item ? item.fields : item;
-					return <Item {...fields} key={index} />;
+					return <Item {...fields} key={fields.title} />;
 				})}
 			</div>
 		</div>

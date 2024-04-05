@@ -19,23 +19,29 @@ export default function Contact() {
 			<Button id="thatsme--contact">Contact Me</Button>
 			<div className="mySnsBox">
 				<div className={contact.sns}>
+					{/* biome-ignore lint: reason */}
 					<a
 						id="twitter"
 						href="https://twitter.com/Shinyaigeek"
+						aria-label="shinyaigeek's X"
 						className={contact.snsAnchor}
 					/>
 				</div>
 				<div className={contact.sns}>
+					{/* biome-ignore lint: reason */}
 					<a
 						id="github"
 						href="https://github.com/Shinyaigeek"
+						aria-label="shinyaigeek's github"
 						className={contact.snsAnchor}
 					/>
 				</div>
 				<div className={contact.scs}>
+					{/* biome-ignore lint: reason */}
 					<a
 						id="linkedin"
 						href="https://www.linkedin.com/in/shinyaigeek/"
+						aria-label="shinyaigeek's linkedin"
 						className={contact.snsAnchor}
 					/>
 				</div>

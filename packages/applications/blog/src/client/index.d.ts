@@ -8,6 +8,7 @@ declare module "*.scss" {
 	export = classNames;
 }
 
+// biome-ignore lint: reason
 type CustomElement<T> = Partial<T & DOMAttributes<T> & { children: any }>;
 
 declare global {

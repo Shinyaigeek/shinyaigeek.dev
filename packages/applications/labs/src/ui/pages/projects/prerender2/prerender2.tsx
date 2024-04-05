@@ -5,10 +5,8 @@ import { HeaderComponent } from "../../../components/header/header";
 import "../../../styles/global.css";
 import styles from "./prerender2.module.css";
 
-type Props = {};
-
-export const Prerender2PageComponent: FunctionComponent<Props> = () => (
-	<html>
+export const Prerender2PageComponent: FunctionComponent = () => (
+	<html lang="ja">
 		<head>
 			<HeadComponent />
 			<script type="speculationrules">

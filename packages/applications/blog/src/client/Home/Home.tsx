@@ -23,9 +23,9 @@ const Home = (props: {
 		<div>
 			<WelcomePage />
 			<div id="home--items">
-				{items.map((item, index) => {
+				{items.map((item) => {
 					const fields = "fields" in item ? item.fields : item;
-					return <Item {...fields} key={index} />;
+					return <Item {...fields} key={fields.title} />;
 				})}
 			</div>
 		</div>

@@ -27,6 +27,7 @@ export const Profile = Layout(() => {
 					<div className={profile.title}>About Me</div>
 					<p
 						className="content"
+						// biome-ignore lint: reason
 						dangerouslySetInnerHTML={{ __html: t`aboutme_content` }}
 					/>
 				</div>

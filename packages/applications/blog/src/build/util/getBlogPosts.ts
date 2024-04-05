@@ -29,10 +29,12 @@ export const getBlogPosts: (
 			const { attributes } = fm(post);
 			return {
 				fields: {
+					// biome-ignore lint: reason
 					...(attributes as any),
 					slug,
 				},
 				sys: {
+					// biome-ignore lint: reason
 					updatedAt: (attributes as any).updatedAt,
 				},
 			};
@@ -55,14 +57,14 @@ export const getHomeSlug = (target: string) => {
 		res.slug = target.replace("/", "");
 	} else {
 		const queries = target.slice(ques + 1).split("&");
-		queries.forEach((query) => {
+		for (const query of queries) {
 			if (query.includes("page")) {
 				res.page = Number(query.split("=")[1]);
 			}
 			if (query.includes("tag")) {
 				res.tag = query.split("=")[1];
 			}
-		});
+		}
 
 		res.slug = target.replace(/\?.*/g, "").replace("/", "");
 	}

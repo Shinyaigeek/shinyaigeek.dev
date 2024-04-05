@@ -28,4 +28,5 @@ const config: webpack.Configuration = {
 	],
 };
 
+// biome-ignore lint: reason
 export default merge(config, webpackBaseConfig as any);

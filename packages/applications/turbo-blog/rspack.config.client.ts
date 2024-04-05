@@ -12,4 +12,5 @@ const config: Configuration = {
 	},
 };
 
+// biome-ignore lint: reason
 export default merge(config, rspackBaseConfig as any);
