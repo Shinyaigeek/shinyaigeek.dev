@@ -1,5 +1,5 @@
-import { strict as assert } from "assert";
-import fs from "fs";
+import { strict as assert } from "node:assert";
+import fs from "node:fs";
 
 export interface Entry {
 	title: string;

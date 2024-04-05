@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from "fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 
 export const writeFileWithDir: (path: string, data: string) => void = (
 	path,

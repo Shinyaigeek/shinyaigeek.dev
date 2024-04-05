@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "node:fs";
 import { readContentsDirectory } from "../src/contents-handler/contents-reader";
 
 export const getBuiltAssetFilename = async () => {

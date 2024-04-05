@@ -1,4 +1,4 @@
-import path from "path";
+import path from "node:path";
 import dotenv from "dotenv";
 import { getContentAbsolutePath } from "../../contents-handler/get-content-path.js";
 import { getBlogPosts } from "./getBlogPosts.js";
@@ -6,9 +6,9 @@ import { getBlogPosts } from "./getBlogPosts.js";
 dotenv.config();
 
 function formatDate(date: Date) {
-	var y = date.getFullYear();
-	var m = `00${date.getMonth() + 1}`.slice(-2);
-	var d = `00${date.getDate()}`.slice(-2);
+	const y = date.getFullYear();
+	const m = `00${date.getMonth() + 1}`.slice(-2);
+	const d = `00${date.getDate()}`.slice(-2);
 	return `${y}-${m}-${d}`;
 }
 

@@ -20,7 +20,6 @@ export class Router {
 	routing: Map<`/${p}`, handler> = new Map();
 	languages: Set<string> = new Set();
 	defaultLanguage?: string;
-	constructor() {}
 
 	on: typeof on = (path, handler, children) => {
 		if (children) {

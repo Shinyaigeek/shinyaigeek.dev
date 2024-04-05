@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "node:fs";
 import fm from "front-matter";
 import type { Entry } from "./getBlogPost.js";
 interface HomeSlug {

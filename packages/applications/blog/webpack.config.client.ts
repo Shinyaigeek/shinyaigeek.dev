@@ -1,4 +1,4 @@
-import path from "path";
+import path from "node:path";
 import { webpackBaseConfig } from "build-tool";
 // @ts-ignore
 import MiniCssExtractPlugin from "mini-css-extract-plugin";

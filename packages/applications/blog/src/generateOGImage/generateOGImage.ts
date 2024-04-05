@@ -1,5 +1,5 @@
-import path from "path";
-import fs from "fs/promises";
+import fs from "node:fs/promises";
+import path from "node:path";
 import type { Entry } from "../build/util/getBlogPost.js";
 import { getBlogPosts } from "../build/util/getBlogPosts.js";
 import { getContentAbsolutePath } from "../contents-handler/get-content-path.js";

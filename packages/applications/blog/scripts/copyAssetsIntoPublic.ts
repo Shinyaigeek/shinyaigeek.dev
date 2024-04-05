@@ -1,9 +1,9 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import { getContentAbsolutePath } from "../src/contents-handler/get-content-path";
 
 function copyFileSync(source: string, target: string) {
-	var targetFile = target;
+	let targetFile = target;
 
 	// If target is a directory, a new file with the same name will be created
 	if (fs.existsSync(target)) {
@@ -16,10 +16,10 @@ function copyFileSync(source: string, target: string) {
 }
 
 function copyFolderRecursiveSync(source: string, target: string) {
-	var files = [];
+	let files = [];
 
 	// Check if folder needs to be created or integrated
-	var targetFolder = path.join(target, path.basename(source));
+	const targetFolder = path.join(target, path.basename(source));
 	if (!fs.existsSync(targetFolder)) {
 		fs.mkdirSync(targetFolder);
 	}
@@ -28,7 +28,7 @@ function copyFolderRecursiveSync(source: string, target: string) {
 	if (fs.lstatSync(source).isDirectory()) {
 		files = fs.readdirSync(source);
 		files.forEach((file) => {
-			var curSource = path.join(source, file);
+			const curSource = path.join(source, file);
 			if (fs.lstatSync(curSource).isDirectory()) {
 				copyFolderRecursiveSync(curSource, targetFolder);
 			} else {

@@ -64,9 +64,9 @@ export const Language: React.FC<Props> = ({ currentLanguage, currentPath }) => (
 						}`}
 					>
 						<span role="img" aria-label="country">
-							{languages.get(language)!.icon}
+							{languages.get(language)?.icon}
 						</span>
-						{languages.get(language)!.name}
+						{languages.get(language)?.name}
 					</a>
 				);
 			})}

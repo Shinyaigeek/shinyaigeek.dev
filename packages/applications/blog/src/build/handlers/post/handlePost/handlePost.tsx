@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import fm from "front-matter";
 import { selectAll } from "hast-util-select";
 import hljs from "highlight.js";
