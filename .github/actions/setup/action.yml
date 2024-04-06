@@ -1,0 +1,29 @@
+name: Setup CI
+description: Setup CI environment
+
+runs:
+    using: composite
+    steps:
+        - name: Setup Node.js
+          uses: actions/setup-node@v4
+          with:
+              node-version-file: .nvmrc
+              cache: 'pnpm'
+              cache-dependency-path: 'pnpm-lock.yaml'
+        - name: Setup corepack
+          shell: bash
+          run: |
+              corepack enable
+        - id: pnpm-cache
+          run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+          shell: bash
+        - uses: actions/cache@v4
+          with:
+              path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+              key: pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+              restore-keys: |
+                  pnpm-store-
+        - name: install dependencies
+          shell: bash
+          run: |
+              pnpm install --frozen-lockfile
