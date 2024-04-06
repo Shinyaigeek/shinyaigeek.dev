@@ -1,34 +1,20 @@
-import path from 'path';
-import { ESLint } from 'eslint';
+import path from "path";
 
-const buildLinterCommand = async (filenames) => {
-    const filteredFiles = await removeIgnoredFiles(filenames);
-
-    if (filteredFiles.length < 1) {
-        return '';
-    }
-    return `biome check --apply-unsafe ${filteredFiles.map((f) => path.relative(process.cwd(), f)).join(' ')}`;
-};
-
-const removeIgnoredFiles = async (files) => {
-    const eslint = new ESLint();
-    const isIgnored = await Promise.all(
-        files.map((file) => {
-            return eslint.isPathIgnored(file);
-        })
-    );
-    const filteredFiles = files.filter((_, i) => !isIgnored[i]);
-    return filteredFiles;
+const buildLinterCommand = (filenames) => {
+	return `pnpm __biome check --apply-unsafe ${filenames
+		.map((f) => path.relative(process.cwd(), f))
+		.join(" ")}`;
 };
 
 const config = {
-    '*.{js,jsx,mjs,ts,tsx}': async (files) => {
-        return [
-            await buildLinterCommand(files),
-            `biome format --write ${files.map((file) => `"${file}"`).join(' ')}`,
-        ].filter((command) => command.length > 0);
-    },
-    '*.{html,md,yaml,yml,json,css,scss,less,sass,graphql,mdx}': ['biome format --write'],
+	"*.{js,jsx,mjs,ts,tsx}": (files) => {
+		return [
+			buildLinterCommand(files),
+			`pnpm __biome format --write ${files
+				.map((file) => `"${file}"`)
+				.join(" ")}`,
+		].filter((command) => command.length > 0);
+	},
 };
 
 export default config;

@@ -1,36 +1,37 @@
 {
-    "name": "shinyaigeek.dev",
-    "version": "1.0.0",
-    "description": "",
-    "type": "module",
-    "main": "worker/dist/worker.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Shinyaigeek/Shinyaigeek.git"
-    },
-    "scripts": {
-        "prepare": "husky install",
-        "lint-staged": "lint-staged",
-        "format": "biome format --write ./packages",
-        "lint": "biome ci --formatter-enabled=true --linter-enabled=true --organize-imports-enabled=true ./packages",
-        "lint:fix": "biome check --apply-unsafe ./packages"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Shinyaigeek/Shinyaigeek/issues"
-    },
-    "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
-    "devDependencies": {
-        "@biomejs/biome": "^1.6.4",
-        "husky": "^9.0.11",
-        "lint-staged": "^15.2.2",
-        "typescript": "^5.4.2"
+  "name": "shinyaigeek.dev",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "worker/dist/worker.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shinyaigeek/Shinyaigeek.git"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "lint-staged": "lint-staged",
+    "__biome": "biome",
+    "format": "biome format --write ./packages",
+    "lint": "biome ci --formatter-enabled=true --linter-enabled=true --organize-imports-enabled=true ./packages",
+    "lint:fix": "biome check --apply-unsafe ./packages"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shinyaigeek/Shinyaigeek/issues"
+  },
+  "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
+  "devDependencies": {
+    "@biomejs/biome": "^1.6.4",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "typescript": "^5.4.2"
+  }
 }
