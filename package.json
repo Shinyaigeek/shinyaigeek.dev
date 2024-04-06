@@ -29,8 +29,8 @@
     "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
     "devDependencies": {
         "@biomejs/biome": "^1.6.4",
-        "husky": "^8.0.3",
-        "lint-staged": "^13.1.2",
+        "husky": "^9.0.11",
+        "lint-staged": "^15.2.2",
         "typescript": "^5.4.2"
     }
 }
