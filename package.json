@@ -29,10 +29,6 @@
     "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
     "devDependencies": {
         "@biomejs/biome": "^1.6.4",
-        "@typescript-eslint/eslint-plugin": "^4.16.1",
-        "eslint": "^7.21.0",
-        "eslint-plugin-import": "^2.27.5",
-        "eslint-plugin-unicorn": "^45.0.2",
         "husky": "^8.0.3",
         "lint-staged": "^13.1.2",
         "typescript": "^5.4.2"
