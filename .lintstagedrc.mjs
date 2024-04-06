@@ -1,13 +1,13 @@
 import path from 'path';
 import { ESLint } from 'eslint';
 
-const buildEslintCommand = async (filenames) => {
+const buildLinterCommand = async (filenames) => {
     const filteredFiles = await removeIgnoredFiles(filenames);
 
     if (filteredFiles.length < 1) {
         return '';
     }
-    return `eslint --fix ${filteredFiles.map((f) => path.relative(process.cwd(), f)).join(' ')}`;
+    return `biome check --apply-unsafe ${filteredFiles.map((f) => path.relative(process.cwd(), f)).join(' ')}`;
 };
 
 const removeIgnoredFiles = async (files) => {
@@ -24,11 +24,11 @@ const removeIgnoredFiles = async (files) => {
 const config = {
     '*.{js,jsx,mjs,ts,tsx}': async (files) => {
         return [
-            await buildEslintCommand(files),
-            `prettier --write ${files.map((file) => `"${file}"`).join(' ')}`,
+            await buildLinterCommand(files),
+            `biome format --write ${files.map((file) => `"${file}"`).join(' ')}`,
         ].filter((command) => command.length > 0);
     },
-    '*.{html,md,yaml,yml,json,css,scss,less,sass,graphql,mdx}': ['prettier --write'],
+    '*.{html,md,yaml,yml,json,css,scss,less,sass,graphql,mdx}': ['biome format --write'],
 };
 
 export default config;

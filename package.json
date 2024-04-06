@@ -15,6 +15,11 @@
         "lint": "biome ci --formatter-enabled=true --linter-enabled=true --organize-imports-enabled=true ./packages",
         "lint:fix": "biome check --apply-unsafe ./packages"
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
     "keywords": [],
     "author": "",
     "license": "ISC",
