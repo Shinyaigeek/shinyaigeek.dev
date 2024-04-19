@@ -1,0 +1,25 @@
+name: Continuous Integration workflow
+
+on:
+    workflow_call:
+
+jobs:
+    warmup_dependencies_cache:
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        env:
+            NODE_ENV: development
+        steps:
+            - uses: actions/checkout@v4
+            - uses: ./.github/actions/setup
+
+    lint:
+        needs:
+            - warmup_dependencies_cache
+        runs-on: ubuntu-latest
+        timeout-minutes: 3
+        env:
+            NODE_ENV: development
+        steps:
+            - uses: actions/checkout@v4
+            - name: Run Linter in this repository
