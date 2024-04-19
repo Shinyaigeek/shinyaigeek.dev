@@ -7,6 +7,4 @@ on:
 
 jobs:
     ci:
-        runs-on: ubuntu-latest
         uses: ./.github/workflows/ci.yml
-
