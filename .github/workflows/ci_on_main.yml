@@ -1,0 +1,12 @@
+name: Continuous Integration on main branch
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    ci:
+        runs-on: ubuntu-latest
+        uses: ./.github/workflows/_deploy-vessel.yml
+
