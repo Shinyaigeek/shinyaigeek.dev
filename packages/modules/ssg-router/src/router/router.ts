@@ -11,9 +11,10 @@ export class Router implements BasicRouter {
 	> = new Map();
 	private onRoutedPlugins: Set<
 		(path: string, generate?: GenerateHandler, output?: OutputHandler) => void
-	>;
-	private onGeneratedPlugins: Set<(path: string, content: string) => void>;
-	private onOutputPlugins: Set<(path: string) => void>;
+	> = new Set();
+	private onGeneratedPlugins: Set<(path: string, content: string) => void> =
+		new Set();
+	private onOutputPlugins: Set<(path: string) => void> = new Set();
 
 	on(
 		path: string,
