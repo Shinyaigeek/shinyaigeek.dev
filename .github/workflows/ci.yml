@@ -22,5 +22,6 @@ jobs:
             NODE_ENV: development
         steps:
             - uses: actions/checkout@v4
+            - uses: ./.github/actions/setup
             - name: Run Linter in this repository
               run: pnpm run lint
