@@ -25,6 +25,36 @@ export class BlogRepository {
 
 		const [title, ...body] = blogContent.split("\n");
 
-		return new BlogContent(title, body.join("\n"));
+		return new BlogContent(title, body.join("\n"), language);
+	}
+
+	public async getBlogs(): Promise<BlogContent[]> {
+		const blogPaths = this._fs.readdirSync(
+			this._path.resolve(
+				process.cwd(),
+				"packages/applications/turbo-blog/src/articles/public",
+			),
+		);
+		const blogEnPaths = this._fs.readdirSync(
+			this._path.resolve(
+				process.cwd(),
+				"packages/applications/turbo-blog/src/articles/en",
+			),
+		);
+
+		return [...blogEnPaths, ...blogPaths].map((blogPath) => {
+			const blogContent = this._fs.readFileSync(
+				this._path.resolve(
+					process.cwd(),
+					"packages/applications/turbo-blog/src/articles/public",
+					blogPath,
+				),
+				"utf-8",
+			);
+
+			const [title, ...body] = blogContent.split("\n");
+
+			return new BlogContent(title, body.join("\n"), "ja");
+		});
 	}
 }
