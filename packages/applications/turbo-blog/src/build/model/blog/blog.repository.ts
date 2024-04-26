@@ -11,10 +11,14 @@ export class BlogRepository {
 		this._path = injectedPath;
 	}
 
-	public async getBlog(slug: string): Promise<BlogContent> {
+	public async getBlog(
+		slug: string,
+		language: "ja" | "en",
+	): Promise<BlogContent> {
 		const blogPath = this._path.resolve(
 			process.cwd(),
-			"packages/applications/turbo-blog/src/articles/public",
+			"packages/applications/turbo-blog/src/articles/",
+			language === "ja" ? "public" : "en",
 			`${slug}.md`,
 		);
 		const blogContent = this._fs.readFileSync(blogPath, "utf-8");
