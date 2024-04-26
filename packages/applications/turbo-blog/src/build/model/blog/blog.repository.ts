@@ -1,5 +1,6 @@
 import type fs from "node:fs";
 import type path from "node:path";
+import { Language } from "../language/language.entity";
 import { BlogContent } from "./blog.entity";
 
 export class BlogRepository {
@@ -11,14 +12,11 @@ export class BlogRepository {
 		this._path = injectedPath;
 	}
 
-	public async getBlog(
-		slug: string,
-		language: "ja" | "en",
-	): Promise<BlogContent> {
+	public async getBlog(slug: string, language: Language): Promise<BlogContent> {
 		const blogPath = this._path.resolve(
 			process.cwd(),
 			"packages/applications/turbo-blog/src/articles/",
-			language === "ja" ? "public" : "en",
+			language === Language.ja ? "public" : "en",
 			`${slug}.md`,
 		);
 		const blogContent = this._fs.readFileSync(blogPath, "utf-8");
@@ -42,7 +40,7 @@ export class BlogRepository {
 			),
 		);
 
-		return [...blogEnPaths, ...blogPaths].map((blogPath) => {
+		const blogs = blogPaths.map((blogPath) => {
 			const blogContent = this._fs.readFileSync(
 				this._path.resolve(
 					process.cwd(),
@@ -54,7 +52,24 @@ export class BlogRepository {
 
 			const [title, ...body] = blogContent.split("\n");
 
-			return new BlogContent(title, body.join("\n"), "ja");
+			return new BlogContent(title, body.join("\n"), Language.ja);
 		});
+
+		const blogsEn = blogEnPaths.map((blogPath) => {
+			const blogContent = this._fs.readFileSync(
+				this._path.resolve(
+					process.cwd(),
+					"packages/applications/turbo-blog/src/articles/en",
+					blogPath,
+				),
+				"utf-8",
+			);
+
+			const [title, ...body] = blogContent.split("\n");
+
+			return new BlogContent(title, body.join("\n"), Language.en);
+		});
+
+		return [...blogs, ...blogsEn];
 	}
 }
