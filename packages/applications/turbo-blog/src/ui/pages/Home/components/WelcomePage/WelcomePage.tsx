@@ -1,5 +1,4 @@
-import React from "react";
-import { Shinyaigeek } from "../../../components/Shinyaigeek/Shinyaigeek";
+import { Shinyaigeek } from "../../../../components/Shinyaigeek/Shinyaigeek";
 import { StarStream } from "../StartStream/StarStream";
 import welcomePage from "./WelcomePage.module.css";
 

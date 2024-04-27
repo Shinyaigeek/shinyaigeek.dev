@@ -14,16 +14,16 @@
 	},
 	"exports": {
 		".": {
-			"default": "./src/index.ts",
-			"types": "./src/index.ts"
+			"types": "./src/index.ts",
+			"default": "./src/index.ts"
 		},
 		"./router": {
-			"default": "./src/router/router.ts",
-			"types": "./src/router/router.ts"
+			"types": "./src/router/router.ts",
+			"default": "./src/router/router.ts"
 		},
 		"./plugin": {
-			"default": "./src/plugin/basic.ts",
-			"types": "./src/plugin/basic.ts"
+			"types": "./src/plugin/basic.ts",
+			"default": "./src/plugin/basic.ts"
 		}
 	}
 }

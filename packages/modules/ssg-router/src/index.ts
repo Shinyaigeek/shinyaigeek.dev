@@ -1,2 +1,2 @@
-export { Router } from "./router/router.js";
-export { Plugin } from "./plugin/basic.js";
+export { Router } from "./router/router";
+export type { Plugin } from "./plugin/basic";
