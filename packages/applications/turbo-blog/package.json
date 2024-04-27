@@ -10,13 +10,17 @@
 	"scripts": {
 		"dev": "NODE_ENV=development rspack serve",
 		"build": "NODE_ENV=production rspack build",
+		"webpack": "NODE_OPTIONS=\"--loader ts-node/esm\" webpack",
+		"build:client": "NODE_ENV=production pnpm webpack build --config webpack.config.client.ts",
+		"build:server": "NODE_ENV=production pnpm webpack build --config webpack.config.server.ts",
 		"__rspack": "NODE_OPTIONS=\"--loader ts-node/esm\" rspack",
-		"build:client": "NODE_ENV=production pnpm __rspack build --config rspack.config.client.ts",
-		"build:server": "NODE_ENV=production pnpm __rspack build --config rspack.config.server.ts"
+		"build:client:rspack": "NODE_ENV=production pnpm __rspack build --config rspack.config.client.ts",
+		"build:server:rspack": "NODE_ENV=production pnpm __rspack build --config rspack.config.server.ts"
 	},
 	"dependencies": {
 		"@lingui/core": "^4.0.0",
 		"html-minifier": "^4.0.0",
+		"option-t": "^39.0.3",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"ssg-router": "workspace:*"
@@ -31,6 +35,7 @@
 		"build-tool": "workspace:*",
 		"react-refresh": "^0.14.0",
 		"ts-node": "^10.2.1",
+		"webpack": "^5.38.1",
 		"webpack-merge": "^5.8.0"
 	}
 }
