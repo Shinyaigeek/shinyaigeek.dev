@@ -1,0 +1,29 @@
+{
+	"name": "ssg-router",
+	"version": "1.0.0",
+	"description": "",
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "module",
+	"files": ["./src"],
+	"types": "./src/index.ts",
+	"main": "./src/index.ts",
+	"dependencies": {
+		"option-t": "^39.0.3"
+	},
+	"exports": {
+		".": {
+			"types": "./src/index.ts",
+			"default": "./src/index.ts"
+		},
+		"./router": {
+			"types": "./src/router/router.ts",
+			"default": "./src/router/router.ts"
+		},
+		"./plugin": {
+			"types": "./src/plugin/basic.ts",
+			"default": "./src/plugin/basic.ts"
+		}
+	}
+}

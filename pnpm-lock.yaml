@@ -367,6 +367,9 @@ importers:
       react-dom:
         specifier: 19.0.0-beta-94eed63c49-20240425
         version: 19.0.0-beta-94eed63c49-20240425(react@19.0.0-beta-94eed63c49-20240425)
+      ssg-router:
+        specifier: workspace:*
+        version: link:../../modules/ssg-router
     devDependencies:
       '@rspack/cli':
         specifier: 0.5.6
@@ -450,6 +453,12 @@ importers:
       webpack:
         specifier: ^5.38.1
         version: 5.89.0(@swc/core@1.3.100)
+
+  packages/modules/ssg-router:
+    dependencies:
+      option-t:
+        specifier: ^39.0.3
+        version: 39.0.3
 
 packages:
 
