@@ -9,10 +9,11 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "NODE_ENV=development rspack serve",
-		"build": "NODE_ENV=production pnpm build:client && pnpm build:server",
+		"build": "NODE_ENV=production pnpm build:client && pnpm build:server && pnpm invoke:ssg",
 		"__webpack": "NODE_OPTIONS=\"--loader ts-node/esm\" webpack",
 		"build:client": "NODE_ENV=production pnpm __webpack --config webpack.config.client.ts",
 		"build:server": "NODE_ENV=production pnpm __webpack build --config webpack.config.server.ts",
+		"invoke:ssg": "node ./dist/main.js",
 		"__rspack": "NODE_OPTIONS=\"--loader ts-node/esm\" rspack",
 		"build:client:rspack": "NODE_ENV=production pnpm __rspack build --config rspack.config.client.ts",
 		"build:server:rspack": "NODE_ENV=production pnpm __rspack build --config rspack.config.server.ts"
