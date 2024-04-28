@@ -1,7 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "ES6",
-		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"target": "ESNext",
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"allowImportingTsExtensions": true,

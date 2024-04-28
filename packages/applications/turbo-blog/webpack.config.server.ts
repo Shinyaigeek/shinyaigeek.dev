@@ -4,7 +4,7 @@ import { merge } from "webpack-merge";
 
 const configForApplicationServer: Configuration = {
 	entry: {
-		main: "./src/build/build.ts",
+		main: "./src/jsx-renderer-server/main.tsx",
 	},
 	output: {
 		filename: "[name].js",
@@ -16,8 +16,15 @@ const configForApplicationServer: Configuration = {
 	experiments: {
 		outputModule: true,
 	},
-	mode: "development",
+	mode: "production",
 	target: "node",
+
+	optimization: {
+		minimize: false,
+	},
+	resolve: {
+		conditionNames: ["react-server", "node", "webpack", "import"],
+	},
 };
 
 // biome-ignore lint: reason
