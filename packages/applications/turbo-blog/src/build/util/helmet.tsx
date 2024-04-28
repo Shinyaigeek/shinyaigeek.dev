@@ -129,7 +129,7 @@ export const Shell = ({
 			/>
 			<script
 				defer
-				src={`/assets/r${
+				src={`/client${
 					process.env.CONTENTHASH_JS ? `.${process.env.CONTENTHASH_JS}` : ""
 				}.js`}
 				async
