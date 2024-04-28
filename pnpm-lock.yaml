@@ -58,7 +58,7 @@ importers:
         version: 4.0.0
       html-react-parser:
         specifier: ^1.3.0
-        version: 1.4.14(react@17.0.2)
+        version: 1.4.14(react@19.0.0-canary-fd0da3eef-20240404)
       image-to-base64:
         specifier: ^2.2.0
         version: 2.2.0
@@ -69,11 +69,11 @@ importers:
         specifier: ^2.0.2
         version: 2.0.22
       react:
-        specifier: ^17.0.1
-        version: 17.0.2
+        specifier: ^19.0.0-beta-94eed63c49-20240425
+        version: 19.0.0-canary-fd0da3eef-20240404
       react-dom:
-        specifier: ^17.0.1
-        version: 17.0.2(react@17.0.2)
+        specifier: ^19.0.0-beta-94eed63c49-20240425
+        version: 19.0.0-canary-fd0da3eef-20240404(react@19.0.0-canary-fd0da3eef-20240404)
       rehype-highlight:
         specifier: ^6.0.0
         version: 6.0.0
@@ -128,10 +128,10 @@ importers:
         version: 4.6.0(typescript@5.4.4)
       '@lingui/macro':
         specifier: ^4.0.0
-        version: 4.6.0(@lingui/react@4.6.0(react@17.0.2))(babel-plugin-macros@3.1.0)(typescript@5.4.4)
+        version: 4.6.0(@lingui/react@4.6.0(react@19.0.0-canary-fd0da3eef-20240404))(babel-plugin-macros@3.1.0)(typescript@5.4.4)
       '@lingui/swc-plugin':
         specifier: ^4.0.0
-        version: 4.0.4(@lingui/macro@4.6.0(@lingui/react@4.6.0(react@17.0.2))(babel-plugin-macros@3.1.0)(typescript@5.4.4))(@swc/core@1.3.100)
+        version: 4.0.4(@lingui/macro@4.6.0(@lingui/react@4.6.0(react@19.0.0-canary-fd0da3eef-20240404))(babel-plugin-macros@3.1.0)(typescript@5.4.4))(@swc/core@1.3.100)
       '@parcel/css':
         specifier: ^1.7.1
         version: 1.14.0
@@ -295,11 +295,11 @@ importers:
         specifier: ^4.13.0
         version: 4.26.2
       react:
-        specifier: ^17.0.1
-        version: 17.0.2
+        specifier: ^19.0.0-beta-94eed63c49-20240425
+        version: 19.0.0-canary-fd0da3eef-20240404
       react-dom:
-        specifier: ^17.0.1
-        version: 17.0.2(react@17.0.2)
+        specifier: ^19.0.0-beta-94eed63c49-20240425
+        version: 19.0.0-canary-fd0da3eef-20240404(react@19.0.0-canary-fd0da3eef-20240404)
     devDependencies:
       '@swc/core':
         specifier: ^1.3.100
@@ -356,11 +356,11 @@ importers:
         specifier: ^39.0.3
         version: 39.0.3
       react:
-        specifier: ^18.2.0
-        version: 18.2.0
+        specifier: ^19.0.0-beta-94eed63c49-20240425
+        version: 19.0.0-canary-fd0da3eef-20240404
       react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
+        specifier: ^19.0.0-beta-94eed63c49-20240425
+        version: 19.0.0-canary-fd0da3eef-20240404(react@19.0.0-canary-fd0da3eef-20240404)
       ssg-router:
         specifier: workspace:*
         version: link:../../modules/ssg-router
@@ -396,8 +396,8 @@ importers:
         specifier: ^0.14.0
         version: 0.14.0
       react-server-dom-webpack:
-        specifier: ^0.0.1
-        version: 0.0.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 19.0.0-beta-94eed63c49-20240425
+        version: 19.0.0-beta-94eed63c49-20240425(react-dom@19.0.0-canary-fd0da3eef-20240404(react@19.0.0-canary-fd0da3eef-20240404))(react@19.0.0-canary-fd0da3eef-20240404)(webpack@5.89.0(@swc/core@1.3.100))
       sass-loader:
         specifier: ^14.2.1
         version: 14.2.1(@rspack/core@0.5.6)(sass@1.69.5)(webpack@5.89.0(@swc/core@1.3.100))
@@ -2242,6 +2242,10 @@ packages:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
+
+  acorn-loose@8.4.0:
+    resolution: {integrity: sha512-M0EUka6rb+QC4l9Z3T0nJEzNOO7JcoJlYMrBlyBCiFSXRyxjLKayd4TbQs2FDRWQU1h9FR7QVNHt+PEaoNL5rQ==}
+    engines: {node: '>=0.4.0'}
 
   acorn-walk@7.2.0:
     resolution: {integrity: sha512-OPdCF6GsMIP+Az+aWfAAOEt2/+iVDKE7oy6lJ098aoe59oAmK76qV6Gw60SbZ8jHuG2wH058GF4pLFbYamYrVA==}
@@ -5841,15 +5845,10 @@ packages:
     resolution: {integrity: sha512-8zGqypfENjCIqGhgXToC8aB2r7YrBX+AQAfIPs/Mlk+BtPTztOvTS01NRW/3Eh60J+a48lt8qsCzirQ6loCVfA==}
     engines: {node: '>= 0.8'}
 
-  react-dom@17.0.2:
-    resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
+  react-dom@19.0.0-canary-fd0da3eef-20240404:
+    resolution: {integrity: sha512-MHRYMGKw12ZiBr1+c0oS0yRfD3WsO43K7w0aHsMpt3kChZo///0+C8NOu9VNiO0flvpOGho0uczbwmG2IV3XGw==}
     peerDependencies:
-      react: 17.0.2
-
-  react-dom@18.2.0:
-    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
-    peerDependencies:
-      react: ^18.2.0
+      react: 19.0.0-canary-fd0da3eef-20240404
 
   react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
@@ -5864,18 +5863,20 @@ packages:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
     engines: {node: '>=0.10.0'}
 
-  react-server-dom-webpack@0.0.1:
-    resolution: {integrity: sha512-XLR1T3SxiYe5CePB7apZg91V7zJqp55rAj1wb1rD0VQc8eA/Tt1mhCXaDKvUnLAxiOqUgRapl9CA3eud0UhEvg==}
-    peerDependencies:
-      react: ^17.0.0
-      react-dom: ^17.0.0
-
-  react@17.0.2:
-    resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}
+  react-server-dom-webpack@19.0.0-beta-94eed63c49-20240425:
+    resolution: {integrity: sha512-HwLQ6/3hE9VKrbsxmur/Wa0lVd7NX6ld5jXg/b/Vz7SSwavpCN3IEm9KesQJWnEtXXBTu4QRueImj0OPZmr0Qg==}
     engines: {node: '>=0.10.0'}
+    peerDependencies:
+      react: 19.0.0-beta-94eed63c49-20240425
+      react-dom: 19.0.0-beta-94eed63c49-20240425
+      webpack: ^5.59.0
 
   react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
+    engines: {node: '>=0.10.0'}
+
+  react@19.0.0-canary-fd0da3eef-20240404:
+    resolution: {integrity: sha512-ViGezadMIlZ5kvl1vCR1c0EqiANinvJXTDbyP4b4LIYxxPlSvOrYra9jncw7Jz4X78/8XYooms8dVlGQt4doPA==}
     engines: {node: '>=0.10.0'}
 
   readable-stream@2.3.8:
@@ -6220,11 +6221,8 @@ packages:
     resolution: {integrity: sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==}
     engines: {node: '>=10'}
 
-  scheduler@0.20.2:
-    resolution: {integrity: sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==}
-
-  scheduler@0.23.0:
-    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
+  scheduler@0.25.0-canary-fd0da3eef-20240404:
+    resolution: {integrity: sha512-XjgKmXoljRMv1h/nM75sn5Exdh0EvdkA4U1E7gHsXT2QZTplPEcT3lrS3T0pW0BEniBEExgOu7HAVu1ABVFS/A==}
 
   schema-utils@1.0.0:
     resolution: {integrity: sha512-i27Mic4KovM/lnGsy8whRCHhc7VicJajAjTrYg11K9zfZXnYIt4k5F+kZkwjnrhKzLic/HLU4j11mjsz2G/75g==}
@@ -8642,14 +8640,14 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@lingui/macro@4.6.0(@lingui/react@4.6.0(react@17.0.2))(babel-plugin-macros@3.1.0)(typescript@5.4.4)':
+  '@lingui/macro@4.6.0(@lingui/react@4.6.0(react@19.0.0-canary-fd0da3eef-20240404))(babel-plugin-macros@3.1.0)(typescript@5.4.4)':
     dependencies:
       '@babel/runtime': 7.23.5
       '@babel/types': 7.23.5
       '@lingui/conf': 4.6.0(typescript@5.4.4)
       '@lingui/core': 4.6.0
       '@lingui/message-utils': 4.6.0
-      '@lingui/react': 4.6.0(react@17.0.2)
+      '@lingui/react': 4.6.0(react@19.0.0-canary-fd0da3eef-20240404)
       babel-plugin-macros: 3.1.0
     transitivePeerDependencies:
       - typescript
@@ -8659,15 +8657,15 @@ snapshots:
       '@messageformat/parser': 5.1.0
       js-sha256: 0.10.1
 
-  '@lingui/react@4.6.0(react@17.0.2)':
+  '@lingui/react@4.6.0(react@19.0.0-canary-fd0da3eef-20240404)':
     dependencies:
       '@babel/runtime': 7.24.4
       '@lingui/core': 4.6.0
-      react: 17.0.2
+      react: 19.0.0-canary-fd0da3eef-20240404
 
-  '@lingui/swc-plugin@4.0.4(@lingui/macro@4.6.0(@lingui/react@4.6.0(react@17.0.2))(babel-plugin-macros@3.1.0)(typescript@5.4.4))(@swc/core@1.3.100)':
+  '@lingui/swc-plugin@4.0.4(@lingui/macro@4.6.0(@lingui/react@4.6.0(react@19.0.0-canary-fd0da3eef-20240404))(babel-plugin-macros@3.1.0)(typescript@5.4.4))(@swc/core@1.3.100)':
     dependencies:
-      '@lingui/macro': 4.6.0(@lingui/react@4.6.0(react@17.0.2))(babel-plugin-macros@3.1.0)(typescript@5.4.4)
+      '@lingui/macro': 4.6.0(@lingui/react@4.6.0(react@19.0.0-canary-fd0da3eef-20240404))(babel-plugin-macros@3.1.0)(typescript@5.4.4)
     optionalDependencies:
       '@swc/core': 1.3.100
 
@@ -9437,6 +9435,10 @@ snapshots:
       acorn: 7.4.1
 
   acorn-jsx@5.3.2(acorn@8.11.2):
+    dependencies:
+      acorn: 8.11.2
+
+  acorn-loose@8.4.0:
     dependencies:
       acorn: 8.11.2
 
@@ -11499,11 +11501,11 @@ snapshots:
       relateurl: 0.2.7
       uglify-js: 3.17.4
 
-  html-react-parser@1.4.14(react@17.0.2):
+  html-react-parser@1.4.14(react@19.0.0-canary-fd0da3eef-20240404):
     dependencies:
       domhandler: 4.3.1
       html-dom-parser: 1.2.0
-      react: 17.0.2
+      react: 19.0.0-canary-fd0da3eef-20240404
       react-property: 2.0.0
       style-to-js: 1.1.1
 
@@ -13841,18 +13843,10 @@ snapshots:
       iconv-lite: 0.4.24
       unpipe: 1.0.0
 
-  react-dom@17.0.2(react@17.0.2):
+  react-dom@19.0.0-canary-fd0da3eef-20240404(react@19.0.0-canary-fd0da3eef-20240404):
     dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react: 17.0.2
-      scheduler: 0.20.2
-
-  react-dom@18.2.0(react@18.2.0):
-    dependencies:
-      loose-envify: 1.4.0
-      react: 18.2.0
-      scheduler: 0.23.0
+      react: 19.0.0-canary-fd0da3eef-20240404
+      scheduler: 0.25.0-canary-fd0da3eef-20240404
 
   react-is@17.0.2: {}
 
@@ -13862,19 +13856,19 @@ snapshots:
 
   react-refresh@0.14.0: {}
 
-  react-server-dom-webpack@0.0.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-server-dom-webpack@19.0.0-beta-94eed63c49-20240425(react-dom@19.0.0-canary-fd0da3eef-20240404(react@19.0.0-canary-fd0da3eef-20240404))(react@19.0.0-canary-fd0da3eef-20240404)(webpack@5.89.0(@swc/core@1.3.100)):
     dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
-  react@17.0.2:
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
+      acorn-loose: 8.4.0
+      neo-async: 2.6.2
+      react: 19.0.0-canary-fd0da3eef-20240404
+      react-dom: 19.0.0-canary-fd0da3eef-20240404(react@19.0.0-canary-fd0da3eef-20240404)
+      webpack: 5.89.0(@swc/core@1.3.100)
 
   react@18.2.0:
     dependencies:
       loose-envify: 1.4.0
+
+  react@19.0.0-canary-fd0da3eef-20240404: {}
 
   readable-stream@2.3.8:
     dependencies:
@@ -14116,7 +14110,7 @@ snapshots:
 
   resvg@1.6.4:
     dependencies:
-      react: 17.0.2
+      react: 18.2.0
       resize-observer-polyfill: 1.5.1
 
   ret@0.1.15: {}
@@ -14256,14 +14250,7 @@ snapshots:
     dependencies:
       xmlchars: 2.2.0
 
-  scheduler@0.20.2:
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-
-  scheduler@0.23.0:
-    dependencies:
-      loose-envify: 1.4.0
+  scheduler@0.25.0-canary-fd0da3eef-20240404: {}
 
   schema-utils@1.0.0:
     dependencies:
