@@ -1,7 +1,4 @@
-import dotenv from "dotenv";
-import React from "react";
-
-dotenv.config();
+import type { ReactNode } from "react";
 
 interface HeadProps {
 	title: string;
@@ -14,21 +11,19 @@ const isProd = process.env.NODE_ENV === "production";
 const ASSETS_PORT = process.env.ASSETS_PORT ?? 8080;
 const ASSETS_SERVER = process.env.ASSETS_SERVER ?? "https://shinyaigeek.dev";
 
-const ogp = "https://shinyaigeek-og-image.vercel.app/";
-
 export const assets = isProd
 	? ASSETS_SERVER
 	: `http://localhost:${ASSETS_PORT}/dist`;
 
-const SiteHead = (props: HeadProps) => (
+const SiteHead = ({ title, slug, language, which }: HeadProps) => (
 	<head>
-		<title>{props.title}</title>
+		<title>{title}</title>
 		<meta charSet="utf8" />
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1, viewport-fit=cover"
 		/>
-		<meta property="og:title" content={props.title} />
+		<meta property="og:title" content={title} />
 		<meta property="og:site_name" content="shinyaigeek.dev" />
 		<meta property="og:locale" content="ja_JP" />
 		<meta
@@ -39,25 +34,25 @@ const SiteHead = (props: HeadProps) => (
 			property="og:description"
 			content="Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"
 		/>
-		<meta property="og:url" content={props.slug} />
+		<meta property="og:url" content={slug} />
 		<meta name="twitter:site" content="@shinyaigeek" />
 		<meta property="og:type" content="website" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta
 			property="og:image"
 			content={`${
-				props.language === "en"
+				language === "en"
 					? "https://en.shinyaigeek.dev"
 					: "https://ja.shinyaigeek.dev"
-			}/assets/ogimage/${props.language}/${props.which}.png`}
+			}/assets/ogimage/${language}/${which}.png`}
 		/>
 		<meta
 			name="twitter:image"
 			content={`${
-				props.language === "en"
+				language === "en"
 					? "https://en.shinyaigeek.dev"
 					: "https://ja.shinyaigeek.dev"
-			}/assets/ogimage/${props.language}/${props.which}.png`}
+			}/assets/ogimage/${language}/${which}.png`}
 		/>
 
 		<link rel="icon" type="image/x-icon" href={"/assets/static/favicon.ico"} />
@@ -107,23 +102,25 @@ const SiteHead = (props: HeadProps) => (
 );
 
 interface HelmetProps {
-	children: () => JSX.Element;
+	children: ReactNode;
 	title: string;
-	// biome-ignore lint: reason
-	props?: any;
 	slug: string;
 	language: "en" | "ja";
 	which: string;
 }
 
-const helmet = (props: HelmetProps) => {
-	return () => (
-		<html lang={props.language}>
-			<SiteHead {...props} />
+export const Shell = ({
+	children,
+	title,
+	slug,
+	language,
+	which,
+}: HelmetProps) => {
+	return (
+		<html lang={language}>
+			<SiteHead title={title} slug={slug} which={which} language={language} />
 			<body>
-				<div id="_app">
-					<props.children {...props.props} />
-				</div>
+				<div id="_app">{children}</div>
 			</body>
 			<script
 				defer
@@ -140,5 +137,3 @@ const helmet = (props: HelmetProps) => {
 		</html>
 	);
 };
-
-export default helmet;
