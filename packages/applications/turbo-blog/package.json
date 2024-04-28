@@ -22,8 +22,8 @@
 		"@lingui/core": "^4.0.0",
 		"html-minifier": "^4.0.0",
 		"option-t": "^39.0.3",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
 		"ssg-router": "workspace:*"
 	},
 	"devDependencies": {
@@ -37,6 +37,7 @@
 		"build-tool": "workspace:*",
 		"css-loader": "^6.3.0",
 		"react-refresh": "^0.14.0",
+		"react-server-dom-webpack": "^0.0.1",
 		"sass-loader": "^14.2.1",
 		"swc-loader": "^0.2.3",
 		"ts-node": "^10.2.1",
