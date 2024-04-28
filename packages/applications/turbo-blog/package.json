@@ -13,8 +13,9 @@
 		"__webpack": "NODE_OPTIONS=\"--loader ts-node/esm\" webpack",
 		"build:client": "NODE_ENV=production pnpm __webpack --config webpack.config.client.ts",
 		"build:server": "NODE_ENV=production pnpm __webpack build --config webpack.config.server.ts",
+		"build:generator": "NODE_ENV=production pnpm __webpack build --config webpack.config.generator.ts",
 		"start:jsx-renderer": "node --conditions react-server ./dist/main.js",
-		"invoke:ssg": "node --conditions react-server ./dist/main.js",
+		"invoke:ssg": "node ./dist/build.js",
 		"__rspack": "NODE_OPTIONS=\"--loader ts-node/esm\" rspack",
 		"build:client:rspack": "NODE_ENV=production pnpm __rspack build --config rspack.config.client.ts",
 		"build:server:rspack": "NODE_ENV=production pnpm __rspack build --config rspack.config.server.ts"
