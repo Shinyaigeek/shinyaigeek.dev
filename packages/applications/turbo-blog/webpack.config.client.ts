@@ -8,7 +8,7 @@ const config: Configuration = {
 		client: "./src/client/main.tsx",
 	},
 	output: {
-		filename: "[name].[contenthash].js",
+		filename: "[name].js",
 	},
 };
 
