@@ -4,7 +4,7 @@ import { merge } from "webpack-merge";
 
 const configForApplicationServer: Configuration = {
 	entry: {
-		main: "./src/jsx-renderer-server/main.tsx",
+		main: "./src/build/build.ts",
 	},
 	output: {
 		filename: "[name].js",
@@ -21,9 +21,6 @@ const configForApplicationServer: Configuration = {
 
 	optimization: {
 		minimize: false,
-	},
-	resolve: {
-		conditionNames: ["react-server", "node", "webpack", "import"],
 	},
 };
 
