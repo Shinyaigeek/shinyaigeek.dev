@@ -1,4 +1,4 @@
-import type fs from "node:fs";
+import type fs from "node:fs/promises";
 import type path from "node:path";
 import { Language } from "../language/language.entity";
 import { BlogContent } from "./blog.entity";
@@ -19,7 +19,7 @@ export class BlogRepository {
 			language === Language.ja ? "public" : "en",
 			`${slug}.md`,
 		);
-		const blogContent = this._fs.readFileSync(blogPath, "utf-8");
+		const blogContent = await this._fs.readFile(blogPath, "utf-8");
 
 		const [title, ...body] = blogContent.split("\n");
 
@@ -27,48 +27,52 @@ export class BlogRepository {
 	}
 
 	public async getBlogs(): Promise<BlogContent[]> {
-		const blogPaths = this._fs.readdirSync(
+		const blogPaths = await this._fs.readdir(
 			this._path.resolve(
 				process.cwd(),
 				"packages/applications/turbo-blog/src/articles/public",
 			),
 		);
-		const blogEnPaths = this._fs.readdirSync(
+		const blogEnPaths = await this._fs.readdir(
 			this._path.resolve(
 				process.cwd(),
 				"packages/applications/turbo-blog/src/articles/en",
 			),
 		);
 
-		const blogs = blogPaths.map((blogPath) => {
-			const blogContent = this._fs.readFileSync(
-				this._path.resolve(
-					process.cwd(),
-					"packages/applications/turbo-blog/src/articles/public",
-					blogPath,
-				),
-				"utf-8",
-			);
+		const blogs = await Promise.all(
+			blogPaths.map(async (blogPath) => {
+				const blogContent = await this._fs.readFile(
+					this._path.resolve(
+						process.cwd(),
+						"packages/applications/turbo-blog/src/articles/public",
+						blogPath,
+					),
+					"utf-8",
+				);
 
-			const [title, ...body] = blogContent.split("\n");
+				const [title, ...body] = blogContent.split("\n");
 
-			return new BlogContent(title, body.join("\n"), Language.ja);
-		});
+				return new BlogContent(title, body.join("\n"), Language.ja);
+			}),
+		);
 
-		const blogsEn = blogEnPaths.map((blogPath) => {
-			const blogContent = this._fs.readFileSync(
-				this._path.resolve(
-					process.cwd(),
-					"packages/applications/turbo-blog/src/articles/en",
-					blogPath,
-				),
-				"utf-8",
-			);
+		const blogsEn = await Promise.all(
+			blogEnPaths.map(async (blogPath) => {
+				const blogContent = await this._fs.readFile(
+					this._path.resolve(
+						process.cwd(),
+						"packages/applications/turbo-blog/src/articles/en",
+						blogPath,
+					),
+					"utf-8",
+				);
 
-			const [title, ...body] = blogContent.split("\n");
+				const [title, ...body] = blogContent.split("\n");
 
-			return new BlogContent(title, body.join("\n"), Language.en);
-		});
+				return new BlogContent(title, body.join("\n"), Language.en);
+			}),
+		);
 
 		return [...blogs, ...blogsEn];
 	}
