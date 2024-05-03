@@ -1,6 +1,6 @@
 import type { Break } from "mdast";
-import type { Node } from "../ast";
+import type { BreakNode } from "../ast";
 
-export const mapBreak: (node: Break) => Node = (_) => ({
+export const mapBreak: (node: Break) => BreakNode = (_) => ({
 	type: "break",
 });
