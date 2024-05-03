@@ -1,11 +1,5 @@
-import type { GenerateHandler, OutputHandler } from "../router/basic";
-
-export type Plugin = {
-	onRouted: (
-		path: string,
-		generate?: GenerateHandler,
-		output?: OutputHandler,
-	) => Promise<void>;
+export type Plugin<RoutingContext> = {
+	onRouted: (path: string, context: RoutingContext) => Promise<void>;
 	onGenerated: (path: string, content: string) => Promise<void>;
 	onOutput: (path: string) => Promise<void>;
 };

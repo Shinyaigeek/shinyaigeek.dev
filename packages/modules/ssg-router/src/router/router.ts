@@ -1,16 +1,16 @@
 import type { Plugin } from "../plugin/basic";
 import type { BasicRouter, GenerateHandler, OutputHandler } from "./basic";
 
-export class Router implements BasicRouter {
+export class Router<RoutingContext> implements BasicRouter<RoutingContext> {
 	private routing: Map<
 		string,
 		{
-			generate: GenerateHandler;
-			output: OutputHandler;
+			generate: GenerateHandler<RoutingContext>;
+			output: OutputHandler<RoutingContext>;
 		}
 	> = new Map();
 	private onRoutedPlugins: Set<
-		(path: string, generate?: GenerateHandler, output?: OutputHandler) => void
+		(path: string, context: RoutingContext) => void
 	> = new Set();
 	private onGeneratedPlugins: Set<(path: string, content: string) => void> =
 		new Set();
@@ -18,7 +18,10 @@ export class Router implements BasicRouter {
 
 	on(
 		path: string,
-		handler: { generate: GenerateHandler; output: OutputHandler },
+		handler: {
+			generate: GenerateHandler<RoutingContext>;
+			output: OutputHandler<RoutingContext>;
+		},
 	) {
 		this.routing.set(path, handler);
 	}
@@ -37,20 +40,21 @@ export class Router implements BasicRouter {
 
 	async out(path: string) {
 		const handler = this.routing.get(path);
+		const context = {} as RoutingContext;
 
 		for (const onRouted of this.onRoutedPlugins) {
-			await onRouted(path, handler?.generate, handler?.output);
+			await onRouted(path, context);
 		}
 
 		if (handler) {
 			const { generate, output } = handler;
-			const content = await generate({ path });
+			const content = await generate({ path, context: context });
 
 			for (const onGenerated of this.onGeneratedPlugins) {
 				await onGenerated(path, content);
 			}
 
-			await output({ path, content });
+			await output({ path, content, context: context });
 
 			for (const onOutput of this.onOutputPlugins) {
 				await onOutput(path);
@@ -58,7 +62,7 @@ export class Router implements BasicRouter {
 		}
 	}
 
-	register(plugin: Plugin) {
+	register(plugin: Plugin<RoutingContext>) {
 		if (plugin.onRouted) {
 			this.onRoutedPlugins.add(plugin.onRouted);
 		}
