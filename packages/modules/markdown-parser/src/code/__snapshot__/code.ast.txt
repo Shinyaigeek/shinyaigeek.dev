@@ -1,0 +1,11 @@
+{
+  "children": [
+    {
+      "language": "javascript",
+      "meta": null,
+      "type": "code",
+      "value": "console.log("asdf");",
+    },
+  ],
+  "type": "root",
+}

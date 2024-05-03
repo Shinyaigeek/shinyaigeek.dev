@@ -5,7 +5,15 @@ export type AST = {
 
 export type NodeType = "root" | "blockquote" | "definition" | "break";
 
-export type Node = {
-	type: NodeType;
-	children?: Node[];
+export type Node = CodeNode | BreakNode;
+
+export type BreakNode = {
+	type: "break";
+};
+
+export type CodeNode = {
+	type: "code";
+	language: string | null;
+	meta: string | null;
+	value: string;
 };
