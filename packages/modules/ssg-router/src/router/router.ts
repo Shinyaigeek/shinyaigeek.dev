@@ -1,6 +1,8 @@
 import type { Plugin } from "../plugin/basic";
 import type { BasicRouter, GenerateHandler, OutputHandler } from "./basic";
 
+export type { GenerateHandler, OutputHandler } from "./basic";
+
 export class Router<RoutingContext> implements BasicRouter<RoutingContext> {
 	private routing: Map<
 		string,

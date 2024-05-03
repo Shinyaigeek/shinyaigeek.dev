@@ -1,2 +1,6 @@
-export { Router } from "./router/router";
+export {
+	Router,
+	type GenerateHandler,
+	type OutputHandler,
+} from "./router/router";
 export type { Plugin } from "./plugin/basic";
