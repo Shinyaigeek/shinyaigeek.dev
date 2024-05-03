@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import type React from "react";
 import languageStyle from "./Language.module.css";
 
@@ -47,7 +46,6 @@ export const Language: React.FC<Props> = ({ currentLanguage, currentPath }) => (
 					🌍
 				</g-emoji>
 			</span>{" "}
-			{t`current_language`}
 		</summary>
 		<div className={languageStyle.languageWrapper}>
 			{Array.from(languages.keys()).map((language) => {

@@ -29,17 +29,8 @@ export const rspackBaseConfig: Configuration = {
 					{
 						loader: "postcss-loader",
 					},
-					{
-						loader: "css-loader",
-						options: {
-							modules: {
-								auto: true,
-								exportOnlyLocals: true,
-							},
-						},
-					},
 				],
-				type: "css",
+				type: "css/auto",
 			},
 		],
 	},

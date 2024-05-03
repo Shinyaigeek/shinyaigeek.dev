@@ -1,5 +1,3 @@
-import { t } from "@lingui/macro";
-import React from "react";
 import { Divider } from "../components/Divider/Divider";
 import { Layout } from "../components/Layout/Layout";
 import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
@@ -25,69 +23,18 @@ export const Profile = Layout(() => {
 
 				<div className="description">
 					<div className={profile.title}>About Me</div>
-					<p
-						className="content"
-						// biome-ignore lint: reason
-						dangerouslySetInnerHTML={{ __html: t`aboutme_content` }}
-					/>
+					<p className="content" />
 				</div>
 
 				<Divider />
 
 				<div className="history--study element">
-					<span className={profile.title}>{t`education`}</span>
-					<ul className={profile.lists}>
-						<li>2018: {t`graduate_nishiyamato`}</li>
-						<li>2018: {t`enroll_univ_tokyo`}</li>
-						<li>2019: {t`will_major_in_system`}</li>
-						<li>2020: {t`major_in_system`}</li>
-						<li>2022: {t`graduate_utokyo`}</li>
-					</ul>
+					<ul className={profile.lists}></ul>
 				</div>
 
 				<Divider />
 
-				<div className="history--job element">
-					<span className={profile.title}>{t`working_experience`}</span>
-					<ul>
-						{JobItem({
-							job: t`certain_news_media_company`,
-							term: "2019/04 ~",
-							description: t`certain_news_media_company_description`,
-							position: t`certain_news_media_company_position`,
-						})}
-						{JobItem({
-							job: t`recruit`,
-							term: "2020/10 ~ 2020/11",
-							description: t`recruit_description`,
-							position: t`recruit_position`,
-						})}
-						{JobItem({
-							job: t`cybozu`,
-							term: "2020/09",
-							description: t`cybozu_description`,
-							position: t`cybozu_position`,
-						})}
-						{JobItem({
-							job: t`wantedly`,
-							term: "2020/08 ~ 2020/09",
-							description: t`wantedly_description`,
-							position: t`wantedly_position`,
-						})}
-						{JobItem({
-							job: t`voyage_group`,
-							term: "2020/08",
-							description: t`voyage_group_description`,
-							position: t`voyage_group_position`,
-						})}
-						{JobItem({
-							job: t`moshimos`,
-							term: "2018/10 ~ 2018/12",
-							description: t`moshimos_description`,
-							position: t`moshimos_position`,
-						})}
-					</ul>
-				</div>
+				<div className="history--job element"></div>
 
 				<Divider />
 

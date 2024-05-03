@@ -4,7 +4,7 @@ import { merge } from "webpack-merge";
 
 const configForApplicationServer: Configuration = {
 	entry: {
-		main: "./src/build/build.ts",
+		build: "./src/build/build.ts",
 	},
 	output: {
 		filename: "[name].js",
