@@ -1,0 +1,32 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "type": "text",
+              "value": "hoge",
+            },
+          ],
+          "type": "emphasis",
+        },
+        {
+          "type": "text",
+          "value": " ",
+        },
+        {
+          "children": [
+            {
+              "type": "text",
+              "value": "fuga",
+            },
+          ],
+          "type": "emphasis",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "root",
+}

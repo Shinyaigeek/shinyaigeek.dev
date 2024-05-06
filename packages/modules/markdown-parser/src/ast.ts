@@ -5,7 +5,12 @@ export type AST = {
 
 export type NodeType = "root" | "blockquote" | "definition" | "break";
 
-export type Node = CodeNode | BreakNode | TextNode;
+export type Node =
+	| CodeNode
+	| BreakNode
+	| TextNode
+	| EmphasisNode
+	| ParagraphNode;
 
 export type BreakNode = {
 	type: "break";
@@ -21,4 +26,14 @@ export type CodeNode = {
 export type TextNode = {
 	type: "text";
 	value: string;
+};
+
+export type EmphasisNode = {
+	type: "emphasis";
+	children: Node[];
+};
+
+export type ParagraphNode = {
+	type: "paragraph";
+	children: Node[];
 };

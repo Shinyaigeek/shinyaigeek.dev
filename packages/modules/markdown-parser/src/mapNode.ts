@@ -2,6 +2,8 @@ import type { RootContent } from "mdast";
 import type { Node } from "./ast";
 import { mapBreak } from "./break/break";
 import { mapCode } from "./code/code";
+import { mapEmphasis } from "./emphasis/empasis";
+import { mapParagraph } from "./paragraph/paragraph";
 import { mapText } from "./text/text";
 
 export const mapNode: (node: RootContent) => Node = (node) => {
@@ -15,7 +17,14 @@ export const mapNode: (node: RootContent) => Node = (node) => {
 		case "text": {
 			return mapText(node);
 		}
+		case "emphasis": {
+			return mapEmphasis(node);
+		}
+		case "paragraph": {
+			return mapParagraph(node);
+		}
 		default: {
+			console.log(node);
 			throw new Error("TODO: Implement");
 		}
 	}

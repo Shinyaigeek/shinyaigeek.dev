@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +14,7 @@
     "unified": "^11.0.4"
   },
   "devDependencies": {
-    "@types/mdast": "^4.0.3"
+    "@types/mdast": "^4.0.3",
+    "vitest": "^1.5.2"
   }
 }
