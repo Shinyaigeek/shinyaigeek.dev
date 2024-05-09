@@ -1,0 +1,14 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "type": "text",
+          "value": "asdf ~~hoge~~",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "root",
+}

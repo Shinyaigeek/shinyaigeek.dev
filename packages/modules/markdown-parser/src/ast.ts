@@ -10,7 +10,8 @@ export type Node =
 	| BreakNode
 	| TextNode
 	| EmphasisNode
-	| ParagraphNode;
+	| ParagraphNode
+	| DeleteNode;
 
 export type BreakNode = {
 	type: "break";
@@ -30,6 +31,11 @@ export type TextNode = {
 
 export type EmphasisNode = {
 	type: "emphasis";
+	children: Node[];
+};
+
+export type DeleteNode = {
+	type: "delete";
 	children: Node[];
 };
 

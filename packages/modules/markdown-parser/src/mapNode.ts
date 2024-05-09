@@ -2,6 +2,7 @@ import type { RootContent } from "mdast";
 import type { Node } from "./ast";
 import { mapBreak } from "./break/break";
 import { mapCode } from "./code/code";
+import { mapDelete } from "./delete/delete";
 import { mapEmphasis } from "./emphasis/empasis";
 import { mapParagraph } from "./paragraph/paragraph";
 import { mapText } from "./text/text";
@@ -22,6 +23,9 @@ export const mapNode: (node: RootContent) => Node = (node) => {
 		}
 		case "paragraph": {
 			return mapParagraph(node);
+		}
+		case "delete": {
+			return mapDelete(node);
 		}
 		default: {
 			console.log(node);
