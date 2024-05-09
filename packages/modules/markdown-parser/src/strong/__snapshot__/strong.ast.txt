@@ -1,0 +1,23 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "type": "text",
+              "value": "hoge",
+            },
+          ],
+          "type": "strong",
+        },
+        {
+          "type": "text",
+          "value": " fuga",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "root",
+}

@@ -5,6 +5,7 @@ import { mapCode } from "./code/code";
 import { mapDelete } from "./delete/delete";
 import { mapEmphasis } from "./emphasis/empasis";
 import { mapParagraph } from "./paragraph/paragraph";
+import { mapStrong } from "./strong/strong";
 import { mapText } from "./text/text";
 
 export const mapNode: (node: RootContent) => Node = (node) => {
@@ -26,6 +27,9 @@ export const mapNode: (node: RootContent) => Node = (node) => {
 		}
 		case "delete": {
 			return mapDelete(node);
+		}
+		case "strong": {
+			return mapStrong(node);
 		}
 		default: {
 			console.log(node);

@@ -11,7 +11,8 @@ export type Node =
 	| TextNode
 	| EmphasisNode
 	| ParagraphNode
-	| DeleteNode;
+	| DeleteNode
+	| StrongNode;
 
 export type BreakNode = {
 	type: "break";
@@ -36,6 +37,11 @@ export type EmphasisNode = {
 
 export type DeleteNode = {
 	type: "delete";
+	children: Node[];
+};
+
+export type StrongNode = {
+	type: "strong";
 	children: Node[];
 };
 
