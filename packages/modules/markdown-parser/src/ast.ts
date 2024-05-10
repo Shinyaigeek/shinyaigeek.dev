@@ -13,7 +13,8 @@ export type Node =
 	| ParagraphNode
 	| DeleteNode
 	| StrongNode
-	| FootnoteReferenceNode;
+	| FootnoteReferenceNode
+	| HtmlNode;
 
 export type BreakNode = {
 	type: "break";
@@ -55,4 +56,9 @@ export type FootnoteReferenceNode = {
 	type: "footnote-reference";
 	label: string | null;
 	identifier: string;
+};
+
+export type HtmlNode = {
+	type: "html";
+	html: string;
 };

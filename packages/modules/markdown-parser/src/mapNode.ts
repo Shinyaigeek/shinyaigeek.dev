@@ -5,6 +5,7 @@ import { mapCode } from "./code/code";
 import { mapDelete } from "./delete/delete";
 import { mapEmphasis } from "./emphasis/empasis";
 import { mapFootnoteReference } from "./footnote-reference/footnote-reference";
+import { mapHtml } from "./html/html";
 import { mapParagraph } from "./paragraph/paragraph";
 import { mapStrong } from "./strong/strong";
 import { mapText } from "./text/text";
@@ -34,6 +35,9 @@ export const mapNode: (node: RootContent) => Node = (node) => {
 		}
 		case "footnoteReference": {
 			return mapFootnoteReference(node);
+		}
+		case "html": {
+			return mapHtml(node);
 		}
 		default: {
 			console.log(node);
