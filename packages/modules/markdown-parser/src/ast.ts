@@ -12,7 +12,8 @@ export type Node =
 	| EmphasisNode
 	| ParagraphNode
 	| DeleteNode
-	| StrongNode;
+	| StrongNode
+	| FootnoteReferenceNode;
 
 export type BreakNode = {
 	type: "break";
@@ -48,4 +49,10 @@ export type StrongNode = {
 export type ParagraphNode = {
 	type: "paragraph";
 	children: Node[];
+};
+
+export type FootnoteReferenceNode = {
+	type: "footnote-reference";
+	label: string | null;
+	identifier: string;
 };
