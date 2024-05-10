@@ -14,7 +14,8 @@ export type Node =
 	| DeleteNode
 	| StrongNode
 	| FootnoteReferenceNode
-	| HtmlNode;
+	| HtmlNode
+	| ImageNode;
 
 export type BreakNode = {
 	type: "break";
@@ -61,4 +62,11 @@ export type FootnoteReferenceNode = {
 export type HtmlNode = {
 	type: "html";
 	html: string;
+};
+
+export type ImageNode = {
+	type: "image";
+	url: string;
+	title: string | null;
+	alt: string | null;
 };
