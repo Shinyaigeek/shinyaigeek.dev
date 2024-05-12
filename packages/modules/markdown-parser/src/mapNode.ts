@@ -6,6 +6,7 @@ import { mapDelete } from "./delete/delete";
 import { mapEmphasis } from "./emphasis/empasis";
 import { mapFootnoteReference } from "./footnote-reference/footnote-reference";
 import { mapHtml } from "./html/html";
+import { mapImageReference } from "./image-reference/image-reference";
 import { mapImage } from "./image/image";
 import { mapParagraph } from "./paragraph/paragraph";
 import { mapStrong } from "./strong/strong";
@@ -42,6 +43,9 @@ export const mapNode: (node: RootContent) => Node = (node) => {
 		}
 		case "image": {
 			return mapImage(node);
+		}
+		case "imageReference": {
+			return mapImageReference(node);
 		}
 		default: {
 			console.log(node);

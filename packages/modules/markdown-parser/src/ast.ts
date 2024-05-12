@@ -15,7 +15,8 @@ export type Node =
 	| StrongNode
 	| FootnoteReferenceNode
 	| HtmlNode
-	| ImageNode;
+	| ImageNode
+	| ImageReferenceNode;
 
 export type BreakNode = {
 	type: "break";
@@ -69,4 +70,10 @@ export type ImageNode = {
 	url: string;
 	title: string | null;
 	alt: string | null;
+};
+
+export type ImageReferenceNode = {
+	type: "image-reference";
+	alt: string | null;
+	reference: "full" | "shortcut" | "collapsed";
 };
