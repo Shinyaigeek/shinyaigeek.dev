@@ -4,6 +4,7 @@ import { mapBreak } from "./break/break";
 import { mapCode } from "./code/code";
 import { mapDelete } from "./delete/delete";
 import { mapEmphasis } from "./emphasis/empasis";
+import { mapFootnoteDefinition } from "./footnote-definition/footnote-definition";
 import { mapFootnoteReference } from "./footnote-reference/footnote-reference";
 import { mapHtml } from "./html/html";
 import { mapImageReference } from "./image-reference/image-reference";
@@ -34,6 +35,9 @@ export const mapNode: (node: RootContent) => Node = (node) => {
 		}
 		case "strong": {
 			return mapStrong(node);
+		}
+		case "footnoteDefinition": {
+			return mapFootnoteDefinition(node);
 		}
 		case "footnoteReference": {
 			return mapFootnoteReference(node);

@@ -14,6 +14,7 @@ export type Node =
 	| DeleteNode
 	| StrongNode
 	| FootnoteReferenceNode
+	| FootnoteReferenceNode
 	| HtmlNode
 	| ImageNode
 	| ImageReferenceNode;
@@ -51,6 +52,12 @@ export type StrongNode = {
 
 export type ParagraphNode = {
 	type: "paragraph";
+	children: Node[];
+};
+
+export type FootnoteDefinitionNode = {
+	type: "footnote-definition";
+	identifier: string;
 	children: Node[];
 };
 
