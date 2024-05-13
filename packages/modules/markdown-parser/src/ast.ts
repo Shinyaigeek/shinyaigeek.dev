@@ -13,7 +13,7 @@ export type Node =
 	| ParagraphNode
 	| DeleteNode
 	| StrongNode
-	| FootnoteReferenceNode
+	| FootnoteDefinitionNode
 	| FootnoteReferenceNode
 	| HtmlNode
 	| ImageNode
