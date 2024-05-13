@@ -9,6 +9,7 @@ import { mapFootnoteReference } from "./footnote-reference/footnote-reference";
 import { mapHtml } from "./html/html";
 import { mapImageReference } from "./image-reference/image-reference";
 import { mapImage } from "./image/image";
+import { mapInlineCode } from "./inline-code/inline-code";
 import { mapParagraph } from "./paragraph/paragraph";
 import { mapStrong } from "./strong/strong";
 import { mapText } from "./text/text";
@@ -50,6 +51,9 @@ export const mapNode: (node: RootContent) => Node = (node) => {
 		}
 		case "imageReference": {
 			return mapImageReference(node);
+		}
+		case "inlineCode": {
+			return mapInlineCode(node);
 		}
 		default: {
 			console.log(node);

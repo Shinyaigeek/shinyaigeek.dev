@@ -17,7 +17,8 @@ export type Node =
 	| FootnoteReferenceNode
 	| HtmlNode
 	| ImageNode
-	| ImageReferenceNode;
+	| ImageReferenceNode
+	| InlineCodeNode;
 
 export type BreakNode = {
 	type: "break";
@@ -83,4 +84,9 @@ export type ImageReferenceNode = {
 	type: "image-reference";
 	alt: string | null;
 	reference: "full" | "shortcut" | "collapsed";
+};
+
+export type InlineCodeNode = {
+	type: "inline-code";
+	value: string;
 };
