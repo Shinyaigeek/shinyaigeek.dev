@@ -10,6 +10,7 @@ import { mapHtml } from "./html/html";
 import { mapImageReference } from "./image-reference/image-reference";
 import { mapImage } from "./image/image";
 import { mapInlineCode } from "./inline-code/inline-code";
+import { mapLink } from "./link/link";
 import { mapParagraph } from "./paragraph/paragraph";
 import { mapStrong } from "./strong/strong";
 import { mapText } from "./text/text";
@@ -54,6 +55,9 @@ export const mapNode: (node: RootContent) => Node = (node) => {
 		}
 		case "inlineCode": {
 			return mapInlineCode(node);
+		}
+		case "link": {
+			return mapLink(node);
 		}
 		default: {
 			console.log(node);

@@ -18,7 +18,8 @@ export type Node =
 	| HtmlNode
 	| ImageNode
 	| ImageReferenceNode
-	| InlineCodeNode;
+	| InlineCodeNode
+	| LinkNode;
 
 export type BreakNode = {
 	type: "break";
@@ -89,4 +90,11 @@ export type ImageReferenceNode = {
 export type InlineCodeNode = {
 	type: "inline-code";
 	value: string;
+};
+
+export type LinkNode = {
+	type: "link";
+	url: string;
+	title: string | null;
+	children: Node[];
 };
