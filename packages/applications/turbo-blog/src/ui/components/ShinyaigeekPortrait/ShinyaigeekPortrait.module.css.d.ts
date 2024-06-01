@@ -3,9 +3,9 @@ declare const styles: {
   readonly "earth": string;
   readonly "earthX": string;
   readonly "earthY": string;
-  readonly "icon": string;
-  readonly "monkey": string;
-  readonly "monkeyImg": string;
+  readonly "shinyaigeekPortrait": string;
+  readonly "shinyaigeekPortraitContainer": string;
+  readonly "shinyaigeekPortraitImage": string;
 };
 export = styles;
 

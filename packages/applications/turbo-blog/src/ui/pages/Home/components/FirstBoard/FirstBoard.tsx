@@ -1,5 +1,5 @@
 import type { FunctionComponent } from "react";
-import { Shinyaigeek } from "../../../../components/Shinyaigeek/Shinyaigeek";
+import { ShinyaigeekPortrait } from "../../../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
 import { StarStream } from "../StartStream/StarStream";
 import { banana, container, shinyaigeek } from "./FirstBoard.module.css";
 
@@ -12,7 +12,7 @@ export const FirstBoard: FunctionComponent = () => (
 			width="200px"
 			height="200px"
 		/>
-		<Shinyaigeek css={shinyaigeek} />
+		<ShinyaigeekPortrait css={shinyaigeek} />
 		<StarStream />
 	</div>
 );

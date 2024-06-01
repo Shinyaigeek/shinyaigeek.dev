@@ -2,25 +2,25 @@ import {
 	earth,
 	earthX,
 	earthY,
-	icon,
-	monkey,
-	monkeyImg,
-} from "./Shinyaigeek.module.css";
+	shinyaigeekPortrait,
+	shinyaigeekPortraitContainer,
+	shinyaigeekPortraitImage,
+} from "./ShinyaigeekPortrait.module.css";
 
 interface Props {
 	css?: string;
 }
 
-export const Shinyaigeek = (props: Props) => {
+export const ShinyaigeekPortrait = (props: Props) => {
 	const { css } = props;
 	const additionalStyle = css ?? "";
 	return (
-		<div className={`${icon} ${additionalStyle}`}>
-			<div className={monkey}>
+		<div className={`${shinyaigeekPortrait} ${additionalStyle}`}>
+			<div className={shinyaigeekPortraitContainer}>
 				<img
-					src={"/assets/static/icon_transparent.png"}
-					className={monkeyImg}
-					alt="monkey-icon"
+					src={"/assets/static/shinyaigeek_portrait_transparent.png"}
+					className={shinyaigeekPortraitImage}
+					alt="shinyaigeek's portrait icon"
 					width="270px"
 					height="270px"
 				/>

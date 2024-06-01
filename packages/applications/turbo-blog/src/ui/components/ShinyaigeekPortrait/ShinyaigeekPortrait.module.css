@@ -1,4 +1,4 @@
-.icon {
+.shinyaigeekPortrait {
     transform-style: preserve-3d;
     transform: perspective(5000px);
     overflow: visible;
@@ -86,14 +86,14 @@
     }
 }
 
-.monkey {
+.shinyaigeekPortraitContainer {
     width: 100%;
     height: 100%;
     z-index: 3;
     position: absolute;
 }
 
-.monkeyImg {
+.shinyaigeekPortraitImage {
     width: 100%;
     height: 100%;
     object-fit: contain;
