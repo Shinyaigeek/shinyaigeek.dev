@@ -1,7 +1,11 @@
 import type { FunctionComponent } from "react";
 import { ShinyaigeekPortrait } from "../../../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
 import { StarStream } from "../StartStream/StarStream";
-import { banana, container, shinyaigeek } from "./FirstBoard.module.css";
+import {
+	banana,
+	container,
+	shinyaigeekPortraitPosition,
+} from "./FirstBoard.module.css";
 
 export const FirstBoard: FunctionComponent = () => (
 	<div className={container}>
@@ -12,7 +16,9 @@ export const FirstBoard: FunctionComponent = () => (
 			width="200px"
 			height="200px"
 		/>
-		<ShinyaigeekPortrait css={shinyaigeek} />
+		<div className={shinyaigeekPortraitPosition}>
+			<ShinyaigeekPortrait />
+		</div>
 		<StarStream />
 	</div>
 );
