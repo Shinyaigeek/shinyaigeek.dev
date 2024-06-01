@@ -12,5 +12,10 @@ router.on("/", {
 	generate: generateIndexPage,
 	output: outputIndexPage,
 });
+router.on("/en/", {
+	generate: generateIndexPage,
+	output: outputIndexPage,
+});
 
 router.out("/");
+router.out("/en/");
