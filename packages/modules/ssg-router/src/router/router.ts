@@ -45,26 +45,28 @@ export class Router<RoutingContext> implements BasicRouter<RoutingContext> {
 		}
 	}
 
-	async out(path: string) {
-		const handler = this.routing.get(path);
-		const context = {} as RoutingContext;
+	async out() {
+		for (const path of this.routing.keys()) {
+			const handler = this.routing.get(path);
+			const context = {} as RoutingContext;
 
-		for (const onRouted of this.onRoutedPlugins) {
-			await onRouted(path, context);
-		}
-
-		if (handler) {
-			const { generate, output } = handler;
-			const content = await generate({ path, context: context });
-
-			for (const onGenerated of this.onGeneratedPlugins) {
-				await onGenerated(path, content, context);
+			for (const onRouted of this.onRoutedPlugins) {
+				await onRouted(path, context);
 			}
 
-			await output({ path, content, context: context });
+			if (handler) {
+				const { generate, output } = handler;
+				const content = await generate({ path, context: context });
 
-			for (const onOutput of this.onOutputPlugins) {
-				await onOutput(path, context);
+				for (const onGenerated of this.onGeneratedPlugins) {
+					await onGenerated(path, content, context);
+				}
+
+				await output({ path, content, context: context });
+
+				for (const onOutput of this.onOutputPlugins) {
+					await onOutput(path, context);
+				}
 			}
 		}
 	}
