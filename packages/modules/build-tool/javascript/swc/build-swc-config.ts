@@ -11,9 +11,6 @@ export const buildSwcConfig: () => Config = () => ({
 				runtime: "automatic",
 			},
 		},
-		experimental: {
-			plugins: [["@lingui/swc-plugin", {}]],
-		},
 	},
 	module: {
 		type: "nodenext",

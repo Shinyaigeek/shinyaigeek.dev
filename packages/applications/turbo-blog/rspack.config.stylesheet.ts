@@ -1,23 +1,21 @@
 import type { Configuration } from "@rspack/cli";
+import Rspack from "@rspack/core";
 import { rspackBaseConfig } from "build-tool";
 import { merge } from "webpack-merge";
 
+const CssExtractRspackPlugin = Rspack.CssExtractRspackPlugin;
+
 const configForApplicationServer: Configuration = {
 	entry: {
-		build: "./src/build/build.ts",
+		style: "./src/stylesheet.ts",
 	},
-	output: {
-		filename: "[name].js",
-		chunkFormat: "module",
-		library: {
-			type: "module",
-		},
-	},
-	experiments: {
-		outputModule: true,
-	},
+	plugins: [
+		new CssExtractRspackPlugin({
+			filename: "assets/style.css",
+		}),
+	],
 	mode: "development",
-	target: "node",
+	target: "web",
 };
 
 // biome-ignore lint: reason

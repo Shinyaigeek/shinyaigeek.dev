@@ -59,7 +59,7 @@ const SiteHead = ({ title, slug, language, which }: HeadProps) => (
 		<link
 			rel="stylesheet"
 			type="text/css"
-			href={`/assets/styles${
+			href={`/style${
 				process.env.CONTENTHASH_CSS ? `.${process.env.CONTENTHASH_CSS}` : ""
 			}.css`}
 		/>
@@ -77,7 +77,7 @@ const SiteHead = ({ title, slug, language, which }: HeadProps) => (
 		<link
 			rel="preload"
 			as="style"
-			href={`/assets/styles${
+			href={`/style${
 				process.env.CONTENTHASH_CSS ? `.${process.env.CONTENTHASH_CSS}` : ""
 			}.css`}
 		/>

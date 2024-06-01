@@ -1,5 +1,8 @@
 import type { Configuration } from "@rspack/cli";
+import Rspack from "@rspack/core";
 import { buildSwcConfig } from "../javascript/swc/build-swc-config.js";
+
+const CssExtractRspackPlugin = Rspack.CssExtractRspackPlugin;
 
 export const rspackBaseConfig: Configuration = {
 	resolve: {
@@ -27,6 +30,12 @@ export const rspackBaseConfig: Configuration = {
 				test: /\.css$/,
 				use: [
 					{
+						loader: CssExtractRspackPlugin.loader,
+						options: {
+							publicPath: "./",
+						},
+					},
+					{
 						loader: "postcss-loader",
 					},
 				],
@@ -34,4 +43,9 @@ export const rspackBaseConfig: Configuration = {
 			},
 		],
 	},
+	plugins: [
+		new CssExtractRspackPlugin({
+			filename: "style.css",
+		}),
+	],
 };
