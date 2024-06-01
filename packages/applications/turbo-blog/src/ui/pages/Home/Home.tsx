@@ -1,6 +1,6 @@
 import type { FunctionComponent } from "react";
+import { FirstBoard } from "./components/FirstBoard/FirstBoard";
 import { Item } from "./components/Item/Item";
-import { WelcomePage } from "./components/WelcomePage/WelcomePage";
 
 interface Props {
 	items: {
@@ -13,7 +13,7 @@ interface Props {
 
 export const Home: FunctionComponent<Props> = ({ items }) => (
 	<div>
-		<WelcomePage />
+		<FirstBoard />
 		<div>
 			{items.map((item) => {
 				return (
