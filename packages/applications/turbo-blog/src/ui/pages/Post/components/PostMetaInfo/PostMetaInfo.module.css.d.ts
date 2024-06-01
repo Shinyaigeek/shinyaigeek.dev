@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly "metaInfo": string;
+  readonly "postMetaInfoContainer": string;
 };
 export = styles;
 
