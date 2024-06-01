@@ -7,5 +7,5 @@ export const outputIndexPage: ({
 }: { path: string; content: string }) => Promise<void> = async ({
 	content,
 }) => {
-	await fs.writeFile(nodePath.resolve("./dist", "index.html"), content);
+	await fs.writeFile(nodePath.resolve("./public", "index.html"), content);
 };
