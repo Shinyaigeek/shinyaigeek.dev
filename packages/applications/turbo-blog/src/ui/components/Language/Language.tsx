@@ -1,15 +1,18 @@
 import type React from "react";
-import languageStyle from "./Language.module.css";
+import {
+	language as languageStyle,
+	languageWrapper,
+} from "./Language.module.css";
 
 interface Props {
-	currentLanguage: language;
+	currentLanguage: languageType;
 	currentPath: string;
 }
 
-export type language = "ja" | "en";
+export type languageType = "ja" | "en";
 // TODO
 export const languages = new Map<
-	language,
+	languageType,
 	{
 		name: string;
 		icon: JSX.Element;
@@ -47,7 +50,7 @@ export const Language: React.FC<Props> = ({ currentLanguage, currentPath }) => (
 				</g-emoji>
 			</span>{" "}
 		</summary>
-		<div className={languageStyle.languageWrapper}>
+		<div className={languageWrapper}>
 			{Array.from(languages.keys()).map((language) => {
 				return (
 					<a
@@ -57,8 +60,8 @@ export const Language: React.FC<Props> = ({ currentLanguage, currentPath }) => (
 								? "https://en.shinyaigeek.dev"
 								: "http://ja.shinyaigeek.dev"
 						}${currentPath}`}
-						className={`${languageStyle.language} ${
-							language === currentLanguage ? languageStyle.active : ""
+						className={`${languageStyle} ${
+							language === currentLanguage ? "TODO" : ""
 						}`}
 					>
 						<span role="img" aria-label="country">

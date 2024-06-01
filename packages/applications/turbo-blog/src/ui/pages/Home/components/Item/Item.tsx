@@ -1,5 +1,13 @@
 import { Divider } from "../../../../components/Divider/Divider";
-import item from "./Item.module.css";
+import {
+	date,
+	home,
+	itemHomeAnchor,
+	ogp,
+	readMore,
+	readMoreAnchor,
+	title,
+} from "./Item.module.css";
 
 interface MetaData {
 	title: string;
@@ -12,16 +20,15 @@ interface MetaData {
 
 export const Item = (props: MetaData) => {
 	return (
-		<div className={item.home}>
+		<div className={home}>
 			<a
-				className={item.itemHomeAnchor}
+				className={itemHomeAnchor}
 				href={!props.media ? `/post/${props.path}` : props.path}
 			>
-				<div className={item.title}>{props.title}</div>
+				<div className={title}>{props.title}</div>
 			</a>
 			<Divider />
-			<div className={item.date}>{props.publishedAt}</div>
-			<div className={item.tags} />
+			<div className={date}>{props.publishedAt}</div>
 			<div>{props.description ?? ""}</div>
 			{props.ogp && (
 				<a
@@ -31,16 +38,16 @@ export const Item = (props: MetaData) => {
 					<img
 						src={props.ogp}
 						alt={props.title}
-						className={item.ogp}
+						className={ogp}
 						loading="lazy"
 						width={1024}
 						height={576}
 					/>
 				</a>
 			)}
-			<div className={item.readMore}>
+			<div className={readMore}>
 				<a
-					className={`item--home__anchor ${item.readMoreAnchor}`}
+					className={`item--home__anchor ${readMoreAnchor}`}
 					href={!props.media ? `/post/${props.path}` : props.path}
 					tabIndex={-1}
 				>
