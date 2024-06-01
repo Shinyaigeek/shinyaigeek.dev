@@ -25,7 +25,13 @@ export type BasicRouter<RoutingContext> = {
 			output: OutputHandler<RoutingContext>;
 		},
 	) => void;
-	onChildren: (generateChildren: () => Promise<string[]>) => void;
+	onChildren: (
+		generateChildren: () => Promise<string[]>,
+		arg: {
+			generate: GenerateHandler<RoutingContext>;
+			output: OutputHandler<RoutingContext>;
+		},
+	) => Promise<void>;
 	out: (path: string) => Promise<void>;
 	register: (plugin: Plugin<RoutingContext>) => void;
 };

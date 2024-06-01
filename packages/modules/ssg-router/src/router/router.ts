@@ -28,16 +28,18 @@ export class Router<RoutingContext> implements BasicRouter<RoutingContext> {
 		this.routing.set(path, handler);
 	}
 
-	onChildren(generateChildren: () => Promise<string[]>) {
-		this.on("/", {
-			generate: async ({ path }) => {
-				const children = await generateChildren();
-				return JSON.stringify(children);
-			},
-			output: async ({ path, content }) => {
-				console.log(`output: ${path}`);
-			},
-		});
+	async onChildren(
+		generateChildren: () => Promise<string[]>,
+		handler: {
+			generate: GenerateHandler<RoutingContext>;
+			output: OutputHandler<RoutingContext>;
+		},
+	) {
+		const children = await generateChildren();
+
+		for (const child of children) {
+			await this.on(child, handler);
+		}
 	}
 
 	async out(path: string) {
