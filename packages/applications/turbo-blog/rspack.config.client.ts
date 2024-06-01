@@ -9,6 +9,7 @@ const config: Configuration = {
 	},
 	output: {
 		filename: "[name].[contenthash].js",
+		path: "public",
 	},
 };
 

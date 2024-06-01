@@ -9,9 +9,12 @@ const configForApplicationServer: Configuration = {
 	entry: {
 		style: "./src/stylesheet.ts",
 	},
+	output: {
+		path: "public/assets",
+	},
 	plugins: [
 		new CssExtractRspackPlugin({
-			filename: "assets/style.css",
+			filename: "style.css",
 		}),
 	],
 	mode: "development",
