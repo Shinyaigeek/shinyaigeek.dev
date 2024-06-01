@@ -1,4 +1,5 @@
 declare const styles: {
-	readonly divider: string;
+  readonly "divider": string;
 };
 export = styles;
+

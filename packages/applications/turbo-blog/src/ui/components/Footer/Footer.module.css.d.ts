@@ -1,4 +1,5 @@
 declare const styles: {
-	readonly footer: string;
+  readonly "footer": string;
 };
 export = styles;
+
