@@ -27,7 +27,9 @@
 		"option-t": "^39.0.3",
 		"react": "19.0.0-beta-94eed63c49-20240425",
 		"react-dom": "19.0.0-beta-94eed63c49-20240425",
-		"ssg-router": "workspace:*"
+		"remark-parse": "^11.0.0",
+		"ssg-router": "workspace:*",
+		"unified": "^11.0.4"
 	},
 	"devDependencies": {
 		"@rspack/cli": "0.5.6",

@@ -1,16 +1,12 @@
-import { Button } from "../../../components/Button/Button";
-import { Divider } from "../../../components/Divider/Divider";
-
-import React from "react";
-import { getOmmit } from "../../../../build/util/getOmmit";
+import { Divider } from "../../../../components/Divider/Divider";
 import item from "./Item.module.css";
-export interface MetaData {
+
+interface MetaData {
 	title: string;
 	description?: string;
 	ogp?: string;
 	publishedAt: string;
-	// tags: string[];
-	slug: string;
+	path: string;
 	media?: string;
 }
 
@@ -19,17 +15,17 @@ export const Item = (props: MetaData) => {
 		<div className={item.home}>
 			<a
 				className={item.itemHomeAnchor}
-				href={!props.media ? `/post/${props.slug}` : props.slug}
+				href={!props.media ? `/post/${props.path}` : props.path}
 			>
 				<div className={item.title}>{props.title}</div>
 			</a>
 			<Divider />
 			<div className={item.date}>{props.publishedAt}</div>
 			<div className={item.tags} />
-			<div>{getOmmit(props.description ?? "")}</div>
+			<div>{props.description ?? ""}</div>
 			{props.ogp && (
 				<a
-					href={!props.media ? `/post/${props.slug}` : props.slug}
+					href={!props.media ? `/post/${props.path}` : props.path}
 					tabIndex={-1}
 				>
 					<img
@@ -45,7 +41,7 @@ export const Item = (props: MetaData) => {
 			<div className={item.readMore}>
 				<a
 					className={`item--home__anchor ${item.readMoreAnchor}`}
-					href={!props.media ? `/post/${props.slug}` : props.slug}
+					href={!props.media ? `/post/${props.path}` : props.path}
 					tabIndex={-1}
 				>
 					Read

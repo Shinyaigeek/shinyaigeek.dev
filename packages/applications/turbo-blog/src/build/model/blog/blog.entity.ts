@@ -4,7 +4,7 @@ import type { Language } from "../language/language.entity";
 export interface BlogMetadata {
 	title: string;
 	tags: string[];
-	description: string[];
+	description: string;
 	publishedAt: string;
 	updatedAt: string;
 	path: string;
