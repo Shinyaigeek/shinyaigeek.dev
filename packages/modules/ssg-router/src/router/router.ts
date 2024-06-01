@@ -14,9 +14,12 @@ export class Router<RoutingContext> implements BasicRouter<RoutingContext> {
 	private onRoutedPlugins: Set<
 		(path: string, context: RoutingContext) => void
 	> = new Set();
-	private onGeneratedPlugins: Set<(path: string, content: string) => void> =
-		new Set();
-	private onOutputPlugins: Set<(path: string) => void> = new Set();
+	private onGeneratedPlugins: Set<
+		(path: string, content: string, context: RoutingContext) => void
+	> = new Set();
+	private onOutputPlugins: Set<
+		(path: string, context: RoutingContext) => void
+	> = new Set();
 
 	on(
 		path: string,
@@ -55,13 +58,13 @@ export class Router<RoutingContext> implements BasicRouter<RoutingContext> {
 			const content = await generate({ path, context: context });
 
 			for (const onGenerated of this.onGeneratedPlugins) {
-				await onGenerated(path, content);
+				await onGenerated(path, content, context);
 			}
 
 			await output({ path, content, context: context });
 
 			for (const onOutput of this.onOutputPlugins) {
-				await onOutput(path);
+				await onOutput(path, context);
 			}
 		}
 	}
