@@ -27,9 +27,9 @@ export class BlogRepository {
 	): Promise<Result<BlogContent, Error>> {
 		const blogPath = this._path.resolve(
 			process.cwd(),
-			"packages/applications/turbo-blog/src/articles/",
+			"src/articles/",
 			language === Language.ja ? "public" : "en",
-			`${slug}.md`,
+			`${slug}`,
 		);
 		const blogContent = await this._fs.readFile(blogPath, "utf-8");
 
@@ -50,9 +50,7 @@ export class BlogRepository {
 		const blogPaths = await this._fs.readdir(
 			this._path.resolve(
 				process.cwd(),
-				language === Language.ja
-					? "packages/applications/turbo-blog/src/articles/public"
-					: "packages/applications/turbo-blog/src/articles/en",
+				language === Language.ja ? "src/articles/public" : "src/articles/en",
 			),
 		);
 
