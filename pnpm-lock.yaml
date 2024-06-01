@@ -367,15 +367,24 @@ importers:
       react-dom:
         specifier: 19.0.0-beta-94eed63c49-20240425
         version: 19.0.0-beta-94eed63c49-20240425(react@19.0.0-beta-94eed63c49-20240425)
+      rehype-stringify:
+        specifier: ^9.0.3
+        version: 9.0.4
+      remark-gfm:
+        specifier: ^3.0.1
+        version: 3.0.1
       remark-parse:
-        specifier: ^11.0.0
-        version: 11.0.0
+        specifier: ^10.0.0
+        version: 10.0.2
+      remark-rehype:
+        specifier: ^10.1.0
+        version: 10.1.0
       ssg-router:
         specifier: workspace:*
         version: link:../../modules/ssg-router
       unified:
-        specifier: ^11.0.4
-        version: 11.0.4
+        specifier: ^10.0.4
+        version: 10.1.2
     devDependencies:
       '@rspack/cli':
         specifier: 0.5.6

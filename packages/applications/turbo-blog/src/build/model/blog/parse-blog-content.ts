@@ -4,7 +4,10 @@ import {
 	isErr,
 	unwrapOk,
 } from "option-t/esm/PlainResult";
+import rehypeStringify from "rehype-stringify";
+import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import type { BlogMetadata } from "./blog.entity";
 import { extractBlogMetadata } from "./extract-blog-metadata";
@@ -25,7 +28,13 @@ export const parseBlogContent: (
 
 	const { content, metadata } = unwrapOk(extractBlogMetadataResult);
 
-	const parsed = await unified().use(remarkParse).process(content);
+	// @ts-ignore
+	const parsed = await unified()
+		.use(remarkParse)
+		.use(remarkGfm)
+		.use(remarkRehype)
+		.use(rehypeStringify)
+		.process(content);
 
 	return createOk({
 		metadata,

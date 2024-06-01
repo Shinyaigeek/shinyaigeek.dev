@@ -27,9 +27,12 @@
 		"option-t": "^39.0.3",
 		"react": "19.0.0-beta-94eed63c49-20240425",
 		"react-dom": "19.0.0-beta-94eed63c49-20240425",
-		"remark-parse": "^11.0.0",
+		"rehype-stringify": "^9.0.3",
+		"remark-gfm": "^3.0.1",
+		"remark-parse": "^10.0.0",
+		"remark-rehype": "^10.1.0",
 		"ssg-router": "workspace:*",
-		"unified": "^11.0.4"
+		"unified": "^10.0.4"
 	},
 	"devDependencies": {
 		"@rspack/cli": "0.5.6",
