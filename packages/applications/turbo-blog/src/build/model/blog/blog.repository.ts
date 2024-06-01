@@ -29,7 +29,7 @@ export class BlogRepository {
 			process.cwd(),
 			"src/articles/",
 			language === Language.ja ? "public" : "en",
-			`${slug}`,
+			`${slug}.md`,
 		);
 		const blogContent = await this._fs.readFile(blogPath, "utf-8");
 
@@ -41,18 +41,26 @@ export class BlogRepository {
 
 		const { metadata, body } = unwrapOk(parseBlogContentResult);
 
-		return createOk(new BlogContent(metadata, body, language));
+		return createOk(
+			new BlogContent(
+				{ ...metadata, path: slug.replace(".md", "") },
+				body,
+				language,
+			),
+		);
 	}
 
 	public async getBlogs(
 		language: Language,
 	): Promise<Result<BlogContent[], Error>> {
-		const blogPaths = await this._fs.readdir(
-			this._path.resolve(
-				process.cwd(),
-				language === Language.ja ? "src/articles/public" : "src/articles/en",
-			),
-		);
+		const blogPaths = (
+			await this._fs.readdir(
+				this._path.resolve(
+					process.cwd(),
+					language === Language.ja ? "src/articles/public" : "src/articles/en",
+				),
+			)
+		).map((blogPath) => blogPath.replace(".md", ""));
 
 		const blogResults = await Promise.all(
 			blogPaths.map(async (blogPath) => {

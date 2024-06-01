@@ -1,5 +1,4 @@
-import React from "react";
-import styles from "./DecorationTag.module.css";
+import { tag } from "./DecorationTag.module.css";
 
 interface Props {
 	tags: string[];
@@ -7,7 +6,7 @@ interface Props {
 
 export function DecorationTag({ tags }: Props) {
 	return (
-		<div className={styles.tag}>
+		<div className={tag}>
 			{tags.map((tag) => {
 				return <div key={`decorationTag__${tag}`}>{tag}</div>;
 			})}

@@ -1,37 +1,41 @@
-import parse from "html-react-parser";
-
-import React from "react";
-import type { Entry } from "../../build/util/getBlogPost";
-import { BaseProfile } from "../Profile/components/BaseProfile/BaseProfile";
-import { Layout } from "../components/Layout/Layout";
-import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
-import postContent from "./Post.module.css";
+import type { FunctionComponent } from "react";
+import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
+import { ShinyaigeekCoreProfile } from "../Profile/components/ShinyaigeekCoreProfile/ShinyaigeekCoreProfile";
+import { postContent, profile } from "./Post.module.css";
 import { Anchor } from "./components/Anchor/Anchor";
-import { MetaInfo } from "./components/MetaInfo/MetaInfo";
-interface Props extends Entry {
+import { PostMetaInfo } from "./components/PostMetaInfo/PostMetaInfo";
+
+interface Props {
 	anchors: string[];
+	title: string;
+	publishedAt: string;
+	tags: string[];
+	content: string;
 }
 
-function Post(props: Props) {
-	const { content } = props.fields;
+export const Post: FunctionComponent<Props> = function Post({
+	anchors,
+	tags,
+	title,
+	publishedAt,
+	content,
+}) {
 	return (
 		<div>
-			<Anchor anchors={props.anchors} />
-			<MetaInfo {...props} />
+			<Anchor anchors={anchors} />
+			<PostMetaInfo title={title} tags={tags} publishedAt={publishedAt} />
 			<div
-				className={postContent.postContent}
+				className={postContent}
 				// biome-ignore lint: reason
 				dangerouslySetInnerHTML={{
 					__html: content,
 				}}
 			/>
 
-			<div className={postContent.profile}>
-				<Shinyaigeek />
-				<BaseProfile />
+			<div className={profile}>
+				<ShinyaigeekPortrait />
+				<ShinyaigeekCoreProfile />
 			</div>
 		</div>
 	);
-}
-
-export default Layout(Post);
+};

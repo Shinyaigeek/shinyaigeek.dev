@@ -2,10 +2,10 @@ import { Divider } from "../components/Divider/Divider";
 import { Layout } from "../components/Layout/Layout";
 import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
 import profile from "./Profile.module.css";
-import { BaseProfile } from "./components/BaseProfile/BaseProfile";
 import { Card, CardShowcase } from "./components/Card/Card";
 import { GitHubCalender } from "./components/GitHubCalender/GitHubCalender";
 import { JobItem } from "./components/JobItem/JobItem";
+import { BaseProfile } from "./components/ShinyaigeekCoreProfile/ShinyaigeekCoreProfile";
 
 export const Profile = Layout(() => {
 	return (
@@ -29,12 +29,12 @@ export const Profile = Layout(() => {
 				<Divider />
 
 				<div className="history--study element">
-					<ul className={profile.lists}></ul>
+					<ul className={profile.lists} />
 				</div>
 
 				<Divider />
 
-				<div className="history--job element"></div>
+				<div className="history--job element" />
 
 				<Divider />
 
