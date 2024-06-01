@@ -7,17 +7,16 @@ export interface BlogMetadata {
 	description: string[];
 	publishedAt: string;
 	updatedAt: string;
+	path: string;
 }
 
 export class BlogContent extends Content {
 	public metadata: BlogMetadata;
 	public language: Language;
-	public body: string;
 
 	constructor(metadata: BlogMetadata, body: string, language: Language) {
 		super(body);
 		this.metadata = metadata;
-		this.body = body;
 		this.language = language;
 	}
 }
