@@ -44,33 +44,23 @@ export class BlogRepository {
 		return createOk(new BlogContent(metadata, body, language));
 	}
 
-	public async getBlogs(): Promise<Result<BlogContent[], Error>> {
+	public async getBlogs(
+		language: Language,
+	): Promise<Result<BlogContent[], Error>> {
 		const blogPaths = await this._fs.readdir(
 			this._path.resolve(
 				process.cwd(),
-				"packages/applications/turbo-blog/src/articles/public",
-			),
-		);
-		const blogEnPaths = await this._fs.readdir(
-			this._path.resolve(
-				process.cwd(),
-				"packages/applications/turbo-blog/src/articles/en",
+				language === Language.ja
+					? "packages/applications/turbo-blog/src/articles/public"
+					: "packages/applications/turbo-blog/src/articles/en",
 			),
 		);
 
-		const blogsJa = await Promise.all(
+		const blogResults = await Promise.all(
 			blogPaths.map(async (blogPath) => {
-				return this.getBlog(blogPath, Language.ja);
+				return this.getBlog(blogPath, language);
 			}),
 		);
-
-		const blogsEn = await Promise.all(
-			blogEnPaths.map(async (blogPath) => {
-				return this.getBlog(blogPath, Language.en);
-			}),
-		);
-
-		const blogResults = [...blogsJa, ...blogsEn];
 
 		const blogErrs = blogResults.filter(isErr);
 
