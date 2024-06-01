@@ -1,6 +1,6 @@
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
-import layout from "./Layout.module.css";
+import { inner, root } from "./Layout.module.css";
 
 interface LayoutProps {
 	language: "ja" | "en";
@@ -11,9 +11,9 @@ interface LayoutProps {
 
 export function Layout({ language, currentPath, page, children }: LayoutProps) {
 	return (
-		<div className={layout.root}>
+		<div className={root}>
 			<Header language={language} currentPath={currentPath} page={page} />
-			<div className={layout.inner}>{children}</div>
+			<div className={inner}>{children}</div>
 			<Footer />
 		</div>
 	);

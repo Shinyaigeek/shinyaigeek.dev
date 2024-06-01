@@ -17,7 +17,8 @@
 		"__rspack": "NODE_OPTIONS=\"--loader ts-node/esm\" rspack",
 		"build:client:rspack": "NODE_ENV=production pnpm __rspack build --config rspack.config.client.ts",
 		"build:server:rspack": "NODE_ENV=production pnpm __rspack build --config rspack.config.server.ts",
-		"test": "vitest run"
+		"test": "vitest run",
+		"generate:tcm": "tcm src"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.11.1",
@@ -51,6 +52,7 @@
 		"sass-loader": "^14.2.1",
 		"swc-loader": "^0.2.3",
 		"ts-node": "^10.2.1",
+		"typed-css-modules": "^0.9.1",
 		"vitest": "^1.5.2",
 		"webpack": "^5.38.1",
 		"webpack-merge": "^5.8.0"
