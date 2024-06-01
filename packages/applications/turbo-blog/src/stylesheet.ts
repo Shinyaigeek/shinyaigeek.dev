@@ -5,6 +5,8 @@
 
 import { Layout } from "./ui/components/Layout/Layout";
 import { Home } from "./ui/pages/Home/Home";
+import { Post } from "./ui/pages/Post/Post";
 
 Layout;
 Home;
+Post;
