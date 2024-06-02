@@ -19,3 +19,18 @@ export const getJapaneseBlogChildren: () => Promise<string[]> = async () => {
 		return `/post/${blogPost.metadata.path}`;
 	});
 };
+
+export const getEnglishBlogChildren: () => Promise<string[]> = async () => {
+	const blogRepository = new BlogRepository(fs, nodePath);
+	const blogPostsUsecase = new GetBlogPostsUsecase(blogRepository);
+
+	const blogPostResults = await blogPostsUsecase.getBlogPosts(Language.en);
+
+	if (isErr(blogPostResults)) {
+		throw unwrapErr(blogPostResults);
+	}
+
+	return unwrapOk(blogPostResults).map((blogPost) => {
+		return `/en/post/${blogPost.metadata.path}`;
+	});
+};
