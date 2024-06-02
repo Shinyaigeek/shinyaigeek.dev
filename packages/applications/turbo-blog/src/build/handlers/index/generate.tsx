@@ -4,12 +4,12 @@ import { isErr, unwrapErr, unwrapOk } from "option-t/esm/PlainResult";
 import { renderToStaticMarkup } from "react-dom/server";
 import type { GenerateHandler } from "ssg-router";
 import { Layout } from "../../../ui/components/Layout/Layout";
+import { Shell } from "../../../ui/components/Shell/shell";
 import { Home } from "../../../ui/pages/Home/Home";
 import { GetBlogPostsUsecase } from "../../application/getBlogPosts/getBlogposts.usecase";
 import type { Context } from "../../context/context";
 import { BlogRepository } from "../../model/blog/blog.repository";
 import { Language } from "../../model/language/language.entity";
-import { Shell } from "../../util/helmet";
 
 export const generateIndexPage: GenerateHandler<Context> = async ({
 	context,
@@ -26,9 +26,19 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 	const blogPosts = unwrapOk(blogPostResults);
 
 	const rawLanguage = language === Language.ja ? "ja" : "en";
+	const description =
+		language === Language.ja
+			? "Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"
+			: "shinyaigeek.dev is a tech blog by a web developer. I mainly write about web development.";
 
 	return renderToStaticMarkup(
-		<Shell language={rawLanguage} which="TODO" title="shinyaigeek.dev" slug="/">
+		<Shell
+			language={rawLanguage}
+			which="TODO"
+			title="shinyaigeek.dev"
+			slug="/"
+			description={description}
+		>
 			<Layout language={rawLanguage} page="1" currentPath="/">
 				<Home items={blogPosts.map((blogPost) => blogPost.metadata)} />
 			</Layout>

@@ -4,12 +4,12 @@ import { isErr, unwrapErr, unwrapOk } from "option-t/esm/PlainResult";
 import { renderToStaticMarkup } from "react-dom/server";
 import type { GenerateHandler } from "ssg-router";
 import { Layout } from "../../../ui/components/Layout/Layout";
+import { Shell } from "../../../ui/components/Shell/shell";
 import { Post } from "../../../ui/pages/Post/Post";
 import { GetBlogPostUsecase } from "../../application/getBlogPost/getBlogPost.usecase";
 import type { Context } from "../../context/context";
 import { BlogRepository } from "../../model/blog/blog.repository";
 import { Language } from "../../model/language/language.entity";
-import { Shell } from "../../util/helmet";
 
 export const generateBlogPostPage: GenerateHandler<Context> = async ({
 	path,
@@ -32,7 +32,13 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 	const rawLanguage = language === Language.ja ? "ja" : "en";
 
 	return renderToStaticMarkup(
-		<Shell language={rawLanguage} which="TODO" title="shinyaigeek.dev" slug="/">
+		<Shell
+			language={rawLanguage}
+			which="TODO"
+			title="shinyaigeek.dev"
+			slug="/"
+			description={blogPost.metadata.description}
+		>
 			<Layout language={rawLanguage} page="1" currentPath="/">
 				<Post
 					title={blogPost.metadata.title}
