@@ -18,7 +18,10 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 	const blogRepository = new BlogRepository(fs, nodePath);
 	const getblogPostsUsecase = new GetBlogPostUsecase(blogRepository);
 	const language = context.language;
-	const blogPostResults = await getblogPostsUsecase.getBlogPost(path, language);
+	const blogPostResults = await getblogPostsUsecase.getBlogPost(
+		path.replace("/en", ""),
+		language,
+	);
 
 	if (isErr(blogPostResults)) {
 		throw unwrapErr(blogPostResults);

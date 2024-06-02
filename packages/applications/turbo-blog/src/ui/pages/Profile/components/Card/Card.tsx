@@ -1,5 +1,5 @@
 import type React from "react";
-import CardStyle from "./Card.module.css";
+import { cardStyle, title as titleStyle } from "./Card.module.css";
 
 interface Props {
 	title: string;
@@ -7,10 +7,8 @@ interface Props {
 }
 
 export const Card: React.FC<Props> = ({ title, img }) => (
-	<li className={CardStyle.cardStyle}>
-		<div className={CardStyle.title}>{title}</div>
+	<li className={cardStyle}>
+		<div className={titleStyle}>{title}</div>
 		<img src={img} alt={title} loading="lazy" />
 	</li>
 );
-
-export const CardShowcase: React.FC = ({ children }) => <ul>{children}</ul>;

@@ -1,60 +1,57 @@
-import { Divider } from "../components/Divider/Divider";
-import { Layout } from "../components/Layout/Layout";
-import { Shinyaigeek } from "../components/Shinyaigeek/Shinyaigeek";
-import profile from "./Profile.module.css";
-import { Card, CardShowcase } from "./components/Card/Card";
+import type { FunctionComponent } from "react";
+import { Divider } from "../../components/Divider/Divider";
+import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
+import { lists, profile, title } from "./Profile.module.css";
+import { Card } from "./components/Card/Card";
 import { GitHubCalender } from "./components/GitHubCalender/GitHubCalender";
-import { JobItem } from "./components/JobItem/JobItem";
-import { BaseProfile } from "./components/ShinyaigeekCoreProfile/ShinyaigeekCoreProfile";
+import { ShinyaigeekCoreProfile } from "./components/ShinyaigeekCoreProfile/ShinyaigeekCoreProfile";
 
-export const Profile = Layout(() => {
-	return (
-		<div className={profile.profile}>
-			<div>
-				<Shinyaigeek />
+export const Profile: FunctionComponent = () => (
+	<div className={profile}>
+		<div>
+			<ShinyaigeekPortrait />
 
-				<BaseProfile />
+			<ShinyaigeekCoreProfile />
 
-				<Divider />
+			<Divider />
 
-				<GitHubCalender />
+			<GitHubCalender />
 
-				<Divider />
+			<Divider />
 
-				<div className="description">
-					<div className={profile.title}>About Me</div>
-					<p className="content" />
-				</div>
+			<div className="description">
+				<div className={title}>About Me</div>
+				<p className="content" />
+			</div>
 
-				<Divider />
+			<Divider />
 
-				<div className="history--study element">
-					<ul className={profile.lists} />
-				</div>
+			<div className="history--study element">
+				<ul className={lists} />
+			</div>
 
-				<Divider />
+			<Divider />
 
-				<div className="history--job element" />
+			<div className="history--job element" />
 
-				<Divider />
+			<Divider />
 
-				<div className="interests">
-					<div className={profile.title}>Specialities</div>
-					<p className="content">
-						<CardShowcase>
-							{specialities.map((speciality) => (
-								<Card
-									title={speciality.title}
-									img={speciality.img ?? "/assets/static/placeholder.png"}
-								/>
-							))}
-						</CardShowcase>
-					</p>
-				</div>
+			<div className="interests">
+				<div className={title}>Specialities</div>
+				<p className="content">
+					<ul>
+						{specialities.map((speciality) => (
+							<Card
+								title={speciality.title}
+								img={speciality.img ?? "/assets/static/placeholder.png"}
+							/>
+						))}
+					</ul>
+				</p>
 			</div>
 		</div>
-	);
-});
+	</div>
+);
 
 interface Speciality {
 	title: string;

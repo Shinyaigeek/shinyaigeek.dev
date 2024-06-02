@@ -6,7 +6,9 @@
 import { Layout } from "./ui/components/Layout/Layout";
 import { Home } from "./ui/pages/Home/Home";
 import { Post } from "./ui/pages/Post/Post";
+import { Profile } from "./ui/pages/Profile/Profile";
 
 Layout;
 Home;
 Post;
+Profile;
