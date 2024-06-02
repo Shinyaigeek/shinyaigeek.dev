@@ -1,12 +1,16 @@
 import fs from "node:fs/promises";
+import type { OutputHandler } from "ssg-router";
+import type { Context } from "../../context/context";
+import { Language } from "../../model/language/language.entity";
 
-export const outputBlogPostPage: ({
+export const outputBlogPostPage: OutputHandler<Context> = async ({
 	path,
 	content,
-}: { path: string; content: string }) => Promise<void> = async ({
-	path,
-	content,
+	context,
 }) => {
-	await fs.mkdir(`./public${path}`, { recursive: true });
-	await fs.writeFile(`./public${path}/index.html`, content);
+	const directoryPath = `./public/${
+		context.language === Language.ja ? "ja" : "en"
+	}${path}`;
+	await fs.mkdir(directoryPath, { recursive: true });
+	await fs.writeFile(`${directoryPath}/index.html`, content);
 };
