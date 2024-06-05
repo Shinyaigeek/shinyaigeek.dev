@@ -27,7 +27,6 @@ export const Item = (props: MetaData) => {
 			>
 				<div className={title}>{props.title}</div>
 			</a>
-			<Divider />
 			<div className={date}>{props.publishedAt}</div>
 			<div>{props.description ?? ""}</div>
 			{props.ogp && (
@@ -54,6 +53,7 @@ export const Item = (props: MetaData) => {
 					Read
 				</a>
 			</div>
+			<Divider />
 		</div>
 	);
 };
