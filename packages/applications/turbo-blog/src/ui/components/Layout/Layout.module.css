@@ -16,6 +16,10 @@
         'Noto Sans', sans-serif;
 }
 
+:global() body {
+    margin: 0;
+}
+
 .root {
     --theme-header: #1a161a;
     --theme-background: #eee;
