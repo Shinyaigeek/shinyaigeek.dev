@@ -6,7 +6,6 @@ import {
 	ogp,
 	readMore,
 	readMoreAnchor,
-	title,
 } from "./Item.module.css";
 
 interface MetaData {
