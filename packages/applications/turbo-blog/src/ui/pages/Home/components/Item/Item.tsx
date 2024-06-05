@@ -25,7 +25,7 @@ export const Item = (props: MetaData) => {
 				className={itemHomeAnchor}
 				href={!props.media ? `/post/${props.path}` : props.path}
 			>
-				<div className={title}>{props.title}</div>
+				{props.title}
 			</a>
 			<div className={date}>{props.publishedAt}</div>
 			<div>{props.description ?? ""}</div>

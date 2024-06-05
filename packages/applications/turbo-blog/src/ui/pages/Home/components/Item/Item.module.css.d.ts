@@ -5,7 +5,6 @@ declare const styles: {
   readonly "ogp": string;
   readonly "readMore": string;
   readonly "readMoreAnchor": string;
-  readonly "title": string;
 };
 export = styles;
 

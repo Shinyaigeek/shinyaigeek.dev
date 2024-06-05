@@ -1,14 +1,9 @@
 .itemHomeAnchor {
     color: var(--theme-color);
-    text-decoration: none;
     display: inline-block;
-}
-
-.itemHomeAnchor .title {
     font-size: 32px;
     text-align: center;
     font-weight: bold;
-    padding: 8px 12px;
 }
 
 .home {
