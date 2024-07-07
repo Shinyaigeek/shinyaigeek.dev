@@ -12,7 +12,7 @@ interface SiteHeadProps {
 	title: string;
 	path: string;
 	language: "en" | "ja";
-	which: string;
+	ogImageFilename: string;
 	description: string;
 }
 
@@ -20,7 +20,7 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 	title,
 	path,
 	language,
-	which,
+	ogImageFilename,
 	description,
 }) => {
 	const locale = language === "en" ? "en_US" : "ja_JP";
@@ -48,7 +48,7 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 					language === "en"
 						? "https://en.shinyaigeek.dev"
 						: "https://ja.shinyaigeek.dev"
-				}/assets/ogimage/${language}/${which}.png`}
+				}/assets/ogimage/${language}/${ogImageFilename}.png`}
 			/>
 			<meta
 				name="twitter:image"
@@ -56,7 +56,7 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 					language === "en"
 						? "https://en.shinyaigeek.dev"
 						: "https://ja.shinyaigeek.dev"
-				}/assets/ogimage/${language}/${which}.png`}
+				}/assets/ogimage/${language}/${ogImageFilename}.png`}
 			/>
 
 			<link
@@ -122,14 +122,14 @@ export const Shell: FunctionComponent<ShellProps> = ({
 	title,
 	path,
 	language,
-	which,
+	ogImageFilename,
 	description,
 }) => (
 	<html lang={language}>
 		<SiteHead
 			title={title}
 			path={path}
-			which={which}
+			ogImageFilename={ogImageFilename}
 			language={language}
 			description={description}
 		/>

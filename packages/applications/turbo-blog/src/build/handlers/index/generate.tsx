@@ -34,7 +34,7 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 	return renderToStaticMarkup(
 		<Shell
 			language={rawLanguage}
-			which="TODO"
+			ogImageFilename="TODO"
 			title="shinyaigeek.dev"
 			path="/"
 			description={description}
