@@ -10,7 +10,7 @@ export const assets = isProd
 
 interface SiteHeadProps {
 	title: string;
-	slug: string;
+	path: string;
 	language: "en" | "ja";
 	which: string;
 	description: string;
@@ -18,7 +18,7 @@ interface SiteHeadProps {
 
 const SiteHead: FunctionComponent<SiteHeadProps> = ({
 	title,
-	slug,
+	path,
 	language,
 	which,
 	description,
@@ -38,7 +38,7 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 			<meta property="og:locale" content={locale} />
 			<meta name="description" content={description} />
 			<meta property="og:description" content={description} />
-			<meta property="og:url" content={slug} />
+			<meta property="og:url" content={path} />
 			<meta name="twitter:site" content="@shinyaigeek" />
 			<meta property="og:type" content="website" />
 			<meta name="twitter:card" content="summary_large_image" />
@@ -120,7 +120,7 @@ interface ShellProps extends SiteHeadProps {
 export const Shell: FunctionComponent<ShellProps> = ({
 	children,
 	title,
-	slug,
+	path,
 	language,
 	which,
 	description,
@@ -128,7 +128,7 @@ export const Shell: FunctionComponent<ShellProps> = ({
 	<html lang={language}>
 		<SiteHead
 			title={title}
-			slug={slug}
+			path={path}
 			which={which}
 			language={language}
 			description={description}

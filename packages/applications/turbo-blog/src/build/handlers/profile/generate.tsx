@@ -20,7 +20,7 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 			language={rawLanguage}
 			which="TODO"
 			title="shinyaigeek.dev"
-			slug="/"
+			path="/profile"
 			description={description}
 		>
 			<Layout language={rawLanguage} page="1" currentPath="/">
