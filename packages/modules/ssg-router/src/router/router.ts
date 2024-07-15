@@ -1,5 +1,10 @@
 import type { Plugin } from "../plugin/basic";
-import type { BasicRouter, GenerateHandler, OutputHandler } from "./basic";
+import type {
+	BasicRouter,
+	GenerateHandler,
+	GenerateOutput,
+	OutputHandler,
+} from "./basic";
 
 export type { GenerateHandler, OutputHandler } from "./basic";
 
@@ -15,7 +20,7 @@ export class Router<RoutingContext> implements BasicRouter<RoutingContext> {
 		(path: string, context: RoutingContext) => void
 	> = new Set();
 	private onGeneratedPlugins: Set<
-		(path: string, content: string, context: RoutingContext) => void
+		(path: string, content: GenerateOutput, context: RoutingContext) => void
 	> = new Set();
 	private onOutputPlugins: Set<
 		(path: string, context: RoutingContext) => void

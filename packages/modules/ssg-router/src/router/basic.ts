@@ -1,16 +1,18 @@
 import type { Plugin } from "../plugin/basic";
 
+export type GenerateOutput = string | Buffer;
+
 export type GenerateHandlerArguments<RoutingContext> = {
 	path: string;
 	context: RoutingContext;
 };
 export type GenerateHandler<RoutingContext> = (
 	args: GenerateHandlerArguments<RoutingContext>,
-) => Promise<string>;
+) => Promise<GenerateOutput>;
 
 export type OutputHandlerArguments<RoutingContext> = {
 	path: string;
-	content: string;
+	content: GenerateOutput;
 	context: RoutingContext;
 };
 export type OutputHandler<RoutingContext> = (
