@@ -18,7 +18,7 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 	return renderToStaticMarkup(
 		<Shell
 			language={rawLanguage}
-			ogImageFilename="TODO"
+			which="TODO"
 			title="shinyaigeek.dev"
 			path="/profile"
 			description={description}

@@ -1,0 +1,17 @@
+.profile {
+    width: 80vw;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 24px;
+    margin: 18px 16px;
+}
+
+.lists {
+    font-size: 18px;
+}
+
+.lists li {
+    margin: 4px;
+}
