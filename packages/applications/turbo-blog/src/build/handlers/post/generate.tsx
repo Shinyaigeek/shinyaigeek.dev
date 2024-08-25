@@ -1,5 +1,3 @@
-import fs from "node:fs/promises";
-import nodePath from "node:path";
 import { isErr, unwrapErr, unwrapOk } from "option-t/esm/PlainResult";
 import { renderToStaticMarkup } from "react-dom/server";
 import type { GenerateHandler } from "ssg-router";
@@ -8,6 +6,8 @@ import { Shell } from "../../../ui/components/Shell/shell";
 import { Post } from "../../../ui/pages/Post/Post";
 import { GetBlogPostUsecase } from "../../application/getBlogPost/getBlogPost.usecase";
 import type { Context } from "../../context/context";
+import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
+import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../model/blog/blog.repository";
 import { Language } from "../../model/language/language.entity";
 
@@ -15,7 +15,12 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 	path,
 	context,
 }) => {
-	const blogRepository = new BlogRepository(fs, nodePath);
+	const fileIOInfrastructure = new NodeFileIOInfrastructure();
+	const filePathInfrastructure = new NodeFilePathImplementation();
+	const blogRepository = new BlogRepository(
+		fileIOInfrastructure,
+		filePathInfrastructure,
+	);
 	const getblogPostsUsecase = new GetBlogPostUsecase(blogRepository);
 	const language = context.language;
 	const blogPostResults = await getblogPostsUsecase.getBlogPost(

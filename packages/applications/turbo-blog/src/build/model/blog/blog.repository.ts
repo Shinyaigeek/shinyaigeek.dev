@@ -1,5 +1,3 @@
-import type fs from "node:fs/promises";
-import type path from "node:path";
 import {
 	type Result,
 	createErr,
@@ -8,30 +6,29 @@ import {
 	unwrapErr,
 	unwrapOk,
 } from "option-t/esm/PlainResult";
+import type { FileIOInfrastructureInterface } from "../../infrastructure/file-io/file-io.interface";
+import type { FilePathInfrastructureInterface } from "../../infrastructure/file-path/file-path.interface";
 import { Language } from "../language/language.entity";
 import { BlogContent } from "./blog.entity";
 import { parseBlogContent } from "./parse-blog-content";
 
 export class BlogRepository {
-	private _fs: typeof fs;
-	private _path: typeof path;
-
-	constructor(injectedFs: typeof fs, injectedPath: typeof path) {
-		this._fs = injectedFs;
-		this._path = injectedPath;
-	}
+	constructor(
+		private fileIOInfrastructure: FileIOInfrastructureInterface,
+		private filePathInfrastructure: FilePathInfrastructureInterface,
+	) {}
 
 	public async getBlog(
 		slug: string,
 		language: Language,
 	): Promise<Result<BlogContent, Error>> {
-		const blogPath = this._path.resolve(
+		const blogPath = this.filePathInfrastructure.resolve(
 			process.cwd(),
 			"src/articles/",
 			language === Language.ja ? "public" : "en",
 			`${slug}.md`,
 		);
-		const blogContent = await this._fs.readFile(blogPath, "utf-8");
+		const blogContent = await this.fileIOInfrastructure.readFile(blogPath);
 
 		const parseBlogContentResult = await parseBlogContent(blogContent);
 
@@ -54,8 +51,8 @@ export class BlogRepository {
 		language: Language,
 	): Promise<Result<BlogContent[], Error>> {
 		const blogPaths = (
-			await this._fs.readdir(
-				this._path.resolve(
+			await this.fileIOInfrastructure.readDirectory(
+				this.filePathInfrastructure.resolve(
 					process.cwd(),
 					language === Language.ja ? "src/articles/public" : "src/articles/en",
 				),

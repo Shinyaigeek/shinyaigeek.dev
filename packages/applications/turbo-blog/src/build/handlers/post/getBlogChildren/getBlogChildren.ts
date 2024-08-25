@@ -1,12 +1,17 @@
-import fs from "node:fs/promises";
-import nodePath from "node:path";
 import { isErr, unwrapErr, unwrapOk } from "option-t/esm/PlainResult";
 import { GetBlogPostsUsecase } from "../../../application/getBlogPosts/getBlogposts.usecase";
+import { NodeFileIOInfrastructure } from "../../../infrastructure/file-io/node-file-io";
+import { NodeFilePathImplementation } from "../../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../../model/blog/blog.repository";
 import { Language } from "../../../model/language/language.entity";
 
 export const getJapaneseBlogChildren: () => Promise<string[]> = async () => {
-	const blogRepository = new BlogRepository(fs, nodePath);
+	const fileIOInfrastructure = new NodeFileIOInfrastructure();
+	const filePathInfrastructure = new NodeFilePathImplementation();
+	const blogRepository = new BlogRepository(
+		fileIOInfrastructure,
+		filePathInfrastructure,
+	);
 	const blogPostsUsecase = new GetBlogPostsUsecase(blogRepository);
 
 	const blogPostResults = await blogPostsUsecase.getBlogPosts(Language.ja);
@@ -21,7 +26,12 @@ export const getJapaneseBlogChildren: () => Promise<string[]> = async () => {
 };
 
 export const getEnglishBlogChildren: () => Promise<string[]> = async () => {
-	const blogRepository = new BlogRepository(fs, nodePath);
+	const fileIOInfrastructure = new NodeFileIOInfrastructure();
+	const filePathInfrastructure = new NodeFilePathImplementation();
+	const blogRepository = new BlogRepository(
+		fileIOInfrastructure,
+		filePathInfrastructure,
+	);
 	const blogPostsUsecase = new GetBlogPostsUsecase(blogRepository);
 
 	const blogPostResults = await blogPostsUsecase.getBlogPosts(Language.en);
