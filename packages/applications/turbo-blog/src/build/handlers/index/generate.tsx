@@ -23,7 +23,9 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 		throw unwrapErr(blogPostResults);
 	}
 
-	const blogPosts = unwrapOk(blogPostResults);
+	const blogPosts = unwrapOk(blogPostResults).sort((l, r) => {
+		return l.metadata.publishedAt < r.metadata.publishedAt ? 1 : -1;
+	});
 
 	const rawLanguage = language === Language.ja ? "ja" : "en";
 	const description =
