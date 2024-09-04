@@ -2,12 +2,14 @@ import { Router } from "ssg-router";
 import type { Context } from "./context/context";
 import { generateIndexPage } from "./handlers/index/generate";
 import { outputIndexPage } from "./handlers/index/output";
-import { generateBlogPostPage } from "./handlers/post/generate";
+import { generateBlogPostPage } from "./handlers/post/children/generate";
+import { outputBlogPostPage } from "./handlers/post/children/output";
+import { generateBlogIndexPage } from "./handlers/post/generate";
 import {
 	getEnglishBlogChildren,
 	getJapaneseBlogChildren,
 } from "./handlers/post/getBlogChildren/getBlogChildren";
-import { outputBlogPostPage } from "./handlers/post/output";
+import { outputBlogIndexPage } from "./handlers/post/output";
 import { generateProfilePage } from "./handlers/profile/generate";
 import { outputProfilePage } from "./handlers/profile/output";
 import { registerLanguagePlugin } from "./plugin/language";
@@ -23,6 +25,14 @@ router.on("/", {
 router.on("/en/", {
 	generate: generateIndexPage,
 	output: outputIndexPage,
+});
+router.on("/post/", {
+	generate: generateBlogIndexPage,
+	output: outputBlogIndexPage,
+});
+router.on("/en/post/", {
+	generate: generateBlogIndexPage,
+	output: outputBlogIndexPage,
 });
 router.onChildren(getJapaneseBlogChildren, {
 	generate: generateBlogPostPage,

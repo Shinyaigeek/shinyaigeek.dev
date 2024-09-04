@@ -3,16 +3,16 @@ import { renderToStaticMarkup } from "react-dom/server";
 import type { GenerateHandler } from "ssg-router";
 import { Layout } from "../../../ui/components/Layout/Layout";
 import { Shell } from "../../../ui/components/Shell/shell";
-import { Post } from "../../../ui/pages/Post/Post";
-import { GetBlogPostUsecase } from "../../application/getBlogPost/getBlogPost.usecase";
+import { Home } from "../../../ui/pages/Home/Home";
+import { GetBlogPostsUsecase } from "../../application/getBlogPosts/getBlogposts.usecase";
 import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../model/blog/blog.repository";
 import { Language } from "../../model/language/language.entity";
+import { ThirdPartyPublishContentRepository } from "../../model/third-party-publish/third-party-publish.repository";
 
-export const generateBlogPostPage: GenerateHandler<Context> = async ({
-	path,
+export const generateBlogIndexPage: GenerateHandler<Context> = async ({
 	context,
 }) => {
 	const fileIOInfrastructure = new NodeFileIOInfrastructure();
@@ -21,37 +21,70 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 		fileIOInfrastructure,
 		filePathInfrastructure,
 	);
-	const getblogPostsUsecase = new GetBlogPostUsecase(blogRepository);
+	const getblogPostsUsecase = new GetBlogPostsUsecase(blogRepository);
 	const language = context.language;
-	const blogPostResults = await getblogPostsUsecase.getBlogPost(
-		path.replace("/en", ""),
-		language,
-	);
+	const blogPostResults = await getblogPostsUsecase.getBlogPosts(language);
 
 	if (isErr(blogPostResults)) {
 		throw unwrapErr(blogPostResults);
 	}
 
-	const blogPost = unwrapOk(blogPostResults);
+	const blogPosts = unwrapOk(blogPostResults).sort((l, r) => {
+		return l.metadata.publishedAt < r.metadata.publishedAt ? 1 : -1;
+	});
+
+	const thirdPartyPublishContentRepository =
+		new ThirdPartyPublishContentRepository(
+			fileIOInfrastructure,
+			filePathInfrastructure,
+		);
+
+	const thirdPartyPublishContentResult =
+		await thirdPartyPublishContentRepository.getThirdPartyPublishContents();
+	if (isErr(thirdPartyPublishContentResult)) {
+		throw unwrapErr(thirdPartyPublishContentResult);
+	}
+	const thirdPartyPUblishContent = unwrapOk(
+		thirdPartyPublishContentResult,
+	).sort((l, r) => {
+		return l.publishedAt < r.publishedAt ? 1 : -1;
+	});
+
+	const blogItems = blogPosts.map((blogPost) => blogPost.metadata);
+	const thirdPartyPublishContentItems = thirdPartyPUblishContent.map(
+		(thirdPartyPublishContentItem) => {
+			return {
+				title: thirdPartyPublishContentItem.title,
+				description: thirdPartyPublishContentItem.description,
+				publishedAt: thirdPartyPublishContentItem.publishedAt.toString(),
+				path: thirdPartyPublishContentItem.slug.toString(),
+				ogp: thirdPartyPublishContentItem.ogp.toString(),
+			};
+		},
+	);
+
+	const items = [...blogItems, ...thirdPartyPublishContentItems].sort(
+		(l, r) => {
+			return l.publishedAt < r.publishedAt ? 1 : -1;
+		},
+	);
 
 	const rawLanguage = language === Language.ja ? "ja" : "en";
+	const description =
+		language === Language.ja
+			? "Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"
+			: "shinyaigeek.dev is a tech blog by a web developer. I mainly write about web development.";
 
 	return renderToStaticMarkup(
 		<Shell
 			language={rawLanguage}
 			ogImageFilename="TODO"
 			title="shinyaigeek.dev"
-			path={blogPost.metadata.path}
-			description={blogPost.metadata.description}
+			path="/"
+			description={description}
 		>
 			<Layout language={rawLanguage} page="1" currentPath="/">
-				<Post
-					title={blogPost.metadata.title}
-					tags={blogPost.metadata.tags}
-					publishedAt={blogPost.metadata.publishedAt}
-					content={blogPost.content}
-					anchors={[]}
-				/>
+				<Home items={items} />
 			</Layout>
 		</Shell>,
 	);
