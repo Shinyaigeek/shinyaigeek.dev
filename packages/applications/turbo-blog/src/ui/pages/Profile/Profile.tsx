@@ -5,53 +5,56 @@ import { lists, profile, title } from "./Profile.module.css";
 import { Card } from "./components/Card/Card";
 import { GitHubCalender } from "./components/GitHubCalender/GitHubCalender";
 import { ShinyaigeekCoreProfile } from "./components/ShinyaigeekCoreProfile/ShinyaigeekCoreProfile";
+import { AboutMe } from "./components/about-me/about-me";
 
-export const Profile: FunctionComponent = () => (
-	<div className={profile}>
-		<div>
-			<ShinyaigeekPortrait />
+export const Profile: FunctionComponent = () => {
+	return (
+		<div className={profile}>
+			<div>
+				<ShinyaigeekPortrait />
 
-			<ShinyaigeekCoreProfile />
+				<ShinyaigeekCoreProfile />
 
-			<Divider />
+				<Divider />
 
-			<GitHubCalender />
+				<GitHubCalender />
 
-			<Divider />
+				<Divider />
 
-			<div className="description">
-				<div className={title}>About Me</div>
-				<p className="content" />
-			</div>
+				<div className="description">
+					<div className={title}>About Me</div>
+					<AboutMe />
+				</div>
 
-			<Divider />
+				<Divider />
 
-			<div className="history--study element">
-				<ul className={lists} />
-			</div>
+				<div className="history--study element">
+					<ul className={lists} />
+				</div>
 
-			<Divider />
+				<Divider />
 
-			<div className="history--job element" />
+				<div className="history--job element" />
 
-			<Divider />
+				<Divider />
 
-			<div className="interests">
-				<div className={title}>Specialities</div>
-				<p className="content">
-					<ul>
-						{specialities.map((speciality) => (
-							<Card
-								title={speciality.title}
-								img={speciality.img ?? "/assets/static/placeholder.png"}
-							/>
-						))}
-					</ul>
-				</p>
+				<div className="interests">
+					<div className={title}>Specialities</div>
+					<p className="content">
+						<ul>
+							{specialities.map((speciality) => (
+								<Card
+									title={speciality.title}
+									img={speciality.img ?? "/assets/static/placeholder.png"}
+								/>
+							))}
+						</ul>
+					</p>
+				</div>
 			</div>
 		</div>
-	</div>
-);
+	);
+};
 
 interface Speciality {
 	title: string;

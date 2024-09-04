@@ -1,4 +1,5 @@
 import type { FunctionComponent, ReactNode } from "react";
+import { LanguageContext } from "../../context/language-context";
 
 const isProd = process.env.NODE_ENV === "production";
 const ASSETS_PORT = process.env.ASSETS_PORT ?? 8080;
@@ -125,28 +126,30 @@ export const Shell: FunctionComponent<ShellProps> = ({
 	ogImageFilename,
 	description,
 }) => (
-	<html lang={language}>
-		<SiteHead
-			title={title}
-			path={path}
-			ogImageFilename={ogImageFilename}
-			language={language}
-			description={description}
-		/>
-		<body>
-			<div id="_app">{children}</div>
-		</body>
-		<script
-			defer
-			src="https://static.cloudflareinsights.com/beacon.min.js"
-			data-cf-beacon='{"token": "0893ac88cf0542af88bfd9b93008b408", "spa": true}'
-		/>
-		<script
-			defer
-			src={`/client${
-				process.env.CONTENTHASH_JS ? `.${process.env.CONTENTHASH_JS}` : ""
-			}.js`}
-			async
-		/>
-	</html>
+	<LanguageContext.Provider value={language}>
+		<html lang={language}>
+			<SiteHead
+				title={title}
+				path={path}
+				ogImageFilename={ogImageFilename}
+				language={language}
+				description={description}
+			/>
+			<body>
+				<div id="_app">{children}</div>
+			</body>
+			<script
+				defer
+				src="https://static.cloudflareinsights.com/beacon.min.js"
+				data-cf-beacon='{"token": "0893ac88cf0542af88bfd9b93008b408", "spa": true}'
+			/>
+			<script
+				defer
+				src={`/client${
+					process.env.CONTENTHASH_JS ? `.${process.env.CONTENTHASH_JS}` : ""
+				}.js`}
+				async
+			/>
+		</html>
+	</LanguageContext.Provider>
 );
