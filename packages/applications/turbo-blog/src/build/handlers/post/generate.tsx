@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import type { GenerateHandler } from "ssg-router";
 import { Layout } from "../../../ui/components/Layout/Layout";
 import { Shell } from "../../../ui/components/Shell/shell";
-import { Home } from "../../../ui/pages/Home/Home";
+import { PostIndex } from "../../../ui/pages/PostIndex/PostIndex";
 import { GetBlogPostsUsecase } from "../../application/getBlogPosts/getBlogposts.usecase";
 import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
@@ -84,7 +84,7 @@ export const generateBlogIndexPage: GenerateHandler<Context> = async ({
 			description={description}
 		>
 			<Layout language={rawLanguage} page="1" currentPath="/">
-				<Home items={items} />
+				<PostIndex items={items} />
 			</Layout>
 		</Shell>,
 	);
