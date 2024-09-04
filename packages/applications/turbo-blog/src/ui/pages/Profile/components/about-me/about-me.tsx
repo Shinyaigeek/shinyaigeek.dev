@@ -43,17 +43,17 @@ export const AboutMe: FunctionComponent = () => {
 					to tell the possibilities of the web to people.
 					<br />
 					<br />
-					Under the slogan of \"anywhere, anytime, anyone\", in order to
-					maximize the universality of the Web, I am working on reducing the
-					Runtime Cost on the client machine so that applications can run even
-					if the client machine spec is low, and reducing I/O Cost so that
-					applications can run even if the client machine is in the poor
-					connection, and writing the code with accessibility in mind so that
-					anyone can access the contents, not only the blind or who have
-					cognitive impairment but also who does not have free hand because of
-					cooking or muscle training. To accomplish this wish, I have worked on
-					a wide range of web development, not only web frontend but also CDN,
-					Edge Proxy, Server-side.
+					Under the slogan of "anywhere, anytime, anyone", in order to maximize
+					the universality of the Web, I am working on reducing the Runtime Cost
+					on the client machine so that applications can run even if the client
+					machine spec is low, and reducing I/O Cost so that applications can
+					run even if the client machine is in the poor connection, and writing
+					the code with accessibility in mind so that anyone can access the
+					contents, not only the blind or who have cognitive impairment but also
+					who does not have free hand because of cooking or muscle training. To
+					accomplish this wish, I have worked on a wide range of web
+					development, not only web frontend but also CDN, Edge Proxy,
+					Server-side.
 					<br />
 					<br />
 					My hobby is web and programming. I am make the handmade browser as a

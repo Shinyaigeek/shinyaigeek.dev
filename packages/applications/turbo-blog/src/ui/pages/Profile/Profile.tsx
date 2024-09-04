@@ -3,7 +3,6 @@ import { Divider } from "../../components/Divider/Divider";
 import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
 import { lists, profile, title } from "./Profile.module.css";
 import { Card } from "./components/Card/Card";
-import { GitHubCalender } from "./components/GitHubCalender/GitHubCalender";
 import { ShinyaigeekCoreProfile } from "./components/ShinyaigeekCoreProfile/ShinyaigeekCoreProfile";
 import { AboutMe } from "./components/about-me/about-me";
 
@@ -14,10 +13,6 @@ export const Profile: FunctionComponent = () => {
 				<ShinyaigeekPortrait />
 
 				<ShinyaigeekCoreProfile />
-
-				<Divider />
-
-				<GitHubCalender />
 
 				<Divider />
 
