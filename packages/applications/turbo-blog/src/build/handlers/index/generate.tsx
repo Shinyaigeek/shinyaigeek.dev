@@ -58,6 +58,7 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 				description: thirdPartyPublishContentItem.description,
 				publishedAt: thirdPartyPublishContentItem.publishedAt.toString(),
 				path: thirdPartyPublishContentItem.slug.toString(),
+				ogp: thirdPartyPublishContentItem.ogp.toString(),
 			};
 		},
 	);
