@@ -10,6 +10,7 @@ import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../model/blog/blog.repository";
 import { Language } from "../../model/language/language.entity";
+import { ThirdPartyPublishContentRepository } from "../../model/third-party-publish/third-party-publish.repository";
 
 export const generateIndexPage: GenerateHandler<Context> = async ({
 	context,
@@ -32,6 +33,41 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 		return l.metadata.publishedAt < r.metadata.publishedAt ? 1 : -1;
 	});
 
+	const thirdPartyPublishContentRepository =
+		new ThirdPartyPublishContentRepository(
+			fileIOInfrastructure,
+			filePathInfrastructure,
+		);
+
+	const thirdPartyPublishContentResult =
+		await thirdPartyPublishContentRepository.getThirdPartyPublishContents();
+	if (isErr(thirdPartyPublishContentResult)) {
+		throw unwrapErr(thirdPartyPublishContentResult);
+	}
+	const thirdPartyPUblishContent = unwrapOk(
+		thirdPartyPublishContentResult,
+	).sort((l, r) => {
+		return l.publishedAt < r.publishedAt ? 1 : -1;
+	});
+
+	const blogItems = blogPosts.map((blogPost) => blogPost.metadata);
+	const thirdPartyPublishContentItems = thirdPartyPUblishContent.map(
+		(thirdPartyPublishContentItem) => {
+			return {
+				title: thirdPartyPublishContentItem.title,
+				description: thirdPartyPublishContentItem.description,
+				publishedAt: thirdPartyPublishContentItem.publishedAt.toString(),
+				path: thirdPartyPublishContentItem.slug.toString(),
+			};
+		},
+	);
+
+	const items = [...blogItems, ...thirdPartyPublishContentItems].sort(
+		(l, r) => {
+			return l.publishedAt < r.publishedAt ? 1 : -1;
+		},
+	);
+
 	const rawLanguage = language === Language.ja ? "ja" : "en";
 	const description =
 		language === Language.ja
@@ -47,7 +83,7 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 			description={description}
 		>
 			<Layout language={rawLanguage} page="1" currentPath="/">
-				<Home items={blogPosts.map((blogPost) => blogPost.metadata)} />
+				<Home items={items} />
 			</Layout>
 		</Shell>,
 	);
