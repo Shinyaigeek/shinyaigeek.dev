@@ -15,7 +15,6 @@ interface Props {
 
 export const PostIndex: FunctionComponent<Props> = ({ items }) => (
 	<div>
-		<FirstBoard />
 		<div>
 			{items.map((item) => {
 				return (
