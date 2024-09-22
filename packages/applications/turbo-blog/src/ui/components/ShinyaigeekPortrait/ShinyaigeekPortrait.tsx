@@ -12,7 +12,7 @@ export const ShinyaigeekPortrait: FunctionComponent = () => (
 	<div className={shinyaigeekPortrait}>
 		<div className={shinyaigeekPortraitContainer}>
 			<img
-				src={"/assets/static/shinyaigeek_portrait_transparent.png"}
+				src={"/assets/static/icon_transparent.png"}
 				className={shinyaigeekPortraitImage}
 				alt="shinyaigeek's portrait icon"
 				width="270px"
