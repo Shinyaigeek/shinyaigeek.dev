@@ -1,4 +1,4 @@
-import { Divider } from "../../../../components/Divider/Divider";
+import { Divider } from "../../../../components/divider/divider";
 import {
 	date,
 	home,

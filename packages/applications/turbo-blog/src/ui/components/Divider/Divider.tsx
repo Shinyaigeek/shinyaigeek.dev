@@ -1,5 +1,6 @@
-import { divider } from "./Divider.module.css";
+import type { FunctionComponent } from "react";
+import { divider } from "./divider.module.css";
 
-export function Divider() {
+export const Divider: FunctionComponent = function () {
 	return <div className={divider} />;
-}
+};

@@ -1,6 +1,6 @@
 import type { Undefinable } from "option-t/esm/Undefinable";
 import type { FunctionComponent } from "react";
-import { Divider } from "../../components/Divider/Divider";
+import { Divider } from "../../components/divider/divider";
 import { FirstBoard } from "./components/FirstBoard/FirstBoard";
 import { Item } from "./components/Item/Item";
 

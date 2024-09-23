@@ -1,6 +1,6 @@
 import type { FunctionComponent } from "react";
-import { Divider } from "../../components/Divider/Divider";
 import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
+import { Divider } from "../../components/divider/divider";
 import { lists, profile, title } from "./Profile.module.css";
 import { Card } from "./components/Card/Card";
 import { ShinyaigeekCoreProfile } from "./components/ShinyaigeekCoreProfile/ShinyaigeekCoreProfile";
