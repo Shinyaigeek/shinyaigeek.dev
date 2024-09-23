@@ -1,4 +1,5 @@
 import type { FunctionComponent } from "react";
+import { Button as AriaButton } from "react-aria-components";
 import button from "./button.module.css";
 
 interface Props {
@@ -7,8 +8,8 @@ interface Props {
 
 export const Button: FunctionComponent<Props> = function (props: Props) {
 	return (
-		<button className={button.button} type="button">
+		<AriaButton className={button.button} type="button">
 			{props.children}
-		</button>
+		</AriaButton>
 	);
 };

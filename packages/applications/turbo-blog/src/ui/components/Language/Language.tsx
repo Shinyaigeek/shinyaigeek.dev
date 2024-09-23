@@ -1,4 +1,3 @@
-import type React from "react";
 import type { FunctionComponent } from "react";
 import {
 	language as languageStyle,
