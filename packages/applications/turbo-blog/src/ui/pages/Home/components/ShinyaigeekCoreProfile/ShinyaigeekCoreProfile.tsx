@@ -12,6 +12,7 @@ import {
 
 export const ShinyaigeekCoreProfile: FunctionComponent = () => (
 	<div className="baseprofile">
+		<h1>About Me</h1>
 		<div className={hello}>
 			Hi{" "}
 			<span role="img" aria-label="wave hand">
@@ -38,6 +39,46 @@ export const ShinyaigeekCoreProfile: FunctionComponent = () => (
 		<div className={word}>
 			Faster, Lighter, More accessible, More secure, More productive Web for
 			anyone, anytime , anywhere.
+		</div>
+		<div className={mySnsBox}>
+			<div className={snsIcon}>
+				<a id="twitter" href="https://twitter.com/Shinyaigeek">
+					<img
+						src={"/assets/static/twitter.svg"}
+						alt="twitter"
+						width="54px"
+						height="54px"
+					/>
+				</a>
+			</div>
+			<div className={snsIcon}>
+				<a id="github" href="https://github.com/Shinyaigeek">
+					<img
+						src={"/assets/static/github.svg"}
+						alt="github"
+						width="54px"
+						height="54px"
+					/>
+				</a>
+			</div>
+			<div className={snsIcon}>
+				<a id="linkedin" href="https://www.linkedin.com/in/shinyaigeek/">
+					<img
+						src={"/assets/static/linkedin.svg"}
+						alt="linkedin"
+						width="54px"
+						height="54px"
+					/>
+				</a>
+			</div>
+		</div>
+		<div className={mail}>
+			<a href="mailto:me@shinyaigeek.dev">
+				Contact Me on Email{" "}
+				<g-emoji fallback-src="/assets/static/email.png" alias="email">
+					📧
+				</g-emoji>
+			</a>
 		</div>
 	</div>
 );
