@@ -7,7 +7,7 @@ import {
 	header,
 	icon,
 	title,
-} from "./Header.module.css";
+} from "./header.module.css";
 
 interface HeaderProps {
 	language: "en" | "ja";

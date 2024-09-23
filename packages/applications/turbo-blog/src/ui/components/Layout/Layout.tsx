@@ -1,6 +1,6 @@
 import type { FunctionComponent } from "react";
 import { Footer } from "../Footer/Footer";
-import { Header } from "../Header/Header";
+import { Header } from "../header/header";
 import { inner, root } from "./Layout.module.css";
 
 interface LayoutProps {
