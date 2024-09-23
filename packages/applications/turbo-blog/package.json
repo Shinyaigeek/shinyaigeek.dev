@@ -20,7 +20,8 @@
 		"build:style:rspack": "NODE_ENV=production pnpm __rspack build --config rspack.config.stylesheet.ts",
 		"copy:assets": "cp -r ./src/assets ./public",
 		"test": "vitest run",
-		"generate:tcm": "tcm src"
+		"generate:tcm": "tcm src",
+		"components-catalogue:serve": "ladle serve"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.11.1",
@@ -39,6 +40,7 @@
 		"unified": "^10.0.4"
 	},
 	"devDependencies": {
+		"@ladle/react": "^4.1.1",
 		"@rspack/cli": "0.6.0",
 		"@rspack/core": "0.6.0",
 		"@rspack/plugin-react-refresh": "0.6.0",

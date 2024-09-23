@@ -9,5 +9,12 @@
             "**/public",
             "**/*.css.d.ts"
         ]
+    },
+    "linter": {
+        "rules": {
+            "complexity": {
+                "useArrowFunction": "off"
+            }
+        }
     }
 }
