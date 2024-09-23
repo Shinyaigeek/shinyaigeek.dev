@@ -2,7 +2,7 @@
     height: calc(100vh - 72px);
     width: 100vw;
     position: fixed;
-    top: 0;
+    top: 72px;
     left: 0;
     right: 0;
     bottom: 0;

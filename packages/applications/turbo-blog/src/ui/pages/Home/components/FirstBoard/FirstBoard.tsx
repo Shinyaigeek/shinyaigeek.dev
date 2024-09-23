@@ -1,5 +1,6 @@
 import type { FunctionComponent } from "react";
 import { ShinyaigeekPortrait } from "../../../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
+import { ShinyaigeekCoreProfile } from "../ShinyaigeekCoreProfile/ShinyaigeekCoreProfile";
 import {
 	container,
 	shinyaigeekPortraitPosition,
@@ -7,6 +8,7 @@ import {
 
 export const FirstBoard: FunctionComponent = () => (
 	<div className={container}>
+		<ShinyaigeekCoreProfile />
 		<div className={shinyaigeekPortraitPosition}>
 			<ShinyaigeekPortrait />
 		</div>
