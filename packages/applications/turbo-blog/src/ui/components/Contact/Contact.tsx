@@ -1,7 +1,8 @@
+import type { FunctionComponent } from "react";
 import { Button } from "../button/button";
-import contact from "./Contact.module.css";
+import contact from "./contact.module.css";
 
-export default function Contact() {
+export const Contact: FunctionComponent = function () {
 	return (
 		<div className={contact.contact}>
 			<a href="/profile" className={contact.contactAnchor}>
@@ -44,4 +45,4 @@ export default function Contact() {
 			</div>
 		</div>
 	);
-}
+};
