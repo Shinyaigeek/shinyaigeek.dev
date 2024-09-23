@@ -1,7 +1,6 @@
 .container {
     height: calc(100vh - 72px);
     width: 100vw;
-    position: fixed;
     top: 72px;
     left: 0;
     right: 0;
@@ -22,7 +21,7 @@
 }
 
 .shinyaigeekPortraitPosition {
-    position: absolute;
+    position: fixed;
     bottom: 25px;
     right: 25px;
 }
