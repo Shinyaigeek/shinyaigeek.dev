@@ -1,5 +1,4 @@
-import React from "react";
-import { Button } from "../Button/Button";
+import { Button } from "../button/button";
 import contact from "./Contact.module.css";
 
 export default function Contact() {
@@ -16,7 +15,7 @@ export default function Contact() {
 			<br />
 			エモいをハックしたい
 			<br />
-			<Button id="thatsme--contact">Contact Me</Button>
+			<Button>Contact Me</Button>
 			<div className="mySnsBox">
 				<div className={contact.sns}>
 					{/* biome-ignore lint: reason */}
@@ -34,7 +33,7 @@ export default function Contact() {
 						className={contact.snsAnchor}
 					/>
 				</div>
-				<div className={contact.scs}>
+				<div className={contact.sns}>
 					{/* biome-ignore lint: reason */}
 					<a
 						id="linkedin"

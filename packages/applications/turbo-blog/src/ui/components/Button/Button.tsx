@@ -1,15 +1,14 @@
-import type React from "react";
-import button from "./Button.module.css";
+import type { FunctionComponent } from "react";
+import button from "./button.module.css";
 
 interface Props {
-	id: string;
-	children: React.ReactChild;
+	children: React.ReactNode;
 }
 
-export function Button(props: Props) {
+export const Button: FunctionComponent<Props> = function (props: Props) {
 	return (
-		<div id={props.id} className={button.button}>
+		<button className={button.button} type="button">
 			{props.children}
-		</div>
+		</button>
 	);
-}
+};
