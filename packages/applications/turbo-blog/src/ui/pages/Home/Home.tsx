@@ -1,5 +1,6 @@
 import type { Undefinable } from "option-t/esm/Undefinable";
 import type { FunctionComponent } from "react";
+import { Divider } from "../../components/Divider/Divider";
 import { FirstBoard } from "./components/FirstBoard/FirstBoard";
 import { Item } from "./components/Item/Item";
 
@@ -16,6 +17,8 @@ interface Props {
 export const Home: FunctionComponent<Props> = ({ items }) => (
 	<div>
 		<FirstBoard />
+		<Divider />
+
 		<div>
 			{items.map((item) => {
 				return (

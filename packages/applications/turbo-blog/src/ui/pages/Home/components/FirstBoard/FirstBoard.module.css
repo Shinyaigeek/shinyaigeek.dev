@@ -1,5 +1,4 @@
 .container {
-    height: calc(100vh - 72px);
     width: 100vw;
     top: 72px;
     left: 0;
