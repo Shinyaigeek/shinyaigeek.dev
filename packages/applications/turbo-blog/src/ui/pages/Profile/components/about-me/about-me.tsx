@@ -1,5 +1,6 @@
 import { type FunctionComponent, useContext } from "react";
 import { LanguageContext } from "../../../../context/language-context";
+import { assertIsNever } from "../../../../../universal/assert-is-never";
 
 export const AboutMe: FunctionComponent = () => {
 	const language = useContext(LanguageContext);
@@ -8,65 +9,34 @@ export const AboutMe: FunctionComponent = () => {
 		case "ja": {
 			return (
 				<p>
-					こんにちは、こんばんは、しにゃいと申します。
+					"Shinobu Hayashi(Shinyaigeek)/しにゃい" と申します。日本で Software Engineer として活動しております。
 					<br />
-					Web Developerとして活動しております。
+					ある新聞社で Web におけるコンテンツ配信における、サービスの信頼性や読み込み速度といった観点での最適化によるユーザー体験の向上に従事しています。また合わせてチーム内における各種アプリケーションインフラや開発のためのツーリングといった開発インフラといった複雑なドメインにおける、技術的な課題を解消する Complicated Subsystem Engineering 的な活動や他のチームにおける Web 開発で技術選定やアプリケーション設計、メンバーのトレーニングといった面でサポートを行う Enabling Engineering といった活動に注力しています。
 					<br />
+					技術ドメインとしてはハイパフォーマンスな BFF やフロントエンドを実現するためのキャッシュ戦略、アプリケーションを超えインフラなどまで踏まえたサービス設計や、フロントエンド面での複雑なツーリングをアプリケーションの要件やチームの文化に応じて設計、導入することを生業としています。
 					<br />
-					Webというプラットフォームの普遍性に惹かれていて、その可能性を広げていくための活動をしております。この活動を通して、Webの可能性を人々に伝えていきたいと思っています。
+					また OSS 活動も行っており、個人のプロジェクトだとECMAScript におけるモジュールの副作用を発見するツール (Treeche) の開発や自作ブラウザの作成を行っています。pnpm のメンバーでもあり、タスクランナー周りの開発を主に行っていました。
 					<br />
-					<br />
-					「どこでもいつでも誰にでも」を標語として掲げ、Webの普遍性を最大限に引き出すために、クライアントマシンのスペックが低くてもアプリケーションが動くようにクライアントマシンのRuntime
-					Costを下げたり、クライアントマシンの通信状況が悪くてもアプリケーションが動くようにI/O
-					Costを下げたり、目の見えない人や認知障害の人はもちろん、料理や筋トレで手が不自由な人でもコンテンツにアクセスできるように、アクセシビリティを考慮したコードを書いたりしています。この意志を実現するために、Webフロントエンドだけでなく、CDN
-					Edge Proxy、サーバーサイドなど、幅広くWeb開発に携わってきました。
-					<br />
-					<br />
-					趣味はWebとプログラミングです。趣味で自作ブラウザを作ったり、parcel-bundlerの優れたスケーラビリティ（Transformer,
-					Resolver, Pipeline, ...）とWeb開発へのカバレッジ（TypeScript, Vue,
-					React, Scss, CoffeeScript
-					...）に惚れ込み、parcel-bundlerにcontributeしています。
-					<br />
-					<br />
-					現在、積極的に仕事を探しているわけではありませんが、Web開発職の副業に関するメッセージは大歓迎です!
+					ソフトウェア開発にまつわるお仕事に関するメッセージは大歓迎です！
 				</p>
 			);
 		}
 		case "en": {
 			return (
 				<p>
-					Hi! I am Shinyaigeek(Shinobu Hayashi).
-					<br />I am working as a Web Developer.
+					Hi! I am Shinyaigeek(Shinobu Hayashi). I am  a Software Engineer in Japan.
 					<br />
-					<br />I am attracted by the universality of the Web platform, and I am
-					working to expand the possibilities of that. Through this work, I want
-					to tell the possibilities of the web to people.
+					<br />I'm working to improve a delivering contents on Web in perspectives of application performance or application reliability and make User Experience better in a japanese traditional newsmedia company. Also, I'm focusing on both of complicated subsystem engineering and enabling engineering currently. The first, I work to solve technical issues on our service's complicated technical domain such as application's infra or application's developing tool, such as build-tool or linter. Last, I work to enhance the others team in my company with supporting web development of the other team as a technical adviser, a technical lead or a technical trainer.
+					<br />In technical domain, I am good at designing a "service" architecture beyond an application itself and Cache strategy to accomplish high performance web application, and designing and introducing complicated frontend tool-chain according to an application's requirements or a team's culture.
 					<br />
+					Additionally, I contribute to OSS. In my private project, I created the tool, Treeche, which detects the side effects of ECMAScript module and created the browser. I am also a member of pnpm. I worked to develop pnpm's task runner mainly.
 					<br />
-					Under the slogan of "anywhere, anytime, anyone", in order to maximize
-					the universality of the Web, I am working on reducing the Runtime Cost
-					on the client machine so that applications can run even if the client
-					machine spec is low, and reducing I/O Cost so that applications can
-					run even if the client machine is in the poor connection, and writing
-					the code with accessibility in mind so that anyone can access the
-					contents, not only the blind or who have cognitive impairment but also
-					who does not have free hand because of cooking or muscle training. To
-					accomplish this wish, I have worked on a wide range of web
-					development, not only web frontend but also CDN, Edge Proxy,
-					Server-side.
-					<br />
-					<br />
-					My hobby is web and programming. I am make the handmade browser as a
-					hobby, and I contribute parcel-bundler because I am in love with the
-					parcel-bundler because parcel-bundler have the grate
-					scalability(Transformer, Resolver, Pipeline, ...) and the great
-					coverage of the web development(TypeScript, Vue, React, Scss,
-					CoffeeScript...).
-					<br />
-					<br />I am not actively looking for a job at the moment, but the
-					message about a side work for a web dev position is welcome!!
+					Messages about software development job is welcome!
 				</p>
 			);
+		}
+		default: {
+			assertIsNever(language)
 		}
 	}
 };
