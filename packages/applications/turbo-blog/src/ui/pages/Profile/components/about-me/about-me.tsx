@@ -2,7 +2,7 @@ import { type FunctionComponent, useContext } from "react";
 import { LanguageContext } from "../../../../context/language-context";
 import { assertIsNever } from "../../../../../universal/assert-is-never";
 
-export const AboutMe: FunctionComponent = () => {
+export const AboutMe: FunctionComponent = function () {
 	const language = useContext(LanguageContext);
 
 	switch (language) {
