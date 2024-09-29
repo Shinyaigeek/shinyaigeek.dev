@@ -8,9 +8,10 @@ import {
 	name,
 	snsIcon,
 	word,
-} from "./ShinyaigeekCoreProfile.module.css";
+} from "./shinyaigeek-core-profile.module.css";
 
-export const ShinyaigeekCoreProfile: FunctionComponent = () => (
+export const ShinyaigeekCoreProfile: FunctionComponent = function () {
+	return (
 	<div className="baseprofile">
 		<h1>About Me</h1>
 		<div className={hello}>
@@ -82,3 +83,4 @@ export const ShinyaigeekCoreProfile: FunctionComponent = () => (
 		</div>
 	</div>
 );
+}

@@ -1,6 +1,6 @@
 import type { FunctionComponent } from "react";
 import { ShinyaigeekPortrait } from "../../../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
-import { ShinyaigeekCoreProfile } from "../ShinyaigeekCoreProfile/ShinyaigeekCoreProfile";
+import { ShinyaigeekCoreProfile } from "../shinyaigeek-core-profile/shinyaigeek-core-profile";
 import {
 	container,
 	shinyaigeekPortraitPosition,
