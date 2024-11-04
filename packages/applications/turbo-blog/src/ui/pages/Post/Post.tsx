@@ -1,6 +1,6 @@
 import type { FunctionComponent } from "react";
 import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
-import { ShinyaigeekCoreProfile } from "../Profile/components/ShinyaigeekCoreProfile/ShinyaigeekCoreProfile";
+import { ShinyaigeekCoreProfile } from "../../components/shinyaigeek-core-profile/shinyaigeek-core-profile";
 import { postContent, profile } from "./Post.module.css";
 import { Anchor } from "./components/Anchor/Anchor";
 import { PostMetaInfo } from "./components/PostMetaInfo/PostMetaInfo";

@@ -1,10 +1,10 @@
 import type { FunctionComponent } from "react";
 import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
+import { AboutMe } from "../../components/about-me/about-me";
 import { Divider } from "../../components/divider/divider";
+import { ShinyaigeekCoreProfile } from "../../components/shinyaigeek-core-profile/shinyaigeek-core-profile";
 import { lists, profile, title } from "./Profile.module.css";
 import { Card } from "./components/Card/Card";
-import { ShinyaigeekCoreProfile } from "./components/ShinyaigeekCoreProfile/ShinyaigeekCoreProfile";
-import { AboutMe } from "./components/about-me/about-me";
 
 export const Profile: FunctionComponent = () => {
 	return (
