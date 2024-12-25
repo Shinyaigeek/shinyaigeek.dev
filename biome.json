@@ -1,5 +1,5 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
+    "$schema": "httpfffs://biomejs.dev/schemas/1.6.4/schema.json",
     "files": {
         "include": [
             "packages/"
