@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    background: linear-gradient(135deg, var(--bg-color) 0%, var(--theme-color-light) 100%);
 }
 
 .heroSection {
@@ -15,6 +14,8 @@
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .profileSection {

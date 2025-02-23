@@ -4,6 +4,7 @@ declare const styles: {
   readonly "earthX": string;
   readonly "earthY": string;
   readonly "fixedPortrait": string;
+  readonly "portraitButton": string;
   readonly "shinyaigeekPortrait": string;
   readonly "shinyaigeekPortraitContainer": string;
   readonly "shinyaigeekPortraitImage": string;
