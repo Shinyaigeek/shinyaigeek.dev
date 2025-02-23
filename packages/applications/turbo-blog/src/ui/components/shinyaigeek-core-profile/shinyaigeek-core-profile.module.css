@@ -168,52 +168,82 @@
 
 .snsIcon {
     width: 54px;
-    margin: 0 auto;
+    margin: 0 1rem;
+    transition: transform 0.3s ease;
+}
+
+.snsIcon:hover {
+    transform: translateY(-3px);
 }
 
 .snsIcon img {
     width: 100%;
     object-fit: contain;
+    filter: grayscale(0.2);
 }
 
 .mySnsBox {
     display: flex;
-    margin: 2px auto;
+    justify-content: center;
+    margin: 2rem auto;
     max-width: 500px;
 }
 
 .mail {
-    margin: 6px 0;
+    margin: 1.5rem 0;
     text-align: center;
 }
 
 .mail a {
     color: var(--theme-color);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--theme-color);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.mail a:hover {
+    background-color: var(--theme-color);
+    color: var(--bg-color);
 }
 
 .word {
-    font-size: 3vw;
-    padding: 12px 0;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: center;
+    color: var(--text-color);
 }
 
 .hello {
-    font-size: 3.6vw;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
 .name {
     color: var(--important-color);
     font-weight: bold;
     white-space: nowrap;
+    background: linear-gradient(120deg, var(--theme-color) 0%, var(--important-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .jobGlitch {
-    font-size: 3.6vw;
+    font-size: 2rem;
     position: relative;
-    width: max-content;
+    width: 100%;
+    text-align: center;
+    margin: 1.5rem 0;
 }
 
 .glitch {
     position: relative;
+    display: inline-block;
+    color: var(--text-color);
 }
 
 .glitch:after {
@@ -260,5 +290,46 @@
 @media (prefers-reduced-motion) {
     .glitch:before {
         animation: dissolve;
+    }
+}
+
+.skillsSection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.skillTag {
+    background-color: var(--theme-color-light);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.skillTag:hover {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .hello {
+        font-size: 2rem;
+    }
+
+    .jobGlitch {
+        font-size: 1.5rem;
+    }
+
+    .word {
+        font-size: 1.2rem;
+        padding: 0 1rem;
+    }
+
+    .skillsSection {
+        padding: 0 1rem;
     }
 }

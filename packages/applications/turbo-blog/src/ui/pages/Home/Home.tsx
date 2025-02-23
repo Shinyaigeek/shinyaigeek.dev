@@ -3,6 +3,7 @@ import type { FunctionComponent } from "react";
 import { FirstBoard } from "../../components/FirstBoard/FirstBoard";
 import { Item } from "../../components/Item/Item";
 import { Divider } from "../../components/divider/divider";
+import { blogGrid, blogSection } from "./Home.module.css";
 
 interface Props {
 	items: {
@@ -20,10 +21,12 @@ export const Home: FunctionComponent<Props> = ({ items }) => (
 		<FirstBoard />
 		<Divider />
 
-		<div>
-			{items.map((item) => {
-				return (
+		<section className={blogSection}>
+			<h2>Latest Articles</h2>
+			<div className={blogGrid}>
+				{items.map((item) => (
 					<Item
+						key={item.path}
 						title={item.title}
 						description={item.description}
 						publishedAt={item.publishedAt}
@@ -31,8 +34,8 @@ export const Home: FunctionComponent<Props> = ({ items }) => (
 						ogp={item.ogp}
 						media={item.media}
 					/>
-				);
-			})}
-		</div>
+				))}
+			</div>
+		</section>
 	</div>
 );

@@ -8,6 +8,8 @@ declare const styles: {
   readonly "name": string;
   readonly "noise-anim": string;
   readonly "noise-anim-2": string;
+  readonly "skillTag": string;
+  readonly "skillsSection": string;
   readonly "snsIcon": string;
   readonly "word": string;
 };

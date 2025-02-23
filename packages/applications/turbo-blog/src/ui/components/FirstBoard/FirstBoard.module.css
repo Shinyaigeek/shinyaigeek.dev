@@ -1,16 +1,29 @@
 .container {
-    width: 100vw;
-    top: 72px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 999;
+    width: 100%;
+    min-height: calc(100vh - 72px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--theme-color-light) 100%);
 }
 
-@media (max-width: 889px) {
-    .container {
-        height: calc(100vh - 102px);
-    }
+.heroSection {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.profileSection {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .banana {
@@ -20,7 +33,27 @@
 }
 
 .shinyaigeekPortraitPosition {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
+    position: relative;
+    width: 270px;
+    height: 270px;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.shinyaigeekPortraitPosition:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 889px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .heroSection {
+        padding: 1rem;
+    }
+
+    .profileSection {
+        margin: 1rem auto;
+    }
 }

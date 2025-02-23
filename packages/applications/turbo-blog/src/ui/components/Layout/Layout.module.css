@@ -21,19 +21,22 @@
 }
 
 .root {
-    --theme-header: #1a161a;
-    --theme-background: #eee;
-    --theme-color: #1e1e1e;
-    --headings-color: #f2aaf2;
+    --theme-header: rgba(26, 22, 26, 0.95);
+    --theme-background: #f8f9fa;
+    --theme-color: #2d3436;
+    --theme-color-light: #74b9ff;
+    --theme-text: #f8f9fa;
+    --bg-color: #f8f9fa;
+    --headings-color: #0984e3;
     --twitter-background: #fff;
     --twitter-toggle: #e6ecf0;
     --twitter-cancel: #e6ecf0;
     --item-background: #fff;
-    --item-border: #f6e6ff;
+    --item-border: #dfe6e9;
     --image-gray: grayscale(0%);
-    --anchor-color: royalblue;
-    --anchor-visited-color: brown;
-    --important-color: #f2d544;
+    --anchor-color: #0984e3;
+    --anchor-visited-color: #6c5ce7;
+    --important-color: #00b894;
 
     background: var(--theme-background);
     color: var(--theme-color);
@@ -41,24 +44,33 @@
 
 @media (prefers-color-scheme: dark) {
     .root {
-        --theme-background: #3c3c3b;
-        --theme-color: #e4e4e4;
-        --headings-color: #d2f0da;
-        --twitter-background: #15202b;
-        --twitter-toggle: #1c2938;
-        --twitter-cancel: #243447;
-        --item-background: #7b7a79;
-        --item-border: #a2a2a1;
+        --theme-header: rgba(26, 22, 26, 0.95);
+        --theme-background: #2d3436;
+        --theme-color: #f8f9fa;
+        --theme-color-light: #0984e3;
+        --theme-text: #f8f9fa;
+        --bg-color: #2d3436;
+        --headings-color: #74b9ff;
+        --twitter-background: #2d3436;
+        --twitter-toggle: #636e72;
+        --twitter-cancel: #636e72;
+        --item-background: #636e72;
+        --item-border: #b2bec3;
         --image-gray: grayscale(15%);
-        --anchor-color: CornflowerBlue;
-        --anchor-visited-color: RosyBrown;
-        --important-color: #ffe76a;
+        --anchor-color: #74b9ff;
+        --anchor-visited-color: #a29bfe;
+        --important-color: #00b894;
     }
 }
 
 .root a {
     text-decoration: none;
     color: var(--anchor-color);
+    transition: color 0.3s ease;
+}
+
+.root a:hover {
+    color: var(--theme-color-light);
 }
 
 .root a:visited {
