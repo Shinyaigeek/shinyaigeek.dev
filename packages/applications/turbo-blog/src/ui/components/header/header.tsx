@@ -1,13 +1,7 @@
 import type { FunctionComponent } from "react";
 import { Language } from "../Language/Language";
-import {
-	anchor,
-	contents,
-	header,
-	icon,
-	title,
-} from "./header.module.css";
 import { HeaderAnchorItem } from "./header-anchor-item/header-anchor-item";
+import { anchor, contents, header, icon, title } from "./header.module.css";
 
 interface HeaderProps {
 	language: "en" | "ja";
@@ -41,7 +35,11 @@ export const Header: FunctionComponent<HeaderProps> = ({
 			</div>
 			<HeaderAnchorItem isActive={page === "home"} href="/" label="Profile" />
 			<HeaderAnchorItem isActive={page === "post"} href="/post/" label="Blog" />
-			<HeaderAnchorItem isActive={false} href="https://github-activity.shinyaigeek.dev/" label="Activity" />
+			<HeaderAnchorItem
+				isActive={false}
+				href="https://github-activity.shinyaigeek.dev/"
+				label="Activity"
+			/>
 		</div>
 	</div>
 );
