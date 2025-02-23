@@ -6,5 +6,6 @@ export class ThirdPartyPublishContent {
 		public readonly description: string,
 		public readonly ogp: URL,
 		public readonly publishedAt: Date,
+		public readonly media: "speakerdeck" | "blog",
 	) {}
 }

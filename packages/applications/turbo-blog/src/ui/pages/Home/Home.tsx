@@ -1,8 +1,8 @@
 import type { Undefinable } from "option-t/esm/Undefinable";
 import type { FunctionComponent } from "react";
-import { Divider } from "../../components/divider/divider";
 import { FirstBoard } from "../../components/FirstBoard/FirstBoard";
 import { Item } from "../../components/Item/Item";
+import { Divider } from "../../components/divider/divider";
 
 interface Props {
 	items: {
@@ -11,6 +11,7 @@ interface Props {
 		publishedAt: string;
 		path: string;
 		ogp?: Undefinable<string>;
+		media?: "speakerdeck" | "blog";
 	}[];
 }
 
@@ -28,6 +29,7 @@ export const Home: FunctionComponent<Props> = ({ items }) => (
 						publishedAt={item.publishedAt}
 						path={item.path}
 						ogp={item.ogp}
+						media={item.media}
 					/>
 				);
 			})}
