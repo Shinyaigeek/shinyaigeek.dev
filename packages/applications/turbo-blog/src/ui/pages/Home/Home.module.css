@@ -2,6 +2,7 @@
     max-width: 1200px;
     margin: 4rem auto;
     padding: 0 2rem;
+    padding-right: calc(180px + 4rem); /* ポートレートの幅 + 余白 */
 }
 
 .blogSection h2 {
@@ -34,6 +35,8 @@
     .blogSection {
         margin: 2rem auto;
         padding: 0 1rem;
+        padding-right: 1rem;
+        padding-bottom: calc(120px + 2rem); /* モバイル時のポートレートの高さ + 余白 */
     }
 
     .blogSection h2 {

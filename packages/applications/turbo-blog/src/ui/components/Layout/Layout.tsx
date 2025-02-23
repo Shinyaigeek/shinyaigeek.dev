@@ -1,5 +1,6 @@
 import type { FunctionComponent } from "react";
 import { Footer } from "../Footer/Footer";
+import { ShinyaigeekPortrait } from "../ShinyaigeekPortrait/ShinyaigeekPortrait";
 import { Header } from "../header/header";
 import { inner, root } from "./Layout.module.css";
 
@@ -19,6 +20,7 @@ export const Layout: FunctionComponent<LayoutProps> = ({
 	<div className={root}>
 		<Header language={language} currentPath={currentPath} page={page} />
 		<div className={inner}>{children}</div>
+		<ShinyaigeekPortrait />
 		<Footer />
 	</div>
 );
