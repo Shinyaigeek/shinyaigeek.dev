@@ -1,11 +1,11 @@
 .header {
     height: 72px;
     width: 100%;
-    font-size: 30px;
-    color: var(--theme-text);
-    background: rgba(26, 22, 26, 0.95);
+    background: var(--theme-header);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: fixed;
     left: 0;
     right: 0;
@@ -14,41 +14,34 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2rem;
-}
-
-@media (max-width: 889px) {
-    .header {
-        padding: 0 1rem;
-        font-size: 24px;
-    }
-}
-
-.header a {
-    color: var(--theme-text) !important;
-    transition: color 0.3s ease;
-}
-
-.header a:hover {
-    color: var(--theme-color-light) !important;
-}
-
-.contents {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
 }
 
 .title {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    margin-left: 2rem;
 }
 
-.title a {
+.titleLink {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--theme-text);
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.titleLink:hover {
+    color: var(--theme-color-light);
+}
+
+.titleLink span {
+    background: linear-gradient(120deg, var(--theme-text) 0%, var(--theme-color-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .icon {
@@ -56,8 +49,65 @@
     height: 36px;
     object-fit: contain;
     transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-.title:hover .icon {
+.titleLink:hover .icon {
     transform: rotate(10deg);
+}
+
+.contents {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-right: 2rem;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.divider {
+    color: var(--theme-color-light);
+    opacity: 0.5;
+    font-size: 1.2rem;
+    user-select: none;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 0 1rem;
+    }
+
+    .titleLink {
+        font-size: 1.2rem;
+        gap: 0.5rem;
+    }
+
+    .icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .contents {
+        gap: 1rem;
+    }
+
+    .navigation {
+        gap: 0.25rem;
+    }
+
+    .divider {
+        font-size: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header *,
+    .titleLink,
+    .icon {
+        transition: none;
+    }
 }

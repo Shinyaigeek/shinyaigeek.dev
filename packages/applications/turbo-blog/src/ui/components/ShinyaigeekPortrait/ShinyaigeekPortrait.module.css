@@ -46,7 +46,6 @@
 }
 
 .snsLinks {
-    margin: 0;
     padding: 1rem;
     border: none;
     background: var(--theme-header);
@@ -55,6 +54,8 @@
     backdrop-filter: blur(10px);
     display: flex;
     gap: 1rem;
+    margin-bottom: 2rem;
+    margin-right: 2rem;
 }
 
 .snsLinks::backdrop {
