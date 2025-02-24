@@ -6,7 +6,10 @@ import { Anchor } from "./components/Anchor/Anchor";
 import { PostMetaInfo } from "./components/PostMetaInfo/PostMetaInfo";
 
 interface Props {
-	anchors: string[];
+	anchors: {
+		href: string;
+		content: string;
+	}[];
 	title: string;
 	publishedAt: string;
 	tags: string[];

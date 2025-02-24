@@ -50,7 +50,7 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 					tags={blogPost.metadata.tags}
 					publishedAt={blogPost.metadata.publishedAt}
 					content={blogPost.content}
-					anchors={[]}
+					anchors={blogPost.metadata.headings ?? []}
 				/>
 			</Layout>
 		</Shell>,

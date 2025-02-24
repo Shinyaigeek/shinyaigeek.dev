@@ -8,6 +8,10 @@ export interface BlogMetadata {
 	publishedAt: string;
 	updatedAt: string;
 	path: string;
+	headings?: {
+		href: string;
+		content: string;
+	}[];
 }
 
 export class BlogContent extends Content {

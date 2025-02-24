@@ -26,6 +26,7 @@
 	"dependencies": {
 		"@hono/node-server": "^1.11.1",
 		"front-matter": "^4.0.2",
+		"hast-util-select": "^5.0.2",
 		"hono": "^4.2.8",
 		"html-minifier": "^4.0.0",
 		"option-t": "^39.0.3",
