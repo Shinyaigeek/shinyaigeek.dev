@@ -16,7 +16,6 @@ const configForApplicationServer: Configuration = {
 	experiments: {
 		outputModule: true,
 	},
-	mode: "development",
 	target: "node",
 };
 
