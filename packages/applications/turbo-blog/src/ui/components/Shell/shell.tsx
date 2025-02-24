@@ -15,6 +15,10 @@ interface SiteHeadProps {
 	language: "en" | "ja";
 	ogImageFilename: string;
 	description: string;
+	builtAssets: {
+		javascript: string;
+		css: string;
+	};
 }
 
 const SiteHead: FunctionComponent<SiteHeadProps> = ({
@@ -23,6 +27,7 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 	language,
 	ogImageFilename,
 	description,
+	builtAssets,
 }) => {
 	const locale = language === "en" ? "en_US" : "ja_JP";
 
@@ -65,13 +70,7 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 				type="image/x-icon"
 				href={"/assets/static/favicon.ico"}
 			/>
-			<link
-				rel="stylesheet"
-				type="text/css"
-				href={`/assets/style${
-					process.env.CONTENTHASH_CSS ? `.${process.env.CONTENTHASH_CSS}` : ""
-				}.css`}
-			/>
+			<link rel="stylesheet" type="text/css" href={`/${builtAssets.css}`} />
 			<link
 				rel="stylesheet"
 				type="text/css"
@@ -125,6 +124,7 @@ export const Shell: FunctionComponent<ShellProps> = ({
 	language,
 	ogImageFilename,
 	description,
+	builtAssets,
 }) => (
 	<LanguageContext.Provider value={language}>
 		<html lang={language}>
@@ -134,6 +134,7 @@ export const Shell: FunctionComponent<ShellProps> = ({
 				ogImageFilename={ogImageFilename}
 				language={language}
 				description={description}
+				builtAssets={builtAssets}
 			/>
 			<body>
 				<div id="_app">{children}</div>
@@ -143,13 +144,7 @@ export const Shell: FunctionComponent<ShellProps> = ({
 				src="https://static.cloudflareinsights.com/beacon.min.js"
 				data-cf-beacon='{"token": "0893ac88cf0542af88bfd9b93008b408", "spa": true}'
 			/>
-			<script
-				defer
-				src={`/client${
-					process.env.CONTENTHASH_JS ? `.${process.env.CONTENTHASH_JS}` : ""
-				}.js`}
-				async
-			/>
+			<script defer src={`/${builtAssets.javascript}`} async />
 		</html>
 	</LanguageContext.Provider>
 );

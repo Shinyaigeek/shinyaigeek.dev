@@ -83,6 +83,7 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 			title="shinyaigeek.dev"
 			path="/"
 			description={description}
+			builtAssets={context.builtAssets}
 		>
 			<Layout language={rawLanguage} page="1" currentPath="/">
 				<Home items={items} />

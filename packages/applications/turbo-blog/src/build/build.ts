@@ -12,11 +12,13 @@ import {
 import { outputBlogIndexPage } from "./handlers/post/output";
 import { generateProfilePage } from "./handlers/profile/generate";
 import { outputProfilePage } from "./handlers/profile/output";
+import { registerBuiltAssetsPlugin } from "./plugin/built-assets";
 import { registerLanguagePlugin } from "./plugin/language";
 
 const router = new Router<Context>();
 
 router.register(registerLanguagePlugin);
+router.register(registerBuiltAssetsPlugin);
 
 router.on("/", {
 	generate: generateIndexPage,

@@ -43,6 +43,7 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 			title="shinyaigeek.dev"
 			path={blogPost.metadata.path}
 			description={blogPost.metadata.description}
+			builtAssets={context.builtAssets}
 		>
 			<Layout language={rawLanguage} page="1" currentPath="/">
 				<Post

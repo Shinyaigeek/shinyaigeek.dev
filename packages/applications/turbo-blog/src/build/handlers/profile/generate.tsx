@@ -22,6 +22,7 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 			title="shinyaigeek.dev"
 			path="/profile"
 			description={description}
+			builtAssets={context.builtAssets}
 		>
 			<Layout language={rawLanguage} page="1" currentPath="/">
 				<Profile />
