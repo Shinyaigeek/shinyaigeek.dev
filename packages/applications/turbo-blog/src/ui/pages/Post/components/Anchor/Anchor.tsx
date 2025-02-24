@@ -1,5 +1,16 @@
 import type { FunctionComponent } from "react";
-import { postAnchor } from "./Anchor.module.css";
+import {
+	anchorItem,
+	anchorList,
+	anchorTitle,
+	level1,
+	level2,
+	level3,
+	level4,
+	level5,
+	level6,
+	postAnchor,
+} from "./Anchor.module.css";
 
 interface Props {
 	anchors: {
@@ -11,14 +22,28 @@ interface Props {
 export const Anchor: FunctionComponent<Props> = function (props) {
 	return (
 		<details className={postAnchor}>
-			<summary className="post--anchor__title" id="post--anchor__title" />
-			{props.anchors.map((anchor) => {
-				return (
-					<a key={anchor.href} href={`#${anchor.href}`}>
-						{anchor.content}
-					</a>
-				);
-			})}
+			<summary className={anchorTitle}>
+				<span>📑 目次</span>
+			</summary>
+			<nav className={anchorList} aria-label="記事の目次">
+				{props.anchors.map((anchor) => {
+					const level = Number.parseInt(anchor.href.at(0) ?? "1");
+					const levelClass =
+						[level1, level2, level3, level4, level5, level6][level - 1] ||
+						level1;
+
+					return (
+						<a
+							key={anchor.href}
+							href={`#${anchor.href}`}
+							className={`${anchorItem} ${levelClass}`}
+							data-level={level}
+						>
+							{anchor.content}
+						</a>
+					);
+				})}
+			</nav>
 		</details>
 	);
 };
