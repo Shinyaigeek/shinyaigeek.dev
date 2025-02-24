@@ -9,7 +9,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "NODE_ENV=development rspack serve",
-		"build": "NODE_ENV=production pnpm generate:tcm && pnpm build:client:rspack && pnpm build:style:rspack && pnpm build:server:rspack && pnpm invoke:ssg && pnpm copy:assets",
+		"build": "pnpm clean && NODE_ENV=production pnpm generate:tcm && pnpm build:client:rspack && pnpm build:style:rspack && pnpm build:server:rspack && pnpm invoke:ssg && pnpm copy:assets",
 		"__webpack": "NODE_OPTIONS=\"--loader ts-node/esm\" webpack",
 		"build:client:webpack": "NODE_ENV=production pnpm __webpack --config webpack.config.client.ts",
 		"build:server:webpack": "NODE_ENV=production pnpm __webpack build --config webpack.config.server.ts",
@@ -21,7 +21,8 @@
 		"copy:assets": "cp -r ./src/assets ./public",
 		"test": "vitest run",
 		"generate:tcm": "tcm src",
-		"components-catalogue:serve": "ladle serve"
+		"components-catalogue:serve": "ladle serve",
+		"clean": "rimraf public"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.11.1",
@@ -55,6 +56,7 @@
 		"postcss-loader": "^8.1.1",
 		"react-refresh": "^0.14.0",
 		"react-server-dom-webpack": "19.0.0-beta-94eed63c49-20240425",
+		"rimraf": "^4.1.2",
 		"sass-loader": "^14.2.1",
 		"swc-loader": "^0.2.3",
 		"ts-node": "^10.2.1",
