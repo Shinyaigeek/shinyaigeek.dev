@@ -130,12 +130,6 @@
     font-size: 0.75rem;
 }
 
-@media (max-width: 1200px) {
-    .postAnchor {
-        display: none;
-    }
-}
-
 @media (prefers-reduced-motion: reduce) {
     .postAnchor,
     .anchorItem {
