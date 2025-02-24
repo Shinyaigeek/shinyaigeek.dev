@@ -1,14 +1,16 @@
-import type React from "react";
-import { cardStyle, title as titleStyle } from "./Card.module.css";
+import type { FunctionComponent } from "react";
+import { card, image, title as titleStyle } from "./Card.module.css";
 
 interface Props {
 	title: string;
-	img: string;
+	img?: string;
 }
 
-export const Card: React.FC<Props> = ({ title, img }) => (
-	<li className={cardStyle}>
-		<div className={titleStyle}>{title}</div>
-		<img src={img} alt={title} loading="lazy" />
-	</li>
-);
+export const Card: FunctionComponent<Props> = ({ title, img }) => {
+	return (
+		<div className={card}>
+			<img src={img} alt={title} className={image} />
+			<h3 className={titleStyle}>{title}</h3>
+		</div>
+	);
+};

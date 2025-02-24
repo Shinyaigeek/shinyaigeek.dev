@@ -1,34 +1,60 @@
-.cardStyle {
-    max-width: 200px;
-    max-height: 150px;
-    min-width: 80px;
-    min-height: 60px;
-
-    width: 20vw;
-    height: 16vw;
-
-    display: inline-block;
-
-    background: #eee;
-    border: 1px solid white;
-    color: black;
-    border-radius: 6px;
-    margin: 12px 24px;
-
-    list-style: none;
+.card {
+  background: var(--card-background);
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  aspect-ratio: 1;
 }
 
-.cardStyle img {
-    width: 37.5%;
-    height: 50%;
-    display: block;
-    margin: auto;
-    object-fit: contain;
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--shadow-color-hover);
 }
 
-.cardStyle .title {
-    font-size: clamp(1px, 0.6rem, 36px);
-    padding: 2px;
-    display: inline-block;
-    margin: 2px auto;
+.image {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  filter: var(--image-filter);
+}
+
+.title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+:root {
+  --image-filter: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --image-filter: brightness(0.9);
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+  }
+
+  .image {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.75rem;
+  }
+
+  .title {
+    font-size: 0.85rem;
+  }
 }
