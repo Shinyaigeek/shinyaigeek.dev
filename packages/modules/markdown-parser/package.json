@@ -1,20 +1,20 @@
 {
-  "name": "markdown-parser",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "vitest run"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "remark-parse": "^11.0.0",
-    "unified": "^11.0.4"
-  },
-  "devDependencies": {
-    "@types/mdast": "^4.0.3",
-    "vitest": "^1.5.2"
-  }
+	"name": "markdown-parser",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "vitest run"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"remark-parse": "^11.0.0",
+		"unified": "^11.0.4"
+	},
+	"devDependencies": {
+		"@types/mdast": "^4.0.3",
+		"vitest": "^1.5.2"
+	}
 }
