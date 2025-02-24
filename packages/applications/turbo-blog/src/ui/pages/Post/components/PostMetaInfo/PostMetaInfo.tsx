@@ -1,6 +1,12 @@
 import type { FunctionComponent } from "react";
 import { DecorationTag } from "../../../../components/DecorationTag/DecorationTag";
-import { postMetaInfoContainer } from "./PostMetaInfo.module.css";
+import {
+	metaSection,
+	postMetaInfoContainer,
+	postTitle,
+	publishDate,
+	publishDateIcon,
+} from "./PostMetaInfo.module.css";
 
 interface Props {
 	title: string;
@@ -8,14 +14,28 @@ interface Props {
 	tags: string[];
 }
 
-export const PostMetaInfo: FunctionComponent<Props> = ({
+export const PostMetaInfo: FunctionComponent<Props> = function ({
 	title,
 	publishedAt,
 	tags,
-}) => (
-	<div className={postMetaInfoContainer}>
-		<h1>{title}</h1>
-		<div>{publishedAt}</div>
-		<DecorationTag tags={tags} />
-	</div>
-);
+}) {
+	const formattedDate = new Intl.DateTimeFormat("ja-JP", {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+		weekday: "long",
+	}).format(new Date(publishedAt));
+
+	return (
+		<div className={postMetaInfoContainer}>
+			<h1 className={postTitle}>{title}</h1>
+			<div className={metaSection}>
+				<time className={publishDate} dateTime={publishedAt}>
+					<span className={publishDateIcon}>📅</span>
+					{formattedDate}
+				</time>
+				<DecorationTag tags={tags} />
+			</div>
+		</div>
+	);
+};
