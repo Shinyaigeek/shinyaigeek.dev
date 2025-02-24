@@ -1,6 +1,8 @@
 import { Divider } from "../divider/divider";
 import {
 	date,
+	dateContainer,
+	dateIcon,
 	home,
 	itemHomeAnchor,
 	ogp,
@@ -18,6 +20,13 @@ interface MetaData {
 }
 
 export const Item = (props: MetaData) => {
+	const formattedDate = new Intl.DateTimeFormat("ja-JP", {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+		weekday: "short",
+	}).format(new Date(props.publishedAt));
+
 	return (
 		<div className={home}>
 			<a
@@ -26,7 +35,12 @@ export const Item = (props: MetaData) => {
 			>
 				{props.title}
 			</a>
-			<div className={date}>{props.publishedAt}</div>
+			<div className={dateContainer}>
+				<span className={dateIcon}>🗓️</span>
+				<time dateTime={props.publishedAt} className={date}>
+					{formattedDate}
+				</time>
+			</div>
 			<div>{props.description ?? ""}</div>
 			{props.ogp && (
 				<a
@@ -45,9 +59,8 @@ export const Item = (props: MetaData) => {
 			)}
 			<div className={readMore}>
 				<a
-					className={`item--home__anchor ${readMoreAnchor}`}
+					className={readMoreAnchor}
 					href={!props.media ? `/post/${props.path}` : props.path}
-					tabIndex={-1}
 				>
 					Read
 				</a>

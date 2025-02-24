@@ -51,7 +51,7 @@
 		"media": "blog",
 		"slug": "https://blog.recruit.co.jp/rtc/2020/12/09/web_issue_survey/",
 		"title": "リクルートでのWeb Issue調査の取り組み",
-		"ogp": "https://s3-ap-northeast-1.amazonaws.com/prod-rtc-blog/wp-content/uploads/2020/12/08174733/fc6927a4cd7fc6f068de9eb5d3ae4aff.jpg",
+		"ogp": "https://techblog.recruit.co.jp/assets/rtc/prod-rtc-blog/wp-content/uploads/2020/12/08174733/fc6927a4cd7fc6f068de9eb5d3ae4aff.jpg",
 		"description": "リクルートで携わった、攻めのセキュリティ対策としてリクルートで行われている web issueの追従、調査の取り組みについて書いています。",
 		"publishedAt": "2020/12/09"
 	},
