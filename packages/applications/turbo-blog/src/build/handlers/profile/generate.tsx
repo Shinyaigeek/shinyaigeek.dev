@@ -25,7 +25,7 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 			builtAssets={context.builtAssets}
 		>
 			<Layout language={rawLanguage} page="1" currentPath="/">
-				<Profile />
+				<Profile language={context.language} />
 			</Layout>
 		</Shell>,
 	);

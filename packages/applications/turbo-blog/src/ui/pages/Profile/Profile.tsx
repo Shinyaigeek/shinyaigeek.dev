@@ -1,4 +1,5 @@
 import type { FunctionComponent } from "react";
+import { Language } from "../../../build/model/language/language.entity";
 import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
 import { AboutMe } from "../../components/about-me/about-me";
 import { Divider } from "../../components/divider/divider";
@@ -6,7 +7,126 @@ import { ShinyaigeekCoreProfile } from "../../components/shinyaigeek-core-profil
 import { lists, profile, title } from "./Profile.module.css";
 import { Card } from "./components/Card/Card";
 
-export const Profile: FunctionComponent = () => {
+interface Props {
+	language: Language;
+}
+
+export const Profile: FunctionComponent<Props> = ({ language }) => {
+	const educationContent =
+		language === Language.ja
+			? {
+					title: "学歴",
+					items: [
+						"2018: 西大和学園高等学校卒業",
+						"2018: 東京大学入学",
+						"2019: 東京大学工学部システム創成学科内定",
+						"2020: 東京大学工学部システム創成学科進学",
+						"2022: 東京大学工学部システム創成学科卒業",
+					],
+				}
+			: {
+					title: "Education",
+					items: [
+						"2018: Graduated from Nishiyamato highschool",
+						"2018: Enter University of Tokyo",
+						"2019: decide informally to major in Factory of Engineering in University of Tokyo",
+						"2020: Major in Factory of Engineering in University of Tokyo",
+						"2022: Graduated from University of Tokyo",
+					],
+				};
+
+	const workExperienceContent =
+		language === Language.ja
+			? {
+					title: "職歴",
+					items: [
+						{
+							company: "某メディア企業",
+							period: "2019/04 ~",
+							position: "Webエンジニア",
+							description:
+								"フロントエンドエンジニアとして, Web Frontend文脈でのパフォーマンス改善, インテラクティブなアプリケーション開発に従事する.",
+						},
+						{
+							company: "Recruit",
+							period: "2020/10 ~ 2020/11",
+							position: "Webエンジニア",
+							description:
+								"フロントエンドのUI改善, Web 標準動向の調査を行なっていました.",
+						},
+						{
+							company: "Cybozu",
+							period: "2020/09",
+							position: "Internship Student",
+							description:
+								"学生インターンとして, チームを組みkintoneででの協働をより補強する拡張機能の開発を行う.",
+						},
+						{
+							company: "Wantedly",
+							period: "2020/08 ~ 2020/09",
+							position: "Webエンジニア",
+							description: "Wentedly Webアプリの新機能開発.",
+						},
+						{
+							company: "VOYAGE GROUP",
+							period: "2020/08",
+							position: "Treasure Internship Student",
+							description:
+								"TreasureでWeb Application開発のいろはを学び, その後チームを組んでバックエンドはfirebase, go, フロントエンドはPreact, bootstrapでブログ投稿プラットフォームの開発を行っていました.",
+						},
+						{
+							company: "MOSHIMOS",
+							period: "2018/10 ~ 2018/12",
+							position: "Webエンジニア",
+							description: "Webエンジニアとしてアプリケーション開発に従事する",
+						},
+					],
+				}
+			: {
+					title: "Working Experience",
+					items: [
+						{
+							company: "Certain News media company",
+							period: "2019/04 ~",
+							position: "Web Engineer",
+							description:
+								"I contributed to Web frontend performance tuning, and development interactive SPA.",
+						},
+						{
+							company: "Recruit",
+							period: "2020/10 ~ 2020/11",
+							position: "Web Engineer",
+							description: "I improve SPA's UI and investigate Web standard",
+						},
+						{
+							company: "Cybozu",
+							period: "2020/09",
+							position: "Internship Student",
+							description:
+								"I made the kintone's extension to allow kintone users to collaborate more with the other internship students.",
+						},
+						{
+							company: "Wantedly",
+							period: "2020/08 ~ 2020/09",
+							position: "Web Engineer",
+							description: "I make Wantedly web application's new feature",
+						},
+						{
+							company: "VOYAGE GROUP",
+							period: "2020/08",
+							position: "Treasure Internship Student",
+							description:
+								"I make media application with the other internship team.",
+						},
+						{
+							company: "MOSHIMOS",
+							period: "2018/10 ~ 2018/12",
+							position: "Web Engineer",
+							description: "I made web application from backend to frontend.",
+						},
+					],
+				};
+
 	return (
 		<div className={profile}>
 			<div>
@@ -24,12 +144,29 @@ export const Profile: FunctionComponent = () => {
 				<Divider />
 
 				<div className="history--study element">
-					<ul className={lists} />
+					<div className={title}>{educationContent.title}</div>
+					<ul className={lists}>
+						{educationContent.items.map((item) => (
+							<li key={item}>{item}</li>
+						))}
+					</ul>
 				</div>
 
 				<Divider />
 
-				<div className="history--job element" />
+				<div className="history--job element">
+					<div className={title}>{workExperienceContent.title}</div>
+					<ul className={lists}>
+						{workExperienceContent.items.map((item) => (
+							<li key={item.company}>
+								<h3>{item.company}</h3>
+								<p>{item.period}</p>
+								<p>Position: {item.position}</p>
+								<p>{item.description}</p>
+							</li>
+						))}
+					</ul>
+				</div>
 
 				<Divider />
 
