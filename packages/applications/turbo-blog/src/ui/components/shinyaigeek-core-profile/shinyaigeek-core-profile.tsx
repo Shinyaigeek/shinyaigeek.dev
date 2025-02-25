@@ -1,5 +1,7 @@
 import type { FunctionComponent } from "react";
 import {
+	forDark,
+	forLight,
 	glitch,
 	hello,
 	jobGlitch,
@@ -54,14 +56,29 @@ export const ShinyaigeekCoreProfile: FunctionComponent = function () {
 			<div className={mySnsBox}>
 				<div className={snsIcon}>
 					<a
-						id="twitter"
-						href="https://twitter.com/Shinyaigeek"
+						id="x"
+						href="https://x.com/Shinyaigeek"
 						target="_blank"
 						rel="noopener noreferrer"
+						className={forDark}
 					>
 						<img
-							src={"/assets/static/twitter.svg"}
-							alt="Twitter"
+							src={"/assets/static/x-logo-white.png"}
+							alt="X"
+							width="54"
+							height="54"
+						/>
+					</a>
+					<a
+						id="x"
+						href="https://x.com/Shinyaigeek"
+						target="_blank"
+						rel="noopener noreferrer"
+						className={forLight}
+					>
+						<img
+							src={"/assets/static/x-logo-black.png"}
+							alt="X"
 							width="54"
 							height="54"
 						/>

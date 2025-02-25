@@ -1,5 +1,7 @@
 declare const styles: {
   readonly "dissolve": string;
+  readonly "forDark": string;
+  readonly "forLight": string;
   readonly "glitch": string;
   readonly "hello": string;
   readonly "jobGlitch": string;

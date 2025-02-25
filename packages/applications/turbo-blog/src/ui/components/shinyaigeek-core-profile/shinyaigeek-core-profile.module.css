@@ -270,6 +270,24 @@
     }
 }
 
+.forDark {
+    display: none;
+}
+
+.forLight { 
+    display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+    .forDark {
+        display: block;
+    }
+
+    .forLight {
+        display: none;
+    }
+}
+
 .glitch:before {
     display: flex;
     align-items: center;
