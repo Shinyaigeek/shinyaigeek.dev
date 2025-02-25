@@ -51,9 +51,8 @@
 
 .snsLinks {
     position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+    left: calc(100% - 720px);
+    top: calc(100% - 120px);
     padding: 1rem;
     border: none;
     background: var(--theme-header);
@@ -187,7 +186,12 @@
     }
 
     .snsLinks {
-        flex-direction: column;
+        left: calc(100% - 540px);
+        top: calc(100% - 100px);
+    }
+
+    .snsLinksContainer {
+        flex-direction: row;
         gap: 0.5rem;
         padding: 0.5rem;
     }
