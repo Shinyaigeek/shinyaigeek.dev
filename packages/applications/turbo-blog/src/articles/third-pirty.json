@@ -1,5 +1,37 @@
 [
 	{
+		"media": "blog",
+		"slug": "https://hack.nikkei.com/blog/advent20241212/",
+		"title": "モノレポ統合により複雑なマイクロサービスの開発を単純化するアプローチ",
+		"ogp": "https://hack.nikkei.com/images/ogp/advent20241212.png",
+		"description": "日経電子版の技術的な基盤について、莫大なリポジトリで構成されるマイクロサービスをモノレポ化してしまうことにより、開発効率を向上させた事例についてお話しします。",
+		"publishedAt": "2024/12/12"
+	},
+	{
+		"media": "speakerdeck",
+		"slug": "https://speakerdeck.com/shinyaigeek/eslint-rule-niyorishi-ye-ji-shu-domeinniyan-tutazhi-yue-toshi-yue-wofu-yan-saseruapurotinosu-me-796c5458-d929-455c-90cf-f4914b91621f",
+		"title": "ESLint Rule により事業, 技術ドメインに沿った制約と誓約を敷衍させるアプローチのすゝめ",
+		"ogp": "https://files.speakerdeck.com/presentations/be6e42d126ae48b38369d97f69461717/slide_0.jpg?31466833",
+		"description": "フロントエンドカンファレンス北海道 2024 の登壇資料です. コードベースに秩序をもたらすため各種 Linter を利用している方も多いのではないでしょうか？一般的なルールについては Linter 内蔵のものや既存の Plugin ですでにカバーできるでしょうが, 一方で事業ドメイン特化であったり UX/DX を向上させるための技術ドメイン特化なルールまではサポートし切れないケースの方が多いでしょう. 日経電子版においてもコードベースにそうした事業ドメイン, 技術ドメイン特化な制約が存在しています. こうした日経電子版特化な制約について日経電子版開発では属人的なレビューで弾くといったアプローチでなく, できるものは ESLint Plugin を開発してそれにより機械的に弾くアプローチをとっています. 本セッションでは事業, 技術ドメイン特化な ESLint Plugin を開発する利点や How To を具体例とともにご紹介します.",
+		"publishedAt": "2024/08/24"
+	},
+	{
+		"media": "blog",
+		"slug": "https://hack.nikkei.com/blog/advent20231220/",
+		"title": "処理系フレンドリーコードによる「フロントエンド」のコードベース改善のアプローチ",
+		"ogp": "https://hack.nikkei.com/images/ogp/advent20231220.png",
+		"description": "処理系フレンドリーなコードによるフロントエンドのコードベース改善のアプローチと, 実際に日経電子版Webにおいて行った事例をご紹介します.",
+		"publishedAt": "2023/12/20"
+	},
+	{
+		"media": "speakerdeck",
+		"slug": "https://speakerdeck.com/shinyaigeek/big-heart-of-mud-10000-lines-vcl-generated-from-vcl-dot-handlebars",
+		"title": "Big “heart” of mud, 10000 lines VCL generated from .vcl.handlebars",
+		"ogp": "https://files.speakerdeck.com/presentations/b2dc6bd9073241edbe10349d23c97f85/slide_0.jpg?28164882",
+		"description": "日経電子版は創刊から10年以上続く Web サービスです。そんなサービスを開発する中でアプリケーション要件や技術的な情勢の変遷に合わせ技術の刷新, リアーキテクトなども行ってきましたが迂闊に手を出せない部分というのも存在します. その一例としてサービスの心臓部である CDN レイヤーがあげられます. 日経電子版の CDN は電子版のシステム構成上多くの責務を抱えてしまっていますが、それでも泥臭く開発し続けられるよう仕組み化されていました. しかし長年の運用により段々と Big ball of mud と成り果てました. Big ball of mud でありかつサービスの心臓部でもあるいわば Big heart of mud となっていました. 本トークでは電子版の CDN レイヤーの Muddy な開発や Muddy が故の脆さ, そして Muddy な心臓部と向き合い少しでも地盤を固めていくための Muddy な取り組みについて紹介させていただきます.",
+		"publishedAt": "2023/12/12"
+	},
+	{
 		"media": "speakerdeck",
 		"slug": "https://speakerdeck.com/shinyaigeek/managing-side-effect-in-frontend-development",
 		"title": "Managing \"side effect\" in Frontend Development",
