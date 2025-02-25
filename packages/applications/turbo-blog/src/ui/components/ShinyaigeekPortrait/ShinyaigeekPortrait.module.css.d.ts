@@ -5,11 +5,13 @@ declare const styles: {
   readonly "earthY": string;
   readonly "fixedPortrait": string;
   readonly "portraitButton": string;
+  readonly "portraitContainer": string;
   readonly "shinyaigeekPortrait": string;
   readonly "shinyaigeekPortraitContainer": string;
   readonly "shinyaigeekPortraitImage": string;
   readonly "snsItem": string;
   readonly "snsLinks": string;
+  readonly "snsLinksContainer": string;
 };
 export = styles;
 
