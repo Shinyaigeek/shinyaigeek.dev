@@ -48,8 +48,8 @@ export const ShinyaigeekCoreProfile: FunctionComponent = function () {
 				<span className={skillTag}>TypeScript</span>
 				<span className={skillTag}>React</span>
 				<span className={skillTag}>Node.js</span>
-				<span className={skillTag}>Web Performance</span>
-				<span className={skillTag}>OSS</span>
+				<span className={skillTag}>HTTP</span>
+				<span className={skillTag}>Rust</span>
 			</div>
 			<div className={mySnsBox}>
 				<div className={snsIcon}>
