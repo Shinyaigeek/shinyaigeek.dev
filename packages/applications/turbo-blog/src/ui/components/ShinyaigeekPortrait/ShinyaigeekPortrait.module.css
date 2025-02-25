@@ -50,7 +50,7 @@
 }
 
 .snsLinks {
-    position: absolute;
+    position: fixed;
     left: calc(100% - 720px);
     top: calc(100% - 120px);
     padding: 1rem;
