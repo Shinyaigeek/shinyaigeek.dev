@@ -3,6 +3,7 @@ import {
 	date,
 	dateContainer,
 	dateIcon,
+	description,
 	home,
 	itemHomeAnchor,
 	ogp,
@@ -41,7 +42,7 @@ export const Item = (props: MetaData) => {
 					{formattedDate}
 				</time>
 			</div>
-			<div>{props.description ?? ""}</div>
+			<div className={description}>{props.description ?? ""}</div>
 			{props.ogp && (
 				<a
 					href={!props.media ? `/post/${props.path}` : props.path}

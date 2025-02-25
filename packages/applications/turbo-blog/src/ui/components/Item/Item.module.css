@@ -7,6 +7,11 @@
     margin-bottom: 1rem;
     text-decoration: none;
     transition: color 0.3s ease;
+    overflow-wrap: anywhere;
+}
+
+.description {
+    overflow-wrap: anywhere;
 }
 
 .itemHomeAnchor:hover {
