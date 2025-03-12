@@ -98,7 +98,7 @@ export const ShinyaigeekPortrait: FunctionComponent = () => (
 						aria-label="Email"
 					>
 						<img
-							src="/assets/static/email.png"
+							src="/assets/static/e-mail.png"
 							alt="Email"
 							width="32"
 							height="32"
