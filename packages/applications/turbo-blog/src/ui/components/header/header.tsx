@@ -37,13 +37,13 @@ export const Header: FunctionComponent<HeaderProps> = ({
 		</div>
 		<div className={contents}>
 			<nav className={navigation} aria-label="メインナビゲーション">
-				<HeaderAnchorItem isActive={page === "home"} href="/" label="Profile" />
-				<span className={divider}>/</span>
 				<HeaderAnchorItem
-					isActive={page === "post"}
-					href="/post/"
-					label="Blog"
+					isActive={page === "home"}
+					href="/profile/"
+					label="Profile"
 				/>
+				<span className={divider}>/</span>
+				<HeaderAnchorItem isActive={page === "post"} href="/" label="Blog" />
 				<span className={divider}>/</span>
 				<HeaderAnchorItem
 					isActive={false}
