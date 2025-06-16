@@ -11,13 +11,25 @@
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: bold;
     margin-bottom: 1.5rem;
-    color: var(--text-primary);
-    border-bottom: 3px solid var(--border-color);
-    padding-bottom: 0.5rem;
-    display: inline-block;
+    color: var(--theme-color);
+    border-bottom: none;
+    padding-bottom: 0;
+    display: block;
+    position: relative;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--theme-color) 0%, var(--theme-color-light) 100%);
+    border-radius: 2px;
 }
 
 .lists {
@@ -26,35 +38,46 @@
     margin: 0;
 }
 
+.lists li:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.lists li:last-child {
+    border-bottom: none;
+}
+
 .lists li {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: var(--card-background);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .lists li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px var(--shadow-color-hover);
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 .lists h3 {
-    font-size: 1.5rem;
-    color: var(--text-primary);
-    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    color: var(--theme-color);
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
 }
 
 .lists p {
-    margin: 0.5rem 0;
-    color: var(--text-secondary);
+    margin: 0.25rem 0;
+    color: #666;
     line-height: 1.6;
+    font-size: 0.95rem;
 }
 
 .lists p:first-of-type {
-    color: var(--text-tertiary);
-    font-size: 0.9rem;
+    color: #999;
+    font-size: 0.85rem;
+    font-family: "SF Mono", "Fira Code", monospace;
 }
 
 .description {
@@ -121,11 +144,11 @@
     }
 
     .lists li {
-        padding: 1rem;
+        padding: 1rem 0;
     }
 
     .lists h3 {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
     }
 
     .interests .content > * {
