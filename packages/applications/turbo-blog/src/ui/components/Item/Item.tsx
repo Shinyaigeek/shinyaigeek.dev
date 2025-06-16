@@ -1,5 +1,5 @@
-import { Divider } from "../divider/divider";
 import {
+	contentWrapper,
 	date,
 	dateContainer,
 	dateIcon,
@@ -7,8 +7,7 @@ import {
 	home,
 	itemHomeAnchor,
 	ogp,
-	readMore,
-	readMoreAnchor,
+	textContent,
 } from "./Item.module.css";
 
 interface MetaData {
@@ -30,43 +29,38 @@ export const Item = (props: MetaData) => {
 
 	return (
 		<div className={home}>
-			<a
-				className={itemHomeAnchor}
-				href={!props.media ? `/post/${props.path}` : props.path}
-			>
-				{props.title}
-			</a>
-			<div className={dateContainer}>
-				<span className={dateIcon}>🗓️</span>
-				<time dateTime={props.publishedAt} className={date}>
-					{formattedDate}
-				</time>
+			<div className={contentWrapper}>
+				<div className={textContent}>
+					<a
+						className={itemHomeAnchor}
+						href={!props.media ? `/post/${props.path}` : props.path}
+					>
+						{props.title}
+					</a>
+					<div className={dateContainer}>
+						<span className={dateIcon}>🗓️</span>
+						<time dateTime={props.publishedAt} className={date}>
+							{formattedDate}
+						</time>
+					</div>
+					<div className={description}>{props.description ?? ""}</div>
+				</div>
+				{props.ogp && (
+					<a
+						href={!props.media ? `/post/${props.path}` : props.path}
+						tabIndex={-1}
+					>
+						<img
+							src={props.ogp}
+							alt={props.title}
+							className={ogp}
+							loading="lazy"
+							width={120}
+							height={67}
+						/>
+					</a>
+				)}
 			</div>
-			<div className={description}>{props.description ?? ""}</div>
-			{props.ogp && (
-				<a
-					href={!props.media ? `/post/${props.path}` : props.path}
-					tabIndex={-1}
-				>
-					<img
-						src={props.ogp}
-						alt={props.title}
-						className={ogp}
-						loading="lazy"
-						width={1024}
-						height={576}
-					/>
-				</a>
-			)}
-			<div className={readMore}>
-				<a
-					className={readMoreAnchor}
-					href={!props.media ? `/post/${props.path}` : props.path}
-				>
-					Read
-				</a>
-			</div>
-			<Divider />
 		</div>
 	);
 };
