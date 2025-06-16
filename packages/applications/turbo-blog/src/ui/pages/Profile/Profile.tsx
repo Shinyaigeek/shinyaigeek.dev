@@ -143,17 +143,6 @@ export const Profile: FunctionComponent<Props> = ({ language }) => {
 
 				<Divider />
 
-				<div className="history--study element">
-					<div className={title}>{educationContent.title}</div>
-					<ul className={lists}>
-						{educationContent.items.map((item) => (
-							<li key={item}>{item}</li>
-						))}
-					</ul>
-				</div>
-
-				<Divider />
-
 				<div className="history--job element">
 					<div className={title}>{workExperienceContent.title}</div>
 					<ul className={lists}>
@@ -164,6 +153,17 @@ export const Profile: FunctionComponent<Props> = ({ language }) => {
 								<p>Position: {item.position}</p>
 								<p>{item.description}</p>
 							</li>
+						))}
+					</ul>
+				</div>
+
+				<Divider />
+
+				<div className="history--study element">
+					<div className={title}>{educationContent.title}</div>
+					<ul className={lists}>
+						{educationContent.items.map((item) => (
+							<li key={item}>{item}</li>
 						))}
 					</ul>
 				</div>
