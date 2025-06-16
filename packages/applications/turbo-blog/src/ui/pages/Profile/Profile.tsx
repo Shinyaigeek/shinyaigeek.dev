@@ -41,42 +41,48 @@ export const Profile: FunctionComponent<Props> = ({ language }) => {
 					title: "職歴",
 					items: [
 						{
-							company: "某メディア企業",
-							period: "2019/04 ~",
+							company: "株式会社日本経済新聞社",
+							startDate: "2019/04",
+							endDate: "2025/07",
 							position: "Webエンジニア",
 							description:
 								"フロントエンドエンジニアとして, Web Frontend文脈でのパフォーマンス改善, インテラクティブなアプリケーション開発に従事する.",
 						},
 						{
 							company: "Recruit",
-							period: "2020/10 ~ 2020/11",
+							startDate: "2020/10",
+							endDate: "2020/11",
 							position: "Webエンジニア",
 							description:
 								"フロントエンドのUI改善, Web 標準動向の調査を行なっていました.",
 						},
 						{
 							company: "Cybozu",
-							period: "2020/09",
+							startDate: "2020/09",
+							endDate: "2020/09",
 							position: "Internship Student",
 							description:
 								"学生インターンとして, チームを組みkintoneででの協働をより補強する拡張機能の開発を行う.",
 						},
 						{
 							company: "Wantedly",
-							period: "2020/08 ~ 2020/09",
+							startDate: "2020/08",
+							endDate: "2020/09",
 							position: "Webエンジニア",
 							description: "Wentedly Webアプリの新機能開発.",
 						},
 						{
 							company: "VOYAGE GROUP",
-							period: "2020/08",
+							startDate: "2020/08",
+							endDate: "2020/08",
 							position: "Treasure Internship Student",
 							description:
 								"TreasureでWeb Application開発のいろはを学び, その後チームを組んでバックエンドはfirebase, go, フロントエンドはPreact, bootstrapでブログ投稿プラットフォームの開発を行っていました.",
 						},
 						{
 							company: "MOSHIMOS",
-							period: "2018/10 ~ 2018/12",
+							startDate: "2018/10",
+							endDate: "2018/12",
 							position: "Webエンジニア",
 							description: "Webエンジニアとしてアプリケーション開発に従事する",
 						},
@@ -86,41 +92,47 @@ export const Profile: FunctionComponent<Props> = ({ language }) => {
 					title: "Working Experience",
 					items: [
 						{
-							company: "Certain News media company",
-							period: "2019/04 ~",
+							company: "Nikkei, Inc.",
+							startDate: "2019/04",
+							endDate: "2025/07",
 							position: "Web Engineer",
 							description:
 								"I contributed to Web frontend performance tuning, and development interactive SPA.",
 						},
 						{
 							company: "Recruit",
-							period: "2020/10 ~ 2020/11",
+							startDate: "2020/10",
+							endDate: "2020/11",
 							position: "Web Engineer",
 							description: "I improve SPA's UI and investigate Web standard",
 						},
 						{
 							company: "Cybozu",
-							period: "2020/09",
+							startDate: "2020/09",
+							endDate: "2020/09",
 							position: "Internship Student",
 							description:
 								"I made the kintone's extension to allow kintone users to collaborate more with the other internship students.",
 						},
 						{
 							company: "Wantedly",
-							period: "2020/08 ~ 2020/09",
+							startDate: "2020/08",
+							endDate: "2020/09",
 							position: "Web Engineer",
 							description: "I make Wantedly web application's new feature",
 						},
 						{
 							company: "VOYAGE GROUP",
-							period: "2020/08",
+							startDate: "2020/08",
+							endDate: "2020/08",
 							position: "Treasure Internship Student",
 							description:
 								"I make media application with the other internship team.",
 						},
 						{
 							company: "MOSHIMOS",
-							period: "2018/10 ~ 2018/12",
+							startDate: "2018/10",
+							endDate: "2018/12",
 							position: "Web Engineer",
 							description: "I made web application from backend to frontend.",
 						},
@@ -149,7 +161,14 @@ export const Profile: FunctionComponent<Props> = ({ language }) => {
 						{workExperienceContent.items.map((item) => (
 							<li key={item.company}>
 								<h3>{item.company}</h3>
-								<p>{item.period}</p>
+								<p>
+									<time dateTime={item.startDate}>{item.startDate}</time> ~{" "}
+									{item.endDate ? (
+										<time dateTime={item.endDate}>{item.endDate}</time>
+									) : (
+										"Present"
+									)}
+								</p>
 								<p>Position: {item.position}</p>
 								<p>{item.description}</p>
 							</li>
