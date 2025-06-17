@@ -1,6 +1,11 @@
 import type { FunctionComponent } from "react";
 import {
+	languageArrow,
+	languageCheck,
+	languageDropdown,
+	languageName,
 	language as languageStyle,
+	languageTrigger,
 	languageWrapper,
 } from "./Language.module.css";
 
@@ -44,20 +49,48 @@ export const Language: FunctionComponent<Props> = ({
 	currentLanguage,
 	currentPath,
 }) => {
-	const currentLanguageLabel = currentLanguage === "ja" ? "日本語" : "English";
+	const currentLanguageInfo = languages.get(currentLanguage);
+
 	return (
-		<details>
-			<summary>
-				{" "}
-				<span role="img" aria-label="language">
-					<g-emoji fallback-src="/assets/static/earth_africa.png" alias="earth">
-						🌍
-					</g-emoji>
-				</span>{" "}
-				{currentLanguageLabel}
-			</summary>
+		<>
 			<div className={languageWrapper}>
+				<button
+					type="button"
+					className={languageTrigger}
+					data-language-trigger
+					aria-label="言語を選択"
+					aria-expanded="false"
+				>
+					<span role="img" aria-label="current language">
+						{currentLanguageInfo?.icon}
+					</span>
+					<svg
+						width="16"
+						height="16"
+						viewBox="0 0 16 16"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						className={languageArrow}
+						role="img"
+						aria-label="ドロップダウン矢印"
+					>
+						<path
+							d="M4 6L8 10L12 6"
+							stroke="currentColor"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+						/>
+					</svg>
+				</button>
+			</div>
+			<div
+				className={languageDropdown}
+				data-language-dropdown
+				style={{ display: "none" }}
+			>
 				{Array.from(languages.keys()).map((language) => {
+					const isActive = language === currentLanguage;
 					return (
 						<a
 							key={language}
@@ -66,18 +99,38 @@ export const Language: FunctionComponent<Props> = ({
 									? "https://en.shinyaigeek.dev"
 									: "http://ja.shinyaigeek.dev"
 							}${currentPath}`}
-							className={`${languageStyle} ${
-								language === currentLanguage ? "TODO" : ""
-							}`}
+							className={`${languageStyle} ${isActive ? "active" : ""}`}
 						>
 							<span role="img" aria-label="country">
 								{languages.get(language)?.icon}
 							</span>
-							{languages.get(language)?.name}
+							<span className={languageName}>
+								{languages.get(language)?.name}
+							</span>
+							{isActive && (
+								<svg
+									width="16"
+									height="16"
+									viewBox="0 0 16 16"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									className={languageCheck}
+									role="img"
+									aria-label="選択中"
+								>
+									<path
+										d="M13.5 4.5L6 12L2.5 8.5"
+										stroke="currentColor"
+										strokeWidth="2"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+								</svg>
+							)}
 						</a>
 					);
 				})}
 			</div>
-		</details>
+		</>
 	);
 };

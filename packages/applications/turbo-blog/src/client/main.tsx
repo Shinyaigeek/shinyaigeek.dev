@@ -183,6 +183,78 @@ class MobileMenuManager {
 	}
 }
 
+// Language dropdown management
+class LanguageDropdownManager {
+	private trigger: HTMLElement | null = null;
+	private dropdown: HTMLElement | null = null;
+	private isOpen = false;
+
+	constructor() {
+		this.init();
+	}
+
+	private init() {
+		// Find trigger button and dropdown
+		this.trigger = document.querySelector("[data-language-trigger]");
+		this.dropdown = document.querySelector("[data-language-dropdown]");
+
+		if (!this.trigger || !this.dropdown) {
+			return;
+		}
+
+		// Setup click handler
+		this.trigger.addEventListener("click", (event) => {
+			event.preventDefault();
+			this.toggleDropdown();
+		});
+
+		// Close dropdown when clicking outside
+		document.addEventListener("click", (event) => {
+			if (
+				this.isOpen &&
+				!this.trigger?.contains(event.target as Node) &&
+				!this.dropdown?.contains(event.target as Node)
+			) {
+				this.closeDropdown();
+			}
+		});
+
+		// Close dropdown on escape key
+		document.addEventListener("keydown", (event) => {
+			if (event.key === "Escape" && this.isOpen) {
+				this.closeDropdown();
+			}
+		});
+	}
+
+	private toggleDropdown() {
+		if (this.isOpen) {
+			this.closeDropdown();
+		} else {
+			this.openDropdown();
+		}
+	}
+
+	private openDropdown() {
+		this.isOpen = true;
+		this.trigger?.classList.add("open");
+		this.trigger?.setAttribute("aria-expanded", "true");
+		if (this.dropdown) {
+			this.dropdown.style.display = "block";
+		}
+	}
+
+	private closeDropdown() {
+		this.isOpen = false;
+		this.trigger?.classList.remove("open");
+		this.trigger?.setAttribute("aria-expanded", "false");
+		if (this.dropdown) {
+			this.dropdown.style.display = "none";
+		}
+	}
+}
+
 // Initialize managers
 new ThemeManager();
 new MobileMenuManager();
+new LanguageDropdownManager();
