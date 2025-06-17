@@ -87,8 +87,11 @@ export class WorkExperienceRepository {
 
 		// Sort by startDate descending (most recent first)
 		experiences.sort((a, b) => {
-			const dateA = new Date(a.metadata.startDate.replace("/", "-"));
-			const dateB = new Date(b.metadata.startDate.replace("/", "-"));
+			if (!a.metadata.endDate || !b.metadata.endDate) {
+				return -1;
+			}
+			const dateA = new Date(a.metadata.endDate.replace("/", "-"));
+			const dateB = new Date(b.metadata.endDate.replace("/", "-"));
 			return dateB.getTime() - dateA.getTime();
 		});
 
