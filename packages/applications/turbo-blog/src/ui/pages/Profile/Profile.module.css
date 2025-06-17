@@ -132,7 +132,7 @@
 }
 
 .entryLink {
-    color: var(--theme-color);
+    color: #0969da;
     text-decoration: none;
     font-size: 0.85rem;
     line-height: 1.3;
@@ -143,7 +143,7 @@
 
 .entryLink:hover {
     text-decoration: underline;
-    color: var(--theme-color-light);
+    color: #0860ca;
 }
 
 .description {
@@ -220,6 +220,14 @@
     .lists li:hover {
         background-color: rgba(255, 255, 255, 0.05);
     }
+
+    .entryLink {
+        color: #58a6ff;
+    }
+
+    .entryLink:hover {
+        color: #79c0ff;
+    }
 }
 
 
@@ -258,6 +266,14 @@
 
     .lists li:hover {
         background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .entryLink {
+        color: #58a6ff;
+    }
+
+    .entryLink:hover {
+        color: #79c0ff;
     }
 }
 
