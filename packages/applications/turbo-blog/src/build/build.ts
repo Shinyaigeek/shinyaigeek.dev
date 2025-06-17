@@ -12,6 +12,8 @@ import {
 import { outputBlogIndexPage } from "./handlers/post/output";
 import { generateProfilePage } from "./handlers/profile/generate";
 import { outputProfilePage } from "./handlers/profile/output";
+import { generateRssPage } from "./handlers/rss/generate";
+import { outputRssPage } from "./handlers/rss/output";
 import { registerBuiltAssetsPlugin } from "./plugin/built-assets";
 import { registerLanguagePlugin } from "./plugin/language";
 
@@ -51,6 +53,14 @@ router.on("/profile/", {
 router.on("/en/profile/", {
 	generate: generateProfilePage,
 	output: outputProfilePage,
+});
+router.on("/rss.xml", {
+	generate: generateRssPage,
+	output: outputRssPage,
+});
+router.on("/en/rss.xml", {
+	generate: generateRssPage,
+	output: outputRssPage,
 });
 
 router.out();
