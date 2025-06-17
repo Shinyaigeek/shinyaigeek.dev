@@ -118,68 +118,7 @@ export const Profile: FunctionComponent<Props> = ({
 						))}
 					</ul>
 				</div>
-
-				<Divider />
-
-				<div className="interests">
-					<div className={title}>Specialities</div>
-					<p className="content">
-						<ul>
-							{specialities.map((speciality) => (
-								<Card
-									title={speciality.title}
-									img={speciality.img ?? "/assets/static/placeholder.png"}
-								/>
-							))}
-						</ul>
-					</p>
-				</div>
 			</div>
 		</div>
 	);
 };
-
-interface Speciality {
-	title: string;
-	img?: string;
-}
-
-const specialities: Speciality[] = [
-	{
-		title: "JavaScript",
-		img: "/assets/static/javascript.png",
-	},
-
-	{
-		title: "TypeScript",
-		img: "/assets/static/typescript.png",
-	},
-	{
-		title: "React",
-		img: "/assets/static/react.png",
-	},
-	{
-		title: "Rust",
-		img: "/assets/static/rust.png",
-	},
-	{
-		title: "Fastly",
-		img: "/assets/static/fastly.png",
-	},
-	{
-		title: "CloudFlare",
-		img: "/assets/static/cloudflare.png",
-	},
-	{
-		title: "Web Performance",
-	},
-	{
-		title: "Browser",
-	},
-	{
-		title: "Network",
-	},
-	{
-		title: "Web Frontend Tooling",
-	},
-];
