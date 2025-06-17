@@ -1,5 +1,6 @@
 import type { FunctionComponent } from "react";
 import { Language } from "../../../build/model/language/language.entity";
+import type { WorkExperience } from "../../../build/model/work-experience/work-experience.entity";
 import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
 import { AboutMe } from "../../components/about-me/about-me";
 import { Divider } from "../../components/divider/divider";
@@ -9,9 +10,13 @@ import { Card } from "./components/Card/Card";
 
 interface Props {
 	language: Language;
+	workExperiences: WorkExperience[];
 }
 
-export const Profile: FunctionComponent<Props> = ({ language }) => {
+export const Profile: FunctionComponent<Props> = ({
+	language,
+	workExperiences,
+}) => {
 	const educationContent =
 		language === Language.ja
 			? {
@@ -35,109 +40,8 @@ export const Profile: FunctionComponent<Props> = ({ language }) => {
 					],
 				};
 
-	const workExperienceContent =
-		language === Language.ja
-			? {
-					title: "職歴",
-					items: [
-						{
-							company: "株式会社日本経済新聞社",
-							startDate: "2019/04",
-							endDate: "2025/07",
-							position: "Webエンジニア",
-							description:
-								"フロントエンドエンジニアとして, Web Frontend文脈でのパフォーマンス改善, インテラクティブなアプリケーション開発に従事する.",
-						},
-						{
-							company: "Recruit",
-							startDate: "2020/10",
-							endDate: "2020/11",
-							position: "Webエンジニア",
-							description:
-								"フロントエンドのUI改善, Web 標準動向の調査を行なっていました.",
-						},
-						{
-							company: "Cybozu",
-							startDate: "2020/09",
-							endDate: "2020/09",
-							position: "Internship Student",
-							description:
-								"学生インターンとして, チームを組みkintoneででの協働をより補強する拡張機能の開発を行う.",
-						},
-						{
-							company: "Wantedly",
-							startDate: "2020/08",
-							endDate: "2020/09",
-							position: "Webエンジニア",
-							description: "Wentedly Webアプリの新機能開発.",
-						},
-						{
-							company: "VOYAGE GROUP",
-							startDate: "2020/08",
-							endDate: "2020/08",
-							position: "Treasure Internship Student",
-							description:
-								"TreasureでWeb Application開発のいろはを学び, その後チームを組んでバックエンドはfirebase, go, フロントエンドはPreact, bootstrapでブログ投稿プラットフォームの開発を行っていました.",
-						},
-						{
-							company: "MOSHIMOS",
-							startDate: "2018/10",
-							endDate: "2018/12",
-							position: "Webエンジニア",
-							description: "Webエンジニアとしてアプリケーション開発に従事する",
-						},
-					],
-				}
-			: {
-					title: "Working Experience",
-					items: [
-						{
-							company: "Nikkei, Inc.",
-							startDate: "2019/04",
-							endDate: "2025/07",
-							position: "Web Engineer",
-							description:
-								"I contributed to Web frontend performance tuning, and development interactive SPA.",
-						},
-						{
-							company: "Recruit",
-							startDate: "2020/10",
-							endDate: "2020/11",
-							position: "Web Engineer",
-							description: "I improve SPA's UI and investigate Web standard",
-						},
-						{
-							company: "Cybozu",
-							startDate: "2020/09",
-							endDate: "2020/09",
-							position: "Internship Student",
-							description:
-								"I made the kintone's extension to allow kintone users to collaborate more with the other internship students.",
-						},
-						{
-							company: "Wantedly",
-							startDate: "2020/08",
-							endDate: "2020/09",
-							position: "Web Engineer",
-							description: "I make Wantedly web application's new feature",
-						},
-						{
-							company: "VOYAGE GROUP",
-							startDate: "2020/08",
-							endDate: "2020/08",
-							position: "Treasure Internship Student",
-							description:
-								"I make media application with the other internship team.",
-						},
-						{
-							company: "MOSHIMOS",
-							startDate: "2018/10",
-							endDate: "2018/12",
-							position: "Web Engineer",
-							description: "I made web application from backend to frontend.",
-						},
-					],
-				};
+	const workExperienceTitle =
+		language === Language.ja ? "職歴" : "Working Experience";
 
 	return (
 		<div className={profile}>
@@ -156,21 +60,49 @@ export const Profile: FunctionComponent<Props> = ({ language }) => {
 				<Divider />
 
 				<div className="history--job element">
-					<div className={title}>{workExperienceContent.title}</div>
+					<div className={title}>{workExperienceTitle}</div>
 					<ul className={lists}>
-						{workExperienceContent.items.map((item) => (
-							<li key={item.company}>
-								<h3>{item.company}</h3>
+						{workExperiences.map((experience) => (
+							<li key={experience.slug}>
+								<h3>{experience.metadata.company}</h3>
 								<p>
-									<time dateTime={item.startDate}>{item.startDate}</time> ~{" "}
-									{item.endDate ? (
-										<time dateTime={item.endDate}>{item.endDate}</time>
+									<time dateTime={experience.metadata.startDate}>
+										{experience.metadata.startDate}
+									</time>{" "}
+									~{" "}
+									{experience.metadata.endDate ? (
+										<time dateTime={experience.metadata.endDate}>
+											{experience.metadata.endDate}
+										</time>
 									) : (
 										"Present"
 									)}
 								</p>
-								<p>Position: {item.position}</p>
-								<p>{item.description}</p>
+								{experience.metadata.role && (
+									<p>Role: {experience.metadata.role}</p>
+								)}
+								{experience.metadata.position && (
+									<p>Position: {experience.metadata.position}</p>
+								)}
+								{experience.metadata.technologies && (
+									<p>
+										Technologies: #{experience.metadata.technologies.join(" #")}
+									</p>
+								)}
+								<details>
+									<summary>detail</summary>
+									{/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+									<div dangerouslySetInnerHTML={{ __html: experience.body }} />
+								</details>
+								{experience.metadata.entries && (
+									<ul>
+										{experience.metadata.entries.map((entry) => (
+											<li key={entry.url}>
+												<a href={entry.url}>{entry.title}</a>
+											</li>
+										))}
+									</ul>
+								)}
 							</li>
 						))}
 					</ul>
