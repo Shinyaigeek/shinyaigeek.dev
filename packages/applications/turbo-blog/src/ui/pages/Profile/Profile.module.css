@@ -196,13 +196,29 @@
     }
 
     .metadataLabel {
-        color: #999;
+        color: #cbd5e0;
+    }
+
+    .metadataValue {
+        color: #e2e8f0;
     }
 
     .technologyTag {
-        background: rgba(255, 255, 255, 0.08);
-        color: #bbb;
-        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.12);
+        color: #e2e8f0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .lists li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .lists li:first-child {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .lists li:hover {
+        background-color: rgba(255, 255, 255, 0.05);
     }
 }
 
@@ -219,13 +235,29 @@
     }
 
     .metadataLabel {
-        color: #999;
+        color: #cbd5e0;
+    }
+
+    .metadataValue {
+        color: #e2e8f0;
     }
 
     .technologyTag {
-        background: rgba(255, 255, 255, 0.08);
-        color: #bbb;
-        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.12);
+        color: #e2e8f0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .lists li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .lists li:first-child {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .lists li:hover {
+        background-color: rgba(255, 255, 255, 0.05);
     }
 }
 
