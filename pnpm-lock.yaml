@@ -373,6 +373,9 @@ importers:
       react-dom:
         specifier: 19.0.0-beta-94eed63c49-20240425
         version: 19.0.0-beta-94eed63c49-20240425(react@19.0.0-beta-94eed63c49-20240425)
+      rehype-highlight:
+        specifier: ^6.0.0
+        version: 6.0.0
       rehype-stringify:
         specifier: ^9.0.3
         version: 9.0.4

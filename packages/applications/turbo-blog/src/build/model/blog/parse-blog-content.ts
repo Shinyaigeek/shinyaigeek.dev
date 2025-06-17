@@ -5,6 +5,7 @@ import {
 	isErr,
 	unwrapOk,
 } from "option-t/esm/PlainResult";
+import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
@@ -36,6 +37,7 @@ export const parseBlogContent: (
 		.use(remarkGfm)
 		.use(remarkReferences)
 		.use(remarkRehype)
+		.use(rehypeHighlight)
 		.use(rehypeStringify)
 		.use(applyHeadingIdForHeadings)
 		.process(content);
