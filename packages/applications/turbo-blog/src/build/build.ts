@@ -14,6 +14,8 @@ import { generateProfilePage } from "./handlers/profile/generate";
 import { outputProfilePage } from "./handlers/profile/output";
 import { generateRssPage } from "./handlers/rss/generate";
 import { outputRssPage } from "./handlers/rss/output";
+import { generateSitemapPage } from "./handlers/sitemap/generate";
+import { outputSitemapPage } from "./handlers/sitemap/output";
 import { registerBuiltAssetsPlugin } from "./plugin/built-assets";
 import { registerLanguagePlugin } from "./plugin/language";
 
@@ -61,6 +63,14 @@ router.on("/rss.xml", {
 router.on("/en/rss.xml", {
 	generate: generateRssPage,
 	output: outputRssPage,
+});
+router.on("/sitemap.xml", {
+	generate: generateSitemapPage,
+	output: outputSitemapPage,
+});
+router.on("/en/sitemap.xml", {
+	generate: generateSitemapPage,
+	output: outputSitemapPage,
 });
 
 router.out();
