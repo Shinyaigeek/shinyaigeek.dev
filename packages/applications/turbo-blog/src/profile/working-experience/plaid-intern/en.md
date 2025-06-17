@@ -12,4 +12,5 @@ I focused on optimizing third-party scripts, which significantly improved user e
 - Removing unnecessary polyfills.
 - Refining and validating minifier settings.
 - Restructuring the codebase to maximize tree-shaking and minification effectiveness.
+
 To prevent future bloat, I also introduced a mechanism in our CI/CD pipeline to notify developers of file size changes, fostering a culture of file size awareness among the team.

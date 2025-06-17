@@ -3,6 +3,7 @@ company: VOYAGE GROUP
 startDate: "2020/08"
 endDate: "2020/08"
 position: Treasure Internship Student
+technologies: ["React", "TypeScript", "Golang"]
 ---
 
-TreasureでWeb Application開発のいろはを学び, その後チームを組んでバックエンドはfirebase, go, フロントエンドはPreact, bootstrapでブログ投稿プラットフォームの開発を行っていました.
+ハッカソン形式のインターンシップで、他のインターン生チームと共にSNSのようなウェブアプリケーションを開発しました。フロントエンドエンジニアとして、ユーザー体験のデザインとフロントエンドアプリケーションの開発をリードしました。また、バックエンド開発者と協力して RESTful な API 設計を行い、デザイン部門で賞を受賞しました。

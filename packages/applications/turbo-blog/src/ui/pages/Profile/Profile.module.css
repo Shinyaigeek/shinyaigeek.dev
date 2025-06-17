@@ -101,7 +101,7 @@
     line-height: 1.6;
 }
 
-.lists p:first-of-type {
+.lists p {
     color: var(--theme-color);
     font-size: 0.85rem;
     font-family: "SF Mono", "Fira Code", monospace;
