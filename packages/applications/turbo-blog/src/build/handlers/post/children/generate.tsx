@@ -40,7 +40,7 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 		<Shell
 			language={rawLanguage}
 			ogImageFilename="TODO"
-			title="shinyaigeek.dev"
+			title={`${blogPost.metadata.title} - shinyaigeek.dev`}
 			path={path}
 			description={blogPost.metadata.description}
 			builtAssets={context.builtAssets}
