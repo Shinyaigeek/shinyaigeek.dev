@@ -39,7 +39,7 @@
 }
 
 .lists li:first-child {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: none;
 }
 
 .lists li:last-child {
@@ -47,13 +47,13 @@
 }
 
 .lists li {
-    margin-bottom: 1.5rem;
-    padding: 1.5rem 0;
+    margin-bottom: 1rem;
+    padding: 1rem 0;
     background: transparent;
     border-radius: 0;
     box-shadow: none;
     transition: background-color 0.3s ease;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .lists li:hover {
@@ -69,13 +69,40 @@
 
 .lists p {
     margin: 0.25rem 0;
-    color: #666;
+    color: var(--theme-color);
     line-height: 1.6;
     font-size: 0.95rem;
 }
 
+/* Fix details content styling */
+.lists details div {
+    margin-top: 0.8rem;
+}
+
+.lists details div p {
+    margin: 0.6rem 0;
+    color: var(--theme-color);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.lists details div ul {
+    margin: 0.5rem 0;
+    padding-left: 1.2rem;
+}
+
+.lists details div ul li {
+    margin: 0.3rem 0;
+    padding: 0;
+    border: none !important;
+    background: none !important;
+    color: var(--theme-color);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
 .lists p:first-of-type {
-    color: #999;
+    color: var(--theme-color);
     font-size: 0.85rem;
     font-family: "SF Mono", "Fira Code", monospace;
 }
@@ -94,7 +121,7 @@
 }
 
 .metadataValue {
-    color: var(--text-secondary);
+    color: var(--theme-color);
     font-weight: 400;
 }
 
