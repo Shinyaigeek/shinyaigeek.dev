@@ -288,6 +288,26 @@
     }
 }
 
+:global(html[data-theme="light"]) {
+    .forDark {
+        display: none;
+    }
+
+    .forLight {
+        display: block;
+    }
+}
+
+:global(html[data-theme="dark"]) {
+    .forDark {
+        display: block;
+    }
+
+    .forLight {
+        display: none;
+    }
+}
+
 .glitch:before {
     display: flex;
     align-items: center;
