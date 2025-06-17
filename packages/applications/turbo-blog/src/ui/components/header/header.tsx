@@ -56,36 +56,36 @@ export const Header: FunctionComponent<HeaderProps> = ({
 						label="Activity"
 					/>
 				</nav>
+				<button
+					type="button"
+					className={hamburgerMenu}
+					data-hamburger-menu
+					aria-label="メニューを開く"
+					aria-expanded="false"
+				>
+					<svg
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						data-hamburger-icon
+						role="img"
+						aria-label="ハンバーガーメニュー"
+					>
+						<path
+							d="M3 12H21M3 6H21M3 18H21"
+							stroke="currentColor"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							data-menu-lines
+						/>
+					</svg>
+				</button>
 				<ThemeToggle />
 				<Language currentLanguage={language} currentPath={currentPath} />
 			</div>
-			<button
-				type="button"
-				className={hamburgerMenu}
-				data-hamburger-menu
-				aria-label="メニューを開く"
-				aria-expanded="false"
-			>
-				<svg
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					data-hamburger-icon
-					role="img"
-					aria-label="ハンバーガーメニュー"
-				>
-					<path
-						d="M3 12H21M3 6H21M3 18H21"
-						stroke="currentColor"
-						strokeWidth="2"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						data-menu-lines
-					/>
-				</svg>
-			</button>
 		</header>
 		<div className={mobileMenu} data-mobile-menu style={{ display: "none" }}>
 			<nav className={mobileNavigation} aria-label="モバイルメニュー">
