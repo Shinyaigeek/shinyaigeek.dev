@@ -206,6 +206,59 @@
     }
 }
 
+
+:global(html[data-theme="dark"]) {
+    :root {
+        --text-primary: #e2e8f0;
+        --text-secondary: #cbd5e0;
+        --text-tertiary: #a0aec0;
+        --card-background: #2d3748;
+        --border-color: #718096;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --shadow-color-hover: rgba(0, 0, 0, 0.4);
+    }
+
+    .metadataLabel {
+        color: #999;
+    }
+
+    .technologyTag {
+        background: rgba(255, 255, 255, 0.08);
+        color: #bbb;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+}
+
+:global(html[data-theme="light"]) {
+    :root {
+        --text-primary: #2d3748;
+        --text-secondary: #4a5568;
+        --text-tertiary: #718096;
+        --card-background: #ffffff;
+        --border-color: #4a5568;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+        --shadow-color-hover: rgba(0, 0, 0, 0.15);
+    }
+
+    .metadataLabel {
+        font-weight: 600;
+        color: #777;
+        font-size: 0.85rem;
+        margin-right: 0.5rem;
+        position: relative;
+    }
+
+    .technologyTag {
+        background: rgba(0, 0, 0, 0.05);
+        color: #666;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: normal;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+}
+
 @media (max-width: 768px) {
     .profile {
         padding: 1rem;

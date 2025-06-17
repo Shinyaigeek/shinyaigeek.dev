@@ -50,6 +50,19 @@
   }
 }
 
+
+:global(html[data-theme="dark"]) {
+  :root {
+    --image-filter: brightness(0.9);
+  }
+}
+
+:global(html[data-theme="light"]) {
+  :root {
+    --image-filter: none;
+  }
+}
+
 @media (max-width: 768px) {
   .card {
     padding: 1rem;
