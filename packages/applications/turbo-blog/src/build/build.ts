@@ -2,6 +2,16 @@ import { Router } from "ssg-router";
 import type { Context } from "./context/context";
 import { generateIndexPage } from "./handlers/index/generate";
 import { outputIndexPage } from "./handlers/index/output";
+import {
+	generateBlogPostOGImagePage,
+	generateProfileOGImagePage,
+	generateTopOGImagePage,
+} from "./handlers/ogimage/generate";
+import {
+	getEnglishOGImageChildren,
+	getJapaneseOGImageChildren,
+} from "./handlers/ogimage/getOGImageChildren";
+import { outputOGImagePage } from "./handlers/ogimage/output";
 import { generateBlogPostPage } from "./handlers/post/children/generate";
 import { outputBlogPostPage } from "./handlers/post/children/output";
 import { generateBlogIndexPage } from "./handlers/post/generate";
@@ -71,6 +81,30 @@ router.on("/sitemap.xml", {
 router.on("/en/sitemap.xml", {
 	generate: generateSitemapPage,
 	output: outputSitemapPage,
+});
+router.on("/ogp.png", {
+	generate: generateTopOGImagePage,
+	output: outputOGImagePage,
+});
+router.on("/en/ogp.png", {
+	generate: generateTopOGImagePage,
+	output: outputOGImagePage,
+});
+router.on("/profile/ogp.png", {
+	generate: generateProfileOGImagePage,
+	output: outputOGImagePage,
+});
+router.on("/en/profile/ogp.png", {
+	generate: generateProfileOGImagePage,
+	output: outputOGImagePage,
+});
+router.onChildren(getJapaneseOGImageChildren, {
+	generate: generateBlogPostOGImagePage,
+	output: outputOGImagePage,
+});
+router.onChildren(getEnglishOGImageChildren, {
+	generate: generateBlogPostOGImagePage,
+	output: outputOGImagePage,
 });
 
 router.out();

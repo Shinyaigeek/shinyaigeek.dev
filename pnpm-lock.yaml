@@ -349,6 +349,9 @@ importers:
       '@hono/node-server':
         specifier: ^1.11.1
         version: 1.11.1
+      '@resvg/resvg-js':
+        specifier: ^2.1.0
+        version: 2.6.0
       front-matter:
         specifier: ^4.0.2
         version: 4.0.2
@@ -361,6 +364,9 @@ importers:
       html-minifier:
         specifier: ^4.0.0
         version: 4.0.0
+      image-to-base64:
+        specifier: ^2.2.0
+        version: 2.2.0
       option-t:
         specifier: ^39.0.3
         version: 39.0.3
@@ -388,6 +394,9 @@ importers:
       remark-rehype:
         specifier: ^10.1.0
         version: 10.1.0
+      satori:
+        specifier: ^0.0.43
+        version: 0.0.43
       ssg-router:
         specifier: workspace:*
         version: link:../../modules/ssg-router
@@ -419,6 +428,9 @@ importers:
       '@types/html-minifier':
         specifier: ^4.0.0
         version: 4.0.5
+      '@types/image-to-base64':
+        specifier: ^2.1.0
+        version: 2.1.2
       '@types/node':
         specifier: ^22.13.5
         version: 22.13.5
