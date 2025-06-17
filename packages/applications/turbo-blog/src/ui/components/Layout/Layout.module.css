@@ -62,37 +62,6 @@
     pointer-events: none;
 }
 
-:global(html[data-theme="dark"]) {
-    .root {
-    --theme-header: rgba(26, 22, 26, 0.95);
-    --theme-background: #2d3436;
-    --theme-color: #f8f9fa;
-    --theme-color-light: #0984e3;
-    --theme-text: #f8f9fa;
-    --bg-color: #2d3436;
-    --headings-color: #74b9ff;
-    --twitter-background: #2d3436;
-    --twitter-toggle: #636e72;
-    --twitter-cancel: #636e72;
-    --item-background: #636e72;
-    --item-border: #b2bec3;
-    --image-gray: grayscale(15%);
-    --anchor-color: #74b9ff;
-    --anchor-visited-color: #a29bfe;
-    --important-color: #00b894;
-    --gradient-start: #d35400;
-    --gradient-end: #f1c40f;
-        --color-hover-bg: rgba(255, 255, 255, 0.1);
-        --color-focus: #74b9ff;
-    }
-}
-
-:global(html[data-theme="dark"])::before {
-    .root {
-    opacity: 0.1;
-    }
-}
-
 @media (prefers-color-scheme: dark) {
     .root {
         --theme-header: rgba(26, 22, 26, 0.95);
@@ -119,6 +88,61 @@
 
     .root::before {
         opacity: 0.1;
+    }
+}
+
+:global(html[data-theme="dark"]) {
+    .root {
+    --theme-header: rgba(26, 22, 26, 0.95);
+    --theme-background: #2d3436;
+    --theme-color: #f8f9fa;
+    --theme-color-light: #0984e3;
+    --theme-text: #f8f9fa;
+    --bg-color: #2d3436;
+    --headings-color: #74b9ff;
+    --twitter-background: #2d3436;
+    --twitter-toggle: #636e72;
+    --twitter-cancel: #636e72;
+    --item-background: #636e72;
+    --item-border: #b2bec3;
+    --image-gray: grayscale(15%);
+    --anchor-color: #74b9ff;
+    --anchor-visited-color: #a29bfe;
+    --important-color: #00b894;
+    --gradient-start: #d35400;
+    --gradient-end: #f1c40f;
+        --color-hover-bg: rgba(255, 255, 255, 0.1);
+        --color-focus: #74b9ff;
+    }
+}
+
+:global(html[data-theme="light"]) {
+    .root {
+        --theme-header: rgba(26, 22, 26, 0.95);
+        --theme-background: #f8f9fa;
+        --theme-color: #2d3436;
+        --theme-color-light: #74b9ff;
+        --theme-text: #f8f9fa;
+        --bg-color: #f8f9fa;
+        --headings-color: #0984e3;
+        --twitter-background: #fff;
+        --twitter-toggle: #e6ecf0;
+        --twitter-cancel: #e6ecf0;
+        --item-background: #fff;
+        --item-border: #dfe6e9;
+        --image-gray: grayscale(0%);
+        --anchor-color: #0984e3;
+        --anchor-visited-color: #6c5ce7;
+        --important-color: #00b894;
+        --gradient-start: #f1c40f;
+        --gradient-end: #ffeaa7;
+        --color-hover-bg: rgba(0, 0, 0, 0.05);
+        --color-focus: #0984e3;
+    
+        background: var(--theme-background);
+        color: var(--theme-color);
+        position: relative;
+        min-height: 100vh;
     }
 }
 
