@@ -6,7 +6,15 @@ import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/Shinya
 import { AboutMe } from "../../components/about-me/about-me";
 import { Divider } from "../../components/divider/divider";
 import { ShinyaigeekCoreProfile } from "../../components/shinyaigeek-core-profile/shinyaigeek-core-profile";
-import { lists, profile, title } from "./Profile.module.css";
+import {
+	lists,
+	metadataLabel,
+	metadataValue,
+	profile,
+	technologiesContainer,
+	technologyTag,
+	title,
+} from "./Profile.module.css";
 import { Card } from "./components/Card/Card";
 
 interface Props {
@@ -61,15 +69,32 @@ export const Profile: FunctionComponent<Props> = ({
 									)}
 								</p>
 								{experience.metadata.role && (
-									<p>Role: {experience.metadata.role}</p>
+									<p>
+										<span className={metadataLabel}>Role</span>
+										<span className={metadataValue}>
+											{experience.metadata.role}
+										</span>
+									</p>
 								)}
 								{experience.metadata.position && (
-									<p>Position: {experience.metadata.position}</p>
+									<p>
+										<span className={metadataLabel}>Position</span>
+										<span className={metadataValue}>
+											{experience.metadata.position}
+										</span>
+									</p>
 								)}
 								{experience.metadata.technologies && (
-									<p>
-										Technologies: #{experience.metadata.technologies.join(" #")}
-									</p>
+									<div>
+										<span className={metadataLabel}>Technologies</span>
+										<div className={technologiesContainer}>
+											{experience.metadata.technologies.map((tech) => (
+												<span key={tech} className={technologyTag}>
+													{tech}
+												</span>
+											))}
+										</div>
+									</div>
 								)}
 								<details>
 									<summary>detail</summary>
@@ -112,18 +137,40 @@ export const Profile: FunctionComponent<Props> = ({
 									)}
 								</p>
 								{education.metadata.degree && (
-									<p>Degree: {education.metadata.degree}</p>
+									<p>
+										<span className={metadataLabel}>Degree</span>
+										<span className={metadataValue}>
+											{education.metadata.degree}
+										</span>
+									</p>
 								)}
 								{education.metadata.field && (
-									<p>Field: {education.metadata.field}</p>
+									<p>
+										<span className={metadataLabel}>Field</span>
+										<span className={metadataValue}>
+											{education.metadata.field}
+										</span>
+									</p>
 								)}
 								{education.metadata.description && (
-									<p>Description: {education.metadata.description}</p>
+									<p>
+										<span className={metadataLabel}>Description</span>
+										<span className={metadataValue}>
+											{education.metadata.description}
+										</span>
+									</p>
 								)}
 								{education.metadata.achievements && (
-									<p>
-										Achievements: #{education.metadata.achievements.join(" #")}
-									</p>
+									<div>
+										<span className={metadataLabel}>Achievements</span>
+										<div className={technologiesContainer}>
+											{education.metadata.achievements.map((achievement) => (
+												<span key={achievement} className={technologyTag}>
+													{achievement}
+												</span>
+											))}
+										</div>
+									</div>
 								)}
 								<details>
 									<summary>detail</summary>

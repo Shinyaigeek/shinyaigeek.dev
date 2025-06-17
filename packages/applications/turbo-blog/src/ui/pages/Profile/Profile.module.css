@@ -80,6 +80,41 @@
     font-family: "SF Mono", "Fira Code", monospace;
 }
 
+.metadataLabel {
+    font-weight: 600;
+    color: #777;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+    position: relative;
+}
+
+.metadataLabel::after {
+    content: ':';
+    margin-left: 0.1rem;
+}
+
+.metadataValue {
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.technologiesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.technologyTag {
+    background: linear-gradient(135deg, var(--theme-color) 0%, var(--theme-color-light) 100%);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
 .description {
     margin: 0;
 }
@@ -127,6 +162,10 @@
         --border-color: #718096;
         --shadow-color: rgba(0, 0, 0, 0.3);
         --shadow-color-hover: rgba(0, 0, 0, 0.4);
+    }
+
+    .metadataLabel {
+        color: #999;
     }
 }
 
