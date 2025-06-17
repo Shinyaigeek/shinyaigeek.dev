@@ -150,6 +150,39 @@
     margin: 0;
 }
 
+.description > div:last-child {
+    margin-top: 1.5rem;
+}
+
+.description p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--theme-color);
+    margin: 1.4rem 0;
+    text-align: justify;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    position: relative;
+    padding-left: 1.2rem;
+}
+
+.description p:first-child::first-letter {
+    font-size: 1.4em;
+    font-weight: 600;
+    color: var(--theme-color-light);
+    float: left;
+    line-height: 1;
+    margin: 0.1em 0.1em 0 0;
+}
+
+.description p:first-child {
+    margin-top: 0;
+}
+
+.description p:last-child {
+    margin-bottom: 0;
+}
+
 .content {
     line-height: 1.8;
     color: var(--text-secondary);

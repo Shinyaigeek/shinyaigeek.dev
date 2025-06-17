@@ -8,6 +8,7 @@ import { AboutMe } from "../../components/about-me/about-me";
 import { Divider } from "../../components/divider/divider";
 import { ShinyaigeekCoreProfile } from "../../components/shinyaigeek-core-profile/shinyaigeek-core-profile";
 import {
+	description,
 	entriesList,
 	entryItem,
 	entryLink,
@@ -19,7 +20,6 @@ import {
 	technologyTag,
 	title,
 } from "./Profile.module.css";
-import { Card } from "./components/Card/Card";
 
 interface Props {
 	language: Language;
@@ -48,7 +48,7 @@ export const Profile: FunctionComponent<Props> = ({
 
 				<Divider />
 
-				<div className="description">
+				<div className={description}>
 					<div className={title}>About Me</div>
 					<AboutMe body={aboutMe.body} />
 				</div>
