@@ -4,10 +4,12 @@ import type { GenerateHandler } from "ssg-router";
 import { Layout } from "../../../ui/components/Layout/Layout";
 import { Shell } from "../../../ui/components/Shell/shell";
 import { Profile } from "../../../ui/pages/Profile/Profile";
+import { GetEducationsUsecase } from "../../application/getEducations/getEducations.usecase";
 import { GetWorkExperiencesUsecase } from "../../application/getWorkExperiences/getWorkExperiences.usecase";
 import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
+import { EducationRepository } from "../../model/education/education.repository";
 import { Language } from "../../model/language/language.entity";
 import { WorkExperienceRepository } from "../../model/work-experience/work-experience.repository";
 
@@ -21,9 +23,14 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 		fileIOInfrastructure,
 		filePathInfrastructure,
 	);
+	const educationRepository = new EducationRepository(
+		fileIOInfrastructure,
+		filePathInfrastructure,
+	);
 	const getWorkExperiencesUsecase = new GetWorkExperiencesUsecase(
 		workExperienceRepository,
 	);
+	const getEducationsUsecase = new GetEducationsUsecase(educationRepository);
 
 	// Fetch work experiences
 	const workExperiencesResult =
@@ -34,6 +41,17 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 	}
 
 	const workExperiences = unwrapOk(workExperiencesResult);
+
+	// Fetch educations
+	const educationsResult = await getEducationsUsecase.getEducations(
+		context.language,
+	);
+
+	if (isErr(educationsResult)) {
+		throw unwrapErr(educationsResult);
+	}
+
+	const educations = unwrapOk(educationsResult);
 
 	const rawLanguage = context.language === Language.ja ? "ja" : "en";
 	const description =
@@ -54,6 +72,7 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 				<Profile
 					language={context.language}
 					workExperiences={workExperiences}
+					educations={educations}
 				/>
 			</Layout>
 		</Shell>,

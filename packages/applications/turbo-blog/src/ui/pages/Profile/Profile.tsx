@@ -1,4 +1,5 @@
 import type { FunctionComponent } from "react";
+import type { Education } from "../../../build/model/education/education.entity";
 import { Language } from "../../../build/model/language/language.entity";
 import type { WorkExperience } from "../../../build/model/work-experience/work-experience.entity";
 import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
@@ -11,34 +12,15 @@ import { Card } from "./components/Card/Card";
 interface Props {
 	language: Language;
 	workExperiences: WorkExperience[];
+	educations: Education[];
 }
 
 export const Profile: FunctionComponent<Props> = ({
 	language,
 	workExperiences,
+	educations,
 }) => {
-	const educationContent =
-		language === Language.ja
-			? {
-					title: "学歴",
-					items: [
-						"2018: 西大和学園高等学校卒業",
-						"2018: 東京大学入学",
-						"2019: 東京大学工学部システム創成学科内定",
-						"2020: 東京大学工学部システム創成学科進学",
-						"2022: 東京大学工学部システム創成学科卒業",
-					],
-				}
-			: {
-					title: "Education",
-					items: [
-						"2018: Graduated from Nishiyamato highschool",
-						"2018: Enter University of Tokyo",
-						"2019: decide informally to major in Factory of Engineering in University of Tokyo",
-						"2020: Major in Factory of Engineering in University of Tokyo",
-						"2022: Graduated from University of Tokyo",
-					],
-				};
+	const educationTitle = language === Language.ja ? "学歴" : "Education";
 
 	const workExperienceTitle =
 		language === Language.ja ? "職歴" : "Working Experience";
@@ -111,10 +93,44 @@ export const Profile: FunctionComponent<Props> = ({
 				<Divider />
 
 				<div className="history--study element">
-					<div className={title}>{educationContent.title}</div>
+					<div className={title}>{educationTitle}</div>
 					<ul className={lists}>
-						{educationContent.items.map((item) => (
-							<li key={item}>{item}</li>
+						{educations.map((education) => (
+							<li key={education.slug}>
+								<h3>{education.metadata.institution}</h3>
+								<p>
+									<time dateTime={education.metadata.startDate}>
+										{education.metadata.startDate}
+									</time>{" "}
+									~{" "}
+									{education.metadata.endDate ? (
+										<time dateTime={education.metadata.endDate}>
+											{education.metadata.endDate}
+										</time>
+									) : (
+										"Present"
+									)}
+								</p>
+								{education.metadata.degree && (
+									<p>Degree: {education.metadata.degree}</p>
+								)}
+								{education.metadata.field && (
+									<p>Field: {education.metadata.field}</p>
+								)}
+								{education.metadata.description && (
+									<p>Description: {education.metadata.description}</p>
+								)}
+								{education.metadata.achievements && (
+									<p>
+										Achievements: #{education.metadata.achievements.join(" #")}
+									</p>
+								)}
+								<details>
+									<summary>detail</summary>
+									{/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+									<div dangerouslySetInnerHTML={{ __html: education.body }} />
+								</details>
+							</li>
 						))}
 					</ul>
 				</div>
