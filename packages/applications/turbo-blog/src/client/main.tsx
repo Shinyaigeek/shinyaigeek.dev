@@ -111,5 +111,78 @@ class ThemeManager {
 	}
 }
 
-// Initialize theme manager
+// Mobile menu management
+class MobileMenuManager {
+	private hamburgerButton: HTMLElement | null = null;
+	private mobileMenu: HTMLElement | null = null;
+	private isOpen = false;
+
+	constructor() {
+		this.init();
+	}
+
+	private init() {
+		// Find hamburger button and mobile menu using data attributes
+		this.hamburgerButton = document.querySelector("[data-hamburger-menu]");
+		this.mobileMenu = document.querySelector("[data-mobile-menu]");
+
+		if (!this.hamburgerButton || !this.mobileMenu) {
+			return;
+		}
+
+		// Setup click handler
+		this.hamburgerButton.addEventListener("click", () => {
+			this.toggleMenu();
+		});
+
+		// Close menu when clicking outside
+		document.addEventListener("click", (event) => {
+			if (
+				this.isOpen &&
+				!this.hamburgerButton?.contains(event.target as Node) &&
+				!this.mobileMenu?.contains(event.target as Node)
+			) {
+				this.closeMenu();
+			}
+		});
+
+		// Close menu on escape key
+		document.addEventListener("keydown", (event) => {
+			if (event.key === "Escape" && this.isOpen) {
+				this.closeMenu();
+			}
+		});
+	}
+
+	private toggleMenu() {
+		if (this.isOpen) {
+			this.closeMenu();
+		} else {
+			this.openMenu();
+		}
+	}
+
+	private openMenu() {
+		this.isOpen = true;
+		this.hamburgerButton?.classList.add("open");
+		this.hamburgerButton?.setAttribute("aria-expanded", "true");
+		this.hamburgerButton?.setAttribute("aria-label", "メニューを閉じる");
+		if (this.mobileMenu) {
+			this.mobileMenu.style.display = "block";
+		}
+	}
+
+	private closeMenu() {
+		this.isOpen = false;
+		this.hamburgerButton?.classList.remove("open");
+		this.hamburgerButton?.setAttribute("aria-expanded", "false");
+		this.hamburgerButton?.setAttribute("aria-label", "メニューを開く");
+		if (this.mobileMenu) {
+			this.mobileMenu.style.display = "none";
+		}
+	}
+}
+
+// Initialize managers
 new ThemeManager();
+new MobileMenuManager();
