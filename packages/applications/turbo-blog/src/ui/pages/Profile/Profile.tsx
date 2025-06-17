@@ -85,16 +85,16 @@ export const Profile: FunctionComponent<Props> = ({
 									</p>
 								)}
 								{experience.metadata.technologies && (
-									<div>
+									<p>
 										<span className={metadataLabel}>Technologies</span>
-										<div className={technologiesContainer}>
+										<span className={technologiesContainer}>
 											{experience.metadata.technologies.map((tech) => (
 												<span key={tech} className={technologyTag}>
 													{tech}
 												</span>
 											))}
-										</div>
-									</div>
+										</span>
+									</p>
 								)}
 								<details>
 									<summary>detail</summary>
@@ -161,16 +161,16 @@ export const Profile: FunctionComponent<Props> = ({
 									</p>
 								)}
 								{education.metadata.achievements && (
-									<div>
+									<p>
 										<span className={metadataLabel}>Achievements</span>
-										<div className={technologiesContainer}>
+										<span className={technologiesContainer}>
 											{education.metadata.achievements.map((achievement) => (
 												<span key={achievement} className={technologyTag}>
 													{achievement}
 												</span>
 											))}
-										</div>
-									</div>
+										</span>
+									</p>
 								)}
 								<details>
 									<summary>detail</summary>
