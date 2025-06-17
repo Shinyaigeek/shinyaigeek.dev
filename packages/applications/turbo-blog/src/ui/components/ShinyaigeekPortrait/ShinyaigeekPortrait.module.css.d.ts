@@ -10,6 +10,7 @@ declare const styles: {
   readonly "shinyaigeekPortraitContainer": string;
   readonly "shinyaigeekPortraitImage": string;
   readonly "snsItem": string;
+  readonly "snsItemIconInvert": string;
   readonly "snsLinks": string;
   readonly "snsLinksContainer": string;
 };

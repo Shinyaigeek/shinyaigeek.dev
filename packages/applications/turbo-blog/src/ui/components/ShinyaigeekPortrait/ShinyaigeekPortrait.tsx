@@ -10,6 +10,7 @@ import {
 	shinyaigeekPortraitContainer,
 	shinyaigeekPortraitImage,
 	snsItem,
+	snsItemIconInvert,
 	snsLinks,
 	snsLinksContainer,
 } from "./ShinyaigeekPortrait.module.css";
@@ -58,8 +59,8 @@ export const ShinyaigeekPortrait: FunctionComponent = () => (
 						aria-label="Twitter"
 					>
 						<img
-							src="/assets/static/twitter.svg"
-							alt="Twitter"
+							src="/assets/static/x-logo-white.png"
+							alt="X"
 							width="32"
 							height="32"
 						/>
@@ -74,6 +75,7 @@ export const ShinyaigeekPortrait: FunctionComponent = () => (
 						<img
 							src="/assets/static/github.svg"
 							alt="GitHub"
+							className={snsItemIconInvert}
 							width="32"
 							height="32"
 						/>

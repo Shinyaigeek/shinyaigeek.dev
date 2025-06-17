@@ -152,7 +152,7 @@
 }
 
 .entryItem {
-    margin: 0;
+    margin: 0 !important;
     border: none !important;
     padding: 0 !important;
     background: transparent !important;
@@ -354,6 +354,11 @@
         font-size: 0.85rem;
         margin-right: 0.5rem;
         position: relative;
+    }
+
+    .metadataValue {
+        color: var(--theme-color);
+        font-weight: 400;
     }
 
     .technologyTag {
