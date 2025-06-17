@@ -15,6 +15,9 @@ export type Node =
 	| StrongNode
 	| FootnoteDefinitionNode
 	| FootnoteReferenceNode
+	| ReferenceDefinitionNode
+	| ReferenceReferenceNode
+	| HeadingNode
 	| HtmlNode
 	| ImageNode
 	| ImageReferenceNode
@@ -96,5 +99,26 @@ export type LinkNode = {
 	type: "link";
 	url: string;
 	title: string | null;
+	children: Node[];
+};
+
+export type ReferenceDefinitionNode = {
+	type: "reference-definition";
+	identifier: string;
+	title: string;
+	url?: string;
+	accessDate?: string;
+	children: Node[];
+};
+
+export type ReferenceReferenceNode = {
+	type: "reference-reference";
+	label: string | null;
+	identifier: string;
+};
+
+export type HeadingNode = {
+	type: "heading";
+	depth: number;
 	children: Node[];
 };

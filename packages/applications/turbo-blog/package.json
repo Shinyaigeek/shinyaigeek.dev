@@ -38,7 +38,8 @@
 		"remark-parse": "^10.0.0",
 		"remark-rehype": "^10.1.0",
 		"ssg-router": "workspace:*",
-		"unified": "^10.0.4"
+		"unified": "^10.0.4",
+		"unist-util-visit": "^5.0.0"
 	},
 	"devDependencies": {
 		"@ladle/react": "^4.1.1",

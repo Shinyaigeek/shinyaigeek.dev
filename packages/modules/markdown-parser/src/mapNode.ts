@@ -6,12 +6,15 @@ import { mapDelete } from "./delete/delete";
 import { mapEmphasis } from "./emphasis/empasis";
 import { mapFootnoteDefinition } from "./footnote-definition/footnote-definition";
 import { mapFootnoteReference } from "./footnote-reference/footnote-reference";
+import { mapHeading } from "./heading/heading";
 import { mapHtml } from "./html/html";
 import { mapImageReference } from "./image-reference/image-reference";
 import { mapImage } from "./image/image";
 import { mapInlineCode } from "./inline-code/inline-code";
 import { mapLink } from "./link/link";
 import { mapParagraph } from "./paragraph/paragraph";
+import { mapReferenceDefinition } from "./reference-definition/reference-definition";
+import { mapReferenceReference } from "./reference-reference/reference-reference";
 import { mapStrong } from "./strong/strong";
 import { mapText } from "./text/text";
 
@@ -39,9 +42,17 @@ export const mapNode: (node: RootContent) => Node = (node) => {
 			return mapStrong(node);
 		}
 		case "footnoteDefinition": {
+			// Check if this is a reference (starts with "ref")
+			if (node.identifier.startsWith("ref")) {
+				return mapReferenceDefinition(node);
+			}
 			return mapFootnoteDefinition(node);
 		}
 		case "footnoteReference": {
+			// Check if this is a reference (starts with "ref")
+			if (node.identifier.startsWith("ref")) {
+				return mapReferenceReference(node);
+			}
 			return mapFootnoteReference(node);
 		}
 		case "html": {
@@ -58,6 +69,9 @@ export const mapNode: (node: RootContent) => Node = (node) => {
 		}
 		case "link": {
 			return mapLink(node);
+		}
+		case "heading": {
+			return mapHeading(node);
 		}
 		default: {
 			console.log(node);

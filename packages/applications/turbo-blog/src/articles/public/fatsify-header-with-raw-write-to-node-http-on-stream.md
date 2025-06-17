@@ -25,9 +25,9 @@ workaroundとしては, `reply.raw.write` の前に `reply.raw.setHeader` を呼
 
 具体的な事例を挙げる(ここは飛ばしてもいいです)と, ReactDOM/server の renderToNodeStream を利用して stream を配信することで読み込み速度の向上を図っていました.
 しかしその場合生成されるマークアップには `<!DOCTYPE html>` が含まれていません.
-`DOCTYPE` を指定することで, ブラウザがクオークモードで動作することを防ぐことができます. [[1]](#refer-1)
+`DOCTYPE` を指定することで, ブラウザがクオークモードで動作することを防ぐことができます. [^ref1]
 できることならばこの `DOCTYPE` も含めて配信したいですが, renderToNodeStream から返ってくる Readable Stream にこの String 値を書き込むのは当然厳しいため, workaraund的に node/http の response.write で DOCTYPE を書き込んでいました.
-fastify だと `Reply.raw` で node の `http.ServerResponse` にアクセスし直接 header や body を書き込むことができます. [[2]](#refer-2)
+fastify だと `Reply.raw` で node の `http.ServerResponse` にアクセスし直接 header や body を書き込むことができます. [^ref2]
 一方 ETag や Cache-Control を書き込むために `Reply.headers()` を利用しますが, これで書き込んだはずの header field が反映されていないということが起きました.
 
 エッジケース of エッジケースという感じがしますね.
@@ -121,7 +121,7 @@ function sendStream (payload, res, reply) {
 
 の問題は `res.headersSent` が true なため生じていました.
 
-なぜそうなるかというと, `reply.raw` から　`http/ServerResponse` にアクセスし, `reply.raw.write` を呼び出して body を書き込んでしまうと Header は暗黙的に flush されてしまい書き込めなくなってしまいます, Header -> Body であることを考えるとある種当たり前のことですね. [[3]](#refer-3)
+なぜそうなるかというと, `reply.raw` から　`http/ServerResponse` にアクセスし, `reply.raw.write` を呼び出して body を書き込んでしまうと Header は暗黙的に flush されてしまい書き込めなくなってしまいます, Header -> Body であることを考えるとある種当たり前のことですね. [^ref3]
 
 ## 解決策
 
@@ -148,8 +148,15 @@ app.get("/", (req, res) => {
 
 マサカリ待ってます :pray:
 
-## 参考
 
-* <p id="refer-1">\[1] Page lacks the HTML doctype, thus triggering quirks mode (https://web.dev/doctype/) 閲覧日: 2020/3/21</p>
-* <p id="refer-2">\[2] Fastify Docs Reply .raw (https://www.fastify.io/docs/latest/Reply/#raw) 閲覧日: 2020/3/21</p>
-* <p id="refer-3">\[3] node http ServerResponse write (https://nodejs.org/api/http.html#http_response_write_chunk_encoding_callback) 閲覧日: 2020/3/21</p>
+[^ref1]: Page lacks the HTML doctype, thus triggering quirks mode
+    https://web.dev/doctype/
+    アクセス日: 2020/3/21
+
+[^ref2]: Fastify Docs Reply .raw
+    https://www.fastify.io/docs/latest/Reply/#raw
+    アクセス日: 2020/3/21
+
+[^ref3]: node http ServerResponse write
+    https://nodejs.org/api/http.html#http_response_write_chunk_encoding_callback
+    アクセス日: 2020/3/21

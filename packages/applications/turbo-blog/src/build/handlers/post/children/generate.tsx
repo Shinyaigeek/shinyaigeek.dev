@@ -41,7 +41,7 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 			language={rawLanguage}
 			ogImageFilename="TODO"
 			title="shinyaigeek.dev"
-			path={blogPost.metadata.path}
+			path={path}
 			description={blogPost.metadata.description}
 			builtAssets={context.builtAssets}
 		>

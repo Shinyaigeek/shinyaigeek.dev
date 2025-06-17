@@ -15,6 +15,7 @@
 :global() html {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
         'Noto Sans', sans-serif;
+    scroll-behavior: smooth;
 }
 
 :global() body {
@@ -42,6 +43,15 @@
     --gradient-end: #ffeaa7;
     --color-hover-bg: rgba(0, 0, 0, 0.05);
     --color-focus: #0984e3;
+    --ref-accent-bg: #e3f2fd;
+    --ref-accent-border: #90caf9;
+    --ref-accent-text: #1976d2;
+    --ref-accent-hover-bg: #bbdefb;
+    --ref-accent-hover-border: #64b5f6;
+    --ref-bg: #f8f9fa;
+    --ref-highlight-bg: #fff3e0;
+    --ref-accent-highlight: #ff9800;
+    --ref-link: #1976d2;
 
     background: var(--theme-background);
     color: var(--theme-color);
@@ -84,6 +94,15 @@
         --gradient-end: #f1c40f;
         --color-hover-bg: rgba(255, 255, 255, 0.1);
         --color-focus: #74b9ff;
+        --ref-accent-bg: #1a2332;
+        --ref-accent-border: #2563eb;
+        --ref-accent-text: #60a5fa;
+        --ref-accent-hover-bg: #1e3a8a;
+        --ref-accent-hover-border: #3b82f6;
+        --ref-bg: #1f2937;
+        --ref-highlight-bg: #374151;
+        --ref-accent-highlight: #f59e0b;
+        --ref-link: #60a5fa;
     }
 
     .root::before {
@@ -113,6 +132,15 @@
     --gradient-end: #f1c40f;
         --color-hover-bg: rgba(255, 255, 255, 0.1);
         --color-focus: #74b9ff;
+        --ref-accent-bg: #1a2332;
+        --ref-accent-border: #2563eb;
+        --ref-accent-text: #60a5fa;
+        --ref-accent-hover-bg: #1e3a8a;
+        --ref-accent-hover-border: #3b82f6;
+        --ref-bg: #1f2937;
+        --ref-highlight-bg: #374151;
+        --ref-accent-highlight: #f59e0b;
+        --ref-link: #60a5fa;
     }
 }
 
@@ -138,6 +166,15 @@
         --gradient-end: #ffeaa7;
         --color-hover-bg: rgba(0, 0, 0, 0.05);
         --color-focus: #0984e3;
+        --ref-accent-bg: #e3f2fd;
+        --ref-accent-border: #90caf9;
+        --ref-accent-text: #1976d2;
+        --ref-accent-hover-bg: #bbdefb;
+        --ref-accent-hover-border: #64b5f6;
+        --ref-bg: #f8f9fa;
+        --ref-highlight-bg: #fff3e0;
+        --ref-accent-highlight: #ff9800;
+        --ref-link: #1976d2;
     
         background: var(--theme-background);
         color: var(--theme-color);
@@ -158,4 +195,83 @@
 
 .root a:visited {
     color: var(--anchor-visited-color);
+}
+
+/* Reference Links */
+:global(.reference-link) {
+    display: inline-block;
+    color: var(--ref-accent-text);
+    text-decoration: none;
+    font-size: 0.85em;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+:global(.reference-link):hover {
+    background-color: var(--ref-accent-hover-bg);
+    border-color: var(--ref-accent-hover-border);
+    transform: translateY(-1px);
+}
+
+/* Reference Definitions */
+:global(.reference-definition) {
+    margin: 1.5em 0;
+    padding: 1em;
+    background-color: var(--ref-bg);
+    border-left: 4px solid var(--ref-accent-border);
+    border-radius: 0 4px 4px 0;
+    font-size: 0.9em;
+    line-height: 1.6;
+    scroll-margin-top: 88px; /* Header height + padding */
+    transition: background-color 0.3s ease;
+}
+
+/* Highlight targeted reference */
+:global(.reference-definition):target {
+    background-color: var(--ref-highlight-bg);
+    border-left-color: var(--ref-accent-highlight);
+}
+
+:global(.reference-definition)::before {
+    content: attr(data-reference-id);
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    margin-right: 0.5em;
+    background-color: var(--ref-accent-bg);
+    border: 1px solid var(--ref-accent-border);
+    border-radius: 3px;
+    color: var(--ref-accent-text);
+    font-weight: 600;
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+
+:global(.reference-definition) p {
+    margin: 0.5em 0;
+}
+
+:global(.reference-definition) a {
+    color: var(--ref-link);
+    text-decoration: none;
+    border-bottom: 1px dotted;
+}
+
+:global(.reference-definition) a:hover {
+    border-bottom: 1px solid;
+}
+
+/* Responsive design for references */
+@media (max-width: 768px) {
+    :global(.reference-definition) {
+        margin: 1em -1em;
+        padding: 0.8em;
+        border-radius: 0;
+        border-left-width: 3px;
+    }
+    
+    :global(.reference-link) {
+        font-size: 0.8em;
+        padding: 0.15em 0.3em;
+    }
 }

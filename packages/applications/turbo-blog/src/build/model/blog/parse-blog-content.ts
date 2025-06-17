@@ -10,6 +10,7 @@ import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
+import { remarkReferences } from "../../plugins/remark-references";
 import type { BlogMetadata } from "./blog.entity";
 import { extractBlogMetadata } from "./extract-blog-metadata";
 
@@ -33,6 +34,7 @@ export const parseBlogContent: (
 	const parsed = await unified()
 		.use(remarkParse)
 		.use(remarkGfm)
+		.use(remarkReferences)
 		.use(remarkRehype)
 		.use(rehypeStringify)
 		.use(applyHeadingIdForHeadings)

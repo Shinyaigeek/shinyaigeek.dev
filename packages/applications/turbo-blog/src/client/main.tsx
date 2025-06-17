@@ -254,7 +254,92 @@ class LanguageDropdownManager {
 	}
 }
 
+// Reference scroll management
+class ReferenceScrollManager {
+	private readonly HEADER_HEIGHT = 72;
+	private readonly ADDITIONAL_PADDING = 16;
+	private readonly SCROLL_OFFSET = this.HEADER_HEIGHT + this.ADDITIONAL_PADDING;
+
+	constructor() {
+		this.init();
+	}
+
+	private init() {
+		// Handle clicks on reference links and footnote links
+		document.addEventListener("click", this.handleReferenceClick.bind(this));
+
+		// Handle browser back/forward navigation
+		window.addEventListener("hashchange", this.handleHashChange.bind(this));
+
+		// Handle initial page load with hash
+		if (document.readyState === "loading") {
+			document.addEventListener(
+				"DOMContentLoaded",
+				this.handleHashChange.bind(this),
+			);
+		} else {
+			this.handleHashChange();
+		}
+	}
+
+	private scrollToElementWithOffset(target: Element) {
+		if (!target) return;
+
+		const targetPosition =
+			target.getBoundingClientRect().top + window.pageYOffset;
+		const offsetPosition = targetPosition - this.SCROLL_OFFSET;
+
+		window.scrollTo({
+			top: Math.max(0, offsetPosition),
+			behavior: "smooth",
+		});
+	}
+
+	private handleReferenceClick(event: Event) {
+		const link = (event.target as Element)?.closest(
+			'a[href^="#"]',
+		) as HTMLAnchorElement;
+		if (!link) return;
+
+		const href = link.getAttribute("href");
+		if (!href || !href.startsWith("#")) return;
+
+		// Prevent default scroll behavior
+		event.preventDefault();
+
+		// Find target element
+		const targetId = href.slice(1);
+		const target = document.getElementById(targetId);
+
+		if (target) {
+			this.scrollToElementWithOffset(target);
+
+			// Update URL hash without triggering scroll
+			if (history.pushState) {
+				history.pushState(null, null, href);
+			} else {
+				// Fallback for older browsers
+				window.location.hash = href;
+			}
+		}
+	}
+
+	private handleHashChange() {
+		const hash = window.location.hash;
+		if (hash) {
+			const target = document.getElementById(hash.slice(1));
+			if (target) {
+				// Small delay to ensure page is loaded
+				setTimeout(() => {
+					this.scrollToElementWithOffset(target);
+				}, 100);
+			}
+		}
+	}
+}
+
 // Initialize managers
 new ThemeManager();
 new MobileMenuManager();
 new LanguageDropdownManager();
+new ReferenceScrollManager();
