@@ -1,3 +1,4 @@
+import { join } from "node:path";
 import { isErr, unwrapErr, unwrapOk } from "option-t/esm/PlainResult";
 import { renderToStaticMarkup } from "react-dom/server";
 import type { GenerateHandler } from "ssg-router";
@@ -9,6 +10,7 @@ import { GetWorkExperiencesUsecase } from "../../application/getWorkExperiences/
 import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
+import { AboutMeRepository } from "../../model/about-me/about-me.repository";
 import { EducationRepository } from "../../model/education/education.repository";
 import { Language } from "../../model/language/language.entity";
 import { WorkExperienceRepository } from "../../model/work-experience/work-experience.repository";
@@ -26,6 +28,9 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 	const educationRepository = new EducationRepository(
 		fileIOInfrastructure,
 		filePathInfrastructure,
+	);
+	const aboutMeRepository = new AboutMeRepository(
+		join(process.cwd(), "src/profile"),
 	);
 	const getWorkExperiencesUsecase = new GetWorkExperiencesUsecase(
 		workExperienceRepository,
@@ -53,6 +58,9 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 
 	const educations = unwrapOk(educationsResult);
 
+	// Fetch about me
+	const aboutMe = await aboutMeRepository.getAboutMe(context.language);
+
 	const rawLanguage = context.language === Language.ja ? "ja" : "en";
 	const description =
 		context.language === Language.ja
@@ -62,7 +70,6 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 	return renderToStaticMarkup(
 		<Shell
 			language={rawLanguage}
-			which="TODO"
 			title="shinyaigeek.dev"
 			path="/profile"
 			description={description}
@@ -73,6 +80,7 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 					language={context.language}
 					workExperiences={workExperiences}
 					educations={educations}
+					aboutMe={aboutMe}
 				/>
 			</Layout>
 		</Shell>,

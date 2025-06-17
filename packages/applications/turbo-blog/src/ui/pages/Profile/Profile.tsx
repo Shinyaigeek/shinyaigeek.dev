@@ -1,4 +1,5 @@
 import type { FunctionComponent } from "react";
+import type { AboutMe as AboutMeType } from "../../../build/model/about-me/about-me.entity";
 import type { Education } from "../../../build/model/education/education.entity";
 import { Language } from "../../../build/model/language/language.entity";
 import type { WorkExperience } from "../../../build/model/work-experience/work-experience.entity";
@@ -24,12 +25,14 @@ interface Props {
 	language: Language;
 	workExperiences: WorkExperience[];
 	educations: Education[];
+	aboutMe: AboutMeType;
 }
 
 export const Profile: FunctionComponent<Props> = ({
 	language,
 	workExperiences,
 	educations,
+	aboutMe,
 }) => {
 	const educationTitle = language === Language.ja ? "学歴" : "Education";
 
@@ -47,7 +50,7 @@ export const Profile: FunctionComponent<Props> = ({
 
 				<div className="description">
 					<div className={title}>About Me</div>
-					<AboutMe />
+					<AboutMe body={aboutMe.body} />
 				</div>
 
 				<Divider />
