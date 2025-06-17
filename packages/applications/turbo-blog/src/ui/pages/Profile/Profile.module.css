@@ -106,13 +106,13 @@
 }
 
 .technologyTag {
-    background: linear-gradient(135deg, var(--theme-color) 0%, var(--theme-color-light) 100%);
-    color: white;
-    padding: 0.2rem 0.6rem;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.05);
+    color: #666;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: normal;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .description {
@@ -166,6 +166,12 @@
 
     .metadataLabel {
         color: #999;
+    }
+
+    .technologyTag {
+        background: rgba(255, 255, 255, 0.08);
+        color: #bbb;
+        border: 1px solid rgba(255, 255, 255, 0.15);
     }
 }
 
