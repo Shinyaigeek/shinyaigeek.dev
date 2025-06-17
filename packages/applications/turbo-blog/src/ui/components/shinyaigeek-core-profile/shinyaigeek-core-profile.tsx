@@ -107,7 +107,7 @@ export const ShinyaigeekCoreProfile: FunctionComponent = function () {
 						rel="noopener noreferrer"
 					>
 						<img
-							src={"/assets/static/linkedin.svg"}
+							src={"/assets/static/linkedin.png"}
 							alt="LinkedIn"
 							width="54"
 							height="54"

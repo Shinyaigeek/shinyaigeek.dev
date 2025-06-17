@@ -86,7 +86,7 @@ export const ShinyaigeekPortrait: FunctionComponent = () => (
 						aria-label="LinkedIn"
 					>
 						<img
-							src="/assets/static/linkedin.svg"
+							src="/assets/static/linkedin.png"
 							alt="LinkedIn"
 							width="32"
 							height="32"
