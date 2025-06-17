@@ -7,6 +7,9 @@ import { AboutMe } from "../../components/about-me/about-me";
 import { Divider } from "../../components/divider/divider";
 import { ShinyaigeekCoreProfile } from "../../components/shinyaigeek-core-profile/shinyaigeek-core-profile";
 import {
+	entriesList,
+	entryItem,
+	entryLink,
 	lists,
 	metadataLabel,
 	metadataValue,
@@ -96,20 +99,25 @@ export const Profile: FunctionComponent<Props> = ({
 										</span>
 									</p>
 								)}
+								{experience.metadata.entries && (
+									<div>
+										<span className={metadataLabel}>Related Work</span>
+										<ul className={entriesList}>
+											{experience.metadata.entries.map((entry) => (
+												<li key={entry.url} className={entryItem}>
+													<a href={entry.url} className={entryLink}>
+														{entry.title}
+													</a>
+												</li>
+											))}
+										</ul>
+									</div>
+								)}
 								<details>
 									<summary>detail</summary>
 									{/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
 									<div dangerouslySetInnerHTML={{ __html: experience.body }} />
 								</details>
-								{experience.metadata.entries && (
-									<ul>
-										{experience.metadata.entries.map((entry) => (
-											<li key={entry.url}>
-												<a href={entry.url}>{entry.title}</a>
-											</li>
-										))}
-									</ul>
-								)}
 							</li>
 						))}
 					</ul>

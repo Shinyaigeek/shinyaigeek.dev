@@ -1,6 +1,9 @@
 declare const styles: {
   readonly "content": string;
   readonly "description": string;
+  readonly "entriesList": string;
+  readonly "entryItem": string;
+  readonly "entryLink": string;
   readonly "interests": string;
   readonly "lists": string;
   readonly "metadataLabel": string;

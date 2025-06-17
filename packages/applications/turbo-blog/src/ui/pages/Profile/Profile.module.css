@@ -115,6 +115,37 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.entriesList {
+    list-style: none;
+    padding: 0;
+    margin: 0.25rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.entryItem {
+    margin: 0;
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+.entryLink {
+    color: var(--theme-color);
+    text-decoration: none;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    display: block;
+    padding: 0.15rem 0;
+    transition: color 0.2s ease;
+}
+
+.entryLink:hover {
+    text-decoration: underline;
+    color: var(--theme-color-light);
+}
+
 .description {
     margin: 0;
 }
