@@ -1,0 +1,25 @@
+.button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.2s ease;
+}
+
+.button:hover {
+	background-color: var(--color-hover-bg);
+}
+
+.button:focus {
+	outline: 2px solid var(--color-focus);
+	outline-offset: 2px;
+}
+
+.icon {
+	font-size: 18px;
+	line-height: 1;
+}

@@ -1,5 +1,6 @@
 import type { FunctionComponent } from "react";
 import { Language } from "../Language/Language";
+import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { HeaderAnchorItem } from "./header-anchor-item/header-anchor-item";
 import {
 	contents,
@@ -51,6 +52,7 @@ export const Header: FunctionComponent<HeaderProps> = ({
 					label="Activity"
 				/>
 			</nav>
+			<ThemeToggle />
 			<Language currentLanguage={language} currentPath={currentPath} />
 		</div>
 	</header>

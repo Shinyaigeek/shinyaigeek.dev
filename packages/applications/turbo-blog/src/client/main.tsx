@@ -14,4 +14,102 @@ Home;
 Post;
 Profile;
 PostIndex;
-console.log("hey");
+
+// Theme management
+class ThemeManager {
+	private theme: "light" | "dark" | "system" = "system";
+
+	constructor() {
+		this.init();
+	}
+
+	private init() {
+		// Load saved theme from localStorage
+		const savedTheme = localStorage.getItem("theme") as
+			| "light"
+			| "dark"
+			| "system";
+		if (savedTheme && ["light", "dark", "system"].includes(savedTheme)) {
+			this.theme = savedTheme;
+		}
+
+		// Apply initial theme
+		this.applyTheme();
+
+		// Listen for system theme changes
+		window
+			.matchMedia("(prefers-color-scheme: dark)")
+			.addEventListener("change", () => {
+				if (this.theme === "system") {
+					this.applyTheme();
+				}
+			});
+
+		// Setup theme toggle buttons
+		this.setupToggleButtons();
+	}
+
+	private applyTheme() {
+		const resolvedTheme = this.getResolvedTheme();
+		document.documentElement.setAttribute("data-theme", resolvedTheme);
+
+		// Update toggle button icons
+		this.updateToggleButtons();
+	}
+
+	private getResolvedTheme(): "light" | "dark" {
+		if (this.theme === "system") {
+			return window.matchMedia("(prefers-color-scheme: dark)").matches
+				? "dark"
+				: "light";
+		}
+		return this.theme;
+	}
+
+	private setupToggleButtons() {
+		document.addEventListener("click", (event) => {
+			const target = event.target as HTMLElement;
+			if (
+				target.matches("[data-theme-toggle]") ||
+				target.closest("[data-theme-toggle]")
+			) {
+				event.preventDefault();
+				this.toggleTheme();
+			}
+		});
+	}
+
+	private updateToggleButtons() {
+		const resolvedTheme = this.getResolvedTheme();
+		const buttons = document.querySelectorAll("[data-theme-toggle]");
+
+		for (const button of buttons) {
+			const iconElement = button.querySelector("[data-theme-icon]");
+			if (iconElement) {
+				iconElement.textContent = resolvedTheme === "dark" ? "🌙" : "☀️";
+			}
+
+			const ariaLabel =
+				resolvedTheme === "dark"
+					? "Switch to light mode"
+					: "Switch to dark mode";
+			button.setAttribute("aria-label", ariaLabel);
+			button.setAttribute("title", ariaLabel);
+		}
+	}
+
+	private toggleTheme() {
+		if (this.theme === "system") {
+			const currentResolved = this.getResolvedTheme();
+			this.theme = currentResolved === "dark" ? "light" : "dark";
+		} else {
+			this.theme = this.theme === "dark" ? "light" : "dark";
+		}
+
+		localStorage.setItem("theme", this.theme);
+		this.applyTheme();
+	}
+}
+
+// Initialize theme manager
+new ThemeManager();

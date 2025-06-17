@@ -24,7 +24,6 @@ export const extractWorkExperienceMetadata: (
 	});
 };
 
-// biome-ignore lint/suspicious/noExplicitAny: this is valid any usecase
 const validateMetadata = function (
 	// biome-ignore lint/suspicious/noExplicitAny: this is valid any usecase
 	metadata: any,
