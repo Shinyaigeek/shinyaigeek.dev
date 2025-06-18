@@ -5,10 +5,12 @@ import { Layout } from "../../../ui/components/Layout/Layout";
 import { Shell } from "../../../ui/components/Shell/shell";
 import { Home } from "../../../ui/pages/Home/Home";
 import { GetBlogPostsUsecase } from "../../application/getBlogPosts/getBlogposts.usecase";
+import { GetFleetsUsecase } from "../../application/getFleets/getFleets.usecase";
 import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../model/blog/blog.repository";
+import { FleetRepository } from "../../model/fleet/fleet.repository";
 import { Language } from "../../model/language/language.entity";
 import { ThirdPartyPublishContentRepository } from "../../model/third-party-publish/third-party-publish.repository";
 
@@ -21,17 +23,43 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 		fileIOInfrastructure,
 		filePathInfrastructure,
 	);
+	const fleetRepository = new FleetRepository(
+		fileIOInfrastructure,
+		filePathInfrastructure,
+	);
 	const getblogPostsUsecase = new GetBlogPostsUsecase(blogRepository);
+	const getFleetsUsecase = new GetFleetsUsecase(fleetRepository);
 	const language = context.language;
-	const blogPostResults = await getblogPostsUsecase.getBlogPosts(language);
 
+	const blogPostResults = await getblogPostsUsecase.getBlogPosts(language);
 	if (isErr(blogPostResults)) {
 		throw unwrapErr(blogPostResults);
 	}
-
 	const blogPosts = unwrapOk(blogPostResults).sort((l, r) => {
 		return l.metadata.publishedAt < r.metadata.publishedAt ? 1 : -1;
 	});
+
+	const fleetResults = await getFleetsUsecase.getFleets(language);
+	interface FleetDisplayItem {
+		title: string;
+		description: string;
+		publishedAt: string;
+		path: string;
+		slideCount: number;
+		tags?: string[];
+	}
+
+	let fleets: FleetDisplayItem[] = [];
+	if (!isErr(fleetResults)) {
+		fleets = unwrapOk(fleetResults).map((fleet) => ({
+			title: fleet.metadata.title,
+			description: fleet.metadata.description,
+			publishedAt: fleet.metadata.publishedAt,
+			path: fleet.metadata.path,
+			slideCount: fleet.slides.length,
+			tags: fleet.metadata.tags,
+		}));
+	}
 
 	const thirdPartyPublishContentRepository =
 		new ThirdPartyPublishContentRepository(
@@ -86,7 +114,7 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 			builtAssets={context.builtAssets}
 		>
 			<Layout language={rawLanguage} page="1" currentPath="/">
-				<Home items={items} />
+				<Home items={items} fleets={fleets} />
 			</Layout>
 		</Shell>,
 	);

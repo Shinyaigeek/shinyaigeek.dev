@@ -3,7 +3,13 @@ import type { FunctionComponent } from "react";
 import { FirstBoard } from "../../components/FirstBoard/FirstBoard";
 import { Item } from "../../components/Item/Item";
 import { Divider } from "../../components/divider/divider";
-import { blogGrid, blogSection } from "./Home.module.css";
+import { FleetCard } from "../../components/fleet-card";
+import {
+	blogGrid,
+	blogSection,
+	fleetGrid,
+	fleetSection,
+} from "./Home.module.css";
 
 interface Props {
 	items: {
@@ -14,9 +20,17 @@ interface Props {
 		ogp?: Undefinable<string>;
 		media?: "speakerdeck" | "blog";
 	}[];
+	fleets?: {
+		title: string;
+		description: string;
+		publishedAt: string;
+		path: string;
+		slideCount: number;
+		tags?: string[];
+	}[];
 }
 
-export const Home: FunctionComponent<Props> = ({ items }) => (
+export const Home: FunctionComponent<Props> = ({ items, fleets = [] }) => (
 	<div>
 		<FirstBoard />
 		<Divider />
@@ -37,5 +51,27 @@ export const Home: FunctionComponent<Props> = ({ items }) => (
 				))}
 			</div>
 		</section>
+
+		{fleets.length > 0 && (
+			<>
+				<section className={fleetSection}>
+					<h2>Latest Fleets</h2>
+					<div className={fleetGrid}>
+						{fleets.slice(0, 3).map((fleet) => (
+							<FleetCard
+								key={fleet.path}
+								title={fleet.title}
+								description={fleet.description}
+								publishedAt={fleet.publishedAt}
+								path={fleet.path}
+								slideCount={fleet.slideCount}
+								tags={fleet.tags}
+							/>
+						))}
+					</div>
+				</section>
+				<Divider />
+			</>
+		)}
 	</div>
 );

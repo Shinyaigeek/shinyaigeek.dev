@@ -49,4 +49,54 @@
     .blogGrid {
         gap: 0;
     }
+
+    .fleetGrid {
+        gap: 1rem;
+    }
+}
+
+.fleetSection {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.fleetSection h2 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.fleetSection h2::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--theme-color) 0%, var(--theme-color-light) 100%);
+    border-radius: 2px;
+}
+
+.fleetGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .fleetSection {
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    .fleetSection h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
 } 
