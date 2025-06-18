@@ -1,5 +1,4 @@
 import type { FunctionComponent } from "react";
-import { useState } from "react";
 import type { FleetContent } from "../../../build/model/fleet/fleet.entity";
 import {
 	active,
@@ -24,22 +23,8 @@ interface Props {
 }
 
 export const FleetViewer: FunctionComponent<Props> = ({ fleet }) => {
-	const [currentSlide, setCurrentSlide] = useState(0);
-
-	const nextSlide = () => {
-		setCurrentSlide((prev) =>
-			prev < fleet.slides.length - 1 ? prev + 1 : prev,
-		);
-	};
-
-	const prevSlide = () => {
-		setCurrentSlide((prev) => (prev > 0 ? prev - 1 : prev));
-	};
-
-	const progressPercentage = ((currentSlide + 1) / fleet.slides.length) * 100;
-
 	return (
-		<div className={viewer}>
+		<div className={viewer} data-fleet-viewer>
 			<header className={header}>
 				<h1 className={title}>{fleet.metadata.title}</h1>
 				<p className={description}>{fleet.metadata.description}</p>
@@ -61,29 +46,23 @@ export const FleetViewer: FunctionComponent<Props> = ({ fleet }) => {
 			</header>
 
 			<div className={navigation}>
-				<button
-					type="button"
-					className={navButton}
-					onClick={prevSlide}
-					disabled={currentSlide === 0}
-				>
+				<button type="button" className={navButton} data-fleet-prev>
 					← Previous
 				</button>
-				<div className={slideIndicator}>
-					{currentSlide + 1} / {fleet.slides.length}
+				<div className={slideIndicator} data-fleet-indicator>
+					1 / {fleet.slides.length}
 				</div>
-				<button
-					type="button"
-					className={navButton}
-					onClick={nextSlide}
-					disabled={currentSlide === fleet.slides.length - 1}
-				>
+				<button type="button" className={navButton} data-fleet-next>
 					Next →
 				</button>
 			</div>
 
 			<div className={progressBar}>
-				<div className={progress} style={{ width: `${progressPercentage}%` }} />
+				<div
+					className={progress}
+					data-fleet-progress
+					style={{ width: `${(1 / fleet.slides.length) * 100}%` }}
+				/>
 			</div>
 
 			<div className={slideContainer}>
@@ -91,7 +70,8 @@ export const FleetViewer: FunctionComponent<Props> = ({ fleet }) => {
 					<div
 						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 						key={index}
-						className={`${slide} ${index === currentSlide ? active : ""}`}
+						className={`${slide} ${index === 0 ? active : ""}`}
+						data-fleet-slide
 						// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
 						dangerouslySetInnerHTML={{ __html: slideContent.content }}
 					/>

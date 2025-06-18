@@ -342,10 +342,116 @@ class ReferenceScrollManager {
 	}
 }
 
+// Fleet viewer management
+class FleetManager {
+	private currentSlide = 0;
+	private totalSlides = 0;
+	private viewer: HTMLElement | null = null;
+	private prevButton: HTMLButtonElement | null = null;
+	private nextButton: HTMLButtonElement | null = null;
+	private slideIndicator: HTMLElement | null = null;
+	private progressBar: HTMLElement | null = null;
+	private slides: HTMLElement[] = [];
+
+	constructor() {
+		this.init();
+	}
+
+	private init() {
+		// Find fleet viewer elements
+		this.viewer = document.querySelector("[data-fleet-viewer]");
+		if (!this.viewer) return;
+
+		this.prevButton = this.viewer.querySelector("[data-fleet-prev]");
+		this.nextButton = this.viewer.querySelector("[data-fleet-next]");
+		this.slideIndicator = this.viewer.querySelector("[data-fleet-indicator]");
+		this.progressBar = this.viewer.querySelector("[data-fleet-progress]");
+		this.slides = Array.from(
+			this.viewer.querySelectorAll("[data-fleet-slide]"),
+		);
+
+		if (this.slides.length === 0) return;
+
+		this.totalSlides = this.slides.length;
+		this.currentSlide = 0;
+
+		// Setup event listeners
+		this.prevButton?.addEventListener("click", () => this.prevSlide());
+		this.nextButton?.addEventListener("click", () => this.nextSlide());
+
+		// Setup keyboard navigation
+		document.addEventListener("keydown", (event) => {
+			if (!this.viewer?.contains(document.activeElement)) return;
+
+			if (event.key === "ArrowLeft") {
+				event.preventDefault();
+				this.prevSlide();
+			} else if (event.key === "ArrowRight") {
+				event.preventDefault();
+				this.nextSlide();
+			}
+		});
+
+		// Initialize view
+		this.updateView();
+
+		// Handle initial focus for keyboard navigation
+		this.viewer.setAttribute("tabindex", "0");
+	}
+
+	private prevSlide() {
+		if (this.currentSlide > 0) {
+			this.currentSlide--;
+			this.updateView();
+		}
+	}
+
+	private nextSlide() {
+		if (this.currentSlide < this.totalSlides - 1) {
+			this.currentSlide++;
+			this.updateView();
+		}
+	}
+
+	private updateView() {
+		// Update slide visibility
+		this.slides.forEach((slide, index) => {
+			if (index === this.currentSlide) {
+				slide.classList.add("active");
+			} else {
+				slide.classList.remove("active");
+			}
+		});
+
+		// Update navigation buttons
+		if (this.prevButton) {
+			this.prevButton.disabled = this.currentSlide === 0;
+		}
+		if (this.nextButton) {
+			this.nextButton.disabled = this.currentSlide === this.totalSlides - 1;
+		}
+
+		// Update slide indicator
+		if (this.slideIndicator) {
+			this.slideIndicator.textContent = `${this.currentSlide + 1} / ${
+				this.totalSlides
+			}`;
+		}
+
+		// Update progress bar
+		if (this.progressBar) {
+			const progressPercentage =
+				((this.currentSlide + 1) / this.totalSlides) * 100;
+			this.progressBar.style.width = `${progressPercentage}%`;
+		}
+	}
+}
+
 // Initialize managers
 new ThemeManager();
 new MobileMenuManager();
 new LanguageDropdownManager();
 new ReferenceScrollManager();
+new FleetManager();
 
 console.log("hello! I am shinyaigeek");
