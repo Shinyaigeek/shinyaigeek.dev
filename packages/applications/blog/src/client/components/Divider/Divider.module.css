@@ -1,8 +1,0 @@
-.divider {
-    background: var(--theme-color);
-    width: 100%;
-    height: 2px;
-    border: 1px solid var(--theme-color);
-    border-radius: 12px;
-    margin: 12px;
-}

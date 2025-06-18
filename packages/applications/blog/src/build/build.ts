@@ -1,26 +1,110 @@
-import { minify } from "html-minifier";
-import { writeContent } from "../contents-handler/contents-writer";
-import { messages as en } from "../locales/en/messages";
-import { messages as ja } from "../locales/ja/messages";
-import { handleIndex } from "./handlers/index/index";
-import { getChildren } from "./handlers/post/getChildren/getChildren";
-import { handleProfile } from "./handlers/profile/handleProfile";
-import { Router } from "./router/router";
-import { addDOCTYP } from "./util/addDOCTYPE";
+import { Router } from "ssg-router";
+import type { Context } from "./context/context";
+import { generateIndexPage } from "./handlers/index/generate";
+import { outputIndexPage } from "./handlers/index/output";
+import {
+	generateBlogPostOGImagePage,
+	generateProfileOGImagePage,
+	generateTopOGImagePage,
+} from "./handlers/ogimage/generate";
+import {
+	getEnglishOGImageChildren,
+	getJapaneseOGImageChildren,
+} from "./handlers/ogimage/getOGImageChildren";
+import { outputOGImagePage } from "./handlers/ogimage/output";
+import { generateBlogPostPage } from "./handlers/post/children/generate";
+import { outputBlogPostPage } from "./handlers/post/children/output";
+import { generateBlogIndexPage } from "./handlers/post/generate";
+import {
+	getEnglishBlogChildren,
+	getJapaneseBlogChildren,
+} from "./handlers/post/getBlogChildren/getBlogChildren";
+import { outputBlogIndexPage } from "./handlers/post/output";
+import { generateProfilePage } from "./handlers/profile/generate";
+import { outputProfilePage } from "./handlers/profile/output";
+import { generateRssPage } from "./handlers/rss/generate";
+import { outputRssPage } from "./handlers/rss/output";
+import { generateSitemapPage } from "./handlers/sitemap/generate";
+import { outputSitemapPage } from "./handlers/sitemap/output";
+import { registerBuiltAssetsPlugin } from "./plugin/built-assets";
+import { registerLanguagePlugin } from "./plugin/language";
 
-export const build = async () => {
-	const router = new Router();
+const router = new Router<Context>();
 
-	const postChildren = await getChildren();
+router.register(registerLanguagePlugin);
+router.register(registerBuiltAssetsPlugin);
 
-	router.registerDefaultLanguage("ja", ja);
-	router.registerLanguage("en", en);
+router.on("/", {
+	generate: generateIndexPage,
+	output: outputIndexPage,
+});
+router.on("/en/", {
+	generate: generateIndexPage,
+	output: outputIndexPage,
+});
+router.on("/post/", {
+	generate: generateBlogIndexPage,
+	output: outputBlogIndexPage,
+});
+router.on("/en/post/", {
+	generate: generateBlogIndexPage,
+	output: outputBlogIndexPage,
+});
+router.onChildren(getJapaneseBlogChildren, {
+	generate: generateBlogPostPage,
+	output: outputBlogPostPage,
+});
+router.onChildren(getEnglishBlogChildren, {
+	generate: generateBlogPostPage,
+	output: outputBlogPostPage,
+});
+router.on("/profile/", {
+	generate: generateProfilePage,
+	output: outputProfilePage,
+});
+router.on("/en/profile/", {
+	generate: generateProfilePage,
+	output: outputProfilePage,
+});
+router.on("/rss.xml", {
+	generate: generateRssPage,
+	output: outputRssPage,
+});
+router.on("/en/rss.xml", {
+	generate: generateRssPage,
+	output: outputRssPage,
+});
+router.on("/sitemap.xml", {
+	generate: generateSitemapPage,
+	output: outputSitemapPage,
+});
+router.on("/en/sitemap.xml", {
+	generate: generateSitemapPage,
+	output: outputSitemapPage,
+});
+router.on("/ogp.png", {
+	generate: generateTopOGImagePage,
+	output: outputOGImagePage,
+});
+router.on("/en/ogp.png", {
+	generate: generateTopOGImagePage,
+	output: outputOGImagePage,
+});
+router.on("/profile/ogp.png", {
+	generate: generateProfileOGImagePage,
+	output: outputOGImagePage,
+});
+router.on("/en/profile/ogp.png", {
+	generate: generateProfileOGImagePage,
+	output: outputOGImagePage,
+});
+router.onChildren(getJapaneseOGImageChildren, {
+	generate: generateBlogPostOGImagePage,
+	output: outputOGImagePage,
+});
+router.onChildren(getEnglishOGImageChildren, {
+	generate: generateBlogPostOGImagePage,
+	output: outputOGImagePage,
+});
 
-	// todo interface
-	router.on("/post", undefined, [postChildren]);
-	router.on("/", handleIndex, undefined);
-	router.on("/profile", handleProfile, undefined);
-	await router.out(async (slug, html) => {
-		await writeContent(`./public${slug}/index.html`, minify(addDOCTYP(html)));
-	});
-};
+router.out();
