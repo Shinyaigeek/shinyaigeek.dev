@@ -1,5 +1,13 @@
 import { Router } from "ssg-router";
 import type { Context } from "./context/context";
+import { generateFleetPage } from "./handlers/fleet/generate";
+import {
+	getEnglishFleetChildren,
+	getJapaneseFleetChildren,
+} from "./handlers/fleet/getFleetChildren/getFleetChildren";
+import { outputFleetPage } from "./handlers/fleet/output";
+import { generateFleetsPage } from "./handlers/fleets/generate";
+import { outputFleetsPage } from "./handlers/fleets/output";
 import { generateIndexPage } from "./handlers/index/generate";
 import { outputIndexPage } from "./handlers/index/output";
 import {
@@ -65,6 +73,22 @@ router.on("/profile/", {
 router.on("/en/profile/", {
 	generate: generateProfilePage,
 	output: outputProfilePage,
+});
+router.on("/fleets/", {
+	generate: generateFleetsPage,
+	output: outputFleetsPage,
+});
+router.on("/en/fleets/", {
+	generate: generateFleetsPage,
+	output: outputFleetsPage,
+});
+router.onChildren(getJapaneseFleetChildren, {
+	generate: generateFleetPage,
+	output: outputFleetPage,
+});
+router.onChildren(getEnglishFleetChildren, {
+	generate: generateFleetPage,
+	output: outputFleetPage,
 });
 router.on("/rss.xml", {
 	generate: generateRssPage,
