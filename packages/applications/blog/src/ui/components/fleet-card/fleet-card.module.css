@@ -1,0 +1,65 @@
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--card-background);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color-hover);
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+.description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.publishedAt {
+  margin: 0;
+}
+
+.slideCount {
+  background: var(--theme-color);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+
+.tags {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.tag {
+  background: rgba(0, 0, 0, 0.05);
+  color: #666;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
