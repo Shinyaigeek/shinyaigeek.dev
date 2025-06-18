@@ -356,6 +356,12 @@
 @media (max-width: 768px) {
     .hello {
         font-size: 2rem;
+        padding: 0 1rem;
+    }
+
+    .name {
+        white-space: normal;
+        display: inline-block;
     }
 
     .jobGlitch {
