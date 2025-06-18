@@ -77,6 +77,11 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 			/>
 			<link rel="preload" as="style" href={`/assets/${builtAssets.css}`} />
 			<link
+				rel="stylesheet"
+				type="text/css"
+				href={"/assets/static/a11y-dark.min.css"}
+			/>
+			<link
 				rel="preload"
 				as="image"
 				href={"/assets/static/icon_transparent_header.png"}
