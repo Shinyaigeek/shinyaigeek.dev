@@ -289,8 +289,7 @@ class ReferenceScrollManager {
 	private scrollToElementWithOffset(target: Element) {
 		if (!target) return;
 
-		const targetPosition =
-			target.getBoundingClientRect().top + window.pageYOffset;
+		const targetPosition = target.getBoundingClientRect().top + window.scrollY;
 		const offsetPosition = targetPosition - this.SCROLL_OFFSET;
 
 		window.scrollTo({
@@ -320,7 +319,7 @@ class ReferenceScrollManager {
 
 			// Update URL hash without triggering scroll
 			if (history.pushState) {
-				history.pushState(null, null, href);
+				history.pushState(null, "", href);
 			} else {
 				// Fallback for older browsers
 				window.location.hash = href;
@@ -376,8 +375,12 @@ class FleetManager {
 		this.currentSlide = 0;
 
 		// Setup event listeners
-		this.prevButton?.addEventListener("click", () => this.prevSlide());
-		this.nextButton?.addEventListener("click", () => this.nextSlide());
+		this.prevButton?.addEventListener("click", () => {
+			this.prevSlide();
+		});
+		this.nextButton?.addEventListener("click", () => {
+			this.nextSlide();
+		});
 
 		// Setup keyboard navigation
 		document.addEventListener("keydown", (event) => {
@@ -414,12 +417,32 @@ class FleetManager {
 	}
 
 	private updateView() {
-		// Update slide visibility
+		// Update slide visibility - find the active class dynamically
 		this.slides.forEach((slide, index) => {
+			// Get all classes and find the one that ends with -active
+			const activeClass = Array.from(slide.classList).find(
+				(className) => className.includes("-active") || className === "active",
+			);
+
+			if (activeClass) {
+				slide.classList.remove(activeClass);
+			}
+
 			if (index === this.currentSlide) {
-				slide.classList.add("active");
-			} else {
-				slide.classList.remove("active");
+				// Find the slide CSS class and construct the active class name
+				const slideClass = Array.from(slide.classList).find(
+					(className) =>
+						className.includes("-slide") &&
+						!className.includes("-slideContainer"),
+				);
+
+				if (slideClass) {
+					const activeClassName = slideClass.replace("-slide", "-active");
+					slide.classList.add(activeClassName);
+				} else {
+					// Fallback to simple active class
+					slide.classList.add("active");
+				}
 			}
 		});
 
