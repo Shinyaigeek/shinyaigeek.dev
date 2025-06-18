@@ -1,0 +1,124 @@
+.viewer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin: 0 0 16px 0;
+  line-height: 1.4;
+}
+
+.meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.slideContainer {
+  position: relative;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  min-height: 400px;
+  margin-bottom: 24px;
+}
+
+.slide {
+  padding: 32px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.slide > :first-child {
+  margin-top: 0;
+}
+
+.slide > :last-child {
+  margin-bottom: 0;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.navButton {
+  background: var(--theme-color);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.navButton:hover:not(:disabled) {
+  background: var(--theme-color-light);
+}
+
+.navButton:disabled {
+  background: var(--text-tertiary);
+  cursor: not-allowed;
+}
+
+.slideIndicator {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.progressBar {
+  height: 4px;
+  background: var(--border-color);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: var(--theme-color);
+  transition: width 0.3s ease;
+}
+
+.tags {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.tag {
+  background: rgba(0, 0, 0, 0.05);
+  color: #666;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
