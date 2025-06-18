@@ -1,5 +1,5 @@
 import type { FunctionComponent } from "react";
-import { SNSItem } from "../SNSItem/SNSItem";
+import { SNSItem } from "../sns-item/sns-item";
 import {
 	earth,
 	earthX,

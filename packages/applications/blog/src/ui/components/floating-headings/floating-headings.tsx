@@ -10,7 +10,7 @@ import {
 	level5,
 	level6,
 	postAnchor,
-} from "./Anchor.module.css";
+} from "./floating-headings.module.css";
 
 interface Props {
 	anchors: {
@@ -19,7 +19,7 @@ interface Props {
 	}[];
 }
 
-export const Anchor: FunctionComponent<Props> = function (props) {
+export const FloatingHeadings: FunctionComponent<Props> = function (props) {
 	return (
 		<details className={postAnchor}>
 			<summary className={anchorTitle}>

@@ -1,8 +1,8 @@
 import type { FunctionComponent } from "react";
 import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
+import { FloatingHeadings } from "../../components/floating-headings/floating-headings";
 import { ShinyaigeekCoreProfile } from "../../components/shinyaigeek-core-profile/shinyaigeek-core-profile";
 import { postContent, profile } from "./Post.module.css";
-import { Anchor } from "./components/Anchor/Anchor";
 import { PostMetaInfo } from "./components/PostMetaInfo/PostMetaInfo";
 
 interface Props {
@@ -25,7 +25,7 @@ export const Post: FunctionComponent<Props> = function Post({
 }) {
 	return (
 		<div>
-			<Anchor anchors={anchors} />
+			<FloatingHeadings anchors={anchors} />
 			<PostMetaInfo title={title} tags={tags} publishedAt={publishedAt} />
 			<div
 				className={postContent}

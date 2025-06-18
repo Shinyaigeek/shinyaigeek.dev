@@ -1,5 +1,5 @@
 import type { FunctionComponent } from "react";
-import { snsItem, snsItemIconInvert } from "./SNSItem.module.css";
+import { snsItem, snsItemIconInvert } from "./sns-item.module.css";
 
 export interface SNSItemProps {
 	href: string;
