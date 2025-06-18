@@ -1,0 +1,35 @@
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--theme-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    transition: color 0.2s ease;
+}
+
+.backLink:hover {
+    color: var(--theme-color-light);
+}
+
+.content {
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .backLink {
+        margin-bottom: 1.5rem;
+    }
+}

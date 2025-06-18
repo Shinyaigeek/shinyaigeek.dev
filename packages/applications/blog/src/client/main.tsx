@@ -8,12 +8,16 @@ import { Home } from "../ui/pages/Home/Home";
 import { Post } from "../ui/pages/Post/Post";
 import { PostIndex } from "../ui/pages/PostIndex/PostIndex";
 import { Profile } from "../ui/pages/Profile/Profile";
+import { FleetDetail } from "../ui/pages/fleet-detail";
+import { FleetIndex } from "../ui/pages/fleet-index";
 
 Layout;
 Home;
 Post;
 Profile;
 PostIndex;
+FleetDetail;
+FleetIndex;
 
 // Theme management
 class ThemeManager {
