@@ -2,7 +2,6 @@ import type { FunctionComponent } from "react";
 import type { FleetContent } from "../../../build/model/fleet/fleet.entity";
 import {
 	active,
-	description,
 	header,
 	meta,
 	navButton,
@@ -27,7 +26,6 @@ export const FleetViewer: FunctionComponent<Props> = ({ fleet }) => {
 		<div className={viewer} data-fleet-viewer>
 			<header className={header}>
 				<h1 className={title}>{fleet.metadata.title}</h1>
-				<p className={description}>{fleet.metadata.description}</p>
 				<div className={meta}>
 					<time dateTime={fleet.metadata.publishedAt}>
 						{new Date(fleet.metadata.publishedAt).toLocaleDateString("ja-JP")}

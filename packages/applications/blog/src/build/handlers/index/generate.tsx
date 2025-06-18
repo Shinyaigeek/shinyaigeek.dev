@@ -42,7 +42,6 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 	const fleetResults = await getFleetsUsecase.getFleets(language);
 	interface FleetDisplayItem {
 		title: string;
-		description: string;
 		publishedAt: string;
 		path: string;
 		slideCount: number;
@@ -53,7 +52,6 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 	if (!isErr(fleetResults)) {
 		fleets = unwrapOk(fleetResults).map((fleet) => ({
 			title: fleet.metadata.title,
-			description: fleet.metadata.description,
 			publishedAt: fleet.metadata.publishedAt,
 			path: fleet.metadata.path,
 			slideCount: fleet.slides.length,

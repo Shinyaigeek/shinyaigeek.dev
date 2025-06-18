@@ -2,7 +2,6 @@ import type { Language } from "../language/language.entity";
 
 export interface FleetMetadata {
 	title: string;
-	description: string;
 	publishedAt: string;
 	tags?: string[];
 	path: string;

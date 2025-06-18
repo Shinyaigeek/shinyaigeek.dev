@@ -22,7 +22,6 @@ interface Props {
 	}[];
 	fleets?: {
 		title: string;
-		description: string;
 		publishedAt: string;
 		path: string;
 		slideCount: number;
@@ -61,7 +60,6 @@ export const Home: FunctionComponent<Props> = ({ items, fleets = [] }) => (
 							<FleetCard
 								key={fleet.path}
 								title={fleet.title}
-								description={fleet.description}
 								publishedAt={fleet.publishedAt}
 								path={fleet.path}
 								slideCount={fleet.slideCount}

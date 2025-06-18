@@ -1,7 +1,6 @@
 import type { FunctionComponent } from "react";
 import {
 	card,
-	description,
 	meta,
 	publishedAt,
 	slideCount,
@@ -12,7 +11,6 @@ import {
 
 interface Props {
 	title: string;
-	description: string;
 	publishedAt: string;
 	slideCount: number;
 	path: string;
@@ -21,7 +19,6 @@ interface Props {
 
 export const FleetCard: FunctionComponent<Props> = ({
 	title: fleetTitle,
-	description: fleetDescription,
 	publishedAt: fleetPublishedAt,
 	slideCount: fleetSlideCount,
 	path,
@@ -29,7 +26,6 @@ export const FleetCard: FunctionComponent<Props> = ({
 }) => (
 	<a href={`/fleets/${path}`} className={card}>
 		<h3 className={title}>{fleetTitle}</h3>
-		<p className={description}>{fleetDescription}</p>
 		{fleetTags.length > 0 && (
 			<div className={tags}>
 				{fleetTags.map((tagName) => (
