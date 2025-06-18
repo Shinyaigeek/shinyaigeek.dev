@@ -22,7 +22,7 @@ pnpm uses symlink to provide fast and space-saving download of npm modules. Norm
 
 Another feature of pnpm is that it boldly adds utility commands and options not found in other package managers.
 
-[![tweet i have joined pnpm](../../assets/pnpm-outdated-command-supports-json-format/tweet.png)](https://twitter.com/Shinyaigeek/status/1577947254916550656)
+[![tweet i have joined pnpm](/assets/pnpm-outdated-command-supports-json-format/tweet.png)](https://twitter.com/Shinyaigeek/status/1577947254916550656)
 
 As a member of pnpm, I have implemented JSON format output for the `pnpm outdated` command, and I write a blog post about it.
 
@@ -32,11 +32,11 @@ The `pnpm outdated` command is used to identify obsolete modules in your project
 
 For example, when I execute `pnpm outdated` command in shinyaigeek.dev, I get a output like below.
 
-![result of pnpm outdated](../../../assets/pnpm-outdated-command-supports-json-format/pnpm-outdated.png)
+![result of pnpm outdated](/assets/pnpm-outdated-command-supports-json-format/pnpm-outdated.png)
 
 It also supports output in list format, so that I get an output like below with `pnpm outdated --table false`.
 
-![result of pnpm outdated --table false](../../../assets/pnpm-outdated-command-supports-json-format/pnpm-outdated-with-list.png)
+![result of pnpm outdated --table false](/assets/pnpm-outdated-command-supports-json-format/pnpm-outdated-with-list.png)
 
 ## Why did we want to support JSON format output in pnpm outdated
 

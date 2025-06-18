@@ -7,7 +7,10 @@ export const registerBuiltAssetsPlugin: Plugin<Context> = {
 	async onRouted(_, context) {
 		const fileIOInfrastructure = new NodeFileIOInfrastructure();
 		const filePathInfrastructure = new NodeFilePathImplementation();
-		const publicPath = filePathInfrastructure.resolve(process.cwd(), "public");
+		const publicPath = filePathInfrastructure.resolve(
+			process.cwd(),
+			"public/assets",
+		);
 		const builtAssets = await fileIOInfrastructure.readDirectory(publicPath);
 
 		const javascriptFileNames = builtAssets.filter((asset) =>

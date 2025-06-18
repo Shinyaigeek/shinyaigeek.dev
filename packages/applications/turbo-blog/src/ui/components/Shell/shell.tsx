@@ -70,34 +70,12 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 				type="image/x-icon"
 				href={"/assets/static/favicon.ico"}
 			/>
-			<link rel="stylesheet" type="text/css" href={`/${builtAssets.css}`} />
 			<link
 				rel="stylesheet"
 				type="text/css"
-				href={"/assets/static/a11y-dark.min.css"}
+				href={`/assets/${builtAssets.css}`}
 			/>
-			<link
-				rel="stylesheet"
-				href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
-			/>
-
-			<link
-				rel="preload"
-				as="style"
-				href={"/assets/static/a11y-dark.min.css"}
-			/>
-			<link
-				rel="preload"
-				as="style"
-				href={`/assets/style${
-					process.env.CONTENTHASH_CSS ? `.${process.env.CONTENTHASH_CSS}` : ""
-				}.css`}
-			/>
-			<link
-				rel="preload"
-				as="style"
-				href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
-			/>
+			<link rel="preload" as="style" href={`/assets/${builtAssets.css}`} />
 			<link
 				rel="preload"
 				as="image"
@@ -144,7 +122,7 @@ export const Shell: FunctionComponent<ShellProps> = ({
 				src="https://static.cloudflareinsights.com/beacon.min.js"
 				data-cf-beacon='{"token": "0893ac88cf0542af88bfd9b93008b408", "spa": true}'
 			/>
-			<script defer src={`/${builtAssets.javascript}`} async />
+			<script defer src={`/assets/${builtAssets.javascript}`} async />
 		</html>
 	</LanguageContext.Provider>
 );

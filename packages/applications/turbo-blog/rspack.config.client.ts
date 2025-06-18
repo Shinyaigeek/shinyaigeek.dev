@@ -11,7 +11,7 @@ const configForApplicationServer: Configuration = {
 	},
 	output: {
 		filename: "[name].[contenthash].js",
-		path: "public",
+		path: "public/assets",
 	},
 	plugins: [
 		new CssExtractRspackPlugin({

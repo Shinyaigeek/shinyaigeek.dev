@@ -17,7 +17,7 @@
 		"__rspack": "NODE_OPTIONS=\"--loader ts-node/esm\" rspack",
 		"build:client:rspack": "NODE_ENV=production pnpm __rspack build --config rspack.config.client.ts",
 		"build:server:rspack": "NODE_ENV=production pnpm __rspack build --config rspack.config.server.ts",
-		"copy:assets": "cp -r ./src/assets ./public",
+		"copy:assets": "cp -r ./src/assets/* ./public/assets/",
 		"test": "vitest run",
 		"generate:tcm": "tcm src",
 		"components-catalogue:serve": "ladle serve",

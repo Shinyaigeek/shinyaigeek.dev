@@ -16,7 +16,7 @@ export const generateOGImageFromBlogPost = async ({
 	title,
 }: Args): Promise<Buffer> => {
 	const logo = await imageToBase64(
-		"https://shinyaigeek.dev/assets/static/shinyaigeek_icon.png",
+		"https://shinyaigeek.dev/assets/static/icon_transparent.png",
 	);
 
 	const svgData = await satori(

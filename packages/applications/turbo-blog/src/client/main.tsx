@@ -343,3 +343,5 @@ new ThemeManager();
 new MobileMenuManager();
 new LanguageDropdownManager();
 new ReferenceScrollManager();
+
+console.log("hello! I am shinyaigeek");
