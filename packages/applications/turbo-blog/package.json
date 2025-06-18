@@ -57,6 +57,7 @@
 		"@types/node": "^22.13.5",
 		"@types/react": "^18.3.1",
 		"@types/react-dom": "^18.3.0",
+		"@types/unist": "^3.0.3",
 		"build-tool": "workspace:*",
 		"css-loader": "^6.3.0",
 		"postcss-loader": "^8.1.1",

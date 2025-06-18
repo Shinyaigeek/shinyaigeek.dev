@@ -37,26 +37,61 @@
 
 .postContent table {
     width: 100%;
-    margin: 2rem 0;
+    min-width: 500px;
+    margin: 0;
     border-collapse: collapse;
-    border-radius: 0.5rem;
-    overflow: hidden;
-}
-
-.postContent table th,
-.postContent table td {
-    padding: 0.75rem 1rem;
-    border: 1px solid rgba(var(--theme-color-light-rgb), 0.2);
     background: var(--item-background);
+    font-size: 0.95rem;
+    border: none;
 }
 
 .postContent table th {
-    background: rgba(var(--theme-color-light-rgb), 0.1);
+    padding: 0.875rem 1rem;
+    background: linear-gradient(135deg, rgba(var(--theme-color-light-rgb), 0.15), rgba(var(--theme-color-light-rgb), 0.08));
     font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--theme-color);
+    border-bottom: 2px solid rgba(var(--theme-color-light-rgb), 0.2);
+    text-align: left;
+    white-space: nowrap;
+    border-right: 1px solid rgba(var(--theme-color-light-rgb), 0.1);
+}
+
+.postContent table th:last-child {
+    border-right: none;
+}
+
+.postContent table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(var(--theme-color-light-rgb), 0.08);
+    border-right: 1px solid rgba(var(--theme-color-light-rgb), 0.05);
+    background: var(--item-background);
+    transition: background-color 0.2s ease;
+    vertical-align: top;
+    color: var(--theme-color);
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+.postContent table td:last-child {
+    border-right: none;
+}
+
+.postContent table tr:last-child td {
+    border-bottom: none;
 }
 
 .postContent table tr:hover td {
-    background: rgba(var(--theme-color-light-rgb), 0.05);
+    background: rgba(var(--theme-color-light-rgb), 0.06);
+    opacity: 1;
+}
+
+.postContent table tr:nth-child(even) td {
+    background: rgba(var(--theme-color-light-rgb), 0.02);
+}
+
+.postContent table tr:nth-child(even):hover td {
+    background: rgba(var(--theme-color-light-rgb), 0.08);
 }
 
 .postContent h1,
@@ -187,6 +222,27 @@
         padding: 1rem;
         font-size: 0.85rem;
     }
+
+    .postContent table {
+        min-width: 600px;
+        margin: 0;
+        font-size: 0.85rem;
+    }
+
+    .postContent table th {
+        padding: 0.65rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    .postContent table td {
+        padding: 0.6rem 0.75rem;
+    }
+
+    .postContent :global(.table-container) {
+        margin: 1.5rem -1rem;
+        padding: 0 1rem;
+        border-radius: 0;
+    }
 }
 
 .profile {
@@ -194,6 +250,50 @@
     margin: 0 auto;
 }
 
-.postContent table tr td {
-    border: 1px solid black;
+/* Table container for horizontal scrolling - using :global() for CSS modules */
+.postContent :global(.table-container) {
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 2rem 0;
+    border-radius: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: var(--item-background);
+    border: 1px solid rgba(var(--theme-color-light-rgb), 0.2);
+}
+
+.postContent :global(.table-container)::-webkit-scrollbar {
+    height: 8px;
+}
+
+.postContent :global(.table-container)::-webkit-scrollbar-track {
+    background: rgba(var(--theme-color-light-rgb), 0.1);
+    border-radius: 4px;
+}
+
+.postContent :global(.table-container)::-webkit-scrollbar-thumb {
+    background: rgba(var(--theme-color-light-rgb), 0.4);
+    border-radius: 4px;
+}
+
+.postContent :global(.table-container)::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--theme-color-light-rgb), 0.6);
+}
+
+/* Ensure table shows scroll hint on mobile */
+@media (max-width: 768px) {
+    .postContent :global(.table-container)::after {
+        content: '← スクロールできます';
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 0.75rem;
+        color: rgba(var(--theme-color-light-rgb), 0.7);
+        pointer-events: none;
+        opacity: 0.8;
+    }
+
+    .postContent :global(.table-container) {
+        position: relative;
+    }
 }

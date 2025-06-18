@@ -11,6 +11,8 @@ import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
+import type { Node, Parent } from "unist";
+import { visit } from "unist-util-visit";
 import { remarkReferences } from "../../plugins/remark-references";
 import type { BlogMetadata } from "./blog.entity";
 import { extractBlogMetadata } from "./extract-blog-metadata";
@@ -31,13 +33,13 @@ export const parseBlogContent: (
 
 	const { content, metadata } = unwrapOk(extractBlogMetadataResult);
 
-	// @ts-ignore
 	const parsed = await unified()
 		.use(remarkParse)
 		.use(remarkGfm)
 		.use(remarkReferences)
 		.use(remarkRehype)
 		.use(rehypeHighlight)
+		.use(wrapTablesInContainer)
 		.use(rehypeStringify)
 		.use(applyHeadingIdForHeadings)
 		.process(content);
@@ -57,6 +59,40 @@ export const parseBlogContent: (
 		body,
 	});
 };
+
+/**
+ * Wraps tables in a scrollable container for responsive design
+ */
+function wrapTablesInContainer() {
+	return function (tree: Node) {
+		visit(
+			tree,
+			"element",
+			(node: Node, index: number | undefined, parent: Parent | undefined) => {
+				if (
+					node.type === "element" &&
+					"tagName" in node &&
+					(node as { tagName: string }).tagName === "table" &&
+					parent &&
+					typeof index === "number" &&
+					"children" in parent &&
+					Array.isArray(parent.children)
+				) {
+					const wrapper: Node = {
+						type: "element",
+						tagName: "div",
+						properties: {
+							className: ["table-container"],
+						},
+						children: [node],
+					} as Node;
+
+					parent.children[index] = wrapper;
+				}
+			},
+		);
+	};
+}
 
 /**
  * TODO: Currently, I extract headings with remark's plugin.

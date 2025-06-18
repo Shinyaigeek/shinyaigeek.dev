@@ -228,6 +228,7 @@
     font-weight: bold;
     white-space: nowrap;
     background: linear-gradient(120deg, var(--theme-color) 0%, var(--important-color) 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
