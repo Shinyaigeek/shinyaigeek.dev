@@ -7,34 +7,18 @@
   padding: 0 20px;
 }
 
-.header {
-  text-align: center;
-  padding: 20px 0;
-  flex-shrink: 0;
-}
-
 .title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin: 0 0 8px 0;
-  line-height: 1.2;
-}
-
-.description {
+  position: absolute;
+  top: 20px;
+  left: 20px;
   font-size: 1rem;
+  font-weight: 400;
   color: var(--text-secondary);
-  margin: 0 0 12px 0;
-  line-height: 1.4;
+  opacity: 0.7;
+  z-index: 10;
+  pointer-events: none;
 }
 
-.meta {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
 
 .slideContainer {
   position: relative;
@@ -47,6 +31,7 @@
   justify-content: center;
   overflow: hidden;
   cursor: pointer;
+  margin-bottom: 0;
 }
 
 .slide {
@@ -83,7 +68,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px 20px;
+  padding: 8px 20px;
   flex-shrink: 0;
   background: var(--card-background);
   border-top: 1px solid var(--border-color);
@@ -111,20 +96,6 @@
   transition: width 0.3s ease;
 }
 
-.tags {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.tag {
-  background: rgba(0, 0, 0, 0.05);
-  color: #666;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-}
 
 @media (max-width: 768px) {
   .viewer {
@@ -132,15 +103,12 @@
   }
   
   .title {
-    font-size: 1.5rem;
+    font-size: 0.9rem;
+    top: 15px;
+    left: 15px;
   }
   
   .slide {
     padding: 24px;
-  }
-  
-  .navButton {
-    padding: 6px 12px;
-    font-size: 0.85rem;
   }
 }
