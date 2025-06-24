@@ -46,7 +46,7 @@ export const Home: FunctionComponent<Props> = ({ items, fleets = [] }) => (
 			</div>
 		</section>
 
-		{fleets.length > 0 && (
+		{/* {fleets.length > 0 && (
 			<>
 				<section className={fleetSection}>
 					<h2>Latest Fleets</h2>
@@ -58,6 +58,6 @@ export const Home: FunctionComponent<Props> = ({ items, fleets = [] }) => (
 				</section>
 				<Divider />
 			</>
-		)}
+		)} */}
 	</div>
 );

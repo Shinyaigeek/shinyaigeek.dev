@@ -78,7 +78,6 @@ export const generateBlogIndexPage: GenerateHandler<Context> = async ({
 	return renderToStaticMarkup(
 		<Shell
 			language={rawLanguage}
-			ogImageFilename="TODO"
 			title="shinyaigeek.dev"
 			path="/"
 			description={description}

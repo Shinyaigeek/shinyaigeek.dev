@@ -39,9 +39,8 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 	return renderToStaticMarkup(
 		<Shell
 			language={rawLanguage}
-			ogImageFilename="TODO"
 			title={`${blogPost.metadata.title} - shinyaigeek.dev`}
-			path={path}
+			path={`${path.replace("/en", "")}/`}
 			description={blogPost.metadata.description}
 			builtAssets={context.builtAssets}
 		>

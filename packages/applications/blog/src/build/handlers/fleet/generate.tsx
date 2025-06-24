@@ -41,7 +41,6 @@ export const generateFleetPage: GenerateHandler<Context> = async ({
 	return renderToStaticMarkup(
 		<Shell
 			language={rawLanguage}
-			ogImageFilename="TODO"
 			title={`${fleet.metadata.title} | shinyaigeek.dev`}
 			path={`/fleets/${slug}/`}
 			description={fleet.metadata.description}

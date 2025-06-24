@@ -39,7 +39,6 @@ export const generateFleetsPage: GenerateHandler<Context> = async ({
 	return renderToStaticMarkup(
 		<Shell
 			language={rawLanguage}
-			ogImageFilename="TODO"
 			title="Fleets | shinyaigeek.dev"
 			path="/fleets/"
 			description={description}
