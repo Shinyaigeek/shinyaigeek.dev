@@ -46,7 +46,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .slide {
@@ -81,31 +81,14 @@
 
 .navigation {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 12px;
+  padding: 12px 20px;
   flex-shrink: 0;
+  background: var(--card-background);
+  border-top: 1px solid var(--border-color);
 }
 
-.navButton {
-  background: var(--theme-color);
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease;
-}
-
-.navButton:hover:not(:disabled) {
-  background: var(--theme-color-light);
-}
-
-.navButton:disabled {
-  background: var(--text-tertiary);
-  cursor: not-allowed;
-}
 
 .slideIndicator {
   display: flex;
@@ -118,9 +101,7 @@
 .progressBar {
   height: 4px;
   background: var(--border-color);
-  border-radius: 2px;
   overflow: hidden;
-  margin-bottom: 12px;
   flex-shrink: 0;
 }
 

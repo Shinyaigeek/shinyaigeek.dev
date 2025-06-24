@@ -4,7 +4,6 @@ import {
 	active,
 	header,
 	meta,
-	navButton,
 	navigation,
 	progress,
 	progressBar,
@@ -43,27 +42,7 @@ export const FleetViewer: FunctionComponent<Props> = ({ fleet }) => {
 				)}
 			</header>
 
-			<div className={navigation}>
-				<button type="button" className={navButton} data-fleet-prev>
-					← Previous
-				</button>
-				<div className={slideIndicator} data-fleet-indicator>
-					1 / {fleet.slides.length}
-				</div>
-				<button type="button" className={navButton} data-fleet-next>
-					Next →
-				</button>
-			</div>
-
-			<div className={progressBar}>
-				<div
-					className={progress}
-					data-fleet-progress
-					style={{ width: `${(1 / fleet.slides.length) * 100}%` }}
-				/>
-			</div>
-
-			<div className={slideContainer}>
+			<div className={slideContainer} data-fleet-container>
 				{fleet.slides.map((slideContent, index) => (
 					<div
 						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
@@ -74,6 +53,20 @@ export const FleetViewer: FunctionComponent<Props> = ({ fleet }) => {
 						dangerouslySetInnerHTML={{ __html: slideContent.content }}
 					/>
 				))}
+			</div>
+
+			<div className={navigation}>
+				<div className={slideIndicator} data-fleet-indicator>
+					1 / {fleet.slides.length}
+				</div>
+			</div>
+
+			<div className={progressBar}>
+				<div
+					className={progress}
+					data-fleet-progress
+					style={{ width: `${(1 / fleet.slides.length) * 100}%` }}
+				/>
 			</div>
 		</div>
 	);

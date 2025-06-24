@@ -346,6 +346,7 @@ class FleetManager {
 	private currentSlide = 0;
 	private totalSlides = 0;
 	private viewer: HTMLElement | null = null;
+	private container: HTMLElement | null = null;
 	private prevButton: HTMLButtonElement | null = null;
 	private nextButton: HTMLButtonElement | null = null;
 	private slideIndicator: HTMLElement | null = null;
@@ -361,6 +362,7 @@ class FleetManager {
 		this.viewer = document.querySelector("[data-fleet-viewer]");
 		if (!this.viewer) return;
 
+		this.container = this.viewer.querySelector("[data-fleet-container]");
 		this.prevButton = this.viewer.querySelector("[data-fleet-prev]");
 		this.nextButton = this.viewer.querySelector("[data-fleet-next]");
 		this.slideIndicator = this.viewer.querySelector("[data-fleet-indicator]");
@@ -374,18 +376,33 @@ class FleetManager {
 		this.totalSlides = this.slides.length;
 		this.currentSlide = 0;
 
+		// Setup tap navigation on container
+		if (this.container) {
+			this.container.addEventListener("click", (event) => {
+				const rect = this.container?.getBoundingClientRect();
+				const x = event.clientX - rect.left;
+				const width = rect.width;
+
+				if (x < width / 2) {
+					this.prevSlide();
+				} else {
+					this.nextSlide();
+				}
+			});
+		}
+
 		// Setup event listeners
-		this.prevButton?.addEventListener("click", () => {
+		this.prevButton?.addEventListener("click", (event) => {
+			event.stopPropagation();
 			this.prevSlide();
 		});
-		this.nextButton?.addEventListener("click", () => {
+		this.nextButton?.addEventListener("click", (event) => {
+			event.stopPropagation();
 			this.nextSlide();
 		});
 
 		// Setup keyboard navigation
 		document.addEventListener("keydown", (event) => {
-			if (!this.viewer?.contains(document.activeElement)) return;
-
 			if (event.key === "ArrowLeft") {
 				event.preventDefault();
 				this.prevSlide();
@@ -397,9 +414,6 @@ class FleetManager {
 
 		// Initialize view
 		this.updateView();
-
-		// Handle initial focus for keyboard navigation
-		this.viewer.setAttribute("tabindex", "0");
 	}
 
 	private prevSlide() {
