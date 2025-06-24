@@ -1,5 +1,6 @@
 import type { Undefinable } from "option-t/esm/Undefinable";
 import type { FunctionComponent } from "react";
+import type { FleetContent } from "../../../build/model/fleet/fleet.entity";
 import { FirstBoard } from "../../components/FirstBoard/FirstBoard";
 import { Item } from "../../components/Item/Item";
 import { Divider } from "../../components/divider/divider";
@@ -20,13 +21,7 @@ interface Props {
 		ogp?: Undefinable<string>;
 		media?: "speakerdeck" | "blog";
 	}[];
-	fleets?: {
-		title: string;
-		publishedAt: string;
-		path: string;
-		slideCount: number;
-		tags?: string[];
-	}[];
+	fleets?: FleetContent[];
 }
 
 export const Home: FunctionComponent<Props> = ({ items, fleets = [] }) => (
@@ -57,14 +52,7 @@ export const Home: FunctionComponent<Props> = ({ items, fleets = [] }) => (
 					<h2>Latest Fleets</h2>
 					<div className={fleetGrid}>
 						{fleets.slice(0, 3).map((fleet) => (
-							<FleetCard
-								key={fleet.path}
-								title={fleet.title}
-								publishedAt={fleet.publishedAt}
-								path={fleet.path}
-								slideCount={fleet.slideCount}
-								tags={fleet.tags}
-							/>
+							<FleetCard key={fleet.path} fleet={fleet} />
 						))}
 					</div>
 				</section>

@@ -17,4 +17,24 @@ export class FleetContent {
 		public readonly slides: FleetSlide[],
 		public readonly language: Language,
 	) {}
+
+	get slideCount(): number {
+		return this.slides.length;
+	}
+
+	get title(): string {
+		return this.metadata.title;
+	}
+
+	get publishedAt(): string {
+		return this.metadata.publishedAt;
+	}
+
+	get path(): string {
+		return this.metadata.path;
+	}
+
+	get tags(): string[] | undefined {
+		return this.metadata.tags;
+	}
 }

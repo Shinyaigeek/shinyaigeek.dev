@@ -8,6 +8,7 @@ import { GetFleetsUsecase } from "../../application/getFleets/getFleets.usecase"
 import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
+import type { FleetContent } from "../../model/fleet/fleet.entity";
 import { FleetRepository } from "../../model/fleet/fleet.repository";
 import { Language } from "../../model/language/language.entity";
 
@@ -24,23 +25,9 @@ export const generateFleetsPage: GenerateHandler<Context> = async ({
 	const language = context.language;
 	const fleetResults = await getFleetsUsecase.getFleets(language);
 
-	interface FleetDisplayItem {
-		title: string;
-		publishedAt: string;
-		path: string;
-		slideCount: number;
-		tags?: string[];
-	}
-
-	let fleets: FleetDisplayItem[] = [];
+	let fleets: FleetContent[] = [];
 	if (!isErr(fleetResults)) {
-		fleets = unwrapOk(fleetResults).map((fleet) => ({
-			title: fleet.metadata.title,
-			publishedAt: fleet.metadata.publishedAt,
-			path: fleet.metadata.path,
-			slideCount: fleet.slides.length,
-			tags: fleet.metadata.tags,
-		}));
+		fleets = unwrapOk(fleetResults);
 	}
 
 	const rawLanguage = language === Language.ja ? "ja" : "en";

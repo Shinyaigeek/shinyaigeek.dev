@@ -1,4 +1,5 @@
 import type { FunctionComponent } from "react";
+import type { FleetContent } from "../../../build/model/fleet/fleet.entity";
 import { FleetCard } from "../../components/fleet-card";
 import {
 	container,
@@ -10,13 +11,7 @@ import {
 } from "./fleet-index.module.css";
 
 interface Props {
-	fleets: {
-		title: string;
-		publishedAt: string;
-		path: string;
-		slideCount: number;
-		tags?: string[];
-	}[];
+	fleets: FleetContent[];
 }
 
 export const FleetIndex: FunctionComponent<Props> = ({ fleets }) => (
@@ -31,14 +26,7 @@ export const FleetIndex: FunctionComponent<Props> = ({ fleets }) => (
 		{fleets.length > 0 ? (
 			<div className={fleetGrid}>
 				{fleets.map((fleet) => (
-					<FleetCard
-						key={fleet.path}
-						title={fleet.title}
-						publishedAt={fleet.publishedAt}
-						path={fleet.path}
-						slideCount={fleet.slideCount}
-						tags={fleet.tags}
-					/>
+					<FleetCard key={fleet.path} fleet={fleet} />
 				))}
 			</div>
 		) : (

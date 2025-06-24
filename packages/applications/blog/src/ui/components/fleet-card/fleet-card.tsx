@@ -1,4 +1,5 @@
 import type { FunctionComponent } from "react";
+import type { FleetContent } from "../../../build/model/fleet/fleet.entity";
 import {
 	card,
 	meta,
@@ -10,25 +11,15 @@ import {
 } from "./fleet-card.module.css";
 
 interface Props {
-	title: string;
-	publishedAt: string;
-	slideCount: number;
-	path: string;
-	tags?: string[];
+	fleet: FleetContent;
 }
 
-export const FleetCard: FunctionComponent<Props> = ({
-	title: fleetTitle,
-	publishedAt: fleetPublishedAt,
-	slideCount: fleetSlideCount,
-	path,
-	tags: fleetTags = [],
-}) => (
-	<a href={`/fleets/${path}`} className={card}>
-		<h3 className={title}>{fleetTitle}</h3>
-		{fleetTags.length > 0 && (
+export const FleetCard: FunctionComponent<Props> = ({ fleet }) => (
+	<a href={`/fleets/${fleet.path}`} className={card}>
+		<h3 className={title}>{fleet.title}</h3>
+		{fleet.tags && fleet.tags.length > 0 && (
 			<div className={tags}>
-				{fleetTags.map((tagName) => (
+				{fleet.tags.map((tagName) => (
 					<span key={tagName} className={tag}>
 						{tagName}
 					</span>
@@ -36,10 +27,10 @@ export const FleetCard: FunctionComponent<Props> = ({
 			</div>
 		)}
 		<div className={meta}>
-			<time className={publishedAt} dateTime={fleetPublishedAt}>
-				{new Date(fleetPublishedAt).toLocaleDateString("ja-JP")}
+			<time className={publishedAt} dateTime={fleet.publishedAt}>
+				{new Date(fleet.publishedAt).toLocaleDateString("ja-JP")}
 			</time>
-			<span className={slideCount}>{fleetSlideCount} slides</span>
+			<span className={slideCount}>{fleet.slideCount} slides</span>
 		</div>
 	</a>
 );

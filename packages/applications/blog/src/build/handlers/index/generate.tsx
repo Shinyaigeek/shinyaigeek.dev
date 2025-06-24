@@ -10,6 +10,7 @@ import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../model/blog/blog.repository";
+import type { FleetContent } from "../../model/fleet/fleet.entity";
 import { FleetRepository } from "../../model/fleet/fleet.repository";
 import { Language } from "../../model/language/language.entity";
 import { ThirdPartyPublishContentRepository } from "../../model/third-party-publish/third-party-publish.repository";
@@ -40,23 +41,10 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 	});
 
 	const fleetResults = await getFleetsUsecase.getFleets(language);
-	interface FleetDisplayItem {
-		title: string;
-		publishedAt: string;
-		path: string;
-		slideCount: number;
-		tags?: string[];
-	}
 
-	let fleets: FleetDisplayItem[] = [];
+	let fleets: FleetContent[] = [];
 	if (!isErr(fleetResults)) {
-		fleets = unwrapOk(fleetResults).map((fleet) => ({
-			title: fleet.metadata.title,
-			publishedAt: fleet.metadata.publishedAt,
-			path: fleet.metadata.path,
-			slideCount: fleet.slides.length,
-			tags: fleet.metadata.tags,
-		}));
+		fleets = unwrapOk(fleetResults);
 	}
 
 	const thirdPartyPublishContentRepository =
