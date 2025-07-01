@@ -13,8 +13,11 @@
     "lint-staged": "lint-staged",
     "__biome": "biome",
     "format": "biome format --write ./packages",
+    "format:check": "biome format --check ./packages",
     "lint": "biome ci --formatter-enabled=true --linter-enabled=true --organize-imports-enabled=true ./packages",
-    "lint:fix": "biome check --apply-unsafe ./packages"
+    "lint:fix": "biome check --apply-unsafe ./packages",
+    "test": "pnpm -r --if-present run test",
+    "build": "pnpm -r --if-present run build"
   },
   "husky": {
     "hooks": {
