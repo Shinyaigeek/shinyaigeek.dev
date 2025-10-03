@@ -6,7 +6,7 @@
 	"author": "",
 	"license": "ISC",
 	"type": "module",
-	"files": ["./webpack"],
+	"files": ["./webpack", "./rspack", "./javascript"],
 	"types": "./index.ts",
 	"exports": {
 		".": {
@@ -16,6 +16,14 @@
 		"./webpack": {
 			"default": "./webpack/webpack.config.base.ts",
 			"types": "./webpack/webpack.config.base.ts"
+		},
+		"./rspack": {
+			"default": "./rspack/rspack.config.base.ts",
+			"types": "./rspack/rspack.config.base.ts"
+		},
+		"./javascript/swc/build-swc-config.ts": {
+			"default": "./javascript/swc/build-swc-config.ts",
+			"types": "./javascript/swc/build-swc-config.ts"
 		}
 	},
 	"devDependencies": {

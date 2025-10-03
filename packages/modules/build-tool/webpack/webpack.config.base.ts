@@ -1,5 +1,5 @@
 import type webpack from "webpack";
-import { buildSwcConfig } from "../javascript/swc/build-swc-config.js";
+import { buildSwcConfig } from "../javascript/swc/build-swc-config.ts";
 
 export const webpackBaseConfig: webpack.Configuration = {
 	resolve: {

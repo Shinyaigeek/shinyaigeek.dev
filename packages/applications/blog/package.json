@@ -8,7 +8,8 @@
 	"author": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "NODE_ENV=development rspack serve",
+		"dev": "NODE_ENV=development rspack serve --config rspack.config.dev.ts",
+		"dev:watch": "node --watch=src scripts/build-watch.mjs",
 		"build": "pnpm clean && NODE_ENV=production pnpm generate:tcm && pnpm build:client:rspack && pnpm build:server:rspack && pnpm invoke:ssg && pnpm copy:assets",
 		"__webpack": "NODE_OPTIONS=\"--loader ts-node/esm\" webpack",
 		"build:client:webpack": "NODE_ENV=production pnpm __webpack --config webpack.config.client.ts",
@@ -66,6 +67,7 @@
 		"react-server-dom-webpack": "19.0.0-beta-94eed63c49-20240425",
 		"rimraf": "^4.1.2",
 		"sass-loader": "^14.2.1",
+		"style-loader": "^3.3.4",
 		"swc-loader": "^0.2.3",
 		"ts-node": "^10.2.1",
 		"typed-css-modules": "^0.9.1",

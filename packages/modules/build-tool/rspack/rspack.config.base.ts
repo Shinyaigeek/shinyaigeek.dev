@@ -1,6 +1,6 @@
 import type { Configuration } from "@rspack/cli";
 import Rspack from "@rspack/core";
-import { buildSwcConfig } from "../javascript/swc/build-swc-config.js";
+import { buildSwcConfig } from "../javascript/swc/build-swc-config.ts";
 
 const CssExtractRspackPlugin = Rspack.CssExtractRspackPlugin;
 

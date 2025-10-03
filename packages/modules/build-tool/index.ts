@@ -1,2 +1,2 @@
-export { webpackBaseConfig } from "./webpack/webpack.config.base.js";
-export { rspackBaseConfig } from "./rspack/rspack.config.base.js";
+export { webpackBaseConfig } from "./webpack/webpack.config.base.ts";
+export { rspackBaseConfig } from "./rspack/rspack.config.base.ts";
