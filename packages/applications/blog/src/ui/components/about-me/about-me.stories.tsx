@@ -1,5 +1,5 @@
 import type { Story } from "@ladle/react";
-import { LanguageContext } from "../../../../context/language-context";
+import { LanguageContext } from "../../context/language-context";
 import { AboutMe } from "./about-me";
 
 export const AboutMeJaStory: Story = function () {
