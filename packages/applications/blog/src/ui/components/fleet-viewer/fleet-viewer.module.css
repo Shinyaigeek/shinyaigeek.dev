@@ -32,6 +32,9 @@
   overflow: hidden;
   cursor: pointer;
   margin-bottom: 0;
+  min-height: 400px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .slide {
@@ -46,9 +49,14 @@
   justify-content: center;
   align-items: center;
   overflow-y: auto;
+  overflow-x: hidden;
   max-width: 900px;
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .slide.active {
@@ -62,6 +70,66 @@
 
 .slide > :last-child {
   margin-bottom: 0;
+}
+
+/* 横幅溢れ対応 */
+.slide * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.slide p,
+.slide h1,
+.slide h2,
+.slide h3,
+.slide h4,
+.slide h5,
+.slide h6,
+.slide div,
+.slide span {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.slide img,
+.slide video,
+.slide iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+.slide pre,
+.slide code {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.slide table {
+  max-width: 100%;
+  table-layout: fixed;
+  overflow-x: auto;
+  display: block;
+  white-space: nowrap;
+}
+
+.slide ul,
+.slide ol {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.slide a {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+.slide blockquote {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .navigation {
@@ -109,6 +177,63 @@
   }
   
   .slide {
-    padding: 24px;
+    padding: 20px;
+    justify-content: flex-start;
+    padding-top: 60px;
+    word-break: break-word;
+  }
+  
+  .navigation {
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .viewer {
+    padding: 0 8px;
+  }
+  
+  .title {
+    font-size: 0.85rem;
+    top: 12px;
+    left: 12px;
+  }
+  
+  .slide {
+    padding: 16px;
+    padding-top: 50px;
+    text-align: left;
+    word-break: break-word;
+  }
+  
+  .slideContainer {
+    border-radius: 8px;
+    min-height: 300px;
+  }
+  
+  .navigation {
+    padding: 4px 8px;
+  }
+  
+  .slideIndicator {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .slide {
+    padding: 12px;
+    padding-top: 45px;
+    word-break: break-word;
+  }
+  
+  .slideContainer {
+    min-height: 250px;
+  }
+  
+  .title {
+    font-size: 0.8rem;
+    top: 10px;
+    left: 10px;
   }
 }
