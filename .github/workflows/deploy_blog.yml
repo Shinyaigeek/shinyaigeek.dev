@@ -1,0 +1,58 @@
+name: Deploy blog to VPS
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+# Never let two deploys race on the same VPS doc root.
+concurrency:
+    group: deploy-blog
+    cancel-in-progress: false
+
+permissions:
+    contents: read
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+
+            - name: Enable corepack (pnpm)
+              run: corepack enable pnpm
+
+            # `--ignore-scripts` skips the deprecated @cloudflare/wrangler
+            # postinstall (its binary endpoint now 404s); the blog build needs
+            # no lifecycle scripts.
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile --ignore-scripts
+
+            - name: Build blog (rspack + SSG)
+              run: pnpm --filter blog build
+
+            # Mirrors the legacy ops/deploy.sh: copy the built `public/` (which
+            # contains ja/, en/ and assets/) into /var/www/blog/ so h2o serves
+            # /var/www/blog/public/{ja,en,assets}.
+            - name: Deploy public/ to VPS over scp
+              env:
+                  VPS_SECRET_KEY: ${{ secrets.VPS_SECRET_KEY }}
+                  SSH_HOST: ${{ secrets.SSH_HOST }}
+                  SSH_USER: ${{ secrets.SSH_USER }}
+                  SSH_PORT: ${{ secrets.SSH_PORT }}
+              run: |
+                  set -euo pipefail
+                  mkdir -p ~/.ssh
+                  printf '%s\n' "$VPS_SECRET_KEY" > ~/.ssh/deploy_key
+                  chmod 600 ~/.ssh/deploy_key
+                  ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+                  scp -i ~/.ssh/deploy_key -P "$SSH_PORT" -r \
+                      packages/applications/blog/public \
+                      "$SSH_USER@$SSH_HOST:/var/www/blog/"
