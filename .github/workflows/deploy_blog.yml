@@ -17,6 +17,9 @@ permissions:
 jobs:
     deploy:
         runs-on: ubuntu-latest
+        # VPS_SECRET_KEY / SSH_* live as Environment secrets under "Production",
+        # so the job must select that environment for them to resolve.
+        environment: Production
         timeout-minutes: 15
         steps:
             - uses: actions/checkout@v4
