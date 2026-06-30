@@ -1,5 +1,21 @@
 [
 	{
+		"media": "speakerdeck",
+		"slug": "https://speakerdeck.com/shinyaigeek/ai-hurendorinaerajian-shi-wo-typescript-deshi-xian-suru",
+		"title": "AI フレンドリーなエラー監視を TypeScript で実現する",
+		"ogp": "https://files.speakerdeck.com/presentations/fb2f4d66531847509028a6838edd947f/slide_0.jpg?39604656",
+		"description": "Ubie で取り組んでいる, AI フレンドリーなエラー監視の実践をお話しします",
+		"publishedAt": "2026/06/03"
+	},
+	{
+		"media": "speakerdeck",
+		"slug": "https://speakerdeck.com/shinyaigeek/ju-da-mosiyuramonorisunotesutozhan-lue",
+		"title": "巨大モジュラーモノリスのテスト戦略",
+		"ogp": "https://files.speakerdeck.com/presentations/5803aafd3703431f8a51d80f316f54a3/slide_0.jpg?37077613",
+		"description": "",
+		"publishedAt": "2025/10/23"
+	},
+	{
 		"media": "blog",
 		"slug": "https://hack.nikkei.com/blog/advent20241212/",
 		"title": "モノレポ統合により複雑なマイクロサービスの開発を単純化するアプローチ",
