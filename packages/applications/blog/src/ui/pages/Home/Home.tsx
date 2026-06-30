@@ -3,6 +3,7 @@ import type { FunctionComponent } from "react";
 import type { FleetContent } from "../../../build/model/fleet/fleet.entity";
 import { FirstBoard } from "../../components/FirstBoard/FirstBoard";
 import { Item } from "../../components/Item/Item";
+import { AlterEgo } from "../../components/alter-ego/alter-ego";
 import { Divider } from "../../components/divider/divider";
 import { FleetCard } from "../../components/fleet-card";
 import {
@@ -27,6 +28,9 @@ interface Props {
 export const Home: FunctionComponent<Props> = ({ items, fleets = [] }) => (
 	<div>
 		<FirstBoard />
+		<Divider />
+
+		<AlterEgo />
 		<Divider />
 
 		<section className={blogSection}>
