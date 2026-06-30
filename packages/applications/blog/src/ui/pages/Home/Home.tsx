@@ -30,9 +30,6 @@ export const Home: FunctionComponent<Props> = ({ items, fleets = [] }) => (
 		<FirstBoard />
 		<Divider />
 
-		<AlterEgo />
-		<Divider />
-
 		<section className={blogSection}>
 			<h2>Latest Articles</h2>
 			<div className={blogGrid}>
@@ -49,6 +46,9 @@ export const Home: FunctionComponent<Props> = ({ items, fleets = [] }) => (
 				))}
 			</div>
 		</section>
+
+		<Divider />
+		<AlterEgo />
 
 		{/* {fleets.length > 0 && (
 			<>
