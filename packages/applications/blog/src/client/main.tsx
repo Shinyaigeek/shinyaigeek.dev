@@ -51,6 +51,41 @@ class ThemeManager {
 
 		// Setup theme toggle buttons
 		this.setupToggleButtons();
+
+		// Keep the embedded Alter Ego iframe in step with our theme.
+		this.setupAlterEgoFrameSync();
+	}
+
+	// The Alter Ego chat lives in a cross-origin iframe that can't inherit our
+	// chosen theme (iframes only see the visitor's OS `prefers-color-scheme`).
+	// We're the source of truth, so we hand it the resolved scheme: bake it into
+	// the src for a correct first paint, and postMessage on every change so it
+	// follows our toggle live without reloading (which would drop the chat/auth).
+	private getAlterEgoFrame(): HTMLIFrameElement | null {
+		return document.querySelector<HTMLIFrameElement>("[data-alterego-frame]");
+	}
+
+	private setupAlterEgoFrameSync() {
+		const frame = this.getAlterEgoFrame();
+		if (!frame) return;
+		// Re-push once loaded, covering cache/races where the src param below
+		// didn't take effect before the embed's listener was ready.
+		frame.addEventListener("load", () => this.postThemeToAlterEgo());
+		// Set the theme param once so the embed's first paint already matches.
+		try {
+			const url = new URL(frame.src, window.location.href);
+			if (url.searchParams.get("theme") !== this.getResolvedTheme()) {
+				url.searchParams.set("theme", this.getResolvedTheme());
+				frame.src = url.toString();
+			}
+		} catch {}
+	}
+
+	private postThemeToAlterEgo() {
+		this.getAlterEgoFrame()?.contentWindow?.postMessage(
+			{ type: "alterego:set-theme", theme: this.getResolvedTheme() },
+			"https://alterego.shinyaigeek.dev",
+		);
 	}
 
 	private applyTheme() {
@@ -59,6 +94,9 @@ class ThemeManager {
 
 		// Update toggle button icons
 		this.updateToggleButtons();
+
+		// Keep the embedded Alter Ego iframe in step (no-op before it exists/loads).
+		this.postThemeToAlterEgo();
 	}
 
 	private getResolvedTheme(): "light" | "dark" {

@@ -23,6 +23,10 @@ export const AlterEgo: FunctionComponent<Props> = ({
 				src="https://alterego.shinyaigeek.dev/embed"
 				title="Shinyaigeek Alter Ego"
 				loading="lazy"
+				// Marker for the client ThemeManager (src/client/main.tsx): it hands
+				// the resolved light/dark scheme to the embed, which can't otherwise
+				// know which theme the blog is showing. See syncAlterEgoFrame there.
+				data-alterego-frame
 			/>
 		</div>
 	</section>
