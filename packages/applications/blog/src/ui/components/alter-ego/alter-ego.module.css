@@ -33,7 +33,7 @@
 }
 
 .alterEgoFrameWrapper {
-    max-width: 800px;
+    max-width: 1040px;
     margin: 0 auto;
     border-radius: 12px;
     overflow: hidden;
@@ -44,7 +44,7 @@
 .alterEgoFrame {
     display: block;
     width: 100%;
-    height: 600px;
+    height: 720px;
     border: none;
 }
 
