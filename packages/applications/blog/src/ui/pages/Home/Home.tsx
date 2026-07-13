@@ -14,6 +14,7 @@ import {
 } from "./Home.module.css";
 
 interface Props {
+	language: "ja" | "en";
 	items: {
 		title: string;
 		description: string;
@@ -25,7 +26,11 @@ interface Props {
 	fleets?: FleetContent[];
 }
 
-export const Home: FunctionComponent<Props> = ({ items, fleets = [] }) => (
+export const Home: FunctionComponent<Props> = ({
+	language,
+	items,
+	fleets = [],
+}) => (
 	<div>
 		<FirstBoard />
 		<Divider />
@@ -48,7 +53,7 @@ export const Home: FunctionComponent<Props> = ({ items, fleets = [] }) => (
 		</section>
 
 		<Divider />
-		<AlterEgo />
+		<AlterEgo language={language} />
 
 		{/* {fleets.length > 0 && (
 			<>

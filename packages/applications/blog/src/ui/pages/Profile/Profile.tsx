@@ -1,7 +1,7 @@
 import type { FunctionComponent } from "react";
 import type { AboutMe as AboutMeType } from "../../../build/model/about-me/about-me.entity";
 import type { Education } from "../../../build/model/education/education.entity";
-import type { Language } from "../../../build/model/language/language.entity";
+import { Language } from "../../../build/model/language/language.entity";
 import type { WorkExperience } from "../../../build/model/work-experience/work-experience.entity";
 import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
 import { AboutMe } from "../../components/about-me/about-me";
@@ -41,7 +41,7 @@ export const Profile: FunctionComponent<Props> = ({
 
 				<Divider />
 
-				<AlterEgo />
+				<AlterEgo language={language === Language.ja ? "ja" : "en"} />
 
 				<Divider />
 

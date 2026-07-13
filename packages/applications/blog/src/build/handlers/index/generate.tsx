@@ -99,7 +99,7 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 			builtAssets={context.builtAssets}
 		>
 			<Layout language={rawLanguage} page="1" currentPath="/">
-				<Home items={items} fleets={fleets} />
+				<Home language={rawLanguage} items={items} fleets={fleets} />
 			</Layout>
 		</Shell>,
 	);
