@@ -6,6 +6,7 @@ import { Layout } from "../../../ui/components/Layout/Layout";
 import { Shell } from "../../../ui/components/Shell/shell";
 import { Profile } from "../../../ui/pages/Profile/Profile";
 import { GetEducationsUsecase } from "../../application/getEducations/getEducations.usecase";
+import { GetOSSProjectsUsecase } from "../../application/getOSSProjects/getOSSProjects.usecase";
 import { GetWorkExperiencesUsecase } from "../../application/getWorkExperiences/getWorkExperiences.usecase";
 import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
@@ -13,6 +14,7 @@ import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-
 import { AboutMeRepository } from "../../model/about-me/about-me.repository";
 import { EducationRepository } from "../../model/education/education.repository";
 import { Language } from "../../model/language/language.entity";
+import { OSSRepository } from "../../model/oss/oss.repository";
 import { WorkExperienceRepository } from "../../model/work-experience/work-experience.repository";
 
 export const generateProfilePage: GenerateHandler<Context> = async ({
@@ -29,6 +31,10 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 		fileIOInfrastructure,
 		filePathInfrastructure,
 	);
+	const ossRepository = new OSSRepository(
+		fileIOInfrastructure,
+		filePathInfrastructure,
+	);
 	const aboutMeRepository = new AboutMeRepository(
 		join(process.cwd(), "src/profile"),
 	);
@@ -36,6 +42,7 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 		workExperienceRepository,
 	);
 	const getEducationsUsecase = new GetEducationsUsecase(educationRepository);
+	const getOSSProjectsUsecase = new GetOSSProjectsUsecase(ossRepository);
 
 	// Fetch work experiences
 	const workExperiencesResult =
@@ -57,6 +64,17 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 	}
 
 	const educations = unwrapOk(educationsResult);
+
+	// Fetch OSS projects
+	const ossProjectsResult = await getOSSProjectsUsecase.getOSSProjects(
+		context.language,
+	);
+
+	if (isErr(ossProjectsResult)) {
+		throw unwrapErr(ossProjectsResult);
+	}
+
+	const ossProjects = unwrapOk(ossProjectsResult);
 
 	// Fetch about me
 	const aboutMe = await aboutMeRepository.getAboutMe(context.language);
@@ -80,6 +98,7 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 					language={context.language}
 					workExperiences={workExperiences}
 					educations={educations}
+					ossProjects={ossProjects}
 					aboutMe={aboutMe}
 				/>
 			</Layout>

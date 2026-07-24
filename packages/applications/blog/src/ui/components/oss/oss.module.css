@@ -1,0 +1,168 @@
+.title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: var(--theme-color);
+    border-bottom: none;
+    padding-bottom: 0;
+    display: block;
+    position: relative;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--theme-color) 0%, var(--theme-color-light) 100%);
+    border-radius: 2px;
+}
+
+.lists {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lists li:first-child {
+    border-top: none;
+}
+
+.lists li:last-child {
+    border-bottom: none;
+}
+
+.lists li {
+    margin-bottom: 1rem;
+    padding: 1rem 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.lists li:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.repoLink {
+    color: var(--theme-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.repoLink:hover {
+    color: #0969da;
+    text-decoration: underline;
+}
+
+.badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+}
+
+.badgeCreator {
+    background: rgba(9, 105, 218, 0.12);
+    color: #0969da;
+    border: 1px solid rgba(9, 105, 218, 0.25);
+}
+
+.badgeContributor {
+    background: rgba(0, 0, 0, 0.05);
+    color: #666;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.metaRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0.25rem 0;
+    color: var(--theme-color);
+    font-size: 0.9rem;
+}
+
+.metaValue {
+    color: #777;
+    font-weight: 500;
+}
+
+.lists p {
+    margin: 0.25rem 0;
+    color: var(--theme-color);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.technologiesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.4rem 0 !important;
+}
+
+.technologyTag {
+    background: rgba(0, 0, 0, 0.05);
+    color: #666;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: normal;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.highlightsLabel {
+    font-weight: 600;
+    color: #777;
+    font-size: 0.85rem;
+    display: block;
+    margin: 0.6rem 0 0.3rem;
+}
+
+.highlightsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.highlightItem {
+    margin: 0 !important;
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+.highlightLink {
+    color: #0969da;
+    text-decoration: none;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    display: block;
+    padding: 0.15rem 0;
+    transition: color 0.2s ease;
+}
+
+.highlightLink:hover {
+    text-decoration: underline;
+    color: #0860ca;
+}
