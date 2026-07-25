@@ -4,6 +4,11 @@ on:
     push:
         branches:
             - main
+    # The contribution calendar on /activity/ is baked in at build time, so it
+    # only refreshes when the site is rebuilt. Redeploy nightly at 03:00 JST
+    # (18:00 UTC) to keep it current between pushes.
+    schedule:
+        - cron: "0 18 * * *"
     workflow_dispatch:
 
 # Never let two deploys race on the same VPS doc root.
