@@ -38,8 +38,14 @@ jobs:
             - name: Install dependencies
               run: pnpm install --frozen-lockfile --ignore-scripts
 
+            # GITHUB_TOKEN feeds the contribution calendar on /activity/: the
+            # GraphQL API needs auth even for public data. The build only warns
+            # and drops the calendar if it is missing or the call fails, so this
+            # never blocks a deploy.
             - name: Build blog (rspack + SSG)
               run: pnpm --filter blog build
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             # Mirrors the legacy ops/deploy.sh: copy the built `public/` (which
             # contains ja/, en/ and assets/) into /var/www/blog/ so h2o serves

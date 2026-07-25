@@ -1,5 +1,7 @@
 import { Router } from "ssg-router";
 import type { Context } from "./context/context";
+import { generateActivityPage } from "./handlers/activity/generate";
+import { outputActivityPage } from "./handlers/activity/output";
 import { generateFleetPage } from "./handlers/fleet/generate";
 import {
 	getEnglishFleetChildren,
@@ -11,6 +13,7 @@ import { outputFleetsPage } from "./handlers/fleets/output";
 import { generateIndexPage } from "./handlers/index/generate";
 import { outputIndexPage } from "./handlers/index/output";
 import {
+	generateActivityOGImagePage,
 	generateBlogPostOGImagePage,
 	generateProfileOGImagePage,
 	generateTopOGImagePage,
@@ -74,6 +77,14 @@ router.on("/en/profile/", {
 	generate: generateProfilePage,
 	output: outputProfilePage,
 });
+router.on("/activity/", {
+	generate: generateActivityPage,
+	output: outputActivityPage,
+});
+router.on("/en/activity/", {
+	generate: generateActivityPage,
+	output: outputActivityPage,
+});
 router.on("/fleets/", {
 	generate: generateFleetsPage,
 	output: outputFleetsPage,
@@ -120,6 +131,14 @@ router.on("/profile/ogp.png", {
 });
 router.on("/en/profile/ogp.png", {
 	generate: generateProfileOGImagePage,
+	output: outputOGImagePage,
+});
+router.on("/activity/ogp.png", {
+	generate: generateActivityOGImagePage,
+	output: outputOGImagePage,
+});
+router.on("/en/activity/ogp.png", {
+	generate: generateActivityOGImagePage,
 	output: outputOGImagePage,
 });
 router.onChildren(getJapaneseOGImageChildren, {

@@ -4,6 +4,7 @@
  */
 
 import { Layout } from "./ui/components/Layout/Layout";
+import { Activity } from "./ui/pages/Activity/Activity";
 import { Home } from "./ui/pages/Home/Home";
 import { Post } from "./ui/pages/Post/Post";
 import { PostIndex } from "./ui/pages/PostIndex/PostIndex";
@@ -12,6 +13,7 @@ import { FleetDetail } from "./ui/pages/fleet-detail/fleet-detail";
 import { FleetIndex } from "./ui/pages/fleet-index/fleet-index";
 
 Layout;
+Activity;
 Home;
 Post;
 Profile;

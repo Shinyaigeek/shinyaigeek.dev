@@ -23,6 +23,14 @@ export const generateProfileOGImagePage: GenerateHandler<Context> =
 		return pngBuffer;
 	};
 
+export const generateActivityOGImagePage: GenerateHandler<Context> =
+	async () => {
+		const pngBuffer = await generateOGImageFromBlogPost({
+			title: "Shinyaigeek's GitHub Activity",
+		});
+		return pngBuffer;
+	};
+
 export const generateBlogPostOGImagePage: GenerateHandler<Context> = async ({
 	path,
 	context,

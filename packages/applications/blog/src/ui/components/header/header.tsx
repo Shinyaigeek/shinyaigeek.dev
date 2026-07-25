@@ -51,8 +51,8 @@ export const Header: FunctionComponent<HeaderProps> = ({
 					<HeaderAnchorItem isActive={page === "post"} href="/" label="Blog" />
 					<span className={divider}>/</span>
 					<HeaderAnchorItem
-						isActive={false}
-						href="https://github-activity.shinyaigeek.dev/"
+						isActive={page === "activity"}
+						href="/activity/"
 						label="Activity"
 					/>
 				</nav>
@@ -96,8 +96,8 @@ export const Header: FunctionComponent<HeaderProps> = ({
 				/>
 				<HeaderAnchorItem isActive={page === "post"} href="/" label="Blog" />
 				<HeaderAnchorItem
-					isActive={false}
-					href="https://github-activity.shinyaigeek.dev/"
+					isActive={page === "activity"}
+					href="/activity/"
 					label="Activity"
 				/>
 			</nav>

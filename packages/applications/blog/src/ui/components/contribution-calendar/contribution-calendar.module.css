@@ -1,0 +1,116 @@
+.wrapper {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    padding: 1.25rem;
+}
+
+.scroller {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.chart {
+    display: block;
+    /* The grid has a fixed cell size, so it keeps its own intrinsic width and
+       scrolls on narrow screens rather than squashing into unreadable slivers. */
+    min-width: 42rem;
+}
+
+.dayLabel,
+.monthLabel {
+    font-size: 9px;
+    fill: var(--text-muted);
+    font-family: 'SF Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.cell {
+    /* Level colours are set per-level below; the shared border keeps empty
+       cells visible against the surface in both themes. */
+    stroke: rgba(var(--theme-color-rgb), 0.06);
+    stroke-width: 1px;
+}
+
+.level0 {
+    fill: var(--surface-2);
+}
+
+.level1 {
+    fill: rgba(var(--brand-rgb), 0.35);
+}
+
+.level2 {
+    fill: rgba(var(--brand-rgb), 0.6);
+}
+
+.level3 {
+    fill: rgba(var(--brand-rgb), 0.82);
+}
+
+.level4 {
+    fill: var(--brand);
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.85rem;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.total {
+    margin: 0;
+}
+
+.totalCount {
+    font-weight: 700;
+    color: var(--theme-color);
+}
+
+.legend {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.legendSwatch {
+    width: 11px;
+    height: 11px;
+    border-radius: 2px;
+    display: inline-block;
+    border: 1px solid rgba(var(--theme-color-rgb), 0.06);
+}
+
+.swatch0 {
+    background: var(--surface-2);
+}
+
+.swatch1 {
+    background: rgba(var(--brand-rgb), 0.35);
+}
+
+.swatch2 {
+    background: rgba(var(--brand-rgb), 0.6);
+}
+
+.swatch3 {
+    background: rgba(var(--brand-rgb), 0.82);
+}
+
+.swatch4 {
+    background: var(--brand);
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 1rem;
+    }
+
+    .footer {
+        font-size: 0.75rem;
+    }
+}

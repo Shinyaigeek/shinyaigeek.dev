@@ -4,6 +4,14 @@
  */
 
 import { Layout } from "../ui/components/Layout/Layout";
+import { Activity } from "../ui/pages/Activity/Activity";
+import {
+	item as activityItem,
+	link as activityLink,
+	list as activityList,
+	repository as activityRepository,
+	state as activityState,
+} from "../ui/pages/Activity/Activity.module.css";
 import { Home } from "../ui/pages/Home/Home";
 import { Post } from "../ui/pages/Post/Post";
 import { PostIndex } from "../ui/pages/PostIndex/PostIndex";
@@ -12,6 +20,7 @@ import { FleetDetail } from "../ui/pages/fleet-detail";
 import { FleetIndex } from "../ui/pages/fleet-index";
 
 Layout;
+Activity;
 Home;
 Post;
 Profile;
@@ -522,11 +531,148 @@ class FleetManager {
 	}
 }
 
+/**
+ * Fills in the "pull requests & issues in other repositories" list on
+ * /activity/.
+ *
+ * This is read from the browser rather than baked in at build time so the list
+ * is always current. The GitHub search API allows unauthenticated calls at 10
+ * requests per minute per IP, which is fine for this traffic but can be
+ * exhausted — so every failure path restores the server-rendered fallback link
+ * instead of leaving an empty section behind. Item titles are third-party text
+ * and are only ever written via textContent.
+ */
+class GitHubActivityManager {
+	private container: HTMLElement | null;
+
+	constructor() {
+		this.container = document.querySelector<HTMLElement>(
+			"[data-github-activity]",
+		);
+		if (this.container) {
+			void this.load(this.container);
+		}
+	}
+
+	private async load(container: HTMLElement) {
+		const login = container.dataset.githubLogin;
+		if (!login) return;
+
+		const loadingLabel = container.dataset.loadingLabel ?? "Loading…";
+		const fallbackLabel =
+			container.dataset.fallbackLabel ?? "See the list on GitHub";
+		const fallbackUrl =
+			container.dataset.fallbackUrl ?? `https://github.com/${login}`;
+
+		const showFallback = () => {
+			container.replaceChildren(
+				this.buildState((paragraph) => {
+					const anchor = document.createElement("a");
+					anchor.href = fallbackUrl;
+					anchor.target = "_blank";
+					anchor.rel = "noopener noreferrer";
+					anchor.textContent = fallbackLabel;
+					paragraph.appendChild(anchor);
+				}),
+			);
+		};
+
+		container.replaceChildren(
+			this.buildState((paragraph) => {
+				paragraph.textContent = loadingLabel;
+			}),
+		);
+
+		const query = `involves:${login} -user:${login} author:${login} is:public`;
+		const endpoint = `https://api.github.com/search/issues?q=${encodeURIComponent(
+			query,
+		)}&per_page=100&sort=updated&order=desc`;
+
+		try {
+			const response = await fetch(endpoint, {
+				headers: { Accept: "application/vnd.github+json" },
+			});
+			if (!response.ok) {
+				showFallback();
+				return;
+			}
+
+			const body = (await response.json()) as {
+				items?: { html_url: string; title: string; number: number }[];
+			};
+			const items = body.items ?? [];
+
+			if (items.length === 0) {
+				showFallback();
+				return;
+			}
+
+			container.replaceChildren(
+				this.buildList(items),
+				this.buildFooter(fallbackUrl, fallbackLabel),
+			);
+		} catch {
+			showFallback();
+		}
+	}
+
+	private buildState(fill: (paragraph: HTMLParagraphElement) => void) {
+		const paragraph = document.createElement("p");
+		paragraph.className = activityState;
+		fill(paragraph);
+		return paragraph;
+	}
+
+	private buildList(
+		items: { html_url: string; title: string; number: number }[],
+	) {
+		const list = document.createElement("ul");
+		list.className = activityList;
+
+		for (const entry of items) {
+			// html_url is https://github.com/{owner}/{repo}/{pull|issues}/{number}
+			const [, , , owner, repo] = entry.html_url.split("/");
+
+			const listItem = document.createElement("li");
+			listItem.className = activityItem;
+
+			const repository = document.createElement("span");
+			repository.className = activityRepository;
+			repository.textContent = `${owner}/${repo}#${entry.number}`;
+
+			const anchor = document.createElement("a");
+			anchor.className = activityLink;
+			anchor.href = entry.html_url;
+			anchor.target = "_blank";
+			anchor.rel = "noopener noreferrer";
+			anchor.textContent = entry.title;
+
+			listItem.append(repository, anchor);
+			list.appendChild(listItem);
+		}
+
+		return list;
+	}
+
+	private buildFooter(url: string, label: string) {
+		const paragraph = document.createElement("p");
+		paragraph.className = activityState;
+		const anchor = document.createElement("a");
+		anchor.href = url;
+		anchor.target = "_blank";
+		anchor.rel = "noopener noreferrer";
+		anchor.textContent = label;
+		paragraph.appendChild(anchor);
+		return paragraph;
+	}
+}
+
 // Initialize managers
 new ThemeManager();
 new MobileMenuManager();
 new LanguageDropdownManager();
 new ReferenceScrollManager();
 new FleetManager();
+new GitHubActivityManager();
 
 console.log("hello! I am shinyaigeek");

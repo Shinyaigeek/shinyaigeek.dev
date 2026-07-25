@@ -1,0 +1,62 @@
+.calendarUnavailable {
+    padding: 1.25rem;
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    margin: 0;
+}
+
+/* ---- external contributions list ------------------------------------- */
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.item {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.item:first-child {
+    border-top: 1px solid var(--border);
+}
+
+.repository {
+    display: inline-block;
+    font-family: 'SF Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin-right: 0.5rem;
+}
+
+.link {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.state {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin: 0;
+    padding: 1.25rem 0;
+}
+
+.stateError {
+    color: var(--text-muted);
+}
+
+/*
+ * The list is filled in by GitHubActivityManager (src/client/main.tsx) after a
+ * client-side call to the GitHub search API. Without JavaScript — or when the
+ * unauthenticated rate limit is hit — the fallback stays visible and points at
+ * the same data on GitHub, so the page is never a dead end.
+ */
+.fallbackLink {
+    font-weight: 600;
+}

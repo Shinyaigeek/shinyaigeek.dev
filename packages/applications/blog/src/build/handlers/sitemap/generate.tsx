@@ -43,6 +43,12 @@ export const generateSitemapPage: GenerateHandler<Context> = async ({
 			changefreq: "monthly",
 			priority: "0.8",
 		},
+		{
+			loc: `${baseUrl}/activity/`,
+			lastmod: currentDate,
+			changefreq: "weekly",
+			priority: "0.6",
+		},
 	];
 
 	const blogUrls = blogPosts.map((post) => ({
