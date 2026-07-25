@@ -3,7 +3,7 @@ company: Nikkei Inc.
 startDate: "2022/04"
 endDate: "2025/07"
 position: Full-time employee
-role: Software Engineer
+role: Software Engineer / Platform Engineer
 technologies: ["Fastly", "swc", "linaria", "React", "Next.js", "Terraform", "Golang", "pnpm", "turborepo"]
 entries:
   - title: "Approach to Simplifying Complex Microservices Development through Monorepo Integration"

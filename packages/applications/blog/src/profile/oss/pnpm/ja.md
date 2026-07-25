@@ -2,7 +2,7 @@
 name: "pnpm/pnpm"
 url: https://github.com/pnpm/pnpm
 kind: contributor
-stars: 35862
+stars: 35868
 highlights:
   - title: "feat: run multiple scripts selected by a regex"
     url: https://github.com/pnpm/pnpm/pull/5871

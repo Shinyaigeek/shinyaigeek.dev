@@ -3,7 +3,7 @@ company: 株式会社日本経済新聞社
 startDate: "2022/04"
 endDate: "2025/07"
 position: Full-time employee
-role: Software Engineer
+role: Software Engineer / Platform Engineer
 technologies: ["Fastly", "swc", "linaria", "React", "Next.js", "Terraform", "Golang", "pnpm", "turborepo"]
 entries:
   - title: "モノレポ統合により複雑なマイクロサービスの開発を単純化するアプローチ"

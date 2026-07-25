@@ -85,14 +85,22 @@ export class WorkExperienceRepository {
 			return createErr(new AggregateError(errors));
 		}
 
-		// Sort by startDate descending (most recent first)
+		// Sort by endDate descending (ongoing experiences first), and break ties
+		// by startDate descending
+		const toTime = (date: string) => new Date(date.replace("/", "-")).getTime();
 		experiences.sort((a, b) => {
-			if (!a.metadata.endDate || !b.metadata.endDate) {
-				return -1;
+			const endA = a.metadata.endDate
+				? toTime(a.metadata.endDate)
+				: Number.POSITIVE_INFINITY;
+			const endB = b.metadata.endDate
+				? toTime(b.metadata.endDate)
+				: Number.POSITIVE_INFINITY;
+
+			if (endA !== endB) {
+				return endB - endA;
 			}
-			const dateA = new Date(a.metadata.endDate.replace("/", "-"));
-			const dateB = new Date(b.metadata.endDate.replace("/", "-"));
-			return dateB.getTime() - dateA.getTime();
+
+			return toTime(b.metadata.startDate) - toTime(a.metadata.startDate);
 		});
 
 		return createOk(experiences);

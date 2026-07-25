@@ -2,7 +2,7 @@
 name: "parcel-bundler/parcel"
 url: https://github.com/parcel-bundler/parcel
 kind: contributor
-stars: 44033
+stars: 44034
 highlights:
   - title: "feat: re-implement the transformer postProcess API"
     url: https://github.com/parcel-bundler/parcel/pull/8026

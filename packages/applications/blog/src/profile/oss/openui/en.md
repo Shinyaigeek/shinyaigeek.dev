@@ -2,7 +2,7 @@
 name: "thesysdev/openui"
 url: https://github.com/thesysdev/openui
 kind: contributor
-stars: 8192
+stars: 8198
 language: TypeScript
 highlights:
   - title: "feat(react-ui): add Storybook stories for the genui-lib Form component"
