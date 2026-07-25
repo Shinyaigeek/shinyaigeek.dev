@@ -1,9 +1,10 @@
+/* Width matches .postContent so the title and the prose share one left edge. */
 .postMetaInfoContainer {
-    padding: 2rem 0;
-    border-bottom: 1px solid rgba(var(--theme-color-light-rgb), 0.1);
+    width: min(100% - 2rem, 46rem);
+    margin: 0 auto 2.5rem;
+    padding: 2.5rem 0 1.5rem;
+    border-bottom: 1px solid var(--border);
     position: relative;
-    width: 80%;
-    margin: 0 auto 2rem auto;
 }
 
 .postMetaInfoContainer::after {
@@ -11,65 +12,52 @@
     position: absolute;
     bottom: -1px;
     left: 0;
-    width: 100px;
+    width: 72px;
     height: 2px;
-    background: linear-gradient(90deg, var(--theme-color) 0%, var(--theme-color-light) 100%);
+    background: var(--brand);
     border-radius: 1px;
 }
 
 .postTitle {
-    font-size: 3rem;
+    font-size: 2.25rem;
     line-height: 1.3;
-    font-weight: 700;
-    margin: 0 0 1.5rem;
-    background: linear-gradient(120deg, var(--theme-color) 0%, var(--important-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin: 0 0 1.25rem;
+    color: var(--theme-color);
+    overflow-wrap: anywhere;
 }
 
 .metaSection {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     flex-wrap: wrap;
 }
 
 .publishDate {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-family: "SF Mono", "Fira Code", monospace;
-    font-size: 1rem;
-    color: var(--theme-color-light);
-    padding: 0.5rem 1rem;
-    background: rgba(var(--theme-color-light-rgb), 0.1);
-    border-radius: 2rem;
-    transition: all 0.3s ease;
+    gap: 0.4rem;
+    font-family: 'SF Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    padding: 0;
+    background: none;
 }
 
 .publishDateIcon {
-    font-size: 1.2rem;
-    line-height: 1;
+    display: none;
 }
 
 @media (max-width: 768px) {
     .postMetaInfoContainer {
-        padding: 1.5rem 0;
-        margin-bottom: 1.5rem;
+        padding: 1.75rem 0 1.25rem;
+        margin-bottom: 1.75rem;
     }
 
     .postTitle {
-        font-size: 2rem;
+        font-size: 1.75rem;
         margin-bottom: 1rem;
-    }
-
-    .metaSection {
-        gap: 1rem;
-    }
-
-    .publishDate {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
     }
 }

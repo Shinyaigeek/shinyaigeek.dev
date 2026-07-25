@@ -1,5 +1,4 @@
 import type { FunctionComponent } from "react";
-import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
 import { FloatingHeadings } from "../../components/floating-headings/floating-headings";
 import { ShinyaigeekCoreProfile } from "../../components/shinyaigeek-core-profile/shinyaigeek-core-profile";
 import { postContent, profile } from "./Post.module.css";
@@ -36,7 +35,6 @@ export const Post: FunctionComponent<Props> = function Post({
 			/>
 
 			<div className={profile}>
-				<ShinyaigeekPortrait />
 				<ShinyaigeekCoreProfile />
 			</div>
 		</div>

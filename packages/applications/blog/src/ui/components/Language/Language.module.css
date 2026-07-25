@@ -46,7 +46,7 @@
 
 .languageTrigger.open {
     background-color: rgba(255, 255, 255, 0.1);
-    border-color: var(--theme-color-light);
+    border-color: var(--accent-on-dark);
 }
 
 .languageArrow {

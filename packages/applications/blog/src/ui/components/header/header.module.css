@@ -28,17 +28,18 @@
     gap: 1rem;
     text-decoration: none;
     color: var(--theme-text);
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 600;
+    letter-spacing: -0.01em;
     transition: all 0.3s ease;
 }
 
 .titleLink:hover {
-    color: var(--theme-color-light);
+    color: var(--accent-on-dark);
 }
 
 .titleLink span {
-    background: linear-gradient(120deg, var(--theme-text) 0%, var(--theme-color-light) 100%);
+    background: linear-gradient(120deg, var(--theme-text) 0%, var(--accent-on-dark) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -70,9 +71,9 @@
 }
 
 .divider {
-    color: var(--theme-color-light);
-    opacity: 0.5;
-    font-size: 1.2rem;
+    color: var(--accent-on-dark);
+    opacity: 0.45;
+    font-size: 0.9rem;
     user-select: none;
 }
 
@@ -127,7 +128,7 @@
     }
 
     .titleLink {
-        font-size: 1.2rem;
+        font-size: 1rem;
         gap: 0.5rem;
     }
 
@@ -153,7 +154,7 @@
     }
 
     .divider {
-        font-size: 1rem;
+        font-size: 0.85rem;
     }
 }
 

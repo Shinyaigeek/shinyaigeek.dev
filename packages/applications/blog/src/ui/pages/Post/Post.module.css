@@ -1,24 +1,29 @@
+/*
+ * Article body.
+ *
+ * The container width is a single source of truth shared with PostMetaInfo so
+ * the title and the prose share one left edge — previously the meta block was
+ * `80%` while the body capped at 900px, so they visibly disagreed above
+ * ~1125px viewport width.
+ */
 .postContent {
-    font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo,
-        'ＭＳ Ｐゴシック', '-apple-system', BlinkMacSystemFont, sans-serif;
-    width: 80%;
-    max-width: 900px;
+    width: min(100% - 2rem, 46rem);
     margin: 0 auto;
-    padding: 2rem;
-    line-height: 1.8;
-    font-size: 1.1rem;
+    padding: 0;
+    line-height: 1.9;
+    font-size: 1.0625rem;
     color: var(--theme-color);
 }
 
 .postContent p {
-    margin: 1.5rem 0;
+    margin: 1.4em 0;
 }
 
 .postContent a {
     color: var(--theme-color-light);
     text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(var(--theme-color-light-rgb), 0.35);
+    transition: border-color 0.2s ease;
 }
 
 .postContent a:hover {
@@ -27,34 +32,163 @@
 
 .postContent img {
     width: 100%;
-    max-width: 800px;
     height: auto;
-    border-radius: 0.5rem;
+    border-radius: var(--radius-md);
     margin: 2rem auto;
     display: block;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border);
 }
+
+/* ---- headings -------------------------------------------------------- */
+
+.postContent h1,
+.postContent h2,
+.postContent h3,
+.postContent h4,
+.postContent h5,
+.postContent h6 {
+    line-height: 1.45;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--theme-color);
+    scroll-margin-top: 100px;
+}
+
+.postContent h1 {
+    font-size: 1.875rem;
+    margin: 3rem 0 1.25rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.postContent h2 {
+    font-size: 1.5rem;
+    margin: 3rem 0 1.25rem;
+    position: relative;
+    padding-left: 0.85rem;
+}
+
+.postContent h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.28em;
+    width: 4px;
+    height: 1.05em;
+    background: var(--brand);
+    border-radius: 2px;
+}
+
+.postContent h3 {
+    font-size: 1.25rem;
+    margin: 2.5rem 0 1rem;
+}
+
+.postContent h4 {
+    font-size: 1.0625rem;
+    margin: 2rem 0 0.75rem;
+    color: var(--text-muted);
+}
+
+.postContent h5,
+.postContent h6 {
+    font-size: 1rem;
+    margin: 1.75rem 0 0.5rem;
+    color: var(--text-muted);
+}
+
+/* ---- code ------------------------------------------------------------ */
+
+.postContent pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.1rem 1.25rem;
+    margin: 1.75rem 0;
+    overflow-x: auto;
+    font-family: 'SF Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    tab-size: 2;
+}
+
+.postContent pre code {
+    display: block;
+    color: var(--theme-text);
+    background: none;
+    padding: 0;
+    border: none;
+    font-size: inherit;
+}
+
+.postContent code {
+    font-family: 'SF Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: rgba(var(--theme-color-light-rgb), 0.1);
+    border: 1px solid rgba(var(--theme-color-light-rgb), 0.16);
+    padding: 0.1em 0.35em;
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+    overflow-wrap: anywhere;
+}
+
+/* ---- blocks ---------------------------------------------------------- */
+
+.postContent blockquote {
+    margin: 1.75rem 0;
+    padding: 0.85rem 1.25rem;
+    border-left: 3px solid var(--brand);
+    background: var(--surface-2);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    color: var(--text-muted);
+}
+
+.postContent blockquote p {
+    margin: 0.5em 0;
+}
+
+.postContent ul,
+.postContent ol {
+    margin: 1.4rem 0;
+    padding-left: 1.5rem;
+}
+
+.postContent li {
+    margin: 0.4rem 0;
+}
+
+.postContent li::marker {
+    color: var(--text-muted);
+}
+
+.postContent hr {
+    margin: 3rem 0;
+    border: none;
+    height: 1px;
+    background: var(--border);
+}
+
+/* ---- tables ---------------------------------------------------------- */
 
 .postContent table {
     width: 100%;
-    min-width: 500px;
+    min-width: 32rem;
     margin: 0;
     border-collapse: collapse;
     background: var(--item-background);
-    font-size: 0.95rem;
+    font-size: 0.9375rem;
     border: none;
 }
 
 .postContent table th {
-    padding: 0.875rem 1rem;
-    background: linear-gradient(135deg, rgba(var(--theme-color-light-rgb), 0.15), rgba(var(--theme-color-light-rgb), 0.08));
-    font-weight: 600;
-    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    background: var(--surface-2);
+    font-weight: 700;
+    font-size: 0.875rem;
     color: var(--theme-color);
-    border-bottom: 2px solid rgba(var(--theme-color-light-rgb), 0.2);
+    border-bottom: 2px solid var(--border-strong);
+    border-right: 1px solid var(--border);
     text-align: left;
     white-space: nowrap;
-    border-right: 1px solid rgba(var(--theme-color-light-rgb), 0.1);
 }
 
 .postContent table th:last-child {
@@ -62,15 +196,14 @@
 }
 
 .postContent table td {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid rgba(var(--theme-color-light-rgb), 0.08);
-    border-right: 1px solid rgba(var(--theme-color-light-rgb), 0.05);
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
     background: var(--item-background);
-    transition: background-color 0.2s ease;
+    transition: background-color 0.15s ease;
     vertical-align: top;
     color: var(--theme-color);
     white-space: nowrap;
-    opacity: 0.9;
 }
 
 .postContent table td:last-child {
@@ -82,184 +215,17 @@
 }
 
 .postContent table tr:hover td {
-    background: rgba(var(--theme-color-light-rgb), 0.06);
-    opacity: 1;
+    background: var(--color-hover-bg);
 }
 
-.postContent table tr:nth-child(even) td {
-    background: rgba(var(--theme-color-light-rgb), 0.02);
-}
-
-.postContent table tr:nth-child(even):hover td {
-    background: rgba(var(--theme-color-light-rgb), 0.08);
-}
-
-.postContent h1,
-.postContent h2,
-.postContent h3,
-.postContent h4,
-.postContent h5,
-.postContent h6 {
-    margin: 3rem 0 1.5rem;
-    line-height: 1.3;
-    font-weight: 600;
-    scroll-margin-top: 100px;
-}
-
-.postContent h1 {
-    font-size: 2.5rem;
-    color: var(--theme-color);
-    border-bottom: 2px solid rgba(var(--theme-color-light-rgb), 0.2);
-    padding-bottom: 0.5rem;
-}
-
-.postContent h2 {
-    font-size: 2rem;
-    color: var(--theme-color);
-    position: relative;
-    padding-left: 1.5rem;
-}
-
-.postContent h2::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0.5rem;
-    height: 2rem;
-    background: linear-gradient(to bottom, var(--theme-color), var(--theme-color-light));
-    border-radius: 0.25rem;
-}
-
-.postContent h3 {
-    font-size: 1.75rem;
-    color: var(--theme-color);
-    border-left: 4px solid var(--theme-color-light);
-    padding-left: 1rem;
-}
-
-.postContent h4 {
-    font-size: 1.5rem;
-    color: var(--theme-color);
-}
-
-.postContent pre {
-    background: var(--theme-header);
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    overflow-x: auto;
-    font-family: "SF Mono", "Fira Code", monospace;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.postContent pre code {
-    display: block;
-    color: var(--theme-text);
-}
-
-.postContent code {
-    font-family: "SF Mono", "Fira Code", monospace;
-    background: rgba(var(--theme-color-light-rgb), 0.1);
-    padding: 0.2rem 0.4rem;
-    border-radius: 0.25rem;
-    font-size: 0.9em;
-}
-
-.postContent blockquote {
-    margin: 2rem 0;
-    padding: 1rem 1.5rem;
-    border-left: 4px solid var(--theme-color-light);
-    background: rgba(var(--theme-color-light-rgb), 0.05);
-    border-radius: 0 0.5rem 0.5rem 0;
-    font-style: italic;
-}
-
-.postContent ul,
-.postContent ol {
-    margin: 1.5rem 0;
-    padding-left: 2rem;
-}
-
-.postContent li {
-    margin: 0.5rem 0;
-}
-
-.postContent hr {
-    margin: 2rem 0;
-    border: none;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--theme-color-light), transparent);
-}
-
-@media (max-width: 768px) {
-    .postContent {
-        width: 90%;
-        padding: 1rem;
-        font-size: 1rem;
-    }
-
-    .postContent h1 {
-        font-size: 2rem;
-    }
-
-    .postContent h2 {
-        font-size: 1.75rem;
-    }
-
-    .postContent h3 {
-        font-size: 1.5rem;
-    }
-
-    .postContent h4 {
-        font-size: 1.25rem;
-    }
-
-    .postContent pre {
-        padding: 1rem;
-        font-size: 0.85rem;
-    }
-
-    .postContent table {
-        min-width: 600px;
-        margin: 0;
-        font-size: 0.85rem;
-    }
-
-    .postContent table th {
-        padding: 0.65rem 0.75rem;
-        font-size: 0.8rem;
-    }
-
-    .postContent table td {
-        padding: 0.6rem 0.75rem;
-    }
-
-    .postContent :global(.table-container) {
-        margin: 1.5rem -1rem;
-        padding: 0 1rem;
-        border-radius: 0;
-    }
-}
-
-.profile {
-    width: 80vw;
-    margin: 0 auto;
-}
-
-/* Table container for horizontal scrolling - using :global() for CSS modules */
 .postContent :global(.table-container) {
     overflow-x: auto;
     overflow-y: hidden;
     margin: 2rem 0;
-    border-radius: 0.5rem;
+    border-radius: var(--radius-md);
     -webkit-overflow-scrolling: touch;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     background: var(--item-background);
-    border: 1px solid rgba(var(--theme-color-light-rgb), 0.2);
+    border: 1px solid var(--border);
 }
 
 .postContent :global(.table-container)::-webkit-scrollbar {
@@ -267,33 +233,88 @@
 }
 
 .postContent :global(.table-container)::-webkit-scrollbar-track {
-    background: rgba(var(--theme-color-light-rgb), 0.1);
+    background: var(--surface-2);
     border-radius: 4px;
 }
 
 .postContent :global(.table-container)::-webkit-scrollbar-thumb {
-    background: rgba(var(--theme-color-light-rgb), 0.4);
+    background: var(--border-strong);
     border-radius: 4px;
 }
 
 .postContent :global(.table-container)::-webkit-scrollbar-thumb:hover {
-    background: rgba(var(--theme-color-light-rgb), 0.6);
+    background: var(--text-muted);
 }
 
-/* Ensure table shows scroll hint on mobile */
+/* ---- author card at the foot of the article -------------------------- */
+
+.profile {
+    width: min(100% - 2rem, 46rem);
+    margin: 4rem auto 0;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+}
+
 @media (max-width: 768px) {
+    .postContent {
+        font-size: 1rem;
+        line-height: 1.85;
+    }
+
+    .postContent h1 {
+        font-size: 1.625rem;
+    }
+
+    .postContent h2 {
+        font-size: 1.375rem;
+    }
+
+    .postContent h3 {
+        font-size: 1.125rem;
+    }
+
+    .postContent h4 {
+        font-size: 1rem;
+    }
+
+    .postContent pre {
+        padding: 0.9rem 1rem;
+        font-size: 0.8125rem;
+    }
+
+    .postContent table {
+        min-width: 36rem;
+        font-size: 0.875rem;
+    }
+
+    .postContent table th {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.8125rem;
+    }
+
+    .postContent table td {
+        padding: 0.55rem 0.75rem;
+    }
+
+    .postContent :global(.table-container) {
+        margin: 1.5rem 0;
+        position: relative;
+    }
+
     .postContent :global(.table-container)::after {
         content: '← スクロールできます';
         position: absolute;
         top: 0.5rem;
         right: 0.5rem;
         font-size: 0.75rem;
-        color: rgba(var(--theme-color-light-rgb), 0.7);
+        color: var(--text-muted);
         pointer-events: none;
-        opacity: 0.8;
     }
+}
 
-    .postContent :global(.table-container) {
-        position: relative;
+@media (prefers-reduced-motion: reduce) {
+    .postContent a,
+    .postContent table td {
+        transition: none;
     }
 }

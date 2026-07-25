@@ -5,15 +5,18 @@ import { Layout } from "../../../ui/components/Layout/Layout";
 import { Shell } from "../../../ui/components/Shell/shell";
 import { Home } from "../../../ui/pages/Home/Home";
 import { GetBlogPostsUsecase } from "../../application/getBlogPosts/getBlogposts.usecase";
-import { GetFleetsUsecase } from "../../application/getFleets/getFleets.usecase";
+import { GetOSSProjectsUsecase } from "../../application/getOSSProjects/getOSSProjects.usecase";
+import { GetWorkExperiencesUsecase } from "../../application/getWorkExperiences/getWorkExperiences.usecase";
 import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../model/blog/blog.repository";
-import type { FleetContent } from "../../model/fleet/fleet.entity";
-import { FleetRepository } from "../../model/fleet/fleet.repository";
 import { Language } from "../../model/language/language.entity";
+import type { OSSProject } from "../../model/oss/oss.entity";
+import { OSSRepository } from "../../model/oss/oss.repository";
 import { ThirdPartyPublishContentRepository } from "../../model/third-party-publish/third-party-publish.repository";
+import type { WorkExperience } from "../../model/work-experience/work-experience.entity";
+import { WorkExperienceRepository } from "../../model/work-experience/work-experience.repository";
 
 export const generateIndexPage: GenerateHandler<Context> = async ({
 	context,
@@ -24,12 +27,7 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 		fileIOInfrastructure,
 		filePathInfrastructure,
 	);
-	const fleetRepository = new FleetRepository(
-		fileIOInfrastructure,
-		filePathInfrastructure,
-	);
 	const getblogPostsUsecase = new GetBlogPostsUsecase(blogRepository);
-	const getFleetsUsecase = new GetFleetsUsecase(fleetRepository);
 	const language = context.language;
 
 	const blogPostResults = await getblogPostsUsecase.getBlogPosts(language);
@@ -39,13 +37,6 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 	const blogPosts = unwrapOk(blogPostResults).sort((l, r) => {
 		return l.metadata.publishedAt < r.metadata.publishedAt ? 1 : -1;
 	});
-
-	const fleetResults = await getFleetsUsecase.getFleets(language);
-
-	let fleets: FleetContent[] = [];
-	if (!isErr(fleetResults)) {
-		fleets = unwrapOk(fleetResults);
-	}
 
 	const thirdPartyPublishContentRepository =
 		new ThirdPartyPublishContentRepository(
@@ -84,6 +75,33 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 		},
 	);
 
+	// Experience and OSS also drive the profile page; the home page shows the
+	// most recent slice of each so a first-time visitor sees them without
+	// having to navigate. Already sorted (ongoing roles first) by the repository.
+	const workExperienceRepository = new WorkExperienceRepository(
+		fileIOInfrastructure,
+		filePathInfrastructure,
+	);
+	const ossRepository = new OSSRepository(
+		fileIOInfrastructure,
+		filePathInfrastructure,
+	);
+	const workExperiencesResult = await new GetWorkExperiencesUsecase(
+		workExperienceRepository,
+	).getWorkExperiences(language);
+	if (isErr(workExperiencesResult)) {
+		throw unwrapErr(workExperiencesResult);
+	}
+	const workExperiences: WorkExperience[] = unwrapOk(workExperiencesResult);
+
+	const ossProjectsResult = await new GetOSSProjectsUsecase(
+		ossRepository,
+	).getOSSProjects(language);
+	if (isErr(ossProjectsResult)) {
+		throw unwrapErr(ossProjectsResult);
+	}
+	const ossProjects: OSSProject[] = unwrapOk(ossProjectsResult);
+
 	const rawLanguage = language === Language.ja ? "ja" : "en";
 	const description =
 		language === Language.ja
@@ -99,7 +117,12 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 			builtAssets={context.builtAssets}
 		>
 			<Layout language={rawLanguage} page="1" currentPath="/">
-				<Home language={rawLanguage} items={items} fleets={fleets} />
+				<Home
+					language={rawLanguage}
+					items={items}
+					workExperiences={workExperiences}
+					ossProjects={ossProjects}
+				/>
 			</Layout>
 		</Shell>,
 	);

@@ -1,9 +1,6 @@
 import type { FunctionComponent } from "react";
-import {
-	alterEgoFrame,
-	alterEgoFrameWrapper,
-	alterEgoSection,
-} from "./alter-ego.module.css";
+import { Section } from "../section/section";
+import { alterEgoFrame, alterEgoFrameWrapper } from "./alter-ego.module.css";
 
 interface Props {
 	// Which per-language embed page to load: the ja page speaks (and expects)
@@ -13,18 +10,21 @@ interface Props {
 
 const COPY = {
 	ja: {
-		description:
-			"Shinyaigeek の分身（AI）と日本語で会話できます。",
+		title: "Alter Ego と話す",
+		description: "Shinyaigeek の分身（AI）と日本語で会話できます。",
 	},
 	en: {
+		title: "Talk with my Alter Ego",
 		description: "Chat in English with an AI alter ego of Shinyaigeek.",
 	},
 } as const;
 
 export const AlterEgo: FunctionComponent<Props> = ({ language }) => (
-	<section className={alterEgoSection}>
-		<h2>Talk with my Alter Ego</h2>
-		<p>{COPY[language].description}</p>
+	<Section
+		eyebrow="Alter Ego"
+		title={COPY[language].title}
+		description={COPY[language].description}
+	>
 		<div className={alterEgoFrameWrapper}>
 			<iframe
 				className={alterEgoFrame}
@@ -37,5 +37,5 @@ export const AlterEgo: FunctionComponent<Props> = ({ language }) => (
 				data-alterego-frame
 			/>
 		</div>
-	</section>
+	</Section>
 );

@@ -4,7 +4,6 @@ declare const styles: {
   readonly "dateContainer": string;
   readonly "dateIcon": string;
   readonly "description": string;
-  readonly "divider": string;
   readonly "home": string;
   readonly "itemHomeAnchor": string;
   readonly "ogp": string;

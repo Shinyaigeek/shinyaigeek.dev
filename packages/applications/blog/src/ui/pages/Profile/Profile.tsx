@@ -4,7 +4,6 @@ import type { Education } from "../../../build/model/education/education.entity"
 import { Language } from "../../../build/model/language/language.entity";
 import type { OSSProject } from "../../../build/model/oss/oss.entity";
 import type { WorkExperience } from "../../../build/model/work-experience/work-experience.entity";
-import { ShinyaigeekPortrait } from "../../components/ShinyaigeekPortrait/ShinyaigeekPortrait";
 import { AboutMe } from "../../components/about-me/about-me";
 import { AlterEgo } from "../../components/alter-ego/alter-ego";
 import { Divider } from "../../components/divider/divider";
@@ -32,8 +31,6 @@ export const Profile: FunctionComponent<Props> = ({
 	return (
 		<div className={profile}>
 			<div>
-				<ShinyaigeekPortrait />
-
 				<ShinyaigeekCoreProfile />
 
 				<Divider />

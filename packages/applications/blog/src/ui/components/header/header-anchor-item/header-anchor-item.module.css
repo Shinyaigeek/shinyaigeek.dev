@@ -1,47 +1,63 @@
 .anchor {
     width: auto;
-    margin: 0 16px;
+    margin: 0 10px;
     position: relative;
     display: inline-block;
-    font-size: 16px;
-    color: #e4e4e4;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: rgba(var(--theme-text-rgb), 0.78);
+    transition: color 0.2s ease;
 }
 
 @media (min-width: 890px) {
     .anchor {
-        font-size: 28px !important;
+        font-size: 1rem;
     }
+}
+
+/*
+ * The header sits on the dark chrome, so these links must opt out of the
+ * global `.root a { color: var(--anchor-color) }` accent.
+ */
+.anchor a,
+.anchor a:visited {
+    color: inherit;
+}
+
+.anchor:hover {
+    color: var(--theme-text);
 }
 
 .anchor::after {
     position: absolute;
     left: 0;
-    bottom: -2px;
+    bottom: -4px;
     content: ' ';
     width: 100%;
     height: 2px;
-    background: white;
+    background: var(--accent-on-dark);
+    border-radius: 1px;
     transform: scale(0, 1);
     transform-origin: center top;
-    transition: transform 0.3s;
+    transition: transform 0.2s ease;
 }
 
 .anchor:hover::after {
-    transform: scale(1.1, 1);
+    transform: scale(1, 1);
 }
 
-.active a {
-    color: #fff !important;
+.active {
+    color: var(--theme-text);
 }
 
-.active a ::after {
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    content: ' ';
-    width: 100%;
-    height: 2px;
-    background: white;
-    transform: scale(1.1, 1);
-    transform-origin: center top;
+.active::after {
+    transform: scale(1, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .anchor,
+    .anchor::after {
+        transition: none;
+    }
 }

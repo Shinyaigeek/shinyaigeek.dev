@@ -162,71 +162,79 @@
     }
 
     100% {
-        clip: rect(undefinedpx, 9999px, undefinedpx, 0);
+        clip: rect(21px, 9999px, 40px, 0);
     }
 }
 
 .snsIcon {
-    width: 54px;
-    margin: 0 1rem;
-    transition: transform 0.3s ease;
+    width: 36px;
+    margin: 0 0.5rem;
+    transition: transform 0.2s ease;
 }
 
 .snsIcon:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
 .snsIcon img {
     width: 100%;
     object-fit: contain;
-    filter: grayscale(0.2);
 }
 
 .mySnsBox {
     display: flex;
     justify-content: center;
-    margin: 2rem auto;
+    margin: 1.5rem auto 0;
     max-width: 500px;
 }
 
 .mail {
-    margin: 1.5rem 0;
+    margin: 1.25rem 0 0;
     text-align: center;
 }
 
 .mail a {
+    display: inline-block;
+    font-size: 0.9375rem;
+    font-weight: 600;
     color: var(--theme-color);
     text-decoration: none;
-    padding: 0.75rem 1.5rem;
-    border: 2px solid var(--theme-color);
-    border-radius: 25px;
-    transition: all 0.3s ease;
+    padding: 0.55rem 1.25rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.mail a:visited {
+    color: var(--theme-color);
 }
 
 .mail a:hover {
-    background-color: var(--theme-color);
-    color: var(--bg-color);
+    border-color: var(--theme-color-light);
+    color: var(--theme-color-light);
+    background: rgba(var(--theme-color-light-rgb), 0.06);
 }
 
 .word {
-    font-size: 1.5rem;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 2rem auto;
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 42rem;
+    margin: 1.25rem auto 0;
     text-align: center;
-    color: var(--text-color);
+    color: var(--text-muted);
 }
 
 .hello {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
     text-align: center;
+    color: var(--text-muted);
 }
 
 .name {
     color: var(--important-color);
-    font-weight: bold;
-    white-space: nowrap;
+    font-weight: 800;
     background: linear-gradient(120deg, var(--theme-color) 0%, var(--important-color) 100%);
     background-clip: text;
     -webkit-background-clip: text;
@@ -234,40 +242,64 @@
 }
 
 .jobGlitch {
-    font-size: 2rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
     position: relative;
     width: 100%;
     text-align: center;
-    margin: 1.5rem 0;
+    margin: 0.5rem 0 0;
+    color: var(--theme-color);
 }
 
 .glitch {
     position: relative;
     display: inline-block;
-    color: var(--text-color);
+    color: inherit;
 }
 
-.glitch:after {
+/* Hover-only, same as the landing hero: always-on offsets read as broken
+   font rendering rather than as an effect. */
+.glitch::after,
+.glitch::before {
     display: flex;
     align-items: center;
     height: 100%;
-
     content: attr(data-text);
     position: absolute;
-    left: 2px;
-    text-shadow: -1px 0 red;
     top: 0;
-    color: white;
+    color: var(--theme-color);
     overflow: hidden;
     clip: rect(0, 900px, 0, 0);
-    animation: 2s infinite linear alternate-reverse noise-anim;
-
     white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
 }
 
-@media (prefers-reduced-motion) {
-    .glitch:after {
-        animation: dissolve;
+.glitch::after {
+    left: 2px;
+    text-shadow: -1px 0 rgba(255, 0, 64, 0.9);
+}
+
+.glitch::before {
+    left: -2px;
+    text-shadow: 1px 0 rgba(0, 128, 255, 0.9);
+}
+
+.glitch:hover::after {
+    opacity: 1;
+    animation: 2s infinite linear alternate-reverse noise-anim;
+}
+
+.glitch:hover::before {
+    opacity: 1;
+    animation: 3s infinite linear alternate-reverse noise-anim-2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .glitch::after,
+    .glitch::before {
+        display: none;
     }
 }
 
@@ -275,7 +307,7 @@
     display: none;
 }
 
-.forLight { 
+.forLight {
     display: block;
 }
 
@@ -309,68 +341,42 @@
     }
 }
 
-.glitch:before {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    content: attr(data-text);
-    position: absolute;
-    left: -2px;
-    text-shadow: 1px 0 blue;
-    top: 0;
-    color: white;
-    overflow: hidden;
-    clip: rect(0, 900px, 0, 0);
-    animation: 3s infinite linear alternate-reverse noise-anim-2;
-
-    white-space: nowrap;
-}
-
-@media (prefers-reduced-motion) {
-    .glitch:before {
-        animation: dissolve;
-    }
-}
-
 .skillsSection {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
-    margin: 2rem auto;
-    max-width: 800px;
+    gap: 0.5rem;
+    margin: 1.25rem auto 0;
+    max-width: 42rem;
 }
 
 .skillTag {
-    background-color: var(--theme-color-light);
-    color: var(--text-color);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 1rem;
-    transition: transform 0.3s ease;
-}
-
-.skillTag:hover {
-    transform: translateY(-2px);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    color: var(--theme-color-light);
+    background: rgba(var(--theme-color-light-rgb), 0.1);
+    border: 1px solid rgba(var(--theme-color-light-rgb), 0.22);
 }
 
 @media (max-width: 768px) {
     .hello {
-        font-size: 2rem;
+        font-size: 1rem;
         padding: 0 1rem;
     }
 
     .name {
-        white-space: normal;
         display: inline-block;
     }
 
     .jobGlitch {
-        font-size: 1.5rem;
+        font-size: 1.0625rem;
+        padding: 0 1rem;
     }
 
     .word {
-        font-size: 1.2rem;
+        font-size: 0.9375rem;
         padding: 0 1rem;
     }
 

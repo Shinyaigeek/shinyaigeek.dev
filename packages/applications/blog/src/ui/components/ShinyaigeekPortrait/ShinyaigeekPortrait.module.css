@@ -26,8 +26,8 @@
     transform-style: preserve-3d;
     transform: perspective(5000px);
     overflow: visible;
-    width: 180px;
-    height: 180px;
+    width: 132px;
+    height: 132px;
 }
 
 .shinyaigeekPortraitContainer {
@@ -51,9 +51,9 @@
 
 .snsLinks {
     position: fixed;
-    left: calc(100% - 720px);
-    top: calc(100% - 120px);
-    padding: 1rem;
+    inset: auto 2rem 11rem auto;
+    margin: 0;
+    padding: 0.75rem;
     border: none;
     background: var(--theme-header);
     border-radius: 1rem;
@@ -74,7 +74,7 @@
 
 @keyframes earthX {
     0%, 100% {
-        transform: translateX(-120px);
+        transform: translateX(-84px);
         z-index: 5;
     }
 
@@ -83,7 +83,7 @@
     }
 
     50% {
-        transform: translateX(120px);
+        transform: translateX(84px);
         z-index: 2;
     }
 }
@@ -112,60 +112,63 @@
     }
 
     50% {
-        transform: translateY(-80px);
+        transform: translateY(-58px);
     }
 }
 
 @media (prefers-reduced-motion) {
     .earthX {
-        animation: dissolve;
+        animation: none;
     }
 }
 
 .earth {
     position: absolute;
     bottom: 12%;
-    left: calc(50% - 25px);
+    left: calc(50% - 14px);
     animation: 5s infinite forwards normal earth ease-in-out;
 }
 
 @media (prefers-reduced-motion) {
     .earth {
-        animation: dissolve;
+        animation: none;
     }
 }
 
 .earthY {
     animation: 5s infinite forwards normal earthY ease-in-out -1.25s;
-    width: 35px;
-    height: 35px;
+    width: 28px;
+    height: 28px;
 }
 
 @media (prefers-reduced-motion) {
     .earthY {
-        animation: dissolve;
+        animation: none;
     }
 }
 
 @media (max-width: 768px) {
+    /*
+     * On phones this sits permanently on top of body copy — there is no
+     * margin for it to float into. The SNS links it exposes are already in
+     * the hero and the footer, so it is desktop-only rather than dismissible.
+     */
     .fixedPortrait {
-        bottom: 1rem;
-        right: 1rem;
+        display: none;
     }
 
     .shinyaigeekPortrait {
-        width: 120px;
-        height: 120px;
+        width: 88px;
+        height: 88px;
     }
 
     .earthY {
-        width: 25px;
-        height: 25px;
+        width: 22px;
+        height: 22px;
     }
 
     .snsLinks {
-        left: calc(100% - 540px);
-        top: calc(100% - 100px);
+        inset: auto 1rem 7.5rem auto;
     }
 
     .snsLinksContainer {

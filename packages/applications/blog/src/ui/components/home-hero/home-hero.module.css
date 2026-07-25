@@ -1,0 +1,317 @@
+/*
+ * The glitch effect is duplicated from shinyaigeek-core-profile on purpose:
+ * that component stays the compact, centred "author card" reused at the foot
+ * of every post, while this one is the wide, left-aligned landing hero.
+ */
+@keyframes heroNoiseA {
+    0% { clip-path: inset(12% 0 72% 0); }
+    12% { clip-path: inset(64% 0 18% 0); }
+    24% { clip-path: inset(38% 0 46% 0); }
+    36% { clip-path: inset(8% 0 84% 0); }
+    48% { clip-path: inset(78% 0 6% 0); }
+    60% { clip-path: inset(28% 0 58% 0); }
+    72% { clip-path: inset(54% 0 32% 0); }
+    84% { clip-path: inset(18% 0 66% 0); }
+    100% { clip-path: inset(12% 0 72% 0); }
+}
+
+@keyframes heroNoiseB {
+    0% { clip-path: inset(70% 0 14% 0); }
+    14% { clip-path: inset(22% 0 62% 0); }
+    28% { clip-path: inset(48% 0 36% 0); }
+    42% { clip-path: inset(6% 0 88% 0); }
+    56% { clip-path: inset(84% 0 4% 0); }
+    70% { clip-path: inset(34% 0 52% 0); }
+    84% { clip-path: inset(58% 0 26% 0); }
+    100% { clip-path: inset(70% 0 14% 0); }
+}
+
+.hero {
+    width: min(100% - 2rem, 68rem);
+    margin: 0 auto;
+    padding: 4rem 0 3rem;
+}
+
+.copy {
+    min-width: 0;
+}
+
+.greeting {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    margin: 0 0 0.75rem;
+}
+
+.name {
+    font-size: clamp(2.25rem, 5.5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin: 0;
+    color: var(--theme-color);
+}
+
+.handle {
+    display: block;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 0.4rem;
+    color: var(--brand);
+}
+
+.role {
+    font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 1.25rem 0 0;
+    color: var(--theme-color);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.roleSeparator {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.glitch {
+    position: relative;
+    display: inline-block;
+    color: inherit;
+}
+
+/*
+ * Chromatic-aberration slices. Left permanently on, the offset copies just
+ * read as broken font rendering, so the effect only runs on hover/focus —
+ * the playfulness stays, discoverable rather than shouted.
+ */
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* No background: the slices overlay the real text, so the hero glow
+       behind stays visible instead of being punched out by a solid rect. */
+    color: var(--theme-color);
+    overflow: hidden;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.glitch:hover::before,
+.glitch:hover::after {
+    opacity: 1;
+}
+
+.glitch:hover::before {
+    transform: translateX(-1.5px);
+    text-shadow: 1.5px 0 rgba(0, 128, 255, 0.85);
+    animation: heroNoiseB 3.4s infinite steps(1);
+}
+
+.glitch:hover::after {
+    transform: translateX(1.5px);
+    text-shadow: -1.5px 0 rgba(255, 0, 64, 0.85);
+    animation: heroNoiseA 2.6s infinite steps(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .glitch::before,
+    .glitch::after {
+        display: none;
+    }
+}
+
+.tagline {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin: 1.5rem 0 0;
+    max-width: 38rem;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.skill {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    color: var(--theme-color-light);
+    background: rgba(var(--theme-color-light-rgb), 0.1);
+    border: 1px solid rgba(var(--theme-color-light-rgb), 0.22);
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.primaryAction,
+.secondaryAction {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    padding: 0.65rem 1.25rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.primaryAction {
+    background: var(--theme-color-light);
+    border: 1px solid var(--theme-color-light);
+    color: var(--theme-background);
+}
+
+.primaryAction:hover,
+.primaryAction:visited {
+    color: var(--theme-background);
+}
+
+.primaryAction:hover {
+    background: var(--theme-color-dark);
+    border-color: var(--theme-color-dark);
+}
+
+.secondaryAction {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--theme-color);
+}
+
+.secondaryAction:visited {
+    color: var(--theme-color);
+}
+
+.secondaryAction:hover {
+    border-color: var(--theme-color-light);
+    color: var(--theme-color-light);
+    background: rgba(var(--theme-color-light-rgb), 0.06);
+}
+
+.socials {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 0.25rem;
+}
+
+.social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.social:hover {
+    background: var(--color-hover-bg);
+}
+
+.social img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* The GitHub mark ships black, so it needs inverting on dark surfaces. */
+@media (prefers-color-scheme: dark) {
+    .socialInvertOnDark img {
+        filter: brightness(0) invert(1);
+    }
+}
+
+:global(html[data-theme="dark"]) {
+    .socialInvertOnDark img {
+        filter: brightness(0) invert(1);
+    }
+}
+
+:global(html[data-theme="light"]) {
+    .socialInvertOnDark img {
+        filter: none;
+    }
+}
+
+.forDark {
+    display: none;
+}
+
+.forLight {
+    display: inline-flex;
+}
+
+@media (prefers-color-scheme: dark) {
+    .forDark {
+        display: inline-flex;
+    }
+
+    .forLight {
+        display: none;
+    }
+}
+
+:global(html[data-theme="light"]) {
+    .forDark {
+        display: none;
+    }
+
+    .forLight {
+        display: inline-flex;
+    }
+}
+
+:global(html[data-theme="dark"]) {
+    .forDark {
+        display: inline-flex;
+    }
+
+    .forLight {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero {
+        padding: 2.5rem 0 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        width: calc(100% - 2rem);
+    }
+
+    .tagline {
+        font-size: 1rem;
+        margin-top: 1.25rem;
+    }
+
+    .actions {
+        margin-top: 1.5rem;
+    }
+}

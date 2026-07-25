@@ -1,57 +1,121 @@
 .inner {
     position: relative;
-    top: 72px;
-    overflow: hidden;
+    padding-top: var(--header-height);
+    /* clip (not hidden) so that position: sticky keeps working inside */
+    overflow-x: clip;
     margin-bottom: 84px;
     z-index: 1;
 }
 
 @media (max-width: 889px) {
     .inner {
-        top: 102px;
+        padding-top: calc(var(--header-height) + 30px);
     }
 }
 
 :global() html {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-        'Noto Sans', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial,
+        'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', Meiryo, sans-serif;
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 :global() body {
     margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    :global() html {
+        scroll-behavior: auto;
+    }
+}
+
+/*
+ * Design tokens.
+ *
+ * The four blocks below intentionally repeat the same token names:
+ *   .root                                   -> light (default)
+ *   @media (prefers-color-scheme: dark)     -> dark, when the OS asks for it
+ *   html[data-theme="dark"] .root           -> dark, when the user toggled it
+ *   html[data-theme="light"] .root          -> light, when the user toggled it
+ * The explicit data-theme blocks win on specificity, so the toggle always
+ * beats the OS preference.
+ *
+ * NOTE: --theme-header / --theme-text describe the *dark chrome* (header,
+ * footer, language dropdown) which stays dark in both themes. Accents drawn
+ * on top of that chrome must use --accent-on-dark, not --theme-color-light.
+ */
+
 .root {
-    --theme-header: rgba(26, 22, 26, 0.95);
-    --theme-background: #f8f9fa;
-    --theme-color: #2d3436;
-    --theme-color-light: #74b9ff;
-    --theme-text: #f8f9fa;
-    --bg-color: #f8f9fa;
-    --headings-color: #0984e3;
+    /* layout */
+    --header-height: 72px;
+    --measure: 44rem; /* comfortable line length for mixed ja/en prose */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.625rem;
+    --radius-lg: 1rem;
+
+    /* dark chrome (header / footer / dropdowns) — same in both themes */
+    --theme-header: rgba(24, 22, 27, 0.92);
+    --theme-text: #f5f6f7;
+    --theme-text-rgb: 245, 246, 247;
+    --accent-on-dark: #8ec9ff;
+
+    /* surfaces */
+    --theme-background: #fbfaf7;
+    --theme-background-rgb: 251, 250, 247;
+    --bg-color: #fbfaf7;
+    --surface: #ffffff;
+    --surface-2: #f3f1ec;
+    --item-background: #ffffff;
+    --border: #e3e0d9;
+    --border-strong: #cbc7bd;
+    --item-border: #e3e0d9;
+
+    /* text */
+    --theme-color: #1e2226;
+    --theme-color-rgb: 30, 34, 38;
+    --text-color: #1e2226;
+    --text-muted: #5c6570;
+    --headings-color: #1e2226;
+
+    /* accent */
+    --theme-color-light: #0b63ce;
+    --theme-color-light-rgb: 11, 99, 206;
+    --theme-color-dark: #08498f;
+    --anchor-color: #0b63ce;
+    --anchor-visited-color: #6b4fbb;
+    --important-color: #0a8f6f;
+    --color-focus: #0b63ce;
+
+    /* playful warm brand accent (hero glow, section rules) */
+    --brand: #e8a317;
+    --brand-rgb: 232, 163, 23;
+    --gradient-start: #f1c40f;
+    --gradient-end: #ffeaa7;
+
+    /* misc */
+    --code-bg: #1b1f24;
     --twitter-background: #fff;
     --twitter-toggle: #e6ecf0;
     --twitter-cancel: #e6ecf0;
-    --item-background: #fff;
-    --item-border: #dfe6e9;
     --image-gray: grayscale(0%);
-    --anchor-color: #0984e3;
-    --anchor-visited-color: #6c5ce7;
-    --important-color: #00b894;
-    --gradient-start: #f1c40f;
-    --gradient-end: #ffeaa7;
-    --color-hover-bg: rgba(0, 0, 0, 0.05);
-    --color-focus: #0984e3;
-    --ref-accent-bg: #e3f2fd;
-    --ref-accent-border: #90caf9;
-    --ref-accent-text: #1976d2;
-    --ref-accent-hover-bg: #bbdefb;
-    --ref-accent-hover-border: #64b5f6;
-    --ref-bg: #f8f9fa;
-    --ref-highlight-bg: #fff3e0;
-    --ref-accent-highlight: #ff9800;
-    --ref-link: #1976d2;
+    --color-hover-bg: rgba(0, 0, 0, 0.045);
+    --shadow-sm: 0 1px 2px rgba(20, 24, 28, 0.05), 0 1px 3px rgba(20, 24, 28, 0.07);
+    --shadow-md: 0 2px 4px rgba(20, 24, 28, 0.05), 0 8px 24px rgba(20, 24, 28, 0.08);
+
+    /* references */
+    --ref-accent-bg: #e8f1fc;
+    --ref-accent-border: #a9cbf3;
+    --ref-accent-text: #0b63ce;
+    --ref-accent-hover-bg: #d6e6fa;
+    --ref-accent-hover-border: #7fb0ec;
+    --ref-bg: #f3f1ec;
+    --ref-highlight-bg: #fdf3dd;
+    --ref-accent-highlight: #e8a317;
+    --ref-link: #0b63ce;
 
     background: var(--theme-background);
     color: var(--theme-color);
@@ -59,142 +123,246 @@
     min-height: 100vh;
 }
 
+/*
+ * Warm glow anchored to the top of the page instead of a full-viewport wash.
+ * The old version tinted every pixel (including body text) at 0.15 opacity.
+ */
 .root::before {
     content: '';
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
-    opacity: 0.15;
+    height: 720px;
+    background:
+        radial-gradient(
+            120% 100% at 50% 0%,
+            rgba(var(--brand-rgb), 0.22) 0%,
+            rgba(var(--brand-rgb), 0.08) 45%,
+            transparent 100%
+        );
     z-index: 0;
     pointer-events: none;
 }
 
 @media (prefers-color-scheme: dark) {
     .root {
-        --theme-header: rgba(26, 22, 26, 0.95);
-        --theme-background: #2d3436;
-        --theme-color: #f8f9fa;
-        --theme-color-light: #0984e3;
-        --theme-text: #f8f9fa;
-        --bg-color: #2d3436;
-        --headings-color: #74b9ff;
-        --twitter-background: #2d3436;
-        --twitter-toggle: #636e72;
-        --twitter-cancel: #636e72;
-        --item-background: #636e72;
-        --item-border: #b2bec3;
-        --image-gray: grayscale(15%);
-        --anchor-color: #74b9ff;
-        --anchor-visited-color: #a29bfe;
-        --important-color: #00b894;
+        --theme-header: rgba(18, 20, 22, 0.92);
+        --theme-background: #16181a;
+        --theme-background-rgb: 22, 24, 26;
+        --bg-color: #16181a;
+        --surface: #1f2226;
+        --surface-2: #262a2f;
+        --item-background: #1f2226;
+        --border: #30353a;
+        --border-strong: #454b52;
+        --item-border: #30353a;
+
+        --theme-color: #e6e9ec;
+        --theme-color-rgb: 230, 233, 236;
+        --text-color: #e6e9ec;
+        --text-muted: #9aa4ae;
+        --headings-color: #e6e9ec;
+
+        --theme-color-light: #7cc0ff;
+        --theme-color-light-rgb: 124, 192, 255;
+        --theme-color-dark: #4a9eff;
+        --anchor-color: #7cc0ff;
+        --anchor-visited-color: #bda9ff;
+        --important-color: #2fd3a5;
+        --color-focus: #7cc0ff;
+
+        --brand: #f0b429;
+        --brand-rgb: 240, 180, 41;
         --gradient-start: #d35400;
         --gradient-end: #f1c40f;
-        --color-hover-bg: rgba(255, 255, 255, 0.1);
-        --color-focus: #74b9ff;
-        --ref-accent-bg: #1a2332;
-        --ref-accent-border: #2563eb;
-        --ref-accent-text: #60a5fa;
-        --ref-accent-hover-bg: #1e3a8a;
-        --ref-accent-hover-border: #3b82f6;
-        --ref-bg: #1f2937;
-        --ref-highlight-bg: #374151;
-        --ref-accent-highlight: #f59e0b;
-        --ref-link: #60a5fa;
+
+        --code-bg: #0e1113;
+        --twitter-background: #1f2226;
+        --twitter-toggle: #30353a;
+        --twitter-cancel: #30353a;
+        --image-gray: grayscale(15%);
+        --color-hover-bg: rgba(255, 255, 255, 0.06);
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.45);
+
+        --ref-accent-bg: #16263c;
+        --ref-accent-border: #2c5c9e;
+        --ref-accent-text: #7cc0ff;
+        --ref-accent-hover-bg: #1c3a5e;
+        --ref-accent-hover-border: #3b7fd4;
+        --ref-bg: #1f2226;
+        --ref-highlight-bg: #33302a;
+        --ref-accent-highlight: #f0b429;
+        --ref-link: #7cc0ff;
     }
 
     .root::before {
-        opacity: 0.1;
+        height: 640px;
+        background: radial-gradient(
+            120% 100% at 50% 0%,
+            rgba(var(--brand-rgb), 0.12) 0%,
+            rgba(var(--brand-rgb), 0.04) 45%,
+            transparent 100%
+        );
     }
 }
 
 :global(html[data-theme="dark"]) {
     .root {
-    --theme-header: rgba(26, 22, 26, 0.95);
-    --theme-background: #2d3436;
-    --theme-color: #f8f9fa;
-    --theme-color-light: #0984e3;
-    --theme-text: #f8f9fa;
-    --bg-color: #2d3436;
-    --headings-color: #74b9ff;
-    --twitter-background: #2d3436;
-    --twitter-toggle: #636e72;
-    --twitter-cancel: #636e72;
-    --item-background: #636e72;
-    --item-border: #b2bec3;
-    --image-gray: grayscale(15%);
-    --anchor-color: #74b9ff;
-    --anchor-visited-color: #a29bfe;
-    --important-color: #00b894;
-    --gradient-start: #d35400;
-    --gradient-end: #f1c40f;
-        --color-hover-bg: rgba(255, 255, 255, 0.1);
-        --color-focus: #74b9ff;
-        --ref-accent-bg: #1a2332;
-        --ref-accent-border: #2563eb;
-        --ref-accent-text: #60a5fa;
-        --ref-accent-hover-bg: #1e3a8a;
-        --ref-accent-hover-border: #3b82f6;
-        --ref-bg: #1f2937;
-        --ref-highlight-bg: #374151;
-        --ref-accent-highlight: #f59e0b;
-        --ref-link: #60a5fa;
+        --theme-header: rgba(18, 20, 22, 0.92);
+        --theme-background: #16181a;
+        --theme-background-rgb: 22, 24, 26;
+        --bg-color: #16181a;
+        --surface: #1f2226;
+        --surface-2: #262a2f;
+        --item-background: #1f2226;
+        --border: #30353a;
+        --border-strong: #454b52;
+        --item-border: #30353a;
+
+        --theme-color: #e6e9ec;
+        --theme-color-rgb: 230, 233, 236;
+        --text-color: #e6e9ec;
+        --text-muted: #9aa4ae;
+        --headings-color: #e6e9ec;
+
+        --theme-color-light: #7cc0ff;
+        --theme-color-light-rgb: 124, 192, 255;
+        --theme-color-dark: #4a9eff;
+        --anchor-color: #7cc0ff;
+        --anchor-visited-color: #bda9ff;
+        --important-color: #2fd3a5;
+        --color-focus: #7cc0ff;
+
+        --brand: #f0b429;
+        --brand-rgb: 240, 180, 41;
+        --gradient-start: #d35400;
+        --gradient-end: #f1c40f;
+
+        --code-bg: #0e1113;
+        --twitter-background: #1f2226;
+        --twitter-toggle: #30353a;
+        --twitter-cancel: #30353a;
+        --image-gray: grayscale(15%);
+        --color-hover-bg: rgba(255, 255, 255, 0.06);
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.45);
+
+        --ref-accent-bg: #16263c;
+        --ref-accent-border: #2c5c9e;
+        --ref-accent-text: #7cc0ff;
+        --ref-accent-hover-bg: #1c3a5e;
+        --ref-accent-hover-border: #3b7fd4;
+        --ref-bg: #1f2226;
+        --ref-highlight-bg: #33302a;
+        --ref-accent-highlight: #f0b429;
+        --ref-link: #7cc0ff;
+    }
+
+    .root::before {
+        height: 640px;
+        background: radial-gradient(
+            120% 100% at 50% 0%,
+            rgba(var(--brand-rgb), 0.12) 0%,
+            rgba(var(--brand-rgb), 0.04) 45%,
+            transparent 100%
+        );
     }
 }
 
 :global(html[data-theme="light"]) {
     .root {
-        --theme-header: rgba(26, 22, 26, 0.95);
-        --theme-background: #f8f9fa;
-        --theme-color: #2d3436;
-        --theme-color-light: #74b9ff;
-        --theme-text: #f8f9fa;
-        --bg-color: #f8f9fa;
-        --headings-color: #0984e3;
+        --theme-header: rgba(24, 22, 27, 0.92);
+        --theme-background: #fbfaf7;
+        --theme-background-rgb: 251, 250, 247;
+        --bg-color: #fbfaf7;
+        --surface: #ffffff;
+        --surface-2: #f3f1ec;
+        --item-background: #ffffff;
+        --border: #e3e0d9;
+        --border-strong: #cbc7bd;
+        --item-border: #e3e0d9;
+
+        --theme-color: #1e2226;
+        --theme-color-rgb: 30, 34, 38;
+        --text-color: #1e2226;
+        --text-muted: #5c6570;
+        --headings-color: #1e2226;
+
+        --theme-color-light: #0b63ce;
+        --theme-color-light-rgb: 11, 99, 206;
+        --theme-color-dark: #08498f;
+        --anchor-color: #0b63ce;
+        --anchor-visited-color: #6b4fbb;
+        --important-color: #0a8f6f;
+        --color-focus: #0b63ce;
+
+        --brand: #e8a317;
+        --brand-rgb: 232, 163, 23;
+        --gradient-start: #f1c40f;
+        --gradient-end: #ffeaa7;
+
+        --code-bg: #1b1f24;
         --twitter-background: #fff;
         --twitter-toggle: #e6ecf0;
         --twitter-cancel: #e6ecf0;
-        --item-background: #fff;
-        --item-border: #dfe6e9;
         --image-gray: grayscale(0%);
-        --anchor-color: #0984e3;
-        --anchor-visited-color: #6c5ce7;
-        --important-color: #00b894;
-        --gradient-start: #f1c40f;
-        --gradient-end: #ffeaa7;
-        --color-hover-bg: rgba(0, 0, 0, 0.05);
-        --color-focus: #0984e3;
-        --ref-accent-bg: #e3f2fd;
-        --ref-accent-border: #90caf9;
-        --ref-accent-text: #1976d2;
-        --ref-accent-hover-bg: #bbdefb;
-        --ref-accent-hover-border: #64b5f6;
-        --ref-bg: #f8f9fa;
-        --ref-highlight-bg: #fff3e0;
-        --ref-accent-highlight: #ff9800;
-        --ref-link: #1976d2;
-    
+        --color-hover-bg: rgba(0, 0, 0, 0.045);
+        --shadow-sm: 0 1px 2px rgba(20, 24, 28, 0.05), 0 1px 3px rgba(20, 24, 28, 0.07);
+        --shadow-md: 0 2px 4px rgba(20, 24, 28, 0.05), 0 8px 24px rgba(20, 24, 28, 0.08);
+
+        --ref-accent-bg: #e8f1fc;
+        --ref-accent-border: #a9cbf3;
+        --ref-accent-text: #0b63ce;
+        --ref-accent-hover-bg: #d6e6fa;
+        --ref-accent-hover-border: #7fb0ec;
+        --ref-bg: #f3f1ec;
+        --ref-highlight-bg: #fdf3dd;
+        --ref-accent-highlight: #e8a317;
+        --ref-link: #0b63ce;
+
         background: var(--theme-background);
         color: var(--theme-color);
         position: relative;
         min-height: 100vh;
     }
+
+    .root::before {
+        height: 720px;
+        background: radial-gradient(
+            120% 100% at 50% 0%,
+            rgba(var(--brand-rgb), 0.22) 0%,
+            rgba(var(--brand-rgb), 0.08) 45%,
+            transparent 100%
+        );
+    }
 }
 
-.root a {
+/*
+ * Wrapped in :where() so the whole rule carries zero specificity. It is a
+ * *default* for bare links; any component that styles its own anchor (nav
+ * items, buttons, card titles) then wins with a single class instead of
+ * having to out-specify `.root a` with :link/:visited tricks.
+ */
+:where(.root) :where(a) {
     text-decoration: none;
     color: var(--anchor-color);
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
-.root a:hover {
-    color: var(--theme-color-light);
+:where(.root) :where(a:hover) {
+    color: var(--theme-color-dark);
 }
 
-.root a:visited {
+:where(.root) :where(a:visited) {
     color: var(--anchor-visited-color);
+}
+
+.root :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: 2px;
 }
 
 /* Reference Links */
@@ -269,7 +437,7 @@
         border-radius: 0;
         border-left-width: 3px;
     }
-    
+
     :global(.reference-link) {
         font-size: 0.8em;
         padding: 0.15em 0.3em;

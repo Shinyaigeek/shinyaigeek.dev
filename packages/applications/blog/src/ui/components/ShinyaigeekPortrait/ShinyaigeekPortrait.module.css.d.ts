@@ -1,5 +1,4 @@
 declare const styles: {
-  readonly "dissolve": string;
   readonly "earth": string;
   readonly "earthX": string;
   readonly "earthY": string;
