@@ -12,6 +12,28 @@ import { Language } from "../language/language.entity";
 import { parseWorkExperienceContent } from "./parse-work-experience-content";
 import { WorkExperience } from "./work-experience.entity";
 
+/**
+ * How central a role is, used to order concurrent experiences.
+ *
+ * `position` is free-form text authored in the markdown front matter, so
+ * anything unrecognised lands between full-time and internships and the sort
+ * falls through to the start date. The ja and en front matter use the same
+ * `position` values, which keeps both locales in the same order.
+ */
+const employmentRank = (position?: string): number => {
+	const normalized = position?.toLowerCase() ?? "";
+
+	if (normalized.includes("full-time")) {
+		return 0;
+	}
+
+	if (normalized.includes("intern")) {
+		return 2;
+	}
+
+	return 1;
+};
+
 export class WorkExperienceRepository {
 	constructor(
 		private fileIOInfrastructure: FileIOInfrastructureInterface,
@@ -85,8 +107,11 @@ export class WorkExperienceRepository {
 			return createErr(new AggregateError(errors));
 		}
 
-		// Sort by endDate descending (ongoing experiences first), and break ties
-		// by startDate descending
+		// Sort by endDate descending (ongoing experiences first). Roles that run
+		// concurrently — same endDate, or both ongoing — are then ordered by how
+		// central the role is, so a full-time job leads the side contracts it
+		// overlaps with rather than losing to whichever started most recently.
+		// Only after that does startDate descending decide.
 		const toTime = (date: string) => new Date(date.replace("/", "-")).getTime();
 		experiences.sort((a, b) => {
 			const endA = a.metadata.endDate
@@ -98,6 +123,13 @@ export class WorkExperienceRepository {
 
 			if (endA !== endB) {
 				return endB - endA;
+			}
+
+			const rankA = employmentRank(a.metadata.position);
+			const rankB = employmentRank(b.metadata.position);
+
+			if (rankA !== rankB) {
+				return rankA - rankB;
 			}
 
 			return toTime(b.metadata.startDate) - toTime(a.metadata.startDate);
