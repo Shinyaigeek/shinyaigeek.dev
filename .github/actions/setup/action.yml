@@ -14,7 +14,8 @@ runs:
           run: |
               corepack enable pnpm
         - id: pnpm-cache
-          run: echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+          # GitHub disabled `::set-output` in 2023; $GITHUB_OUTPUT replaces it.
+          run: echo "pnpm_cache_dir=$(pnpm store path)" >> "$GITHUB_OUTPUT"
           shell: bash
         - uses: actions/cache@v4
           with:

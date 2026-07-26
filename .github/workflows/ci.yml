@@ -23,5 +23,55 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - uses: ./.github/actions/setup
-            - name: Run Linter in this repository
+            - name: Lint with oxlint
               run: pnpm run lint
+            - name: Check formatting with oxfmt
+              run: pnpm run format:check
+
+    typecheck:
+        needs:
+            - warmup_dependencies_cache
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        env:
+            NODE_ENV: development
+        steps:
+            - uses: actions/checkout@v4
+            - uses: ./.github/actions/setup
+            # Components use named imports from *.module.css, which resolve through
+            # the typed-css-modules output committed alongside each stylesheet. A
+            # stylesheet changed without rerunning `generate:tcm` fails here, which
+            # is the point.
+            - name: Typecheck every package
+              run: pnpm run typecheck
+
+    test:
+        needs:
+            - warmup_dependencies_cache
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        env:
+            NODE_ENV: development
+        steps:
+            - uses: actions/checkout@v4
+            - uses: ./.github/actions/setup
+            - name: Run tests
+              run: pnpm run test
+
+    build:
+        needs:
+            - warmup_dependencies_cache
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        steps:
+            - uses: actions/checkout@v4
+            - uses: ./.github/actions/setup
+            # Catches a broken build here rather than at deploy time. Deliberately
+            # without GITHUB_TOKEN: the build has to stay able to drop the
+            # contribution calendar and carry on.
+            - name: Build the blog
+              run: pnpm --filter blog build
+            - name: Build labs
+              run: pnpm --filter labs build
+            - name: Build the language routing worker
+              run: pnpm --filter worker worker:build

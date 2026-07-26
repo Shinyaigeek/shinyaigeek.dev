@@ -37,9 +37,9 @@ jobs:
             - name: Enable corepack (pnpm)
               run: corepack enable pnpm
 
-            # `--ignore-scripts` skips the deprecated @cloudflare/wrangler
-            # postinstall (its binary endpoint now 404s); the blog build needs
-            # no lifecycle scripts.
+            # The blog build needs no lifecycle scripts, so skipping them keeps the
+            # deploy install lean. (This also used to be required to dodge the
+            # deprecated @cloudflare/wrangler postinstall, which no longer exists.)
             - name: Install dependencies
               run: pnpm install --frozen-lockfile --ignore-scripts
 
