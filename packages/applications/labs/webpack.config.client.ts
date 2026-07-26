@@ -9,6 +9,8 @@ const config: webpack.Configuration = merge(
 		entry: {
 			client: "./src/client/index.ts",
 		},
+		// `pnpm build` is a production build; webpack warns when mode is unset.
+		mode: "production",
 		output: {
 			filename: "[name].[contenthash].js",
 		},

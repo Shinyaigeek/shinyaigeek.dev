@@ -13,6 +13,6 @@ describe("mapBreak", () => {
 		const data = await fs.readFile("./src/break/__fixture__/break.md", "utf-8");
 		const result = parseMarkdown(data);
 
-		expect(result).toMatchFileSnapshot("./__snapshot__/break.ast.txt");
+		await expect(result).toMatchFileSnapshot("./__snapshot__/break.ast.txt");
 	});
 });

@@ -5,14 +5,17 @@
 	"keywords": [],
 	"license": "ISC",
 	"author": "",
-	"main": "index.js",
+	"main": "src/index.ts",
 	"scripts": {
-		"worker:build": "webpack --config webpack.config.worker.js",
-		"worker:publish": "wrangler publish "
+		"worker:build": "wrangler deploy --dry-run --outdir dist",
+		"worker:publish": "wrangler deploy",
+		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^3.0.0",
-		"@cloudflare/wrangler": "^1.19.8",
-		"accept-language": "^3.0.18"
+		"@cloudflare/workers-types": "^5.20260726.1",
+		"wrangler": "^4.114.0"
+	},
+	"dependencies": {
+		"resolve-accept-language": "^3.2.2"
 	}
 }

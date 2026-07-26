@@ -32,6 +32,6 @@ describe("strong", () => {
 		);
 		const result = parseMarkdown(data);
 
-		expect(result).toMatchFileSnapshot("./__snapshot__/strong.ast.txt");
+		await expect(result).toMatchFileSnapshot("./__snapshot__/strong.ast.txt");
 	});
 });

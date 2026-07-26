@@ -12,6 +12,8 @@ const config: webpack.Configuration = merge(
 		entry: {
 			server: "./src/server/index.tsx",
 		},
+		// `pnpm build` is a production build; webpack warns when mode is unset.
+		mode: "production",
 		output: {
 			filename: "[name].js",
 		},

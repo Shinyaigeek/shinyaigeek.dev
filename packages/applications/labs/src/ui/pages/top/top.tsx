@@ -1,4 +1,4 @@
-import React, { type FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 import { HeadComponent } from "../../components/head/head";
 import { HeaderComponent } from "../../components/header/header";
 import "../../styles/global.css";

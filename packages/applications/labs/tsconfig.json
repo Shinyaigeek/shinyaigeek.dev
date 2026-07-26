@@ -1,13 +1,12 @@
 {
 	"extends": "../../../tsconfig.base.json",
-	"compilerOptions": {
-		"paths": {
-			"build-tool": ["../../modules/build-tool"]
-		}
-	},
-	"references": [
-		{
-			"path": "../../modules/build-tool"
-		}
+	// build-tool is a workspace dependency, so it resolves through node_modules
+	// like any other package -- the old `paths` mapping and project reference
+	// were only needed before that.
+	"include": [
+		"src",
+		"tools",
+		"webpack.config.client.ts",
+		"webpack.config.server.ts"
 	]
 }

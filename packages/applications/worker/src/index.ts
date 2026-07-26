@@ -1,33 +1,38 @@
-import resolveAcceptLanguage from "resolve-accept-language";
+import { resolveAcceptLanguage } from "resolve-accept-language";
 
-const handler = (event: FetchEvent) => {
-	const { url } = event.request;
-	const { pathname, search } = new URL(url);
+/**
+ * Sends visitors who prefer English to the English host and leaves everyone
+ * else on the Japanese one. Only document requests are considered; anything
+ * else falls straight through.
+ */
+const handleRequest = (request: Request): Response | Promise<Response> => {
+	const { pathname, search } = new URL(request.url);
 
 	if (!(pathname.endsWith(".html") || pathname.endsWith("/"))) {
-		return fetch(event.request);
+		return fetch(request);
 	}
 
-	const acceptLanguage = event.request.headers.get("accept-language");
+	const acceptLanguage = request.headers.get("accept-language");
 	if (!acceptLanguage) {
-		return fetch(event.request);
+		return fetch(request);
 	}
-	const preferedLanguage = resolveAcceptLanguage(
+
+	const preferredLanguage = resolveAcceptLanguage(
 		acceptLanguage,
 		["en-US", "ja-JP"],
 		"ja-JP",
 	);
 
-	if (preferedLanguage === "en-US") {
+	if (preferredLanguage === "en-US") {
 		return Response.redirect(
 			`https://en.shinyaigeek.dev${pathname}${search}`,
 			301,
 		);
 	}
 
-	return fetch(event.request);
+	return fetch(request);
 };
 
-addEventListener("fetch", (event) => {
-	event.respondWith(handler(event));
-});
+export default {
+	fetch: (request) => handleRequest(request),
+} satisfies ExportedHandler;

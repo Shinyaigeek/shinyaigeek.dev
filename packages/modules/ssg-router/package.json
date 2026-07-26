@@ -27,5 +27,11 @@
 			"types": "./src/plugin/basic.ts",
 			"default": "./src/plugin/basic.ts"
 		}
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@types/node": "^26.1.1"
 	}
 }

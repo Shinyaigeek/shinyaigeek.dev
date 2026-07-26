@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "worker/dist/worker.js",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Shinyaigeek/Shinyaigeek.git"
@@ -30,7 +30,7 @@
   "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
   "devDependencies": {
     "@biomejs/biome": "^1.6.4",
-    "husky": "^9.0.11",
+    "husky": "^9.1.7",
     "lint-staged": "^15.2.2",
     "typescript": "^5.9.3"
   },

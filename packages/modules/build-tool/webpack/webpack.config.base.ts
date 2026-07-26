@@ -24,8 +24,23 @@ export const webpackBaseConfig: webpack.Configuration = {
 				options: buildSwcConfig(),
 			},
 			{
+				// sass-loader used to sit behind css-loader here, but there is not a
+				// single .scss/.sass file in the repo, and sass-loader v17 resolves
+				// sass-embedded eagerly, so it only ever broke the build.
 				test: /\.css$/i,
-				use: ["css-loader", "sass-loader"],
+				use: [
+					{
+						loader: "css-loader",
+						options: {
+							modules: {
+								// css-loader v7 switched namedExport on by default, which
+								// removes the default export that `import styles from
+								// "./x.module.css"` relies on.
+								namedExport: false,
+							},
+						},
+					},
+				],
 			},
 		],
 	},

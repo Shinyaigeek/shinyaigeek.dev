@@ -1,0 +1,8 @@
+# Language routing worker: sends visitors who prefer English to the English
+# host. Moved here from the repo root so the config sits with the worker it
+# configures, and rewritten for wrangler v4 -- the old file was still in the
+# v1 format (`type`, `[build.upload]`), which current wrangler rejects.
+name = "handle-language"
+main = "src/index.ts"
+compatibility_date = "2026-07-26"
+workers_dev = true

@@ -4,7 +4,16 @@
       "children": [
         {
           "type": "text",
-          "value": "asdf ~~hoge~~",
+          "value": "asdf ",
+        },
+        {
+          "children": [
+            {
+              "type": "text",
+              "value": "hoge",
+            },
+          ],
+          "type": "delete",
         },
       ],
       "type": "paragraph",

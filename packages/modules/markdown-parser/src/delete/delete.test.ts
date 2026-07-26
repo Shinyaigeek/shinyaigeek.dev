@@ -32,6 +32,6 @@ describe("delete", () => {
 		);
 		const result = parseMarkdown(data);
 
-		expect(result).toMatchFileSnapshot("./__snapshot__/delete.ast.txt");
+		await expect(result).toMatchFileSnapshot("./__snapshot__/delete.ast.txt");
 	});
 });

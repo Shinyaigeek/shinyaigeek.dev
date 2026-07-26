@@ -32,6 +32,6 @@ describe("mapEmphasis", () => {
 		);
 		const result = parseMarkdown(data);
 
-		expect(result).toMatchFileSnapshot("./__snapshot__/emphasis.ast.txt");
+		await expect(result).toMatchFileSnapshot("./__snapshot__/emphasis.ast.txt");
 	});
 });

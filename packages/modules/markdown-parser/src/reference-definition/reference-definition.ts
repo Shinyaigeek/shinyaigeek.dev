@@ -36,7 +36,6 @@ const parseReferenceContent = (
 	}
 
 	const children = paragraphNode.children;
-	const titleParts: string[] = [];
 
 	for (const child of children) {
 		if (child.type === "text") {

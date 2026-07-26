@@ -1,4 +1,4 @@
-import React, { Fragment, type FunctionComponent } from "react";
+import { Fragment, type FunctionComponent } from "react";
 
 declare const $CSS_BUILT_ASSET_FILENAME: string;
 
