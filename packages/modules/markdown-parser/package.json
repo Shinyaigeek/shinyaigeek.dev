@@ -10,12 +10,12 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"remark-gfm": "^3.0.1",
+		"remark-gfm": "^4.0.1",
 		"remark-parse": "^11.0.0",
-		"unified": "^11.0.4"
+		"unified": "^11.0.5"
 	},
 	"devDependencies": {
-		"@types/mdast": "^4.0.3",
+		"@types/mdast": "^4.0.4",
 		"vitest": "^1.5.2"
 	}
 }

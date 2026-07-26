@@ -32,7 +32,7 @@
     "@biomejs/biome": "^1.6.4",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "typescript": "^5.4.2"
+    "typescript": "^5.9.3"
   },
   "packageManager": "pnpm@9.11.0+sha256.1c0e33f70e5df9eede84a357bdfa0b1f9dba6e58194628d48a1055756f553754"
 }

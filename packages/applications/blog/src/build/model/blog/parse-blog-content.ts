@@ -1,3 +1,4 @@
+import type { Root } from "hast";
 import { selectAll } from "hast-util-select";
 import {
 	type Result,
@@ -10,8 +11,7 @@ import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import { unified } from "unified";
-import type { Node, Parent } from "unist";
+import { type Plugin, unified } from "unified";
 import { visit } from "unist-util-visit";
 import { remarkReferences } from "../../plugins/remark-references";
 import type { BlogMetadata } from "./blog.entity";
@@ -63,43 +63,31 @@ export const parseBlogContent: (
 /**
  * Wraps tables in a scrollable container for responsive design
  */
-function wrapTablesInContainer() {
-	return function (tree: Node) {
-		visit(
-			tree,
-			"element",
-			(node: Node, index: number | undefined, parent: Parent | undefined) => {
-				if (
-					node.type === "element" &&
-					"tagName" in node &&
-					(node as { tagName: string }).tagName === "table" &&
-					parent &&
-					typeof index === "number" &&
-					"children" in parent &&
-					Array.isArray(parent.children)
-				) {
-					const wrapper: Node = {
-						type: "element",
-						tagName: "div",
-						properties: {
-							className: ["table-container"],
-						},
-						children: [node],
-					} as Node;
+const wrapTablesInContainer: Plugin<[], Root> = () => {
+	return (tree) => {
+		visit(tree, "element", (node, index, parent) => {
+			if (node.tagName !== "table" || !parent || typeof index !== "number") {
+				return;
+			}
 
-					parent.children[index] = wrapper;
-				}
-			},
-		);
+			parent.children[index] = {
+				type: "element",
+				tagName: "div",
+				properties: {
+					className: ["table-container"],
+				},
+				children: [node],
+			};
+		});
 	};
-}
+};
 
 /**
  * TODO: Currently, I extract headings with remark's plugin.
  * But, I want to extract headings with traverser after my own markdown parser is implemented.
  */
-const applyHeadingIdForHeadings = () => {
-	return (tree: Parameters<typeof selectAll>[1]) => {
+const applyHeadingIdForHeadings: Plugin<[], Root> = () => {
+	return (tree) => {
 		let count = 0;
 		for (const node of selectAll("h1,h2,h3,h4,h5,h6", tree)) {
 			const headingLevel = node.tagName.replace("h", "");
