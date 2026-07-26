@@ -5,6 +5,9 @@ export interface FleetMetadata {
 	publishedAt: string;
 	tags?: string[];
 	path: string;
+	// Optional: the fleet page passes this straight to the <meta name="description">
+	// tag, which is simply omitted when the frontmatter does not set it.
+	description?: string;
 }
 
 export interface FleetSlide {

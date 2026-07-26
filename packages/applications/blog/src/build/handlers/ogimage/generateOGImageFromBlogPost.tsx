@@ -1,7 +1,6 @@
 import fs from "node:fs/promises";
 import { Resvg } from "@resvg/resvg-js";
 import imageToBase64 from "image-to-base64";
-import React from "react";
 import satori from "satori";
 import { OGImageTemplate } from "./OGImageTemplate";
 

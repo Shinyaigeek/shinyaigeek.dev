@@ -1,10 +1,11 @@
+import type { ReactNode } from "react";
+import tag from "./Tag.module.css";
+
 export interface TagProps {
-	child: React.ReactChild;
+	child: ReactNode;
 	slug: string;
 	color: string;
 }
-import type React from "react";
-import tag from "./Tag.module.css";
 
 export function Tag(props: TagProps) {
 	return (

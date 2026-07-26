@@ -7,6 +7,9 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
+		// @ladle/react still pulls in @types/mdx and prism-react-renderer, which
+		// reference the global JSX namespace that React 19 types removed.
+		"skipLibCheck": true,
 		"jsx": "react-jsx",
 		"strict": true,
 		"noUnusedLocals": true,

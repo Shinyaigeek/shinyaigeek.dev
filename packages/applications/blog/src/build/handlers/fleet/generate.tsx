@@ -37,13 +37,20 @@ export const generateFleetPage: GenerateHandler<Context> = async ({
 
 	const fleet = unwrapOk(fleetResult);
 	const rawLanguage = language === Language.ja ? "ja" : "en";
+	// `description` is optional in the frontmatter, so fall back to a title-based
+	// one rather than emitting an empty <meta name="description">.
+	const description =
+		fleet.metadata.description ??
+		(language === Language.ja
+			? `${fleet.metadata.title} - スライド形式のちょっとしたアイデアや学習記録`
+			: `${fleet.metadata.title} - a quick idea or learning note in slide format`);
 
 	return renderToStaticMarkup(
 		<Shell
 			language={rawLanguage}
 			title={`${fleet.metadata.title} | shinyaigeek.dev`}
 			path={`/fleets/${slug}/`}
-			description={fleet.metadata.description}
+			description={description}
 			builtAssets={context.builtAssets}
 		>
 			<Layout

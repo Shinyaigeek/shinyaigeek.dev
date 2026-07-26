@@ -1,7 +1,6 @@
 import { isErr, unwrapErr, unwrapOk } from "option-t/esm/PlainResult";
 import type { GenerateHandler } from "ssg-router";
 import { GetBlogPostUsecase } from "../../application/getBlogPost/getBlogPost.usecase";
-import { GetBlogPostsUsecase } from "../../application/getBlogPosts/getBlogposts.usecase";
 import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";

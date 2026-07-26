@@ -1,4 +1,10 @@
-import type { FootnoteDefinition, FootnoteReference, Link, Node } from "mdast";
+import type {
+	FootnoteDefinition,
+	FootnoteReference,
+	Link,
+	Paragraph,
+	RootContent,
+} from "mdast";
 import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
 
@@ -61,19 +67,19 @@ function parseReferenceMetadata(node: FootnoteDefinition): ReferenceMetadata {
 	let accessDate: string | undefined;
 
 	// Extract text content from the footnote definition
-	const extractTextFromNodes = (nodes: Node[]): string => {
+	const extractTextFromNodes = (nodes: RootContent[]): string => {
 		return nodes
 			.map((child) => {
 				if (child.type === "text") {
-					return (child as { value: string }).value;
+					return child.value;
 				}
 				if (child.type === "link") {
 					// Store URL and return link text
-					url = (child as Link).url;
-					return extractTextFromNodes((child as Link).children);
+					url = child.url;
+					return extractTextFromNodes(child.children);
 				}
-				if ("children" in child && child.children) {
-					return extractTextFromNodes(child.children as Node[]);
+				if ("children" in child) {
+					return extractTextFromNodes(child.children);
 				}
 				return "";
 			})
@@ -82,10 +88,10 @@ function parseReferenceMetadata(node: FootnoteDefinition): ReferenceMetadata {
 
 	// Find paragraph content
 	const paragraphNode = node.children.find(
-		(child) => child.type === "paragraph",
+		(child): child is Paragraph => child.type === "paragraph",
 	);
-	if (paragraphNode?.children) {
-		const fullText = extractTextFromNodes(paragraphNode.children as Node[]);
+	if (paragraphNode) {
+		const fullText = extractTextFromNodes(paragraphNode.children);
 		const lines = fullText
 			.split("\n")
 			.map((line) => line.trim())

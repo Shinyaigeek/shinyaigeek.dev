@@ -19,8 +19,8 @@ export const ShinyaigeekPortrait: FunctionComponent = () => (
 		<div className={portraitContainer}>
 			<button
 				className={portraitButton}
-				popovertarget="sns-links"
-				popovertargetaction="toggle"
+				popoverTarget="sns-links"
+				popoverTargetAction="toggle"
 				aria-label="SNS Links"
 				type="button"
 			>

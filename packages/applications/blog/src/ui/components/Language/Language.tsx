@@ -1,4 +1,4 @@
-import type { FunctionComponent } from "react";
+import type { FunctionComponent, ReactElement } from "react";
 import {
 	languageArrow,
 	languageCheck,
@@ -20,7 +20,7 @@ export const languages = new Map<
 	languageType,
 	{
 		name: string;
-		icon: JSX.Element;
+		icon: ReactElement;
 	}
 >();
 languages.set("ja", {
