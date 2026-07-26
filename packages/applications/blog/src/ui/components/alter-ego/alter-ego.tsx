@@ -26,6 +26,10 @@ export const AlterEgo: FunctionComponent<Props> = ({ language }) => (
 		description={COPY[language].description}
 	>
 		<div className={alterEgoFrameWrapper}>
+			{/* oxlint-disable-next-line react/iframe-missing-sandbox -- first-party
+			    embed that needs scripts plus its own storage for chat/auth state.
+			    Worth revisiting with an explicit token list once it is clear which
+			    capabilities the embed actually relies on. */}
 			<iframe
 				className={alterEgoFrame}
 				src={`https://alterego.shinyaigeek.dev/embed/${language}`}

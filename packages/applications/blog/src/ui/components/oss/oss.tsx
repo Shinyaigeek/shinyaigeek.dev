@@ -77,7 +77,7 @@ export const OSS: FunctionComponent<Props> = ({ language, ossProjects }) => {
 								))}
 							</p>
 						)}
-						{/* biome-ignore lint/security/noDangerouslySetInnerHtml: markdown is authored in-repo */}
+						{/* The markdown is authored in this repo, rendered at build time. */}
 						<div dangerouslySetInnerHTML={{ __html: project.body }} />
 						{project.metadata.highlights &&
 							project.metadata.highlights.length > 0 && (

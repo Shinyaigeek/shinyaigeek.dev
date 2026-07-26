@@ -89,7 +89,7 @@ export const WorkExperience: FunctionComponent<Props> = ({
 						)}
 						<details>
 							<summary>detail</summary>
-							{/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+							{/* The markdown is authored in this repo, rendered at build time. */}
 							<div dangerouslySetInnerHTML={{ __html: experience.body }} />
 						</details>
 					</li>

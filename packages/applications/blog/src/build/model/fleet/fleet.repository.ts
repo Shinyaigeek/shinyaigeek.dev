@@ -87,7 +87,7 @@ export class FleetRepository {
 							new Date(a.metadata.publishedAt).getTime(),
 					),
 			);
-		} catch (error) {
+		} catch {
 			// Directory doesn't exist, return empty array
 			return createOk([]);
 		}

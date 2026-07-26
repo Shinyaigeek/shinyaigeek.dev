@@ -14,21 +14,23 @@ export const generateTopOGImagePage: GenerateHandler<Context> = async () => {
 	return pngBuffer;
 };
 
-export const generateProfileOGImagePage: GenerateHandler<Context> =
-	async () => {
-		const pngBuffer = await generateOGImageFromBlogPost({
-			title: "About Shinyaigeek",
-		});
-		return pngBuffer;
-	};
+export const generateProfileOGImagePage: GenerateHandler<
+	Context
+> = async () => {
+	const pngBuffer = await generateOGImageFromBlogPost({
+		title: "About Shinyaigeek",
+	});
+	return pngBuffer;
+};
 
-export const generateActivityOGImagePage: GenerateHandler<Context> =
-	async () => {
-		const pngBuffer = await generateOGImageFromBlogPost({
-			title: "Shinyaigeek's GitHub Activity",
-		});
-		return pngBuffer;
-	};
+export const generateActivityOGImagePage: GenerateHandler<
+	Context
+> = async () => {
+	const pngBuffer = await generateOGImageFromBlogPost({
+		title: "Shinyaigeek's GitHub Activity",
+	});
+	return pngBuffer;
+};
 
 export const generateBlogPostOGImagePage: GenerateHandler<Context> = async ({
 	path,

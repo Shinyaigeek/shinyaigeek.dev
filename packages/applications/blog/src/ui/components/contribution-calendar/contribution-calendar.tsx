@@ -177,7 +177,7 @@ export const ContributionCalendar: FunctionComponent<Props> = ({
 					{copy.less}
 					{SWATCH_CLASS.map((swatch, index) => (
 						<span
-							// biome-ignore lint/suspicious/noArrayIndexKey: the legend is a fixed 0–4 ramp
+							// oxlint-disable-next-line react/no-array-index-key -- the legend is a fixed 0-4 ramp
 							key={index}
 							className={`${legendSwatch} ${swatch}`}
 						/>

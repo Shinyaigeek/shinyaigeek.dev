@@ -79,7 +79,7 @@ export const Education: FunctionComponent<Props> = ({
 						)}
 						<details>
 							<summary>detail</summary>
-							{/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+							{/* The markdown is authored in this repo, rendered at build time. */}
 							<div dangerouslySetInnerHTML={{ __html: education.body }} />
 						</details>
 					</li>

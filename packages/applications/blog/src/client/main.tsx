@@ -1,6 +1,7 @@
 /**
- * Currently, rspack's mini-css-extract-plugin will not output stylesheet file in node target.
- * So we need a file which includes only pages components to extract stylesheets.
+ * The client entry doubles as the stylesheet entry: the server build targets
+ * node and emits no CSS, so every page component has to be reachable from here
+ * for its styles to land in the extracted stylesheet.
  */
 
 import { Layout } from "../ui/components/Layout/Layout";
@@ -19,6 +20,9 @@ import { Profile } from "../ui/pages/Profile/Profile";
 import { FleetDetail } from "../ui/pages/fleet-detail";
 import { FleetIndex } from "../ui/pages/fleet-index";
 
+/* oxlint-disable no-unused-expressions -- Referencing each page component keeps
+   it in the client bundle, which is what pulls its CSS import into the
+   extracted stylesheet. */
 Layout;
 Activity;
 Home;
@@ -27,6 +31,7 @@ Profile;
 PostIndex;
 FleetDetail;
 FleetIndex;
+/* oxlint-enable no-unused-expressions */
 
 // Theme management
 class ThemeManager {
@@ -668,12 +673,15 @@ class GitHubActivityManager {
 	}
 }
 
-// Initialize managers
+// Initialize managers. Each constructor wires up its own DOM listeners, so the
+// instances are intentionally not retained.
+/* oxlint-disable no-new */
 new ThemeManager();
 new MobileMenuManager();
 new LanguageDropdownManager();
 new ReferenceScrollManager();
 new FleetManager();
 new GitHubActivityManager();
+/* oxlint-enable no-new */
 
 console.log("hello! I am shinyaigeek");

@@ -1,6 +1,10 @@
 import fs from "node:fs";
 import fm from "front-matter";
 import type { Entry } from "./getBlogPost.js";
+type BlogFrontmatter = Omit<Entry["fields"], "slug"> & {
+	updatedAt: Entry["sys"]["updatedAt"];
+};
+
 interface HomeSlug {
 	slug: string;
 	tag?: string;
@@ -26,16 +30,16 @@ export const getBlogPosts: (
 	);
 	return posts
 		.map(([post, slug]) => {
-			const { attributes } = fm(post);
+			// front-matter is generic, so the frontmatter shape can be stated once
+			// here instead of casting the untyped attributes through `any`.
+			const { attributes } = fm<BlogFrontmatter>(post);
 			return {
 				fields: {
-					// biome-ignore lint: reason
-					...(attributes as any),
+					...attributes,
 					slug,
 				},
 				sys: {
-					// biome-ignore lint: reason
-					updatedAt: (attributes as any).updatedAt,
+					updatedAt: attributes.updatedAt,
 				},
 			};
 		})

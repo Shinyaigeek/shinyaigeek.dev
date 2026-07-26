@@ -7,7 +7,7 @@ interface Props {
 export const AboutMe: FunctionComponent<Props> = function ({ body }) {
 	return (
 		<div
-			// biome-ignore lint/security/noDangerouslySetInnerHtml: markdown content
+			// The body is markdown authored in this repo, rendered at build time.
 			dangerouslySetInnerHTML={{ __html: body }}
 		/>
 	);

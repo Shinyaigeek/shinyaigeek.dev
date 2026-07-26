@@ -23,11 +23,11 @@ export const FleetViewer: FunctionComponent<Props> = ({ fleet }) => {
 				<div className={title}>{fleet.metadata.title}</div>
 				{fleet.slides.map((slideContent, index) => (
 					<div
-						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+						// oxlint-disable-next-line react/no-array-index-key -- slide order is the identity here; the deck is rendered once and never reordered
 						key={index}
 						className={`${slide} ${index === 0 ? active : ""}`}
 						data-fleet-slide
-						// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+						// Slide HTML is rendered from in-repo markdown at build time.
 						dangerouslySetInnerHTML={{ __html: slideContent.content }}
 					/>
 				))}

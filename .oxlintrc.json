@@ -1,0 +1,36 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"plugins": ["typescript", "unicorn", "oxc", "react", "import"],
+	"categories": {
+		"correctness": "error",
+		"suspicious": "error",
+		"perf": "error"
+	},
+	"ignorePatterns": ["**/dist/**", "**/public/**", "**/*.css.d.ts"],
+	"rules": {
+		// Every package compiles JSX with the automatic runtime, so React does not
+		// need to be in scope.
+		"react/react-in-jsx-scope": "off",
+		// Stylesheets are imported for their side effects.
+		"import/no-unassigned-import": "off",
+		// `_foo` marks an argument that has to be declared but is deliberately
+		// unused, which is also what tsconfig's noUnusedParameters expects.
+		"no-underscore-dangle": "off",
+		// The build steps read and parse content files in sequence on purpose;
+		// there is nothing to gain from racing them.
+		"no-await-in-loop": "off",
+		// Prefers toSorted() over sort(). Every call site here sorts an array it
+		// just created, so the mutation is not observable.
+		"unicorn/no-array-sort": "off"
+	},
+	"overrides": [
+		{
+			// Ladle discovers stories through named exports, and index keys are fine
+			// in statically rendered markup that never reorders.
+			"files": ["**/*.stories.tsx"],
+			"rules": {
+				"react/no-array-index-key": "off"
+			}
+		}
+	]
+}

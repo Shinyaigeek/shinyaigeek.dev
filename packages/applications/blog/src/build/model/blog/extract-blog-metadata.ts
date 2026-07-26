@@ -24,7 +24,7 @@ export const extractBlogMetadata: (
 	});
 };
 
-// biome-ignore lint: this is valid any usecase
+// Frontmatter is untyped until this predicate has vouched for it.
 const validateMetadata = function (metadata: any): metadata is BlogMetadata {
 	if (typeof metadata !== "object" || metadata === null) {
 		return false;

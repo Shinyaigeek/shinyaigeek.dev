@@ -11,10 +11,13 @@
   "scripts": {
     "prepare": "husky",
     "lint-staged": "lint-staged",
-    "__biome": "biome",
-    "format": "biome format --write ./packages",
-    "lint": "biome ci --formatter-enabled=true --linter-enabled=true --organize-imports-enabled=true ./packages",
-    "lint:fix": "biome check --apply-unsafe ./packages"
+    "format": "oxfmt ./packages",
+    "format:check": "oxfmt --check ./packages",
+    "lint": "oxlint ./packages",
+    "lint:fix": "oxlint --fix ./packages",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "ci": "pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm run test"
   },
   "husky": {
     "hooks": {
@@ -29,9 +32,10 @@
   },
   "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
   "devDependencies": {
-    "@biomejs/biome": "^1.6.4",
     "husky": "^9.1.7",
-    "lint-staged": "^15.2.2",
+    "lint-staged": "^17.2.0",
+    "oxfmt": "^0.60.0",
+    "oxlint": "^1.75.0",
     "typescript": "^5.9.3"
   },
   "packageManager": "pnpm@9.11.0+sha256.1c0e33f70e5df9eede84a357bdfa0b1f9dba6e58194628d48a1055756f553754"

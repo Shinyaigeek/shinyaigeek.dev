@@ -23,7 +23,7 @@ export const getJapaneseFleetChildren: () => Promise<string[]> = async () => {
 
 		const fleets = unwrapOk(fleetResults);
 		return fleets.map((fleet) => `/fleets/${fleet.metadata.path}/`);
-	} catch (error) {
+	} catch {
 		return [];
 	}
 };
@@ -46,7 +46,7 @@ export const getEnglishFleetChildren: () => Promise<string[]> = async () => {
 
 		const fleets = unwrapOk(fleetResults);
 		return fleets.map((fleet) => `/en/fleets/${fleet.metadata.path}/`);
-	} catch (error) {
+	} catch {
 		return [];
 	}
 };

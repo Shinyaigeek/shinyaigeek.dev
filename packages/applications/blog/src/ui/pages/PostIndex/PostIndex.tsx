@@ -18,6 +18,7 @@ export const PostIndex: FunctionComponent<Props> = ({ items }) => (
 			{items.map((item) => {
 				return (
 					<Item
+						key={item.path}
 						title={item.title}
 						description={item.description}
 						publishedAt={item.publishedAt}

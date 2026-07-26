@@ -34,6 +34,8 @@ const employmentRank = (position?: string): number => {
 	return 1;
 };
 
+const toTime = (date: string) => new Date(date.replace("/", "-")).getTime();
+
 export class WorkExperienceRepository {
 	constructor(
 		private fileIOInfrastructure: FileIOInfrastructureInterface,
@@ -112,7 +114,6 @@ export class WorkExperienceRepository {
 		// central the role is, so a full-time job leads the side contracts it
 		// overlaps with rather than losing to whichever started most recently.
 		// Only after that does startDate descending decide.
-		const toTime = (date: string) => new Date(date.replace("/", "-")).getTime();
 		experiences.sort((a, b) => {
 			const endA = a.metadata.endDate
 				? toTime(a.metadata.endDate)

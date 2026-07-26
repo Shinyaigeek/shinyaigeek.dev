@@ -28,7 +28,7 @@ export const Post: FunctionComponent<Props> = function Post({
 			<PostMetaInfo title={title} tags={tags} publishedAt={publishedAt} />
 			<div
 				className={postContent}
-				// biome-ignore lint: reason
+				// The post body is rendered from in-repo markdown at build time.
 				dangerouslySetInnerHTML={{
 					__html: content,
 				}}

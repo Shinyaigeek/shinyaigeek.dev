@@ -60,11 +60,16 @@ const COPY = {
 	},
 } as const;
 
+// Hoisted so the defaults are stable references rather than fresh arrays on
+// every render.
+const NO_WORK_EXPERIENCES: Props["workExperiences"] = [];
+const NO_OSS_PROJECTS: Props["ossProjects"] = [];
+
 export const Home: FunctionComponent<Props> = ({
 	language,
 	items,
-	workExperiences = [],
-	ossProjects = [],
+	workExperiences = NO_WORK_EXPERIENCES,
+	ossProjects = NO_OSS_PROJECTS,
 }) => {
 	const copy = COPY[language];
 

@@ -21,7 +21,8 @@ export class AboutMeRepository {
 			return await parseAboutMeContent(content);
 		} catch (error) {
 			throw new Error(
-				`Failed to load about-me content for language ${langCode}: ${error}`,
+				`Failed to load about-me content for language ${langCode}`,
+				{ cause: error },
 			);
 		}
 	}

@@ -25,7 +25,7 @@ export const extractOSSMetadata: (content: string) => Result<Output, Error> = (
 };
 
 const validateMetadata = function (
-	// biome-ignore lint/suspicious/noExplicitAny: this is valid any usecase
+	// Frontmatter is untyped until this predicate has vouched for it.
 	metadata: any,
 ): metadata is OSSProjectMetadata {
 	if (typeof metadata !== "object" || metadata === null) {
