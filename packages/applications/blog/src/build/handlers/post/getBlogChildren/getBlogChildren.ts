@@ -1,4 +1,4 @@
-import { isErr, unwrapErr, unwrapOk } from "option-t/esm/PlainResult";
+import { isErr, unwrapErr, unwrapOk } from "option-t/plain_result";
 import { GetBlogPostsUsecase } from "../../../application/getBlogPosts/getBlogposts.usecase";
 import { NodeFileIOInfrastructure } from "../../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../../infrastructure/file-path/node-file-path";

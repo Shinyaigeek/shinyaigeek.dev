@@ -1,4 +1,4 @@
-import { isErr, unwrapErr, unwrapOk } from "option-t/esm/PlainResult";
+import { isErr, unwrapErr, unwrapOk } from "option-t/plain_result";
 import type { GenerateHandler } from "ssg-router";
 import { GetBlogPostUsecase } from "../../application/getBlogPost/getBlogPost.usecase";
 import type { Context } from "../../context/context";

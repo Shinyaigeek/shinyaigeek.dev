@@ -1,4 +1,4 @@
-import type { Undefinable } from "option-t/esm/Undefinable";
+import type { Undefinable } from "option-t/undefinable";
 import type { FunctionComponent } from "react";
 import { Item } from "./components/Item/Item";
 

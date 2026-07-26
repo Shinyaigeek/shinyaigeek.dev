@@ -1,4 +1,4 @@
-import { type Result, createErr, createOk } from "option-t/esm/PlainResult";
+import { type Result, createErr, createOk } from "option-t/plain_result";
 import {
 	ContributionCalendar,
 	type ContributionWeek,

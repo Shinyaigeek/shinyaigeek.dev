@@ -1,4 +1,4 @@
-import type { Undefinable } from "option-t/esm/Undefinable";
+import type { Undefinable } from "option-t/undefinable";
 import type { FunctionComponent } from "react";
 import type { OSSProject } from "../../../build/model/oss/oss.entity";
 import type { WorkExperience } from "../../../build/model/work-experience/work-experience.entity";

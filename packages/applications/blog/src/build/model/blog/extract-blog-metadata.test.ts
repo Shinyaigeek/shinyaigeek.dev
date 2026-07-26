@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { isErr, isOk, unwrapOk } from "option-t/esm/PlainResult";
+import { isErr, isOk, unwrapOk } from "option-t/plain_result";
 import { describe, expect, test } from "vitest";
 import { extractBlogMetadata } from "./extract-blog-metadata";
 

@@ -5,7 +5,7 @@ import {
 	isErr,
 	unwrapErr,
 	unwrapOk,
-} from "option-t/esm/PlainResult";
+} from "option-t/plain_result";
 import type { FileIOInfrastructureInterface } from "../../infrastructure/file-io/file-io.interface";
 import type { FilePathInfrastructureInterface } from "../../infrastructure/file-path/file-path.interface";
 import type { Language } from "../language/language.entity";

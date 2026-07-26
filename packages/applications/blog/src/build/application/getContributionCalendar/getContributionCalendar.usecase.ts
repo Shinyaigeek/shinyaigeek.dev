@@ -1,4 +1,4 @@
-import { isErr, unwrapErr, unwrapOk } from "option-t/esm/PlainResult";
+import { isErr, unwrapErr, unwrapOk } from "option-t/plain_result";
 import type { ContributionCalendar } from "../../model/github-activity/contribution-calendar.entity";
 import type { ContributionCalendarRepository } from "../../model/github-activity/contribution-calendar.repository";
 

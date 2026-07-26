@@ -6,11 +6,13 @@
 	"author": "",
 	"license": "ISC",
 	"type": "module",
-	"files": ["./src"],
+	"files": [
+		"./src"
+	],
 	"types": "./src/index.ts",
 	"main": "./src/index.ts",
 	"dependencies": {
-		"option-t": "^39.0.3"
+		"option-t": "^56.1.2"
 	},
 	"exports": {
 		".": {

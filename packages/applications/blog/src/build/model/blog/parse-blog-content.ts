@@ -1,11 +1,6 @@
 import type { Root } from "hast";
 import { selectAll } from "hast-util-select";
-import {
-	type Result,
-	createOk,
-	isErr,
-	unwrapOk,
-} from "option-t/esm/PlainResult";
+import { type Result, createOk, isErr, unwrapOk } from "option-t/plain_result";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";

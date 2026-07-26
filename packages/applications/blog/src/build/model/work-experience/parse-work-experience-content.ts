@@ -1,9 +1,4 @@
-import {
-	type Result,
-	createOk,
-	isErr,
-	unwrapOk,
-} from "option-t/esm/PlainResult";
+import { type Result, createOk, isErr, unwrapOk } from "option-t/plain_result";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";

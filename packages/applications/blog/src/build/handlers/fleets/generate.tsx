@@ -1,4 +1,4 @@
-import { isErr, unwrapOk } from "option-t/esm/PlainResult";
+import { isErr, unwrapOk } from "option-t/plain_result";
 import { renderToStaticMarkup } from "react-dom/server";
 import type { GenerateHandler } from "ssg-router";
 import { Layout } from "../../../ui/components/Layout/Layout";

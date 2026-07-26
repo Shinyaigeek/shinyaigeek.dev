@@ -1,4 +1,4 @@
-import type { Result } from "option-t/esm/PlainResult";
+import type { Result } from "option-t/plain_result";
 import type { BlogContent } from "../../model/blog/blog.entity";
 import type { BlogRepository } from "../../model/blog/blog.repository";
 import type { Language } from "../../model/language/language.entity";

@@ -1,6 +1,6 @@
 import fm from "front-matter";
 import { marked } from "marked";
-import { type Result, createErr, createOk } from "option-t/esm/PlainResult";
+import { type Result, createErr, createOk } from "option-t/plain_result";
 import type { FleetMetadata, FleetSlide } from "./fleet.entity";
 
 export async function parseFleetContent(

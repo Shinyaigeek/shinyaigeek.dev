@@ -1,12 +1,12 @@
-import { isNull } from "option-t/esm/Nullable";
+import { isNull } from "option-t/nullable";
 import {
 	type Result,
 	createErr,
 	createOk,
 	isErr,
 	unwrapOk,
-} from "option-t/esm/PlainResult";
-import { isUndefined } from "option-t/esm/Undefinable";
+} from "option-t/plain_result";
+import { isUndefined } from "option-t/undefinable";
 import type { ThirdPartyPublishContent } from "./third-party-publish.entity";
 
 export const parseThirdPartyPublishContentsListJson: (

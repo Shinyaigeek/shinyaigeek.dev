@@ -25,14 +25,11 @@ export const rspackBaseConfig: Configuration = {
 			},
 			{
 				test: /\.css$/,
-				use: [
-					{
-						loader: "postcss-loader",
-					},
-				],
-				// Rspack's native CSS support handles extraction and CSS modules,
-				// so CssExtractRspackPlugin is not involved (it warns and no-ops
-				// when combined with a `css` module type).
+				// Rspack's native CSS support handles extraction and CSS modules on
+				// its own, so this rule needs no loaders: CssExtractRspackPlugin
+				// no-ops (and warns) against a `css` module type, and postcss-loader
+				// only ever parsed and reprinted the CSS unchanged, there being no
+				// postcss config in the repo.
 				type: "css/auto",
 			},
 		],

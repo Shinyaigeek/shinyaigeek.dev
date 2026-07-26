@@ -1,4 +1,4 @@
-import type { Result } from "option-t/esm/PlainResult";
+import type { Result } from "option-t/plain_result";
 import type { Language } from "../../model/language/language.entity";
 import type { WorkExperience } from "../../model/work-experience/work-experience.entity";
 import type { WorkExperienceRepository } from "../../model/work-experience/work-experience.repository";

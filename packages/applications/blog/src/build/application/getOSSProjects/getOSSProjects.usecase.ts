@@ -1,4 +1,4 @@
-import type { Result } from "option-t/esm/PlainResult";
+import type { Result } from "option-t/plain_result";
 import type { Language } from "../../model/language/language.entity";
 import type { OSSProject } from "../../model/oss/oss.entity";
 import type { OSSRepository } from "../../model/oss/oss.repository";

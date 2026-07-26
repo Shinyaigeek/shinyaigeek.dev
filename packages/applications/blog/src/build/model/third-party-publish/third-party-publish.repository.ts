@@ -1,4 +1,4 @@
-import type { Result } from "option-t/esm/PlainResult";
+import type { Result } from "option-t/plain_result";
 import type { FileIOInfrastructureInterface } from "../../infrastructure/file-io/file-io.interface";
 import type { FilePathInfrastructureInterface } from "../../infrastructure/file-path/file-path.interface";
 import { parseThirdPartyPublishContentsListJson } from "./parse-third-party-publish-contents-list-json";
