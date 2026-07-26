@@ -427,6 +427,7 @@ class FleetManager {
 		if (this.container) {
 			this.container.addEventListener("click", (event) => {
 				const rect = this.container?.getBoundingClientRect();
+				if (!rect) return;
 				const x = event.clientX - rect.left;
 				const width = rect.width;
 
