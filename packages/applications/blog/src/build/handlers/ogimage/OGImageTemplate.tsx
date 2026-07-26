@@ -24,35 +24,14 @@ export const OGImageTemplate: FunctionComponent<Props> = ({
 			overflow: "hidden",
 		}}
 	>
-		{/* Background pattern */}
-		<div
-			style={{
-				position: "absolute",
-				width: "200%",
-				height: "200%",
-				top: "-50%",
-				left: "-50%",
-				background: `
-					radial-gradient(circle at 20% 50%, rgba(255, 232, 106, 0.3) 0%, transparent 50%),
-					radial-gradient(circle at 80% 80%, rgba(255, 204, 0, 0.2) 0%, transparent 50%),
-					radial-gradient(circle at 40% 80%, rgba(255, 244, 154, 0.2) 0%, transparent 50%)
-				`,
-			}}
-		/>
-
-		{/* Grid overlay */}
-		<div
-			style={{
-				position: "absolute",
-				width: "100%",
-				height: "100%",
-				backgroundImage: `
-					linear-gradient(rgba(255, 232, 106, 0.03) 1px, transparent 1px),
-					linear-gradient(90deg, rgba(255, 232, 106, 0.03) 1px, transparent 1px)
-				`,
-				backgroundSize: "60px 60px",
-			}}
-		/>
+		{/*
+		 * There used to be two more layers here: a wash of three amber
+		 * radial-gradients, and a 60px grid overlay. satori 0.0.43 quietly dropped
+		 * both, so nobody ever saw them; when satori 0.29 started rendering them as
+		 * written, the flatter look they had replaced turned out to be the one we
+		 * wanted, so they are gone for real now. The base linear-gradient below the
+		 * content is deliberately kept.
+		 */}
 
 		{/* Title container */}
 		<div
