@@ -1,4 +1,7 @@
 import type { FunctionComponent } from "react";
+// Global design tokens every component reads through var(). Imported here
+// because Layout wraps every page.
+import "../../styles/tokens.css";
 import { Footer } from "../Footer/Footer";
 import { ShinyaigeekPortrait } from "../ShinyaigeekPortrait/ShinyaigeekPortrait";
 import { Header } from "../header/header";

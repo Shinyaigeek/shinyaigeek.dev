@@ -236,27 +236,7 @@
     min-width: 120px;
 }
 
-:root {
-    --text-primary: #2d3748;
-    --text-secondary: #4a5568;
-    --text-tertiary: #718096;
-    --card-background: #ffffff;
-    --border-color: #4a5568;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --shadow-color-hover: rgba(0, 0, 0, 0.15);
-}
-
 @media (prefers-color-scheme: dark) {
-    :root {
-        --text-primary: #e2e8f0;
-        --text-secondary: #cbd5e0;
-        --text-tertiary: #a0aec0;
-        --card-background: #2d3748;
-        --border-color: #718096;
-        --shadow-color: rgba(0, 0, 0, 0.3);
-        --shadow-color-hover: rgba(0, 0, 0, 0.4);
-    }
-
     .metadataLabel {
         color: #cbd5e0;
     }
@@ -294,16 +274,6 @@
 
 
 :global(html[data-theme="dark"]) {
-    :root {
-        --text-primary: #e2e8f0;
-        --text-secondary: #cbd5e0;
-        --text-tertiary: #a0aec0;
-        --card-background: #2d3748;
-        --border-color: #718096;
-        --shadow-color: rgba(0, 0, 0, 0.3);
-        --shadow-color-hover: rgba(0, 0, 0, 0.4);
-    }
-
     .metadataLabel {
         color: #cbd5e0;
     }
@@ -340,16 +310,6 @@
 }
 
 :global(html[data-theme="light"]) {
-    :root {
-        --text-primary: #2d3748;
-        --text-secondary: #4a5568;
-        --text-tertiary: #718096;
-        --card-background: #ffffff;
-        --border-color: #4a5568;
-        --shadow-color: rgba(0, 0, 0, 0.1);
-        --shadow-color-hover: rgba(0, 0, 0, 0.15);
-    }
-
     .metadataLabel {
         font-weight: 600;
         color: #777;

@@ -1,8 +1,5 @@
 import type { Configuration } from "@rspack/cli";
-import Rspack from "@rspack/core";
 import { buildSwcConfig } from "../javascript/swc/build-swc-config.ts";
-
-const CssExtractRspackPlugin = Rspack.CssExtractRspackPlugin;
 
 export const rspackBaseConfig: Configuration = {
 	resolve: {
@@ -30,22 +27,14 @@ export const rspackBaseConfig: Configuration = {
 				test: /\.css$/,
 				use: [
 					{
-						loader: CssExtractRspackPlugin.loader,
-						options: {
-							publicPath: "./",
-						},
-					},
-					{
 						loader: "postcss-loader",
 					},
 				],
+				// Rspack's native CSS support handles extraction and CSS modules,
+				// so CssExtractRspackPlugin is not involved (it warns and no-ops
+				// when combined with a `css` module type).
 				type: "css/auto",
 			},
 		],
 	},
-	plugins: [
-		new CssExtractRspackPlugin({
-			filename: "style.css",
-		}),
-	],
 };

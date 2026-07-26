@@ -1,51 +1,12 @@
 import type { Configuration } from "@rspack/cli";
-import Rspack from "@rspack/core";
-import ReactRefreshPlugin from "@rspack/plugin-react-refresh";
-import { buildSwcConfig } from "build-tool/javascript/swc/build-swc-config.ts";
+import { ReactRefreshRspackPlugin } from "@rspack/plugin-react-refresh";
+import { rspackBaseConfig } from "build-tool";
 import { merge } from "webpack-merge";
 
-const devBaseConfig: Configuration = {
-	resolve: {
-		extensions: [
-			".ts",
-			".tsx",
-			".mts",
-			".cts",
-			".js",
-			".jsx",
-			".cjs",
-			".mjs",
-			".json",
-			".css",
-		],
-	},
-	module: {
-		rules: [
-			{
-				test: /\.tsx?$/,
-				loader: "builtin:swc-loader",
-				options: buildSwcConfig(),
-			},
-			{
-				test: /\.css$/,
-				use: [
-					"style-loader",
-					{
-						loader: "css-loader",
-						options: {
-							modules: {
-								localIdentName: "[name]__[local]___[hash:base64:5]",
-							},
-						},
-					},
-					"postcss-loader",
-				],
-				type: "css",
-			},
-		],
-	},
-};
-
+// Reuses the shared base config so CSS modules resolve to the same class names
+// in dev as in production. It used to redeclare the CSS rule with
+// style-loader + css-loader *and* `type: "css"`, which mixes the JS-based CSS
+// pipeline with Rspack's native one.
 const configForDevelopment: Configuration = {
 	entry: {
 		client: "./src/client/main.tsx",
@@ -77,9 +38,8 @@ const configForDevelopment: Configuration = {
 			},
 		},
 	},
-	plugins: [new ReactRefreshPlugin()],
+	plugins: [new ReactRefreshRspackPlugin()],
 	target: "web",
 };
 
-// biome-ignore lint: reason
-export default merge(devBaseConfig, configForDevelopment as any);
+export default merge(rspackBaseConfig, configForDevelopment);

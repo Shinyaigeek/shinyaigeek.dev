@@ -10,7 +10,7 @@ try {
 
 	// Server build
 	console.log("⚙️  Building server...");
-	execSync("pnpm build:server:rspack", { stdio: "inherit" });
+	execSync("pnpm build:server", { stdio: "inherit" });
 
 	// SSG
 	console.log("📄 Generating static pages...");

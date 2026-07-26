@@ -3,7 +3,6 @@
     width: 100%;
     background: var(--theme-header);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: fixed;
@@ -105,7 +104,6 @@
     right: 0;
     background: var(--theme-header);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 999;
     padding: 1rem 2rem;

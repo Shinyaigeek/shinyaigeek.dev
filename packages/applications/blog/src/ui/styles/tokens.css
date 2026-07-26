@@ -1,0 +1,295 @@
+/*
+ * Design tokens.
+ *
+ * These live in a plain (non-module) stylesheet on purpose. CSS Modules scopes
+ * custom properties to the file that declares them, so tokens declared in a
+ * .module.css get a hashed name while `var(--token)` in every other component
+ * keeps the literal name and silently stops resolving. Declaring them globally
+ * keeps one shared set of names across all components.
+ *
+ * The four blocks below intentionally repeat the same token names:
+ *   html                                 -> light (default)
+ *   @media (prefers-color-scheme: dark)  -> dark, when the OS asks for it
+ *   html[data-theme="dark"]              -> dark, when the user toggled it
+ *   html[data-theme="light"]             -> light, when the user toggled it
+ * The explicit data-theme blocks carry an extra attribute selector, so they
+ * out-specify the OS preference and the toggle always wins.
+ *
+ * NOTE: --theme-header / --theme-text describe the *dark chrome* (header,
+ * footer, language dropdown) which stays dark in both themes. Accents drawn
+ * on top of that chrome must use --accent-on-dark, not --theme-color-light.
+ */
+
+html {
+    /* layout */
+    --header-height: 72px;
+    --measure: 44rem; /* comfortable line length for mixed ja/en prose */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.625rem;
+    --radius-lg: 1rem;
+
+    /* dark chrome (header / footer / dropdowns) — same in both themes */
+    --theme-header: rgba(24, 22, 27, 0.92);
+    --theme-text: #f5f6f7;
+    --theme-text-rgb: 245, 246, 247;
+    --accent-on-dark: #8ec9ff;
+
+    /* surfaces */
+    --theme-background: #fbfaf7;
+    --theme-background-rgb: 251, 250, 247;
+    --bg-color: #fbfaf7;
+    --surface: #ffffff;
+    --surface-2: #f3f1ec;
+    --item-background: #ffffff;
+    --border: #e3e0d9;
+    --border-strong: #cbc7bd;
+    --item-border: #e3e0d9;
+
+    /* text */
+    --theme-color: #1e2226;
+    --theme-color-rgb: 30, 34, 38;
+    --text-color: #1e2226;
+    --text-muted: #5c6570;
+    --headings-color: #1e2226;
+
+    /* accent */
+    --theme-color-light: #0b63ce;
+    --theme-color-light-rgb: 11, 99, 206;
+    --theme-color-dark: #08498f;
+    --anchor-color: #0b63ce;
+    --anchor-visited-color: #6b4fbb;
+    --important-color: #0a8f6f;
+    --color-focus: #0b63ce;
+
+    /* playful warm brand accent (hero glow, section rules) */
+    --brand: #e8a317;
+    --brand-rgb: 232, 163, 23;
+    --gradient-start: #f1c40f;
+    --gradient-end: #ffeaa7;
+
+    /* misc */
+    --code-bg: #1b1f24;
+    --twitter-background: #fff;
+    --twitter-toggle: #e6ecf0;
+    --twitter-cancel: #e6ecf0;
+    --image-gray: grayscale(0%);
+    --color-hover-bg: rgba(0, 0, 0, 0.045);
+    --shadow-sm: 0 1px 2px rgba(20, 24, 28, 0.05), 0 1px 3px rgba(20, 24, 28, 0.07);
+    --shadow-md: 0 2px 4px rgba(20, 24, 28, 0.05), 0 8px 24px rgba(20, 24, 28, 0.08);
+
+    /* references */
+    --ref-accent-bg: #e8f1fc;
+    --ref-accent-border: #a9cbf3;
+    --ref-accent-text: #0b63ce;
+    --ref-accent-hover-bg: #d6e6fa;
+    --ref-accent-hover-border: #7fb0ec;
+    --ref-bg: #f3f1ec;
+    --ref-highlight-bg: #fdf3dd;
+    --ref-accent-highlight: #e8a317;
+    --ref-link: #0b63ce;
+
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        --theme-header: rgba(18, 20, 22, 0.92);
+        --theme-background: #16181a;
+        --theme-background-rgb: 22, 24, 26;
+        --bg-color: #16181a;
+        --surface: #1f2226;
+        --surface-2: #262a2f;
+        --item-background: #1f2226;
+        --border: #30353a;
+        --border-strong: #454b52;
+        --item-border: #30353a;
+
+        --theme-color: #e6e9ec;
+        --theme-color-rgb: 230, 233, 236;
+        --text-color: #e6e9ec;
+        --text-muted: #9aa4ae;
+        --headings-color: #e6e9ec;
+
+        --theme-color-light: #7cc0ff;
+        --theme-color-light-rgb: 124, 192, 255;
+        --theme-color-dark: #4a9eff;
+        --anchor-color: #7cc0ff;
+        --anchor-visited-color: #bda9ff;
+        --important-color: #2fd3a5;
+        --color-focus: #7cc0ff;
+
+        --brand: #f0b429;
+        --brand-rgb: 240, 180, 41;
+        --gradient-start: #d35400;
+        --gradient-end: #f1c40f;
+
+        --code-bg: #0e1113;
+        --twitter-background: #1f2226;
+        --twitter-toggle: #30353a;
+        --twitter-cancel: #30353a;
+        --image-gray: grayscale(15%);
+        --color-hover-bg: rgba(255, 255, 255, 0.06);
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.45);
+
+        --ref-accent-bg: #16263c;
+        --ref-accent-border: #2c5c9e;
+        --ref-accent-text: #7cc0ff;
+        --ref-accent-hover-bg: #1c3a5e;
+        --ref-accent-hover-border: #3b7fd4;
+        --ref-bg: #1f2226;
+        --ref-highlight-bg: #33302a;
+        --ref-accent-highlight: #f0b429;
+        --ref-link: #7cc0ff;
+    }
+}
+
+html[data-theme="dark"] {
+    --theme-header: rgba(18, 20, 22, 0.92);
+    --theme-background: #16181a;
+    --theme-background-rgb: 22, 24, 26;
+    --bg-color: #16181a;
+    --surface: #1f2226;
+    --surface-2: #262a2f;
+    --item-background: #1f2226;
+    --border: #30353a;
+    --border-strong: #454b52;
+    --item-border: #30353a;
+
+    --theme-color: #e6e9ec;
+    --theme-color-rgb: 230, 233, 236;
+    --text-color: #e6e9ec;
+    --text-muted: #9aa4ae;
+    --headings-color: #e6e9ec;
+
+    --theme-color-light: #7cc0ff;
+    --theme-color-light-rgb: 124, 192, 255;
+    --theme-color-dark: #4a9eff;
+    --anchor-color: #7cc0ff;
+    --anchor-visited-color: #bda9ff;
+    --important-color: #2fd3a5;
+    --color-focus: #7cc0ff;
+
+    --brand: #f0b429;
+    --brand-rgb: 240, 180, 41;
+    --gradient-start: #d35400;
+    --gradient-end: #f1c40f;
+
+    --code-bg: #0e1113;
+    --twitter-background: #1f2226;
+    --twitter-toggle: #30353a;
+    --twitter-cancel: #30353a;
+    --image-gray: grayscale(15%);
+    --color-hover-bg: rgba(255, 255, 255, 0.06);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.45);
+
+    --ref-accent-bg: #16263c;
+    --ref-accent-border: #2c5c9e;
+    --ref-accent-text: #7cc0ff;
+    --ref-accent-hover-bg: #1c3a5e;
+    --ref-accent-hover-border: #3b7fd4;
+    --ref-bg: #1f2226;
+    --ref-highlight-bg: #33302a;
+    --ref-accent-highlight: #f0b429;
+    --ref-link: #7cc0ff;
+}
+
+html[data-theme="light"] {
+    --theme-header: rgba(24, 22, 27, 0.92);
+    --theme-background: #fbfaf7;
+    --theme-background-rgb: 251, 250, 247;
+    --bg-color: #fbfaf7;
+    --surface: #ffffff;
+    --surface-2: #f3f1ec;
+    --item-background: #ffffff;
+    --border: #e3e0d9;
+    --border-strong: #cbc7bd;
+    --item-border: #e3e0d9;
+
+    --theme-color: #1e2226;
+    --theme-color-rgb: 30, 34, 38;
+    --text-color: #1e2226;
+    --text-muted: #5c6570;
+    --headings-color: #1e2226;
+
+    --theme-color-light: #0b63ce;
+    --theme-color-light-rgb: 11, 99, 206;
+    --theme-color-dark: #08498f;
+    --anchor-color: #0b63ce;
+    --anchor-visited-color: #6b4fbb;
+    --important-color: #0a8f6f;
+    --color-focus: #0b63ce;
+
+    --brand: #e8a317;
+    --brand-rgb: 232, 163, 23;
+    --gradient-start: #f1c40f;
+    --gradient-end: #ffeaa7;
+
+    --code-bg: #1b1f24;
+    --twitter-background: #fff;
+    --twitter-toggle: #e6ecf0;
+    --twitter-cancel: #e6ecf0;
+    --image-gray: grayscale(0%);
+    --color-hover-bg: rgba(0, 0, 0, 0.045);
+    --shadow-sm: 0 1px 2px rgba(20, 24, 28, 0.05), 0 1px 3px rgba(20, 24, 28, 0.07);
+    --shadow-md: 0 2px 4px rgba(20, 24, 28, 0.05), 0 8px 24px rgba(20, 24, 28, 0.08);
+
+    --ref-accent-bg: #e8f1fc;
+    --ref-accent-border: #a9cbf3;
+    --ref-accent-text: #0b63ce;
+    --ref-accent-hover-bg: #d6e6fa;
+    --ref-accent-hover-border: #7fb0ec;
+    --ref-bg: #f3f1ec;
+    --ref-highlight-bg: #fdf3dd;
+    --ref-accent-highlight: #e8a317;
+    --ref-link: #0b63ce;
+
+}
+
+/*
+ * A second, older palette. The Profile page and the fleet components read
+ * these names; they used to be declared on :root inside Profile.module.css,
+ * which scoped them to that one module and left every other component's
+ * var() reference dangling. Values are unchanged from that original block.
+ */
+html {
+    --text-primary: #2d3748;
+    --text-secondary: #4a5568;
+    --text-tertiary: #718096;
+    --card-background: #ffffff;
+    --border-color: #4a5568;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-color-hover: rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        --text-primary: #e2e8f0;
+        --text-secondary: #cbd5e0;
+        --text-tertiary: #a0aec0;
+        --card-background: #2d3748;
+        --border-color: #718096;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --shadow-color-hover: rgba(0, 0, 0, 0.4);
+    }
+}
+
+html[data-theme="dark"] {
+    --text-primary: #e2e8f0;
+    --text-secondary: #cbd5e0;
+    --text-tertiary: #a0aec0;
+    --card-background: #2d3748;
+    --border-color: #718096;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --shadow-color-hover: rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="light"] {
+    --text-primary: #2d3748;
+    --text-secondary: #4a5568;
+    --text-tertiary: #718096;
+    --card-background: #ffffff;
+    --border-color: #4a5568;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-color-hover: rgba(0, 0, 0, 0.15);
+}

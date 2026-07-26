@@ -1,11 +1,8 @@
 import type { Configuration } from "@rspack/cli";
-import Rspack from "@rspack/core";
 import { rspackBaseConfig } from "build-tool";
 import { merge } from "webpack-merge";
 
-const CssExtractRspackPlugin = Rspack.CssExtractRspackPlugin;
-
-const configForApplicationServer: Configuration = {
+const configForApplicationClient: Configuration = {
 	entry: {
 		client: "./src/client/main.tsx",
 	},
@@ -13,13 +10,7 @@ const configForApplicationServer: Configuration = {
 		filename: "[name].[contenthash].js",
 		path: "public/assets",
 	},
-	plugins: [
-		new CssExtractRspackPlugin({
-			filename: "style.[contenthash].css",
-		}),
-	],
 	target: "web",
 };
 
-// biome-ignore lint: reason
-export default merge(rspackBaseConfig, configForApplicationServer as any);
+export default merge(rspackBaseConfig, configForApplicationClient);
