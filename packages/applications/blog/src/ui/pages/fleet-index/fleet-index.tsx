@@ -12,28 +12,45 @@ import {
 
 interface Props {
 	fleets: FleetContent[];
+	language: "ja" | "en";
 }
 
-export const FleetIndex: FunctionComponent<Props> = ({ fleets }) => (
-	<div className={container}>
-		<header className={header}>
-			<h1 className={title}>Fleets</h1>
-			<p className={description}>
-				アイデアや学習の記録、ちょっとした発見をスライド形式で共有します
-			</p>
-		</header>
+const COPY = {
+	ja: {
+		description:
+			"アイデアや学習の記録、ちょっとした発見をスライド形式で共有します",
+		emptyTitle: "Coming Soon",
+		emptyBody: "Fleet の準備中です。しばらくお待ちください。",
+	},
+	en: {
+		description: "Ideas, notes and small findings, shared as slides.",
+		emptyTitle: "Coming Soon",
+		emptyBody: "No fleets in English yet. Check back later.",
+	},
+} as const;
 
-		{fleets.length > 0 ? (
-			<div className={fleetGrid}>
-				{fleets.map((fleet) => (
-					<FleetCard key={fleet.path} fleet={fleet} />
-				))}
-			</div>
-		) : (
-			<div className={emptyState}>
-				<h3>Coming Soon</h3>
-				<p>Fleet の準備中です。しばらくお待ちください。</p>
-			</div>
-		)}
-	</div>
-);
+export const FleetIndex: FunctionComponent<Props> = ({ fleets, language }) => {
+	const copy = COPY[language];
+
+	return (
+		<div className={container}>
+			<header className={header}>
+				<h1 className={title}>Fleets</h1>
+				<p className={description}>{copy.description}</p>
+			</header>
+
+			{fleets.length > 0 ? (
+				<div className={fleetGrid}>
+					{fleets.map((fleet) => (
+						<FleetCard key={fleet.path} fleet={fleet} language={language} />
+					))}
+				</div>
+			) : (
+				<div className={emptyState}>
+					<h3>{copy.emptyTitle}</h3>
+					<p>{copy.emptyBody}</p>
+				</div>
+			)}
+		</div>
+	);
+};

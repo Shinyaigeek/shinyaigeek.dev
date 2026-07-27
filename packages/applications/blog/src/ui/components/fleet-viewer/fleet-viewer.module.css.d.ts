@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly "active": string;
+  readonly "navButton": string;
   readonly "navigation": string;
   readonly "progress": string;
   readonly "progressBar": string;

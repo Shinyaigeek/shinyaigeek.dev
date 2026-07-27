@@ -1,7 +1,27 @@
 import fm from "front-matter";
-import { marked } from "marked";
 import { type Result, createErr, createOk } from "option-t/plain_result";
+import rehypeHighlight from "rehype-highlight";
+import rehypeStringify from "rehype-stringify";
+import remarkGfm from "remark-gfm";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import { unified } from "unified";
 import type { FleetMetadata, FleetSlide } from "./fleet.entity";
+
+/**
+ * Slides go through the same pipeline as articles, so a fleet gets GFM and
+ * syntax highlighting. It used to render with `marked`, which highlights
+ * nothing -- unfortunate for a format whose slides are mostly code.
+ */
+const renderSlide = unified()
+	.use(remarkParse)
+	.use(remarkGfm)
+	.use(remarkRehype)
+	.use(rehypeHighlight)
+	.use(rehypeStringify);
+
+/** A line of only dashes separates one slide from the next. */
+const SLIDE_SEPARATOR = /^\s*---\s*$/m;
 
 export async function parseFleetContent(
 	markdownContent: string,
@@ -11,17 +31,16 @@ export async function parseFleetContent(
 
 		const metadata = attributes as Omit<FleetMetadata, "path">;
 
-		// Split content by --- to create slides
 		const slideContents = body
-			.split(/\n---\n/)
-			.filter((content) => content.trim());
+			.split(SLIDE_SEPARATOR)
+			.map((content) => content.trim())
+			.filter((content) => content);
 
-		const slides: FleetSlide[] = [];
-
-		for (const slideContent of slideContents) {
-			const renderedContent = await marked(slideContent.trim());
-			slides.push({ content: renderedContent });
-		}
+		const slides: FleetSlide[] = await Promise.all(
+			slideContents.map(async (slideContent) => ({
+				content: String(await renderSlide.process(slideContent)),
+			})),
+		);
 
 		return createOk({
 			metadata: metadata as FleetMetadata,

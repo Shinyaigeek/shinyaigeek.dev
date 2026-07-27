@@ -8,9 +8,17 @@ import {
 } from "option-t/plain_result";
 import type { FileIOInfrastructureInterface } from "../../infrastructure/file-io/file-io.interface";
 import type { FilePathInfrastructureInterface } from "../../infrastructure/file-path/file-path.interface";
-import type { Language } from "../language/language.entity";
+import { Language } from "../language/language.entity";
 import { FleetContent } from "./fleet.entity";
 import { parseFleetContent } from "./parse-fleet-content";
+
+/**
+ * Fleets are authored per language, the same way articles are: src/fleets/public
+ * for Japanese and src/fleets/en for English. A fleet with no file in the
+ * English directory simply does not exist on the English site.
+ */
+const fleetDirectory = (language: Language) =>
+	language === Language.ja ? "src/fleets/public" : "src/fleets/en";
 
 export class FleetRepository {
 	constructor(
@@ -25,7 +33,7 @@ export class FleetRepository {
 		try {
 			const fleetPath = this.filePathInfrastructure.resolve(
 				process.cwd(),
-				"src/fleets/",
+				fleetDirectory(language),
 				`${slug}.md`,
 			);
 			const fleetContent = await this.fileIOInfrastructure.readFile(fleetPath);
@@ -58,7 +66,10 @@ export class FleetRepository {
 		try {
 			const fleetPaths = (
 				await this.fileIOInfrastructure.readDirectory(
-					this.filePathInfrastructure.resolve(process.cwd(), "src/fleets"),
+					this.filePathInfrastructure.resolve(
+						process.cwd(),
+						fleetDirectory(language),
+					),
 				)
 			).map((fleetPath) => fleetPath.replace(".md", ""));
 

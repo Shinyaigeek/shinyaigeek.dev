@@ -59,7 +59,7 @@
   hyphens: auto;
 }
 
-.slide.active {
+.slide[data-active] {
   opacity: 1;
   visibility: visible;
 }
@@ -136,6 +136,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  /* Holds the prev/next buttons either side of the indicator. */
+  gap: 12px;
   padding: 8px 20px;
   flex-shrink: 0;
   background: var(--card-background);
@@ -236,4 +238,35 @@
     top: 10px;
     left: 10px;
   }
+}
+/*
+ * Previous / next buttons. The client script has always looked for
+ * [data-fleet-prev] / [data-fleet-next]; until now the markup never rendered
+ * them, so the deck could only be driven by tapping a half or pressing an arrow
+ * key -- neither of which is discoverable, or reachable by keyboard alone.
+ */
+.navButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.navButton:hover:not(:disabled) {
+    background: var(--color-hover-bg);
+    border-color: var(--border-strong);
+}
+
+.navButton:disabled {
+    opacity: 0.4;
+    cursor: default;
 }

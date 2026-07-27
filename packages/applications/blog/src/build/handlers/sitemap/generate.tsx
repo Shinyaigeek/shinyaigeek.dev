@@ -1,10 +1,12 @@
 import { isErr, unwrapErr, unwrapOk } from "option-t/plain_result";
 import type { GenerateHandler } from "ssg-router";
 import { GetBlogPostsUsecase } from "../../application/getBlogPosts/getBlogposts.usecase";
+import { GetFleetsUsecase } from "../../application/getFleets/getFleets.usecase";
 import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../model/blog/blog.repository";
+import { FleetRepository } from "../../model/fleet/fleet.repository";
 import { Language } from "../../model/language/language.entity";
 
 export const generateSitemapPage: GenerateHandler<Context> = async ({
@@ -25,6 +27,13 @@ export const generateSitemapPage: GenerateHandler<Context> = async ({
 	}
 
 	const blogPosts = unwrapOk(blogPostResults);
+
+	// Fleets are pages too; they were missing from the sitemap entirely, so
+	// nothing but a direct link could lead anyone to them.
+	const fleetResults = await new GetFleetsUsecase(
+		new FleetRepository(fileIOInfrastructure, filePathInfrastructure),
+	).getFleets(context.language);
+	const fleets = isErr(fleetResults) ? [] : unwrapOk(fleetResults);
 
 	const language = context.language === Language.ja ? "ja" : "en";
 	const baseUrl = `https://${language}.shinyaigeek.dev`;
@@ -49,16 +58,44 @@ export const generateSitemapPage: GenerateHandler<Context> = async ({
 			changefreq: "weekly",
 			priority: "0.6",
 		},
+		{
+			loc: `${baseUrl}/post/`,
+			lastmod: currentDate,
+			changefreq: "weekly",
+			priority: "0.9",
+		},
 	];
 
+	// Only list the fleet index where there is something in it.
+	const fleetIndexUrls =
+		fleets.length > 0
+			? [
+					{
+						loc: `${baseUrl}/fleets/`,
+						lastmod: currentDate,
+						changefreq: "weekly",
+						priority: "0.7",
+					},
+				]
+			: [];
+
 	const blogUrls = blogPosts.map((post) => ({
-		loc: `${baseUrl}/post/${post.metadata.path}`,
+		// Trailing slash: the pages live at /post/<slug>/, and the sitemap was
+		// advertising URLs that redirect.
+		loc: `${baseUrl}/post/${post.metadata.path}/`,
 		lastmod: currentDate,
 		changefreq: "monthly",
 		priority: "0.8",
 	}));
 
-	const allUrls = [...staticUrls, ...blogUrls];
+	const fleetUrls = fleets.map((fleet) => ({
+		loc: `${baseUrl}/fleets/${fleet.path}/`,
+		lastmod: currentDate,
+		changefreq: "monthly",
+		priority: "0.6",
+	}));
+
+	const allUrls = [...staticUrls, ...fleetIndexUrls, ...blogUrls, ...fleetUrls];
 
 	const urlElements = allUrls
 		.map(

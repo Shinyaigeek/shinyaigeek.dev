@@ -393,7 +393,15 @@ class ReferenceScrollManager {
 	}
 }
 
-// Fleet viewer management
+/**
+ * Drives the slide deck on a fleet page.
+ *
+ * Which slide is showing is expressed with a `data-active` attribute rather than
+ * a CSS class: this used to rebuild the CSS module's hashed class name by
+ * replacing "-slide" with "-active" in whatever class it found, which quietly
+ * stopped matching anything when the hashing scheme changed -- the indicator
+ * advanced while the slide never moved.
+ */
 class FleetManager {
 	private currentSlide = 0;
 	private totalSlides = 0;
@@ -404,13 +412,14 @@ class FleetManager {
 	private slideIndicator: HTMLElement | null = null;
 	private progressBar: HTMLElement | null = null;
 	private slides: HTMLElement[] = [];
+	/** The server rendered the first position, so keep its wording. */
+	private indicatorTemplate = "";
 
 	constructor() {
 		this.init();
 	}
 
 	private init() {
-		// Find fleet viewer elements
 		this.viewer = document.querySelector("[data-fleet-viewer]");
 		if (!this.viewer) return;
 
@@ -426,25 +435,24 @@ class FleetManager {
 		if (this.slides.length === 0) return;
 
 		this.totalSlides = this.slides.length;
-		this.currentSlide = 0;
+		this.indicatorTemplate = this.slideIndicator?.textContent?.trim() ?? "";
+		this.currentSlide = this.slideFromHash() ?? 0;
 
-		// Setup tap navigation on container
-		if (this.container) {
-			this.container.addEventListener("click", (event) => {
-				const rect = this.container?.getBoundingClientRect();
-				if (!rect) return;
-				const x = event.clientX - rect.left;
-				const width = rect.width;
+		// Tapping either half of the deck moves through it, which is how a phone
+		// reader will reach for it.
+		this.container?.addEventListener("click", (event) => {
+			// Let links and buttons inside a slide behave normally.
+			if ((event.target as HTMLElement).closest("a, button")) return;
 
-				if (x < width / 2) {
-					this.prevSlide();
-				} else {
-					this.nextSlide();
-				}
-			});
-		}
+			const rect = this.container?.getBoundingClientRect();
+			if (!rect) return;
+			if (event.clientX - rect.left < rect.width / 2) {
+				this.prevSlide();
+			} else {
+				this.nextSlide();
+			}
+		});
 
-		// Setup event listeners
 		this.prevButton?.addEventListener("click", (event) => {
 			event.stopPropagation();
 			this.prevSlide();
@@ -454,66 +462,125 @@ class FleetManager {
 			this.nextSlide();
 		});
 
-		// Setup keyboard navigation
 		document.addEventListener("keydown", (event) => {
-			if (event.key === "ArrowLeft") {
-				event.preventDefault();
-				this.prevSlide();
-			} else if (event.key === "ArrowRight") {
-				event.preventDefault();
-				this.nextSlide();
+			// Don't hijack arrow keys while someone is typing. The target is the
+			// document itself for a key pressed with nothing focused, and that has
+			// no closest(), so check before calling it.
+			const target = event.target;
+			if (
+				target instanceof HTMLElement &&
+				target.closest("input, textarea, select, [contenteditable]")
+			) {
+				return;
+			}
+
+			switch (event.key) {
+				case "ArrowLeft":
+					event.preventDefault();
+					this.prevSlide();
+					break;
+				case "ArrowRight":
+					event.preventDefault();
+					this.nextSlide();
+					break;
+				case "Home":
+					event.preventDefault();
+					this.goTo(0);
+					break;
+				case "End":
+					event.preventDefault();
+					this.goTo(this.totalSlides - 1);
+					break;
+				default:
+					break;
 			}
 		});
 
-		// Initialize view
-		this.updateView();
+		this.setupSwipe();
+
+		// So a shared /fleets/<slug>/#slide-3 opens on that slide, and the back
+		// button steps through the deck.
+		window.addEventListener("hashchange", () => {
+			const slide = this.slideFromHash();
+			if (slide !== null) this.goTo(slide, { updateHash: false });
+		});
+
+		this.updateView({ updateHash: false });
+	}
+
+	/** Reads "#slide-3" as index 2, ignoring anything out of range. */
+	private slideFromHash(): number | null {
+		const match = /^#slide-(\d+)$/.exec(window.location.hash);
+		if (!match) return null;
+		const index = Number(match[1]) - 1;
+		return index >= 0 && index < this.totalSlides ? index : null;
+	}
+
+	private setupSwipe() {
+		if (!this.container) return;
+		let startX = 0;
+		let startY = 0;
+
+		this.container.addEventListener(
+			"touchstart",
+			(event) => {
+				const touch = event.changedTouches[0];
+				if (!touch) return;
+				startX = touch.clientX;
+				startY = touch.clientY;
+			},
+			{ passive: true },
+		);
+
+		this.container.addEventListener(
+			"touchend",
+			(event) => {
+				const touch = event.changedTouches[0];
+				if (!touch) return;
+				const deltaX = touch.clientX - startX;
+				const deltaY = touch.clientY - startY;
+				// Ignore mostly-vertical movement so scrolling a slide still works.
+				if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY))
+					return;
+				if (deltaX < 0) {
+					this.nextSlide();
+				} else {
+					this.prevSlide();
+				}
+			},
+			{ passive: true },
+		);
 	}
 
 	private prevSlide() {
-		if (this.currentSlide > 0) {
-			this.currentSlide--;
-			this.updateView();
-		}
+		this.goTo(this.currentSlide - 1);
 	}
 
 	private nextSlide() {
-		if (this.currentSlide < this.totalSlides - 1) {
-			this.currentSlide++;
-			this.updateView();
-		}
+		this.goTo(this.currentSlide + 1);
 	}
 
-	private updateView() {
-		// Update slide visibility - find the active class dynamically
+	private goTo(index: number, options: { updateHash?: boolean } = {}) {
+		if (index < 0 || index >= this.totalSlides || index === this.currentSlide) {
+			return;
+		}
+		this.currentSlide = index;
+		this.updateView(options);
+	}
+
+	private updateView({ updateHash = true }: { updateHash?: boolean } = {}) {
 		this.slides.forEach((slide, index) => {
-			// Get all classes and find the one that ends with -active
-			const activeClass = Array.from(slide.classList).find(
-				(className) => className.includes("-active") || className === "active",
-			);
-
-			if (activeClass) {
-				slide.classList.remove(activeClass);
-			}
-
-			if (index === this.currentSlide) {
-				// Find the slide CSS class and construct the active class name
-				const slideClass = Array.from(slide.classList).find(
-					(className) =>
-						className.includes("-slide") &&
-						!className.includes("-slideContainer"),
-				);
-
-				if (slideClass) {
-					const activeClassName = slideClass.replace("-slide", "-active");
-					slide.classList.add(activeClassName);
-				} else {
-					// Fallback to simple active class
-					slide.classList.add("active");
-				}
+			const isCurrent = index === this.currentSlide;
+			slide.toggleAttribute("data-active", isCurrent);
+			// Inactive slides are visually hidden, so hide them from assistive
+			// technology as well instead of reading the whole deck at once.
+			if (isCurrent) {
+				slide.removeAttribute("aria-hidden");
+			} else {
+				slide.setAttribute("aria-hidden", "true");
 			}
 		});
 
-		// Update navigation buttons
 		if (this.prevButton) {
 			this.prevButton.disabled = this.currentSlide === 0;
 		}
@@ -521,18 +588,24 @@ class FleetManager {
 			this.nextButton.disabled = this.currentSlide === this.totalSlides - 1;
 		}
 
-		// Update slide indicator
 		if (this.slideIndicator) {
-			this.slideIndicator.textContent = `${this.currentSlide + 1} / ${
-				this.totalSlides
-			}`;
+			// Reuse the server-rendered wording, which is already localized.
+			this.slideIndicator.textContent = this.indicatorTemplate.replace(
+				/\d+/,
+				String(this.currentSlide + 1),
+			);
 		}
 
-		// Update progress bar
 		if (this.progressBar) {
-			const progressPercentage =
-				((this.currentSlide + 1) / this.totalSlides) * 100;
-			this.progressBar.style.width = `${progressPercentage}%`;
+			const percentage = ((this.currentSlide + 1) / this.totalSlides) * 100;
+			this.progressBar.style.width = `${percentage}%`;
+		}
+
+		if (updateHash) {
+			const hash = `#slide-${this.currentSlide + 1}`;
+			if (window.location.hash !== hash) {
+				history.replaceState(null, "", hash);
+			}
 		}
 	}
 }

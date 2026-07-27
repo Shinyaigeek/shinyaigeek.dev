@@ -58,7 +58,7 @@ export const generateFleetPage: GenerateHandler<Context> = async ({
 				page="fleet"
 				currentPath={`/fleets/${slug}/`}
 			>
-				<FleetDetail fleet={fleet} />
+				<FleetDetail fleet={fleet} language={rawLanguage} />
 			</Layout>
 		</Shell>,
 	);

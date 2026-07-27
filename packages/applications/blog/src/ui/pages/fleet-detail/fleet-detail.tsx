@@ -5,16 +5,22 @@ import { backLink, container, content } from "./fleet-detail.module.css";
 
 interface Props {
 	fleet: FleetContent;
+	language: "ja" | "en";
 }
 
-export const FleetDetail: FunctionComponent<Props> = ({ fleet }) => (
+const COPY = {
+	ja: { back: "← Fleets 一覧へ" },
+	en: { back: "← Back to Fleets" },
+} as const;
+
+export const FleetDetail: FunctionComponent<Props> = ({ fleet, language }) => (
 	<div className={container}>
 		<a href="/fleets/" className={backLink}>
-			← Back to Fleets
+			{COPY[language].back}
 		</a>
 
 		<div className={content}>
-			<FleetViewer fleet={fleet} />
+			<FleetViewer fleet={fleet} language={language} />
 		</div>
 	</div>
 );

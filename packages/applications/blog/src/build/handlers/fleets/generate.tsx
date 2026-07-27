@@ -45,7 +45,7 @@ export const generateFleetsPage: GenerateHandler<Context> = async ({
 			builtAssets={context.builtAssets}
 		>
 			<Layout language={rawLanguage} page="fleets" currentPath="/fleets/">
-				<FleetIndex fleets={fleets} />
+				<FleetIndex fleets={fleets} language={rawLanguage} />
 			</Layout>
 		</Shell>,
 	);
