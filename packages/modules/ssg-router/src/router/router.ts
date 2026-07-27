@@ -6,7 +6,7 @@ import type {
 	OutputHandler,
 } from "./basic";
 
-export type { GenerateHandler, OutputHandler } from "./basic";
+export type { GenerateHandler, GenerateOutput, OutputHandler } from "./basic";
 
 export class Router<RoutingContext> implements BasicRouter<RoutingContext> {
 	private routing: Map<

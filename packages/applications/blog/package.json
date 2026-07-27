@@ -10,7 +10,7 @@
 	"scripts": {
 		"dev": "NODE_ENV=development rspack serve --config rspack.config.dev.ts",
 		"dev:watch": "node --watch=src scripts/build-watch.mjs",
-		"build": "pnpm clean && NODE_ENV=production pnpm generate:tcm && pnpm build:client && pnpm build:server && pnpm invoke:ssg && pnpm copy:assets",
+		"build": "pnpm clean && NODE_ENV=production pnpm generate:tcm && pnpm build:client && pnpm build:server && pnpm invoke:ssg && pnpm copy:assets && pnpm verify:og",
 		"invoke:ssg": "node ./dist/build.js",
 		"__rspack": "NODE_OPTIONS=\"--loader ts-node/esm\" rspack",
 		"build:client": "NODE_ENV=production pnpm __rspack build --config rspack.config.client.ts",
@@ -20,7 +20,8 @@
 		"typecheck": "tsc --noEmit",
 		"generate:tcm": "tcm src",
 		"components-catalogue:serve": "ladle serve",
-		"clean": "rimraf public"
+		"clean": "rimraf public",
+		"verify:og": "node scripts/verify-og-metadata.mjs"
 	},
 	"dependencies": {
 		"@resvg/resvg-js": "^2.6.2",

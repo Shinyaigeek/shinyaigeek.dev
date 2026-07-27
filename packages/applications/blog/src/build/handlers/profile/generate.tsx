@@ -88,12 +88,13 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 	return renderToStaticMarkup(
 		<Shell
 			language={rawLanguage}
-			title="shinyaigeek.dev"
-			path="/profile"
+			title="Profile | shinyaigeek.dev"
+			// The missing trailing slash here made og:image "/profileogp.png".
+			path="/profile/"
 			description={description}
 			builtAssets={context.builtAssets}
 		>
-			<Layout language={rawLanguage} page="1" currentPath="/">
+			<Layout language={rawLanguage} page="profile" currentPath="/profile/">
 				<Profile
 					language={context.language}
 					workExperiences={workExperiences}

@@ -1,4 +1,5 @@
 import type { FunctionComponent, ReactNode } from "react";
+import { siteOrigin } from "../../../universal/site-origin";
 import { LanguageContext } from "../../context/language-context";
 
 const isProd = process.env.NODE_ENV === "production";
@@ -11,6 +12,12 @@ export const assets = isProd
 
 interface SiteHeadProps {
 	title: string;
+	/**
+	 * The page's own path, with a leading and trailing slash. It becomes og:url
+	 * and, since every page renders its card alongside itself, the og:image URL
+	 * too -- so a path that does not match the route leaves both pointing at the
+	 * wrong page (or at a 404).
+	 */
 	path: string;
 	language: "en" | "ja";
 	description: string;
@@ -28,6 +35,8 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 	builtAssets,
 }) => {
 	const locale = language === "en" ? "en_US" : "ja_JP";
+	const origin = siteOrigin(language);
+	const ogImage = `${origin}${path}ogp.png`;
 
 	return (
 		<head>
@@ -42,26 +51,13 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 			<meta property="og:locale" content={locale} />
 			<meta name="description" content={description} />
 			<meta property="og:description" content={description} />
-			<meta property="og:url" content={path} />
+			{/* og:url has to be absolute; crawlers do not resolve a relative one. */}
+			<meta property="og:url" content={`${origin}${path}`} />
 			<meta name="twitter:site" content="@shinyaigeek" />
 			<meta property="og:type" content="website" />
 			<meta name="twitter:card" content="summary_large_image" />
-			<meta
-				property="og:image"
-				content={`${
-					language === "en"
-						? "https://en.shinyaigeek.dev"
-						: "https://ja.shinyaigeek.dev"
-				}${path}ogp.png`}
-			/>
-			<meta
-				name="twitter:image"
-				content={`${
-					language === "en"
-						? "https://en.shinyaigeek.dev"
-						: "https://ja.shinyaigeek.dev"
-				}${path}ogp.png`}
-			/>
+			<meta property="og:image" content={ogImage} />
+			<meta name="twitter:image" content={ogImage} />
 
 			<link
 				rel="icon"

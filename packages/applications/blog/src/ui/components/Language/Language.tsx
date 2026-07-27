@@ -1,4 +1,5 @@
 import type { FunctionComponent, ReactElement } from "react";
+import { siteOrigin } from "../../../universal/site-origin";
 import {
 	languageArrow,
 	languageCheck,
@@ -94,11 +95,7 @@ export const Language: FunctionComponent<Props> = ({
 					return (
 						<a
 							key={language}
-							href={`${
-								language === "en"
-									? "https://en.shinyaigeek.dev"
-									: "http://ja.shinyaigeek.dev"
-							}${currentPath}`}
+							href={`${siteOrigin(language)}${currentPath}`}
 							className={`${languageStyle} ${isActive ? "active" : ""}`}
 						>
 							<span role="img" aria-label="country">

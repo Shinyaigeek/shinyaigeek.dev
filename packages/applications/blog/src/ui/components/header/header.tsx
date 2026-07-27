@@ -1,4 +1,5 @@
 import type { FunctionComponent } from "react";
+import type { PageKind } from "../Layout/Layout";
 import { Language } from "../Language/Language";
 import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { HeaderAnchorItem } from "./header-anchor-item/header-anchor-item";
@@ -18,7 +19,7 @@ import {
 interface HeaderProps {
 	language: "en" | "ja";
 	currentPath: string;
-	page: string;
+	page: PageKind;
 }
 
 export const Header: FunctionComponent<HeaderProps> = ({
@@ -43,12 +44,16 @@ export const Header: FunctionComponent<HeaderProps> = ({
 			<div className={contents}>
 				<nav className={navigation} aria-label="メインナビゲーション">
 					<HeaderAnchorItem
-						isActive={page === "home"}
+						isActive={page === "profile"}
 						href="/profile/"
 						label="Profile"
 					/>
 					<span className={divider}>/</span>
-					<HeaderAnchorItem isActive={page === "post"} href="/" label="Blog" />
+					<HeaderAnchorItem
+						isActive={page === "post"}
+						href="/post/"
+						label="Blog"
+					/>
 					<span className={divider}>/</span>
 					<HeaderAnchorItem
 						isActive={page === "activity"}
@@ -90,11 +95,15 @@ export const Header: FunctionComponent<HeaderProps> = ({
 		<div className={mobileMenu} data-mobile-menu style={{ display: "none" }}>
 			<nav className={mobileNavigation} aria-label="モバイルメニュー">
 				<HeaderAnchorItem
-					isActive={page === "home"}
+					isActive={page === "profile"}
 					href="/profile/"
 					label="Profile"
 				/>
-				<HeaderAnchorItem isActive={page === "post"} href="/" label="Blog" />
+				<HeaderAnchorItem
+					isActive={page === "post"}
+					href="/post/"
+					label="Blog"
+				/>
 				<HeaderAnchorItem
 					isActive={page === "activity"}
 					href="/activity/"

@@ -1,16 +1,11 @@
-import fs from "node:fs/promises";
-import nodePath from "node:path";
 import type { OutputHandler } from "ssg-router";
 import type { Context } from "../../context/context";
-import { Language } from "../../model/language/language.entity";
+import { writeFile } from "../write-output";
 
 export const outputSitemapPage: OutputHandler<Context> = async ({
+	path,
 	content,
 	context,
 }) => {
-	const directoryPath = `./public/${
-		context.language === Language.ja ? "ja" : "en"
-	}`;
-	await fs.mkdir(directoryPath, { recursive: true });
-	await fs.writeFile(nodePath.resolve(directoryPath, "sitemap.xml"), content);
+	await writeFile(path, content, context);
 };

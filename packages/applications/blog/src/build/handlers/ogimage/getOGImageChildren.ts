@@ -1,8 +1,10 @@
 import { isErr, unwrapErr, unwrapOk } from "option-t/plain_result";
 import { GetBlogPostsUsecase } from "../../application/getBlogPosts/getBlogposts.usecase";
+import { GetFleetsUsecase } from "../../application/getFleets/getFleets.usecase";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../model/blog/blog.repository";
+import { FleetRepository } from "../../model/fleet/fleet.repository";
 import { Language } from "../../model/language/language.entity";
 
 export const getJapaneseOGImageChildren: () => Promise<string[]> = async () => {
@@ -44,3 +46,34 @@ export const getEnglishOGImageChildren: () => Promise<string[]> = async () => {
 		return `/en/post/${blogPost.metadata.path}/ogp.png`;
 	});
 };
+
+/**
+ * Fleet pages point og:image at their own card, so each one needs generating --
+ * they were referencing an image nobody produced.
+ */
+const getFleetOGImageChildren = async (
+	language: Language,
+	prefix: "" | "/en",
+): Promise<string[]> => {
+	const fleetRepository = new FleetRepository(
+		new NodeFileIOInfrastructure(),
+		new NodeFilePathImplementation(),
+	);
+
+	const fleetResults = await new GetFleetsUsecase(fleetRepository).getFleets(
+		language,
+	);
+	if (isErr(fleetResults)) {
+		return [];
+	}
+
+	return unwrapOk(fleetResults).map(
+		(fleet) => `${prefix}/fleets/${fleet.metadata.path}/ogp.png`,
+	);
+};
+
+export const getJapaneseFleetOGImageChildren = () =>
+	getFleetOGImageChildren(Language.ja, "");
+
+export const getEnglishFleetOGImageChildren = () =>
+	getFleetOGImageChildren(Language.en, "/en");

@@ -14,12 +14,17 @@ import { generateIndexPage } from "./handlers/index/generate";
 import { outputIndexPage } from "./handlers/index/output";
 import {
 	generateActivityOGImagePage,
+	generateBlogIndexOGImagePage,
 	generateBlogPostOGImagePage,
+	generateFleetOGImagePage,
+	generateFleetsOGImagePage,
 	generateProfileOGImagePage,
 	generateTopOGImagePage,
 } from "./handlers/ogimage/generate";
 import {
+	getEnglishFleetOGImageChildren,
 	getEnglishOGImageChildren,
+	getJapaneseFleetOGImageChildren,
 	getJapaneseOGImageChildren,
 } from "./handlers/ogimage/getOGImageChildren";
 import { outputOGImagePage } from "./handlers/ogimage/output";
@@ -139,6 +144,32 @@ router.on("/activity/ogp.png", {
 });
 router.on("/en/activity/ogp.png", {
 	generate: generateActivityOGImagePage,
+	output: outputOGImagePage,
+});
+// Every page's head points og:image at <its path>ogp.png, so every route that
+// renders a page needs a matching image route here.
+router.on("/post/ogp.png", {
+	generate: generateBlogIndexOGImagePage,
+	output: outputOGImagePage,
+});
+router.on("/en/post/ogp.png", {
+	generate: generateBlogIndexOGImagePage,
+	output: outputOGImagePage,
+});
+router.on("/fleets/ogp.png", {
+	generate: generateFleetsOGImagePage,
+	output: outputOGImagePage,
+});
+router.on("/en/fleets/ogp.png", {
+	generate: generateFleetsOGImagePage,
+	output: outputOGImagePage,
+});
+router.onChildren(getJapaneseFleetOGImageChildren, {
+	generate: generateFleetOGImagePage,
+	output: outputOGImagePage,
+});
+router.onChildren(getEnglishFleetOGImageChildren, {
+	generate: generateFleetOGImagePage,
 	output: outputOGImagePage,
 });
 router.onChildren(getJapaneseOGImageChildren, {

@@ -13,8 +13,13 @@ export const HeaderAnchorItem: FunctionComponent<Props> = function ({
 	label,
 }) {
 	return (
-		<div className={`${anchor} ${isActive ? active : ""}`}>
-			<a href={href} className="link2Home">
+		<div className={isActive ? `${anchor} ${active}` : anchor}>
+			{/* The styling alone does not tell a screen reader which page it is on. */}
+			<a
+				href={href}
+				className="link2Home"
+				aria-current={isActive ? "page" : undefined}
+			>
 				{label}
 			</a>
 		</div>

@@ -44,7 +44,14 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 			description={blogPost.metadata.description}
 			builtAssets={context.builtAssets}
 		>
-			<Layout language={rawLanguage} page="1" currentPath="/">
+			{/* currentPath drives the language switcher, so it has to be this
+			    article rather than "/" -- otherwise switching language from an
+			    article dropped the reader on the other language's home page. */}
+			<Layout
+				language={rawLanguage}
+				page="post"
+				currentPath={`${path.replace("/en", "")}/`}
+			>
 				<Post
 					title={blogPost.metadata.title}
 					tags={blogPost.metadata.tags}
