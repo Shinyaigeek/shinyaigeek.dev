@@ -1,0 +1,432 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "type": "text",
+          "value": "Kitchen sink",
+        },
+      ],
+      "depth": 1,
+      "type": "heading",
+    },
+    {
+      "children": [
+        {
+          "type": "text",
+          "value": "A paragraph with ",
+        },
+        {
+          "children": [
+            {
+              "type": "text",
+              "value": "emphasis",
+            },
+          ],
+          "type": "emphasis",
+        },
+        {
+          "type": "text",
+          "value": ", ",
+        },
+        {
+          "children": [
+            {
+              "type": "text",
+              "value": "strong",
+            },
+          ],
+          "type": "strong",
+        },
+        {
+          "type": "text",
+          "value": ", ",
+        },
+        {
+          "children": [
+            {
+              "type": "text",
+              "value": "strikethrough",
+            },
+          ],
+          "type": "delete",
+        },
+        {
+          "type": "text",
+          "value": ", ",
+        },
+        {
+          "type": "inline-code",
+          "value": "inline code",
+        },
+        {
+          "type": "text",
+          "value": ", a
+",
+        },
+        {
+          "children": [
+            {
+              "type": "text",
+              "value": "link",
+            },
+          ],
+          "title": "Example",
+          "type": "link",
+          "url": "https://example.com",
+        },
+        {
+          "type": "text",
+          "value": ", a ",
+        },
+        {
+          "children": [
+            {
+              "type": "text",
+              "value": "link reference",
+            },
+          ],
+          "identifier": "site",
+          "label": "site",
+          "reference": "full",
+          "type": "link-reference",
+        },
+        {
+          "type": "text",
+          "value": " and a hard
+break at the end of this line",
+        },
+        {
+          "type": "break",
+        },
+        {
+          "type": "text",
+          "value": "followed by more text.",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "type": "thematic-break",
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "type": "text",
+              "value": "A blockquote.",
+            },
+          ],
+          "type": "paragraph",
+        },
+      ],
+      "type": "blockquote",
+    },
+    {
+      "children": [
+        {
+          "checked": null,
+          "children": [
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "a plain bullet",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "spread": false,
+          "type": "list-item",
+        },
+        {
+          "checked": true,
+          "children": [
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "a finished task",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "spread": false,
+          "type": "list-item",
+        },
+        {
+          "checked": false,
+          "children": [
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "an unfinished task",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "spread": false,
+          "type": "list-item",
+        },
+      ],
+      "ordered": false,
+      "spread": false,
+      "start": null,
+      "type": "list",
+    },
+    {
+      "children": [
+        {
+          "checked": null,
+          "children": [
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "an ordered item that does not start at one",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "spread": false,
+          "type": "list-item",
+        },
+        {
+          "checked": null,
+          "children": [
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "the one after it",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "spread": false,
+          "type": "list-item",
+        },
+      ],
+      "ordered": true,
+      "spread": false,
+      "start": 3,
+      "type": "list",
+    },
+    {
+      "language": "ts",
+      "meta": "meta=here",
+      "type": "code",
+      "value": "const code = "fenced, with a language and meta";",
+    },
+    {
+      "align": [
+        "left",
+        "center",
+        "right",
+        null,
+      ],
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Left",
+                },
+              ],
+              "type": "table-cell",
+            },
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Center",
+                },
+              ],
+              "type": "table-cell",
+            },
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Right",
+                },
+              ],
+              "type": "table-cell",
+            },
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Plain",
+                },
+              ],
+              "type": "table-cell",
+            },
+          ],
+          "type": "table-row",
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "a",
+                },
+              ],
+              "type": "table-cell",
+            },
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "b",
+                },
+              ],
+              "type": "table-cell",
+            },
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "c",
+                },
+              ],
+              "type": "table-cell",
+            },
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "d",
+                },
+              ],
+              "type": "table-cell",
+            },
+          ],
+          "type": "table-row",
+        },
+      ],
+      "type": "table",
+    },
+    {
+      "children": [
+        {
+          "alt": "an image",
+          "title": "Image title",
+          "type": "image",
+          "url": "/image.png",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "children": [
+        {
+          "alt": "an image reference",
+          "reference": "full",
+          "type": "image-reference",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "html": "<div>raw html block</div>",
+      "type": "html",
+    },
+    {
+      "children": [
+        {
+          "type": "text",
+          "value": "A footnote reference",
+        },
+        {
+          "identifier": "1",
+          "label": "1",
+          "type": "footnote-reference",
+        },
+        {
+          "type": "text",
+          "value": " and a bibliography-style reference",
+        },
+        {
+          "identifier": "ref1",
+          "label": "ref1",
+          "type": "reference-reference",
+        },
+        {
+          "type": "text",
+          "value": ".",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "identifier": "site",
+      "label": "site",
+      "title": "Example",
+      "type": "definition",
+      "url": "https://example.com",
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "type": "text",
+              "value": "An ordinary footnote body.",
+            },
+          ],
+          "type": "paragraph",
+        },
+      ],
+      "identifier": "1",
+      "type": "footnote-definition",
+    },
+    {
+      "accessDate": "2024-01-15",
+      "children": [
+        {
+          "children": [
+            {
+              "type": "text",
+              "value": "Node.js Documentation - HTTP Module
+",
+            },
+            {
+              "children": [
+                {
+                  "type": "text",
+                  "value": "https://nodejs.org/api/http.html",
+                },
+              ],
+              "title": null,
+              "type": "link",
+              "url": "https://nodejs.org/api/http.html",
+            },
+            {
+              "type": "text",
+              "value": "
+アクセス日: 2024-01-15",
+            },
+          ],
+          "type": "paragraph",
+        },
+      ],
+      "identifier": "ref1",
+      "title": "Node.js Documentation - HTTP Module",
+      "type": "reference-definition",
+      "url": "https://nodejs.org/api/http.html",
+    },
+  ],
+  "type": "root",
+}

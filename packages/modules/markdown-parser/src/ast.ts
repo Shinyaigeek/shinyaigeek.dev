@@ -1,9 +1,9 @@
 export type AST = {
-	type: NodeType;
+	type: "root";
 	children: Node[];
 };
 
-export type NodeType = "root" | "blockquote" | "definition" | "break";
+export type NodeType = Node["type"];
 
 export type Node =
 	| CodeNode
@@ -22,7 +22,17 @@ export type Node =
 	| ImageNode
 	| ImageReferenceNode
 	| InlineCodeNode
-	| LinkNode;
+	| LinkNode
+	| BlockquoteNode
+	| ThematicBreakNode
+	| ListNode
+	| ListItemNode
+	| TableNode
+	| TableRowNode
+	| TableCellNode
+	| DefinitionNode
+	| LinkReferenceNode
+	| YamlNode;
 
 export type BreakNode = {
 	type: "break";
@@ -121,4 +131,72 @@ export type HeadingNode = {
 	type: "heading";
 	depth: number;
 	children: Node[];
+};
+
+export type BlockquoteNode = {
+	type: "blockquote";
+	children: Node[];
+};
+
+export type ThematicBreakNode = {
+	type: "thematic-break";
+};
+
+export type ListNode = {
+	type: "list";
+	ordered: boolean;
+	/** Where an ordered list starts counting; null for unordered lists. */
+	start: number | null;
+	spread: boolean;
+	children: ListItemNode[];
+};
+
+export type ListItemNode = {
+	type: "list-item";
+	/** Set only for GFM task list items: true for [x], false for [ ]. */
+	checked: boolean | null;
+	spread: boolean;
+	children: Node[];
+};
+
+export type TableNode = {
+	type: "table";
+	/** Column alignments, in column order; null where the column sets none. */
+	align: TableAlign[];
+	children: TableRowNode[];
+};
+
+export type TableAlign = "left" | "right" | "center" | null;
+
+export type TableRowNode = {
+	type: "table-row";
+	children: TableCellNode[];
+};
+
+export type TableCellNode = {
+	type: "table-cell";
+	children: Node[];
+};
+
+/** A link reference definition: the `[id]: url "title"` line itself. */
+export type DefinitionNode = {
+	type: "definition";
+	identifier: string;
+	label: string | null;
+	url: string;
+	title: string | null;
+};
+
+export type LinkReferenceNode = {
+	type: "link-reference";
+	identifier: string;
+	label: string | null;
+	reference: "full" | "shortcut" | "collapsed";
+	children: Node[];
+};
+
+/** Frontmatter, present only when the processor enables remark-frontmatter. */
+export type YamlNode = {
+	type: "yaml";
+	value: string;
 };

@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import { describe, expect, it } from "vitest";
 import { parseMarkdown } from "../parser";
-import { mapEmphasis } from "./empasis";
+import { mapEmphasis } from "./emphasis";
 
 describe("mapEmphasis", () => {
 	it("should map Break to code", () => {

@@ -1,9 +1,11 @@
 import type { RootContent } from "mdast";
 import type { Node } from "./ast";
+import { mapBlockquote } from "./blockquote/blockquote";
 import { mapBreak } from "./break/break";
 import { mapCode } from "./code/code";
+import { mapDefinition } from "./definition/definition";
 import { mapDelete } from "./delete/delete";
-import { mapEmphasis } from "./emphasis/empasis";
+import { mapEmphasis } from "./emphasis/emphasis";
 import { mapFootnoteDefinition } from "./footnote-definition/footnote-definition";
 import { mapFootnoteReference } from "./footnote-reference/footnote-reference";
 import { mapHeading } from "./heading/heading";
@@ -11,12 +13,20 @@ import { mapHtml } from "./html/html";
 import { mapImageReference } from "./image-reference/image-reference";
 import { mapImage } from "./image/image";
 import { mapInlineCode } from "./inline-code/inline-code";
+import { mapLinkReference } from "./link-reference/link-reference";
 import { mapLink } from "./link/link";
+import { mapListItem } from "./list-item/list-item";
+import { mapList } from "./list/list";
 import { mapParagraph } from "./paragraph/paragraph";
 import { mapReferenceDefinition } from "./reference-definition/reference-definition";
 import { mapReferenceReference } from "./reference-reference/reference-reference";
 import { mapStrong } from "./strong/strong";
+import { mapTableCell } from "./table-cell/table-cell";
+import { mapTableRow } from "./table-row/table-row";
+import { mapTable } from "./table/table";
 import { mapText } from "./text/text";
+import { mapThematicBreak } from "./thematic-break/thematic-break";
+import { mapYaml } from "./yaml/yaml";
 
 export const mapNode: (node: RootContent) => Node = (node) => {
 	switch (node.type) {
@@ -73,9 +83,47 @@ export const mapNode: (node: RootContent) => Node = (node) => {
 		case "heading": {
 			return mapHeading(node);
 		}
+		case "blockquote": {
+			return mapBlockquote(node);
+		}
+		case "thematicBreak": {
+			return mapThematicBreak(node);
+		}
+		case "list": {
+			return mapList(node);
+		}
+		case "listItem": {
+			return mapListItem(node);
+		}
+		case "table": {
+			return mapTable(node);
+		}
+		case "tableRow": {
+			return mapTableRow(node);
+		}
+		case "tableCell": {
+			return mapTableCell(node);
+		}
+		case "definition": {
+			return mapDefinition(node);
+		}
+		case "linkReference": {
+			return mapLinkReference(node);
+		}
+		case "yaml": {
+			return mapYaml(node);
+		}
 		default: {
-			console.log(node);
-			throw new Error("TODO: Implement");
+			// Every mdast node type is handled above, so `node` is `never` here. If
+			// mdast gains a type, this stops compiling instead of throwing at
+			// runtime on somebody's article.
+			return assertNeverNode(node);
 		}
 	}
+};
+
+const assertNeverNode = (node: never): never => {
+	throw new Error(
+		`Unhandled mdast node: ${JSON.stringify((node as { type?: unknown }).type)}`,
+	);
 };
