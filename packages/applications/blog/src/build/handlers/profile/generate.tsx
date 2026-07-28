@@ -79,7 +79,6 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 	// Fetch about me
 	const aboutMe = await aboutMeRepository.getAboutMe(context.language);
 
-	const rawLanguage = context.language === Language.ja ? "ja" : "en";
 	const description =
 		context.language === Language.ja
 			? "Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"
@@ -87,14 +86,18 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 
 	return renderToStaticMarkup(
 		<Shell
-			language={rawLanguage}
+			language={context.language}
 			title="Profile | shinyaigeek.dev"
 			// The missing trailing slash here made og:image "/profileogp.png".
 			path="/profile/"
 			description={description}
 			builtAssets={context.builtAssets}
 		>
-			<Layout language={rawLanguage} page="profile" currentPath="/profile/">
+			<Layout
+				language={context.language}
+				page="profile"
+				currentPath="/profile/"
+			>
 				<Profile
 					language={context.language}
 					workExperiences={workExperiences}

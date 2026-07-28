@@ -30,7 +30,6 @@ export const generateFleetsPage: GenerateHandler<Context> = async ({
 		fleets = unwrapOk(fleetResults);
 	}
 
-	const rawLanguage = language === Language.ja ? "ja" : "en";
 	const description =
 		language === Language.ja
 			? "Fleet - ちょっとしたアイデアや学習記録をスライド形式で共有"
@@ -38,14 +37,14 @@ export const generateFleetsPage: GenerateHandler<Context> = async ({
 
 	return renderToStaticMarkup(
 		<Shell
-			language={rawLanguage}
+			language={language}
 			title="Fleets | shinyaigeek.dev"
 			path="/fleets/"
 			description={description}
 			builtAssets={context.builtAssets}
 		>
-			<Layout language={rawLanguage} page="fleets" currentPath="/fleets/">
-				<FleetIndex fleets={fleets} language={rawLanguage} />
+			<Layout language={language} page="fleets" currentPath="/fleets/">
+				<FleetIndex fleets={fleets} language={language} />
 			</Layout>
 		</Shell>,
 	);

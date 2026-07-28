@@ -4,43 +4,39 @@ import { NodeFileIOInfrastructure } from "../../../infrastructure/file-io/node-f
 import { NodeFilePathImplementation } from "../../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../../model/blog/blog.repository";
 import { Language } from "../../../model/language/language.entity";
+import { languagePrefix } from "../../site-path";
 
-export const getJapaneseBlogChildren: () => Promise<string[]> = async () => {
-	const fileIOInfrastructure = new NodeFileIOInfrastructure();
-	const filePathInfrastructure = new NodeFilePathImplementation();
-	const blogRepository = new BlogRepository(
-		fileIOInfrastructure,
-		filePathInfrastructure,
+/**
+ * A route for every article in a language.
+ *
+ * `suffix` is whatever hangs off the article's own path -- nothing for the page
+ * itself, "/ogp.png" for its OG image -- so the page routes and the image routes
+ * stay derived from one list instead of two copies that can drift apart.
+ */
+export const blogChildren = async (
+	language: Language,
+	suffix: "" | "/ogp.png",
+): Promise<string[]> => {
+	const blogPostsUsecase = new GetBlogPostsUsecase(
+		new BlogRepository(
+			new NodeFileIOInfrastructure(),
+			new NodeFilePathImplementation(),
+		),
 	);
-	const blogPostsUsecase = new GetBlogPostsUsecase(blogRepository);
 
-	const blogPostResults = await blogPostsUsecase.getBlogPosts(Language.ja);
+	const blogPostResults = await blogPostsUsecase.getBlogPosts(language);
 
 	if (isErr(blogPostResults)) {
 		throw unwrapErr(blogPostResults);
 	}
 
-	return unwrapOk(blogPostResults).map((blogPost) => {
-		return `/post/${blogPost.metadata.path}`;
-	});
-};
+	const prefix = languagePrefix(language);
 
-export const getEnglishBlogChildren: () => Promise<string[]> = async () => {
-	const fileIOInfrastructure = new NodeFileIOInfrastructure();
-	const filePathInfrastructure = new NodeFilePathImplementation();
-	const blogRepository = new BlogRepository(
-		fileIOInfrastructure,
-		filePathInfrastructure,
+	return unwrapOk(blogPostResults).map(
+		(blogPost) => `${prefix}/post/${blogPost.metadata.path}${suffix}`,
 	);
-	const blogPostsUsecase = new GetBlogPostsUsecase(blogRepository);
-
-	const blogPostResults = await blogPostsUsecase.getBlogPosts(Language.en);
-
-	if (isErr(blogPostResults)) {
-		throw unwrapErr(blogPostResults);
-	}
-
-	return unwrapOk(blogPostResults).map((blogPost) => {
-		return `/en/post/${blogPost.metadata.path}`;
-	});
 };
+
+export const getJapaneseBlogChildren = () => blogChildren(Language.ja, "");
+
+export const getEnglishBlogChildren = () => blogChildren(Language.en, "");

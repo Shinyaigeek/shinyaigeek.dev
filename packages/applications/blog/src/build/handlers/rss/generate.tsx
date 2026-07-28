@@ -5,7 +5,6 @@ import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../model/blog/blog.repository";
-import { Language } from "../../model/language/language.entity";
 
 export const generateRssPage: GenerateHandler<Context> = async ({
 	context,
@@ -33,7 +32,7 @@ export const generateRssPage: GenerateHandler<Context> = async ({
 		return dateB.getTime() - dateA.getTime();
 	});
 
-	const language = context.language === Language.ja ? "ja" : "en";
+	const language = context.language;
 	const baseUrl = `https://${language}.shinyaigeek.dev`;
 	const rssUrl = `${baseUrl}/rss.xml`;
 	const siteUrl = `${baseUrl}/`;

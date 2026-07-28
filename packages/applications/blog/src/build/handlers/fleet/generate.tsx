@@ -36,7 +36,6 @@ export const generateFleetPage: GenerateHandler<Context> = async ({
 	}
 
 	const fleet = unwrapOk(fleetResult);
-	const rawLanguage = language === Language.ja ? "ja" : "en";
 	// `description` is optional in the frontmatter, so fall back to a title-based
 	// one rather than emitting an empty <meta name="description">.
 	const description =
@@ -47,18 +46,14 @@ export const generateFleetPage: GenerateHandler<Context> = async ({
 
 	return renderToStaticMarkup(
 		<Shell
-			language={rawLanguage}
+			language={language}
 			title={`${fleet.metadata.title} | shinyaigeek.dev`}
 			path={`/fleets/${slug}/`}
 			description={description}
 			builtAssets={context.builtAssets}
 		>
-			<Layout
-				language={rawLanguage}
-				page="fleet"
-				currentPath={`/fleets/${slug}/`}
-			>
-				<FleetDetail fleet={fleet} language={rawLanguage} />
+			<Layout language={language} page="fleet" currentPath={`/fleets/${slug}/`}>
+				<FleetDetail fleet={fleet} language={language} />
 			</Layout>
 		</Shell>,
 	);

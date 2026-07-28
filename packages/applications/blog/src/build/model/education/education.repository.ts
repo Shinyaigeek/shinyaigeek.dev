@@ -8,7 +8,7 @@ import {
 } from "option-t/plain_result";
 import type { FileIOInfrastructureInterface } from "../../infrastructure/file-io/file-io.interface";
 import type { FilePathInfrastructureInterface } from "../../infrastructure/file-path/file-path.interface";
-import { Language } from "../language/language.entity";
+import type { Language } from "../language/language.entity";
 import { Education } from "./education.entity";
 import { parseEducationContent } from "./parse-education-content";
 
@@ -22,12 +22,11 @@ export class EducationRepository {
 		institution: string,
 		language: Language,
 	): Promise<Result<Education, Error>> {
-		const langCode = language === Language.ja ? "ja" : "en";
 		const educationPath = this.filePathInfrastructure.resolve(
 			process.cwd(),
 			"src/profile/education",
 			institution,
-			`${langCode}.md`,
+			`${language}.md`,
 		);
 
 		const educationContent =
@@ -57,7 +56,6 @@ export class EducationRepository {
 			await this.fileIOInfrastructure.readDirectory(educationDir);
 
 		// Filter out non-directory entries and get educations
-		const langCode = language === Language.ja ? "ja" : "en";
 		const educations: Education[] = [];
 		const errors: Error[] = [];
 
@@ -65,7 +63,7 @@ export class EducationRepository {
 			const mdPath = this.filePathInfrastructure.resolve(
 				educationDir,
 				institutionDir,
-				`${langCode}.md`,
+				`${language}.md`,
 			);
 
 			// Check if the language-specific file exists

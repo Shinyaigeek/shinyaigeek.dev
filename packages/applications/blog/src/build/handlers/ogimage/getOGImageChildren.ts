@@ -1,79 +1,22 @@
-import { isErr, unwrapErr, unwrapOk } from "option-t/plain_result";
-import { GetBlogPostsUsecase } from "../../application/getBlogPosts/getBlogposts.usecase";
-import { GetFleetsUsecase } from "../../application/getFleets/getFleets.usecase";
-import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
-import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
-import { BlogRepository } from "../../model/blog/blog.repository";
-import { FleetRepository } from "../../model/fleet/fleet.repository";
 import { Language } from "../../model/language/language.entity";
-
-export const getJapaneseOGImageChildren: () => Promise<string[]> = async () => {
-	const fileIOInfrastructure = new NodeFileIOInfrastructure();
-	const filePathInfrastructure = new NodeFilePathImplementation();
-	const blogRepository = new BlogRepository(
-		fileIOInfrastructure,
-		filePathInfrastructure,
-	);
-	const blogPostsUsecase = new GetBlogPostsUsecase(blogRepository);
-
-	const blogPostResults = await blogPostsUsecase.getBlogPosts(Language.ja);
-
-	if (isErr(blogPostResults)) {
-		throw unwrapErr(blogPostResults);
-	}
-
-	return unwrapOk(blogPostResults).map((blogPost) => {
-		return `/post/${blogPost.metadata.path}/ogp.png`;
-	});
-};
-
-export const getEnglishOGImageChildren: () => Promise<string[]> = async () => {
-	const fileIOInfrastructure = new NodeFileIOInfrastructure();
-	const filePathInfrastructure = new NodeFilePathImplementation();
-	const blogRepository = new BlogRepository(
-		fileIOInfrastructure,
-		filePathInfrastructure,
-	);
-	const blogPostsUsecase = new GetBlogPostsUsecase(blogRepository);
-
-	const blogPostResults = await blogPostsUsecase.getBlogPosts(Language.en);
-
-	if (isErr(blogPostResults)) {
-		throw unwrapErr(blogPostResults);
-	}
-
-	return unwrapOk(blogPostResults).map((blogPost) => {
-		return `/en/post/${blogPost.metadata.path}/ogp.png`;
-	});
-};
+import { fleetChildren } from "../fleet/getFleetChildren/getFleetChildren";
+import { blogChildren } from "../post/getBlogChildren/getBlogChildren";
 
 /**
- * Fleet pages point og:image at their own card, so each one needs generating --
- * they were referencing an image nobody produced.
+ * Every page points og:image at "<its path>ogp.png", so each of these mirrors a
+ * page route exactly. They are the same lists with a different suffix, which is
+ * why they are derived from the page resolvers rather than repeating the
+ * repository plumbing -- an image route that drifted from its page route left
+ * the page referencing an image nobody produced.
  */
-const getFleetOGImageChildren = async (
-	language: Language,
-	prefix: "" | "/en",
-): Promise<string[]> => {
-	const fleetRepository = new FleetRepository(
-		new NodeFileIOInfrastructure(),
-		new NodeFilePathImplementation(),
-	);
+export const getJapaneseOGImageChildren = () =>
+	blogChildren(Language.ja, "/ogp.png");
 
-	const fleetResults = await new GetFleetsUsecase(fleetRepository).getFleets(
-		language,
-	);
-	if (isErr(fleetResults)) {
-		return [];
-	}
-
-	return unwrapOk(fleetResults).map(
-		(fleet) => `${prefix}/fleets/${fleet.metadata.path}/ogp.png`,
-	);
-};
+export const getEnglishOGImageChildren = () =>
+	blogChildren(Language.en, "/ogp.png");
 
 export const getJapaneseFleetOGImageChildren = () =>
-	getFleetOGImageChildren(Language.ja, "");
+	fleetChildren(Language.ja, "/ogp.png");
 
 export const getEnglishFleetOGImageChildren = () =>
-	getFleetOGImageChildren(Language.en, "/en");
+	fleetChildren(Language.en, "/ogp.png");

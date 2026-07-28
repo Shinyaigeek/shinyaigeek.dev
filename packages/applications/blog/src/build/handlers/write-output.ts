@@ -2,25 +2,14 @@ import fs from "node:fs/promises";
 import nodePath from "node:path";
 import type { GenerateOutput } from "ssg-router";
 import type { Context } from "../context/context";
-import { Language } from "../model/language/language.entity";
-
-/** public/ja and public/en are served as the two language hosts. */
-export const languageDirectory = (language: Language) =>
-	language === Language.ja ? "ja" : "en";
+import { sitePath } from "./site-path";
 
 /**
- * Turns a route path into the path within a language's directory.
- *
- * English routes are registered as "/en/post/" so they get their own entries,
- * but the language already chooses the output directory, so the prefix has to
- * come off -- otherwise the English blog index lands in public/en/en/post/ and
- * en.shinyaigeek.dev/post/ is a 404, which is exactly what used to happen.
- *
- * Anchored on purpose: a plain replace("/en", "") would also eat the "/en" in a
- * slug like "/post/enumerable/".
+ * public/ja and public/en are served as the two language hosts, so the language
+ * code doubles as the output directory.
  */
-export const sitePath = (path: string) =>
-	path.replace(/^\/en(?=\/|$)/, "") || "/";
+const outputPath = (path: string, language: string) =>
+	`./public/${language}${sitePath(path)}`;
 
 /** Writes a page as <dir>/index.html, the layout the static host expects. */
 export const writePage = async (
@@ -28,7 +17,7 @@ export const writePage = async (
 	content: GenerateOutput,
 	context: Context,
 ) => {
-	const directory = `./public/${languageDirectory(context.language)}${sitePath(path)}`;
+	const directory = outputPath(path, context.language);
 	await fs.mkdir(directory, { recursive: true });
 	await fs.writeFile(nodePath.resolve(directory, "index.html"), content);
 };
@@ -39,7 +28,7 @@ export const writeFile = async (
 	content: GenerateOutput,
 	context: Context,
 ) => {
-	const filePath = `./public/${languageDirectory(context.language)}${sitePath(path)}`;
+	const filePath = outputPath(path, context.language);
 	await fs.mkdir(nodePath.dirname(filePath), { recursive: true });
 	await fs.writeFile(filePath, content);
 };

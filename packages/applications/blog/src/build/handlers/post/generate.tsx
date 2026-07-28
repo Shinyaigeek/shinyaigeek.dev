@@ -13,7 +13,6 @@ export const generateBlogIndexPage: GenerateHandler<Context> = async ({
 	const language = context.language;
 	const items = await getRecentItems(language);
 
-	const rawLanguage = language === Language.ja ? "ja" : "en";
 	// This page used to describe itself as the home page: same title, and
 	// path="/", which made og:url and the OG image point at "/" instead of here.
 	const description =
@@ -23,13 +22,13 @@ export const generateBlogIndexPage: GenerateHandler<Context> = async ({
 
 	return renderToStaticMarkup(
 		<Shell
-			language={rawLanguage}
+			language={language}
 			title="Posts | shinyaigeek.dev"
 			path="/post/"
 			description={description}
 			builtAssets={context.builtAssets}
 		>
-			<Layout language={rawLanguage} page="post" currentPath="/post/">
+			<Layout language={language} page="post" currentPath="/post/">
 				<PostIndex items={items} />
 			</Layout>
 		</Shell>,

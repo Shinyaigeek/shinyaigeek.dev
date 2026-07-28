@@ -44,7 +44,6 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 	}
 	const ossProjects: OSSProject[] = unwrapOk(ossProjectsResult);
 
-	const rawLanguage = language === Language.ja ? "ja" : "en";
 	const description =
 		language === Language.ja
 			? "Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"
@@ -52,15 +51,15 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 
 	return renderToStaticMarkup(
 		<Shell
-			language={rawLanguage}
+			language={language}
 			title="shinyaigeek.dev"
 			path="/"
 			description={description}
 			builtAssets={context.builtAssets}
 		>
-			<Layout language={rawLanguage} page="home" currentPath="/">
+			<Layout language={language} page="home" currentPath="/">
 				<Home
-					language={rawLanguage}
+					language={language}
 					items={items}
 					workExperiences={workExperiences}
 					ossProjects={ossProjects}

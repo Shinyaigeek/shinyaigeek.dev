@@ -7,7 +7,19 @@ import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../model/blog/blog.repository";
 import { FleetRepository } from "../../model/fleet/fleet.repository";
+import { sitePath } from "../site-path";
 import { generateOGImageFromBlogPost } from "./generateOGImageFromBlogPost";
+
+/**
+ * The path of the page an "…/ogp.png" route illustrates: the language prefix and
+ * the file name both come off, leaving the route the image belongs to.
+ *
+ * Both ends are anchored. An unanchored replace("/en", "") also eats the "/en"
+ * inside a slug -- "/post/enumerable/ogp.png" became "/postumerable" -- which
+ * then failed to resolve to any article.
+ */
+const imageSubjectPath = (path: string) =>
+	sitePath(path).replace(/\/ogp\.png$/, "");
 
 export const generateTopOGImagePage: GenerateHandler<Context> = async () => {
 	const pngBuffer = await generateOGImageFromBlogPost({
@@ -54,7 +66,7 @@ export const generateFleetOGImagePage: GenerateHandler<Context> = async ({
 	path,
 	context,
 }) => {
-	const slug = path.replace("/en", "").replace("/ogp.png", "").split("/").pop();
+	const slug = imageSubjectPath(path).split("/").pop();
 	if (!slug) {
 		throw new Error(`Cannot derive a fleet slug from ${path}`);
 	}
@@ -83,7 +95,7 @@ export const generateBlogPostOGImagePage: GenerateHandler<Context> = async ({
 	path,
 	context,
 }) => {
-	const slug = path.replace("/en", "").replace("/ogp.png", "");
+	const slug = imageSubjectPath(path);
 
 	const fileIOInfrastructure = new NodeFileIOInfrastructure();
 	const filePathInfrastructure = new NodeFilePathImplementation();

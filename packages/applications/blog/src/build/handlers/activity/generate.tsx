@@ -25,7 +25,6 @@ export const generateActivityPage: GenerateHandler<Context> = async ({
 	const calendar =
 		await getContributionCalendarUsecase.getContributionCalendarOrNull();
 
-	const rawLanguage = context.language === Language.ja ? "ja" : "en";
 	const title = "Activity - shinyaigeek.dev";
 	const description =
 		context.language === Language.ja
@@ -34,15 +33,19 @@ export const generateActivityPage: GenerateHandler<Context> = async ({
 
 	return renderToStaticMarkup(
 		<Shell
-			language={rawLanguage}
+			language={context.language}
 			title={title}
 			path="/activity/"
 			description={description}
 			builtAssets={context.builtAssets}
 		>
-			<Layout language={rawLanguage} page="activity" currentPath="/activity/">
+			<Layout
+				language={context.language}
+				page="activity"
+				currentPath="/activity/"
+			>
 				<Activity
-					language={rawLanguage}
+					language={context.language}
 					calendar={calendar}
 					login={GITHUB_LOGIN}
 				/>

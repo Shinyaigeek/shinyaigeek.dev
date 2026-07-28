@@ -8,7 +8,7 @@ import {
 } from "option-t/plain_result";
 import type { FileIOInfrastructureInterface } from "../../infrastructure/file-io/file-io.interface";
 import type { FilePathInfrastructureInterface } from "../../infrastructure/file-path/file-path.interface";
-import { Language } from "../language/language.entity";
+import type { Language } from "../language/language.entity";
 import { OSSProject } from "./oss.entity";
 import { parseOSSContent } from "./parse-oss-content";
 
@@ -22,12 +22,11 @@ export class OSSRepository {
 		slug: string,
 		language: Language,
 	): Promise<Result<OSSProject, Error>> {
-		const langCode = language === Language.ja ? "ja" : "en";
 		const projectPath = this.filePathInfrastructure.resolve(
 			process.cwd(),
 			"src/profile/oss",
 			slug,
-			`${langCode}.md`,
+			`${language}.md`,
 		);
 
 		const projectContent =
@@ -54,7 +53,6 @@ export class OSSRepository {
 
 		const projectDirs = await this.fileIOInfrastructure.readDirectory(ossDir);
 
-		const langCode = language === Language.ja ? "ja" : "en";
 		const projects: OSSProject[] = [];
 		const errors: Error[] = [];
 
@@ -62,7 +60,7 @@ export class OSSRepository {
 			const mdPath = this.filePathInfrastructure.resolve(
 				ossDir,
 				projectDir,
-				`${langCode}.md`,
+				`${language}.md`,
 			);
 
 			// Check if the language-specific file exists

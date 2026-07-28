@@ -8,7 +8,7 @@ import {
 } from "option-t/plain_result";
 import type { FileIOInfrastructureInterface } from "../../infrastructure/file-io/file-io.interface";
 import type { FilePathInfrastructureInterface } from "../../infrastructure/file-path/file-path.interface";
-import { Language } from "../language/language.entity";
+import type { Language } from "../language/language.entity";
 import { parseWorkExperienceContent } from "./parse-work-experience-content";
 import { WorkExperience } from "./work-experience.entity";
 
@@ -46,12 +46,11 @@ export class WorkExperienceRepository {
 		company: string,
 		language: Language,
 	): Promise<Result<WorkExperience, Error>> {
-		const langCode = language === Language.ja ? "ja" : "en";
 		const experiencePath = this.filePathInfrastructure.resolve(
 			process.cwd(),
 			"src/profile/working-experience",
 			company,
-			`${langCode}.md`,
+			`${language}.md`,
 		);
 
 		const experienceContent =
@@ -81,7 +80,6 @@ export class WorkExperienceRepository {
 			await this.fileIOInfrastructure.readDirectory(workExperienceDir);
 
 		// Filter out non-directory entries and get work experiences
-		const langCode = language === Language.ja ? "ja" : "en";
 		const experiences: WorkExperience[] = [];
 		const errors: Error[] = [];
 
@@ -89,7 +87,7 @@ export class WorkExperienceRepository {
 			const mdPath = this.filePathInfrastructure.resolve(
 				workExperienceDir,
 				companyDir,
-				`${langCode}.md`,
+				`${language}.md`,
 			);
 
 			// Check if the language-specific file exists

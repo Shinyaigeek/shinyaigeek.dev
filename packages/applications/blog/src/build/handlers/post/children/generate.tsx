@@ -9,7 +9,7 @@ import type { Context } from "../../../context/context";
 import { NodeFileIOInfrastructure } from "../../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../../model/blog/blog.repository";
-import { Language } from "../../../model/language/language.entity";
+import { sitePath } from "../../site-path";
 
 export const generateBlogPostPage: GenerateHandler<Context> = async ({
 	path,
@@ -23,8 +23,10 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 	);
 	const getblogPostsUsecase = new GetBlogPostUsecase(blogRepository);
 	const language = context.language;
+	// The route carries the "/en" prefix; the article underneath it does not.
+	const articlePath = sitePath(path);
 	const blogPostResults = await getblogPostsUsecase.getBlogPost(
-		path.replace("/en", ""),
+		articlePath,
 		language,
 	);
 
@@ -34,24 +36,18 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 
 	const blogPost = unwrapOk(blogPostResults);
 
-	const rawLanguage = language === Language.ja ? "ja" : "en";
-
 	return renderToStaticMarkup(
 		<Shell
-			language={rawLanguage}
+			language={language}
 			title={`${blogPost.metadata.title} - shinyaigeek.dev`}
-			path={`${path.replace("/en", "")}/`}
+			path={`${articlePath}/`}
 			description={blogPost.metadata.description}
 			builtAssets={context.builtAssets}
 		>
 			{/* currentPath drives the language switcher, so it has to be this
 			    article rather than "/" -- otherwise switching language from an
 			    article dropped the reader on the other language's home page. */}
-			<Layout
-				language={rawLanguage}
-				page="post"
-				currentPath={`${path.replace("/en", "")}/`}
-			>
+			<Layout language={language} page="post" currentPath={`${articlePath}/`}>
 				<Post
 					title={blogPost.metadata.title}
 					tags={blogPost.metadata.tags}

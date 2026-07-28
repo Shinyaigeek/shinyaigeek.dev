@@ -1,4 +1,4 @@
-import type { Root } from "hast";
+import type { Nodes, Root } from "hast";
 import { selectAll } from "hast-util-select";
 import { type Result, createOk, isErr, unwrapOk } from "option-t/plain_result";
 import rehypeHighlight from "rehype-highlight";
@@ -28,6 +28,8 @@ export const parseBlogContent: (
 
 	const { content, metadata } = unwrapOk(extractBlogMetadataResult);
 
+	const headings: Headings = [];
+
 	const parsed = await unified()
 		.use(remarkParse)
 		.use(remarkGfm)
@@ -36,22 +38,15 @@ export const parseBlogContent: (
 		.use(rehypeHighlight)
 		.use(wrapTablesInContainer)
 		.use(rehypeStringify)
-		.use(applyHeadingIdForHeadings)
+		.use(collectHeadings(headings))
 		.process(content);
-
-	const body = parsed.toString();
-
-	const { headingIds, headingContents } = extractHeadings(body);
 
 	return createOk({
 		metadata: {
 			...metadata,
-			headings: headingIds.map((id, index) => ({
-				href: id,
-				content: headingContents[index],
-			})),
+			headings,
 		},
-		body,
+		body: parsed.toString(),
 	});
 };
 
@@ -77,38 +72,44 @@ const wrapTablesInContainer: Plugin<[], Root> = () => {
 	};
 };
 
+type Headings = NonNullable<BlogMetadata["headings"]>;
+
 /**
- * TODO: Currently, I extract headings with remark's plugin.
- * But, I want to extract headings with traverser after my own markdown parser is implemented.
+ * Gives every heading an id and records it for the table of contents.
+ *
+ * The two used to be separate steps: this walk set the ids, then the stringified
+ * HTML was matched with a regular expression to read them back out. That handed
+ * the table of contents each heading's inner *markup*, which the component
+ * renders as text -- a heading like "About `--format` option" listed itself with
+ * the <code> tags spelled out. Reading the text off the node we are already
+ * standing on is both one pass and the content the component actually wants.
+ *
+ * TODO: swap the hast walk for a traverser over my own markdown parser once that
+ * is wired in.
  */
-const applyHeadingIdForHeadings: Plugin<[], Root> = () => {
-	return (tree) => {
+const collectHeadings =
+	(headings: Headings): Plugin<[], Root> =>
+	() =>
+	(tree) => {
 		let count = 0;
 		for (const node of selectAll("h1,h2,h3,h4,h5,h6", tree)) {
 			const headingLevel = node.tagName.replace("h", "");
+			const href = `${headingLevel}__${count}`;
+
 			node.properties = {
 				...node.properties,
-				id: `${headingLevel}__${count}`,
+				id: href,
 			};
+			headings.push({ href, content: textContent(node) });
 			count++;
 		}
 	};
-};
 
-const extractHeadings = (html: string) => {
-	const headings = html.match(/<h[1-6] id=".+?">.+?<\/h[1-6]>/g);
-	if (!headings) {
-		return { headingIds: [], headingContents: [] };
-	}
-	const headingIds = headings.map((heading) => {
-		const regexp = heading.match(/id=".+?"/);
-		if (!regexp) {
-			return "";
-		}
-		return regexp[0].replace(/id="|"/g, "");
+/** The visible text of a node, with any inline markup dropped. */
+const textContent = (node: Nodes): string => {
+	let text = "";
+	visit(node, "text", (textNode) => {
+		text += textNode.value;
 	});
-	const headingContents = headings.map((heading) => {
-		return heading.replace(/<h[1-6] id=".+?">/, "").replace(/<\/h[1-6]>/, "");
-	});
-	return { headingIds, headingContents };
+	return text;
 };
