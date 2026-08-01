@@ -34,10 +34,11 @@ export const parseBlogContent: (
 		.use(remarkParse)
 		.use(remarkGfm)
 		.use(remarkReferences)
-		.use(remarkRehype)
+		.use(remarkRehype, { allowDangerousHtml: true })
 		.use(rehypeHighlight)
 		.use(wrapTablesInContainer)
-		.use(rehypeStringify)
+		.use(stripRawScripts)
+		.use(rehypeStringify, { allowDangerousHtml: true })
 		.use(collectHeadings(headings))
 		.process(content);
 
@@ -48,6 +49,32 @@ export const parseBlogContent: (
 		},
 		body: parsed.toString(),
 	});
+};
+
+/**
+ * Drops `<script>` out of the raw HTML an article passes through.
+ *
+ * Raw HTML reaches the output at all so that a post can embed an iframe -- a
+ * live demo, a playground -- which markdown has no syntax for. But two 2020
+ * posts paste Twitter's embed snippet, whose trailing
+ * `<script src="platform.twitter.com/widgets.js">` had been silently dropped
+ * for years; letting raw HTML through would start loading it. The blockquote
+ * still renders, just as a plain quote.
+ *
+ * Raw nodes are unparsed strings at this point, hence the regexp rather than a
+ * tree walk. It only has to hold against markdown I wrote myself.
+ */
+const stripRawScripts: Plugin<[], Root> = () => {
+	return (tree) => {
+		visit(tree, (node) => {
+			if (node.type !== "raw") {
+				return;
+			}
+
+			const raw = node as unknown as { value: string };
+			raw.value = raw.value.replace(/<script\b[\s\S]*?<\/script\s*>/gi, "");
+		});
+	};
 };
 
 /**
