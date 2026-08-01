@@ -9,6 +9,12 @@ interface Props {
 		publishedAt: string;
 		path: string;
 		ogp?: Undefinable<string>;
+		/**
+		 * Set only for posts published elsewhere. The item links straight out to
+		 * them, so leaving it off here made every one of them a link to
+		 * "/post/https://speakerdeck.com/..." -- the path is already a whole URL.
+		 */
+		media?: Undefinable<string>;
 	}[];
 }
 
@@ -24,6 +30,7 @@ export const PostIndex: FunctionComponent<Props> = ({ items }) => (
 						publishedAt={item.publishedAt}
 						path={item.path}
 						ogp={item.ogp}
+						media={item.media}
 					/>
 				);
 			})}
