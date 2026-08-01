@@ -47,6 +47,12 @@ import { registerLanguagePlugin } from "./plugin/language";
 
 const router = new Router<Context>();
 
+/**
+ * Registering a route from a directory listing is asynchronous, so these have
+ * to finish before generation starts walking the routes -- see the await below.
+ */
+const pendingRegistrations: Promise<void>[] = [];
+
 router.register(registerLanguagePlugin);
 router.register(registerBuiltAssetsPlugin);
 
@@ -66,14 +72,16 @@ router.on("/en/post/", {
 	generate: generateBlogIndexPage,
 	output: outputBlogIndexPage,
 });
-router.onChildren(getJapaneseBlogChildren, {
-	generate: generateBlogPostPage,
-	output: outputBlogPostPage,
-});
-router.onChildren(getEnglishBlogChildren, {
-	generate: generateBlogPostPage,
-	output: outputBlogPostPage,
-});
+pendingRegistrations.push(
+	router.onChildren(getJapaneseBlogChildren, {
+		generate: generateBlogPostPage,
+		output: outputBlogPostPage,
+	}),
+	router.onChildren(getEnglishBlogChildren, {
+		generate: generateBlogPostPage,
+		output: outputBlogPostPage,
+	}),
+);
 router.on("/profile/", {
 	generate: generateProfilePage,
 	output: outputProfilePage,
@@ -98,14 +106,16 @@ router.on("/en/fleets/", {
 	generate: generateFleetsPage,
 	output: outputFleetsPage,
 });
-router.onChildren(getJapaneseFleetChildren, {
-	generate: generateFleetPage,
-	output: outputFleetPage,
-});
-router.onChildren(getEnglishFleetChildren, {
-	generate: generateFleetPage,
-	output: outputFleetPage,
-});
+pendingRegistrations.push(
+	router.onChildren(getJapaneseFleetChildren, {
+		generate: generateFleetPage,
+		output: outputFleetPage,
+	}),
+	router.onChildren(getEnglishFleetChildren, {
+		generate: generateFleetPage,
+		output: outputFleetPage,
+	}),
+);
 router.on("/rss.xml", {
 	generate: generateRssPage,
 	output: outputRssPage,
@@ -164,21 +174,42 @@ router.on("/en/fleets/ogp.png", {
 	generate: generateFleetsOGImagePage,
 	output: outputOGImagePage,
 });
-router.onChildren(getJapaneseFleetOGImageChildren, {
-	generate: generateFleetOGImagePage,
-	output: outputOGImagePage,
-});
-router.onChildren(getEnglishFleetOGImageChildren, {
-	generate: generateFleetOGImagePage,
-	output: outputOGImagePage,
-});
-router.onChildren(getJapaneseOGImageChildren, {
-	generate: generateBlogPostOGImagePage,
-	output: outputOGImagePage,
-});
-router.onChildren(getEnglishOGImageChildren, {
-	generate: generateBlogPostOGImagePage,
-	output: outputOGImagePage,
-});
+pendingRegistrations.push(
+	router.onChildren(getJapaneseFleetOGImageChildren, {
+		generate: generateFleetOGImagePage,
+		output: outputOGImagePage,
+	}),
+	router.onChildren(getEnglishFleetOGImageChildren, {
+		generate: generateFleetOGImagePage,
+		output: outputOGImagePage,
+	}),
+	router.onChildren(getJapaneseOGImageChildren, {
+		generate: generateBlogPostOGImagePage,
+		output: outputOGImagePage,
+	}),
+	router.onChildren(getEnglishOGImageChildren, {
+		generate: generateBlogPostOGImagePage,
+		output: outputOGImagePage,
+	}),
+);
 
-router.out();
+/**
+ * The routes registered from a directory listing have to be in place before
+ * generation begins.
+ *
+ * This used to call out() without awaiting them, and only worked by accident:
+ * out() walks a live Map iterator, so a route registered while it was already
+ * running still got picked up -- as long as the listing resolved before the
+ * walk ran out of routes it already knew about. Which routes exist would then
+ * depend on how many other routes happened to be registered.
+ *
+ * Exits non-zero on failure so a broken generation fails `pnpm build` rather
+ * than leaving a half written public/ behind and reporting success.
+ */
+try {
+	await Promise.all(pendingRegistrations);
+	await router.out();
+} catch (error) {
+	console.error(error);
+	process.exit(1);
+}
