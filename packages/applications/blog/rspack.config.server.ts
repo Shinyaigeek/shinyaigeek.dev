@@ -20,7 +20,6 @@ const configForApplicationServer: Configuration = {
 	externalsType: "module",
 	externals: {
 		"@resvg/resvg-js": "@resvg/resvg-js",
-		"image-to-base64": "image-to-base64",
 		satori: "satori",
 	},
 };
