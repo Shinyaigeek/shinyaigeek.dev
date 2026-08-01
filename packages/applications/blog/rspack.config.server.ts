@@ -12,9 +12,12 @@ const configForApplicationServer: Configuration = {
 		library: {
 			type: "module",
 		},
-	},
-	experiments: {
-		outputModule: true,
+		// Rspack 2 reads the ESM output flag from here. It used to be set as
+		// `experiments.outputModule`, which Rspack 2 no longer has: the key was
+		// simply ignored, and only the library type and chunk format above were
+		// holding the output to ESM. Nothing was checking this file until
+		// scripts/dev.ts started importing it.
+		module: true,
 	},
 	target: "node",
 	externalsType: "module",
