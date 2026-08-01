@@ -118,7 +118,7 @@ export const ShinyaigeekCoreProfile: FunctionComponent = function () {
 			<div className={mail}>
 				<a href="mailto:me@shinyaigeek.dev">
 					Contact Me{" "}
-					<g-emoji fallback-src="/assets/static/email.png" alias="email">
+					<g-emoji fallback-src="/assets/static/e-mail.png" alias="email">
 						📧
 					</g-emoji>
 				</a>
