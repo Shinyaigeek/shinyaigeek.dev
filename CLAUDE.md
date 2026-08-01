@@ -94,12 +94,6 @@ pnpm run ci        # all of the above, the way CI runs them
 built-in `ci` command, which fails with `ERR_PNPM_CI_NOT_IMPLEMENTED` without
 ever reaching the script.
 
-**lint-staged** is held at 16 for the same reason the rollup pin below exists.
-17 refuses to run under a git older than 2.32.0, and the dev machine (Ubuntu
-20.04) has 2.25.1 — so every `git commit` died in the pre-commit hook, with
-`--no-verify` the only way through. 16 has no such check. Raise it once the dev
-machine's git is newer.
-
 `pnpm.overrides` in the root package.json pins **rollup** to 4.62.2. From 4.62.3
 its prebuilt Linux binary needs GLIBC 2.32, which is newer than the dev machine
 (Ubuntu 20.04, GLIBC 2.31) has, so vitest dies with `ERR_DLOPEN_FAILED` on every

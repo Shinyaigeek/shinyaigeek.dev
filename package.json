@@ -9,11 +9,9 @@
     "url": "git+https://github.com/Shinyaigeek/Shinyaigeek.git"
   },
   "scripts": {
-    "prepare": "husky",
     "dev": "pnpm -r --parallel dev",
     "dev:blog": "pnpm --filter blog dev",
     "dev:labs": "pnpm --filter labs dev",
-    "lint-staged": "lint-staged",
     "format": "oxfmt ./packages",
     "format:check": "oxfmt --check ./packages",
     "lint": "oxlint ./packages",
@@ -21,11 +19,6 @@
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
     "ci": "pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm run test"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "keywords": [],
   "author": "",
@@ -35,8 +28,6 @@
   },
   "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
   "devDependencies": {
-    "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
     "oxfmt": "^0.61.0",
     "oxlint": "^1.76.0",
     "typescript": "^7.0.2"
