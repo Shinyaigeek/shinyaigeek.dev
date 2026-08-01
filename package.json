@@ -10,6 +10,9 @@
   },
   "scripts": {
     "prepare": "husky",
+    "dev": "pnpm -r --parallel dev",
+    "dev:blog": "pnpm --filter blog dev",
+    "dev:labs": "pnpm --filter labs dev",
     "lint-staged": "lint-staged",
     "format": "oxfmt ./packages",
     "format:check": "oxfmt --check ./packages",
@@ -33,10 +36,15 @@
   "homepage": "https://github.com/Shinyaigeek/Shinyaigeek#readme",
   "devDependencies": {
     "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
-    "oxfmt": "^0.60.0",
-    "oxlint": "^1.75.0",
-    "typescript": "^5.9.3"
+    "lint-staged": "^17.2.0",
+    "oxfmt": "^0.61.0",
+    "oxlint": "^1.76.0",
+    "typescript": "^7.0.2"
   },
-  "packageManager": "pnpm@9.11.0+sha256.1c0e33f70e5df9eede84a357bdfa0b1f9dba6e58194628d48a1055756f553754"
+  "packageManager": "pnpm@9.11.0+sha256.1c0e33f70e5df9eede84a357bdfa0b1f9dba6e58194628d48a1055756f553754",
+  "pnpm": {
+    "overrides": {
+      "rollup": "4.62.2"
+    }
+  }
 }
