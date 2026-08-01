@@ -1,0 +1,64 @@
+name: Deploy labs to VPS
+
+# Kept separate from deploy_blog.yml rather than folded into it: the blog also
+# redeploys nightly to refresh its contribution calendar, and labs has nothing
+# that goes stale on its own, so it only needs to ship when something changes.
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+# Never let two deploys race on the same VPS doc root.
+concurrency:
+    group: deploy-labs
+    cancel-in-progress: false
+
+permissions:
+    contents: read
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        # VPS_SECRET_KEY / SSH_* live as Environment secrets under "Production",
+        # so the job must select that environment for them to resolve.
+        environment: Production
+        timeout-minutes: 15
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+
+            - name: Enable corepack (pnpm)
+              run: corepack enable pnpm
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile --ignore-scripts
+
+            # Emits public/: the SSG's HTML tree plus the content hashed client
+            # assets it links to. dist/ is build scaffolding and is not shipped.
+            - name: Build labs (webpack + SSG)
+              run: pnpm --filter labs build
+
+            # h2o serves labs.shinyaigeek.dev straight out of
+            # /var/www/labs/public/, so the built directory lands next to it the
+            # same way the blog's does. /var/www/labs/ has to already exist on
+            # the VPS -- scp will not create the parent for us.
+            - name: Deploy public/ to VPS over scp
+              env:
+                  VPS_SECRET_KEY: ${{ secrets.VPS_SECRET_KEY }}
+                  SSH_HOST: ${{ secrets.SSH_HOST }}
+                  SSH_USER: ${{ secrets.SSH_USER }}
+                  SSH_PORT: ${{ secrets.SSH_PORT }}
+              run: |
+                  set -euo pipefail
+                  mkdir -p ~/.ssh
+                  printf '%s\n' "$VPS_SECRET_KEY" > ~/.ssh/deploy_key
+                  chmod 600 ~/.ssh/deploy_key
+                  ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+                  scp -i ~/.ssh/deploy_key -P "$SSH_PORT" -r \
+                      packages/applications/labs/public \
+                      "$SSH_USER@$SSH_HOST:/var/www/labs/"
