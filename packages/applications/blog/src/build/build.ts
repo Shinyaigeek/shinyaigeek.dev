@@ -45,6 +45,18 @@ import { outputSitemapPage } from "./handlers/sitemap/output";
 import { registerBuiltAssetsPlugin } from "./plugin/built-assets";
 import { registerLanguagePlugin } from "./plugin/language";
 
+/**
+ * Whether to render the OG images.
+ *
+ * There is one per route, each a satori layout rasterised by resvg at
+ * 1920x1080, and together they are the overwhelming majority of a generation:
+ * nine of its ten seconds. Nothing in a page's appearance depends on
+ * them -- they are what a link unfurls to elsewhere -- so the dev loop turns
+ * them off and gets the pages back in about a second. `pnpm build` leaves this
+ * unset and renders them all.
+ */
+const shouldGenerateOGImages = process.env.SSG_SKIP_OG_IMAGES !== "1";
+
 const router = new Router<Context>();
 
 /**
@@ -132,66 +144,68 @@ router.on("/en/sitemap.xml", {
 	generate: generateSitemapPage,
 	output: outputSitemapPage,
 });
-router.on("/ogp.png", {
-	generate: generateTopOGImagePage,
-	output: outputOGImagePage,
-});
-router.on("/en/ogp.png", {
-	generate: generateTopOGImagePage,
-	output: outputOGImagePage,
-});
-router.on("/profile/ogp.png", {
-	generate: generateProfileOGImagePage,
-	output: outputOGImagePage,
-});
-router.on("/en/profile/ogp.png", {
-	generate: generateProfileOGImagePage,
-	output: outputOGImagePage,
-});
-router.on("/activity/ogp.png", {
-	generate: generateActivityOGImagePage,
-	output: outputOGImagePage,
-});
-router.on("/en/activity/ogp.png", {
-	generate: generateActivityOGImagePage,
-	output: outputOGImagePage,
-});
-// Every page's head points og:image at <its path>ogp.png, so every route that
-// renders a page needs a matching image route here.
-router.on("/post/ogp.png", {
-	generate: generateBlogIndexOGImagePage,
-	output: outputOGImagePage,
-});
-router.on("/en/post/ogp.png", {
-	generate: generateBlogIndexOGImagePage,
-	output: outputOGImagePage,
-});
-router.on("/fleets/ogp.png", {
-	generate: generateFleetsOGImagePage,
-	output: outputOGImagePage,
-});
-router.on("/en/fleets/ogp.png", {
-	generate: generateFleetsOGImagePage,
-	output: outputOGImagePage,
-});
-pendingRegistrations.push(
-	router.onChildren(getJapaneseFleetOGImageChildren, {
-		generate: generateFleetOGImagePage,
+if (shouldGenerateOGImages) {
+	router.on("/ogp.png", {
+		generate: generateTopOGImagePage,
 		output: outputOGImagePage,
-	}),
-	router.onChildren(getEnglishFleetOGImageChildren, {
-		generate: generateFleetOGImagePage,
+	});
+	router.on("/en/ogp.png", {
+		generate: generateTopOGImagePage,
 		output: outputOGImagePage,
-	}),
-	router.onChildren(getJapaneseOGImageChildren, {
-		generate: generateBlogPostOGImagePage,
+	});
+	router.on("/profile/ogp.png", {
+		generate: generateProfileOGImagePage,
 		output: outputOGImagePage,
-	}),
-	router.onChildren(getEnglishOGImageChildren, {
-		generate: generateBlogPostOGImagePage,
+	});
+	router.on("/en/profile/ogp.png", {
+		generate: generateProfileOGImagePage,
 		output: outputOGImagePage,
-	}),
-);
+	});
+	router.on("/activity/ogp.png", {
+		generate: generateActivityOGImagePage,
+		output: outputOGImagePage,
+	});
+	router.on("/en/activity/ogp.png", {
+		generate: generateActivityOGImagePage,
+		output: outputOGImagePage,
+	});
+	// Every page's head points og:image at <its path>ogp.png, so every route that
+	// renders a page needs a matching image route here.
+	router.on("/post/ogp.png", {
+		generate: generateBlogIndexOGImagePage,
+		output: outputOGImagePage,
+	});
+	router.on("/en/post/ogp.png", {
+		generate: generateBlogIndexOGImagePage,
+		output: outputOGImagePage,
+	});
+	router.on("/fleets/ogp.png", {
+		generate: generateFleetsOGImagePage,
+		output: outputOGImagePage,
+	});
+	router.on("/en/fleets/ogp.png", {
+		generate: generateFleetsOGImagePage,
+		output: outputOGImagePage,
+	});
+	pendingRegistrations.push(
+		router.onChildren(getJapaneseFleetOGImageChildren, {
+			generate: generateFleetOGImagePage,
+			output: outputOGImagePage,
+		}),
+		router.onChildren(getEnglishFleetOGImageChildren, {
+			generate: generateFleetOGImagePage,
+			output: outputOGImagePage,
+		}),
+		router.onChildren(getJapaneseOGImageChildren, {
+			generate: generateBlogPostOGImagePage,
+			output: outputOGImagePage,
+		}),
+		router.onChildren(getEnglishOGImageChildren, {
+			generate: generateBlogPostOGImagePage,
+			output: outputOGImagePage,
+		}),
+	);
+}
 
 /**
  * The routes registered from a directory listing have to be in place before
@@ -201,7 +215,8 @@ pendingRegistrations.push(
  * out() walks a live Map iterator, so a route registered while it was already
  * running still got picked up -- as long as the listing resolved before the
  * walk ran out of routes it already knew about. Which routes exist would then
- * depend on how many other routes happened to be registered.
+ * depend on how many other routes happened to be registered, and turning the OG
+ * images off removes eighty of them.
  *
  * Exits non-zero on failure so a broken generation fails `pnpm build` rather
  * than leaving a half written public/ behind and reporting success.
