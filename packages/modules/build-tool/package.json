@@ -9,7 +9,8 @@
 	"files": [
 		"./webpack",
 		"./rspack",
-		"./javascript"
+		"./javascript",
+		"./dev-server"
 	],
 	"types": "./index.ts",
 	"exports": {
@@ -28,12 +29,17 @@
 		"./javascript/swc/build-swc-config.ts": {
 			"default": "./javascript/swc/build-swc-config.ts",
 			"types": "./javascript/swc/build-swc-config.ts"
+		},
+		"./dev-server": {
+			"default": "./dev-server/index.ts",
+			"types": "./dev-server/index.ts"
 		}
 	},
 	"devDependencies": {
 		"@rspack/cli": "^2.1.6",
 		"@rspack/core": "^2.1.6",
 		"@swc/core": "^1.15.46",
+		"@types/node": "^26.1.2",
 		"webpack": "^5.109.1"
 	},
 	"peerDependencies": {
