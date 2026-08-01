@@ -23,5 +23,11 @@
 			"@ladle/react": ["./src/types/ladle"]
 		}
 	},
-	"include": ["src"]
+	"include": [
+		"src",
+		"scripts",
+		"rspack.config.client.ts",
+		"rspack.config.dev.ts",
+		"rspack.config.server.ts"
+	]
 }
