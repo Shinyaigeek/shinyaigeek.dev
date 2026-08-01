@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
+		"dev": "tsx scripts/dev.ts",
 		"clean": "rimraf dist public",
 		"__webpack": "webpack",
 		"build:client": "pnpm __webpack --config webpack.config.client.ts",

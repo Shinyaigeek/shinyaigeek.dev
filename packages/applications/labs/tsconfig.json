@@ -6,7 +6,9 @@
 	"include": [
 		"src",
 		"tools",
+		"scripts",
 		"webpack.config.client.ts",
+		"webpack.config.dev.ts",
 		"webpack.config.server.ts"
 	]
 }
