@@ -9,7 +9,7 @@ This is a monorepo for Shinyaigeek's tech blog (https://shinyaigeek.dev) using p
 - **packages/applications/blog/** — the blog itself: React SSG built with Rspack
 - **packages/applications/labs/** — experimental projects showcase: a React SSG built with webpack, served at labs.shinyaigeek.dev
 - **packages/applications/worker/** — Cloudflare Worker that redirects English-preferring visitors to the English host
-- **packages/modules/build-tool/** — shared Rspack and webpack base configs, exported as TypeScript source
+- **packages/modules/build-tool/** — shared Rspack and webpack base configs, exported as TypeScript source, plus the dev server both apps are served from
 - **packages/modules/markdown-parser/** — standalone markdown AST mapper (not yet wired into the blog)
 - **packages/modules/ssg-router/** — the routing utilities the blog's and labs' static generation are both built on
 
@@ -24,6 +24,52 @@ The blog serves Japanese and English content, parses markdown with unified/remar
 
 Rspack's **native** CSS support handles both extraction and CSS modules — there is no CssExtractRspackPlugin, css-loader or postcss-loader in the chain.
 
+### The dev loop
+
+`pnpm dev` in either app runs `scripts/dev.ts` under tsx. It keeps both bundles
+in watch mode, reruns the generation when its input changes, and serves the
+generated tree with a live-reload snippet injected into every HTML response.
+A change costs roughly **2s** in the blog and **0.1s** in labs.
+
+Ports come from `BLOG_PORT` (default 3000, English takes the next one) and
+`LABS_PORT` (default 3002). They are named per app rather than the conventional
+`PORT` because the root `pnpm dev` runs both in one shell, where a single
+`PORT` would put labs on the blog's.
+
+What reruns depends on what changed:
+
+| changed | blog | labs |
+| --- | --- | --- |
+| a stylesheet | typings, client bundle, server bundle, generation | both bundles, generation |
+| a component | server bundle, generation | server bundle, generation |
+| an article or a fleet | generation only | — |
+| a static asset | copy | — |
+
+Markdown is why the blog watches directories directly: articles, fleets and
+profile entries are read from disk *while generating*, so no bundler ever sees
+them change. Labs has no such content — everything it renders is TypeScript and
+reaches the server bundle.
+
+Two things about it are worth knowing before changing it:
+
+- **The dev server mounts directories the way h2o does**, and that is the whole
+  reason it exists rather than `rspack serve`. Pages are generated into
+  `public/ja` and `public/en` with the bundles in `public/assets`, and each
+  language is its own host in production with the site at its root. Serving
+  `public/` as one root puts the site at `/ja/`, where every root-absolute link
+  in it 404s. So the blog gets a port per language rather than one port with an
+  `/en` prefix, and a directory requested without its trailing slash gets a 301
+  rather than the index, exactly as h2o answers it.
+- **OG images are not generated in dev.** There is one per route, each a satori
+  layout rasterised by resvg at 1920x1080, and together they are nine of a
+  generation's ten seconds. `scripts/dev.ts` sets `SSG_SKIP_OG_IMAGES=1`,
+  which `src/build/build.ts` reads to leave those routes unregistered — so
+  `<path>ogp.png` 404s in dev. Run `pnpm build` to see them.
+
+The shared parts — the static server, the live-reload transport, the watch and
+debounce helpers — live in `build-tool/dev-server` and are imported by both
+apps' `scripts/dev.ts`.
+
 ### Design tokens
 
 Tokens live in `blog/src/ui/styles/tokens.css`, a plain (non-module) stylesheet keyed off `html` / `html[data-theme="..."]`. Keep them out of `.module.css` files: CSS Modules scopes custom properties to the file that declares them, so a token declared in a module gets a hashed name while `var(--token)` in every other component keeps the literal name and silently stops resolving.
@@ -32,6 +78,9 @@ Tokens live in `blog/src/ui/styles/tokens.css`, a plain (non-module) stylesheet 
 
 ### Root
 ```bash
+pnpm dev           # blog on :3000/:3001 and labs on :3002, all watching
+pnpm dev:blog      # just the blog
+pnpm dev:labs      # just labs
 pnpm lint          # oxlint
 pnpm lint:fix      # oxlint --fix
 pnpm format        # oxfmt, writes in place
@@ -53,7 +102,7 @@ the dev machine is on a newer glibc.
 
 ### Blog (packages/applications/blog/)
 ```bash
-pnpm dev            # rspack dev server on :3000
+pnpm dev            # watch everything, 日本語 on :3000 and English on :3001
 pnpm build          # clean, generate:tcm, client, server, SSG, copy assets
 pnpm test           # vitest
 pnpm typecheck      # tsc --noEmit
@@ -65,8 +114,9 @@ Set `GITHUB_TOKEN` to include the contribution calendar on `/activity/`. Without
 
 ### Labs (packages/applications/labs/)
 ```bash
+pnpm --filter labs dev       # watch everything, served on :3002
 pnpm --filter labs build     # clean, client, server, SSG
-pnpm --filter labs preview   # fastify over public/ on :3000, via tsx
+pnpm --filter labs preview   # fastify over an already built public/ on :3000
 pnpm --filter labs typecheck
 ```
 
@@ -100,9 +150,9 @@ The repo is on **TypeScript 7**, the native port, which changes two things worth
 knowing before adding a package or a dependency:
 
 - It no longer includes every `@types/*` package it happens to find under
-  `node_modules`. A package only gets `@types/node` if something in it actually
-  imports from `node:`; otherwise name it in `compilerOptions.types`, the way
-  markdown-parser and ssg-router do.
+  `node_modules`. Name `@types/node` in `compilerOptions.types` the way
+  markdown-parser, ssg-router and build-tool do — importing from `node:` is not
+  enough on its own to pull it in.
 - Inside `node_modules` it resolves a `.ts`/`.tsx` source ahead of the `.d.ts`
   generated next to it, and `skipLibCheck` only ever skips `.d.ts`. That is why
   `@ladle/react` is redirected to `blog/src/types/ladle.d.ts` through `paths` —
@@ -111,7 +161,8 @@ knowing before adding a package or a dependency:
 The build configs are TypeScript but no longer go through ts-node, which cannot
 drive TypeScript 7's compiler API: rspack reads its config natively, and
 webpack-cli reads labs' config through **tsx**, which uses esbuild and so does
-not depend on the `typescript` package at all.
+not depend on the `typescript` package at all. Both apps' `scripts/dev.ts` run
+under tsx for the same reason, and import those configs directly.
 
 ## Code Quality
 
@@ -122,6 +173,8 @@ not depend on the `typescript` package at all.
 - **markdown** — these are published articles and markdown-parser's test fixtures; formatting them would rewrite content and break snapshots
 - **CSS** — the stylesheets are hand-indented with 4 spaces and are load-bearing
 - **package.json** — pnpm owns the formatting of those
+- **`src/assets/`** — the HTML in there is demo pages embedded in articles, hand
+  written and hand formatted, the same as the markdown around them
 
 ## Deployment
 
