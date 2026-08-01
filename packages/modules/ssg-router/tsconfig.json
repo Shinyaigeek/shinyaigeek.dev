@@ -1,4 +1,10 @@
 {
 	"extends": "../../../tsconfig.base.json",
+	// TypeScript 7 no longer pulls in every @types package it finds under
+	// node_modules, and nothing here imports from `node:` to drag it in, so
+	// @types/node has to be named explicitly for the global Buffer type.
+	"compilerOptions": {
+		"types": ["node"]
+	},
 	"include": ["src"]
 }

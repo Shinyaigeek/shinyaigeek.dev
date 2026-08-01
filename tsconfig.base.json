@@ -10,8 +10,9 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"esModuleInterop": true,
-		// Every package here is bundled (rspack / webpack / wrangler) or loaded
-		// through ts-node, so tsc is only ever used as a type checker.
+		// Every package here is bundled (rspack / webpack / wrangler); the build
+		// configs are loaded by rspack natively and by tsx under webpack, so tsc
+		// is only ever used as a type checker.
 		"noEmit": true,
 		"jsx": "react-jsx",
 		"strict": true,

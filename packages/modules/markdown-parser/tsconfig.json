@@ -1,4 +1,9 @@
 {
 	"extends": "../../../tsconfig.base.json",
+	// TypeScript 7 no longer pulls in every @types package it finds under
+	// node_modules, so the ones supplying globals have to be named explicitly.
+	"compilerOptions": {
+		"types": ["node"]
+	},
 	"include": ["src"]
 }

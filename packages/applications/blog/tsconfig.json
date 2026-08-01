@@ -14,7 +14,14 @@
 		"strict": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"noFallthroughCasesInSwitch": true
+		"noFallthroughCasesInSwitch": true,
+		// @ladle/react publishes .tsx typings that TypeScript 7 resolves ahead of
+		// the .d.ts beside them and then type-checks, and skipLibCheck above only
+		// covers .d.ts. The stories use the Story type against the local stand-in
+		// instead; src/types/ladle.d.ts has the whole story.
+		"paths": {
+			"@ladle/react": ["./src/types/ladle"]
+		}
 	},
 	"include": ["src"]
 }
