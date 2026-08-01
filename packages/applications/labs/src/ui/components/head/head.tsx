@@ -1,10 +1,16 @@
 import { Fragment, type FunctionComponent } from "react";
 
-declare const $CSS_BUILT_ASSET_FILENAME: string;
+interface Props {
+	builtAssets: {
+		css: string;
+	};
+}
 
-export const HeadComponent: FunctionComponent = () => (
+export const HeadComponent: FunctionComponent<Props> = ({ builtAssets }) => (
 	<Fragment>
+		<meta charSet="utf8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Labs | shinyaigeek.dev</title>
-		<link rel="stylesheet" href={`/${$CSS_BUILT_ASSET_FILENAME}`} />
+		<link rel="stylesheet" href={`/assets/${builtAssets.css}`} />
 	</Fragment>
 );

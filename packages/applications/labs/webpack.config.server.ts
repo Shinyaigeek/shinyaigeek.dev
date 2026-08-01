@@ -1,21 +1,29 @@
 import { webpackBaseConfig } from "build-tool";
 // @ts-ignore
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import webpack from "webpack";
+import type webpack from "webpack";
 import { merge } from "webpack-merge";
-import { getBuiltAssetFilename } from "./tools/build-utility.js";
-
-const builtAssetsFilename = getBuiltAssetFilename();
+import { LABS_DIST_DIRECTORY } from "./tools/build-utility.ts";
 
 const config: webpack.Configuration = merge(
 	{
 		entry: {
-			server: "./src/server/index.tsx",
+			build: "./src/build/build.ts",
 		},
 		// `pnpm build` is a production build; webpack warns when mode is unset.
 		mode: "production",
 		output: {
 			filename: "[name].js",
+			path: LABS_DIST_DIRECTORY,
+			// The package is type: module, so `node ./dist/build.js` reads the
+			// bundle as ESM and a default CommonJS bundle would die on `module`.
+			chunkFormat: "module",
+			library: {
+				type: "module",
+			},
+		},
+		experiments: {
+			outputModule: true,
 		},
 		target: "node",
 		module: {
@@ -27,11 +35,11 @@ const config: webpack.Configuration = merge(
 			],
 		},
 		plugins: [
+			// The page components import their stylesheets, so something has to
+			// handle the CSS even though this build only needs the class name map
+			// out of it. The extracted file lands in dist/, which is not deployed.
 			new MiniCssExtractPlugin({
 				filename: "ignored.css",
-			}),
-			new webpack.DefinePlugin({
-				$CSS_BUILT_ASSET_FILENAME: JSON.stringify(builtAssetsFilename.css),
 			}),
 		],
 	},

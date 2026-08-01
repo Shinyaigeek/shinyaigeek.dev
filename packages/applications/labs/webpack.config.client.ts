@@ -3,6 +3,7 @@ import { webpackBaseConfig } from "build-tool";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import type webpack from "webpack";
 import { merge } from "webpack-merge";
+import { LABS_ASSETS_DIRECTORY } from "./tools/build-utility.ts";
 
 const config: webpack.Configuration = merge(
 	{
@@ -13,6 +14,9 @@ const config: webpack.Configuration = merge(
 		mode: "production",
 		output: {
 			filename: "[name].[contenthash].js",
+			// Straight into the deployed tree, so the SSG can write the HTML that
+			// links to it around it rather than a later copy step having to.
+			path: LABS_ASSETS_DIRECTORY,
 		},
 		module: {
 			rules: [

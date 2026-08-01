@@ -6,12 +6,18 @@ import styles from "./top.module.css";
 
 interface Props {
 	allProjects: string[];
+	builtAssets: {
+		css: string;
+	};
 }
 
-export const TopPageComponent: FunctionComponent<Props> = ({ allProjects }) => (
+export const TopPageComponent: FunctionComponent<Props> = ({
+	allProjects,
+	builtAssets,
+}) => (
 	<html lang="ja">
 		<head>
-			<HeadComponent />
+			<HeadComponent builtAssets={builtAssets} />
 		</head>
 		<body>
 			<HeaderComponent />

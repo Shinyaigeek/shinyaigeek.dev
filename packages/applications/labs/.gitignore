@@ -1,0 +1,4 @@
+# Build output. `dist` is the bundled SSG entry, `public` is the generated site
+# it writes -- both are rebuilt by `pnpm build` and neither is committed.
+dist
+public

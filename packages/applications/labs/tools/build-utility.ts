@@ -1,24 +1,16 @@
-import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
-const __filename = fileURLToPath(import.meta.url);
 
-const __dirname = path.dirname(__filename);
+/**
+ * Build artifacts: the bundled SSG entry and the preview server. Never
+ * deployed -- only `public/` is copied to the VPS.
+ */
+export const LABS_DIST_DIRECTORY = path.resolve(process.cwd(), "dist");
 
-export const LABS_OUTPUT_DIRECTORY = path.join(__dirname, "../dist");
+/**
+ * The static site itself, which h2o serves at labs.shinyaigeek.dev.
+ * `build:client` fills `assets/` and the SSG writes the HTML tree around it.
+ */
+export const LABS_PUBLIC_DIRECTORY = path.resolve(process.cwd(), "public");
 
-export const getBuiltAssetFilename = () => {
-	const builtAssets = fs.readdirSync(LABS_OUTPUT_DIRECTORY);
-
-	const css = builtAssets.find(
-		(asset) => asset.startsWith("client") && asset.endsWith(".css"),
-	);
-
-	if (!css) {
-		throw new Error("cannot find css output in dist directory");
-	}
-
-	return {
-		css,
-	};
-};
+/** Where the content hashed client bundle and its stylesheet land. */
+export const LABS_ASSETS_DIRECTORY = path.join(LABS_PUBLIC_DIRECTORY, "assets");

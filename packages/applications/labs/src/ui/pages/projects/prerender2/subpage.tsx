@@ -5,10 +5,18 @@ import { HeaderComponent } from "../../../components/header/header";
 import "../../../styles/global.css";
 import styles from "./prerender2.module.css";
 
-export const Prerender2SubPageComponent: FunctionComponent = () => (
+interface Props {
+	builtAssets: {
+		css: string;
+	};
+}
+
+export const Prerender2SubPageComponent: FunctionComponent<Props> = ({
+	builtAssets,
+}) => (
 	<html lang="ja">
 		<head>
-			<HeadComponent />
+			<HeadComponent builtAssets={builtAssets} />
 		</head>
 		<body>
 			<HeaderComponent />
