@@ -17,6 +17,7 @@
 		"**/*.css.d.ts",
 		"**/package.json",
 		"**/*.md",
-		"**/*.css"
+		"**/*.css",
+		"**/src/assets/**"
 	]
 }
