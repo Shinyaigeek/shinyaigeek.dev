@@ -1,3 +1,19 @@
 packages:
-    - 'packages/applications/*'
-    - 'packages/modules/*'
+  - 'packages/applications/*'
+  - 'packages/modules/*'
+
+# pnpm 10 stopped running dependencies' install scripts unless they are listed
+# here. All four ship their platform binaries as optionalDependencies and only
+# use the script to unpack or shortcut to one, so none of them is needed: the
+# blog deploy has always installed with --ignore-scripts, and the full ci run,
+# both apps' builds and the worker bundle pass with these off.
+allowBuilds:
+  '@swc/core': false
+  esbuild: false
+  msw: false
+  workerd: false
+
+# pnpm 10 moved every setting out of package.json's "pnpm" field and into this
+# file; pnpm 11 ignores that field outright, warning about each key it drops.
+overrides:
+  rollup: 4.62.2

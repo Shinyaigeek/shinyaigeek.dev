@@ -91,10 +91,28 @@ pnpm run ci        # all of the above, the way CI runs them
 ```
 
 `ci` is the one script that needs `pnpm run`: bare `pnpm ci` hits pnpm's own
-built-in `ci` command, which fails with `ERR_PNPM_CI_NOT_IMPLEMENTED` without
-ever reaching the script.
+built-in `ci` command. It used to fail with `ERR_PNPM_CI_NOT_IMPLEMENTED`, which
+at least made the mistake obvious; pnpm 11 implements it, so it now deletes
+every `node_modules` and reinstalls from the lockfile without ever reaching the
+script.
 
-`pnpm.overrides` in the root package.json pins **rollup** to 4.62.2. From 4.62.3
+The repo is on **pnpm 11**, pinned through `packageManager`. Settings no longer
+come from package.json's `pnpm` field — pnpm 11 ignores it and warns about each
+key it drops — so everything below lives in `pnpm-workspace.yaml`.
+
+Node 26 no longer bundles **corepack**. `pmOnFail` keeps its default,
+`download`, which is what still holds the `packageManager` pin locally: a pnpm
+that is not 11.18.0 fetches that version and hands over to it rather than
+running as itself. The GitHub runner image does still ship corepack, which is
+what `corepack enable pnpm` in the workflows picks up.
+
+Dependencies' install scripts no longer run unless the package is listed under
+`allowBuilds`. The four that ask for one (`@swc/core`, `esbuild`, `msw`,
+`workerd`) are all listed as `false`: each ships its platform binary as an
+optional dependency and only uses the script to unpack or shortcut to it, and
+the deploy workflows have always installed with `--ignore-scripts` anyway.
+
+`overrides` in `pnpm-workspace.yaml` pins **rollup** to 4.62.2. From 4.62.3
 its prebuilt Linux binary needs GLIBC 2.32, which is newer than the dev machine
 (Ubuntu 20.04, GLIBC 2.31) has, so vitest dies with `ERR_DLOPEN_FAILED` on every
 `pnpm test`. CI runs on ubuntu-latest and is unaffected — drop the override once
