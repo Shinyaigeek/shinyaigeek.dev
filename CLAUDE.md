@@ -87,6 +87,7 @@ pnpm format        # oxfmt, writes in place
 pnpm format:check  # oxfmt --check
 pnpm typecheck     # tsc --noEmit in every package
 pnpm test          # vitest in every package that has tests
+pnpm audit         # advisories against the lockfile, needs network
 pnpm run ci        # all of the above, the way CI runs them
 ```
 
@@ -106,17 +107,56 @@ that is not 11.18.0 fetches that version and hands over to it rather than
 running as itself. The GitHub runner image does still ship corepack, which is
 what `corepack enable pnpm` in the workflows picks up.
 
-Dependencies' install scripts no longer run unless the package is listed under
-`allowBuilds`. The four that ask for one (`@swc/core`, `esbuild`, `msw`,
+### Supply-chain settings
+
+All of these are in `pnpm-workspace.yaml`, each with the reasoning inline. The
+two worth knowing before an install surprises you:
+
+- **`minimumReleaseAge: 4320`** quarantines anything published in the last three
+  days, and every install re-checks the whole lockfile against it, not just new
+  resolutions. So a version that was fine to resolve can still block a
+  `--frozen-lockfile` install for its first three days. `pnpm install` fails with
+  `ERR_PNPM_LOCKFILE_RESOLUTION_VERIFICATION` and names each entry. To take
+  something early anyway — a security fix, typically — add it to
+  `minimumReleaseAgeExclude` as `name@exact.version`, which is also what
+  `pnpm audit --fix` writes.
+- **`trustPolicy: no-downgrade`** rejects a version whose publish trail is weaker
+  than that of a version published before it. Old releases of a package that
+  later adopted trusted publishing trip this without anything being wrong;
+  `chokidar@4.0.3` and `semver@6.3.1` are listed under `trustPolicyExclude` for
+  exactly that reason. Check the publish dates before adding a third.
+
+Both checks cost registry round-trips on the first install after a lockfile
+change, and the verdict is cached afterwards.
+
+Dependencies' install scripts do not run unless the package is listed under
+`allowBuilds`, and `strictDepBuilds` makes an unlisted script an error rather
+than a warning. The four that ask for one (`@swc/core`, `esbuild`, `msw`,
 `workerd`) are all listed as `false`: each ships its platform binary as an
 optional dependency and only uses the script to unpack or shortcut to it, and
 the deploy workflows have always installed with `--ignore-scripts` anyway.
+
+`verifyDepsBeforeRun: error` means `pnpm run` and `pnpm exec` refuse to start
+when `node_modules` has drifted from the lockfile, with
+`ERR_PNPM_VERIFY_DEPS_BEFORE_RUN`. Editing a dependency in a package.json and
+running a script before installing is the usual way to meet it.
+
+`pnpm audit` runs as its own CI job and as the last step of `pnpm run ci`,
+failing on any advisory at or above `audit.level` (`low`). It is deliberately
+not in either deploy workflow: an advisory landing against a transitive
+dependency should not be what stops the blog from shipping.
 
 `overrides` in `pnpm-workspace.yaml` pins **rollup** to 4.62.2. From 4.62.3
 its prebuilt Linux binary needs GLIBC 2.32, which is newer than the dev machine
 (Ubuntu 20.04, GLIBC 2.31) has, so vitest dies with `ERR_DLOPEN_FAILED` on every
 `pnpm test`. CI runs on ubuntu-latest and is unaffected — drop the override once
 the dev machine is on a newer glibc.
+
+The second override pins **brace-expansion**'s 2.x branch to ^2.1.4 for
+GHSA-mh99-v99m-4gvg. It reaches the tree only through
+`typed-css-modules > glob > minimatch`, which has no release picking the fix up,
+so the override is the only way to clear the advisory; drop it once
+typed-css-modules moves off that minimatch.
 
 ### Blog (packages/applications/blog/)
 ```bash

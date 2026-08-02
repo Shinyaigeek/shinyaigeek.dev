@@ -2,18 +2,90 @@ packages:
   - 'packages/applications/*'
   - 'packages/modules/*'
 
+# pnpm 10 moved every setting out of package.json's "pnpm" field and into this
+# file; pnpm 11 ignores that field outright, warning about each key it drops.
+
+# --- supply chain -----------------------------------------------------------
+
+# Quarantine freshly published versions for three days. Compromised releases are
+# usually caught and unpublished within hours, so the cooldown is what stops an
+# update run from being the thing that pulls one in. pnpm 11 defaults this to a
+# day; setting it explicitly also turns minimumReleaseAgeStrict on, which makes
+# an immature pick abort the install instead of quietly excluding itself.
+minimumReleaseAge: 4320
+minimumReleaseAgeStrict: true
+# Never wave a package through because the registry did not report a publish
+# time -- no time, no maturity, no install.
+minimumReleaseAgeIgnoreMissingTime: false
+minimumReleaseAgeExclude:
+  # The GHSA-mh99-v99m-4gvg fix pinned under overrides below, taken before it
+  # aged past the cooldown. Published 2026-07-30, so this line is a no-op from
+  # 2026-08-02 on and can be dropped at the next lockfile change.
+  - brace-expansion@2.1.4
+
+# Refuse a version whose publish trail is weaker than that of a version
+# published before it -- provenance or a trusted publisher disappearing is what
+# a package takeover looks like from the outside.
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  # Both predate their package adopting trusted publishing, so every later
+  # release looks like a downgrade next to them.
+  - chokidar@4.0.3
+  - semver@6.3.1
+
+# Re-check every lockfile entry against the two policies above on each install,
+# rather than trusting that whoever resolved it had them switched on.
+trustLockfile: false
+
+# Subdependencies may only come from the registry: no git, http or file specs
+# smuggled in through a transitive manifest.
+blockExoticSubdeps: true
+
+# --- install scripts --------------------------------------------------------
+
 # pnpm 10 stopped running dependencies' install scripts unless they are listed
-# here. All four ship their platform binaries as optionalDependencies and only
-# use the script to unpack or shortcut to one, so none of them is needed: the
-# blog deploy has always installed with --ignore-scripts, and the full ci run,
-# both apps' builds and the worker bundle pass with these off.
+# here, and strictDepBuilds turns a script that wants to run but is not listed
+# into an error rather than a line of install output nobody reads. All four
+# below ship their platform binaries as optionalDependencies and only use the
+# script to unpack or shortcut to one, so none of them is needed: the blog
+# deploy has always installed with --ignore-scripts, and the full ci run, both
+# apps' builds and the worker bundle pass with these off.
+strictDepBuilds: true
+dangerouslyAllowAllBuilds: false
 allowBuilds:
   '@swc/core': false
   esbuild: false
   msw: false
   workerd: false
 
-# pnpm 10 moved every setting out of package.json's "pnpm" field and into this
-# file; pnpm 11 ignores that field outright, warning about each key it drops.
+# --- store ------------------------------------------------------------------
+
+# Both default to on. Named here so a stray global config cannot turn off the
+# checks that tie what is linked into node_modules back to the tarball the
+# registry served.
+verifyStoreIntegrity: true
+strictStorePkgContentCheck: true
+
+# --- toolchain --------------------------------------------------------------
+
+# What happens when the running pnpm is not the one packageManager pins.
+# "download" -- the default -- fetches the pinned version and runs that, which
+# is a stronger guarantee than "error": the pinned pnpm is what actually runs
+# rather than merely being demanded. Node 26 dropped corepack, so this is now
+# the only thing holding that pin locally.
+pmOnFail: download
+
+# node_modules that no longer matches the lockfile means scripts running against
+# dependencies nobody resolved. Fail instead of guessing.
+verifyDepsBeforeRun: error
+
+audit:
+  level: low
+
 overrides:
   rollup: 4.62.2
+  # GHSA-mh99-v99m-4gvg: brace-expansion 2.x below 2.1.3 crashes the process on
+  # an unbounded expansion. It reaches us only through
+  # typed-css-modules > glob > minimatch, which has no release picking up the
+  # fix, so the branch is pinned here. The 5.x major in the tree is unaffected.
+  brace-expansion@2: ^2.1.4

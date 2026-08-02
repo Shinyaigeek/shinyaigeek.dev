@@ -58,6 +58,23 @@ jobs:
             - name: Run tests
               run: pnpm run test
 
+    audit:
+        needs:
+            - warmup_dependencies_cache
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        env:
+            NODE_ENV: development
+        steps:
+            - uses: actions/checkout@v4
+            - uses: ./.github/actions/setup
+            # Fails on any advisory at or above audit.level in pnpm-workspace.yaml,
+            # currently `low`. This job is deliberately outside the deploy
+            # workflows: an advisory published against a transitive dependency
+            # should page us, not stop the blog from shipping.
+            - name: Audit dependencies
+              run: pnpm run audit
+
     build:
         needs:
             - warmup_dependencies_cache
