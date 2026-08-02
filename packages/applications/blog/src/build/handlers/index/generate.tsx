@@ -10,11 +10,11 @@ import { GetWorkExperiencesUsecase } from "../../application/getWorkExperiences/
 import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
-import { Language } from "../../model/language/language.entity";
 import type { OSSProject } from "../../model/oss/oss.entity";
 import { OSSRepository } from "../../model/oss/oss.repository";
 import type { WorkExperience } from "../../model/work-experience/work-experience.entity";
 import { WorkExperienceRepository } from "../../model/work-experience/work-experience.repository";
+import { siteDescription } from "../site-metadata";
 
 export const generateIndexPage: GenerateHandler<Context> = async ({
 	context,
@@ -44,10 +44,7 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 	}
 	const ossProjects: OSSProject[] = unwrapOk(ossProjectsResult);
 
-	const description =
-		language === Language.ja
-			? "Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"
-			: "shinyaigeek.dev is a tech blog by a web developer. I mainly write about web development.";
+	const description = siteDescription(language);
 
 	return renderToStaticMarkup(
 		<Shell

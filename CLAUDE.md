@@ -24,6 +24,47 @@ The blog serves Japanese and English content, parses markdown with unified/remar
 
 Rspack's **native** CSS support handles both extraction and CSS modules — there is no CssExtractRspackPlugin, css-loader or postcss-loader in the chain.
 
+### What the blog publishes besides pages
+
+Every route is a route, so the feed, the sitemap and the rest are registered in
+`build.ts` alongside the pages and written by the same generation:
+
+| route | what it is |
+| --- | --- |
+| `/rss.xml`, `/sitemap.xml` | as they always were |
+| `/robots.txt` | `Allow: /` plus the `Sitemap:` line — the site had no robots.txt at all before |
+| `/llms.txt` | [llmstxt.org](https://llmstxt.org/): the site as one Markdown index |
+| `/post/<slug>/index.md` | the article itself, as Markdown |
+
+Each article's page announces its Markdown with a `<link rel="alternate"
+type="text/markdown">`, next to the one that has always announced the feed.
+`Shell` takes a `markdown` prop for it and derives the href from `path`, the
+same way it derives og:image — so the two cannot come to name different pages.
+The articles are the only pages that pass it.
+
+Two things about the Markdown are worth knowing before changing it:
+
+- **It is the source, not the page turned back into Markdown.** The HTML the
+  page renders is lossy — highlighted code, wrapped tables — so `BlogContent`
+  carries the frontmatter-stripped source alongside it, and the handler writes
+  that with a short heading block in front. Frontmatter does not come along:
+  half its keys are derived rather than written.
+- **Asset links are rewritten to absolute URLs.** The articles write them both
+  as `/assets/x.png` and `../../../assets/x.png`, and from an article's own URL
+  those resolve to the same place — which is why the pages never needed this. A
+  `.md` gets read away from the URL it came from, where neither form means
+  anything. `absolute-asset-urls.ts` does it, and is the one piece of this with
+  tests.
+
+`llms.txt` links each article to its `.md` rather than to its page, which is the
+point of the file. Its section headings stay in English in both languages
+because `## Optional` is the one name the spec gives a meaning to. Descriptions
+are collapsed onto one line and cut at 200 characters — several of the older
+ones are whole paragraphs, and a newline in a list item ends the item.
+
+h2o needs no configuration for any of this: `.md` is already `text/markdown` in
+its built-in table, and everything else here is a plain file under the doc root.
+
 ### The dev loop
 
 `pnpm dev` in either app runs `scripts/dev.ts` under tsx. It keeps both bundles

@@ -36,13 +36,14 @@ export class BlogRepository {
 			return parseBlogContentResult;
 		}
 
-		const { metadata, body } = unwrapOk(parseBlogContentResult);
+		const { metadata, body, markdown } = unwrapOk(parseBlogContentResult);
 
 		return createOk(
 			new BlogContent(
 				{ ...metadata, path: slug.replace(".md", "") },
 				body,
 				language,
+				markdown,
 			),
 		);
 	}

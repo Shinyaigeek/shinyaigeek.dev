@@ -7,6 +7,7 @@ import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../model/blog/blog.repository";
 import { FleetRepository } from "../../model/fleet/fleet.repository";
+import { siteBaseUrl } from "../site-metadata";
 
 export const generateSitemapPage: GenerateHandler<Context> = async ({
 	context,
@@ -35,7 +36,7 @@ export const generateSitemapPage: GenerateHandler<Context> = async ({
 	const fleets = isErr(fleetResults) ? [] : unwrapOk(fleetResults);
 
 	const language = context.language;
-	const baseUrl = `https://${language}.shinyaigeek.dev`;
+	const baseUrl = siteBaseUrl(language);
 	const currentDate = new Date().toISOString().split("T")[0]; // YYYY-MM-DD format
 
 	const staticUrls = [

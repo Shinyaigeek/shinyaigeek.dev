@@ -15,6 +15,8 @@ import { extractBlogMetadata } from "./extract-blog-metadata";
 interface ParseBlogContentResult {
 	metadata: BlogMetadata;
 	body: string;
+	/** The frontmatter-stripped source, for the Markdown the site also serves. */
+	markdown: string;
 }
 
 export const parseBlogContent: (
@@ -48,6 +50,7 @@ export const parseBlogContent: (
 			headings,
 		},
 		body: parsed.toString(),
+		markdown: content,
 	});
 };
 

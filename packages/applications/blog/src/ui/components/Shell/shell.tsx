@@ -21,6 +21,14 @@ interface SiteHeadProps {
 	path: string;
 	language: "en" | "ja";
 	description: string;
+	/**
+	 * Whether this page is also published as Markdown, at <its path>index.md.
+	 *
+	 * Only the articles are, so this is off by default. The href is derived from
+	 * `path` rather than passed in, for the same reason og:image is: the two can
+	 * then never name different pages.
+	 */
+	markdown?: boolean;
 	builtAssets: {
 		javascript: string;
 		css: string;
@@ -32,6 +40,7 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 	path,
 	language,
 	description,
+	markdown = false,
 	builtAssets,
 }) => {
 	const locale = language === "en" ? "en_US" : "ja_JP";
@@ -86,6 +95,11 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 				title="shinyaigeek.dev"
 				href="/rss.xml"
 			/>
+			{/* Root relative like the feed above: each language is its own host,
+			    so there is nothing else this could resolve to. */}
+			{markdown && (
+				<link rel="alternate" type="text/markdown" href={`${path}index.md`} />
+			)}
 		</head>
 	);
 };
@@ -100,6 +114,7 @@ export const Shell: FunctionComponent<ShellProps> = ({
 	path,
 	language,
 	description,
+	markdown,
 	builtAssets,
 }) => (
 	<LanguageContext.Provider value={language}>
@@ -109,6 +124,7 @@ export const Shell: FunctionComponent<ShellProps> = ({
 				path={path}
 				language={language}
 				description={description}
+				markdown={markdown}
 				builtAssets={builtAssets}
 			/>
 			<body>

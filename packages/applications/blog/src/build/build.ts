@@ -12,6 +12,8 @@ import { generateFleetsPage } from "./handlers/fleets/generate";
 import { outputFleetsPage } from "./handlers/fleets/output";
 import { generateIndexPage } from "./handlers/index/generate";
 import { outputIndexPage } from "./handlers/index/output";
+import { generateLlmsTxt } from "./handlers/llms/generate";
+import { outputLlmsTxt } from "./handlers/llms/output";
 import {
 	generateActivityOGImagePage,
 	generateBlogIndexOGImagePage,
@@ -29,15 +31,21 @@ import {
 } from "./handlers/ogimage/getOGImageChildren";
 import { outputOGImagePage } from "./handlers/ogimage/output";
 import { generateBlogPostPage } from "./handlers/post/children/generate";
+import { generateBlogPostMarkdown } from "./handlers/post/children/markdown/generate";
+import { outputBlogPostMarkdown } from "./handlers/post/children/markdown/output";
 import { outputBlogPostPage } from "./handlers/post/children/output";
 import { generateBlogIndexPage } from "./handlers/post/generate";
 import {
 	getEnglishBlogChildren,
+	getEnglishBlogMarkdownChildren,
 	getJapaneseBlogChildren,
+	getJapaneseBlogMarkdownChildren,
 } from "./handlers/post/getBlogChildren/getBlogChildren";
 import { outputBlogIndexPage } from "./handlers/post/output";
 import { generateProfilePage } from "./handlers/profile/generate";
 import { outputProfilePage } from "./handlers/profile/output";
+import { generateRobotsTxt } from "./handlers/robots/generate";
+import { outputRobotsTxt } from "./handlers/robots/output";
 import { generateRssPage } from "./handlers/rss/generate";
 import { outputRssPage } from "./handlers/rss/output";
 import { generateSitemapPage } from "./handlers/sitemap/generate";
@@ -93,6 +101,16 @@ pendingRegistrations.push(
 		generate: generateBlogPostPage,
 		output: outputBlogPostPage,
 	}),
+	// The same articles as Markdown, written into the directory the page above
+	// is the index.html of. llms.txt links to these rather than to the pages.
+	router.onChildren(getJapaneseBlogMarkdownChildren, {
+		generate: generateBlogPostMarkdown,
+		output: outputBlogPostMarkdown,
+	}),
+	router.onChildren(getEnglishBlogMarkdownChildren, {
+		generate: generateBlogPostMarkdown,
+		output: outputBlogPostMarkdown,
+	}),
 );
 router.on("/profile/", {
 	generate: generateProfilePage,
@@ -143,6 +161,22 @@ router.on("/sitemap.xml", {
 router.on("/en/sitemap.xml", {
 	generate: generateSitemapPage,
 	output: outputSitemapPage,
+});
+router.on("/llms.txt", {
+	generate: generateLlmsTxt,
+	output: outputLlmsTxt,
+});
+router.on("/en/llms.txt", {
+	generate: generateLlmsTxt,
+	output: outputLlmsTxt,
+});
+router.on("/robots.txt", {
+	generate: generateRobotsTxt,
+	output: outputRobotsTxt,
+});
+router.on("/en/robots.txt", {
+	generate: generateRobotsTxt,
+	output: outputRobotsTxt,
 });
 if (shouldGenerateOGImages) {
 	router.on("/ogp.png", {

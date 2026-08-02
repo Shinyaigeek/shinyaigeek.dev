@@ -13,9 +13,9 @@ import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
 import { AboutMeRepository } from "../../model/about-me/about-me.repository";
 import { EducationRepository } from "../../model/education/education.repository";
-import { Language } from "../../model/language/language.entity";
 import { OSSRepository } from "../../model/oss/oss.repository";
 import { WorkExperienceRepository } from "../../model/work-experience/work-experience.repository";
+import { siteDescription } from "../site-metadata";
 
 export const generateProfilePage: GenerateHandler<Context> = async ({
 	context,
@@ -79,10 +79,7 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 	// Fetch about me
 	const aboutMe = await aboutMeRepository.getAboutMe(context.language);
 
-	const description =
-		context.language === Language.ja
-			? "Web が好きなオタクのブログ. 主にweb開発の知見について喋ります"
-			: "shinyaigeek.dev is a tech blog by a web developer. I mainly write about web development.";
+	const description = siteDescription(context.language);
 
 	return renderToStaticMarkup(
 		<Shell
