@@ -112,10 +112,10 @@ what `corepack enable pnpm` in the workflows picks up.
 All of these are in `pnpm-workspace.yaml`, each with the reasoning inline. The
 two worth knowing before an install surprises you:
 
-- **`minimumReleaseAge: 4320`** quarantines anything published in the last three
-  days, and every install re-checks the whole lockfile against it, not just new
+- **`minimumReleaseAge: 10080`** quarantines anything published in the last week,
+  and every install re-checks the whole lockfile against it, not just new
   resolutions. So a version that was fine to resolve can still block a
-  `--frozen-lockfile` install for its first three days. `pnpm install` fails with
+  `--frozen-lockfile` install for its first week. `pnpm install` fails with
   `ERR_PNPM_LOCKFILE_RESOLUTION_VERIFICATION` and names each entry. To take
   something early anyway — a security fix, typically — add it to
   `minimumReleaseAgeExclude` as `name@exact.version`, which is also what
@@ -128,6 +128,15 @@ two worth knowing before an install surprises you:
 
 Both checks cost registry round-trips on the first install after a lockfile
 change, and the verdict is cached afterwards.
+
+A week of quarantine means **the newest release of anything is never the one to
+take**. oxfmt and oxlint publish weekly, rspack and webpack nearly as often, and
+`@types/node` and `@cloudflare/workers-types` faster still, so their declared
+ranges sit one release behind on purpose — `^0.60.0` while 0.61.0 exists, and so
+on. Raising a floor to a release younger than a week does not just fail to
+resolve, it fails the whole install, including for anyone whose lockfile already
+had it. When bumping any of these, check the publish date first and take the
+newest release that is already a week old.
 
 Dependencies' install scripts do not run unless the package is listed under
 `allowBuilds`, and `strictDepBuilds` makes an unlisted script an error rather

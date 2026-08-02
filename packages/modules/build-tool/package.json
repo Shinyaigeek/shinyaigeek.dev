@@ -36,11 +36,11 @@
 		}
 	},
 	"devDependencies": {
-		"@rspack/cli": "^2.1.6",
-		"@rspack/core": "^2.1.6",
+		"@rspack/cli": "^2.1.5",
+		"@rspack/core": "^2.1.5",
 		"@swc/core": "^1.15.46",
-		"@types/node": "^26.1.2",
-		"webpack": "^5.109.1"
+		"@types/node": "^26.1.1",
+		"webpack": "^5.109.0"
 	},
 	"peerDependencies": {
 		"@rspack/cli": "^2",

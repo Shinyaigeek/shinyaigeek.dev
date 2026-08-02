@@ -7,12 +7,12 @@ packages:
 
 # --- supply chain -----------------------------------------------------------
 
-# Quarantine freshly published versions for three days. Compromised releases are
+# Quarantine freshly published versions for a week. Compromised releases are
 # usually caught and unpublished within hours, so the cooldown is what stops an
 # update run from being the thing that pulls one in. pnpm 11 defaults this to a
 # day; setting it explicitly also turns minimumReleaseAgeStrict on, which makes
 # an immature pick abort the install instead of quietly excluding itself.
-minimumReleaseAge: 4320
+minimumReleaseAge: 10080
 minimumReleaseAgeStrict: true
 # Never wave a package through because the registry did not report a publish
 # time -- no time, no maturity, no install.
@@ -20,7 +20,9 @@ minimumReleaseAgeIgnoreMissingTime: false
 minimumReleaseAgeExclude:
   # The GHSA-mh99-v99m-4gvg fix pinned under overrides below, taken before it
   # aged past the cooldown. Published 2026-07-30, so this line is a no-op from
-  # 2026-08-02 on and can be dropped at the next lockfile change.
+  # 2026-08-06 on and can be dropped at the next lockfile change. Every other
+  # direct dependency is instead held one release behind, which is what a week
+  # of quarantine costs -- see CLAUDE.md.
   - brace-expansion@2.1.4
 
 # Refuse a version whose publish trail is weaker than that of a version
