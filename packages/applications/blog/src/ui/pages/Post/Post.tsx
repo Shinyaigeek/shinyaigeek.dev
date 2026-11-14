@@ -23,7 +23,7 @@ export const Post: FunctionComponent<Props> = function Post({
 	content,
 }) {
 	return (
-		<div>
+		<article>
 			<FloatingHeadings anchors={anchors} />
 			<PostMetaInfo title={title} tags={tags} publishedAt={publishedAt} />
 			<div
@@ -37,6 +37,6 @@ export const Post: FunctionComponent<Props> = function Post({
 			<div className={profile}>
 				<ShinyaigeekCoreProfile />
 			</div>
-		</div>
+		</article>
 	);
 };

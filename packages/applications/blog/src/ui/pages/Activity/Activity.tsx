@@ -43,15 +43,19 @@ const COPY = {
 	},
 } as const;
 
+/** Pull requests and issues `login` opened in other people's repositories. */
+export const githubActivitySearchUrl = (login: string) =>
+	`https://github.com/search?q=${encodeURIComponent(
+		`involves:${login} -user:${login} author:${login} is:public`,
+	)}&type=issues`;
+
 export const Activity: FunctionComponent<Props> = ({
 	language,
 	calendar,
 	login,
 }) => {
 	const copy = COPY[language];
-	const searchUrl = `https://github.com/search?q=${encodeURIComponent(
-		`involves:${login} -user:${login} author:${login} is:public`,
-	)}&type=issues`;
+	const searchUrl = githubActivitySearchUrl(login);
 
 	return (
 		<div>

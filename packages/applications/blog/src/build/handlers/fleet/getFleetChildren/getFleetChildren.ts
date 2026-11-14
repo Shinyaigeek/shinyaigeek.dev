@@ -4,14 +4,15 @@ import { NodeFileIOInfrastructure } from "../../../infrastructure/file-io/node-f
 import { NodeFilePathImplementation } from "../../../infrastructure/file-path/node-file-path";
 import { FleetRepository } from "../../../model/fleet/fleet.repository";
 import { Language } from "../../../model/language/language.entity";
+import { MARKDOWN_SUFFIX } from "../../post/getBlogChildren/getBlogChildren";
 import { languagePrefix } from "../../site-path";
 
 /**
  * A route for every fleet in a language.
  *
  * `suffix` is whatever hangs off the fleet's own path -- "/" for the page
- * itself, "/ogp.png" for its OG image -- so the page routes and the image routes
- * stay derived from one list instead of two copies that can drift apart.
+ * itself, "/ogp.png" for its OG image, "/index.md" for its Markdown -- so those
+ * route sets stay derived from one list instead of copies that can drift apart.
  *
  * These used to swallow every failure and return [], so a fleet with broken
  * frontmatter just vanished from the build with nothing said. A missing
@@ -21,7 +22,7 @@ import { languagePrefix } from "../../site-path";
  */
 export const fleetChildren = async (
 	language: Language,
-	suffix: "/" | "/ogp.png",
+	suffix: "/" | "/ogp.png" | typeof MARKDOWN_SUFFIX,
 ): Promise<string[]> => {
 	const fleetRepository = new FleetRepository(
 		new NodeFileIOInfrastructure(),
@@ -45,3 +46,9 @@ export const fleetChildren = async (
 export const getJapaneseFleetChildren = () => fleetChildren(Language.ja, "/");
 
 export const getEnglishFleetChildren = () => fleetChildren(Language.en, "/");
+
+export const getJapaneseFleetMarkdownChildren = () =>
+	fleetChildren(Language.ja, MARKDOWN_SUFFIX);
+
+export const getEnglishFleetMarkdownChildren = () =>
+	fleetChildren(Language.en, MARKDOWN_SUFFIX);

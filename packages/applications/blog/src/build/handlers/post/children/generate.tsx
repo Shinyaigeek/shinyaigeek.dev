@@ -10,6 +10,7 @@ import { NodeFileIOInfrastructure } from "../../../infrastructure/file-io/node-f
 import { NodeFilePathImplementation } from "../../../infrastructure/file-path/node-file-path";
 import { BlogRepository } from "../../../model/blog/blog.repository";
 import { sitePath } from "../../site-path";
+import { blogPostingJsonLd } from "../../structured-data";
 
 export const generateBlogPostPage: GenerateHandler<Context> = async ({
 	path,
@@ -42,9 +43,8 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 			title={`${blogPost.metadata.title} - shinyaigeek.dev`}
 			path={`${articlePath}/`}
 			description={blogPost.metadata.description}
-			// The articles are the only pages with a Markdown counterpart, and
-			// this is what points a reader at it without going through llms.txt.
 			markdown
+			jsonLd={blogPostingJsonLd(blogPost, language)}
 			builtAssets={context.builtAssets}
 		>
 			{/* currentPath drives the language switcher, so it has to be this

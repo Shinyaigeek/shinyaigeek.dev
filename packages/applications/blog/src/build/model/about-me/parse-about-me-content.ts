@@ -27,5 +27,6 @@ export const parseAboutMeContent = async (
 	return {
 		metadata,
 		body,
+		markdown: markdownContent,
 	};
 };

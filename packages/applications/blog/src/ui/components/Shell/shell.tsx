@@ -1,6 +1,7 @@
 import type { FunctionComponent, ReactNode } from "react";
 import { siteOrigin } from "../../../universal/site-origin";
 import { LanguageContext } from "../../context/language-context";
+import { type JsonLd, serializeJsonLd } from "./json-ld";
 
 const isProd = process.env.NODE_ENV === "production";
 const ASSETS_PORT = process.env.ASSETS_PORT ?? 8080;
@@ -24,11 +25,14 @@ interface SiteHeadProps {
 	/**
 	 * Whether this page is also published as Markdown, at <its path>index.md.
 	 *
-	 * Only the articles are, so this is off by default. The href is derived from
+	 * Every page is. It stays a flag, off by default, so that a page added
+	 * without a Markdown route does not announce a 404. The href is derived from
 	 * `path` rather than passed in, for the same reason og:image is: the two can
 	 * then never name different pages.
 	 */
 	markdown?: boolean;
+	/** The page's schema.org description of itself, on the pages that have one. */
+	jsonLd?: JsonLd;
 	builtAssets: {
 		javascript: string;
 		css: string;
@@ -41,6 +45,7 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 	language,
 	description,
 	markdown = false,
+	jsonLd,
 	builtAssets,
 }) => {
 	const locale = language === "en" ? "en_US" : "ja_JP";
@@ -100,6 +105,12 @@ const SiteHead: FunctionComponent<SiteHeadProps> = ({
 			{markdown && (
 				<link rel="alternate" type="text/markdown" href={`${path}index.md`} />
 			)}
+			{jsonLd && (
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+				/>
+			)}
 		</head>
 	);
 };
@@ -115,6 +126,7 @@ export const Shell: FunctionComponent<ShellProps> = ({
 	language,
 	description,
 	markdown,
+	jsonLd,
 	builtAssets,
 }) => (
 	<LanguageContext.Provider value={language}>
@@ -125,6 +137,7 @@ export const Shell: FunctionComponent<ShellProps> = ({
 				language={language}
 				description={description}
 				markdown={markdown}
+				jsonLd={jsonLd}
 				builtAssets={builtAssets}
 			/>
 			<body>

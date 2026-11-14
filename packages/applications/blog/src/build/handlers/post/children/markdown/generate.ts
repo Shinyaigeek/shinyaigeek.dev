@@ -4,12 +4,14 @@ import { GetBlogPostUsecase } from "../../../../application/getBlogPost/getBlogP
 import type { Context } from "../../../../context/context";
 import { NodeFileIOInfrastructure } from "../../../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../../../infrastructure/file-path/node-file-path";
+import type { BlogContent } from "../../../../model/blog/blog.entity";
 import { BlogRepository } from "../../../../model/blog/blog.repository";
-import { oneLine } from "../../../one-line";
+import type { Language } from "../../../../model/language/language.entity";
 import { siteBaseUrl } from "../../../site-metadata";
 import { sitePath } from "../../../site-path";
 import { MARKDOWN_SUFFIX } from "../../getBlogChildren/getBlogChildren";
-import { absoluteAssetUrls } from "./absolute-asset-urls";
+import { absoluteAssetUrls } from "../../../markdown/absolute-asset-urls";
+import { markdownHeader } from "../../../markdown/document";
 
 /**
  * An article as Markdown, at <its path>index.md.
@@ -44,26 +46,31 @@ export const generateBlogPostMarkdown: GenerateHandler<Context> = async ({
 		throw unwrapErr(blogPostResult);
 	}
 
-	const blogPost = unwrapOk(blogPostResult);
+	return blogPostMarkdown(unwrapOk(blogPostResult), language);
+};
+
+/**
+ * The Markdown itself, apart from the route: llms-full.txt is every article's
+ * Markdown laid end to end, and is built from this too.
+ */
+export const blogPostMarkdown = (blogPost: BlogContent, language: Language) => {
 	const { metadata } = blogPost;
 	const baseUrl = siteBaseUrl(language);
 
-	const header = [
-		`# ${oneLine(metadata.title)}`,
-		"",
-		// Not truncated the way llms.txt truncates it: there, a long description
+	const header = markdownHeader({
+		title: metadata.title,
+		// Not truncated the way a list entry is: there, a long description
 		// buries the entries around it, and here it is the only one on the page.
-		`> ${oneLine(metadata.description)}`,
-		"",
-		`- Published: ${metadata.publishedAt}`,
-		`- Updated: ${metadata.updatedAt}`,
-		...(metadata.tags.length > 0
-			? [`- Tags: ${metadata.tags.join(", ")}`]
-			: []),
-		`- Source: ${baseUrl}/post/${metadata.path}/`,
-		"",
-		"",
-	].join("\n");
+		description: metadata.description,
+		facts: [
+			`Published: ${metadata.publishedAt}`,
+			`Updated: ${metadata.updatedAt}`,
+			...(metadata.tags.length > 0
+				? [`Tags: ${metadata.tags.join(", ")}`]
+				: []),
+		],
+		source: `${baseUrl}/post/${metadata.path}/`,
+	});
 
 	return header + absoluteAssetUrls(blogPost.markdown, baseUrl);
 };

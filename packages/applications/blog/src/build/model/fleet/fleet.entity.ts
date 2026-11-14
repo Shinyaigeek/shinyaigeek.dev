@@ -19,6 +19,13 @@ export class FleetContent {
 		public readonly metadata: FleetMetadata,
 		public readonly slides: FleetSlide[],
 		public readonly language: Language,
+		/**
+		 * The slides' source, rejoined with a thematic break between each, for
+		 * the fleet's Markdown. Rejoined rather than kept verbatim because a
+		 * `---` straight under a line of text is a setext heading in Markdown,
+		 * not a separator, and the slide split does not care which it is.
+		 */
+		public readonly markdown: string,
 	) {}
 
 	get slideCount(): number {

@@ -62,9 +62,11 @@ export class WorkExperienceRepository {
 			return parseResult;
 		}
 
-		const { metadata, body } = unwrapOk(parseResult);
+		const { metadata, body, markdown } = unwrapOk(parseResult);
 
-		return createOk(new WorkExperience(metadata, body, language, company));
+		return createOk(
+			new WorkExperience(metadata, body, language, company, markdown),
+		);
 	}
 
 	public async getAllWorkExperiences(

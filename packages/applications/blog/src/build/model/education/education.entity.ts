@@ -16,5 +16,7 @@ export class Education {
 		public readonly body: string, // HTML content after markdown parsing
 		public readonly language: Language,
 		public readonly slug: string,
+		/** The source `body` was rendered from, for the profile's Markdown. */
+		public readonly markdown: string,
 	) {}
 }

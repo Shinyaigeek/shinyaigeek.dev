@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import nodePath from "node:path";
-import type { GenerateOutput } from "ssg-router";
+import type { GenerateOutput, OutputHandler } from "ssg-router";
 import type { Context } from "../context/context";
 import { sitePath } from "./site-path";
 
@@ -31,4 +31,13 @@ export const writeFile = async (
 	const filePath = outputPath(path, context.language);
 	await fs.mkdir(nodePath.dirname(filePath), { recursive: true });
 	await fs.writeFile(filePath, content);
+};
+
+/** The output handler for a route that names its own file. */
+export const outputFile: OutputHandler<Context> = async ({
+	path,
+	content,
+	context,
+}) => {
+	await writeFile(path, content, context);
 };

@@ -10,6 +10,8 @@ import type { OSSProjectMetadata } from "./oss.entity";
 interface ParseOSSContentResult {
 	metadata: OSSProjectMetadata;
 	body: string;
+	/** The frontmatter-stripped source, for the profile's Markdown. */
+	markdown: string;
 }
 
 export const parseOSSContent: (
@@ -38,5 +40,6 @@ export const parseOSSContent: (
 	return createOk({
 		metadata,
 		body,
+		markdown: markdownContent,
 	});
 };

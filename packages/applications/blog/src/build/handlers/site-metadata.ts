@@ -13,6 +13,18 @@ export const siteBaseUrl = (language: Language) =>
 	`https://${language}.shinyaigeek.dev`;
 
 /**
+ * The author's public profiles, the same ones the pages link to.
+ *
+ * The profile's Markdown lists them, the structured data names them as the
+ * author's `sameAs`, and security.txt gives them as its contacts.
+ */
+export const authorProfiles = {
+	github: "https://github.com/Shinyaigeek",
+	x: "https://x.com/Shinyaigeek",
+	linkedin: "https://www.linkedin.com/in/shinyaigeek/",
+} as const;
+
+/**
  * What the site says it is, in one sentence.
  *
  * The index and the profile page both put this in their <meta

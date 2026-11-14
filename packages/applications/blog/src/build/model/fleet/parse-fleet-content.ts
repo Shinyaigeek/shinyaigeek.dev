@@ -25,7 +25,12 @@ const SLIDE_SEPARATOR = /^\s*---\s*$/m;
 
 export async function parseFleetContent(
 	markdownContent: string,
-): Promise<Result<{ metadata: FleetMetadata; slides: FleetSlide[] }, Error>> {
+): Promise<
+	Result<
+		{ metadata: FleetMetadata; slides: FleetSlide[]; markdown: string },
+		Error
+	>
+> {
 	try {
 		const { attributes, body } = fm(markdownContent);
 
@@ -45,6 +50,7 @@ export async function parseFleetContent(
 		return createOk({
 			metadata: metadata as FleetMetadata,
 			slides,
+			markdown: slideContents.join("\n\n---\n\n"),
 		});
 	} catch (error) {
 		return createErr(error instanceof Error ? error : new Error(String(error)));

@@ -3,7 +3,7 @@ title: pnpm outdated コマンドが JSON format をサポートした
 tags: [Blog,JavaScript,TypeScript,OSS]
 description: pnpm で古くなったパッケージを検知する outdated コマンドで, JSON 形式での出力をサポートしました.
 publishedAt: 2022/11/06
-updatedAt: 2018/11/06
+updatedAt: 2022/11/06
 ---
 
 ## TL;DR

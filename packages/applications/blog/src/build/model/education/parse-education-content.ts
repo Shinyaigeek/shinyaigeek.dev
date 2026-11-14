@@ -10,6 +10,8 @@ import { extractEducationMetadata } from "./extract-education-metadata";
 interface ParseEducationContentResult {
 	metadata: EducationMetadata;
 	body: string;
+	/** The frontmatter-stripped source, for the profile's Markdown. */
+	markdown: string;
 }
 
 export const parseEducationContent: (
@@ -38,5 +40,6 @@ export const parseEducationContent: (
 	return createOk({
 		metadata,
 		body,
+		markdown: markdownContent,
 	});
 };

@@ -10,6 +10,8 @@ import type { WorkExperienceMetadata } from "./work-experience.entity";
 interface ParseWorkExperienceContentResult {
 	metadata: WorkExperienceMetadata;
 	body: string;
+	/** The frontmatter-stripped source, for the profile's Markdown. */
+	markdown: string;
 }
 
 export const parseWorkExperienceContent: (
@@ -40,5 +42,6 @@ export const parseWorkExperienceContent: (
 	return createOk({
 		metadata,
 		body,
+		markdown: markdownContent,
 	});
 };

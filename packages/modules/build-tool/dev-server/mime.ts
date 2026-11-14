@@ -17,6 +17,7 @@ const TYPES_BY_EXTENSION: Record<string, string> = {
 	".js": "text/javascript; charset=utf-8",
 	".json": "application/json; charset=utf-8",
 	".map": "application/json; charset=utf-8",
+	".md": "text/markdown; charset=utf-8",
 	".mjs": "text/javascript; charset=utf-8",
 	".mp4": "video/mp4",
 	".pdf": "application/pdf",
