@@ -3,25 +3,29 @@ import { renderToStaticMarkup } from "react-dom/server";
 import type { GenerateHandler } from "ssg-router";
 import { Layout } from "../../../ui/components/Layout/Layout";
 import { Shell } from "../../../ui/components/Shell/shell";
-import { Home } from "../../../ui/pages/Home/Home";
+import { EXPERIENCE_COUNT, Home, OSS_COUNT } from "../../../ui/pages/Home/Home";
 import { GetOSSProjectsUsecase } from "../../application/getOSSProjects/getOSSProjects.usecase";
 import { getRecentItems } from "../../application/getRecentItems/getRecentItems";
 import { GetWorkExperiencesUsecase } from "../../application/getWorkExperiences/getWorkExperiences.usecase";
 import type { Context } from "../../context/context";
 import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file-io";
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
-import type { OSSProject } from "../../model/oss/oss.entity";
+import { Language } from "../../model/language/language.entity";
 import { OSSRepository } from "../../model/oss/oss.repository";
-import type { WorkExperience } from "../../model/work-experience/work-experience.entity";
 import { WorkExperienceRepository } from "../../model/work-experience/work-experience.repository";
-import { siteDescription } from "../site-metadata";
+import {
+	linkItem,
+	markdownHeader,
+	markdownSection,
+} from "../markdown/document";
+import {
+	ossEntry,
+	recentItemEntry,
+	workExperienceLine,
+} from "../markdown/entries";
+import { siteBaseUrl, siteDescription } from "../site-metadata";
 
-export const generateIndexPage: GenerateHandler<Context> = async ({
-	context,
-}) => {
-	const language = context.language;
-	const items = await getRecentItems(language);
-
+const loadHome = async (language: Language) => {
 	const fileIOInfrastructure = new NodeFileIOInfrastructure();
 	const filePathInfrastructure = new NodeFilePathImplementation();
 
@@ -34,7 +38,6 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 	if (isErr(workExperiencesResult)) {
 		throw unwrapErr(workExperiencesResult);
 	}
-	const workExperiences: WorkExperience[] = unwrapOk(workExperiencesResult);
 
 	const ossProjectsResult = await new GetOSSProjectsUsecase(
 		new OSSRepository(fileIOInfrastructure, filePathInfrastructure),
@@ -42,26 +45,79 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 	if (isErr(ossProjectsResult)) {
 		throw unwrapErr(ossProjectsResult);
 	}
-	const ossProjects: OSSProject[] = unwrapOk(ossProjectsResult);
 
-	const description = siteDescription(language);
+	return {
+		items: await getRecentItems(language),
+		workExperiences: unwrapOk(workExperiencesResult),
+		ossProjects: unwrapOk(ossProjectsResult),
+	};
+};
+
+export const generateIndexPage: GenerateHandler<Context> = async ({
+	context,
+}) => {
+	const language = context.language;
+	const home = await loadHome(language);
 
 	return renderToStaticMarkup(
 		<Shell
 			language={language}
 			title="shinyaigeek.dev"
 			path="/"
-			description={description}
+			description={siteDescription(language)}
+			markdown
 			builtAssets={context.builtAssets}
 		>
 			<Layout language={language} page="home" currentPath="/">
-				<Home
-					language={language}
-					items={items}
-					workExperiences={workExperiences}
-					ossProjects={ossProjects}
-				/>
+				<Home language={language} {...home} />
 			</Layout>
 		</Shell>,
+	);
+};
+
+export const generateIndexMarkdown: GenerateHandler<Context> = async ({
+	context,
+}) => {
+	const language = context.language;
+	const baseUrl = siteBaseUrl(language);
+	const japanese = language === Language.ja;
+	const { items, workExperiences, ossProjects } = await loadHome(language);
+
+	return (
+		markdownHeader({
+			title: "shinyaigeek.dev",
+			description: siteDescription(language),
+			source: `${baseUrl}/`,
+		}) +
+		[
+			// The header's navigation, which on the page is how a reader gets to the
+			// rest of the site.
+			markdownSection("Pages", [
+				linkItem(
+					japanese ? "プロフィール" : "Profile",
+					`${baseUrl}/profile/index.md`,
+				),
+				linkItem(japanese ? "記事一覧" : "Posts", `${baseUrl}/post/index.md`),
+				linkItem("Fleets", `${baseUrl}/fleets/index.md`),
+				linkItem(
+					japanese ? "アクティビティ" : "Activity",
+					`${baseUrl}/activity/index.md`,
+				),
+			]),
+			markdownSection(
+				"Experience",
+				workExperiences
+					.slice(0, EXPERIENCE_COUNT)
+					.map((experience) => workExperienceLine(experience, language)),
+			),
+			markdownSection(
+				"Open source",
+				ossProjects.slice(0, OSS_COUNT).map(ossEntry),
+			),
+			markdownSection(
+				"Writing",
+				items.map((item) => recentItemEntry(item, baseUrl)),
+			),
+		].join("\n")
 	);
 };

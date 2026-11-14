@@ -38,9 +38,9 @@ export class OSSRepository {
 			return parseResult;
 		}
 
-		const { metadata, body } = unwrapOk(parseResult);
+		const { metadata, body, markdown } = unwrapOk(parseResult);
 
-		return createOk(new OSSProject(metadata, body, language, slug));
+		return createOk(new OSSProject(metadata, body, language, slug, markdown));
 	}
 
 	public async getAllOSSProjects(

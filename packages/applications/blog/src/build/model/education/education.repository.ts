@@ -38,9 +38,11 @@ export class EducationRepository {
 			return parseResult;
 		}
 
-		const { metadata, body } = unwrapOk(parseResult);
+		const { metadata, body, markdown } = unwrapOk(parseResult);
 
-		return createOk(new Education(metadata, body, language, institution));
+		return createOk(
+			new Education(metadata, body, language, institution, markdown),
+		);
 	}
 
 	public async getAllEducations(

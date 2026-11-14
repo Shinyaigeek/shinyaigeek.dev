@@ -11,41 +11,76 @@ import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-
 import type { FleetContent } from "../../model/fleet/fleet.entity";
 import { FleetRepository } from "../../model/fleet/fleet.repository";
 import { Language } from "../../model/language/language.entity";
+import { fleetDescription } from "../fleet/description";
+import {
+	linkItem,
+	markdownHeader,
+	markdownSection,
+} from "../markdown/document";
+import { siteBaseUrl } from "../site-metadata";
+
+const fleetsDescription = (language: Language) =>
+	language === Language.ja
+		? "Fleet - ちょっとしたアイデアや学習記録をスライド形式で共有"
+		: "Fleet - Quick ideas and learning notes shared in slide format";
+
+const getFleets = async (language: Language): Promise<FleetContent[]> => {
+	const fleetResults = await new GetFleetsUsecase(
+		new FleetRepository(
+			new NodeFileIOInfrastructure(),
+			new NodeFilePathImplementation(),
+		),
+	).getFleets(language);
+
+	return isErr(fleetResults) ? [] : unwrapOk(fleetResults);
+};
 
 export const generateFleetsPage: GenerateHandler<Context> = async ({
 	context,
 }) => {
-	const fileIOInfrastructure = new NodeFileIOInfrastructure();
-	const filePathInfrastructure = new NodeFilePathImplementation();
-	const fleetRepository = new FleetRepository(
-		fileIOInfrastructure,
-		filePathInfrastructure,
-	);
-	const getFleetsUsecase = new GetFleetsUsecase(fleetRepository);
 	const language = context.language;
-	const fleetResults = await getFleetsUsecase.getFleets(language);
-
-	let fleets: FleetContent[] = [];
-	if (!isErr(fleetResults)) {
-		fleets = unwrapOk(fleetResults);
-	}
-
-	const description =
-		language === Language.ja
-			? "Fleet - ちょっとしたアイデアや学習記録をスライド形式で共有"
-			: "Fleet - Quick ideas and learning notes shared in slide format";
+	const fleets = await getFleets(language);
 
 	return renderToStaticMarkup(
 		<Shell
 			language={language}
 			title="Fleets | shinyaigeek.dev"
 			path="/fleets/"
-			description={description}
+			description={fleetsDescription(language)}
+			markdown
 			builtAssets={context.builtAssets}
 		>
 			<Layout language={language} page="fleets" currentPath="/fleets/">
 				<FleetIndex fleets={fleets} language={language} />
 			</Layout>
 		</Shell>,
+	);
+};
+
+export const generateFleetsMarkdown: GenerateHandler<Context> = async ({
+	context,
+}) => {
+	const language = context.language;
+	const baseUrl = siteBaseUrl(language);
+	const fleets = await getFleets(language);
+
+	return (
+		markdownHeader({
+			title: "Fleets",
+			description: fleetsDescription(language),
+			source: `${baseUrl}/fleets/`,
+		}) +
+		markdownSection(
+			"Fleets",
+			fleets.length > 0
+				? fleets.map((fleet) =>
+						linkItem(
+							fleet.title,
+							`${baseUrl}/fleets/${fleet.path}/index.md`,
+							`${fleet.publishedAt} · ${fleetDescription(fleet, language)}`,
+						),
+					)
+				: [language === Language.ja ? "まだありません。" : "None yet."],
+		)
 	);
 };

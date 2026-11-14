@@ -44,13 +44,14 @@ export class FleetRepository {
 				return parseFleetContentResult;
 			}
 
-			const { metadata, slides } = unwrapOk(parseFleetContentResult);
+			const { metadata, slides, markdown } = unwrapOk(parseFleetContentResult);
 
 			return createOk(
 				new FleetContent(
 					{ ...metadata, path: slug.replace(".md", "") },
 					slides,
 					language,
+					markdown,
 				),
 			);
 		} catch (error) {

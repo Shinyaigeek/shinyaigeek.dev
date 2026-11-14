@@ -8,7 +8,7 @@ import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-
 import { BlogRepository } from "../../model/blog/blog.repository";
 import { FleetRepository } from "../../model/fleet/fleet.repository";
 import { Language } from "../../model/language/language.entity";
-import { oneLine } from "../one-line";
+import { linkItem } from "../markdown/document";
 import { siteBaseUrl, siteDescription } from "../site-metadata";
 
 /**
@@ -60,7 +60,7 @@ export const generateLlmsTxt: GenerateHandler<Context> = async ({
 			"## Posts",
 			"",
 			...blogPosts.map((post) =>
-				entry(
+				linkItem(
 					post.metadata.title,
 					`${baseUrl}/post/${post.metadata.path}/index.md`,
 					post.metadata.description,
@@ -73,7 +73,7 @@ export const generateLlmsTxt: GenerateHandler<Context> = async ({
 						"## Fleets",
 						"",
 						...fleets.map((fleet) =>
-							entry(
+							linkItem(
 								fleet.title,
 								`${baseUrl}/fleets/${fleet.path}/`,
 								fleet.metadata.description,
@@ -85,21 +85,21 @@ export const generateLlmsTxt: GenerateHandler<Context> = async ({
 		[
 			"## Pages",
 			"",
-			entry(
+			linkItem(
 				japanese ? "プロフィール" : "Profile",
 				`${baseUrl}/profile/`,
 				japanese
 					? "書いている人の経歴、仕事、興味"
 					: "Who writes this: background, work and interests",
 			),
-			entry(
+			linkItem(
 				japanese ? "アクティビティ" : "Activity",
 				`${baseUrl}/activity/`,
 				japanese
 					? "登壇、OSS、GitHub のコントリビューション"
 					: "Talks, OSS work and GitHub contributions",
 			),
-			entry(
+			linkItem(
 				japanese ? "記事一覧" : "All posts",
 				`${baseUrl}/post/`,
 				japanese
@@ -110,12 +110,12 @@ export const generateLlmsTxt: GenerateHandler<Context> = async ({
 		[
 			"## Optional",
 			"",
-			entry(
+			linkItem(
 				"RSS",
 				`${baseUrl}/rss.xml`,
 				japanese ? "更新のフィード" : "A feed of new posts",
 			),
-			entry(
+			linkItem(
 				"Sitemap",
 				`${baseUrl}/sitemap.xml`,
 				japanese ? "ページの一覧" : "Every page on the site",
@@ -145,32 +145,6 @@ export const generateLlmsTxt: GenerateHandler<Context> = async ({
 	const body = sections.map((section) => `${section.join("\n")}\n`);
 
 	return [...preamble, ...body].join("\n");
-};
-
-/** One line of a section's list, in the shape the spec gives for them. */
-const entry = (name: string, url: string, notes?: string) => {
-	const summary = notes && summarise(notes);
-	return summary
-		? `- [${oneLine(name)}](${url}): ${summary}`
-		: `- [${oneLine(name)}](${url})`;
-};
-
-/**
- * How much of an article's description this file carries.
- *
- * The descriptions were written for a `<meta>` tag and a feed reader, and a few
- * of the older ones are several paragraphs. What this index is for is deciding
- * which article to go and read, and the whole of one is a single fetch away, so
- * a long description is cut rather than allowed to bury the fifteen entries
- * under it.
- */
-const SUMMARY_LIMIT = 200;
-
-const summarise = (notes: string) => {
-	const collapsed = oneLine(notes);
-	return collapsed.length > SUMMARY_LIMIT
-		? `${collapsed.slice(0, SUMMARY_LIMIT).trimEnd()}…`
-		: collapsed;
 };
 
 /** Frontmatter dates are written "2021/12/10", which Date does not take. */

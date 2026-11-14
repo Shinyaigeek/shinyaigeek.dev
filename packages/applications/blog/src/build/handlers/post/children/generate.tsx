@@ -42,8 +42,6 @@ export const generateBlogPostPage: GenerateHandler<Context> = async ({
 			title={`${blogPost.metadata.title} - shinyaigeek.dev`}
 			path={`${articlePath}/`}
 			description={blogPost.metadata.description}
-			// The articles are the only pages with a Markdown counterpart, and
-			// this is what points a reader at it without going through llms.txt.
 			markdown
 			builtAssets={context.builtAssets}
 		>

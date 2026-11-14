@@ -1,16 +1,28 @@
 import { Router } from "ssg-router";
 import type { Context } from "./context/context";
-import { generateActivityPage } from "./handlers/activity/generate";
+import {
+	generateActivityMarkdown,
+	generateActivityPage,
+} from "./handlers/activity/generate";
 import { outputActivityPage } from "./handlers/activity/output";
 import { generateFleetPage } from "./handlers/fleet/generate";
 import {
 	getEnglishFleetChildren,
+	getEnglishFleetMarkdownChildren,
 	getJapaneseFleetChildren,
+	getJapaneseFleetMarkdownChildren,
 } from "./handlers/fleet/getFleetChildren/getFleetChildren";
+import { generateFleetMarkdown } from "./handlers/fleet/markdown";
 import { outputFleetPage } from "./handlers/fleet/output";
-import { generateFleetsPage } from "./handlers/fleets/generate";
+import {
+	generateFleetsMarkdown,
+	generateFleetsPage,
+} from "./handlers/fleets/generate";
 import { outputFleetsPage } from "./handlers/fleets/output";
-import { generateIndexPage } from "./handlers/index/generate";
+import {
+	generateIndexMarkdown,
+	generateIndexPage,
+} from "./handlers/index/generate";
 import { outputIndexPage } from "./handlers/index/output";
 import { generateLlmsTxt } from "./handlers/llms/generate";
 import { outputLlmsTxt } from "./handlers/llms/output";
@@ -34,7 +46,10 @@ import { generateBlogPostPage } from "./handlers/post/children/generate";
 import { generateBlogPostMarkdown } from "./handlers/post/children/markdown/generate";
 import { outputBlogPostMarkdown } from "./handlers/post/children/markdown/output";
 import { outputBlogPostPage } from "./handlers/post/children/output";
-import { generateBlogIndexPage } from "./handlers/post/generate";
+import {
+	generateBlogIndexMarkdown,
+	generateBlogIndexPage,
+} from "./handlers/post/generate";
 import {
 	getEnglishBlogChildren,
 	getEnglishBlogMarkdownChildren,
@@ -42,7 +57,10 @@ import {
 	getJapaneseBlogMarkdownChildren,
 } from "./handlers/post/getBlogChildren/getBlogChildren";
 import { outputBlogIndexPage } from "./handlers/post/output";
-import { generateProfilePage } from "./handlers/profile/generate";
+import {
+	generateProfileMarkdown,
+	generateProfilePage,
+} from "./handlers/profile/generate";
 import { outputProfilePage } from "./handlers/profile/output";
 import { generateRobotsTxt } from "./handlers/robots/generate";
 import { outputRobotsTxt } from "./handlers/robots/output";
@@ -50,6 +68,7 @@ import { generateRssPage } from "./handlers/rss/generate";
 import { outputRssPage } from "./handlers/rss/output";
 import { generateSitemapPage } from "./handlers/sitemap/generate";
 import { outputSitemapPage } from "./handlers/sitemap/output";
+import { outputFile } from "./handlers/write-output";
 import { registerBuiltAssetsPlugin } from "./plugin/built-assets";
 import { registerLanguagePlugin } from "./plugin/language";
 
@@ -92,6 +111,19 @@ router.on("/en/post/", {
 	generate: generateBlogIndexPage,
 	output: outputBlogIndexPage,
 });
+// Every page also has its Markdown at <its path>index.md, written into the
+// directory the page is the index.html of. Each page's <head> announces it,
+// and the edge serves it to a request that asks for text/markdown.
+for (const [path, generate] of [
+	["/index.md", generateIndexMarkdown],
+	["/post/index.md", generateBlogIndexMarkdown],
+	["/profile/index.md", generateProfileMarkdown],
+	["/activity/index.md", generateActivityMarkdown],
+	["/fleets/index.md", generateFleetsMarkdown],
+] as const) {
+	router.on(path, { generate, output: outputFile });
+	router.on(`/en${path}`, { generate, output: outputFile });
+}
 pendingRegistrations.push(
 	router.onChildren(getJapaneseBlogChildren, {
 		generate: generateBlogPostPage,
@@ -144,6 +176,14 @@ pendingRegistrations.push(
 	router.onChildren(getEnglishFleetChildren, {
 		generate: generateFleetPage,
 		output: outputFleetPage,
+	}),
+	router.onChildren(getJapaneseFleetMarkdownChildren, {
+		generate: generateFleetMarkdown,
+		output: outputFile,
+	}),
+	router.onChildren(getEnglishFleetMarkdownChildren, {
+		generate: generateFleetMarkdown,
+		output: outputFile,
 	}),
 );
 router.on("/rss.xml", {

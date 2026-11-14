@@ -7,4 +7,6 @@ export interface AboutMeMetadata {
 export interface AboutMe {
 	metadata: AboutMeMetadata;
 	body: string;
+	/** The source `body` was rendered from, for the profile's Markdown. */
+	markdown: string;
 }

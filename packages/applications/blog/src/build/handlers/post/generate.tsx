@@ -6,6 +6,14 @@ import { PostIndex } from "../../../ui/pages/PostIndex/PostIndex";
 import { getRecentItems } from "../../application/getRecentItems/getRecentItems";
 import type { Context } from "../../context/context";
 import { Language } from "../../model/language/language.entity";
+import { markdownHeader, markdownSection } from "../markdown/document";
+import { recentItemEntry } from "../markdown/entries";
+import { siteBaseUrl } from "../site-metadata";
+
+const blogIndexDescription = (language: Language) =>
+	language === Language.ja
+		? "shinyaigeek.dev の記事一覧. 主に web 開発の知見について書いています"
+		: "Every post on shinyaigeek.dev. I mainly write about web development.";
 
 export const generateBlogIndexPage: GenerateHandler<Context> = async ({
 	context,
@@ -15,22 +23,38 @@ export const generateBlogIndexPage: GenerateHandler<Context> = async ({
 
 	// This page used to describe itself as the home page: same title, and
 	// path="/", which made og:url and the OG image point at "/" instead of here.
-	const description =
-		language === Language.ja
-			? "shinyaigeek.dev の記事一覧. 主に web 開発の知見について書いています"
-			: "Every post on shinyaigeek.dev. I mainly write about web development.";
-
 	return renderToStaticMarkup(
 		<Shell
 			language={language}
 			title="Posts | shinyaigeek.dev"
 			path="/post/"
-			description={description}
+			description={blogIndexDescription(language)}
+			markdown
 			builtAssets={context.builtAssets}
 		>
 			<Layout language={language} page="post" currentPath="/post/">
 				<PostIndex items={items} />
 			</Layout>
 		</Shell>,
+	);
+};
+
+export const generateBlogIndexMarkdown: GenerateHandler<Context> = async ({
+	context,
+}) => {
+	const language = context.language;
+	const baseUrl = siteBaseUrl(language);
+	const items = await getRecentItems(language);
+
+	return (
+		markdownHeader({
+			title: "Posts",
+			description: blogIndexDescription(language),
+			source: `${baseUrl}/post/`,
+		}) +
+		markdownSection(
+			"Posts",
+			items.map((item) => recentItemEntry(item, baseUrl)),
+		)
 	);
 };

@@ -13,73 +13,60 @@ import { NodeFileIOInfrastructure } from "../../infrastructure/file-io/node-file
 import { NodeFilePathImplementation } from "../../infrastructure/file-path/node-file-path";
 import { AboutMeRepository } from "../../model/about-me/about-me.repository";
 import { EducationRepository } from "../../model/education/education.repository";
+import type { Language } from "../../model/language/language.entity";
 import { OSSRepository } from "../../model/oss/oss.repository";
 import { WorkExperienceRepository } from "../../model/work-experience/work-experience.repository";
-import { siteDescription } from "../site-metadata";
+import { absoluteAssetUrls } from "../markdown/absolute-asset-urls";
+import {
+	linkItem,
+	markdownHeader,
+	markdownSection,
+} from "../markdown/document";
+import { ossSummary, period, workExperienceSummary } from "../markdown/entries";
+import { authorProfiles, siteBaseUrl, siteDescription } from "../site-metadata";
 
-export const generateProfilePage: GenerateHandler<Context> = async ({
-	context,
-}) => {
-	// Initialize infrastructure and repository
+/** Everything the profile shows, which its page and its Markdown both render. */
+const loadProfile = async (language: Language) => {
 	const fileIOInfrastructure = new NodeFileIOInfrastructure();
 	const filePathInfrastructure = new NodeFilePathImplementation();
-	const workExperienceRepository = new WorkExperienceRepository(
-		fileIOInfrastructure,
-		filePathInfrastructure,
-	);
-	const educationRepository = new EducationRepository(
-		fileIOInfrastructure,
-		filePathInfrastructure,
-	);
-	const ossRepository = new OSSRepository(
-		fileIOInfrastructure,
-		filePathInfrastructure,
-	);
-	const aboutMeRepository = new AboutMeRepository(
-		join(process.cwd(), "src/profile"),
-	);
-	const getWorkExperiencesUsecase = new GetWorkExperiencesUsecase(
-		workExperienceRepository,
-	);
-	const getEducationsUsecase = new GetEducationsUsecase(educationRepository);
-	const getOSSProjectsUsecase = new GetOSSProjectsUsecase(ossRepository);
 
-	// Fetch work experiences
-	const workExperiencesResult =
-		await getWorkExperiencesUsecase.getWorkExperiences(context.language);
-
+	const workExperiencesResult = await new GetWorkExperiencesUsecase(
+		new WorkExperienceRepository(fileIOInfrastructure, filePathInfrastructure),
+	).getWorkExperiences(language);
 	if (isErr(workExperiencesResult)) {
 		throw unwrapErr(workExperiencesResult);
 	}
 
-	const workExperiences = unwrapOk(workExperiencesResult);
-
-	// Fetch educations
-	const educationsResult = await getEducationsUsecase.getEducations(
-		context.language,
-	);
-
+	const educationsResult = await new GetEducationsUsecase(
+		new EducationRepository(fileIOInfrastructure, filePathInfrastructure),
+	).getEducations(language);
 	if (isErr(educationsResult)) {
 		throw unwrapErr(educationsResult);
 	}
 
-	const educations = unwrapOk(educationsResult);
-
-	// Fetch OSS projects
-	const ossProjectsResult = await getOSSProjectsUsecase.getOSSProjects(
-		context.language,
-	);
-
+	const ossProjectsResult = await new GetOSSProjectsUsecase(
+		new OSSRepository(fileIOInfrastructure, filePathInfrastructure),
+	).getOSSProjects(language);
 	if (isErr(ossProjectsResult)) {
 		throw unwrapErr(ossProjectsResult);
 	}
 
-	const ossProjects = unwrapOk(ossProjectsResult);
+	const aboutMe = await new AboutMeRepository(
+		join(process.cwd(), "src/profile"),
+	).getAboutMe(language);
 
-	// Fetch about me
-	const aboutMe = await aboutMeRepository.getAboutMe(context.language);
+	return {
+		workExperiences: unwrapOk(workExperiencesResult),
+		educations: unwrapOk(educationsResult),
+		ossProjects: unwrapOk(ossProjectsResult),
+		aboutMe,
+	};
+};
 
-	const description = siteDescription(context.language);
+export const generateProfilePage: GenerateHandler<Context> = async ({
+	context,
+}) => {
+	const profile = await loadProfile(context.language);
 
 	return renderToStaticMarkup(
 		<Shell
@@ -87,7 +74,8 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 			title="Profile | shinyaigeek.dev"
 			// The missing trailing slash here made og:image "/profileogp.png".
 			path="/profile/"
-			description={description}
+			description={siteDescription(context.language)}
+			markdown
 			builtAssets={context.builtAssets}
 		>
 			<Layout
@@ -95,14 +83,90 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 				page="profile"
 				currentPath="/profile/"
 			>
-				<Profile
-					language={context.language}
-					workExperiences={workExperiences}
-					educations={educations}
-					ossProjects={ossProjects}
-					aboutMe={aboutMe}
-				/>
+				<Profile language={context.language} {...profile} />
 			</Layout>
 		</Shell>,
 	);
 };
+
+export const generateProfileMarkdown: GenerateHandler<Context> = async ({
+	context,
+}) => {
+	const language = context.language;
+	const baseUrl = siteBaseUrl(language);
+	const { aboutMe, workExperiences, ossProjects, educations } =
+		await loadProfile(language);
+	const source = (markdown: string) =>
+		absoluteAssetUrls(markdown.trim(), baseUrl);
+
+	return (
+		markdownHeader({
+			title: aboutMe.metadata.name,
+			description: siteDescription(language),
+			facts: [
+				`Occupation: ${aboutMe.metadata.occupation}`,
+				`Location: ${aboutMe.metadata.location}`,
+				`GitHub: ${authorProfiles.github}`,
+				`X: ${authorProfiles.x}`,
+				`LinkedIn: ${authorProfiles.linkedin}`,
+			],
+			source: `${baseUrl}/profile/`,
+		}) +
+		[
+			markdownSection("About me", [source(aboutMe.markdown)]),
+			markdownSection(
+				"Work experience",
+				workExperiences.map(({ metadata, markdown }) =>
+					blocks(
+						`### ${metadata.company}`,
+						workExperienceSummary(metadata, language),
+						metadata.technologies?.length &&
+							`Technologies: ${metadata.technologies.join(", ")}`,
+						source(markdown),
+						metadata.entries
+							?.map((entry) => linkItem(entry.title, entry.url))
+							.join("\n"),
+					),
+				),
+			),
+			markdownSection(
+				"Open source",
+				ossProjects.map(({ metadata, markdown }) =>
+					blocks(
+						`### [${metadata.name}](${metadata.url})`,
+						ossSummary(metadata),
+						source(markdown),
+						metadata.highlights
+							?.map((highlight) => linkItem(highlight.title, highlight.url))
+							.join("\n"),
+					),
+				),
+			),
+			markdownSection(
+				"Education",
+				educations.map(({ metadata, markdown }) =>
+					blocks(
+						`### ${metadata.institution}`,
+						[
+							metadata.degree,
+							metadata.field,
+							period(metadata.startDate, metadata.endDate, language),
+						]
+							.filter(Boolean)
+							.join(", "),
+						source(markdown),
+						metadata.achievements?.map((item) => `- ${item}`).join("\n"),
+					),
+				),
+			),
+		].join("\n")
+	);
+};
+
+/**
+ * One profile entry: its parts as paragraphs, with whichever ones the entry's
+ * frontmatter leaves out simply absent. It ends with a blank line, so the next
+ * entry's heading starts a block of its own.
+ */
+const blocks = (...parts: (string | 0 | false | undefined)[]) =>
+	`${parts.filter(Boolean).join("\n\n")}\n`;

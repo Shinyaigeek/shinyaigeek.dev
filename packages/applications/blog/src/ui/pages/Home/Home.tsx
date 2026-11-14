@@ -24,8 +24,8 @@ interface Props {
 	ossProjects?: OSSProject[];
 }
 
-const EXPERIENCE_COUNT = 4;
-const OSS_COUNT = 6;
+export const EXPERIENCE_COUNT = 4;
+export const OSS_COUNT = 6;
 
 const COPY = {
 	ja: {

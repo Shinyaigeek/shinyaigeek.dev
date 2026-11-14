@@ -24,7 +24,8 @@ interface SiteHeadProps {
 	/**
 	 * Whether this page is also published as Markdown, at <its path>index.md.
 	 *
-	 * Only the articles are, so this is off by default. The href is derived from
+	 * Every page is. It stays a flag, off by default, so that a page added
+	 * without a Markdown route does not announce a 404. The href is derived from
 	 * `path` rather than passed in, for the same reason og:image is: the two can
 	 * then never name different pages.
 	 */
