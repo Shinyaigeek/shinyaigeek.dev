@@ -20,7 +20,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@fastify/static": "^10.1.2",
-		"fastify": "^5.10.0",
+		"fastify": "^5.12.5",
 		"react": "19.2.8",
 		"react-dom": "19.2.8",
 		"ssg-router": "workspace:*"
