@@ -9,11 +9,13 @@
 	"scripts": {
 		"worker:build": "wrangler deploy --dry-run --outdir dist",
 		"worker:publish": "wrangler deploy",
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --noEmit",
+		"test": "vitest run"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^5.20260724.1",
-		"wrangler": "^4.114.0"
+		"wrangler": "^4.114.0",
+		"vitest": "^4.1.10"
 	},
 	"dependencies": {
 		"resolve-accept-language": "^3.2.2"

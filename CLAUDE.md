@@ -8,7 +8,7 @@ This is a monorepo for Shinyaigeek's tech blog (https://shinyaigeek.dev) using p
 
 - **packages/applications/blog/** — the blog itself: React SSG built with Rspack
 - **packages/applications/labs/** — experimental projects showcase: a React SSG built with webpack, served at labs.shinyaigeek.dev
-- **packages/applications/worker/** — Cloudflare Worker that redirects English-preferring visitors to the English host
+- **packages/applications/worker/** — Cloudflare Worker that redirects English-preferring visitors to the English host, and answers `Accept: text/markdown` on a directory URL with its `index.md`
 - **packages/modules/build-tool/** — shared Rspack and webpack base configs, exported as TypeScript source, plus the dev server both apps are served from
 - **packages/modules/markdown-parser/** — standalone markdown AST mapper (not yet wired into the blog)
 - **packages/modules/ssg-router/** — the routing utilities the blog's and labs' static generation are both built on
@@ -92,6 +92,13 @@ or a fleet is an `<article>`. No stylesheet selects on those tag names.
 h2o needs no configuration for any of this: `.md` is already `text/markdown` in
 its built-in table, and everything else here is a plain file under the doc root.
 The deploy's `scp -r` copies `.well-known/` along with everything else.
+
+`Accept: text/markdown` on a page's URL is negotiated in the Worker, not h2o. It
+fetches `<path>index.md` from the origin and serves that when it exists, and
+falls back to the HTML when it does not; HTML responses carry `Vary: Accept`
+and a `Link` to the twin. This only takes effect on hosts whose Cloudflare route
+runs the Worker, and `wrangler.toml` declares no routes — they live in the
+dashboard.
 
 ### The dev loop
 
