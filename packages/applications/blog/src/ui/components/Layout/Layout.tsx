@@ -35,7 +35,7 @@ export const Layout: FunctionComponent<LayoutProps> = ({
 }) => (
 	<div className={root}>
 		<Header language={language} currentPath={currentPath} page={page} />
-		<div className={inner}>{children}</div>
+		<main className={inner}>{children}</main>
 		<ShinyaigeekPortrait />
 		<Footer />
 	</div>

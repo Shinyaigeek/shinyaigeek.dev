@@ -33,7 +33,7 @@ playground 自体のリポジトリは [https://github.com/Shinyaigeek/ShinyaicW
 
 本稿ではこの自作ブラウザの実装についての詳細には触れるつもりがありません, 興味がある方は以下のスライドを見てくださると幸いです.
 
-[![](https://files.speakerdeck.com/presentations/f70e84d625ae44949d1a6f6a87909011/slide_0.jpg?19382839)](https://speakerdeck.com/shinyaigeek/burauzazuo-rifalsesu-me)
+[![スライド「ブラウザ作りのすゝめ」](https://files.speakerdeck.com/presentations/f70e84d625ae44949d1a6f6a87909011/slide_0.jpg?19382839)](https://speakerdeck.com/shinyaigeek/burauzazuo-rifalsesu-me)
 
 ## ブラウザの仕組み概略図
 

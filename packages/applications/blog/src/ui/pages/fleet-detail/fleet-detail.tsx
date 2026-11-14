@@ -19,8 +19,8 @@ export const FleetDetail: FunctionComponent<Props> = ({ fleet, language }) => (
 			{COPY[language].back}
 		</a>
 
-		<div className={content}>
+		<article className={content}>
 			<FleetViewer fleet={fleet} language={language} />
-		</div>
+		</article>
 	</div>
 );
