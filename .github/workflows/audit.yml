@@ -1,0 +1,32 @@
+name: Audit dependencies
+
+# Its own workflow rather than a job in ci.yml, which main.yml gates every
+# deploy on: an advisory published against a transitive dependency should go
+# red here, not stop the blog from shipping. The daily run is what notices an
+# advisory landing on a lockfile nobody has touched.
+on:
+    pull_request:
+        types: [opened, synchronize]
+    push:
+        branches:
+            - main
+    schedule:
+        - cron: "0 0 * * *"
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+jobs:
+    audit:
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        env:
+            NODE_ENV: development
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+            - uses: ./.github/actions/setup
+            # Fails on any advisory at or above audit.level in
+            # pnpm-workspace.yaml, currently `low`.
+            - name: Audit dependencies
+              run: pnpm run audit

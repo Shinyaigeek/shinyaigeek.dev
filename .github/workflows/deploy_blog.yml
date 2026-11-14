@@ -1,20 +1,14 @@
 name: Deploy blog to VPS
 
 on:
-    push:
-        branches:
-            - main
+    # main.yml calls this once CI has passed on a push to main.
+    workflow_call:
     # The contribution calendar on /activity/ is baked in at build time, so it
     # only refreshes when the site is rebuilt. Redeploy nightly at 03:00 JST
     # (18:00 UTC) to keep it current between pushes.
     schedule:
         - cron: "0 18 * * *"
     workflow_dispatch:
-
-# Never let two deploys race on the same VPS doc root.
-concurrency:
-    group: deploy-blog
-    cancel-in-progress: false
 
 permissions:
     contents: read
@@ -25,23 +19,18 @@ jobs:
         # VPS_SECRET_KEY / SSH_* live as Environment secrets under "Production",
         # so the job must select that environment for them to resolve.
         environment: Production
+        # Never let two deploys race on the same VPS doc root. On the job, so a
+        # manual or nightly run queues behind the one main.yml calls.
+        concurrency:
+            group: deploy-blog
+            cancel-in-progress: false
         timeout-minutes: 15
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version-file: .nvmrc
-
-            - name: Enable corepack (pnpm)
-              run: corepack enable pnpm
-
-            # The blog build needs no lifecycle scripts, so skipping them keeps the
-            # deploy install lean. (This also used to be required to dodge the
-            # deprecated @cloudflare/wrangler postinstall, which no longer exists.)
-            - name: Install dependencies
-              run: pnpm install --frozen-lockfile --ignore-scripts
+            # The same setup CI uses. Its install runs no lifecycle scripts either:
+            # strictDepBuilds with every allowBuilds entry false means none run.
+            - uses: ./.github/actions/setup
 
             # GITHUB_TOKEN feeds the contribution calendar on /activity/: the
             # GraphQL API needs auth even for public data. The build only warns
