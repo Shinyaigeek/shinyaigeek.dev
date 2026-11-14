@@ -67,6 +67,7 @@ import { outputRobotsTxt } from "./handlers/robots/output";
 import { generateRssPage } from "./handlers/rss/generate";
 import { outputRssPage } from "./handlers/rss/output";
 import { generateSecurityTxt } from "./handlers/security/generate";
+import { generateAgentJson } from "./handlers/agent/generate";
 import { generateSitemapPage } from "./handlers/sitemap/generate";
 import { outputSitemapPage } from "./handlers/sitemap/output";
 import { outputFile } from "./handlers/write-output";
@@ -233,6 +234,14 @@ router.on("/.well-known/security.txt", {
 });
 router.on("/en/.well-known/security.txt", {
 	generate: generateSecurityTxt,
+	output: outputFile,
+});
+router.on("/.well-known/agent.json", {
+	generate: generateAgentJson,
+	output: outputFile,
+});
+router.on("/en/.well-known/agent.json", {
+	generate: generateAgentJson,
 	output: outputFile,
 });
 if (shouldGenerateOGImages) {

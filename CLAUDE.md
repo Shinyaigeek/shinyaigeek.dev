@@ -37,6 +37,7 @@ Every route is a route, so the feed, the sitemap and the rest are registered in
 | `/llms-full.txt` | the llms.txt preamble, then every article and fleet in full, newest first |
 | `<page path>index.md` | every page as Markdown: `/index.md`, `/post/index.md`, `/post/<slug>/index.md`, `/fleets/index.md`, `/fleets/<slug>/index.md`, `/profile/index.md`, `/activity/index.md` |
 | `/.well-known/security.txt` | RFC 9116, contacts are the GitHub and X profiles, `Expires` a year less a day after generation |
+| `/.well-known/agent.json` | every machine route above in one JSON manifest; AFN names the path but defines no schema, so it claims neither AFN nor A2A |
 
 Every HTML page has its Markdown twin next to its `index.html`, because the
 Cloudflare Worker answers `Accept: text/markdown` with `<path>index.md` for

@@ -35,6 +35,7 @@ export const generateRobotsTxt: GenerateHandler<Context> = async ({
 		`# llms.txt (https://llmstxt.org/): ${baseUrl}/llms.txt`,
 		`# Every article and fleet in one file: ${baseUrl}/llms-full.txt`,
 		"# Every page is also served as Markdown at <its path>index.md",
+		`# Machine routes as JSON: ${baseUrl}/.well-known/agent.json`,
 		"",
 		`Sitemap: ${baseUrl}/sitemap.xml`,
 	].join("\n")}\n`;

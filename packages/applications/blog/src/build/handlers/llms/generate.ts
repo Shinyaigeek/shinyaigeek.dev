@@ -90,6 +90,13 @@ export const generateLlmsTxt: GenerateHandler<Context> = async ({
 					: "The text of every article and fleet, in one file",
 			),
 			linkItem(
+				"agent.json",
+				`${baseUrl}/.well-known/agent.json`,
+				japanese
+					? "このサイトの機械向けの入口をまとめた JSON"
+					: "Every machine-readable route on this site, as JSON",
+			),
+			linkItem(
 				"RSS",
 				`${baseUrl}/rss.xml`,
 				japanese ? "更新のフィード" : "A feed of new posts",
