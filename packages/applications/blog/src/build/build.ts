@@ -24,7 +24,7 @@ import {
 	generateIndexPage,
 } from "./handlers/index/generate";
 import { outputIndexPage } from "./handlers/index/output";
-import { generateLlmsTxt } from "./handlers/llms/generate";
+import { generateLlmsFullTxt, generateLlmsTxt } from "./handlers/llms/generate";
 import { outputLlmsTxt } from "./handlers/llms/output";
 import {
 	generateActivityOGImagePage,
@@ -209,6 +209,14 @@ router.on("/llms.txt", {
 router.on("/en/llms.txt", {
 	generate: generateLlmsTxt,
 	output: outputLlmsTxt,
+});
+router.on("/llms-full.txt", {
+	generate: generateLlmsFullTxt,
+	output: outputFile,
+});
+router.on("/en/llms-full.txt", {
+	generate: generateLlmsFullTxt,
+	output: outputFile,
 });
 router.on("/robots.txt", {
 	generate: generateRobotsTxt,
