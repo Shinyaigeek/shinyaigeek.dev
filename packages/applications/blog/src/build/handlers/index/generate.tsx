@@ -24,6 +24,7 @@ import {
 	workExperienceLine,
 } from "../markdown/entries";
 import { siteBaseUrl, siteDescription } from "../site-metadata";
+import { homeJsonLd } from "../structured-data";
 
 const loadHome = async (language: Language) => {
 	const fileIOInfrastructure = new NodeFileIOInfrastructure();
@@ -66,6 +67,7 @@ export const generateIndexPage: GenerateHandler<Context> = async ({
 			path="/"
 			description={siteDescription(language)}
 			markdown
+			jsonLd={homeJsonLd(language)}
 			builtAssets={context.builtAssets}
 		>
 			<Layout language={language} page="home" currentPath="/">

@@ -24,6 +24,7 @@ import {
 } from "../markdown/document";
 import { ossSummary, period, workExperienceSummary } from "../markdown/entries";
 import { authorProfiles, siteBaseUrl, siteDescription } from "../site-metadata";
+import { profilePageJsonLd } from "../structured-data";
 
 /** Everything the profile shows, which its page and its Markdown both render. */
 const loadProfile = async (language: Language) => {
@@ -76,6 +77,7 @@ export const generateProfilePage: GenerateHandler<Context> = async ({
 			path="/profile/"
 			description={siteDescription(context.language)}
 			markdown
+			jsonLd={profilePageJsonLd(context.language)}
 			builtAssets={context.builtAssets}
 		>
 			<Layout
