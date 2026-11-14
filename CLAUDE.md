@@ -32,38 +32,66 @@ Every route is a route, so the feed, the sitemap and the rest are registered in
 | route | what it is |
 | --- | --- |
 | `/rss.xml`, `/sitemap.xml` | as they always were |
-| `/robots.txt` | `Allow: /` plus the `Sitemap:` line — the site had no robots.txt at all before |
+| `/robots.txt` | `Allow: /` for `*` and again for a group naming the AI crawlers, plus the `Sitemap:` line |
 | `/llms.txt` | [llmstxt.org](https://llmstxt.org/): the site as one Markdown index |
-| `/post/<slug>/index.md` | the article itself, as Markdown |
+| `/llms-full.txt` | the llms.txt preamble, then every article and fleet in full, newest first |
+| `<page path>index.md` | every page as Markdown: `/index.md`, `/post/index.md`, `/post/<slug>/index.md`, `/fleets/index.md`, `/fleets/<slug>/index.md`, `/profile/index.md`, `/activity/index.md` |
+| `/.well-known/security.txt` | RFC 9116, contacts are the GitHub and X profiles, `Expires` a year less a day after generation |
 
-Each article's page announces its Markdown with a `<link rel="alternate"
+Every HTML page has its Markdown twin next to its `index.html`, because the
+Cloudflare Worker answers `Accept: text/markdown` with `<path>index.md` for
+any page. Each page announces its twin with a `<link rel="alternate"
 type="text/markdown">`, next to the one that has always announced the feed.
 `Shell` takes a `markdown` prop for it and derives the href from `path`, the
 same way it derives og:image — so the two cannot come to name different pages.
-The articles are the only pages that pass it.
+Every page passes it; it stays a flag so that a page added without a Markdown
+route does not announce a 404. A new page needs both: its route in `build.ts`
+and the prop.
 
-Two things about the Markdown are worth knowing before changing it:
+Three things about the Markdown are worth knowing before changing it:
 
 - **It is the source, not the page turned back into Markdown.** The HTML the
-  page renders is lossy — highlighted code, wrapped tables — so `BlogContent`
-  carries the frontmatter-stripped source alongside it, and the handler writes
-  that with a short heading block in front. Frontmatter does not come along:
-  half its keys are derived rather than written.
+  page renders is lossy — highlighted code, wrapped tables — so `BlogContent`,
+  `FleetContent` and the profile's entities carry the frontmatter-stripped
+  source alongside it, and the handlers write that with a short heading block
+  in front. Frontmatter does not come along: half its keys are derived rather
+  than written. A fleet's slides are rejoined with a blank-line-padded `---`,
+  since a `---` directly under text is a setext heading, not a separator.
+- **The index pages are lists of the entries' own `.md`.** `handlers/markdown/`
+  holds the heading block, the H2 section and the `- [name](url): notes` entry
+  that llms.txt and every page's Markdown share, plus the entries more than one
+  page lists. Each page's Markdown handler sits next to its page handler in the
+  same `generate.tsx` and loads the same data. The activity page's leaves the
+  contribution calendar out.
 - **Asset links are rewritten to absolute URLs.** The articles write them both
   as `/assets/x.png` and `../../../assets/x.png`, and from an article's own URL
   those resolve to the same place — which is why the pages never needed this. A
   `.md` gets read away from the URL it came from, where neither form means
-  anything. `absolute-asset-urls.ts` does it, and is the one piece of this with
-  tests.
+  anything. `handlers/markdown/absolute-asset-urls.ts` does it, for every
+  source that goes into a `.md`.
 
-`llms.txt` links each article to its `.md` rather than to its page, which is the
+`llms.txt` links every entry to its `.md` rather than to its page, which is the
 point of the file. Its section headings stay in English in both languages
 because `## Optional` is the one name the spec gives a meaning to. Descriptions
 are collapsed onto one line and cut at 200 characters — several of the older
 ones are whole paragraphs, and a newline in a list item ends the item.
 
+The robots.txt group naming the AI crawlers has to keep saying exactly what `*`
+says: a crawler that matches a named group ignores `*` entirely.
+
+The home page, the articles and the profile also carry **JSON-LD** in their
+`<head>`, through `Shell`'s `jsonLd` prop: `WebSite` + `Blog`, `BlogPosting`
+(with an `encoding` naming its `index.md`) and `ProfilePage`. The builders are
+in `handlers/structured-data.ts`. `serializeJsonLd` escapes every `<`, since a
+title is free text and a `</script>` in one would end the element. Frontmatter
+dates must be `YYYY/MM/DD`; anything else fails the build there.
+
+Every page has exactly one `<main>` (Layout's content wrapper), and an article
+or a fleet is an `<article>`. No stylesheet selects on those tag names.
+
 h2o needs no configuration for any of this: `.md` is already `text/markdown` in
 its built-in table, and everything else here is a plain file under the doc root.
+The deploy's `scp -r` copies `.well-known/` along with everything else.
 
 ### The dev loop
 
