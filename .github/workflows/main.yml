@@ -1,0 +1,62 @@
+name: CI and deploy on main
+
+# One pipeline, so nothing ships from a commit CI has not passed. The deploys
+# used to be separate workflows on the same push and ran alongside CI, not
+# after it.
+on:
+    push:
+        branches:
+            - main
+
+permissions:
+    contents: read
+
+jobs:
+    ci:
+        uses: ./.github/workflows/ci.yml
+
+    changes:
+        runs-on: ubuntu-latest
+        timeout-minutes: 3
+        outputs:
+            worker: ${{ steps.diff.outputs.worker }}
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+              with:
+                  fetch-depth: 0
+            # The worker is the only deploy that is not a plain copy of the
+            # build, and every redeploy creates a new Cloudflare version, so it
+            # only goes out when something it is built from changed. A push
+            # whose `before` is not in the history (a new branch, a force push)
+            # deploys it rather than guessing.
+            - id: diff
+              env:
+                  BEFORE: ${{ github.event.before }}
+              run: |
+                  set -euo pipefail
+                  if ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+                      echo "worker=true" >> "$GITHUB_OUTPUT"
+                      exit 0
+                  fi
+                  if git diff --name-only "$BEFORE" "$GITHUB_SHA" \
+                      | grep -qE '^(packages/applications/worker/|pnpm-lock\.yaml$|pnpm-workspace\.yaml$)'; then
+                      echo "worker=true" >> "$GITHUB_OUTPUT"
+                  else
+                      echo "worker=false" >> "$GITHUB_OUTPUT"
+                  fi
+
+    deploy-blog:
+        needs: ci
+        uses: ./.github/workflows/deploy_blog.yml
+        secrets: inherit
+
+    deploy-labs:
+        needs: ci
+        uses: ./.github/workflows/deploy_labs.yml
+        secrets: inherit
+
+    deploy-worker:
+        needs: [ci, changes]
+        if: needs.changes.outputs.worker == 'true'
+        uses: ./.github/workflows/deploy_worker.yml
+        secrets: inherit
