@@ -8,7 +8,7 @@ This is a monorepo for Shinyaigeek's tech blog (https://shinyaigeek.dev) using p
 
 - **packages/applications/blog/** — the blog itself: React SSG built with Rspack
 - **packages/applications/labs/** — experimental projects showcase: a React SSG built with webpack, served at labs.shinyaigeek.dev
-- **packages/applications/worker/** — Cloudflare Worker that redirects English-preferring visitors to the English host, and answers `Accept: text/markdown` on a directory URL with its `index.md`
+- **packages/applications/worker/** — Cloudflare Worker that redirects English-preferring visitors on the bare and www hosts to the English host, and answers `Accept: text/markdown` on a directory URL with its `index.md`
 - **packages/modules/build-tool/** — shared Rspack and webpack base configs, exported as TypeScript source, plus the dev server both apps are served from
 - **packages/modules/markdown-parser/** — standalone markdown AST mapper (not yet wired into the blog)
 - **packages/modules/ssg-router/** — the routing utilities the blog's and labs' static generation are both built on
@@ -97,9 +97,10 @@ The deploy's `scp -r` copies `.well-known/` along with everything else.
 `Accept: text/markdown` on a page's URL is negotiated in the Worker, not h2o. It
 fetches `<path>index.md` from the origin and serves that when it exists, and
 falls back to the HTML when it does not; HTML responses carry `Vary: Accept`
-and a `Link` to the twin. This only takes effect on hosts whose Cloudflare route
-runs the Worker, and `wrangler.toml` declares no routes — they live in the
-dashboard.
+and a `Link` to the twin. It runs on every host the blog is served on, through
+the routes `wrangler.toml` declares; a host left off that list gets neither the
+negotiation nor the redirect. The language redirect only fires on the bare and
+www hosts — ja. and en. are a language the visitor already chose.
 
 ### The dev loop
 
@@ -331,7 +332,7 @@ A push to main runs `.github/workflows/main.yml`: `ci.yml` first, then the deplo
 | `deploy_labs.yml` | labs' `public/` into `/var/www/labs/public/` | on demand |
 | `deploy_worker.yml` | the Worker, with `wrangler deploy` | on demand; from `main.yml` only when the push touched `packages/applications/worker/`, the lockfile or the workspace file |
 
-Each deploy job has its own `concurrency` group, so a nightly or manual run queues behind the one a push started rather than racing it. All of them read their secrets from the **Production** environment: `VPS_SECRET_KEY` and `SSH_*` for the VPS, `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` for the Worker. The Worker's routes live in the Cloudflare dashboard, not `wrangler.toml`. `ops/` holds the older shell-script equivalents plus the h2o config.
+Each deploy job has its own `concurrency` group, so a nightly or manual run queues behind the one a push started rather than racing it. All of them read their secrets from the **Production** environment: `VPS_SECRET_KEY` and `SSH_*` for the VPS, `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` for the Worker. The Worker's routes are declared in `wrangler.toml`, and a deploy sets exactly those. `ops/` holds the older shell-script equivalents plus the h2o config.
 
 Neither VPS deploy creates its target directory — scp will not create the parent — and neither installs `ops/h2o.conf`. That still goes up by hand with `ops/update-h2o.sh`, followed by an h2o reload.
 

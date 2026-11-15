@@ -37,9 +37,13 @@ const page = {
 	},
 };
 
-const get = (path: string, headers: Record<string, string> = {}) =>
+const get = (
+	path: string,
+	headers: Record<string, string> = {},
+	host = "ja.shinyaigeek.dev",
+) =>
 	handleRequest(
-		new Request(`https://ja.shinyaigeek.dev${path}`, {
+		new Request(`https://${host}${path}`, {
 			headers: { "accept-language": "ja", ...headers },
 		}),
 	);
@@ -137,15 +141,28 @@ describe("handleRequest", () => {
 		expect(await response.text()).toBe("console.log(1)");
 	});
 
-	it("still redirects English-preferring visitors before negotiating", async () => {
-		const response = await get("/post/hello/?x=1", {
+	it.each(["shinyaigeek.dev", "www.shinyaigeek.dev"])(
+		"redirects English-preferring visitors on %s before negotiating",
+		async (host) => {
+			const response = await get(
+				"/post/hello/?x=1",
+				{ "accept-language": "en-US,en;q=0.9", accept: "text/markdown" },
+				host,
+			);
+			expect(response.status).toBe(301);
+			expect(response.headers.get("location")).toBe(
+				"https://en.shinyaigeek.dev/post/hello/?x=1",
+			);
+			expect(origin).not.toHaveBeenCalled();
+		},
+	);
+
+	it("leaves an English-preferring visitor on the Japanese host they chose", async () => {
+		const response = await get("/post/hello/", {
 			"accept-language": "en-US,en;q=0.9",
 			accept: "text/markdown",
 		});
-		expect(response.status).toBe(301);
-		expect(response.headers.get("location")).toBe(
-			"https://en.shinyaigeek.dev/post/hello/?x=1",
-		);
-		expect(origin).not.toHaveBeenCalled();
+		expect(response.status).toBe(200);
+		expect(await response.text()).toBe("# Hello");
 	});
 });

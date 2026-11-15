@@ -49,7 +49,17 @@ export const preferredRepresentation = (
 	return markdown.q > html ? "markdown" : "html";
 };
 
+/**
+ * The hosts that do not name a language. ja. and en. are a language someone
+ * already chose, often through the switcher on the page, so they are never
+ * redirected away from.
+ */
+const UNLOCALIZED_HOSTS = new Set(["shinyaigeek.dev", "www.shinyaigeek.dev"]);
+
 const englishRedirect = (request: Request, url: URL): Response | null => {
+	if (!UNLOCALIZED_HOSTS.has(url.hostname)) {
+		return null;
+	}
 	const acceptLanguage = request.headers.get("accept-language");
 	if (!acceptLanguage) {
 		return null;
@@ -88,8 +98,8 @@ const withHeaders = (
 };
 
 /**
- * Sends visitors who prefer English to the English host and leaves everyone
- * else on the Japanese one. A directory request that prefers `text/markdown`
+ * On the bare and www hosts, sends visitors who prefer English to the English
+ * host and leaves everyone else on the Japanese one. A directory request that prefers `text/markdown`
  * gets the page's `index.md` twin instead of its HTML. Only document requests
  * are considered; anything else falls straight through.
  */
