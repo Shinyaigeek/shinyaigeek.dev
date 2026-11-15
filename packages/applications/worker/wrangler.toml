@@ -6,3 +6,13 @@ name = "handle-language"
 main = "src/index.ts"
 compatibility_date = "2026-07-26"
 workers_dev = true
+
+# Every host the blog is served on, so the routes are in the repo rather than
+# only in the dashboard: wrangler deploy sets exactly these. The bare and www
+# hosts get the language redirect; ja. and en. only the Markdown negotiation.
+routes = [
+	{ pattern = "shinyaigeek.dev/*", zone_name = "shinyaigeek.dev" },
+	{ pattern = "www.shinyaigeek.dev/*", zone_name = "shinyaigeek.dev" },
+	{ pattern = "ja.shinyaigeek.dev/*", zone_name = "shinyaigeek.dev" },
+	{ pattern = "en.shinyaigeek.dev/*", zone_name = "shinyaigeek.dev" },
+]
