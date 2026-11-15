@@ -227,10 +227,11 @@ when `node_modules` has drifted from the lockfile, with
 `ERR_PNPM_VERIFY_DEPS_BEFORE_RUN`. Editing a dependency in a package.json and
 running a script before installing is the usual way to meet it.
 
-`pnpm audit` runs as its own CI job and as the last step of `pnpm run ci`,
-failing on any advisory at or above `audit.level` (`low`). It is deliberately
-not in either deploy workflow: an advisory landing against a transitive
-dependency should not be what stops the blog from shipping.
+`pnpm audit` runs in `.github/workflows/audit.yml` (on PRs, on main and daily)
+and as the last step of `pnpm run ci`, failing on any advisory at or above
+`audit.level` (`low`). It is deliberately its own workflow rather than a job in
+`ci.yml`, because every deploy waits on `ci.yml`: an advisory landing against a
+transitive dependency should go red, not stop the blog from shipping.
 
 `overrides` in `pnpm-workspace.yaml` pins **rollup** to 4.62.2. From 4.62.3
 its prebuilt Linux binary needs GLIBC 2.32, which is newer than the dev machine
@@ -322,10 +323,16 @@ under tsx for the same reason, and import those configs directly.
 
 ## Deployment
 
-`.github/workflows/deploy_blog.yml` builds the blog and copies `public/` to the VPS over scp, where h2o serves it. It runs on every push to main, nightly at 03:00 JST to refresh the contribution calendar, and on demand. `ops/` holds the older shell-script equivalents plus the h2o config.
+A push to main runs `.github/workflows/main.yml`: `ci.yml` first, then the deploys, each of which only starts once CI has passed. The deploys are reusable workflows that can also be run on their own:
 
-`.github/workflows/deploy_labs.yml` does the same for labs, into `/var/www/labs/public/`. It is a separate workflow on purpose: nothing in labs goes stale on its own, so it has no nightly run to share with the blog. Both use their own `concurrency` group, so they never race each other on the VPS.
+| workflow | ships | also runs |
+| --- | --- | --- |
+| `deploy_blog.yml` | the blog's `public/` to the VPS over scp, where h2o serves it | nightly at 03:00 JST to refresh the contribution calendar, and on demand |
+| `deploy_labs.yml` | labs' `public/` into `/var/www/labs/public/` | on demand |
+| `deploy_worker.yml` | the Worker, with `wrangler deploy` | on demand; from `main.yml` only when the push touched `packages/applications/worker/`, the lockfile or the workspace file |
 
-Neither workflow creates its target directory — scp will not create the parent — and neither installs `ops/h2o.conf`. That still goes up by hand with `ops/update-h2o.sh`, followed by an h2o reload.
+Each deploy job has its own `concurrency` group, so a nightly or manual run queues behind the one a push started rather than racing it. All of them read their secrets from the **Production** environment: `VPS_SECRET_KEY` and `SSH_*` for the VPS, `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` for the Worker. The Worker's routes live in the Cloudflare dashboard, not `wrangler.toml`. `ops/` holds the older shell-script equivalents plus the h2o config.
 
-The Cloudflare Worker is deployed separately with `pnpm --filter worker worker:publish` and is not part of either workflow.
+Neither VPS deploy creates its target directory — scp will not create the parent — and neither installs `ops/h2o.conf`. That still goes up by hand with `ops/update-h2o.sh`, followed by an h2o reload.
+
+Actions are pinned to a commit SHA with the version in a trailing comment. Bump both together.

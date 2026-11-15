@@ -10,7 +10,7 @@ jobs:
         env:
             NODE_ENV: development
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
             - uses: ./.github/actions/setup
 
     lint:
@@ -21,7 +21,7 @@ jobs:
         env:
             NODE_ENV: development
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
             - uses: ./.github/actions/setup
             - name: Lint with oxlint
               run: pnpm run lint
@@ -36,7 +36,7 @@ jobs:
         env:
             NODE_ENV: development
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
             - uses: ./.github/actions/setup
             # Components use named imports from *.module.css, which resolve through
             # the typed-css-modules output committed alongside each stylesheet. A
@@ -53,27 +53,10 @@ jobs:
         env:
             NODE_ENV: development
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
             - uses: ./.github/actions/setup
             - name: Run tests
               run: pnpm run test
-
-    audit:
-        needs:
-            - warmup_dependencies_cache
-        runs-on: ubuntu-latest
-        timeout-minutes: 5
-        env:
-            NODE_ENV: development
-        steps:
-            - uses: actions/checkout@v4
-            - uses: ./.github/actions/setup
-            # Fails on any advisory at or above audit.level in pnpm-workspace.yaml,
-            # currently `low`. This job is deliberately outside the deploy
-            # workflows: an advisory published against a transitive dependency
-            # should page us, not stop the blog from shipping.
-            - name: Audit dependencies
-              run: pnpm run audit
 
     build:
         needs:
@@ -81,7 +64,7 @@ jobs:
         runs-on: ubuntu-latest
         timeout-minutes: 10
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
             - uses: ./.github/actions/setup
             # Catches a broken build here rather than at deploy time. Deliberately
             # without GITHUB_TOKEN: the build has to stay able to drop the
