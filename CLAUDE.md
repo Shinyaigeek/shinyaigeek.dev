@@ -220,8 +220,10 @@ Dependencies' install scripts do not run unless the package is listed under
 `allowBuilds`, and `strictDepBuilds` makes an unlisted script an error rather
 than a warning. The four that ask for one (`@swc/core`, `esbuild`, `msw`,
 `workerd`) are all listed as `false`: each ships its platform binary as an
-optional dependency and only uses the script to unpack or shortcut to it, and
-the deploy workflows have always installed with `--ignore-scripts` anyway.
+optional dependency and only uses the script to unpack or shortcut to it. So
+no dependency script runs anywhere, CI and the deploys included -- they all
+install through `.github/actions/setup`, which passes no `--ignore-scripts`
+and does not need to.
 
 `verifyDepsBeforeRun: error` means `pnpm run` and `pnpm exec` refuse to start
 when `node_modules` has drifted from the lockfile, with
