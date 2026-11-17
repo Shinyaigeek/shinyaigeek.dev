@@ -240,11 +240,19 @@ its prebuilt Linux binary needs GLIBC 2.32, which is newer than the dev machine
 `pnpm test`. CI runs on ubuntu-latest and is unaffected — drop the override once
 the dev machine is on a newer glibc.
 
-The second override pins **brace-expansion**'s 2.x branch to ^2.1.4 for
-GHSA-mh99-v99m-4gvg. It reaches the tree only through
-`typed-css-modules > glob > minimatch`, which has no release picking the fix up,
-so the override is the only way to clear the advisory; drop it once
-typed-css-modules moves off that minimatch.
+The rest clear advisories that no upgrade of the package depending on them can
+reach, because that package pins the vulnerable version or a range below the fix:
+
+| override | why it can't come from upstream | drop it when |
+| --- | --- | --- |
+| `miniflare>undici`, `miniflare>sharp` | every miniflare release pins both exactly | miniflare's pins pass 7.30.1 / 0.35.5 |
+| `satori>fflate` | satori pins fflate 0.7.3 exactly | satori's pin passes 0.7.5 |
+| `typed-css-modules>glob` | its newest release asks for glob ^10; the fix is in 14 | typed-css-modules moves to glob 14 |
+| `nanoid@3`, `source-map-js` | vite 6 under `@ladle/react` resolves an older postcss | ladle moves off vite 6 |
+
+Each is scoped to the one parent that needs it, so nothing else in the tree is
+moved. When `pnpm audit` goes red again, check this table before adding a row:
+the parent may have caught up.
 
 ### Blog (packages/applications/blog/)
 ```bash
