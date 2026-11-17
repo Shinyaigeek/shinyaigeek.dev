@@ -15,7 +15,7 @@
 	"devDependencies": {
 		"@cloudflare/workers-types": "^5.20260724.1",
 		"wrangler": "^4.114.0",
-		"vitest": "^4.1.10"
+		"vitest": "^4.1.12"
 	},
 	"dependencies": {
 		"resolve-accept-language": "^3.2.2"

@@ -17,13 +17,6 @@ minimumReleaseAgeStrict: true
 # Never wave a package through because the registry did not report a publish
 # time -- no time, no maturity, no install.
 minimumReleaseAgeIgnoreMissingTime: false
-minimumReleaseAgeExclude:
-  # The GHSA-mh99-v99m-4gvg fix pinned under overrides below, taken before it
-  # aged past the cooldown. Published 2026-07-30, so this line is a no-op from
-  # 2026-08-06 on and can be dropped at the next lockfile change. Every other
-  # direct dependency is instead held one release behind, which is what a week
-  # of quarantine costs -- see CLAUDE.md.
-  - brace-expansion@2.1.4
 
 # Refuse a version whose publish trail is weaker than that of a version
 # published before it -- provenance or a trusted publisher disappearing is what
@@ -86,8 +79,20 @@ audit:
 
 overrides:
   rollup: 4.62.2
-  # GHSA-mh99-v99m-4gvg: brace-expansion 2.x below 2.1.3 crashes the process on
-  # an unbounded expansion. It reaches us only through
-  # typed-css-modules > glob > minimatch, which has no release picking up the
-  # fix, so the branch is pinned here. The 5.x major in the tree is unaffected.
-  brace-expansion@2: ^2.1.4
+  # miniflare pins undici and sharp to exact versions in every release so far,
+  # so no wrangler upgrade picks up their advisories (undici GHSA batch fixed in
+  # 7.30.1, sharp in 0.35.5). Drop these once miniflare's own pins move past
+  # them.
+  miniflare>undici: ^7.30.1
+  miniflare>sharp: ^0.35.5
+  # satori pins fflate 0.7.3 exactly; 0.7.5 is the patch with the fix. Only the
+  # OG image build uses it.
+  satori>fflate: ^0.7.5
+  # typed-css-modules' newest release still asks for glob ^10, and the fix
+  # (with minimatch's) is in glob 14. It only calls glob() through require(),
+  # which 14 still exports.
+  typed-css-modules>glob: ^14.0.3
+  # vite 6 (through @ladle/react) resolves a postcss whose own nanoid and
+  # source-map-js are below the fixes; both are patch releases.
+  nanoid@3: ^3.3.18
+  source-map-js: ^1.2.2
