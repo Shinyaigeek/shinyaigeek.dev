@@ -1,1 +1,1 @@
-export { FleetCard } from "./fleet-card";
+export { FleetCard, FleetMeta } from "./fleet-card";

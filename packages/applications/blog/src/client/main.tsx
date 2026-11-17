@@ -396,11 +396,11 @@ class ReferenceScrollManager {
 /**
  * Drives the slide deck on a fleet page.
  *
- * Which slide is showing is expressed with a `data-active` attribute rather than
- * a CSS class: this used to rebuild the CSS module's hashed class name by
- * replacing "-slide" with "-active" in whatever class it found, which quietly
- * stopped matching anything when the hashing scheme changed -- the indicator
- * advanced while the slide never moved.
+ * Every slide and every progress segment carries `data-state` -- past, current
+ * or future -- rather than a CSS class: this used to rebuild the CSS module's
+ * hashed class name by string surgery, which quietly stopped matching when the
+ * hashing scheme changed, and the slide never moved. Past and future are kept
+ * apart so a slide can leave in the direction the reader is going.
  */
 class FleetManager {
 	private currentSlide = 0;
@@ -409,11 +409,10 @@ class FleetManager {
 	private container: HTMLElement | null = null;
 	private prevButton: HTMLButtonElement | null = null;
 	private nextButton: HTMLButtonElement | null = null;
+	private fullscreenButton: HTMLButtonElement | null = null;
 	private slideIndicator: HTMLElement | null = null;
-	private progressBar: HTMLElement | null = null;
 	private slides: HTMLElement[] = [];
-	/** The server rendered the first position, so keep its wording. */
-	private indicatorTemplate = "";
+	private segments: HTMLButtonElement[] = [];
 
 	constructor() {
 		this.init();
@@ -426,46 +425,65 @@ class FleetManager {
 		this.container = this.viewer.querySelector("[data-fleet-container]");
 		this.prevButton = this.viewer.querySelector("[data-fleet-prev]");
 		this.nextButton = this.viewer.querySelector("[data-fleet-next]");
+		this.fullscreenButton = this.viewer.querySelector(
+			"[data-fleet-fullscreen]",
+		);
 		this.slideIndicator = this.viewer.querySelector("[data-fleet-indicator]");
-		this.progressBar = this.viewer.querySelector("[data-fleet-progress]");
 		this.slides = Array.from(
 			this.viewer.querySelectorAll("[data-fleet-slide]"),
+		);
+		this.segments = Array.from(
+			this.viewer.querySelectorAll<HTMLButtonElement>("[data-fleet-goto]"),
 		);
 
 		if (this.slides.length === 0) return;
 
 		this.totalSlides = this.slides.length;
-		this.indicatorTemplate = this.slideIndicator?.textContent?.trim() ?? "";
 		this.currentSlide = this.slideFromHash() ?? 0;
 
 		// Tapping either half of the deck moves through it, which is how a phone
 		// reader will reach for it.
 		this.container?.addEventListener("click", (event) => {
-			// Let links and buttons inside a slide behave normally.
+			// Let links inside a slide behave normally, and leave a text selection be.
 			if ((event.target as HTMLElement).closest("a, button")) return;
+			if (window.getSelection()?.toString()) return;
 
 			const rect = this.container?.getBoundingClientRect();
 			if (!rect) return;
-			if (event.clientX - rect.left < rect.width / 2) {
+			if (event.clientX - rect.left < rect.width / 3) {
 				this.prevSlide();
 			} else {
 				this.nextSlide();
 			}
 		});
 
-		this.prevButton?.addEventListener("click", (event) => {
-			event.stopPropagation();
-			this.prevSlide();
-		});
-		this.nextButton?.addEventListener("click", (event) => {
-			event.stopPropagation();
-			this.nextSlide();
-		});
+		this.prevButton?.addEventListener("click", () => this.prevSlide());
+		this.nextButton?.addEventListener("click", () => this.nextSlide());
+		for (const segment of this.segments) {
+			segment.addEventListener("click", () =>
+				this.goTo(Number(segment.dataset.fleetGoto)),
+			);
+		}
+
+		if (this.fullscreenButton && document.fullscreenEnabled) {
+			this.fullscreenButton.hidden = false;
+			this.fullscreenButton.addEventListener("click", () =>
+				this.toggleFullscreen(),
+			);
+			// Escape leaves full screen without going through the button, so the
+			// pressed state follows the document rather than the clicks.
+			document.addEventListener("fullscreenchange", () => {
+				this.fullscreenButton?.setAttribute(
+					"aria-pressed",
+					String(document.fullscreenElement === this.viewer),
+				);
+			});
+		}
 
 		document.addEventListener("keydown", (event) => {
-			// Don't hijack arrow keys while someone is typing. The target is the
-			// document itself for a key pressed with nothing focused, and that has
-			// no closest(), so check before calling it.
+			// Don't hijack keys while someone is typing. The target is the document
+			// itself for a key pressed with nothing focused, and that has no
+			// closest(), so check before calling it.
 			const target = event.target;
 			if (
 				target instanceof HTMLElement &&
@@ -473,13 +491,16 @@ class FleetManager {
 			) {
 				return;
 			}
+			if (event.altKey || event.ctrlKey || event.metaKey) return;
 
 			switch (event.key) {
 				case "ArrowLeft":
+				case "PageUp":
 					event.preventDefault();
 					this.prevSlide();
 					break;
 				case "ArrowRight":
+				case "PageDown":
 					event.preventDefault();
 					this.nextSlide();
 					break;
@@ -490,6 +511,13 @@ class FleetManager {
 				case "End":
 					event.preventDefault();
 					this.goTo(this.totalSlides - 1);
+					break;
+				case "f":
+				case "F":
+					if (document.fullscreenEnabled) {
+						event.preventDefault();
+						this.toggleFullscreen();
+					}
 					break;
 				default:
 					break;
@@ -506,6 +534,14 @@ class FleetManager {
 		});
 
 		this.updateView({ updateHash: false });
+	}
+
+	private toggleFullscreen() {
+		if (document.fullscreenElement) {
+			void document.exitFullscreen();
+		} else {
+			void this.viewer?.requestFullscreen();
+		}
 	}
 
 	/** Reads "#slide-3" as index 2, ignoring anything out of range. */
@@ -568,16 +604,33 @@ class FleetManager {
 		this.updateView(options);
 	}
 
+	private stateOf(index: number) {
+		if (index < this.currentSlide) return "past";
+		if (index > this.currentSlide) return "future";
+		return "current";
+	}
+
 	private updateView({ updateHash = true }: { updateHash?: boolean } = {}) {
 		this.slides.forEach((slide, index) => {
-			const isCurrent = index === this.currentSlide;
-			slide.toggleAttribute("data-active", isCurrent);
+			const state = this.stateOf(index);
+			slide.dataset.state = state;
 			// Inactive slides are visually hidden, so hide them from assistive
 			// technology as well instead of reading the whole deck at once.
-			if (isCurrent) {
+			if (state === "current") {
 				slide.removeAttribute("aria-hidden");
+				slide.scrollTop = 0;
 			} else {
 				slide.setAttribute("aria-hidden", "true");
+			}
+		});
+
+		this.segments.forEach((segment, index) => {
+			const state = this.stateOf(index);
+			segment.dataset.state = state;
+			if (state === "current") {
+				segment.setAttribute("aria-current", "step");
+			} else {
+				segment.removeAttribute("aria-current");
 			}
 		});
 
@@ -589,16 +642,7 @@ class FleetManager {
 		}
 
 		if (this.slideIndicator) {
-			// Reuse the server-rendered wording, which is already localized.
-			this.slideIndicator.textContent = this.indicatorTemplate.replace(
-				/\d+/,
-				String(this.currentSlide + 1),
-			);
-		}
-
-		if (this.progressBar) {
-			const percentage = ((this.currentSlide + 1) / this.totalSlides) * 100;
-			this.progressBar.style.width = `${percentage}%`;
+			this.slideIndicator.textContent = `${this.currentSlide + 1} / ${this.totalSlides}`;
 		}
 
 		if (updateHash) {

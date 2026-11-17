@@ -1,272 +1,229 @@
 .viewer {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
-.title {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--text-secondary);
-  opacity: 0.7;
-  z-index: 10;
-  pointer-events: none;
-}
-
-
-.slideContainer {
-  position: relative;
-  background: var(--card-background);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  cursor: pointer;
-  margin-bottom: 0;
-  min-height: 400px;
-  max-width: 100%;
-  box-sizing: border-box;
+/*
+ * 16:9, as wide as the column allows but never taller than what is left of the
+ * viewport under the header, the fleet's heading and the controls -- so the
+ * whole deck and its controls fit on one screen without scrolling.
+ */
+.stage {
+    --reserved: 310px;
+    width: min(100%, calc((100svh - var(--reserved)) * 16 / 9));
+    min-width: min(100%, 560px);
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    touch-action: pan-y;
+    user-select: text;
 }
 
 .slide {
-  position: absolute;
-  inset: 0;
-  padding: 48px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow-y: auto;
-  overflow-x: hidden;
-  max-width: 900px;
-  margin: 0 auto;
-  width: 100%;
-  box-sizing: border-box;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(var(--offset, 0));
+    transition:
+        opacity 0.28s ease,
+        transform 0.36s cubic-bezier(0.2, 0.7, 0.2, 1),
+        visibility 0s linear 0.36s;
 }
 
-.slide[data-active] {
-  opacity: 1;
-  visibility: visible;
+.slide[data-state='past'] {
+    --offset: -2.5%;
 }
 
-.slide > :first-child {
-  margin-top: 0;
+.slide[data-state='future'] {
+    --offset: 2.5%;
 }
 
-.slide > :last-child {
-  margin-bottom: 0;
+.slide[data-state='current'] {
+    opacity: 1;
+    visibility: visible;
+    transition:
+        opacity 0.28s ease,
+        transform 0.36s cubic-bezier(0.2, 0.7, 0.2, 1),
+        visibility 0s;
 }
 
-/* 横幅溢れ対応 */
-.slide * {
-  max-width: 100%;
-  box-sizing: border-box;
+/* Long slides scroll from the top rather than being cut off at both ends. */
+.slide[data-state='current'] {
+    justify-content: safe center;
 }
 
-.slide p,
-.slide h1,
-.slide h2,
-.slide h3,
-.slide h4,
-.slide h5,
-.slide h6,
-.slide div,
-.slide span {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: min(100%, 44rem);
 }
 
-.slide img,
-.slide video,
-.slide iframe {
-  max-width: 100%;
-  height: auto;
-}
-
-.slide pre,
-.slide code {
-  max-width: 100%;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-.slide table {
-  max-width: 100%;
-  table-layout: fixed;
-  overflow-x: auto;
-  display: block;
-  white-space: nowrap;
-}
-
-.slide ul,
-.slide ol {
-  max-width: 100%;
-  overflow-wrap: break-word;
-}
-
-.slide a {
-  word-break: break-all;
-  overflow-wrap: break-word;
-}
-
-.slide blockquote {
-  max-width: 100%;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-}
-
-.navigation {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Holds the prev/next buttons either side of the indicator. */
-  gap: 12px;
-  padding: 8px 20px;
-  flex-shrink: 0;
-  background: var(--card-background);
-  border-top: 1px solid var(--border-color);
-}
-
-
-.slideIndicator {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-
-.progressBar {
-  height: 4px;
-  background: var(--border-color);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.progress {
-  height: 100%;
-  background: var(--theme-color);
-  transition: width 0.3s ease;
-}
-
-
-@media (max-width: 768px) {
-  .viewer {
-    padding: 0 12px;
-  }
-  
-  .title {
-    font-size: 0.9rem;
-    top: 15px;
-    left: 15px;
-  }
-  
-  .slide {
-    padding: 20px;
-    justify-content: flex-start;
-    padding-top: 60px;
-    word-break: break-word;
-  }
-  
-  .navigation {
-    padding: 6px 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .viewer {
-    padding: 0 8px;
-  }
-  
-  .title {
-    font-size: 0.85rem;
-    top: 12px;
-    left: 12px;
-  }
-  
-  .slide {
-    padding: 16px;
-    padding-top: 50px;
-    text-align: left;
-    word-break: break-word;
-  }
-  
-  .slideContainer {
-    border-radius: 8px;
-    min-height: 300px;
-  }
-  
-  .navigation {
-    padding: 4px 8px;
-  }
-  
-  .slideIndicator {
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 320px) {
-  .slide {
-    padding: 12px;
-    padding-top: 45px;
-    word-break: break-word;
-  }
-  
-  .slideContainer {
-    min-height: 250px;
-  }
-  
-  .title {
-    font-size: 0.8rem;
-    top: 10px;
-    left: 10px;
-  }
-}
-/*
- * Previous / next buttons. The client script has always looked for
- * [data-fleet-prev] / [data-fleet-next]; until now the markup never rendered
- * them, so the deck could only be driven by tapping a half or pressing an arrow
- * key -- neither of which is discoverable, or reachable by keyboard alone.
- */
 .navButton {
+    flex: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
     border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
+    border-radius: 999px;
     background: var(--surface);
     color: var(--text-color);
-    font-size: 1rem;
-    line-height: 1;
+    box-shadow: var(--shadow-sm);
     cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .navButton:hover:not(:disabled) {
-    background: var(--color-hover-bg);
     border-color: var(--border-strong);
+    background: var(--surface-2);
+}
+
+.navButton:active:not(:disabled) {
+    transform: scale(0.94);
 }
 
 .navButton:disabled {
-    opacity: 0.4;
+    opacity: 0.35;
     cursor: default;
+    box-shadow: none;
+}
+
+.navButton:focus-visible,
+.segmentButton:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
+.fullscreenButton {
+    margin-left: 0.25rem;
+}
+
+/* display: inline-flex above would otherwise beat the hidden attribute. */
+.navButton[hidden] {
+    display: none;
+}
+
+/* One segment per slide: where you are, how far there is to go, and a way there. */
+.segments {
+    flex: 1;
+    display: flex;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.segment {
+    flex: 1;
+    display: flex;
+}
+
+.segmentButton {
+    flex: 1;
+    height: 1.25rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.segmentButton::before {
+    content: '';
+    position: absolute;
+    inset: calc(50% - 2px) 0;
+    border-radius: 999px;
+    background: var(--border);
+    transition: background-color 0.25s ease, inset 0.2s ease;
+}
+
+.segmentButton:hover::before {
+    inset: calc(50% - 3px) 0;
+}
+
+.segmentButton[data-state='past']::before {
+    background: rgba(var(--brand-rgb), 0.55);
+}
+
+.segmentButton[data-state='current']::before {
+    background: var(--brand);
+    inset: calc(50% - 3px) 0;
+}
+
+.counter {
+    flex: none;
+    min-width: 3.5em;
+    text-align: center;
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-muted);
+}
+
+.hint {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* No keyboard to speak of on a touch screen; the swipe is self-evident. */
+@media (hover: none) {
+    .hint {
+        display: none;
+    }
+}
+
+/* Full screen: the deck on its own, as large as the screen allows. */
+.viewer:fullscreen {
+    justify-content: center;
+    padding: 2rem;
+    background: var(--theme-background);
+}
+
+.viewer:fullscreen .stage {
+    --reserved: 120px;
+    box-shadow: none;
+}
+
+.viewer:fullscreen .hint {
+    display: none;
+}
+
+/*
+ * A phone held upright: a 16:9 deck there is a thin strip of illegibly small
+ * text, so the stage takes the screen's own shape instead.
+ */
+@media (max-width: 640px) {
+    .stage {
+        width: 100%;
+        min-width: 0;
+        aspect-ratio: auto;
+        height: max(22rem, calc(100svh - 300px));
+        border-radius: var(--radius-md);
+    }
+
+    .controls {
+        gap: 0.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .slide,
+    .slide[data-state='current'] {
+        transition: none;
+        --offset: 0;
+    }
 }

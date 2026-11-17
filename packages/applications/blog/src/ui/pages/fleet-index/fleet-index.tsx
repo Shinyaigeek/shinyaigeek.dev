@@ -1,10 +1,14 @@
-import type { FunctionComponent } from "react";
+import type { FunctionComponent, ReactNode } from "react";
+import { siteOrigin } from "../../../universal/site-origin";
 import type { FleetContent } from "../../../build/model/fleet/fleet.entity";
 import { FleetCard } from "../../components/fleet-card";
 import {
 	container,
 	description,
+	emptyBody,
 	emptyState,
+	emptyTitle,
+	eyebrow,
 	fleetGrid,
 	header,
 	title,
@@ -17,17 +21,38 @@ interface Props {
 
 const COPY = {
 	ja: {
+		eyebrow: "Slides",
 		description:
-			"アイデアや学習の記録、ちょっとした発見をスライド形式で共有します",
-		emptyTitle: "Coming Soon",
-		emptyBody: "Fleet の準備中です。しばらくお待ちください。",
+			"アイデアや学習の記録、ちょっとした発見を、数枚のスライドにして置いています。",
+		emptyTitle: "まだ Fleet はありません",
+		emptyBody: "準備中です。しばらくお待ちください。",
 	},
 	en: {
-		description: "Ideas, notes and small findings, shared as slides.",
-		emptyTitle: "Coming Soon",
-		emptyBody: "No fleets in English yet. Check back later.",
+		eyebrow: "Slides",
+		description: "Ideas, notes and small findings, a few slides at a time.",
+		emptyTitle: "No fleets in English yet",
+		emptyBody: (
+			<>
+				Check back later, or read{" "}
+				<a href={`${siteOrigin("ja")}/fleets/`} hrefLang="ja">
+					the Japanese ones
+				</a>{" "}
+				in the meantime.
+			</>
+		),
 	},
-} as const;
+} satisfies Record<
+	Props["language"],
+	Record<"eyebrow" | "description" | "emptyTitle", string> & {
+		emptyBody: ReactNode;
+	}
+>;
+
+/** Frontmatter dates come as "2024-01-15" or "2024/01/15"; both sort as text. */
+const newestFirst = (a: FleetContent, b: FleetContent) =>
+	b.publishedAt
+		.replace(/\//g, "-")
+		.localeCompare(a.publishedAt.replace(/\//g, "-"));
 
 export const FleetIndex: FunctionComponent<Props> = ({ fleets, language }) => {
 	const copy = COPY[language];
@@ -35,20 +60,21 @@ export const FleetIndex: FunctionComponent<Props> = ({ fleets, language }) => {
 	return (
 		<div className={container}>
 			<header className={header}>
+				<p className={eyebrow}>{copy.eyebrow}</p>
 				<h1 className={title}>Fleets</h1>
 				<p className={description}>{copy.description}</p>
 			</header>
 
 			{fleets.length > 0 ? (
 				<div className={fleetGrid}>
-					{fleets.map((fleet) => (
+					{[...fleets].sort(newestFirst).map((fleet) => (
 						<FleetCard key={fleet.path} fleet={fleet} language={language} />
 					))}
 				</div>
 			) : (
 				<div className={emptyState}>
-					<h3>{copy.emptyTitle}</h3>
-					<p>{copy.emptyBody}</p>
+					<p className={emptyTitle}>{copy.emptyTitle}</p>
+					<p className={emptyBody}>{copy.emptyBody}</p>
 				</div>
 			)}
 		</div>

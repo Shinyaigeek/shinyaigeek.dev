@@ -1,65 +1,168 @@
 .card {
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 16px;
-  background: var(--card-background);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  box-shadow: 0 2px 8px var(--shadow-color);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
 }
 
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px var(--shadow-color-hover);
+/*
+ * The cover slide with the rest of the deck peeking out behind it. The two
+ * sheets behind are pseudo-elements, so a one-slide fleet (data-depth="1")
+ * simply has none.
+ */
+.deck {
+    position: relative;
+    margin: 0 10px 14px 0;
+}
+
+.deck::before,
+.deck::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.deck::before {
+    transform: translate(10px, 14px);
+    background: var(--surface-2);
+}
+
+.deck::after {
+    transform: translate(5px, 7px);
+}
+
+.deck[data-depth='1']::before,
+.deck[data-depth='1']::after {
+    display: none;
+}
+
+.deck[data-depth='2']::before {
+    display: none;
+}
+
+.thumbnail {
+    position: relative;
+    z-index: 1;
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+        box-shadow 0.35s ease;
+}
+
+.count {
+    position: absolute;
+    z-index: 2;
+    right: 0.6rem;
+    bottom: 0.6rem;
+    min-width: 1.6rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: rgba(var(--theme-color-rgb), 0.82);
+    color: var(--theme-background);
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+}
+
+.card:hover .thumbnail,
+.card:focus-within .thumbnail {
+    transform: translate(-3px, -4px);
+    box-shadow: var(--shadow-md);
+}
+
+.card:hover .deck::after,
+.card:focus-within .deck::after {
+    transform: translate(7px, 9px) rotate(1.2deg);
+}
+
+.card:hover .deck::before,
+.card:focus-within .deck::before {
+    transform: translate(13px, 17px) rotate(2.6deg);
 }
 
 .title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0 0 8px 0;
-  line-height: 1.3;
-  color: var(--text-primary);
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.4;
+    font-weight: 750;
+    color: var(--headings-color);
+    text-wrap: pretty;
+    word-break: auto-phrase;
 }
 
-.description {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin: 0 0 12px 0;
-  line-height: 1.4;
+.link {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Makes the whole card the link's hit area without wrapping it in the anchor. */
+.link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+}
+
+.card:hover .link {
+    text-decoration: underline;
+    text-decoration-color: var(--brand);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.25em;
+}
+
+.link:focus-visible {
+    outline: none;
+}
+
+.card:has(.link:focus-visible) {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 6px;
+    border-radius: var(--radius-md);
 }
 
 .meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
 }
 
-.publishedAt {
-  margin: 0;
-}
-
-.slideCount {
-  background: var(--theme-color);
-  color: white;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 0.75rem;
+.separator {
+    opacity: 0.6;
 }
 
 .tags {
-  display: flex;
-  gap: 6px;
-  margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0 0 0 0.25rem;
+    padding: 0;
+    list-style: none;
 }
 
 .tag {
-  background: rgba(0, 0, 0, 0.05);
-  color: #666;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.7rem;
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(var(--brand-rgb), 0.14);
+    color: var(--text-color);
+    font-size: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .deck::before,
+    .deck::after,
+    .thumbnail {
+        transition: none;
+    }
 }
