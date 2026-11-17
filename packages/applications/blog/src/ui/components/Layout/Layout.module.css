@@ -1,5 +1,8 @@
 .inner {
     position: relative;
+    /* Takes the slack on a short page, so the footer sits at the bottom of the
+       viewport rather than partway up it. */
+    flex: 1 0 auto;
     padding-top: var(--header-height);
     /* clip (not hidden) so that position: sticky keeps working inside */
     overflow-x: clip;
@@ -40,6 +43,9 @@
     color: var(--theme-color);
     position: relative;
     min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
 }
 
 /*
