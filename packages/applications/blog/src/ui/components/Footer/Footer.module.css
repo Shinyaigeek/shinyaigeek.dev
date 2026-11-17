@@ -3,6 +3,6 @@
     margin-top: 5px;
     padding-top: 15px;
     padding-bottom: 15px;
-    color: #e4e4e4;
+    color: var(--theme-text);
     background-color: var(--theme-header);
 }
