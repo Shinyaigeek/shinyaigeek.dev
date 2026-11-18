@@ -148,6 +148,13 @@
     color: var(--text-muted);
 }
 
+/* The paragraph Markdown wraps a quote in keeps the browser's 1em margins,
+   which nothing above reaches: .body > * only zeroes the slide's own children. */
+.body blockquote > *,
+.body li > p {
+    margin: 0;
+}
+
 .body img {
     max-width: 100%;
     max-height: 60cqi;

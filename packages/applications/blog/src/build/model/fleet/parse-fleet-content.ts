@@ -21,7 +21,37 @@ const renderSlide = unified()
 	.use(rehypeStringify);
 
 /** A line of only dashes separates one slide from the next. */
-const SLIDE_SEPARATOR = /^\s*---\s*$/m;
+const SLIDE_SEPARATOR = /^\s*---\s*$/;
+const FENCE = /^\s*(`{3,}|~{3,})/;
+
+/**
+ * Splits a fleet's body into its slides' source, on separator lines outside
+ * fenced code -- a slide that shows YAML frontmatter has `---` lines of its
+ * own, and splitting there would cut the example in half.
+ */
+const splitSlides = (body: string): string[] => {
+	const slides: string[][] = [[]];
+	let fence: string | null = null;
+
+	for (const line of body.split("\n")) {
+		const marker = FENCE.exec(line)?.[1];
+		if (fence === null && marker) {
+			fence = marker;
+		} else if (
+			fence !== null &&
+			marker?.[0] === fence[0] &&
+			marker.length >= fence.length
+		) {
+			fence = null;
+		} else if (fence === null && SLIDE_SEPARATOR.test(line)) {
+			slides.push([]);
+			continue;
+		}
+		slides[slides.length - 1]?.push(line);
+	}
+
+	return slides.map((lines) => lines.join("\n"));
+};
 
 export async function parseFleetContent(
 	markdownContent: string,
@@ -36,8 +66,7 @@ export async function parseFleetContent(
 
 		const metadata = attributes as Omit<FleetMetadata, "path">;
 
-		const slideContents = body
-			.split(SLIDE_SEPARATOR)
+		const slideContents = splitSlides(body)
 			.map((content) => content.trim())
 			.filter((content) => content);
 
